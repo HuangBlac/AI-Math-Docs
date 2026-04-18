@@ -1,0 +1,1927 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="从基础数学到AI4Math前沿的知识库">
+      
+      
+        <meta name="author" content="huangblac">
+      
+      
+        <link rel="canonical" href="https://huangblac.github.io/AI-Math-Docs/algorithms/compressed-sensing/">
+      
+      
+        <link rel="prev" href="../deep-learning/">
+      
+      
+        <link rel="next" href="../../ai4math/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>压缩感知 - AI & Math</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="AI &amp; Math" class="md-header__button md-logo" aria-label="AI & Math" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI & Math
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              压缩感知
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到暗色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到暗色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到亮色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到亮色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  序言与总览
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../math/" class="md-tabs__link">
+          
+  
+  
+  基础数学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../computation/" class="md-tabs__link">
+          
+  
+  
+  计算数学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  算法介绍
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ai4math/" class="md-tabs__link">
+          
+  
+  
+  AI4MATH前沿
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AI &amp; Math" class="md-nav__button md-logo" aria-label="AI & Math" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI & Math
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    序言与总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础数学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    基础数学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础数学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数学分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高等代数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/measure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    测度论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/probability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概率论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/ode-pde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    微分方程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/functional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    泛函分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/statistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数理统计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/multivariate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多元统计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/causality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    因果推断
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算数学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    计算数学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算数学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/num-linalg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值线性代数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/num-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/num-pde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值微分方程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    凸优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/stat-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计计算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/learning-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计学习理论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法介绍
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    算法介绍
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    机器学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../neural-networks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    神经网络
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decision-trees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    决策树与集成学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bayesian/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    贝叶斯学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deep-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    深度学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    压缩感知
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI4MATH前沿
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI4MATH前沿
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai4math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI4MATH前沿
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai4math/papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    经典论文
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai4math/examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法实例与训练体会
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai4math/improvements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    改良与实验
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai4math/pinn-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN概览与拷打
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai4math/pinn-seminar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN讨论班讲义
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai4math/pinn-critique/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN训练体会
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">三月七都能看懂的压缩感知</h1>
+<h1 id="_2">一 引入</h1>
+<p>三月七：没人觉得这个照相机真的很诡异吗？明明现实世界的点是无穷多的，但照相机却只有那么几个像素，拍出来的照片居然和真实世界看上去相差无几……但我觉得这不是什么大事，也不好意思去去问了列车长和丹恒他们。</p>
+<p>长夜月：其实，你所思考的并不是一个容易的问题，正是顶级数学家的最新一批科研成果，压缩感知。它意味着对于稀疏的真实图像，我们只需要少量的采样点。</p>
+<p>而且利用这个原理，我们可以制作不需要2000万像素，只需要一个点的相机</p>
+<p>三月七：一个点的相机？那是怎么拍照的？</p>
+<p>长夜月：让我们先来回顾一下照相机的原理：对于真实世界包含无穷维的信息，实际上就是一个很高维度的向量。而经过光线处理和聚焦，最终变成一个个像素点。而这也相当于另一个向量，每个分量就代表一个像素。而这个过程会被看成线性的，意思是一个原像变大两倍，像也变大两倍</p>
+<p>三月七:那要想拍出真实的照片岂不是很难，得每个点都如实的记录下来？</p>
+<p>长夜月：没错，根据奈奎斯特-香农采样定理，采样点的密度必须得是真实信号最高频率的两倍才能无失真重建</p>
+<p>三月：呃，也就是说，要想把一张开拓者的照片完全拍摄清楚，要把每个原子都给扫描清楚？不对不对，上次贝罗伯格的简笔画，明明画的这么潦草，还是能一眼认出来，这是不是意味着……</p>
+<p>长夜月：你的直觉很敏锐，事实上，真实信号往往具有“稀疏性”，意味着你拍一张照片，绝大多数的位置都其实是背景。
+$$
+s = Ax
+$$
+对应到之前拍照的问题，实际上我们自动”补全”了一个最好的信号，而这个补全的逻辑，就是在已知观测s和感知矩阵A的前提下，寻找最稀疏的x。</p>
+<p>s是我们所看到的照片三月，A是你拍照时用到的一个照相机。我们求解一个稀疏信号即可。</p>
+<p>三月七：等下，本姑娘明明就不是全是空荡荡的白噪声，我脸上的细节很多的！</p>
+<p>长夜月：那我来纠正一下，因为在某一组基下你的表示是稀疏的。我们完全只用抓住几个关键细节，例如粉白渐变短发，圆脸，活泼就能够还原三月八九不离十。我们的假设中，就蕴含了x在一个已知的摄像机下是“稀疏”的，大部分元素都是零。</p>
+<p>三月七：我明白了，就相当于压缩感知你作为一个画师，看到了一张潦草的画，并且根据对我的了解，画出一张三月</p>
+<p>长夜月：对的，使用更数学的角度，就是要在已知s,A和让x非零元素尽可能多的情况下求解这个线性方程组。</p>
+<p>三月七：感觉像是线性代数的内容，只是这个让非零元素尽可能多……伤脑筋。而且我怎么知道你这么推测的这张画像就和我真正的三月很像呢？以及给你的这张图片如果太潦草的话也不行吧。</p>
+<p>长夜月：这就是我们接下来要讨论的内容，我们需要给出s这个观测值的维数n，x的维数d,x的非零元个数k与误差的关系，并且介绍应用，单点相机</p>
+<h2 id="l0">二、L0问题：稀疏约束下的误差分析</h2>
+<h3 id="_3">基本设定</h3>
+<p>三月七：我们上一节说压缩感知的核心就是"稀疏"，那具体怎么数学上定义呢？</p>
+<p>长夜月：设真实信号是 <span class="arithmatex">\(x^* \in \mathbb{R}^d\)</span>，它的稀疏度定义为非零元个数：
+$$
+|x^<em>|_0 = |{i : x^</em>_i \neq 0}| = s
+$$</p>
+<p>我们通过感知矩阵 <span class="arithmatex">\(A \in \mathbb{R}^{n \times d}\)</span>（其中 <span class="arithmatex">\(n \ll d\)</span>）获得观测：
+$$
+s = Ax^* + \varepsilon
+$$
+其中 <span class="arithmatex">\(\varepsilon \sim \mathcal{N}(0, \sigma^2 I)\)</span> 是高斯噪声。</p>
+<p>所要求解的是：
+$$
+\hat{x} = \arg\min_{x \in \mathbb{R}^d, |x|_0 \leq s} |Ax - s|_2^2
+$$</p>
+<p>即在所有稀疏度不超过 <span class="arithmatex">\(s\)</span> 的向量中，找与观测最接近的。</p>
+<hr />
+<h3 id="l0_1">L0 问题能计算吗</h3>
+<p>三月：所以这样求解的结果就是真正的解了吗？我怎么感觉求不出来真实解呢？</p>
+<p>长夜月：我们不需要找到 <span class="arithmatex">\(\hat{x}\)</span> 本身，但是我们可以通过严谨的误差分析，来推理出真实的误差可以被噪声的强度，照片的维度，真实的维度给控制住，而且这个误差不会很大，即使我们采样点很少——当然，实际上这个不等式是“按概率的”，以很大可能成立：这来自于误差的分析框架。</p>
+<p>那我们来进入正题</p>
+<hr />
+<h3 id="_4">第一步：基本不等式</h3>
+<p>因为 <span class="arithmatex">\(\hat{x}\)</span> 是最小化点（在稀疏度约束下），所以：
+$$
+|A\hat{x} - s|_2^2 \leq |Ax^* - s|_2^2 = |\varepsilon|_2^2
+$$</p>
+<p>令 <span class="arithmatex">\(\Delta = \hat{x} - x^*\)</span> 是估计误差。注意 <span class="arithmatex">\(\Delta\)</span> 的稀疏度最多 <span class="arithmatex">\(2s\)</span>——因为 <span class="arithmatex">\(\hat{x}\)</span> 和 <span class="arithmatex">\(x^*\)</span> 各自最多 <span class="arithmatex">\(s\)</span> 个非零元。</p>
+<p>代入 <span class="arithmatex">\(s = Ax^* + \varepsilon\)</span>：
+$$
+|A\hat{x} - (Ax^* + \varepsilon)|_2^2 = |A\Delta + \varepsilon|_2^2 \leq |\varepsilon|_2^2
+$$</p>
+<p>展开平方项：
+$$
+|A\Delta + \varepsilon|_2^2 = |A\Delta|_2^2 + 2\langle A\Delta, \varepsilon \rangle + |\varepsilon|_2^2
+$$</p>
+<p>代回不等式，消去 <span class="arithmatex">\(\|\varepsilon\|_2^2\)</span> 得<strong>基本不等式</strong>：
+$$
+|A\Delta|_2^2 + 2\langle A\Delta, \varepsilon \rangle \leq 0
+$$</p>
+<p>移项：
+$$
+|A\Delta|_2^2 \leq -2\langle A\Delta, \varepsilon \rangle \leq 2|\langle A\Delta, \varepsilon \rangle|
+$$</p>
+<hr />
+<h3 id="rip">第二步：RIP 条件与基本不等式，控制左边项：</h3>
+<p>三月七：好耶，我们控制住了这个…… <span class="arithmatex">\(\|A\Delta\|_2\)</span>，我在这就把A当常数就行了对吧？只需要证明右边这一项很小对吧……等等，右边好像是个随机变量，我们是不是要证明这个随机变量很大的概率很小就行了？</p>
+<p>长夜月： 先回答你第一个问题，这个感知矩阵该怎么选的问题。一般这个A会是一个系数矩阵，很接近单位矩阵，我们可以给出这样一个条件：</p>
+<p>对任意 <span class="arithmatex">\(2s\)</span>-稀疏向量 <span class="arithmatex">\(u\)</span>（<span class="arithmatex">\(\|u\|_0 \leq 2s\)</span>），有：
+$$
+(1 - \delta_{2s})|u|<em 2s="2s">2^2 \leq |Au|_2^2 \leq (1 + \delta</em>)|u|_2^2
+$$</p>
+<p>其中 <span class="arithmatex">\(\delta_{2s} \in (0, 1)\)</span> 是 RIP 常数，通常要求 <span class="arithmatex">\(\delta_{2s} &lt; 1\)</span>。</p>
+<p>关键观察：<span class="arithmatex">\(\Delta = \hat{x} - x^*\)</span> 是 <span class="arithmatex">\(2s\)</span>-稀疏的（<span class="arithmatex">\(\|\Delta\|_0 \leq 2s\)</span>），所以 RIP 条件对 <span class="arithmatex">\(\Delta\)</span> 成立。取下界：
+$$
+|\Delta|<em 2s="2s">2^2 \leq \frac{1}{1 - \delta</em>|A\Delta|_2^2
+$$}</p>
+<p>三月：我们之前学过特征值，或者说奇异值吧。”特征值”是衡量一个矩阵在某个方向上拉伸程度的，</p>
+<p>长夜月：对！特征值衡量的是矩阵对向量的拉伸程度，而这里<span class="arithmatex">\(\delta_{2s}\)</span> 越小，<span class="arithmatex">\(A\)</span> 越接近"等距变换"。<span class="arithmatex">\(\delta_{2s} = 0\)</span> 时 <span class="arithmatex">\(A\)</span> 在稀疏子空间上就是正交变换。</p>
+<p>从 RIP 下界代入基本不等式 <span class="arithmatex">\(\|A\Delta\|_2^2 \leq -2\langle A\Delta, \varepsilon \rangle\)</span>：</p>
+<div class="arithmatex">\[
+(1 - \delta_{2s})\|\Delta\|_2^2 \leq -2\langle A\Delta, \varepsilon \rangle \leq 2|\langle A\Delta, \varepsilon \rangle|
+\]</div>
+<p>两边除以 <span class="arithmatex">\(1 - \delta_{2s}\)</span>（因为 <span class="arithmatex">\(\delta_{2s} &lt; 1\)</span>）：
+$$
+|\Delta|<em 2s="2s">2^2 \leq \frac{2}{1 - \delta</em>|\langle A\Delta, \varepsilon \rangle|
+$$}</p>
+<p>三月：现在只剩下噪声项 <span class="arithmatex">\(|\langle A\Delta, \varepsilon \rangle|\)</span> 需要控制了。</p>
+<p>长夜月：没错，这是随机项。用<strong>集中不等式</strong>来控制它。</p>
+<hr />
+<h3 id="_5">第三步：集中不等式控制噪声项</h3>
+<p>三月：集中不等式，就是说变量集中在一个特定的区域内，“很大”的概率很低？</p>
+<p>长夜月：把 <span class="arithmatex">\(\Delta\)</span> 看作固定的，<span class="arithmatex">\(\varepsilon\)</span> 看作随机。<span class="arithmatex">\(\langle A\Delta, \varepsilon \rangle = \Delta^\top(A^\top\varepsilon)\)</span> 是高斯随机变量的线性组合——因此它是高斯的，均值为 0，方差为 <span class="arithmatex">\(\sigma^2\|A\Delta\|_2^2\)</span>。</p>
+<p>定义 <span class="arithmatex">\(\mathcal{B}_{2s}\)</span> 为所有 <span class="arithmatex">\(2s\)</span>-稀疏的单位向量集合。设 <span class="arithmatex">\(\|\Delta\|_2 &gt; 0\)</span>（否则误差为 0），令 <span class="arithmatex">\(u = \frac{\Delta}{\|\Delta\|_2} \in \mathcal{B}_{2s}\)</span>，则：
+$$
+|\langle A\Delta, \varepsilon \rangle| = |\Delta|_2 \left|\langle A u, \varepsilon \rangle\right|
+$$</p>
+<p>关键问题：控制 <span class="arithmatex">\(\sup_{u \in \mathcal{B}_{2s}} |\langle A u, \varepsilon \rangle|\)</span>。</p>
+<p>使用<strong>覆盖方法</strong>：用有限个向量覆盖 <span class="arithmatex">\(\mathcal{B}_{2s}\)</span>，然后用联合界。覆盖数的上界是 <span class="arithmatex">\(\mathcal{N} \leq \left(\frac{3}{\rho}\right)^{2s}\)</span>。对每个固定的覆盖向量 <span class="arithmatex">\(u\)</span>，<span class="arithmatex">\(\langle A u, \varepsilon \rangle \sim \mathcal{N}(0, \sigma^2\|Au\|_2^2)\)</span>。</p>
+<p>用标准高斯尾概率界（在概率 <span class="arithmatex">\(1 - \delta\)</span> 下）：
+$$
+\sup_{u \in \mathcal{B}_{2s}} |\langle A u, \varepsilon \rangle| \leq C_0\sigma\sqrt{\log\left(\frac{d}{\delta}\right)}
+$$
+其中 <span class="arithmatex">\(C_0\)</span> 是只依赖 <span class="arithmatex">\(\delta_{2s}\)</span> 的常数。</p>
+<p>因此：
+$$
+|\langle A\Delta, \varepsilon \rangle| \leq |\Delta|_2 \cdot C_0\sigma\sqrt{\log\left(\frac{d}{\delta}\right)}
+$$</p>
+<p>代回误差不等式，在概率 <span class="arithmatex">\(1 - \delta\)</span> 下：
+$$
+|\Delta|<em 2s="2s">2^2 \leq \frac{2C_0\sigma}{1 - \delta</em>
+$$}}|\Delta|_2\sqrt{\log\left(\frac{d}{\delta}\right)</p>
+<p>两边除以 <span class="arithmatex">\(\|\Delta\|_2\)</span> 得到最终<strong>L0 误差界</strong>：
+$$
+|\hat{x} - x^*|<em 2s="2s">2 \leq \frac{C_0\sigma}{1 - \delta</em>
+$$}}\sqrt{\log\left(\frac{d}{\delta}\right)</p>
+<hr />
+<h3 id="_6">误差界的含义</h3>
+<p>三月：这个结果说明了什么？</p>
+<p>长夜月：几个关键点：</p>
+<ol>
+<li>
+<p><strong>误差只依赖稀疏度 <span class="arithmatex">\(s\)</span></strong>：通过 <span class="arithmatex">\(\delta_{2s}\)</span> 间接依赖，<strong>不直接依赖信号维度 <span class="arithmatex">\(d\)</span></strong>——这是压缩感知的核心优势：即使 <span class="arithmatex">\(d\)</span> 极大，只要信号稀疏，误差仍然可控</p>
+</li>
+<li>
+<p><strong>对维度 <span class="arithmatex">\(d\)</span> 只有对数依赖</strong> <span class="arithmatex">\(\log d\)</span>——高维下的"免费午餐"</p>
+</li>
+<li>
+<p><strong><span class="arithmatex">\(\delta_{2s}\)</span> 越小（感知矩阵越"好"），误差越小</strong>：当 <span class="arithmatex">\(\delta_{2s} \to 0\)</span> 时，误差趋于 0</p>
+</li>
+<li>
+<p><strong>噪声水平 <span class="arithmatex">\(\sigma\)</span> 线性影响</strong>：噪声越大，误差越大</p>
+</li>
+</ol>
+<h2 id="lassol0l1">三、Lasso问题：从L0到L1</h2>
+<h3 id="l1">为什么要引入L1优化？</h3>
+<p>三月：所以上一节我们用L0范数约束来求解压缩感知问题，直接数”非零元的个数”这个操作听上去很好啊。为什么就是不行呢？</p>
+<p>长夜月：问题不来自于数学，而来自于<strong>计算复杂度</strong>。L0优化需要在所有 <span class="arithmatex">\(\binom{d}{k}\)</span> 个可能的支撑集中搜索（<span class="arithmatex">\(d\)</span> 是信号维度，<span class="arithmatex">\(k\)</span> 是稀疏度），这是NP难的——简单来说，就是即使你拥有全宇宙最强大的计算机，也未必能在有限时间内找到答案。</p>
+<p>三月：那能不能换一种约束方式，但仍然让变量变稀疏？</p>
+<p>长夜月：好问题。考虑二维情形：L0约束要求非零元个数 <span class="arithmatex">\(\leq k\)</span>，等价于坐标轴上只取有限个点。而L1约束 <span class="arithmatex">\(\|x\|_1 \leq R\)</span> 对应的是一个<strong>菱形</strong>，L2约束 <span class="arithmatex">\(\|x\|_2 \leq R\)</span> 对应的是一个<strong>圆</strong>。</p>
+<p>关键观察：菱形的顶点恰好落在坐标轴上——也就是说，L1约束天然倾向于把解”推”到坐标轴上，让某些分量恰好为零。而L2约束的圆没有棱角，不具备这种稀疏诱导性。</p>
+<p>长夜月：没错。于是我们将压缩感知问题从
+$$
+\text{L0}: \quad \min |x|_0 \quad \text{s.t.} \quad |Ax - s|_2 \leq \varepsilon
+$$
+松驰为
+$$
+\text{L1 (Lasso)}: \quad \hat{x} = \arg\min_x \left( \frac{1}{2n}|Ax - s|_2^2 + \lambda|x|_1 \right)
+$$</p>
+<p>三月七：不过，我这里倒还要问一个和正则项没关系的问题，为什么残差用的是L2范数而不是L1？这是不是也可以带来什么稀疏性</p>
+<p>长夜月：这里的 <span class="arithmatex">\(\|Ax - s\|_2^2\)</span> 不是正则项，而是来自测量误差的统计性质。我们假设观测 <span class="arithmatex">\(s = Ax^* + \varepsilon\)</span>，其中 <span class="arithmatex">\(\varepsilon \sim \mathcal{N}(0, \sigma^2 I)\)</span>。高斯噪声下的最大似然估计自然给出L2损失。</p>
+<p>而L1罚项才是用来形成稀疏性的。</p>
+<p>但这个损失确实也会因问题而异：例如某些图像还原问题，就会加上图像的导数信息L1范数来作为损失，让得到的图象是光滑的……我跟你说得着这个吗</p>
+<hr />
+<h3 id="l1_1">L1优化是不是仍然足够好？——误差估计</h3>
+<p>三月：我懂了……但用L1替代L0，会不会引入额外误差？我们求出来的 <span class="arithmatex">\(\hat{x}\)</span> 和真实信号 <span class="arithmatex">\(x^*\)</span> 会不会因此就谬以千里了？</p>
+<p>长夜月：这正是核心问题。我们再次来一步步推导Lasso的误差界。</p>
+<h4 id="_7">第一步：基本不等式</h4>
+<p>设 <span class="arithmatex">\(\hat{x}\)</span> 是 Lasso 的解，<span class="arithmatex">\(x^*\)</span> 是真实稀疏信号，令 <span class="arithmatex">\(\Delta = \hat{x} - x^*\)</span>。因为 <span class="arithmatex">\(\hat{x}\)</span> 是最小化点，所以：
+$$
+\frac{1}{2n}|A\hat{x} - s|_2^2 + \lambda|\hat{x}|_1 \leq \frac{1}{2n}|Ax^<em> - s|_2^2 + \lambda|x^</em>|_1
+$$</p>
+<p>把 <span class="arithmatex">\(s = Ax^* + \varepsilon\)</span> 代入，展开左边：
+$$
+\frac{1}{2n}|A\Delta + \varepsilon|_2^2 + \lambda|\hat{x}|_1 \leq \frac{1}{2n}|\varepsilon|_2^2 + \lambda|x^*|_1
+$$</p>
+<p>展开平方项 <span class="arithmatex">\(\|A\Delta + \varepsilon\|_2^2 = \|A\Delta\|_2^2 + 2\langle A\Delta, \varepsilon \rangle + \|\varepsilon\|_2^2\)</span>，消去 <span class="arithmatex">\(\|\varepsilon\|_2^2\)</span> 得：
+$$
+\frac{1}{2n}|A\Delta|_2^2 + \frac{1}{n}\langle A\Delta, \varepsilon \rangle + \lambda|\hat{x}|_1 \leq \lambda|x^*|_1
+$$</p>
+<p>移项得到<strong>基本不等式</strong>：
+$$
+\frac{1}{2n}|A\Delta|_2^2 + \lambda|\hat{x}|_1 \leq \lambda|x^*|_1 - \frac{1}{n}\langle A\Delta, \varepsilon \rangle
+$$</p>
+<h4 id="_8">第二步：支撑集分解</h4>
+<p>三月七：上面这一串多了一个$<span class="arithmatex">\(\lambda||\hat{x}||_1-||x^*||_1\)</span>$欸，说不定这样就会……</p>
+<p>长夜月：你在替陶哲轩担心什么（流汗），还记得我们的题目背景：稀疏性吗</p>
+<p>设 <span class="arithmatex">\(A^*\)</span> 是 <span class="arithmatex">\(x^*\)</span> 的真实支撑集（非零元的索引集），<span class="arithmatex">\(|A^*| = s\)</span>（稀疏度）。将 <span class="arithmatex">\(\Delta\)</span> 拆分为 <span class="arithmatex">\(\Delta_{A^*}\)</span> 和 <span class="arithmatex">\(\Delta_{(A^*)^c}\)</span>。</p>
+<p>关键观察——L1范数分解：
+$$
+|\hat{x}|<em>1 = |\Delta</em>{A^<em>} + x^</em>_{A^<em>}|<em>1 + |\Delta</em>{(A^</em>)^c}|_1
+$$</p>
+<p>由三角不等式：
+$$
+|x^<em>|_1 - |\hat{x}|_1 = |x^</em><em _A_c="(A^*)^c">{A^<em>}|<em>1 - |\Delta</em>{A^</em>} + x^<em>_{A^</em>}|_1 - |\Delta</em>|_1
+$$</p>
+<p>再次用三角不等式 <span class="arithmatex">\(\|\Delta_{A^*} + x^*_{A^*}\|_1 \geq \|x^*_{A^*}\|_1 - \|\Delta_{A^*}\|_1\)</span>，所以：
+$$
+|x^<em>|<em>1 - |\hat{x}|_1 \leq |\Delta</em>{A^</em>}|<em _A_c="(A^*)^c">1 - |\Delta</em>|_1
+$$</p>
+<p>代回基本不等式：
+$$
+\frac{1}{2n}|A\Delta|<em>2^2 + \lambda|\Delta</em>{(A^<em>)^c}|<em>1 \leq \lambda|\Delta</em>{A^</em>}|_1 - \frac{1}{n}\langle A\Delta, \varepsilon \rangle
+$$</p>
+<h4 id="_9">第三步：控制噪声项</h4>
+<p>三月： <span class="arithmatex">\(\langle A\Delta, \varepsilon \rangle\)</span> 我倒是会处理了！它是用那个……那个……集成，集成战略？</p>
+<p>长夜月：集中不等式，我再次演示一遍：</p>
+<p>因为 <span class="arithmatex">\(\varepsilon\)</span> 是次高斯的，所以 <span class="arithmatex">\(A^\top\varepsilon\)</span> 的每个分量也是次高斯的。可以用Hoeffding不等式证明，在概率 <span class="arithmatex">\(1-\delta\)</span> 下：
+$$
+\frac{1}{n}|A^\top\varepsilon|_\infty \leq \lambda_0 := \sigma\sqrt{\frac{2\log(2d/\delta)}{n}}
+$$</p>
+<p>于是 <span class="arithmatex">\(-\frac{1}{n}\langle A\Delta, \varepsilon \rangle = -\frac{1}{n}\Delta^\top A^\top\varepsilon \leq \|\Delta\|_1 \cdot \frac{1}{n}\|A^\top\varepsilon\|_\infty \leq \lambda_0\|\Delta\|_1\)</span>。</p>
+<p>（看一眼被公式哄睡着了的三月）无奈，在这一页笔记上补充上Holder不等式$<span class="arithmatex">\(p=1,q=\infty\)</span>$的使用</p>
+<p>由此可以代入得到：
+$$
+\frac{1}{2n}|A\Delta|<em>2^2 + \lambda|\Delta</em>{(A^<em>)^c}|<em>1 \leq \lambda|\Delta</em>{A^</em>}|_1 + \lambda_0|\Delta|_1
+$$</p>
+<h4 id="lambda">第四步：选择 <span class="arithmatex">\(\lambda\)</span>，得到支撑集约束</h4>
+<p>接下来我们就是利用稀疏性处理掉这个额外引入的项</p>
+<p>取正则化参数 <span class="arithmatex">\(\lambda = 2\lambda_0 = 2\sigma\sqrt{\frac{2\log(2d/\delta)}{n}}\)</span>，则 <span class="arithmatex">\(\lambda_0 = \lambda/2\)</span>，所以：
+$$
+\frac{1}{2n}|A\Delta|<em>2^2 + \lambda|\Delta</em>{(A^<em>)^c}|<em>1 \leq \lambda|\Delta</em>{A^</em>}|<em>1 + \frac{\lambda}{2}\left(|\Delta</em>{A^<em>}|<em>1 + |\Delta</em>{(A^</em>)^c}|_1\right)
+$$</p>
+<p>整理得：
+$$
+\frac{1}{2n}|A\Delta|<em>2^2 + \frac{\lambda}{2}|\Delta</em>{(A^<em>)^c}|<em>1 \leq \frac{3\lambda}{2}|\Delta</em>{A^</em>}|_1
+$$</p>
+<p>左边两项都是非负的，所以：
+$$
+|\Delta_{(A^<em>)^c}|<em>1 \leq 3|\Delta</em>{A^</em>}|_1
+$$</p>
+<p>三月七（猛地惊醒）这就是说，支撑集外的误差被支撑集内的误差控制了？</p>
+<p>长夜月：对！这就是稀疏估计的<strong>集中性</strong>：L1正则化不会在非支撑集上产生太大的误差。用 <span class="arithmatex">\(\ell_2\)</span> 范数表述就是（由 Cauchy-Schwarz，<span class="arithmatex">\(\|\Delta_{A^*}\|_1 \leq \sqrt{s}\|\Delta_{A^*}\|_2\)</span>）：
+$$
+|\Delta_{(A^<em>)^c}|<em>2 \leq |\Delta</em>{(A^</em>)^c}|<em>1 \leq 3|\Delta</em>{A^<em>}|<em>1 \leq 3\sqrt{s}|\Delta</em>{A^</em>}|_2
+$$</p>
+<p>因此 <span class="arithmatex">\(\|\Delta\|_2 \leq \|\Delta_{A^*}\|_2 + \|\Delta_{(A^*)^c}\|_2 \leq (1 + 3\sqrt{s})\|\Delta_{A^*}\|_2\)</span>。</p>
+<h4 id="re">第五步：RE条件与最终误差界</h4>
+<p>三月：可是 <span class="arithmatex">\(\|\Delta_{A^*}\|_2\)</span> 本身怎么控制？</p>
+<p>长夜月：这需要对感知矩阵 <span class="arithmatex">\(A\)</span> 附加一个条件——<strong>限制特征值条件（Restricted Eigenvalue, RE）</strong>：</p>
+<p>对满足 <span class="arithmatex">\(\|\Delta_{(A^*)^c}\|_1 \leq 3\|\Delta_{A^*}\|_1\)</span> 的所有 <span class="arithmatex">\(\Delta\)</span>，有：
+$$
+\frac{1}{n}|A\Delta|_2^2 \geq \gamma^2|\Delta|_2^2
+$$</p>
+<p>其中 <span class="arithmatex">\(\gamma &gt; 0\)</span> 是限制特征值常数。这个条件要求 <span class="arithmatex">\(A\)</span> 在”稀疏方向”上的最小奇异值有正的下界——直觉上，感知矩阵需要能区分不同的稀疏信号。</p>
+<p>三月：RIP条件和RE条件是什么关系？</p>
+<p>长夜月：RIP条件更强：它要求对所有 <span class="arithmatex">\(s\)</span>-稀疏向量 <span class="arithmatex">\(u\)</span>，
+$$
+(1-\delta_s)|u|_2^2 \leq |Au|_2^2 \leq (1+\delta_s)|u|_2^2
+$$
+RIP蕴含RE（取 <span class="arithmatex">\(\gamma^2 = 1 - \delta_{2s}\)</span>），但RE更弱、更容易验证。在高维统计中通常只需RE就够了。</p>
+<p>结合RE条件和前面的不等式 <span class="arithmatex">\(\frac{1}{2n}\|A\Delta\|_2^2 \leq \frac{3\lambda}{2}\|\Delta_{A^*}\|_1 \leq \frac{3\lambda\sqrt{s}}{2}\|\Delta_{A^*}\|_2\)</span>：</p>
+<div class="arithmatex">\[
+\frac{\gamma^2}{2}\|\Delta\|_2^2 \leq \frac{1}{2n}\|A\Delta\|_2^2 \leq \frac{3\lambda\sqrt{s}}{2}\|\Delta_{A^*}\|_2 \leq \frac{3\lambda\sqrt{s}}{2}\|\Delta\|_2
+\]</div>
+<p>两边消去 <span class="arithmatex">\(\|\Delta\|_2\)</span>，得到最终<strong>Lasso 误差界</strong>：
+$$
+|\hat{x} - x^*|_2 \leq \frac{3\lambda\sqrt{s}}{\gamma^2} = \frac{3\sigma\sqrt{s}}{\gamma^2}\sqrt{\frac{2\log(2d/\delta)}{n}}
+$$</p>
+<p>三月：这个结果的含义是什么？</p>
+<p>长夜月：注意几个关键点：
+1. <strong>误差随样本量 <span class="arithmatex">\(n\)</span> 增大而衰减</strong>，速率为 <span class="arithmatex">\(1/\sqrt{n}\)</span>
+2. <strong>误差只依赖稀疏度 <span class="arithmatex">\(s\)</span></strong>，不依赖信号维度 <span class="arithmatex">\(d\)</span>——这是压缩感知的核心优势：即使 <span class="arithmatex">\(d\)</span> 极大，只要信号稀疏（<span class="arithmatex">\(s\)</span> 小），误差仍然可控
+3. <strong>对维度 <span class="arithmatex">\(d\)</span> 只有对数依赖</strong> <span class="arithmatex">\(\log d\)</span>——这是高维统计的”免费午餐”
+4. <span class="arithmatex">\(\gamma\)</span> 越大（感知矩阵越”好”），误差越小</p>
+<hr />
+<h3 id="l1_2">L1优化怎么求解？近端梯度下降</h3>
+<p>三月七：所以，引入L1正则项之后问题变得简单了吗？</p>
+<p>长夜月：变简单了——但也没有完全变简单。L0问题是NP难的，而L1问题不但在求解上没有问题，而且是一个<strong>凸优化问题</strong>，意味着一定可以求解。但L1范数不可微，所以普通的梯度下降不能直接用。</p>
+<p>三月七：不可微？（扔掉手中的《最优化理论》）那我之前学的那些一阶优化条件完全没用了？在0那个点连导数都没有</p>
+<p>长夜月：没有导数就需要创造导数所以我们引入一个关键工具——<strong>次微分</strong>。我们这里考虑凸函数，即使不可微，我们也可以定义”次梯度”：如果对所有的 <span class="arithmatex">\(y\)</span> 都有
+$$
+f(y) \geq f(x) + z^\top (y - x)
+$$
+那么 <span class="arithmatex">\(z\)</span> 就叫做 <span class="arithmatex">\(f\)</span> 在 <span class="arithmatex">\(x\)</span> 处的次微分，记作 <span class="arithmatex">\(z \in \partial f(x)\)</span>。</p>
+<p>次微分有两个好性质：
+- <strong>线性组合</strong>：<span class="arithmatex">\(\partial(\lambda f + \gamma g)(x) = \lambda\,\partial f(x) + \gamma\,\partial g(x)\)</span>
+- <strong>可微时退化为梯度</strong>：若 <span class="arithmatex">\(f\)</span> 可微且凸，则 <span class="arithmatex">\(\partial f(x) = \{\nabla f(x)\}\)</span></p>
+<p>三月：我感觉就是在曲线“下方”所有过这一点的“切平面”，就是只在这一点相交为例的。这和微分确实很像啊，毕竟都像是求切线。</p>
+<p>但是次微分对于不可微函数时可以是不唯一的。比如说绝对值x在原点处，很多直线都在这下方。</p>
+<p>所以优化条件就变成了 <span class="arithmatex">\(0 \in \partial f(x^*)\)</span>？</p>
+<p>长夜月：对！以绝对值函数为例，根据定义 <span class="arithmatex">\(|y| \geq |x| + z(y - x)\)</span> 对所有 <span class="arithmatex">\(y\)</span>：
+- <span class="arithmatex">\(x &gt; 0\)</span> 时：取 <span class="arithmatex">\(z = 1\)</span>，右边 <span class="arithmatex">\(= x + (y-x) = y \leq |y|\)</span>，所以 <span class="arithmatex">\(\partial|x| = \{1\}\)</span>
+- <span class="arithmatex">\(x &lt; 0\)</span> 时：取 <span class="arithmatex">\(z = -1\)</span>，同理 <span class="arithmatex">\(\partial|x| = \{-1\}\)</span>
+- <span class="arithmatex">\(x = 0\)</span> 时：<span class="arithmatex">\(|y| \geq zy\)</span> 对所有 <span class="arithmatex">\(y\)</span> 成立，需要 <span class="arithmatex">\(-1 \leq z \leq 1\)</span>，所以 <span class="arithmatex">\(\partial|x| = [-1, 1]\)</span></p>
+<p>三月：在0处次微分是一个区间而不是一个点，这就能让0成为最优解的条件……</p>
+<p>长夜月：所以对于回到我们的压缩感知问题：
+$$
+\hat{x} = \arg\min_{x} \left( \frac{1}{2n}|Ax - s|_2^2 + \lambda|x|_1 \right)
+$$</p>
+<p>光滑项的梯度是 <span class="arithmatex">\(\frac{1}{n}A^\top(Ax - s)\)</span>，L1项的次微分是 <span class="arithmatex">\(\lambda\,\partial\|x\|_1\)</span>（逐分量：<span class="arithmatex">\(\partial\|x\|_1 = \partial|x_1| \times \cdots \times \partial|x_d|\)</span>）。一阶最优性条件：
+$$
+\frac{1}{n}A^\top(A\hat{x} - s) + \lambda\,\partial|\hat{x}|_1 \ni 0
+$$</p>
+<p>三月：<span class="arithmatex">\(\partial\|x\|_1\)</span> 不是一个单值函数，怎么求解？</p>
+<p>长夜月：这就是<strong>近端梯度下降（Proximal Gradient Descent）</strong>出场的时候了。核心思路是：先对光滑项走一步梯度，再对L1项做”近端算子”处理。</p>
+<p>先看一维辅助问题：<span class="arithmatex">\(f(x) = \frac{1}{2}(x - t)^2 + \lambda|x|\)</span>，求 <span class="arithmatex">\(0 \in \partial f(x^*)\)</span>：
+- <span class="arithmatex">\(x &gt; 0\)</span>：<span class="arithmatex">\(\partial f(x) = (x - t) + \lambda\)</span>
+- <span class="arithmatex">\(x &lt; 0\)</span>：<span class="arithmatex">\(\partial f(x) = (x - t) - \lambda\)</span>
+- <span class="arithmatex">\(x = 0\)</span>：<span class="arithmatex">\(\partial f(0) = [-t - \lambda,\; -t + \lambda]\)</span></p>
+<p>解就是<strong>软阈值算子</strong> <span class="arithmatex">\(S_\lambda(t)\)</span>：
+$$
+S_\lambda(t) = \begin{cases}
+0, &amp; |t| \leq \lambda \
+t - \lambda, &amp; t \geq \lambda \
+t + \lambda, &amp; t \leq -\lambda
+\end{cases}
+$$</p>
+<p>三月：当 <span class="arithmatex">\(|t|\)</span> 比 <span class="arithmatex">\(\lambda\)</span> 小的时候，直接被”压缩”到0了——这就是L1正则化能产生稀疏解的原因！</p>
+<p>长夜月：完全正确。回到一般问题，引入步长 <span class="arithmatex">\(\tau &gt; 0\)</span>，迭代公式为：
+$$
+x^{(k+1)} = S_{\lambda\tau}!\left(x^{(k)} - \tau \cdot \frac{1}{n}A^\top(Ax^{(k)} - s)\right)
+$$</p>
+<p>每一步先沿光滑项的负梯度方向走一步（步长 <span class="arithmatex">\(\tau\)</span>），再用软阈值算子把小的分量归零。等价的不动点形式是：
+$$
+x^<em> = S_{\lambda\tau}!\left(x^</em> - \tau \cdot \frac{1}{n}A^\top(Ax^* - s)\right)
+$$</p>
+<p>三月：为什么这个不动点就是最优解？这看上去都不搭吧？</p>
+<p>长夜月：一变量变成多变量的你就不会了？那好吧，我们来仔细推导一下。</p>
+<p>首先，最优性条件本身是次微分的直接推论。因为目标函数 <span class="arithmatex">\(f(x) = \frac{1}{2n}\|Ax-s\|_2^2 + \lambda\|x\|_1\)</span> 是两个凸函数之和，一阶最优性条件是：
+$$
+0 \in \nabla\left(\frac{1}{2n}|Ax-s|<em>2^2\right)\Big|</em>{x^<em>} + \lambda\,\partial|x^</em>|_1
+= \frac{1}{n}A^\top(Ax^<em>-s) + \lambda\,\partial|x^</em>|_1
+$$</p>
+<p>由于 <span class="arithmatex">\(\|x\|_1 = \sum_{i=1}^d |x_i|\)</span> 是逐分量可分的，次微分也是逐分量的。设 <span class="arithmatex">\(d_j = \frac{1}{n}[A^\top(Ax^*-s)]_j\)</span>，则对每个分量 <span class="arithmatex">\(j\)</span>：</p>
+<ul>
+<li>若 <span class="arithmatex">\(x^*_j &gt; 0\)</span>：<span class="arithmatex">\(\partial|x^*_j| = \{1\}\)</span>，条件要求 <span class="arithmatex">\(d_j + \lambda = 0\)</span>，即 <span class="arithmatex">\(d_j = -\lambda\)</span></li>
+<li>若 <span class="arithmatex">\(x^*_j &lt; 0\)</span>：<span class="arithmatex">\(\partial|x^*_j| = \{-1\}\)</span>，条件要求 <span class="arithmatex">\(d_j - \lambda = 0\)</span>，即 <span class="arithmatex">\(d_j = \lambda\)</span></li>
+<li>若 <span class="arithmatex">\(x^*_j = 0\)</span>：<span class="arithmatex">\(\partial|x^*_j| = [-1,1]\)</span>，条件要求 <span class="arithmatex">\(d_j \in [-\lambda, \lambda]\)</span>，即 <span class="arithmatex">\(|d_j| \leq \lambda\)</span></li>
+</ul>
+<p>三月：这和我之前算的一维情况完全对应上了！</p>
+<p>长夜月：没错。现在我们来验证不动点。令 <span class="arithmatex">\(t_j = x^*_j - \tau d_j\)</span>，不动点方程说 <span class="arithmatex">\(x^*_j = S_{\lambda\tau}(t_j)\)</span>。</p>
+<p><strong>情况1：<span class="arithmatex">\(x^*_j &gt; 0\)</span></strong>
+此时 <span class="arithmatex">\(d_j = -\lambda\)</span>，所以 <span class="arithmatex">\(t_j = x^*_j + \tau\lambda &gt; \tau\lambda\)</span>。
+软阈值算子：<span class="arithmatex">\(S_{\lambda\tau}(t_j) = t_j - \lambda\tau = x^*_j\)</span>。</p>
+<p><strong>情况2：<span class="arithmatex">\(x^*_j &lt; 0\)</span></strong>
+此时 <span class="arithmatex">\(d_j = \lambda\)</span>，所以 <span class="arithmatex">\(t_j = x^*_j - \tau\lambda &lt; -\tau\lambda\)</span>。
+软阈值算子：<span class="arithmatex">\(S_{\lambda\tau}(t_j) = t_j + \lambda\tau = x^*_j\)</span>。</p>
+<p><strong>情况3：<span class="arithmatex">\(x^*_j = 0\)</span></strong>
+此时 <span class="arithmatex">\(|d_j| \leq \lambda\)</span>，所以 <span class="arithmatex">\(|t_j| = |\tau d_j| \leq \tau\lambda\)</span>。
+软阈值算子：<span class="arithmatex">\(S_{\lambda\tau}(t_j) = 0 = x^*_j\)</span>。</p>
+<p>三月：三种情况都成立！所以不动点和最优性条件完全等价！</p>
+<p>长夜月：正是如此。至于迭代为什么能收敛到不动点，因为目标函数是凸的，只要步长 <span class="arithmatex">\(\tau\)</span> 足够小（<span class="arithmatex">\(\tau &lt; 2n/\|A^\top A\|\)</span>），近端梯度迭代就能保证收敛到全局最优解。</p>
+<p>三月：L1正则项还可以做分布式优化？</p>
+<p>长夜月：是的，由于 <span class="arithmatex">\(\|x\|_1 = \sum_i |x_i|\)</span> 可以逐分量分解，软阈值算子也可以逐分量独立计算：<span class="arithmatex">\(x_i^{(k+1)} = S_{\lambda\tau}(d_i^{(k)})\)</span>，因此天然适合并行和分布式实现。</p>
+<h2 id="_10">单点像素照相机</h2>
+<p>长夜月：醒醒，小三月</p>
+<p>三月七：欸，我睡着了吗？我明明是回答了好多的问题的</p>
+<p>长夜月扶额：你大概只有在梦里才懂这么多……</p>
+<p>不过没有关系，现在我们可以讲到你感兴趣的部分了，就是那个单点相机</p>
+<p>三月七：哦，对的对的。（擦干净口水），所以这个单点相机，实际上也是由很多个采样点的操作吧？</p>
+<p>长夜月：你在梦里也不算完全没有长进。所谓单点相机，实际上就是有若干个微小的光学镜片，每调整一次角度，就将其反射到采样点。每采样一次，就相当于制造了一个w^Tx.</p>
+<p>三月七：我知道，这个采样的次数会远远小于镜片的数目而且这个矩阵是一个稀疏矩阵。</p>
+<p>长夜月：是的，然后问题被转化为了一个之前讲的压缩感知问题</p>
+<h5 id="_11">彩蛋</h5>
+<p>让三月七去讲压缩感知？这到底算博识君的义务教育还是啊哈的一时兴起？对此，一位不相干白发轮椅人士只是唐突的在此插了个广告：关注知乎浅草真纪以及她的专栏，今后会发更多的AI4Math，会有更多角色出场，一些不完整的公式会由小号补充</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 huangblac
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/HuangBlac" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

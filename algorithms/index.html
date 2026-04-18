@@ -1,0 +1,3393 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="从基础数学到AI4Math前沿的知识库">
+      
+      
+        <meta name="author" content="huangblac">
+      
+      
+        <link rel="canonical" href="https://huangblac.github.io/AI-Math-Docs/algorithms/">
+      
+      
+        <link rel="prev" href="../computation/learning-theory/">
+      
+      
+        <link rel="next" href="neural-networks/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>机器学习 - AI & Math</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="AI &amp; Math" class="md-header__button md-logo" aria-label="AI & Math" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI & Math
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              机器学习
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到暗色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到暗色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到亮色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到亮色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  序言与总览
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../math/" class="md-tabs__link">
+          
+  
+  
+  基础数学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../computation/" class="md-tabs__link">
+          
+  
+  
+  计算数学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  算法介绍
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../ai4math/" class="md-tabs__link">
+          
+  
+  
+  AI4MATH前沿
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AI &amp; Math" class="md-nav__button md-logo" aria-label="AI & Math" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI & Math
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    序言与总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础数学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    基础数学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础数学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../math/analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数学分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../math/algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高等代数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../math/measure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    测度论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../math/probability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概率论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../math/ode-pde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    微分方程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../math/functional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    泛函分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../math/statistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数理统计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../math/multivariate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多元统计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../math/causality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    因果推断
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算数学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    计算数学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../computation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算数学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../computation/num-linalg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值线性代数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../computation/num-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../computation/num-pde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值微分方程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../computation/optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    凸优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../computation/stat-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计计算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../computation/learning-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计学习理论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法介绍
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    算法介绍
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    机器学习
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    机器学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        监督学习的期望损失与最优性推导
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="监督学习的期望损失与最优性推导">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        监督学习的基本设定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        损失函数与期望损失
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        最优函数的存在性与最优性
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        监督学习与非参数估计的核心框架
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="监督学习与非参数估计的核心框架">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        监督学习的基础设定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        风险最小化与目标函数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        经验风险最小化（ERM）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        非参数估计的误差分解
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        压缩感知与微分方程数值解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="压缩感知与微分方程数值解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        压缩感知的优化模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sub-gaussian-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        次高斯分布（Sub-Gaussian Distribution）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="次高斯分布（Sub-Gaussian Distribution）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 次高斯分布的定义与尾部估计
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 次高斯分布的线性不变性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-hoeffding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Hoeffding 引理：有界随机变量的次高斯性
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        次高斯随机变量的最大值与覆盖定理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="次高斯随机变量的最大值与覆盖定理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 最大值的期望与大偏差（次高斯情形）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 最大值的期望与大偏差（次高斯情形）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mgf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        期望估计（MGF 技巧）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        大偏差界
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 有限覆盖定理：将 "无限" 转化为 "有限"
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 有限覆盖定理：将 &#34;无限&#34; 转化为 &#34;有限&#34;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#packing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        覆盖数（packing 数）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        最大值的期望估计（覆盖后）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        稀疏参数估计
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="稀疏参数估计">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 稀疏性假设与基本估计式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-1-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 估计量的概率界（1-δ 置信）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 风险（均方误差）的定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        高维统计学习与稀疏估计
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="高维统计学习与稀疏估计">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 约束最小二乘估计的误差分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 集中不等式的应用（次高斯噪声）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 参数估计的误差界
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 误差分解与支撑集约束
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 正则化参数的选择
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-lasso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Lasso 误差界
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VC 维与打散数的概念
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VC 维与打散数的概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-vc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. VC 维与打散数的定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 区间分类器的打散分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 单峰函数与假设空间的拓展
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#l1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        凸优化与 L1 正则化
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="凸优化与 L1 正则化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#l1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L1 问题的优化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proximal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proximal 算子
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        次微分理论
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        凸优化的一阶条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#l1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L1 正则化的次微分
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        光滑项的梯度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        优化的一阶条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        凸集上的优化
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        法锥与对偶范数
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="法锥与对偶范数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        法锥定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        最优性条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        对偶范数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#l2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L2 正则化的优化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        辅助函数方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        优化器总结
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="优化器总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        梯度下降类方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二阶优化方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proximal_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proximal 梯度法
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#textprox_lambda-rx-argmin_y-left-ry-frac12lambda-y-x2-right" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        其中 \(\text{prox}_{\lambda r}(x) = \arg\min_y \left( r(y) + \frac{1}{2\lambda} \|y - x\|^2 \right)\)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="neural-networks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    神经网络
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="decision-trees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    决策树与集成学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="bayesian/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    贝叶斯学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deep-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    深度学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="compressed-sensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    压缩感知
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI4MATH前沿
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI4MATH前沿
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai4math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI4MATH前沿
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai4math/papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    经典论文
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai4math/examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法实例与训练体会
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai4math/improvements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    改良与实验
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai4math/pinn-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN概览与拷打
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai4math/pinn-seminar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN讨论班讲义
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai4math/pinn-critique/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN训练体会
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        监督学习的期望损失与最优性推导
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="监督学习的期望损失与最优性推导">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        监督学习的基本设定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        损失函数与期望损失
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        最优函数的存在性与最优性
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        监督学习与非参数估计的核心框架
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="监督学习与非参数估计的核心框架">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        监督学习的基础设定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        风险最小化与目标函数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        经验风险最小化（ERM）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        非参数估计的误差分解
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        压缩感知与微分方程数值解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="压缩感知与微分方程数值解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        压缩感知的优化模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sub-gaussian-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        次高斯分布（Sub-Gaussian Distribution）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="次高斯分布（Sub-Gaussian Distribution）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 次高斯分布的定义与尾部估计
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 次高斯分布的线性不变性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-hoeffding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Hoeffding 引理：有界随机变量的次高斯性
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        次高斯随机变量的最大值与覆盖定理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="次高斯随机变量的最大值与覆盖定理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 最大值的期望与大偏差（次高斯情形）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 最大值的期望与大偏差（次高斯情形）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mgf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        期望估计（MGF 技巧）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        大偏差界
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 有限覆盖定理：将 "无限" 转化为 "有限"
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 有限覆盖定理：将 &#34;无限&#34; 转化为 &#34;有限&#34;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#packing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        覆盖数（packing 数）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        最大值的期望估计（覆盖后）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        稀疏参数估计
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="稀疏参数估计">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 稀疏性假设与基本估计式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-1-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 估计量的概率界（1-δ 置信）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 风险（均方误差）的定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        高维统计学习与稀疏估计
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="高维统计学习与稀疏估计">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 约束最小二乘估计的误差分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 集中不等式的应用（次高斯噪声）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 参数估计的误差界
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 误差分解与支撑集约束
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 正则化参数的选择
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-lasso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Lasso 误差界
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VC 维与打散数的概念
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VC 维与打散数的概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-vc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. VC 维与打散数的定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 区间分类器的打散分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 单峰函数与假设空间的拓展
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#l1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        凸优化与 L1 正则化
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="凸优化与 L1 正则化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#l1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L1 问题的优化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proximal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proximal 算子
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        次微分理论
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        凸优化的一阶条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#l1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L1 正则化的次微分
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        光滑项的梯度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        优化的一阶条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        凸集上的优化
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        法锥与对偶范数
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="法锥与对偶范数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        法锥定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        最优性条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        对偶范数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#l2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L2 正则化的优化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        辅助函数方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        优化器总结
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="优化器总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        梯度下降类方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二阶优化方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proximal_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proximal 梯度法
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#textprox_lambda-rx-argmin_y-left-ry-frac12lambda-y-x2-right" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        其中 \(\text{prox}_{\lambda r}(x) = \arg\min_y \left( r(y) + \frac{1}{2\lambda} \|y - x\|^2 \right)\)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">机器学习</h1>
+<h2 id="_2">监督学习的期望损失与最优性推导</h2>
+<h3 id="_3">监督学习的基本设定</h3>
+<ul>
+<li>输入空间：<span class="arithmatex">\( x \in \mathbb{R}^d \)</span>（高维，<span class="arithmatex">\( d \gg 1 \)</span>）；输出空间：<span class="arithmatex">\( y \in \mathbb{R}^k \)</span>；</li>
+<li>样本：<span class="arithmatex">\( (X_i, Y_i) \)</span>（<span class="arithmatex">\( i=1,2,\dots,m \)</span>），来自<strong>联合分布 <span class="arithmatex">\( p(x,y) \)</span></strong>；</li>
+<li>目标：确定函数 <span class="arithmatex">\( f: \mathbb{R}^d \to \mathbb{R}^k \)</span>，使对输入 <span class="arithmatex">\( x \)</span>，输出 <span class="arithmatex">\( f(x) \)</span> 尽可能接近真实标签 <span class="arithmatex">\( y \)</span>。</li>
+</ul>
+<h3 id="_4">损失函数与期望损失</h3>
+<ul>
+<li><strong>损失函数</strong>：衡量预测值与真实值的差异，记为 <span class="arithmatex">\( \ell: y \times y \to \mathbb{R} \)</span>（如分类任务中，<span class="arithmatex">\( \ell(\hat{y}, y) = 0 \)</span> 当且仅当 <span class="arithmatex">\( \hat{y} = y \)</span>，否则为正）；</li>
+<li><strong>期望损失</strong>：函数 <span class="arithmatex">\( f \)</span> 的整体性能，定义为
+  [
+  L(f) = \mathbb{E}_{(X,Y) \sim p} \left[ \ell(f(X), Y) \right]
+  ]
+  （对所有样本的损失取期望，反映泛化性能）。</li>
+</ul>
+<h3 id="_5">最优函数的存在性与最优性</h3>
+<p>定义<strong>条件期望下的最优函数</strong>：
+[
+f^*(x) = \arg\min_{a \in \mathbb{R}^k} \mathbb{E}\left[ \ell(a, Y) \,\big|\, X = x \right]
+]
+（对每个输入 <span class="arithmatex">\( x \)</span>，选择使"给定 <span class="arithmatex">\( X=x \)</span> 时 <span class="arithmatex">\( Y \)</span> 的条件损失期望最小"的 <span class="arithmatex">\( a \)</span> 作为 <span class="arithmatex">\( f^*(x) \)</span>）。</p>
+<p><strong>最优性证明</strong>：对任意函数 <span class="arithmatex">\( f \)</span>，有
+[
+L(f) \geq L(f^<em>)
+]
+推导：利用期望的塔式性质（重期望公式），
+[
+\begin{align</em>}
+L(f) &amp;= \mathbb{E}<em a="a">X \left[ \mathbb{E}_Y \left[ \ell(f(X), Y) \,\big|\, X \right] \right] \
+&amp;\geq \mathbb{E}_X \left[ \min</em>_Y \left[ \ell(a, Y) \,\big|\, X \right] \right] \
+&amp;= \mathbb{E}_X \left[ \mathbb{E}_Y \left[ \ell(f^} \mathbb{E<em>(X), Y) \,\big|\, X \right] \right] = L(f^</em>)
+\end{align*}
+]
+（对每个 <span class="arithmatex">\( X=x \)</span>，内层期望在 <span class="arithmatex">\( a=f^*(x) \)</span> 时取到最小值，故整体期望满足不等式）。</p>
+<hr />
+<h2 id="_6">监督学习与非参数估计的核心框架</h2>
+<h3 id="_7">监督学习的基础设定</h3>
+<ul>
+<li><strong>分布建模</strong>：将输入 <span class="arithmatex">\( X \)</span> 与输出 <span class="arithmatex">\( Y \)</span> 的关系建模为 <span class="arithmatex">\( \mathcal{X} \times \mathcal{Y} \)</span> 上的<strong>联合分布 <span class="arithmatex">\( \mathbb{P} \)</span></strong>，即 <span class="arithmatex">\( (X,Y) \sim \mathbb{P} \)</span>。</li>
+<li><strong>模型假设</strong>：</li>
+<li>参数模型：假设 <span class="arithmatex">\( \mathbb{P} \in \{\mathbb{P}_\theta: \theta \in \Theta\} \)</span>（<span class="arithmatex">\( \Theta \subset \mathbb{R}^d \)</span> 为参数空间）；</li>
+<li>非参数模型：不预设分布的参数形式，更具一般性。</li>
+</ul>
+<h3 id="_8">风险最小化与目标函数</h3>
+<ul>
+<li><strong>损失函数</strong>：选择 <span class="arithmatex">\( \ell: \mathcal{Y} \times \mathcal{Y} \to \mathbb{R} \)</span>，衡量预测值与真实值的差异（如回归用平方损失 <span class="arithmatex">\( \ell(a,y) = \frac{1}{2}(a - y)^2 \)</span>，分类用指示损失 <span class="arithmatex">\( \ell(a,y) = \mathbb{1}_{a \neq y} \)</span>）。</li>
+<li><strong>总体风险</strong>：目标是最小化<strong>期望损失</strong>（泛化风险）：
+  [
+  f^* = \arg\min_{\text{可测 } f} \mathcal{L}(f) = \mathbb{E}_{(X,Y) \sim \mathbb{P}} \left[ \ell(f(X), Y) \right]
+  ]</li>
+<li><strong>任务特例</strong>：</li>
+<li>回归：<span class="arithmatex">\( \mathcal{Y} = \mathbb{R} \)</span>，<span class="arithmatex">\( f^*(x) = \mathbb{E}[Y \mid X = x] \)</span>（条件期望为最优预测）；</li>
+<li>分类：<span class="arithmatex">\( \mathcal{Y} = [K] = \{1,\dots,K\} \)</span>，<span class="arithmatex">\( f^*(x) = \arg\max_{k \in [K]} \mathbb{P}(Y = k \mid X = x) \)</span>（后验概率最大类为最优类别）。</li>
+</ul>
+<h3 id="erm">经验风险最小化（ERM）</h3>
+<p>给定训练数据 <span class="arithmatex">\( (X_1,Y_1),\dots,(X_n,Y_n) \stackrel{\text{iid}}{\sim} \mathbb{P} \)</span>，定义<strong>经验风险</strong>：
+[
+\hat{\mathcal{L}}(f) = \frac{1}{n} \sum_{i=1}^n \ell(f(X_i), Y_i)
+]
+ERM 是找函数 <span class="arithmatex">\( \hat{f} \in \mathcal{F} \)</span>（假设空间）最小化经验风险：
+[
+\hat{f} = \arg\min_{f \in \mathcal{F}} \hat{\mathcal{L}}(f)
+]
+（例：平方损失+线性假设空间时，ERM 等价于最小二乘法）。</p>
+<h3 id="_9">非参数估计的误差分解</h3>
+<ul>
+<li><strong>问题设定</strong>：从数据 <span class="arithmatex">\( Z_1,\dots,Z_n \stackrel{\text{iid}}{\sim} \mu_Z \)</span> 估计 <span class="arithmatex">\( f^* \)</span>，通过 ERM 选 <span class="arithmatex">\( \hat{f} \in \mathcal{F} \)</span>，再用求解器 <span class="arithmatex">\( \mathcal{A}(\tau) \)</span> 输出近似解 <span class="arithmatex">\( f_{\mathcal{A}(\tau)} \)</span>（满足 <span class="arithmatex">\( \hat{\mathcal{L}}(f_{\mathcal{A}(\tau)}) \leq \hat{\mathcal{L}}(\hat{f}) + \tau \)</span>）。</li>
+<li><strong>Excess Risk 分解</strong>：目标是约束 <span class="arithmatex">\( \mathcal{E}(f_{\mathcal{A}(\tau)}) = \mathcal{L}(f_{\mathcal{A}(\tau)}) - \mathcal{L}(f^*) \)</span>，分解为三部分：</li>
+<li><span class="arithmatex">\( \varepsilon_{\text{sta}} \)</span>：<strong>统计误差</strong>（经验风险与总体风险的偏差）；</li>
+<li><span class="arithmatex">\( \varepsilon_{\text{app}} \)</span>：<strong>逼近误差</strong>（假设空间 <span class="arithmatex">\( \mathcal{F} \)</span> 对 <span class="arithmatex">\( f^* \)</span> 的近似能力）；</li>
+<li><span class="arithmatex">\( \varepsilon_{\text{opt}} \)</span>：<strong>优化误差</strong>（求解器与 ERM 最优解的偏差）。</li>
+</ul>
+<p>具体分解式：
+[
+\mathcal{L}(f_{\mathcal{A}(\tau)}) - \mathcal{L}(f^<em>) = \underbrace{[\mathcal{L}(f_{\mathcal{A}(\tau)}) - \hat{\mathcal{L}}(f_{\mathcal{A}(\tau)})]}<em _mathcal_A="\mathcal{A">{\text{统计误差}} + \underbrace{[\hat{\mathcal{L}}(f</em>}(\tau)}) - \hat{\mathcal{L}}(\hat{f})]<em _text_统计误差="\text{统计误差">{\text{优化误差}} + \underbrace{[\hat{\mathcal{L}}(\hat{f}) - \mathcal{L}(\hat{f})]}</em>(f^}} + \underbrace{[\mathcal{L}(\hat{f}) - \mathcal{L</em>)]}_{\text{逼近误差}}
+]</p>
+<hr />
+<h2 id="_10">压缩感知与微分方程数值解</h2>
+<h3 id="_11">压缩感知的优化模型</h3>
+<p>考虑<strong>压缩感知</strong>问题：在观测 <span class="arithmatex">\( y = \Psi x + \varepsilon \)</span>（<span class="arithmatex">\( \Psi \)</span> 为感知矩阵，<span class="arithmatex">\( \varepsilon \)</span> 为噪声）下，最小化稀疏性度量 <span class="arithmatex">\( \|x\|_1 \)</span>，即
+[
+\min |x|_1 \quad \text{约束} \quad y = \Psi x + \varepsilon
+]
+引入<strong>正则化项</strong>（平衡稀疏性与拟合度），转化为无约束优化：
+[
+\min |x|_1 + \lambda |y - \Psi x|_2^2
+]
+（<span class="arithmatex">\( \lambda &gt; 0 \)</span> 为正则化参数）。</p>
+<p><strong>求解思路</strong>：构造拉格朗日函数
+[
+\mathcal{L}(x, \lambda) = |x|_1 + \lambda^T (y - \Psi x)
+]
+并通过<strong>对偶问题</strong>或梯度类方法（如ISTA/FISTA）求解。</p>
+<h2 id="sub-gaussian-distribution">次高斯分布（Sub-Gaussian Distribution）</h2>
+<h3 id="1">1. 次高斯分布的定义与尾部估计</h3>
+<p><strong>次高斯分布</strong>（sub-Gaussian）的核心是<strong>矩生成函数（MGF）的指数上界</strong>：若随机变量 X 满足存在 σ² &gt; 0，使得对所有 s ∈ ℝ，</p>
+<div class="arithmatex">\[\mathbb{E}(e^{sX}) \leq \exp\left(\frac{\sigma^2 s^2}{2}\right)\]</div>
+<p>则称 X 服从参数为 σ² 的次高斯分布，记为 X ~ sub-G(σ²)。</p>
+<p><strong>尾部估计</strong>：由 Markov 不等式（P(X &gt; t) ≤ P(e^{sX} &gt; e^{st}) ≤ e^{-st} E(e^{sX})），结合 MGF 的上界，取最优 s 可得：</p>
+<div class="arithmatex">\[P(X &gt; t) \leq \exp\left(-\frac{t^2}{2\sigma^2}\right)\]</div>
+<p>同理对双侧尾部 P(|X| &gt; t)，可得 P(|X| &gt; t) ≤ 2exp(-t²/(2σ²))，体现 "次高斯分布尾部指数衰减" 的性质。</p>
+<h3 id="2">2. 次高斯分布的线性不变性</h3>
+<p>若 X ~ sub-G(σ²)，则对任意向量 u，线性组合 u^T X 仍服从次高斯分布：</p>
+<div class="arithmatex">\[u^T X \sim \text{sub-G}(\sigma^2 \|u\|_2^2)\]</div>
+<p>（体现次高斯性在 "线性变换下保持" 的特点，是高维概率中处理随机向量的关键性质）。</p>
+<h3 id="3-hoeffding">3. Hoeffding 引理：有界随机变量的次高斯性</h3>
+<p>对<strong>有界随机变量</strong> X ∈ [a, b]，定义矩生成函数的对数 ψ(s) = log E(e^{sX})，则：</p>
+<ul>
+<li>
+<p>一阶导数：ψ'(s) = E(e^{sX}) / E(Xe^{sX}) = E_α(X)（其中 dα = e^{sX} dP / E(e^{sX}) 是 "倾斜测度"）；</p>
+</li>
+<li>
+<p>二阶导数：ψ''(s) = Var_α(X)（倾斜测度下的方差），且由 X 有界 [a, b]，得方差上界：</p>
+</li>
+</ul>
+<p>$<span class="arithmatex">\(\text{Var}_\alpha(X) \leq \frac{(b-a)^2}{4}\)</span>$</p>
+<ul>
+<li>因此，ψ(s) 作为凸函数，满足<strong>上界估计</strong>：</li>
+</ul>
+<p>$<span class="arithmatex">\(\psi(s) \leq \frac{(b-a)^2 s^2}{4}\)</span>$</p>
+<p>即 E(e^{sX}) ≤ exp((b-a)²s²/4)，故有界随机变量是次高斯分布（参数 σ² = (b-a)²/4）。</p>
+<hr />
+<p><em>添加时间: 2026-04-07</em></p>
+<hr />
+<h2 id="_12">次高斯随机变量的最大值与覆盖定理</h2>
+<h3 id="1_1">1. 最大值的期望与大偏差（次高斯情形）</h3>
+<p>设 Z = max_{1≤i≤N} X_i，其中 X_i 是次高斯随机变量（满足 E[e^{sX_i}] ≤ exp(σ_i² s²/2)），则：</p>
+<h4 id="mgf">期望估计（MGF 技巧）</h4>
+<p>由 Jensen 不等式和 MGF（矩生成函数），</p>
+<div class="arithmatex">\[\mathbb{E}[Z] = \frac{1}{s} \mathbb{E}[\log e^{sZ}] \leq \frac{1}{s} \log \mathbb{E}[e^{sZ}]\]</div>
+<p>再由 "最大值的 MGF ≤ 各变量 MGF 之和"（E[e^{sZ}] = E[max_i e^{sX_i}] ≤ ∑_i E[e^{sX_i}]），结合次高斯 MGF 的上界，得：</p>
+<div class="arithmatex">\[\mathbb{E}[Z] \leq \frac{1}{s} \log N + \frac{1}{2s} \sum \sigma_i^2 s\]</div>
+<p>取最优 s = √(2 log N) / σ（假设 σ_i = σ），化简得<strong>期望上界</strong>：</p>
+<div class="arithmatex">\[\mathbb{E}[Z] \leq \sigma\sqrt{2\log N}\]</div>
+<h4 id="_13">大偏差界</h4>
+<p>由 Union 界（联合界），</p>
+<div class="arithmatex">\[P(Z &gt; t) = P(\max_i X_i &gt; t) \leq \sum_i P(X_i &gt; t)\]</div>
+<p>再由次高斯变量的尾部界 P(X_i &gt; t) ≤ exp(-t²/(2σ²))，得：</p>
+<div class="arithmatex">\[P(Z &gt; t) \leq N \exp\left(-\frac{t^2}{2\sigma^2}\right)\]</div>
+<h3 id="2_1">2. 有限覆盖定理：将 "无限" 转化为 "有限"</h3>
+<p>考虑高维空间中 "无限个方向 θ" 的最大值 max_{θ∈B_2} θ^T X（B_2 是欧氏单位球），需通过<strong>有限覆盖</strong>将其转化为 "有限个方向 z∈N" 的最大值：</p>
+<h4 id="packing">覆盖数（packing 数）</h4>
+<p>存在有限点集 N ⊂ B_2，使得对任意 θ ∈ B_2，存在 z ∈ N 满足 ‖θ - z‖_2 ≤ ε。覆盖数满足上界：</p>
+<div class="arithmatex">\[N(B_2, \|\cdot\|_2, \varepsilon) \leq \left(\frac{3}{\varepsilon}\right)^d\]</div>
+<p>（d 是空间维度，体现 "高维空间中用有限点覆盖单位球" 的可能性）。</p>
+<h4 id="_14">最大值的期望估计（覆盖后）</h4>
+<p>由覆盖的近似性，max_{θ∈B_2} θ^T X ≤ max_{z∈N} z^T X + ε‖X‖_2。结合次高斯性（若 X 是次高斯向量，‖X‖_2 的期望可控），最终可得：</p>
+<div class="arithmatex">\[\mathbb{E}\left[\max_{\theta \in B_2} \theta^T X\right] \leq \sigma\sqrt{2\log N}\]</div>
+<p>（将 "无限方向的最大值" 转化为 "有限覆盖点的最大值"，实现高维问题的有限化处理）。</p>
+<hr />
+<p><em>添加时间: 2026-04-07</em></p>
+<hr />
+<h2 id="_15">稀疏参数估计</h2>
+<h3 id="1_2">1. 稀疏性假设与基本估计式</h3>
+<p>假设真实参数 θ<em> 是</em><em>稀疏的</em><em>，即非零元个数 ‖θ</em>‖_0 = s ≪ n（n 为样本量）。对估计量 θ̂_k，核心推导涉及：</p>
+<ul>
+<li><strong>二次型上界</strong>：利用柯西不等式或凸性，有</li>
+</ul>
+<p>$<span class="arithmatex">\(\|X(\hat{\theta}_{t+s} - \theta^*)\|_2^2 \leq 2\varepsilon^T X(\hat{\theta}_{t+s} - \theta^*)\)</span>$</p>
+<p>（将范数平方转化为线性型，便于结合期望或概率分析）；</p>
+<ul>
+<li><strong>残差平方和</strong>：观测值与拟合值的残差平方和为 ‖Y - Xθ‖_2²，是衡量拟合优度的核心指标。</li>
+</ul>
+<h3 id="2-1-">2. 估计量的概率界（1-δ 置信）</h3>
+<p>在概率 1-δ 下，估计量 θ̂_k 与真实参数 θ* 的偏差满足上界：</p>
+<div class="arithmatex">\[\|\hat{\theta}_k - \theta^*\| \leq \frac{\sigma^2 k}{n} \log\left(\frac{2ke}{d}\right) + \frac{\sigma^2 k}{n} \log\left(\frac{1}{\delta}\right) + \frac{\sigma^2}{n} \log\left(\frac{16}{\delta}\right)\]</div>
+<p>（其中 σ² 是噪声方差，d 是参数维度，k 是迭代或模型复杂度相关指标。该界体现 "偏差随样本量 n 增大而减小，随稀疏度 s、维度 d 增大而增大" 的规律）。</p>
+<h3 id="3">3. 风险（均方误差）的定义</h3>
+<p>定义估计量 θ̂ 的<strong>风险</strong>（均方误差）为：</p>
+<div class="arithmatex">\[\mathcal{E}(\hat{\theta}) = \mathbb{E}_{X,Y}\left[\|\hat{\theta} - \theta^*\|_{\tilde{E}[Z]}^2\right] = \mathbb{E}_Y\left[\|\hat{\theta} - \theta^*\|_{\tilde{E}}^2\right]\]</div>
+<p>（对数据 X, Y 取期望，衡量 "估计量与真实参数的平均偏差"，是统计学习中评估模型性能的核心指标。当样本量足够大时，风险的阶为 O(sσ²/n)，体现 "稀疏性加速收敛" 的特点）。</p>
+<hr />
+<p><em>添加时间: 2026-04-07</em></p>
+<hr />
+<h2 id="_16">高维统计学习与稀疏估计</h2>
+<h3 id="1_3">1. 约束最小二乘估计的误差分析</h3>
+<p>考虑线性模型 Y=Xθ<em>+ε（ε 是噪声，假设次高斯分布），θ̂_k 是参数 θ</em> 的估计量。核心估计式：</p>
+<ul>
+<li>残差范数控制：∥Xθ̂_k−Y∥_2² ≤ ∥Xθ*−Y∥_2² = 4∥ε∥_2²（体现估计的 "残差不增性"）；</li>
+<li>噪声的变换：定义 ε̃_i = X_i^T ε（将原始噪声 ε 变换为与特征 X_i 相关的新噪声项）。</li>
+</ul>
+<h3 id="2_2">2. 集中不等式的应用（次高斯噪声）</h3>
+<p>对次高斯分布的随机变量，利用<strong>集中不等式</strong>控制 "线性变换后的噪声上界"：</p>
+<div class="arithmatex">\[P\left(-\frac{s}{a}\tilde{\varepsilon}^T u &gt; nt\right) \leq 2d\exp\left(-\frac{2nt^2}{\sigma^2}\right)\]</div>
+<p>（d 为特征维度，σ 是次高斯参数，通过指数尾部衰减控制概率）。</p>
+<p>令该概率上界为 δ，解指数不等式得<strong>阈值 t</strong>：</p>
+<div class="arithmatex">\[t = \sigma\sqrt{\frac{1}{2n}\log\frac{2d}{\delta}}\]</div>
+<h3 id="3_1">3. 参数估计的误差界</h3>
+<p>结合残差与集中不等式，推导<strong>估计误差的 ℓ2 范数界</strong>：</p>
+<div class="arithmatex">\[\|\hat{\theta}_k - \theta^*\|_2^2 \leq \frac{\sigma^2}{n}\log d\]</div>
+<p>在<strong>概率 1−δ</strong> 下，进一步得到 "归一化误差" 的上界，最终误差界可简化为与 (log(d/δ))/n 同阶（体现 "高维下误差随对数维度和样本量的衰减"）。</p>
+<h3 id="4">4. 误差分解与支撑集约束</h3>
+<p>设 Δ=θ̂−θ<em>，A</em> 为 θ<em> 的</em><em>真实支撑集</em><em>（非零元的索引集）。通过正则化的稀疏诱导性，可得</em><em>支撑集补集的误差约束</em>*：</p>
+<div class="arithmatex">\[\|\Delta_{A^c}\|_2 \leq 3\|\Delta_A\|_2\]</div>
+<p>（即 "非支撑集上的误差被支撑集上的误差控制"，体现稀疏估计的 "集中性"）。</p>
+<h3 id="5">5. 正则化参数的选择</h3>
+<p>为保证高维下的概率集中性，正则化参数 λ 需满足：</p>
+<div class="arithmatex">\[\lambda = 2\sigma\sqrt{\frac{2\ln(2d/\delta)}{n}}\]</div>
+<h3 id="6-lasso">6. Lasso 误差界</h3>
+<p>结合支撑集约束与 Lasso 目标函数的最优性，最终推导<strong>估计误差的上界</strong>：</p>
+<div class="arithmatex">\[\|\hat{\theta} - \theta^*\|_2 \lesssim \frac{\sigma\sqrt{|A^*| \cdot 2\ln(2d/\delta)}}{\gamma\sqrt{n}}\]</div>
+<p>（γ&gt;0 为与特征矩阵 X 相关的 "强制性常数"，|A<em>| 是真实支撑集的大小，体现 "误差随样本量 n 增大而衰减，随稀疏度 |A</em>|、对数维度 ln(2d/δ) 增大而增大"）</p>
+<hr />
+<p><em>添加时间: 2026-04-08</em></p>
+<hr />
+<h2 id="vc">VC 维与打散数的概念</h2>
+<h3 id="1-vc">1. VC 维与打散数的定义</h3>
+<ul>
+<li>
+<p><strong>打散数 <span class="arithmatex">\(\Pi_{\mathcal{H}}(m)\)</span></strong>：假设类 <span class="arithmatex">\(\mathcal{H}\)</span> 对 <span class="arithmatex">\(m\)</span> 个样本能实现的"不同标签划分的数量"。
+  $<span class="arithmatex">\(\Pi_{\mathcal{H}}(m) = |\{(h(x_1), h(x_2), \cdots, h(x_m)) \mid x_i \in \mathcal{X}, h \in \mathcal{H}\}|\)</span>$</p>
+</li>
+<li>
+<p><strong>VC 维 <span class="arithmatex">\(\text{VC}(\mathcal{H})\)</span></strong>：最大的 <span class="arithmatex">\(m\)</span> 使得 <span class="arithmatex">\(\Pi_{\mathcal{H}}(m) = 2^m\)</span>（即能"完全打散" <span class="arithmatex">\(m\)</span> 个样本的所有 <span class="arithmatex">\(2^m\)</span> 种标签组合）。</p>
+</li>
+</ul>
+<h3 id="2_3">2. 区间分类器的打散分析</h3>
+<p>考虑<strong>区间分类器</strong>（判断 <span class="arithmatex">\(x\)</span> 是否在区间 <span class="arithmatex">\([\alpha,\beta]\)</span> 内），分析其对不同样本数 <span class="arithmatex">\(m\)</span> 的打散能力：</p>
+<ul>
+<li>当 <span class="arithmatex">\(m=2\)</span>：可验证 <span class="arithmatex">\(\Pi_{\mathcal{H}}(2) = 4 = 2^2\)</span>（能完全打散 2 个样本的所有 4 种标签组合），故 <span class="arithmatex">\(\text{VC}(\mathcal{H}) \geq 2\)</span>。</li>
+<li>当 <span class="arithmatex">\(m=3\)</span>：计算得 <span class="arithmatex">\(\Pi_{\mathcal{H}}(3) = 7 &lt; 2^3 = 8\)</span>（无法完全打散 3 个样本的所有 8 种标签组合），因此 <span class="arithmatex">\(\text{VC}(\mathcal{H}) = 2\)</span>。</li>
+</ul>
+<h3 id="3_2">3. 单峰函数与假设空间的拓展</h3>
+<p>进一步假设"单峰函数"形式 <span class="arithmatex">\(h(x; \alpha, b) = \text{sign}(\cdots)\)</span>（<span class="arithmatex">\(x \in [a,b]\)</span>），通过分析这类函数对样本的划分能力，可推广到更一般的假设空间，验证其 VC 维是否与区间结构相关（核心逻辑："区间的线性划分能力限制了打散数的增长"）。</p>
+<hr />
+<p><em>添加时间: 2026-04-11</em></p>
+<hr />
+<h2 id="l1">凸优化与 L1 正则化</h2>
+<h3 id="l1_1">L1 问题的优化</h3>
+<p>考虑优化问题：
+$$
+x^* = \arg\min_{x \in \mathbb{R}^n} \left( \frac{1}{2n} | A x - b |^2 + \lambda | x |_1 \right)
+$$</p>
+<h3 id="proximal">Proximal 算子</h3>
+<p><strong>L1 正则化的 Proximal 算子</strong>（软阈值算子）：
+$$
+S_\lambda(t) = \begin{cases} 
+0, &amp; |t| \leq \lambda \
+t - \lambda, &amp; t \geq \lambda \
+t + \lambda, &amp; t \leq -\lambda 
+\end{cases}
+$$</p>
+<p><strong>不动点算法</strong>：
+$$
+x^<em> = S_\lambda \left( x^</em> + \frac{1}{n} A^\top (b - A x^*) \right)
+$$</p>
+<p><strong>迭代形式</strong>：
+$$
+x^{(k+1)} = S_\lambda \left( x^{(k)} + A^\top (b - A x^{(k)}) \right)
+$$</p>
+<h3 id="_17">次微分理论</h3>
+<p><strong>凸函数的次微分</strong>（不要求连续）：
+$$
+f(y) \geq f(x) + z^\top (y - x), \forall y
+$$
+其中 <span class="arithmatex">\(z\)</span> 称为次微分。</p>
+<p><strong>绝对值函数的次微分</strong>：
+- <span class="arithmatex">\(x &gt; 0\)</span> 时：<span class="arithmatex">\(\partial |x| = \{1\}\)</span>
+- <span class="arithmatex">\(x &lt; 0\)</span> 时：<span class="arithmatex">\(\partial |x| = \{-1\}\)</span>
+- <span class="arithmatex">\(x = 0\)</span> 时：<span class="arithmatex">\(\partial |x| = [-1, 1]\)</span></p>
+<h3 id="_18">凸优化的一阶条件</h3>
+<p><strong>优化条件</strong>：
+$$
+\arg\min_{x \in \mathbb{R}^n} f(x) \iff 0 \in \partial f(x^*)
+$$</p>
+<p><strong>例子</strong>：<span class="arithmatex">\(f(x) = \frac{1}{2}(x - t)^2 + \lambda |x|\)</span>
+- <span class="arithmatex">\(x &gt; 0\)</span> 时：<span class="arithmatex">\(\partial f(x) = (x - t) + \lambda\)</span>
+- <span class="arithmatex">\(x &lt; 0\)</span> 时：<span class="arithmatex">\(\partial f(x) = (x - t) - \lambda\)</span>
+- <span class="arithmatex">\(x = 0\)</span> 时：<span class="arithmatex">\(\partial f(0) = [-t - \lambda, -t + \lambda]\)</span></p>
+<p><strong>解</strong>：
+- 若 <span class="arithmatex">\(|t| \leq \lambda\)</span>，则 <span class="arithmatex">\(x^* = 0\)</span>
+- 若 <span class="arithmatex">\(t &gt; \lambda\)</span>，则 <span class="arithmatex">\(x^* = t - \lambda\)</span>
+- 若 <span class="arithmatex">\(t &lt; -\lambda\)</span>，则 <span class="arithmatex">\(x^* = t + \lambda\)</span></p>
+<p>即 <span class="arithmatex">\(x^* = S_\lambda(t)\)</span></p>
+<h3 id="l1_2">L1 正则化的次微分</h3>
+<div class="arithmatex">\[
+\| x \|_1 \text{ 的次微分性质：} \| y \|_1 \geq \| x \|_1 + \langle z, y - x \rangle
+\]</div>
+<p>其中 <span class="arithmatex">\(z\)</span> 是 <span class="arithmatex">\(\| \cdot \|_1\)</span> 在 <span class="arithmatex">\(x\)</span> 处的次微分。</p>
+<p>逐项分析：
+$$
+\sum_i (|y_i| - |x_i|) \geq \sum_i z_i (y_i - x_i)
+$$</p>
+<p>即 <span class="arithmatex">\(|y_i| - |x_i| - z_i (y_i - x_i) \geq 0\)</span>，其中 <span class="arithmatex">\(z_i \in \partial |x_i|\)</span></p>
+<h3 id="_19">光滑项的梯度</h3>
+<div class="arithmatex">\[
+\frac{\partial}{\partial x} \left( \frac{1}{2n} \| A x - b \|^2 \right) = \frac{1}{n} A^\top (A x - b)
+\]</div>
+<h3 id="_20">优化的一阶条件</h3>
+<p><strong>次梯度为 0</strong>：
+$$
+\frac{1}{n} A^\top (A x^<em> - b) + \lambda \partial | x^</em> |_1 = 0
+$$</p>
+<h3 id="_21">凸集上的优化</h3>
+<p><strong>凸集上的凸函数优化</strong>：
+$$
+g(x) = f(x) + \mathbb{1}_C(x)
+$$
+其中 <span class="arithmatex">\(\mathbb{1}_C\)</span> 是凸集 <span class="arithmatex">\(C\)</span> 的示性函数。</p>
+<p>若 <span class="arithmatex">\(x \notin C\)</span>，则 <span class="arithmatex">\(\partial g = \emptyset\)</span>。</p>
+<hr />
+<h2 id="_22">法锥与对偶范数</h2>
+<h3 id="_23">法锥定义</h3>
+<p><strong>法锥</strong>：
+$$
+N_C(x) = { z \mid \langle z, y - x \rangle \leq 0, \forall y \in C }
+$$</p>
+<h3 id="_24">最优性条件</h3>
+<p><strong>凸集约束优化</strong>：
+$$
+-\nabla f(x^<em>) \in N_C(x^</em>)
+$$
+（若 <span class="arithmatex">\(0 \in C\)</span>，<span class="arithmatex">\(C\)</span> 为凸锥）</p>
+<h3 id="_25">对偶范数</h3>
+<p><strong>对偶范数定义</strong>：
+$$
+| x |<em 1="1" _124_y_124_="|y|" _leq="\leq">* = \sup</em> \langle x, y \rangle
+$$</p>
+<p>对于矩阵 <span class="arithmatex">\(A = U \Sigma V^\top\)</span>（奇异值分解），其谱范数的对偶范数为核范数。</p>
+<h3 id="l2">L2 正则化的优化</h3>
+<p><strong>优化问题</strong>：
+$$
+\frac{1}{2n} | A x - b |_2^2 + \lambda | x |_2
+$$</p>
+<p><strong>一阶条件</strong>：
+$$
+\frac{1}{n} A^\top (A x^<em> - b) + \lambda \partial | x^</em> |_2 = 0
+$$</p>
+<h3 id="_26">辅助函数方法</h3>
+<p><strong>辅助函数</strong>：
+$$
+H(x) = \frac{1}{2} | x - d^* |^2 + \lambda | x |_2
+$$</p>
+<p>最优性条件：
+$$
+0 \in \partial H(x) \iff \exists (x - d^*) + \lambda \partial | x |_2 = 0
+$$</p>
+<hr />
+<h2 id="_27">优化器总结</h2>
+<h3 id="_28">梯度下降类方法</h3>
+<ol>
+<li><strong>SGD</strong>：<span class="arithmatex">\(\theta_{t+1} = \theta_t - \eta_t \nabla L(\theta_t)\)</span></li>
+<li><strong>动量法</strong>：<span class="arithmatex">\(m_t = \beta m_{t-1} + (1-\beta)\nabla L(\theta_t)\)</span></li>
+<li><strong>AdaGrad</strong>：自适应学习率，适合稀疏数据</li>
+<li><strong>Adam</strong>：结合动量和自适应学习率</li>
+</ol>
+<h3 id="_29">二阶优化方法</h3>
+<ol>
+<li><strong>Newton 法</strong>：使用二阶信息，收敛快但计算量大</li>
+<li><strong>共轭梯度</strong>：避免显式计算 Hessian 矩阵</li>
+</ol>
+<h3 id="proximal_1">Proximal 梯度法</h3>
+<p>针对非光滑正则项（如 L1）：
+$$
+x^{(k+1)} = \text{prox}_{\lambda r} \left( x^{(k)} - \eta \nabla f(x^{(k)}) \right)
+$$</p>
+<h2 id="textprox_lambda-rx-argmin_y-left-ry-frac12lambda-y-x2-right">其中 <span class="arithmatex">\(\text{prox}_{\lambda r}(x) = \arg\min_y \left( r(y) + \frac{1}{2\lambda} \|y - x\|^2 \right)\)</span></h2>
+<p><em>添加时间: 2026-04-15</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 huangblac
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/HuangBlac" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

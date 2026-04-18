@@ -1,0 +1,3327 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="从基础数学到AI4Math前沿的知识库">
+      
+      
+        <meta name="author" content="huangblac">
+      
+      
+        <link rel="canonical" href="https://huangblac.github.io/AI-Math-Docs/ai4math/pinn-seminar/">
+      
+      
+        <link rel="prev" href="../pinn-overview/">
+      
+      
+        <link rel="next" href="../pinn-critique/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>PINN讨论班讲义 - AI & Math</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pinn" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="AI &amp; Math" class="md-header__button md-logo" aria-label="AI & Math" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI & Math
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              PINN讨论班讲义
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到暗色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到暗色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到亮色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到亮色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  序言与总览
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../math/" class="md-tabs__link">
+          
+  
+  
+  基础数学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../computation/" class="md-tabs__link">
+          
+  
+  
+  计算数学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../algorithms/" class="md-tabs__link">
+          
+  
+  
+  算法介绍
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  AI4MATH前沿
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AI &amp; Math" class="md-nav__button md-logo" aria-label="AI & Math" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI & Math
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    序言与总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础数学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    基础数学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础数学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数学分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高等代数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/measure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    测度论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/probability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概率论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/ode-pde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    微分方程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/functional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    泛函分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/statistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数理统计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/multivariate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多元统计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/causality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    因果推断
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算数学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    计算数学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算数学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/num-linalg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值线性代数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/num-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/num-pde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值微分方程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    凸优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/stat-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计计算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/learning-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计学习理论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法介绍
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    算法介绍
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    机器学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/neural-networks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    神经网络
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/decision-trees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    决策树与集成学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/bayesian/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    贝叶斯学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/deep-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    深度学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/compressed-sensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    压缩感知
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI4MATH前沿
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI4MATH前沿
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI4MATH前沿
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    经典论文
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法实例与训练体会
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../improvements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    改良与实验
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pinn-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN概览与拷打
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN讨论班讲义
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN讨论班讲义
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0 引入部分
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0 引入部分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ppt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPT正文
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-pinn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 基础知识——PINN 能解吗？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 基础知识——PINN 能解吗？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ppt_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPT 正文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文案
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 样本误差：损失降到零之后就是真解了吗？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 样本误差：损失降到零之后就是真解了吗？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ppt_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPT 正文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文案
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 逼近误差：神经网络空间够"大"吗？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 逼近误差：神经网络空间够&#34;大&#34;吗？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ppt_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPT 正文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文案
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 优化误差：到什么时候是"差不多了"？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 优化误差：到什么时候是&#34;差不多了&#34;？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ppt_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPT 正文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文案
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-pinn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 网络构造——PINN 的正式框架
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 网络构造——PINN 的正式框架">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ppt_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPT 正文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文案
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 神经网络架构
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 神经网络架构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ppt_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPT 正文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文案
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 连续时间算例：一维薛定谔方程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 连续时间算例：一维薛定谔方程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ppt_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPT 正文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文案
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-pinn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 离散时间的 PINN
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 离散时间的 PINN">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ppt_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPT 正文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文案
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-allen-chan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 离散求解的算例——Allen-Chan方程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 离散求解的算例——Allen-Chan方程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ppt_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPT正文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文案
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-pinn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6反问题求解的 PINN
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.6反问题求解的 PINN">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ppt_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPT 正文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文案
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2dn-s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        反问题求解的具体算例——2dN-S方程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="反问题求解的具体算例——2dN-S方程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ppt_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPT正文
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pinn-ntk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、PINN-NTK：如何科学调参
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、PINN-NTK：如何科学调参">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-ntk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 什么是NTK：无限宽神经网络与高斯过程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-ntkpinn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 为什么要用NTK视角分析PINN？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-pinn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 谱偏差：为什么PINN学得慢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 损失函数失衡：为什么收敛速度很慢
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-pinnsntk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 具体操作：计算PINNs的NTK
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 自适应训练算法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 数值实验
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#39" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.9 小结
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pinn-critique/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN训练体会
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0 引入部分
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0 引入部分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ppt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPT正文
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-pinn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 基础知识——PINN 能解吗？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 基础知识——PINN 能解吗？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ppt_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPT 正文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文案
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 样本误差：损失降到零之后就是真解了吗？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 样本误差：损失降到零之后就是真解了吗？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ppt_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPT 正文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文案
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 逼近误差：神经网络空间够"大"吗？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 逼近误差：神经网络空间够&#34;大&#34;吗？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ppt_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPT 正文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文案
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 优化误差：到什么时候是"差不多了"？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 优化误差：到什么时候是&#34;差不多了&#34;？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ppt_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPT 正文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文案
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-pinn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 网络构造——PINN 的正式框架
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 网络构造——PINN 的正式框架">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ppt_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPT 正文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文案
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 神经网络架构
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 神经网络架构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ppt_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPT 正文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文案
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 连续时间算例：一维薛定谔方程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 连续时间算例：一维薛定谔方程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ppt_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPT 正文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文案
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-pinn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 离散时间的 PINN
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 离散时间的 PINN">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ppt_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPT 正文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文案
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-allen-chan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 离散求解的算例——Allen-Chan方程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 离散求解的算例——Allen-Chan方程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ppt_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPT正文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文案
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-pinn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6反问题求解的 PINN
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.6反问题求解的 PINN">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ppt_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPT 正文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文案
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2dn-s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        反问题求解的具体算例——2dN-S方程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="反问题求解的具体算例——2dN-S方程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ppt_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPT正文
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pinn-ntk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、PINN-NTK：如何科学调参
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、PINN-NTK：如何科学调参">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-ntk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 什么是NTK：无限宽神经网络与高斯过程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-ntkpinn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 为什么要用NTK视角分析PINN？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-pinn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 谱偏差：为什么PINN学得慢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 损失函数失衡：为什么收敛速度很慢
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-pinnsntk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 具体操作：计算PINNs的NTK
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 自适应训练算法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 数值实验
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#39" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.9 小结
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p>这是一份针对PINN的讨论班的介绍，每个部分包括PPT的正文和讲解这段PPT的文案
+总时长为3h左右，针对的内容为数学专业高年级本科生，对于深度神经网络大多有基础的了解程度。
+PPT的正文要求简洁明了
+更多的解释安排入文档</p>
+<h1 id="pinn">PINN讨论班</h1>
+<h2 id="0">0 引入部分</h2>
+<h3 id="ppt">PPT正文</h3>
+<p>PINN的现状：</p>
+<p>AI4PDE的象征</p>
+<p>PINN的优势：</p>
+<ul>
+<li>操作简单</li>
+<li>能求解高维问题</li>
+<li>能求解反问题</li>
+</ul>
+<p>文案：</p>
+<p>大家好，今天我们将介绍AI4PDE领域最富盛名的PINN方法，通俗来讲，他就是使用神经网络来作为基函数，在由方程和边界范数度量意义下接近真解。</p>
+<p>在正式引入这种方法之前，我不得不提到，自从Rassi发明这种方法后，一方面，他被百般质疑，此事不仅是学术上，就连知乎都有不少的质疑声音；另一方面，针对PINN的改进方法更是如雨后春笋般出现，可谓是层出不穷的改造理论。</p>
+<p>而今天，我既不会为他正名，也不会对其批驳。只是向大家展示我作为一个尚年轻的人，对于这个还年轻的方法的一些认识。</p>
+<h2 id="1-pinn">1 基础知识——PINN 能解吗？</h2>
+<h3 id="ppt_1">PPT 正文</h3>
+<p><strong>为什么要做误差分解？</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>传统数值方法（FDM/FEM/FVM）</th>
+<th>PINN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>收敛性</td>
+<td>已知能收敛</td>
+<td>缺乏理论保证</td>
+</tr>
+<tr>
+<td>收敛阶</td>
+<td>清晰可分析</td>
+<td>难以定量估计</td>
+</tr>
+</tbody>
+</table>
+<p><strong>误差分解框架：</strong></p>
+<div class="arithmatex">\[\|u - u_\theta\| \leqslant \underbrace{\|u - u^*\|}_{\text{逼近误差}} + \underbrace{\|u^* - u_\theta^*\|}_{\text{优化误差}} + \underbrace{\|u_\theta^* - u_\theta\|}_{\text{样本误差}}\]</div>
+<p>其中 <span class="arithmatex">\(u\)</span> 为真解，<span class="arithmatex">\(u_\theta\)</span> 为网络输出，<span class="arithmatex">\(u^*\)</span> 为网络空间中的最优近似。</p>
+<p><strong>三个误差的来源：</strong></p>
+<table>
+<thead>
+<tr>
+<th>误差类型</th>
+<th>来源</th>
+<th>对应 PINN 哪一步</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>逼近误差</td>
+<td>神经网络空间不够大</td>
+<td>网络结构设计</td>
+</tr>
+<tr>
+<td>优化误差</td>
+<td>梯度下降停在"差不多"的地方</td>
+<td>优化算法</td>
+</tr>
+<tr>
+<td>样本误差</td>
+<td>离散的配置点不能完全代表连续方程</td>
+<td>配置点选取</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_1">文案</h3>
+<p>作为一种求解方法，任凭你再怎么天花乱坠，它至少得能够求解。微分方程的求解理论，前人之述备矣。以 FDM、FVM、FEM 三大方法为例，不但知道能够收敛，而且收敛阶的分析也相当清晰。反观 PINN，虽然从实际效果来看是能够求解的，但仍然缺乏定量的理论分析。</p>
+<p>我们今天不会进行全部的讲解，只选取三个核心部分来叙述。</p>
+<p>第一个框架叫做误差分解。我们把真解 <span class="arithmatex">\(u\)</span> 和网络输出 <span class="arithmatex">\(u_\theta\)</span> 之间的误差，分成三个部分：逼近误差，是真解本身能不能被神经网络空间所逼近的问题；优化误差，是找到了最优逼近但梯度下降停在了半路的问题；样本误差，是损失函数在离散配置点上为零但连续方程并不精确满足的问题。接下来我们逐个来看。</p>
+<hr />
+<h3 id="11">1.1 样本误差：损失降到零之后就是真解了吗？</h3>
+<h4 id="ppt_2">PPT 正文</h4>
+<p><strong>稳定性估计（Stability Estimate）：</strong></p>
+<p>对于椭圆型 PDE：<span class="arithmatex">\(Lu = f\)</span>（<span class="arithmatex">\(L\)</span> 为椭圆算子），真解与网络输出的误差可以被 PDE 残差和边界残差所控制：</p>
+<div class="arithmatex">\[\|u - u_\theta\|_{L^2} \leqslant C\left(\|Lu_\theta - f\| + \|Bu_\theta - g\|\right)\]</div>
+<p><strong>损失函数与样本误差的关系：</strong></p>
+<p>当损失函数 <span class="arithmatex">\(L(\theta)\)</span> 在配置点上为零时，有</p>
+<div class="arithmatex">\[L_N(u_\theta) = \frac{1}{N_r}\sum_{j=1}^{N_r}|Nu_\theta(x_j^r) - f(x_j^r)|^2 + \frac{1}{N_b}\sum_{i=1}^{N_b}|u_\theta(\xi_i^b) - g(\xi_i^b)|^2 = 0\]</div>
+<p>这意味着在离散的 <span class="arithmatex">\(N_r + N_b\)</span> 个点上方程被精确满足。</p>
+<p><strong>泛化误差：更多的配置点能弥补吗？</strong></p>
+<p>由大数定律和中心极限定理，当配置点数量趋于无穷时，样本误差的期望可以收敛到真实 <span class="arithmatex">\(L^2\)</span> 误差——但收敛速度是 <span class="arithmatex">\(O(1/\sqrt{N})\)</span> 的量级。</p>
+<h4 id="_2">文案</h4>
+<p>首先我们要问一个问题：损失降到零之后，我们求出来的就是真解了吗？</p>
+<p>准确来说，在数学的意义下，几乎不可能。损失为零只意味着在离散的 <span class="arithmatex">\(N_r + N_b\)</span> 个配置点上，PDE 残差和边界残差恰好为零。这和一连串线性算子在连续区域上精确为零是两回事。</p>
+<p>但这并不意味着 PINN 就不能用。稳定性估计告诉我们：对于椭圆型 PDE，误差可以被 PDE 残差和边界残差所控制。也就是说，只要这两个残差都很小，误差就小。</p>
+<p>进一步，泛化误差分析表明，只要配置点足够多并且均匀分布，由大数定律保证，样本误差可以收敛到真实误差，但这个收敛速度只有 <span class="arithmatex">\(O(1/\sqrt{N})\)</span>——换句话说，为了把误差减半，你需要把配置点数量翻四倍，这是一个不小的代价。</p>
+<hr />
+<h3 id="12">1.2 逼近误差：神经网络空间够"大"吗？</h3>
+<h4 id="ppt_3">PPT 正文</h4>
+<p><strong>引理 2-1：万能逼近定理（Universal Approximation Theorem）</strong></p>
+<p>任意一个 <span class="arithmatex">\(C^k\)</span> 连续函数都可以被一个单隐层神经网络以任意精度逼近。</p>
+<p><strong>引理 2-2：Sobolev 空间中的逼近</strong></p>
+<p>Sobolev 空间 <span class="arithmatex">\(H^s(\Omega)\)</span> 上的任意函数可以被 <span class="arithmatex">\(C^k\)</span> 连续函数任意程度地逼近（Sobolev 嵌入定理）。</p>
+<p><strong>综合结论：</strong></p>
+<div class="arithmatex">\[\text{高可微函数} \xrightarrow{\text{存在网络逼近}} C^k \xrightarrow{\text{Sobolev}} H^s \xrightarrow{\text{误差分解}} \text{收敛}\]</div>
+<p><strong>定义 2-3：Barron 空间（刻画神经网络易逼近的函数）</strong></p>
+<p>若函数 <span class="arithmatex">\(u: \mathbb{R}^d \to \mathbb{R}\)</span> 满足</p>
+<div class="arithmatex">\[\int_{\mathbb{R}^d} |\omega|^{s} |\hat{u}(\omega)| \, d\omega &lt; \infty\]</div>
+<p>则 <span class="arithmatex">\(u \in \mathcal{B^s}_d\)</span>（Barron 空间），其中 <span class="arithmatex">\(\hat{u}\)</span> 为 <span class="arithmatex">\(u\)</span> 的傅里叶变换。</p>
+<p><strong>Barron 空间的重要性质（收敛速率）：</strong></p>
+<p>在谱 Barron 空间中，两层神经网络可以达到 与维度无关 的最优逼近速率。
+设：</p>
+<ul>
+<li>
+<p>目标函数 $<span class="arithmatex">\(f \in \mathcal{F}^{1/2}(\mathbb{R}^d)\)</span>$（即 $<span class="arithmatex">\(s=1/2\)</span>$）</p>
+</li>
+<li>
+<p>网络宽度 $<span class="arithmatex">\(N\)</span>$（神经元个数）</p>
+</li>
+<li>
+<p>激活函数为常用的 ReLU / 平滑激活</p>
+</li>
+</ul>
+<p>则 $<span class="arithmatex">\(L^2\)</span>$ / $<span class="arithmatex">\(L^p\)</span>$ 逼近误差 满足：</p>
+<div class="arithmatex">\[\inf_{\text{两层网络} \, f_N} \|f-f_N\|_{L^p}
+\;\lesssim\; \frac{\|f\|_{\mathcal{F}^{1/2}}}{\sqrt{N}}
+\;=\; \boldsymbol{O(N^{-1/2})}\]</div>
+<p>就在最近，深度神经网络和一般的s的情况也被证明了，收敛速度为$<span class="arithmatex">\(O(N^{-sL})\)</span>$，其中 <span class="arithmatex">\(s\)</span> 是函数的光滑度，<span class="arithmatex">\(L\)</span> 是神经网络隐藏层深度，N为单隐藏层深度。</p>
+<p>Barron Space与Sobolev Space的嵌入关系：
+s&lt; k-d/2时，$<span class="arithmatex">\(\mathcal{B}^s_d \subset H^k(\Omega)\)</span>$
+s&gt; 2k时，$<span class="arithmatex">\(H^k(\Omega) \subset \mathcal{B}^s_d\)</span>$
+对于一个2d椭圆方程，可以选取s=1/2,弱解处于Barron空间，则其在Sobolev空间。可以使用</p>
+<h4 id="_3">文案</h4>
+<p>逼近误差问的是：神经网络够大吗？换句话说，神经网络空间里到底能不能包含我们的真解？</p>
+<p>经典的万能逼近定理告诉我们，任何连续函数都可以被单隐层神经网络以任意精度逼近。结合 Sobolev 嵌入定理，对于高可微的 PDE 解，理论上存在一个网络可以无限接近真解。</p>
+<p>但这还不够——我们想知道逼近的速度，即需要多少个神经元才能达到给定的精度。</p>
+<p>Barron 空间给出了回答。Barron 空间的定义涉及傅里叶变换的加权可积性，听起来有点抽象，但它的意义很清晰：它刻画的就是神经网络容易高效逼近的那类函数。</p>
+<p>Barron 空间固定下来后，其收敛速率只与神经网络的宽度有关。如果 PDE 的解恰好属于 Barron 空间，那么宽度为 <span class="arithmatex">\(N\)</span> 的网络就能以 <span class="arithmatex">\(O(1/\sqrt{N})\)</span> 的速率逼近它。</p>
+<p>这与统计学习中经典的速率是一致的——某种意义上，PINN 求解 PDE 和用神经网络做回归是同一个问题的两个侧面。</p>
+<hr />
+<h3 id="13">1.3 优化误差：到什么时候是"差不多了"？</h3>
+<h4 id="ppt_4">PPT 正文</h4>
+<p><strong>三、优化部分</strong></p>
+<p><strong>3.1 自动微分（Autograd）在 PINN 中的作用</strong></p>
+<p>PINN 的核心是计算 PDE 残差：</p>
+<div class="arithmatex">\[Nu_\theta(x) = Lu_\theta(x) - f(x)\]</div>
+<p>这需要求一阶导数 <span class="arithmatex">\(\nabla u_\theta\)</span>、二阶导数 <span class="arithmatex">\(\Delta u_\theta\)</span> 和更高阶导数。</p>
+<p><strong>自动微分做了什么？</strong></p>
+<p>通过链式法则在计算图上的精确传播，自动微分计算：</p>
+<div class="arithmatex">\[\frac{\partial u_\theta(x)}{\partial x} = \sigma'(\cdot)W_2 \cdot \sigma'(\cdot)W_1\]</div>
+<p>👉 这是解析形式的计算，但以数值方式执行。</p>
+<p><strong>3.2 它是数值微分还是符号微分？</strong></p>
+<p><strong>结论：</strong></p>
+<blockquote>
+<p>自动微分 = 解析链式法则的数值执行</p>
+</blockquote>
+<p><strong>不是：</strong>
+- ❌ 有限差分（不是数值微分）—— 存在截断误差
+- ❌ 完整符号表达式（不是 CAS）—— 无法处理复杂网络结构</p>
+<p><strong>而是：</strong>
+- ✔ 在计算图上逐层应用链式法则
+- ✔ 得到机器精度下的"精确导数"</p>
+<p><strong>举例：</strong></p>
+<p>网络：<span class="arithmatex">\(u_\theta(x) = \sigma(W_2 \sigma(W_1 x))\)</span></p>
+<p>链式法则：</p>
+<div class="arithmatex">\[\frac{du_\theta}{dx} = \sigma'(W_1 x) \cdot W_2^T \cdot W_1\]</div>
+<p>👉 自动微分忠实执行了上式的数值计算。</p>
+<p><strong>3.3 在 PINN 中的重要性</strong></p>
+<ul>
+<li>✔ 可以稳定计算高阶导数（有限差分在高阶导数上误差爆炸）</li>
+<li>✔ 避免有限差分误差</li>
+<li>✔ 支持复杂 PDE（如 Navier–Stokes）</li>
+</ul>
+<p><strong>3.4 ADAM 更新公式</strong></p>
+<p>梯度的一阶矩估计：
+$<span class="arithmatex">\(m_t = \beta_1 m_{t-1} + (1-\beta_1)g_t\)</span>$</p>
+<p>梯度的二阶矩估计：
+$<span class="arithmatex">\(v_t = \beta_2 v_{t-1} + (1-\beta_2)g_t^2\)</span>$</p>
+<p>参数更新：
+$<span class="arithmatex">\(\theta_{t+1} = \theta_t - \eta \frac{m_t}{\sqrt{v_t} + \epsilon}\)</span>$</p>
+<p><strong>4.2 在 PINN 中的特点</strong></p>
+<p>PINN loss：</p>
+<div class="arithmatex">\[L = \lambda_r L_{\text{PDE}} + \lambda_b L_{\text{BC}} + \lambda_i L_{\text{IC}}\]</div>
+<p>👉 多尺度、多项损失</p>
+<p><strong>常见问题：</strong></p>
+<ol>
+<li><strong>梯度不平衡（Stiffness）：</strong> PDE residual vs boundary loss 尺度差异大</li>
+<li><strong>梯度消失/爆炸：</strong> 高阶导数导致</li>
+<li><strong>Loss landscape 复杂：</strong> 非凸 + 强耦合</li>
+</ol>
+<p><strong>4.3 ADAM 的优点</strong></p>
+<ul>
+<li>✔ 自适应学习率（自动调整每个参数的学习率）</li>
+<li>✔ 对噪声鲁棒（适合随机配置点采样）</li>
+<li>✔ 前期收敛快</li>
+</ul>
+<p><strong>4.4 但在 PINN 中的局限</strong></p>
+<p>❗ 常见现象：ADAM 收敛到"假解"——PDE 满足但边界不准，或反之。</p>
+<p><strong>4.5 常见改进策略</strong></p>
+<ul>
+<li>✔ <strong>Adam + L-BFGS：</strong> Adam 快速下降 → L-BFGS 精细收敛</li>
+<li>✔ <strong>Loss reweighting：</strong> <span class="arithmatex">\(\lambda_r, \lambda_b, \lambda_i\)</span> 动态调整</li>
+<li>✔ <strong>Gradient normalization：</strong> 解决不同项尺度不一致</li>
+<li>✔ <strong>Curriculum learning：</strong> 逐步增加 PDE 难度</li>
+</ul>
+<h4 id="_4">文案</h4>
+<p>最后是优化误差。误差分解的最后一项问的是：就算网络理论上能逼近真解，梯度下降真的能找到它吗？</p>
+<p>这就要从 PINN 的核心技术——自动微分说起。PINN 需要计算 PDE 残差 <span class="arithmatex">\(Nu_\theta(x) = Lu_\theta(x) - f(x)\)</span>，这涉及对神经网络 <span class="arithmatex">\(u_\theta\)</span> 求一阶甚至高阶导数。</p>
+<p>这里要澄清一个常见的误解：自动微分既不是数值微分（有限差分），也不是符号微分（Mathematica 那样的完整符号计算）。它是在计算图上逐层应用链式法则，最终在机器精度下得到精确的导数值。这正是 PINN 能够稳定处理高阶导数的关键原因。</p>
+<p>说到优化器，PINN 的损失函数是一个多目标的形式，包含 PDE 残差项、边界条件项和初值条件项。这些项的梯度尺度往往差异巨大——这就是所谓的梯度不平衡（stiffness）问题。结果就是，ADAM 常常收敛到一个"假解"，即 PDE 残差几乎为零但边界条件偏差很大的解。</p>
+<p>常用的改进策略包括先用 ADAM 快速下降，再用 L-BFGS 做精细收敛；或者对不同损失项做动态加权；以及 curriculum learning，先从简单问题开始逐步增加难度。这些都是工程上绕过优化困难的有效手段。</p>
+<hr />
+<h2 id="2-pinn">2 网络构造——PINN 的正式框架</h2>
+<h3 id="ppt_5">PPT 正文</h3>
+<p><strong>2.1 PINN 的核心思想</strong></p>
+<p>将 PDE "嵌入"损失函数，通过无监督学习求解。</p>
+<p>对于一般 PDE：</p>
+<div class="arithmatex">\[Lu(x) = f(x), \quad x \in \Omega; \quad Bu(x) = g(x), \quad x \in \partial\Omega\]</div>
+<p><strong>构造残差：</strong></p>
+<div class="arithmatex">\[r(x, \theta) := Lu_\theta(x) - f(x)\]</div>
+<p><strong>损失函数：</strong></p>
+<div class="arithmatex">\[L(\theta) = L_b(\theta) + L_r(\theta)\]</div>
+<p>其中</p>
+<div class="arithmatex">\[L_b(\theta) = \frac{1}{2N_b}\sum_{i=1}^{N_b}|u_\theta(x_i^b) - g(x_i^b)|^2, \quad L_r(\theta) = \frac{1}{2N_r}\sum_{i=1}^{N_r}|r(x_i^r, \theta)|^2\]</div>
+<h3 id="_5">文案</h3>
+<p>在介绍了神经网络求解偏微分方程的可行性之后，我们正式介绍 PINN 的内容。</p>
+<p>通俗来讲，PINN 就是将偏微分方程"嵌入"网络损失函数，通过无监督学习来求解。相比于过去把神经网络当黑箱使用，在 PINN 方法中，我们对神经网络函数 <span class="arithmatex">\(u_\theta\)</span> 关于时间和空间进行自动微分，然后将 PDE 残差作为损失函数的一项。</p>
+<p>这是一种无监督学习——我们不需要标签数据，只需要方程本身和边界条件。方程的离散和配置点的选取被巧妙地打包进了损失函数之中。</p>
+<hr />
+<h3 id="22">2.2 神经网络架构</h3>
+<h4 id="ppt_6">PPT 正文</h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>输入层 → 隐藏层₁ → 隐藏层₂ → ... → 隐藏层ₙ → 输出层
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  x       tanh(W¹x+b¹)  tanh(W²x+b²)   tanh(Wⁿx+bⁿ)   u(x,θ)
+</span></code></pre></div>
+<p><strong>常见配置：</strong></p>
+<ul>
+<li>网络类型：全连接网络（Fully Connected）</li>
+<li>激活函数：tanh、sin、sigmoid、ReLU 等</li>
+<li>网络宽度：通常 32–256</li>
+<li>网络深度：通常 2–8 层</li>
+</ul>
+<p><strong>激活函数的选择：</strong></p>
+<ul>
+<li><strong>tanh</strong>：最常用，梯度平滑</li>
+<li><strong>sin</strong>：对于周期解或振荡解效果显著（傅里叶特性天然契合）</li>
+<li><strong>ReLU</strong>：计算快，但可能导致梯度消失</li>
+</ul>
+<h4 id="_6">文案</h4>
+<p>PINN 通常采用全连接网络架构。输入是多维的时空坐标 <span class="arithmatex">\((x,t)\)</span>，输出是标量 <span class="arithmatex">\(u\)</span> 或复数的实部/虚部。</p>
+<p>值得注意的是，对于具有周期性的解，比如我们刚才看到的薛定谔方程，用 sin 函数作为激活函数往往效果更好——这在某种意义上是因为正弦函数天然就是傅里叶基的组成部分，和周期解的频谱结构高度契合。</p>
+<hr />
+<h3 id="23">2.3 连续时间算例：一维薛定谔方程</h3>
+<h4 id="ppt_7">PPT 正文</h4>
+<p><strong>方程：</strong></p>
+<div class="arithmatex">\[ih_t + 0.5h_{xx} + |h|^2h = 0, \quad x \in [-5, 5], \quad t \in [0, \pi/2]\]</div>
+<p><strong>初边值条件：</strong></p>
+<div class="arithmatex">\[h(0, x) = 2\,\text{sech}(x), \quad h(t, -5) = h(t, 5), \quad h_x(t, -5) = h_x(t, 5)\]</div>
+<p>（周期性边界条件，<span class="arithmatex">\(h(t,x)\)</span> 为复值函数）</p>
+<p><strong>构造 PDE 残差：</strong></p>
+<div class="arithmatex">\[f(t,x) := ih_t + 0.5h_{xx} + |h|^2h\]</div>
+<p><strong>损失函数：</strong></p>
+<div class="arithmatex">\[L = L_0 + L_b + L_f\]</div>
+<ul>
+<li><span class="arithmatex">\(L_0\)</span>：初值损失（<span class="arithmatex">\(L^2\)</span> 误差）</li>
+<li><span class="arithmatex">\(L_b\)</span>：周期边界损失（函数值 + 导数值）</li>
+<li><span class="arithmatex">\(L_f\)</span>：PDE 残差损失</li>
+</ul>
+<p><strong>实现细节：</strong></p>
+<ul>
+<li>神经网络输出为复数（双输出：实部 + 虚部，或用复数激活函数）</li>
+<li>配置点 <span class="arithmatex">\((t_i, x_i)\)</span> 在时空区域 <span class="arithmatex">\([0, \pi/2] \times [-5,5]\)</span> 上随机采样</li>
+</ul>
+<h4 id="_7">文案</h4>
+<p>我们以一维薛定谔方程作为连续时间 PINN 的经典算例。</p>
+<p>这个方程的特点是：解 <span class="arithmatex">\(h(t,x)\)</span> 是复值的，而且具有周期性边界条件。因此神经网络需要同时输出实部和虚部，并在损失函数中同时包含初值损失、周期边界损失和 PDE 残差损失三项。</p>
+<p>时间在这个框架中只是作为额外的输入维度，神经网络同时学习空间和时间的依赖关系。这也是连续时间 PINN 的优势——不需要对时间做离散化，可以直接处理任意时空区域。</p>
+<hr />
+<h3 id="24-pinn">2.4 离散时间的 PINN</h3>
+<h4 id="ppt_8">PPT 正文</h4>
+<p><strong>RK方法格式：</strong>
+$$
+u^{n+c_i} = u^n - \Delta t \sum_{j=1}^q a_{ij} \mathcal{N}[u^{n+c_j}] \quad (i=1,2,...,q) \
+u^{n+1} = u^n - \Delta t \sum_{j=1}^q b_j \mathcal{N}[u^{n+c_j}]\
+$$</p>
+<p><strong>核心思想：</strong></p>
+<p>将时间区间 <span class="arithmatex">\([0,T]\)</span> 显式离散化为 <span class="arithmatex">\(N\)</span> 个时间步：</p>
+<div class="arithmatex">\[u^{n+1}(x) = u^n(x) + \Delta t \cdot \mathcal{N}[u^n](x)\]</div>
+<p>每个时间步使用独立的神经网络 <span class="arithmatex">\(u^n(x, \theta^n)\)</span></p>
+<p><strong>训练策略：</strong></p>
+<ul>
+<li><strong>逐层训练</strong>：先训练 <span class="arithmatex">\(u^0\)</span>，再依次训练 <span class="arithmatex">\(u^1, u^2, \ldots\)</span></li>
+<li>或者<strong>联合训练</strong>：所有时间步网络一起训练，通过初始条件连接</li>
+</ul>
+<p><strong>连续 vs 离散时间 PINN 对比：</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>连续时间 PINN</th>
+<th>离散时间 PINN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>时间处理</td>
+<td>作为额外输入维度</td>
+<td>显式时间步离散</td>
+</tr>
+<tr>
+<td>网络结构</td>
+<td>单个网络</td>
+<td>每步独立网络</td>
+</tr>
+<tr>
+<td>优点</td>
+<td>灵活，无需时间步假设</td>
+<td>每步问题更简单</td>
+</tr>
+<tr>
+<td>缺点</td>
+<td>长期时序问题训练困难</td>
+<td>总计算量较大</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_8">文案</h4>
+<p>离散时间的 PINN 不同于连续时间的方法，实际上是一个监督学习的网络格式。首先从已有的初值和Runge-Kutta方法出发，得到每个离散时间间隔的预估函数。并且代入具体的点来构造“数据”。接下来，输入空间点坐标输出多个时间点对应的函数值，并通过损失函数来进行估计。这实际上类似于插值离散。</p>
+<hr />
+<h3 id="25-allen-chan">2.5 离散求解的算例——Allen-Chan方程</h3>
+<h4 id="ppt_9">PPT正文</h4>
+<p>PDE形式：$<span class="arithmatex">\(u_t - 0.0001u_{xx} + 5u^3 -5u = 0\)</span>$（非线性反应扩散方程）</p>
+<ul>
+<li>输入：空间坐标$<span class="arithmatex">\(x\)</span>$（1维）；</li>
+<li>
+<p>隐藏层：4层，200个神经元/层，tanh激活函数；</p>
+</li>
+<li>
+<p>输出：101个量（100个中间阶段$<span class="arithmatex">\(u^{0.1+c_j}(x)\)</span>$ + 1个最终预测$<span class="arithmatex">\(u^{0.9}(x)\)</span>$）。</p>
+</li>
+<li>
+<p>构造100个中间约束：$<span class="arithmatex">\(u_i^{0.1} = u^{0.1}\)</span><span class="arithmatex">\(（i=1,...,100），其中\)</span><span class="arithmatex">\(u_i^{0.1} = u^{0.1+c_i} + 0.8\sum_{j=1}^{100} a_{ij}\mathcal{N}[u^{0.1+c_j}]\)</span>$；</p>
+</li>
+<li>
+<p>损失函数：$<span class="arithmatex">\(SE = \sum_{j=1}^{100} \sum_{i=1}^{200} |u_j^{0.1}(x^{0.1,i}) - u^{0.1,i}|^2\)</span>$；</p>
+</li>
+<li>
+<p>优化器：L-BFGS，迭代40,000次。</p>
+</li>
+</ul>
+<h4 id="_9">文案</h4>
+<p>我们以Allen-Chan方程为例，作为一种非线性的扩散方程，其解的结果实际上是奇异性质的。但使用神经网络来作为一个逼近求解器，借助其非线性逼近的性质，就能取得良好的效果。</p>
+<p>我们这里选取100个时间间隔，并通过R-K方法得到对应的函数，代入预期的200个离散点，就可以得到一系列的训练样本。接下来，使用神经网络单输入，100输出，这分别代表着100个间隔时间和最终时间的函数。接着，使用L2来作为损失函数</p>
+<h3 id="26-pinn">2.6反问题求解的 PINN</h3>
+<h4 id="ppt_10">PPT 正文</h4>
+<p><strong>正向问题 vs 反问题：</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>正向问题</th>
+<th>反问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>已知</td>
+<td>方程 + 边界/初值条件</td>
+<td>方程 + 部分观测数据</td>
+</tr>
+<tr>
+<td>求解</td>
+<td>解 <span class="arithmatex">\(u(x)\)</span></td>
+<td>未知的物理参数或源项</td>
+</tr>
+<tr>
+<td>学习参数</td>
+<td><span class="arithmatex">\(\theta\)</span>（网络权重）</td>
+<td><span class="arithmatex">\(\theta\)</span> + 物理参数</td>
+</tr>
+</tbody>
+</table>
+<p><strong>损失函数：</strong></p>
+<div class="arithmatex">\[L(\theta) = L_{\text{PDE}}(\theta) + L_{\text{BC}}(\theta) + L_{\text{data}}(\theta)\]</div>
+<p>其中 <span class="arithmatex">\(L_{\text{data}} = \frac{1}{N_d}\sum_{i=1}^{N_d}|u(x_i, \theta) - u_{\text{obs}}(x_i)|^2\)</span></p>
+<p><strong>可学习的物理参数：</strong></p>
+<ul>
+<li>扩散系数 <span class="arithmatex">\(c(x)\)</span>（参数化为小网络）</li>
+<li>源项 <span class="arithmatex">\(f(x)\)</span></li>
+<li>边界条件系数</li>
+<li>初始条件</li>
+</ul>
+<h4 id="_10">文案</h4>
+<p>PINN 的一大优势在于能够同时求解正问题和反问题。</p>
+<p>在反问题中，我们不仅要求网络拟合方程和边界条件，还要拟合观测到的数据。通过将观测数据作为额外的损失项，PINN 可以同时反推未知的物理参数。</p>
+<p>例如，在反演扩散系数问题时，扩散系数本身也可以参数化为一个小神经网络，从而实现空间依赖系数的学习——这在传统的数值方法中通常是非常困难的问题。</p>
+<h3 id="2dn-s">反问题求解的具体算例——2dN-S方程</h3>
+<h4 id="ppt_11">PPT正文</h4>
+<p>方程形式：
+$$
+u_t +\lambda_1(u u_x + v u_y)  = -\frac{1}{\rho} p_x + \lambda_2 (u_{xx} + u_{yy}), \ 
+v_t + \lambda_1(u v_x + v v_y)  = -\frac{1}{\rho} p_y + \lambda_2 (v_{xx} + v_{yy}),\
+u_x+v_y=0(流体的不可压缩性约束)
+$$</p>
+<ul>
+<li>输入：时空坐标$<span class="arithmatex">\((t,x,y)\)</span>$（需同时考虑时间演化和空间分布）；</li>
+<li>
+<p>输出：物理量——决定扩散和黏性的两个系数<span class="arithmatex">\(\lambda_1,\lambda_2\)</span>流函数$<span class="arithmatex">\(\psi\)</span><span class="arithmatex">\(、压力\)</span><span class="arithmatex">\(p\)</span>$；  </p>
+</li>
+<li>
+<p>速度分量的计算：通过“自动微分”从流函数$<span class="arithmatex">\(\psi\)</span><span class="arithmatex">\(推导得到（\)</span><span class="arithmatex">\(u = \psi_y\)</span><span class="arithmatex">\(、\)</span><span class="arithmatex">\(v = -\psi_x\)</span>$），无需直接逼近速度； </p>
+</li>
+<li>
+<p>残差的计算：通过自动微分计算速度、压力的各阶导数（如$<span class="arithmatex">\(u_t\)</span><span class="arithmatex">\(、\)</span><span class="arithmatex">\(u_x\)</span><span class="arithmatex">\(、\)</span><span class="arithmatex">\(p_x\)</span><span class="arithmatex">\(等），代入\)</span><span class="arithmatex">\(f\)</span><span class="arithmatex">\(和\)</span><span class="arithmatex">\(g\)</span>$的表达式，得到物理约束残差。</p>
+</li>
+</ul>
+<p>损失函数：
+$$
+MSE := \frac{1}{N}\sum_{i=1}^N \left( |u(t^i,x^i,y^i) - u^i|^2 + |v(t^i,x^i,y^i) - v^i|^2 \right) + \frac{1}{N}\sum_{i=1}^N \left( |f(t^i,x^i,y^i)|^2 + |g(t^i,x^i,y^i)|^2 \right)\
+f := u_t + \lambda_1(uu_x + vu_y) + p_x - \lambda_2(u_{xx} + u_{yy}), \ 
+g := v_t + \lambda_1(uv_x + vv_y) + p_y - \lambda_2(v_{xx} + v_{yy}), \
+$$</p>
+<p>训练数据：9 层 ×20 神经元    N=5,000（1% 总数据）</p>
+<p>求解目标：
+$$
+\lambda_1,\lambda_2,p(t,x,y)
+$$
+文案：
+首先明确目标，对于这个反问题，我们是已知一系列的已知点的速度信息，所要求解的是扩散系数和黏度系数这两个分量和未知的压强函数，这将作为训练数据。</p>
+<p>其次，我们根据NS方程的流函数硬编码，使得解必然是满足守恒律的约束条件。接下来，我们根据训练数据和方程嵌入来构造得到损失函数。并且同步优化这些系数。</p>
+<hr />
+<h2 id="pinn-ntk">三、PINN-NTK：如何科学调参</h2>
+<p>引入文案：
+由于PINN实在太过简单，以至于我们很快就能训练出一个结果来。然而，正如绝大多数训练过PINN方法的人都知道，这玩意儿训练过程中出现了不知多少问题。对于PINN进行更详细的理论分析是有必要的。而有一篇文章揭示了why and when PINN fails:通过使用NTK神经正切核的方法来</p>
+<h3 id="31-ntk">3.1 什么是NTK：无限宽神经网络与高斯过程</h3>
+<p>PPT内容：
+无限宽极限（宽度 → ∞）下：</p>
+<p>初始化时：神经网络 ≈ 高斯过程（GP）
+$$
+f(x, \theta) \sim \mathcal{N}(0, \Sigma(x, x'))
+$$</p>
+<p>训练时：神经网络 ≈ 核回归
+$$
+f_{NTK}(x) = K_{x, training} \cdot K_{training, training}^{-1} \cdot y
+$$</p>
+<p>核心结论：NTK在训练过程中保持常数</p>
+<p>文案：
+Jacot等人证明了一个深刻的结论：当神经网络的宽度趋向无穷大时，神经网络的行为可以用高斯过程来描述。神经网络的训练可以近似为一个核回归问题，而这个核（NTK）在训练过程中保持不变。</p>
+<h3 id="32-ntkpinn">3.2 为什么要用NTK视角分析PINN？</h3>
+<p>PPT内容：
+问题：
+- PINN训练为什么有时候会失败？
+- 为什么会出现梯度不平衡？
+- 如何科学地选择超参数？</p>
+<p>NTK视角的优势：
+- 将无限宽神经网络的训练过程等价于核回归
+- 可以分析收敛速度和谱特性
+- 为调参提供理论指导</p>
+<p>文案：
+NTK 理论为解答 PINN 训练的三大核心问题提供了严谨的理论分析框架，其以神经网络隐藏层宽度趋于无限为核心假设，将复杂的 PINN 训练转化为可解析的核回归问题，让收敛速率、谱特性等关键训练规律变得定量且明确。从 NTK 视角出发，我们能精准剖析 PINN 训练失败的根源、梯度不平衡的本质，并为超参数选择提供科学的理论依据，而非经验性试错。</p>
+<h3 id="33-pinn">3.3 谱偏差：为什么PINN学得慢？</h3>
+<p>PPT内容：
+NTK的特征值分布：
+$$
+K = Q^T \Lambda Q, \quad \Lambda = \text{diag}(\lambda_1, \lambda_2, \ldots, \lambda_N)
+$$</p>
+<p>训练误差衰减：
+$$
+| \text{error}(t) | \approx | e^{-Kt} |
+$$</p>
+<p>谱偏差现象：
+- 大特征值 → 快速收敛（低频成分）
+- 小特征值 → 缓慢收敛（高频成分）
+- 特征值快速衰减 → 高频成分难以学习</p>
+<p>PPT图示（文字描述）：
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>特征值衰减曲线：
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>λ ████████████░░░░░░░░░░░
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  ▏
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  ▏
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  ▏
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  ▏低频 ←→ 高频
+</span></code></pre></div></p>
+<p>文案：
+NTK的特征值分解揭示了PINN训练困难的根本原因——谱偏差。较大的特征值对应的模式会快速收敛，而较小的特征值（通常对应高频成分）收敛极慢。这解释了为什么含有高频特征的解往往难以用PINN准确学习。</p>
+<h3 id="34">3.4 损失函数失衡：为什么收敛速度很慢</h3>
+<p>PPT内容：
+PINN的损失函数包含多个项：
+$$
+\mathcal{L} = \lambda_b \mathcal{L}_b + \lambda_r \mathcal{L}_r
+$$</p>
+<p>问题：
+- <span class="arithmatex">\(\mathcal{L}_b\)</span> 和 <span class="arithmatex">\(\mathcal{L}_r\)</span> 的收敛速度可能相差数十个数量级
+- 导致某些项已收敛而另一些项仍很大
+- 传统的固定权重无法解决</p>
+<p>PPT图示：
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>训练过程：
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>损失值
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  ↑
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  │    _______ 边界损失（快）
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>  │   /
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>  │  /
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  │ /
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>  │/__________________ → 迭代次数
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>  │    ~~~~~~~ PDE损失（慢）
+</span></code></pre></div></p>
+<p>文案：
+除了谱偏差外，PINN的另一个核心问题是不同损失项之间的不平衡。边界条件和PDE残差的收敛速度可能差异巨大，导致训练过程中需要不断调整权重。</p>
+<h3 id="35-pinnsntk">3.5 具体操作：计算PINNs的NTK</h3>
+<p>PPT内容： 考虑一般PDE问题： $$ \mathcal{L}u(x) = f(x), \quad x \in \Omega $$ $$ u(x) = g(x), \quad x \in \partial\Omega $$</p>
+<p>定义PINN的损失函数： $$ \mathcal{L}(\theta) = \mathcal{L}_b(\theta) + \mathcal{L}_r(\theta) $$</p>
+<p>其中边界损失： </p>
+<p>$$ </p>
+<p>\mathcal{L}<em i="1">b(\theta) = \frac{1}{2N_b}\sum</em>|u(x_i^b, \theta) - g(x_i^b)|^2 }^{N_b</p>
+<p>$$ </p>
+<p>PDE残差损失： $$ \mathcal{L}<em i="1">r(\theta) = \frac{1}{2N_r}\sum</em>u(x_i^r, \theta) - f(x_i^r)|^2 $$}^{N_r}|\mathcal{L</p>
+<p>NTK矩阵定义： $$ K(t) = \begin{pmatrix} K_{uu}(t) &amp; K_{ur}(t) \ K_{ru}(t) &amp; K_{rr}(t) \end{pmatrix} $$</p>
+<p>其中： $$ (K_{uu}){ij} = \frac{\partial u(x_i^b, \theta)}{\partial \theta} \cdot \frac{\partial u(x_j^b, \theta)}{\partial \theta} $$ $$ (K{rr})_{ij} = \frac{\partial \mathcal{L}u(x_i^r, \theta)}{\partial \theta} \cdot \frac{\partial \mathcal{L}u(x_j^r, \theta)}{\partial \theta} $$</p>
+<p>文案： 我们将NTK的概念推广到PINN。关键的区别在于，PINN的输出不仅包括网络本身的值，还包括PDE残差。因此，PINN的NTK是一个分块矩阵，分别描述边界损失和PDE残差的梯度相关性。</p>
+<h3 id="37">3.7 自适应训练算法</h3>
+<p>PPT内容：
+<strong>算法：动态权重调整</strong></p>
+<p>每 <span class="arithmatex">\(k\)</span> 步更新权重：
+$$
+\lambda_b^{(k+1)} = \lambda_b^{(k)} \cdot \frac{\text{tr}(K_{rr})}{\text{tr}(K_{uu})}
+$$
+$$
+\lambda_r^{(k+1)} = \lambda_r^{(k)} \cdot \frac{\text{tr}(K_{uu})}{\text{tr}(K_{rr})}
+$$</p>
+<p>或者使用梯度归一化：
+$$
+\tilde{g}<em new="new">b = \frac{g_b}{|g_b|}, \quad \tilde{g}_r = \frac{g_r}{|g_r|}
+$$
+$$
+\mathcal{L}</em>_r
+$$} = \mathcal{L}_b + \mathcal{L</p>
+<p>文案：
+基于NTK分析，作者提出了一种自适应训练算法。核心思想是根据NTK特征值的trace来动态调整不同损失项的权重，使得不同组件的收敛速度达到平衡。</p>
+<h3 id="38">3.8 数值实验</h3>
+<p>PPT内容：
+<strong>实验1：一维Poisson方程</strong>
+$$
+u_{xx} = f(x), \quad x \in [-1, 1]
+$$
+$$
+u(-1) = u(1) = 0
+$$</p>
+<p>真解：<span class="arithmatex">\(u(x) = \sin(\pi x)\)</span></p>
+<p>结果对比：
+| 方法 | 相对L2误差 |
+|------|-----------|
+| 标准PINN | 1.2e-2 |
+| + 动态权重 | 3.1e-4 |</p>
+<p><strong>实验2：多尺度问题</strong>
+高频解 <span class="arithmatex">\(u(x) = \sin(10\pi x)\)</span></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>相对L2误差</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>标准PINN</td>
+<td>8.5e-1</td>
+</tr>
+<tr>
+<td>+ 动态权重</td>
+<td>2.3e-2</td>
+</tr>
+</tbody>
+</table>
+<p>文案：
+数值实验验证了NTK理论的分析和自适应算法的有效性。在高频和多尺度问题上，动态权重调整显著提升了PINN的性能。</p>
+<h3 id="39">3.9 小结</h3>
+<p>PPT内容：
+1. 无限宽PINN的NTK是一个确定性核，且训练中保持常数
+2. PINN存在谱偏差：高频成分收敛慢
+3. 不同损失项的收敛速度可能相差巨大
+4. 基于NTK的自适应算法可以有效改善训练</p>
+<h2 id="_11">总结</h2>
+<p>PPT内容：
+谢谢大家！欢迎提问！关注知乎浅草真纪</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 huangblac
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/HuangBlac" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

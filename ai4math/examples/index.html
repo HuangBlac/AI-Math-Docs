@@ -1,0 +1,2499 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="从基础数学到AI4Math前沿的知识库">
+      
+      
+        <meta name="author" content="huangblac">
+      
+      
+        <link rel="canonical" href="https://huangblac.github.io/AI-Math-Docs/ai4math/examples/">
+      
+      
+        <link rel="prev" href="../papers/">
+      
+      
+        <link rel="next" href="../improvements/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>算法实例与训练体会 - AI & Math</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pinn" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="AI &amp; Math" class="md-header__button md-logo" aria-label="AI & Math" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI & Math
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              算法实例与训练体会
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到暗色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到暗色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到亮色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到亮色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  序言与总览
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../math/" class="md-tabs__link">
+          
+  
+  
+  基础数学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../computation/" class="md-tabs__link">
+          
+  
+  
+  计算数学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../algorithms/" class="md-tabs__link">
+          
+  
+  
+  算法介绍
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  AI4MATH前沿
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AI &amp; Math" class="md-nav__button md-logo" aria-label="AI & Math" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI & Math
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    序言与总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础数学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    基础数学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础数学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数学分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高等代数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/measure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    测度论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/probability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概率论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/ode-pde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    微分方程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/functional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    泛函分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/statistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数理统计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/multivariate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多元统计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/causality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    因果推断
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算数学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    计算数学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算数学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/num-linalg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值线性代数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/num-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/num-pde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值微分方程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    凸优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/stat-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计计算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/learning-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计学习理论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法介绍
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    算法介绍
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    机器学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/neural-networks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    神经网络
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/decision-trees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    决策树与集成学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/bayesian/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    贝叶斯学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/deep-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    深度学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/compressed-sensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    压缩感知
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI4MATH前沿
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI4MATH前沿
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI4MATH前沿
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    经典论文
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法实例与训练体会
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法实例与训练体会
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、问题前置：明确薄膜四阶抛物方程及自相似性核心
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、问题前置：明确薄膜四阶抛物方程及自相似性核心">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 目标方程（无量纲化）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 自相似性先验认知
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.所要求解的重要参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、步骤1：引入自相似坐标，转化稳态常微分方程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、步骤1：引入自相似坐标，转化稳态常微分方程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-ansatz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 构造自相似拟设（Ansatz）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 代入方程消去时间项
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、步骤2：嵌入数学结构，构造约束化解拟设
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、步骤2：嵌入数学结构，构造约束化解拟设">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 坐标紧致化（处理无限域）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 结构化解拟设（硬编码约束）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3msnn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、步骤3：构造二级神经网络（MSNN）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、步骤3：构造二级神经网络（MSNN）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 第一阶段网络（粗拟合核心剖面）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 第二阶段网络（修正高梯度区域）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、步骤4：配置二阶优化器，加速收敛
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、步骤4：配置二阶优化器，加速收敛">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 优化器参数设置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 训练策略
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        六、步骤5：混合配点操作，聚焦关键区域
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="六、步骤5：混合配点操作，聚焦关键区域">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 位置采样（全域覆盖）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 自适应采样（聚焦高残差区）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6lambdabeta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        七、步骤6：识别标度参数（\(\lambda,\beta\)），双策略验证
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="七、步骤6：识别标度参数（\(\lambda,\beta\)），双策略验证">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 解析推断（初步定位）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 迭代漏斗搜索（精准优化）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        八、步骤7：求解稳定点，验证解的有效性
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="八、步骤7：求解稳定点，验证解的有效性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 稳定点判定标准 自相似解的稳定点需满足：
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 稳定性验证（适配薄膜破裂特性）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 结果输出
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心流程总结表
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../improvements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    改良与实验
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pinn-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN概览与拷打
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pinn-seminar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN讨论班讲义
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pinn-critique/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN训练体会
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、问题前置：明确薄膜四阶抛物方程及自相似性核心
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、问题前置：明确薄膜四阶抛物方程及自相似性核心">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 目标方程（无量纲化）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 自相似性先验认知
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.所要求解的重要参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、步骤1：引入自相似坐标，转化稳态常微分方程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、步骤1：引入自相似坐标，转化稳态常微分方程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-ansatz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 构造自相似拟设（Ansatz）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 代入方程消去时间项
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、步骤2：嵌入数学结构，构造约束化解拟设
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、步骤2：嵌入数学结构，构造约束化解拟设">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 坐标紧致化（处理无限域）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 结构化解拟设（硬编码约束）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3msnn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、步骤3：构造二级神经网络（MSNN）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、步骤3：构造二级神经网络（MSNN）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 第一阶段网络（粗拟合核心剖面）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 第二阶段网络（修正高梯度区域）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、步骤4：配置二阶优化器，加速收敛
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、步骤4：配置二阶优化器，加速收敛">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 优化器参数设置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 训练策略
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        六、步骤5：混合配点操作，聚焦关键区域
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="六、步骤5：混合配点操作，聚焦关键区域">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 位置采样（全域覆盖）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 自适应采样（聚焦高残差区）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6lambdabeta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        七、步骤6：识别标度参数（\(\lambda,\beta\)），双策略验证
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="七、步骤6：识别标度参数（\(\lambda,\beta\)），双策略验证">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 解析推断（初步定位）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 迭代漏斗搜索（精准优化）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        八、步骤7：求解稳定点，验证解的有效性
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="八、步骤7：求解稳定点，验证解的有效性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 稳定点判定标准 自相似解的稳定点需满足：
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 稳定性验证（适配薄膜破裂特性）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 结果输出
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心流程总结表
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="pinn">基于PINN求解薄膜四阶抛物方程自相似解的完整流程</h1>
+<p>本文结合前序PINN框架核心逻辑与薄膜破裂四阶抛物方程特性，设计一套从坐标变换到稳定解验证的全流程方案，精准求解方程的自相似解，具体步骤如下：</p>
+<h2 id="_1">一、问题前置：明确薄膜四阶抛物方程及自相似性核心</h2>
+<h3 id="1">1. 目标方程（无量纲化）</h3>
+<p>薄膜在范德华力与表面张力作用下的演化方程为四阶非线性抛物方程（轴对称/二维通用形式）：
+- 轴对称：
+  $$
+  \frac{\partial h}{\partial t}+\frac{1}{r} \frac{\partial}{\partial r}\left[r h^{3} \frac{\partial}{\partial r}\left(\frac{1}{r} \frac{\partial}{\partial r}\left(r \frac{\partial h}{\partial r}\right)\right)+\frac{r}{h} \frac{\partial h}{\partial r}\right]=0
+  $$</p>
+<ul>
+<li>
+<p>二维：
+  $$
+  \frac{\partial h}{\partial t}+\frac{\partial}{\partial x}\left[\left(h^{3} \frac{\partial^{3} h}{\partial x^{3}}+\frac{1}{h} \frac{\partial h}{\partial x}\right)\right]=0
+  $$</p>
+</li>
+<li>
+<p>核心目标：找到满足<span class="arithmatex">\(h(r,t)=(t_R-t)^\lambda H(\eta)\)</span>（<span class="arithmatex">\(\eta=\frac{r}{(t_R-t)^\beta}\)</span>）的自相似解，确定标度参数 <span class="arithmatex">\(\lambda\)</span>、<span class="arithmatex">\(\beta\)</span> 及自相似剖面 <span class="arithmatex">\(H(\eta)\)</span>。</p>
+</li>
+</ul>
+<h3 id="2">2. 自相似性先验认知</h3>
+<p>根据文献已知薄膜破裂的自相似标度 <span class="arithmatex">\(\lambda\)</span>、<span class="arithmatex">\(\beta\)</span>，可以用于后期验证实验结果，本流程将通过PINN自主识别求解。</p>
+<p>根据物理约束条件，H需要额外满足两个条件
+1 原点正则性（<span class="arithmatex">\(H'(0)=H'''(0)=0\)</span>）
+2 远场渐近性（<span class="arithmatex">\(H(\eta)\sim A\eta^{1/2}\)</span>，<span class="arithmatex">\(A\)</span> 为常数，也是需要求解的）。</p>
+<p>接着，就是根据ode来确定约束。</p>
+<h3 id="3">3.所要求解的重要参数</h3>
+<p><span class="arithmatex">\(\eta\)</span>,<span class="arithmatex">\(\beta\)</span>作为尺度参数，于后文的识别部分来求解</p>
+<p>A作为远场渐进性的参数，将被整合进函数的要求作为PINN求解的参数</p>
+<h2 id="1_1">二、步骤1：引入自相似坐标，转化稳态常微分方程</h2>
+<h3 id="1-ansatz">1. 构造自相似拟设（Ansatz）</h3>
+<p>基于四阶抛物方程的量纲分析与自相似特性，定义： 
+- 自相似坐标：<span class="arithmatex">\(\eta=\frac{r}{(t_R-t)^\beta}\)</span>（<span class="arithmatex">\(r\)</span> 为径向/水平坐标，<span class="arithmatex">\(t_R\)</span> 为破裂时刻，<span class="arithmatex">\(\beta\)</span> 为坐标标度参数） 
+- 薄膜厚度拟设：<span class="arithmatex">\(h(r,t)=(t_R-t)^\lambda H(\eta)\)</span>（<span class="arithmatex">\(\lambda\)</span> 为厚度标度参数，<span class="arithmatex">\(H(\eta)\)</span> 为无量纲自相似剖面）</p>
+<h3 id="2_1">2. 代入方程消去时间项</h3>
+<p>利用链式法则计算时间导数 <span class="arithmatex">\(\partial_t h\)</span> 和空间导数 <span class="arithmatex">\(\partial_r h,\partial_r^4 h\)</span>，代入原始四阶抛物方程： 
+-时间导数：<span class="arithmatex">\(\partial_t h=-\lambda(t_R-t)^{\lambda-1}H(\eta)+\beta(t_R-t)^{\lambda-1}\eta H'(\eta)\)</span>
+- 空间导数：<span class="arithmatex">\(\partial_r h=(t_R-t)^{\lambda-\beta}H'(\eta)\)</span>.高阶导数同理按链式法则展开 
+- 化简结果：消去 <span class="arithmatex">\((t_R-t)^{\lambda-1-\beta^4}\)</span> 等标度因子后，得到仅关于 <span class="arithmatex">\(\eta\)</span> 的<strong>稳态常微分方程（ODE）</strong>： 
+- 轴对称场景：<span class="arithmatex">\(\frac{1}{5}(H-2\eta H')=\frac{1}{\eta}\left[\frac{\eta H'}{H}+\eta H^3\left(\frac{(\eta H')'}{\eta}\right)'\right]'\)</span>（已代入文献标度 <span class="arithmatex">\(\lambda=1/5,\beta=2/5\)</span>，PINN可自主优化验证） 
+- 二维对称场景：<span class="arithmatex">\(H\)</span></p>
+<h2 id="2_2">三、步骤2：嵌入数学结构，构造约束化解拟设</h2>
+<h3 id="1_2">1. 坐标紧致化（处理无限域）</h3>
+<p>自相似坐标 <span class="arithmatex">\(\eta\in[0,+\infty)\)</span> 为无限域，构造非线性变换映射至有限域 <span class="arithmatex">\(q\in(0,1]\)</span>： 
+由正则性约束，还需要满足关于<span class="arithmatex">\(\eta\)</span>为偶函数的条件
+$$
+q=\frac{\eta^2}{\sqrt{1+\eta^4}} \quad \text{或} \quad q=1-e^{-\eta^2/5}
+$$
+（适配远场 <span class="arithmatex">\(H(\eta)\sim\eta^{1/2}\)</span> 的渐近衰减，避免边界数值失真） </p>
+<h3 id="2_3">2. 结构化解拟设（硬编码约束）</h3>
+<p>将原点正则性、符号约束等数学结构嵌入拟设，避免无效搜索： 
+$$
+H(\eta)=\exp\left(NN(q)\right) \cdot \sqrt{1+\eta^2} \cdot \frac{1}{(1+\eta^2)^{1/4}}
+$$</p>
+<ul>
+<li>解析项作用： 
+-- <span class="arithmatex">\(H_0\)</span>：原点厚度初始猜测（文献值 <span class="arithmatex">\(H(0)\approx0.768\)</span>，轴对称场景，在此处需要作为哦参数输入）；
+-- <span class="arithmatex">\(\sqrt{1+\eta^2}\)</span>：适配远场 <span class="arithmatex">\(H(\eta)\sim\eta^{1/2}\)</span> 的渐近行为； 
+-- <span class="arithmatex">\(\frac{1}{(1+\eta^2)^{1/4}}\)</span>：压制高频振荡，保证解的光滑性；
+这两项实际上就是合起来，在无限远处凑成<span class="arithmatex">\(\eta^{1/2}\)</span>，而且最好还要满足不会受到导数条件的限制</li>
+</ul>
+<p>-- <span class="arithmatex">\(\exp(NN(q))\)</span>：神经网络输出项（隐含层用ReLU+Sigmoid组合，保证梯度平滑，而且最终有界，而且q这一项在<span class="arithmatex">\(\eta-&gt;\infty\)</span>时是1，<span class="arithmatex">\(e^{NN(1)}\)</span>也是一个有界量，用于拟合A这一项，而且不会影响无穷远处的阶数渐进</p>
+<h2 id="3msnn">四、步骤3：构造二级神经网络（MSNN）</h2>
+<p>分阶段逼近解 采用两阶段神经网络架构，先粗拟合再精细化修正，适配四阶方程的高梯度特性： </p>
+<h3 id="1_3">1. 第一阶段网络（粗拟合核心剖面）</h3>
+<ul>
+<li>网络结构：输入层（<span class="arithmatex">\(q\in(0,1]\)</span>）→ 隐含层（3层，每层128神经元，激活函数ReLU）→ 输出层（1个神经元，输出 <span class="arithmatex">\(NN_1(q)\)</span>），再带入原始式子，得到<span class="arithmatex">\(H_1(\eta)=\exp\left(NN(q)\right) \cdot \sqrt{1+\eta^2} \cdot \frac{1}{(1+\eta^2)^{1/4}}\)</span></li>
+<li>训练目标：最小化自相似ODE的残差 <span class="arithmatex">\(L_1=\frac{1}{N}\sum_{i=1}^N \frac{|R(\eta_i; NN_1)|^2}{exp(NN_1)}\)</span>（<span class="arithmatex">\(R\)</span> 为ODE残差，<span class="arithmatex">\(N\)</span> 为配点数）； </li>
+<li>各参数解释：分子部分残差，将<span class="arithmatex">\(\eta_i,NN_1\)</span>代入<span class="arithmatex">\(H\)</span>,</li>
+<li>输出结果：初步自相似剖面 <span class="arithmatex">\(H_1(\eta)\)</span>、标度参数初始值 <span class="arithmatex">\(\lambda_1,\beta_1\)</span>。 </li>
+</ul>
+<h3 id="2_4">2. 第二阶段网络（修正高梯度区域）</h3>
+<ul>
+<li>误差拟设：定义误差项 <span class="arithmatex">\(\Delta H(\eta)=H(\eta)-H_1(\eta)\)</span>，代入自相似ODE线性化得到误差方程； </li>
+<li>网络结构：输入层（<span class="arithmatex">\(q\in(0,1]\)</span>）→ 隐含层（4层，每层256神经元，激活函数GELU）→ 输出层（1个神经元，输出 <span class="arithmatex">\(\Delta H(NN_2(q))\)</span>）；</li>
+<li>训练目标：最小化误差方程残差 <span class="arithmatex">\(L_2=\frac{1}{N}\sum_{i=1}^N \left|\frac{R(\eta_i; H_1+\Delta H)}{1+|\nabla H_1(\eta_i)|}\right|^2\)</span>（引入梯度归一化，压制高梯度区域残差主导）； </li>
+<li>最终输出：<span class="arithmatex">\(H(\eta)=H_1(\eta)+\Delta H(\eta)\)</span>，提升高梯度区域（如 <span class="arithmatex">\(\eta\approx3\sim5\)</span>）的拟合精度。 </li>
+</ul>
+<h2 id="4">五、步骤4：配置二阶优化器，加速收敛</h2>
+<p>摒弃一阶优化器（如Adam），采用<strong>全矩阵高斯-牛顿优化器</strong>（基于kfac-jax实现），适配四阶方程的强非线性：</p>
+<h3 id="1_4">1. 优化器参数设置</h3>
+<ul>
+<li>学习率：自适应调整（初始值 <span class="arithmatex">\(1e-3\)</span>，残差下降停滞时衰减至 <span class="arithmatex">\(1e-5\)</span>）； </li>
+<li>动量系数：0.95（平衡全局搜索与局部收敛）；</li>
+<li>正则化：L2正则化（系数 <span class="arithmatex">\(1e-8\)</span>），避免过拟合。 </li>
+</ul>
+<h3 id="2_5">2. 训练策略</h3>
+<ul>
+<li>第一阶段：训练5000迭代，残差收敛至 <span class="arithmatex">\(O(10^{-6})\)</span> 后停止； </li>
+<li>第二阶段：加载第一阶段参数，继续训练8000迭代，目标残差 <span class="arithmatex">\(O(10^{-10})\)</span>（接近双精度舍入误差）；
+-- 优势：二阶优化器直接利用残差的Hessian信息，解决四阶方程残差曲面非凸导致的收敛停滞问题。 </li>
+</ul>
+<h2 id="5">六、步骤5：混合配点操作，聚焦关键区域</h2>
+<p>采用“位置采样+自适应采样”混合策略，确保配点覆盖性与关键区域密度： </p>
+<h3 id="1_5">1. 位置采样（全域覆盖）</h3>
+<p>-采样区域：<span class="arithmatex">\(\eta\in[0,20]\)</span>（覆盖远场渐近区域，<span class="arithmatex">\(\eta&gt;20\)</span> 时 <span class="arithmatex">\(H(\eta)\sim\eta^{1/2}\)</span>，误差可忽略）； 
+- 采样分布：<span class="arithmatex">\(\eta\in[0,5]\)</span> 均匀采样（原点及高梯度区域），<span class="arithmatex">\(\eta\in[5,20]\)</span> 对数采样（远场区域，适配渐近衰减）； 
+- 采样数量：基础配点500个。 </p>
+<h3 id="2_6">2. 自适应采样（聚焦高残差区）</h3>
+<ul>
+<li>采样规则：每100迭代计算当前配点的残差 <span class="arithmatex">\(R(\eta_i)\)</span>，按残差平方加权采样，补充200个高残差配点（如 <span class="arithmatex">\(\eta\approx2\sim4\)</span> 的梯度突变区域）； </li>
+<li>动态更新：每次补充配点后，删除残差小于 <span class="arithmatex">\(1e-11\)</span> 的低价值配点，保持总配点数700个，提升训练效率。 </li>
+</ul>
+<h2 id="6lambdabeta">七、步骤6：识别标度参数（<span class="arithmatex">\(\lambda,\beta\)</span>），双策略验证</h2>
+<h3 id="1_6">1. 解析推断（初步定位）</h3>
+<p>利用原点正则性条件（<span class="arithmatex">\(H'(0)=H'''(0)=0\)</span>），将 <span class="arithmatex">\(\eta\to0\)</span> 代入自相似ODE： 
+- 泰勒展开 <span class="arithmatex">\(H(\eta)=H(0)+\frac{1}{2}H''(0)\eta^2+o(\eta^2)\)</span>，代入ODE后得到关于 <span class="arithmatex">\(\lambda,\beta\)</span> 的代数方程： 
+$$
+\lambda H(0) = \beta H(0) + \text{低阶项}
+$$
+- 结合量纲分析，初步推断 <span class="arithmatex">\(\lambda\approx1/5\)</span>、<span class="arithmatex">\(\beta\approx2/5\)</span>，作为数值搜索初始值。 </p>
+<h3 id="2_7">2. 迭代漏斗搜索（精准优化）</h3>
+<p>以残差最小化为目标，采用割线搜索优化 <span class="arithmatex">\(\lambda,\beta\)</span>： 
+- 搜索范围：<span class="arithmatex">\(\lambda\in[0.15,0.25]\)</span>、<span class="arithmatex">\(\beta\in[0.35,0.45]\)</span>（围绕文献值小幅拓展）； 
+-  目标函数：<span class="arithmatex">\(L(\lambda,\beta)=\max\left(\frac{1}{N}\sum|R(\eta_i)|^2, \left|\frac{H(\eta\to\infty)}{\eta^{1/2}}-A\right|\right)\)</span>（<span class="arithmatex">\(A\)</span> 为远场系数，文献值 <span class="arithmatex">\(A\approx0.676\)</span>）； 
+- 收敛判据：<span class="arithmatex">\(\Delta L&lt;1e-12\)</span>，最终输出 <span class="arithmatex">\(\lambda^*,\beta^*\)</span>（理论上应逼近 <span class="arithmatex">\(\lambda=1/5\)</span>、<span class="arithmatex">\(\beta=2/5\)</span>）。 </p>
+<h2 id="7">八、步骤7：求解稳定点，验证解的有效性</h2>
+<h3 id="1_7">1. 稳定点判定标准 自相似解的稳定点需满足：</h3>
+<ul>
+<li>残差条件：全域ODE残差 <span class="arithmatex">\(\max|R(\eta)|&lt;1e-10\)</span>； </li>
+<li>远场匹配：<span class="arithmatex">\(|H(\eta=20)/20^{1/2}-A|&lt;1e-4\)</span>； </li>
+<li>正则性条件：<span class="arithmatex">\(|H'(0)|&lt;1e-8\)</span>、<span class="arithmatex">\(|H'''(0)|&lt;1e-8\)</span>。 </li>
+</ul>
+<h3 id="2_8">2. 稳定性验证（适配薄膜破裂特性）</h3>
+<ul>
+<li>对比文献数据：轴对称场景下，<span class="arithmatex">\(H(0)\approx0.768\)</span>、<span class="arithmatex">\(H''(0)\approx0.169\)</span>，与表1第一组解误差小于 <span class="arithmatex">\(1e-3\)</span>；</li>
+<li>振荡特性：稳定解的 <span class="arithmatex">\(H'''(\eta)\)</span> 应最少振荡（文献指出“最小振荡曲率剖面为物理可观测解”），需验证 <span class="arithmatex">\(H'''(\eta)\)</span> 在 <span class="arithmatex">\(\eta\in[0,10]\)</span> 内无额外零点。 </li>
+</ul>
+<h3 id="3_1">3. 结果输出</h3>
+<ul>
+<li>最终自相似解：<span class="arithmatex">\(h(r,t)=(t_R-t)^{\lambda^*} H\left(\frac{r}{(t_R-t)^{\beta^*}}\right)\)</span>； </li>
+<li>关键参数：<span class="arithmatex">\(\lambda^*,\beta^*,H(0),H''(0),A\)</span>（远场系数）； </li>
+<li>验证指标：残差分布图、<span class="arithmatex">\(H(\eta)\)</span> 与文献解的对比图、远场渐近拟合度。</li>
+</ul>
+<h2 id="_2">核心流程总结表</h2>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>核心操作</th>
+<th>关键目标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>自相似坐标引入</td>
+<td>构造 <span class="arithmatex">\(\eta=\frac{r}{(t_R-t)^\beta}\)</span>、<span class="arithmatex">\(h=(t_R-t)^\lambda H(\eta)\)</span></td>
+<td>转化为稳态ODE</td>
+</tr>
+<tr>
+<td>数学结构嵌入</td>
+<td>坐标紧致化+结构化拟设（硬编码正则性、渐近性）</td>
+<td>缩小解空间，保证物理合理性</td>
+</tr>
+<tr>
+<td>二级神经网络</td>
+<td>粗拟合（ReLU）+ 精细化修正（GELU+梯度归一化）</td>
+<td>适配四阶方程高梯度特性</td>
+</tr>
+<tr>
+<td>二阶优化器</td>
+<td>高斯-牛顿优化（kfac-jax）+ 自适应学习率</td>
+<td>突破非凸残差曲面的收敛停滞</td>
+</tr>
+<tr>
+<td>混合配点</td>
+<td>位置采样（全域覆盖）+ 自适应采样（高残差区聚焦）</td>
+<td>平衡覆盖性与计算效率</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\lambda/\beta\)</span> 识别</td>
+<td>解析推断（初步定位）+ 迭代漏斗搜索（精准优化）</td>
+<td>确定自相似标度参数</td>
+</tr>
+<tr>
+<td>稳定点求解</td>
+<td>残差+正则性+远场匹配验证，对比文献数据</td>
+<td>输出物理可观测的稳定自相似解</td>
+</tr>
+<tr>
+<td>该流程完全复用PINN求解自相似解的核心框架，同时针对薄膜四阶抛物方程的高非线性、无限域、正则性约束等特性定制化调整，可高效得到与文献一致的稳定自相似解。</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 huangblac
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/HuangBlac" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

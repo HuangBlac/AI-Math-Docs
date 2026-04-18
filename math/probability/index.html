@@ -1,0 +1,2187 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="从基础数学到AI4Math前沿的知识库">
+      
+      
+        <meta name="author" content="huangblac">
+      
+      
+        <link rel="canonical" href="https://huangblac.github.io/AI-Math-Docs/math/probability/">
+      
+      
+        <link rel="prev" href="../measure/">
+      
+      
+        <link rel="next" href="../ode-pde/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>概率论 - AI & Math</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="AI &amp; Math" class="md-header__button md-logo" aria-label="AI & Math" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI & Math
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              概率论
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到暗色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到暗色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到亮色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到亮色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  序言与总览
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  基础数学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../computation/" class="md-tabs__link">
+          
+  
+  
+  计算数学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../algorithms/" class="md-tabs__link">
+          
+  
+  
+  算法介绍
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ai4math/" class="md-tabs__link">
+          
+  
+  
+  AI4MATH前沿
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AI &amp; Math" class="md-nav__button md-logo" aria-label="AI & Math" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI & Math
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    序言与总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础数学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    基础数学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础数学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数学分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高等代数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../measure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    测度论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概率论
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概率论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 概率论独立性
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 概率论独立性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        随机变量独立性
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="随机变量独立性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 随机变量独立性
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 随机变量独立性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1.1 独立的充分条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        独立的证明（若干 π - system 独立 ⇒ 其生成的 σ 域独立）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-efsnnm0nfmnpsnmm0nfmnmnpm1pnmfnp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        - - E[f(Sn/n)]=m=0∑nf(m/n)⋅P(Sn=m)=m=0∑nf(m/n)(mn)pm(1−p)n−m=fn(p)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 强大数定律
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 强大数定律">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 强大数定律的陈述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-borel-cantelli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 截断技巧与 Borel-Cantelli 引理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 方差与积分的估计
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 子序列的几乎必然收敛
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 单调性与全序列的收敛
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 期望存在性的截断分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ode-pde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    微分方程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    泛函分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../statistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数理统计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multivariate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多元统计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../causality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    因果推断
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算数学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    计算数学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算数学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/num-linalg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值线性代数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/num-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/num-pde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值微分方程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    凸优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/stat-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计计算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/learning-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计学习理论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法介绍
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    算法介绍
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    机器学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/neural-networks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    神经网络
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/decision-trees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    决策树与集成学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/bayesian/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    贝叶斯学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/deep-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    深度学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/compressed-sensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    压缩感知
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI4MATH前沿
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI4MATH前沿
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai4math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI4MATH前沿
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai4math/papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    经典论文
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai4math/examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法实例与训练体会
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai4math/improvements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    改良与实验
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai4math/pinn-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN概览与拷打
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai4math/pinn-seminar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN讨论班讲义
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai4math/pinn-critique/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN训练体会
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 概率论独立性
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 概率论独立性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        随机变量独立性
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="随机变量独立性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 随机变量独立性
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 随机变量独立性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1.1 独立的充分条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        独立的证明（若干 π - system 独立 ⇒ 其生成的 σ 域独立）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-efsnnm0nfmnpsnmm0nfmnmnpm1pnmfnp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        - - E[f(Sn/n)]=m=0∑nf(m/n)⋅P(Sn=m)=m=0∑nf(m/n)(mn)pm(1−p)n−m=fn(p)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 强大数定律
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 强大数定律">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 强大数定律的陈述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-borel-cantelli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 截断技巧与 Borel-Cantelli 引理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 方差与积分的估计
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 子序列的几乎必然收敛
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 单调性与全序列的收敛
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 期望存在性的截断分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">概率论笔记</h1>
+<h2 id="1">1 概率论独立性</h2>
+<ol>
+<li>
+<p><strong>独立性定义</strong></p>
+</li>
+<li>
+<p>事件独立性：若事件 A,B 满足 P(AB)=P(A)⋅P(B)，则 A,B 独立。</p>
+</li>
+<li>
+<p>随机变量独立性：若对 R 上的可测集 C,D，都有 P(X∈C,Y∈D)=P(X∈C)P(Y∈D)，则随机变量 X,Y 独立。</p>
+</li>
+<li>
+<p><strong>σ - field（σ 域）间的独立性</strong></p>
+</li>
+</ol>
+<p>若 ∀A∈F,B∈G，事件 A,B 独立，则称 σ 域 F,G 独立。</p>
+<ol>
+<li><strong>定理 1.1</strong></li>
+</ol>
+<p>若随机变量 X,Y 独立，则对 σ(X) 中任意集合 A（可表示为 A={X∈C},C 为 R 上可测集）、σ(Y) 中任意集合 B（可类似表示为 B={Y∈D},D 为 R 上可测集），有 P(AB)=P(X∈C,Y∈D)=P(X∈C)P(Y∈D)。</p>
+<p>若 F,G 为两个 σ 域，且 X 关于 F 可测（即 ∀C∈R,{X∈C}∈F）、Y 关于 G 可测，则 P(X∈C,Y∈D)=P(X∈C)P(Y∈D)。</p>
+<ol>
+<li>
+<p><strong>定理 1.2</strong></p>
+</li>
+<li>
+<p>(i) 若 A,B 独立，则 <span class="arithmatex">\(A^c\)</span>,B 独立；同理，<span class="arithmatex">\(A,B^c\)</span>、<span class="arithmatex">\(A^c,B^c\)</span>也独立。</p>
+<p>（测度性质验证：P(AcB)=P(B)−P(AB)=P(B)−P(A)P(B)=P(Ac)P(B)）</p>
+</li>
+<li>
+<p>(ii) 对 ∀C,D∈R，若 X∈C 的可能结果为 {ϕ,A,Ac,Ω}，Y∈D 的可能结果为 {ϕ,B,Bc,Ω}，则 σ(X),σ(Y) 一定独立；特别地，指示函数 X=IA,Y=IB 独立。</p>
+</li>
+<li>
+<p><strong>定理 1.3（多个随机变量独立）</strong></p>
+</li>
+</ol>
+<p>若多个事件 A1,A2,⋯,An 独立，则 <span class="arithmatex">\(P(⋂_{i=1}^nA_i)=\Pi_{i=1}^nP(A_i)\)</span>。</p>
+<ol>
+<li><strong>定理 1.4</strong></li>
+</ol>
+<p>Dynkin's π - λ 定理（待证明）。</p>
+<ol>
+<li><strong>定理 1.5（集族的独立性）</strong></li>
+</ol>
+<p>若集族 A1,A2,⋯,An 满足：对任意 I⊂{1,2,⋯,n} 及 Ai∈Ai，都有 P(⋂i∈IAi)=∏i∈IP(Ai)，则称集族独立。</p>
+<p>特别地，当每个 Ai 都包含全集 Ω 时，集族独立性等价于 P(⋂i=1nAi)=∏i=1nP(Ai)。</p>
+<h3 id="_2">随机变量独立性</h3>
+<h4 id="11">1.1 随机变量独立性</h4>
+<h5 id="111">1.1.1 独立的充分条件</h5>
+<p>涉及 <strong>π - system（π 系）</strong> 与 <strong>λ - system（λ 系）</strong>：</p>
+<ul>
+<li>
+<p>π - system：对 “交运算” 封闭（即若 A,B 属于该系，则 A∩B 也属于该系）。</p>
+</li>
+<li>
+<p>λ - system：满足以下三条：</p>
+</li>
+</ul>
+<p>1）全集 </p>
+<p>Ω∈λ</p>
+<p>；</p>
+<p>2）对 “差运算” 封闭（即若 </p>
+<p>A⊂B</p>
+<p>且 </p>
+<p>A,B∈λ</p>
+<p>，则 </p>
+<p>B∖A∈λ</p>
+<p>）；</p>
+<p>3）对 “单调增收敛” 封闭（即若 </p>
+<p>An∈λ</p>
+<p>且 </p>
+<p>An↑A</p>
+<p>，则 </p>
+<p>A∈λ</p>
+<p>）。</p>
+<p>根据 <strong>π - λ 定理</strong>：若 λ 是 λ - system，且包含某个 π - system，则 该π系（即由该 π - 系生成的 σ 域含于 λ - 系）。</p>
+<h5 id="-system">独立的证明（若干 π - system 独立 ⇒ 其生成的 σ 域独立）</h5>
+<p>从 Ai（对应 π - system 中的集合）中选取 Ai（i=2,3,⋯,n），令 F=A2∩⋯∩An，定义集合类：</p>
+<p>L={A:P(A∩F)=P(A)P(F)}</p>
+<p>验证 L 是 λ - system：</p>
+<p>1）Ω∈L：因 P(Ω∩F)=P(F)=P(Ω)P(F)，故成立。</p>
+<p>2）对差运算封闭：若 A⊂B，则</p>
+<p>P((B∖A)∩F)=P(B∩F)−P(A∩F)=P(B)P(F)−P(A)P(F)=P(B∖A)P(F),</p>
+<p>故 B∖A∈L。</p>
+<p>3）对单调增收敛封闭：若 Bk∈L 且 Bk↑B，则</p>
+<p>P(B∩F)=limk→∞P(Bk∩F)=limk→∞P(Bk)P(F)=P(B)P(F),</p>
+<p>故 B∈L。</p>
+<p>由 π - λ 定理，若 A1 所在的 π - system 满足条件，则其生成的 σ(A1)⊂L。因此，对 A1∈σ(A1)，有 P(A1∩F)=P(A1)P(F)，即</p>
+<p>P(A1∩A2∩⋯∩An)=P(A1)P(A2)⋯P(An),</p>
+<p>从而证明由 π - system 生成的 σ 域（对应随机变量的 σ 域 σ(Ai)）独立。</p>
+<ol>
+<li><strong>从事件独立到 σ 域独立的推广</strong></li>
+</ol>
+<p>若 A1,A2,⋯,An 独立，则 σ(A1),A2,⋯,An 也满足独立关系；依此类推，可进一步得到 σ(A1),A2,⋯,Am 独立（通过对不同事件 /σ 域的轮换验证）。</p>
+<ol>
+<li><strong>随机变量独立的判定条件</strong></li>
+</ol>
+<p>对于随机变量 X1,X2,⋯,Xn，若对任意 x1,x2,⋯,xn∈R，满足</p>
+<p>P(X1≤x1,X2≤x2,⋯,Xn≤xn)=∏i=1nP(Xi≤xi),</p>
+<p>则 X1,X2,⋯,Xn 独立。</p>
+<p><strong>证明思路</strong>：考虑集合类 Ai={Xi≤x}（x∈R），易知 Ai 是 <strong>π - system</strong>（对交运算封闭）。若 A1,A2,⋯,An 独立，根据 “π - system 独立 ⇒ 其生成的 σ 域 σ(Ai) 独立”，可推出 Xi 对应的 σ 域 σ(Xi) 独立，即 Xi 独立。</p>
+<ol>
+<li><strong>更一般的独立情形（多指标随机变量）</strong></li>
+</ol>
+<p>设对任意 1≤i≤n、1≤j≤m(i)，随机变量 Xi,j 相互独立；构造：</p>
+<ul>
+<li>Ai={⋂j∈JFi,j}（J 是 {1,2,⋯,m(i)} 的子集），则 Ai 生成的 π - system 可用于构造 Gi=σ({Fi,j})，且 Gi 彼此独立；</li>
+<li>对可测函数 fi:Rm(i)→R，函数 fi(Xi,1,Xi,2,⋯,Xi,m(i)) 独立。</li>
+</ul>
+<p><strong>σ 域等价性验证</strong>：需证明 σ(fi(Xi,1,⋯,Xi,m(i))) 与由 σ(Xi,j) 生成的 σ 域等价。</p>
+<p>任取 Si={fi(Xi,1,⋯,Xi,m(i))≤c}（c∈R，可测集），存在 C1,C2,⋯,Cm(i)⊂R，使得 Xi,1∈C1,Xi,2∈C2,⋯,Xi,m(i)∈Cm(i) 这些事件都含于 σ(Ai)，从而建立两类 σ 域的包含关系，最终证明等价。</p>
+<ol>
+<li><strong>可测函数与 σ 域的关系</strong></li>
+</ol>
+<p>若函数 f(Xi1,Xi2,⋯,Xi,m(i)) 是可测函数（对 R 上的 Borel 可测集 C，f−1(C) 是可测集），则 f(Xi1,⋯,Xi,m(i))∈σ(⋃jFi,j)（即函数生成的可测集含于由 Fi,j 生成的 σ 域内）。</p>
+<ol>
+<li><strong>独立随机变量的联合分布（Theorem 2.1）</strong></li>
+</ol>
+<p>若 X1,X2,⋯,Xn 相互独立，且 Xi 服从分布 μi，则随机向量 (X1,X2,⋯,Xn) 具有<strong>乘积分布</strong>μ1×μ2×⋯×μn。</p>
+<p><strong>证明思路</strong>：</p>
+<p>选取 “矩形集合” A1×A2×⋯×An（这类矩形集合构成 <strong>π - system</strong>），则</p>
+<p>P((X1,⋯,Xn)∈A1×⋯×An)=i=1∏nP(Xi∈Ai)=i=1∏nμi(Ai)=(μ1×μ2×⋯×μn)(A1×⋯×An).</p>
+<p>再通过 <strong>π - λ 定理</strong>，可将此结论推广到由矩形集合生成的 σ 系统（即 Borel σ 域），从而证明联合分布为乘积分布。</p>
+<ol>
+<li><strong>二元函数的期望（2.1.12）</strong></li>
+</ol>
+<p>若 (X,Y) 的分布对应测度 μ(dx)ν(dy)，则对函数 h(x,y)，有</p>
+<p>E[h(X,Y)]=∬h(x,y)μ(dx)ν(dy).</p>
+<p>特别地，若 h(x,y)=f(x)⋅g(y)（即函数可分离为关于 x 和 y 的乘积），则</p>
+<p>E[f(X)g(Y)]=∬f(x)g(y)μ(dx)ν(dy)=∫g(y)(∫f(x)μ(dx))ν(dy)</p>
+<p>（体现了独立随机变量函数期望的 “分离性”，即乘积的期望等于期望的乘积）。</p>
+<ol>
+<li><strong>和的分布示例</strong></li>
+</ol>
+<p>涉及随机变量和的概率 P(X+Y≤z)（需结合联合分布进一步分析，如利用卷积公式等）。</p>
+<p>伯恩涅斯坦多项式：</p>
+<h2 id="-efsnnm0nfmnpsnmm0nfmnmnpm1pnmfnp">- - <em>E</em>[<em>f</em>(<em>S</em><em>n</em>/<em>n</em>)]=<em>m</em>=0∑<em>n</em><em>f</em>(<em>m</em>/<em>n</em>)⋅<em>P</em>(<em>S</em><em>n</em>=<em>m</em>)=<em>m</em>=0∑<em>n</em><em>f</em>(<em>m</em>/<em>n</em>)(<em>m</em><em>n</em>)<em>p</em><em>m</em>(1−<em>p</em>)<em>n</em>−<em>m</em>=<em>f</em><em>n</em>(<em>p</em>)</h2>
+<ol>
+<li>
+<p><strong>设置参数</strong>：</p>
+</li>
+<li>
+<p>令 M=sup⁡x∈[0,1]∣f(x)∣<em>M</em>=sup<em>x</em>∈[0,1]∣<em>f</em>(<em>x</em>)∣（有界性，因为闭区间上的连续函数必有界）。</p>
+</li>
+<li>任取 ϵ&gt;0<em>ϵ</em>&gt;0。</li>
+<li>
+<p>由于 f<em>f</em> 在闭区间上连续，所以它<strong>一致连续</strong>。这意味着我们可以找到一个 δ&gt;0<em>δ</em>&gt;0，使得当任意两点距离 ∣x−y∣&lt;δ∣<em>x</em>−<em>y</em>∣&lt;<em>δ</em> 时，函数值的差 ∣f(x)−f(y)∣&lt;ϵ∣<em>f</em>(<em>x</em>)−<em>f</em>(<em>y</em>)∣&lt;<em>ϵ</em>。</p>
+</li>
+<li>
+<p><strong>分解误差</strong>：</p>
+</li>
+</ol>
+<p>∣E[f(Sn/n)]−f(p)∣≤E∣f(Sn/n)−f(p)∣∣<em>E</em>[<em>f</em>(<em>S</em><em>n</em>/<em>n</em>)]−<em>f</em>(<em>p</em>)∣≤<em>E</em>∣<em>f</em>(<em>S</em><em>n</em>/<em>n</em>)−<em>f</em>(<em>p</em>)∣</p>
+<p>这里用到了 Jensen 不等式（定理 1.6.2），将期望移到绝对值外面会放大误差。</p>
+<ol>
+<li>
+<p><strong>分情况处理</strong>：
+   根据 Sn/n<em>S</em><em>n</em>​/<em>n</em> 是否在 p<em>p</em> 的 δ<em>δ</em> 邻域内，将期望分成两部分：</p>
+</li>
+<li>
+<p><strong>好情况</strong>：∣Sn/n−p∣&lt;δ∣<em>S</em><em>n</em>/<em>n</em>−<em>p</em>∣&lt;<em>δ</em>。
+     此时，由一致连续性，∣f(Sn/n)−f(p)∣&lt;ϵ∣<em>f</em>(<em>S</em><em>n</em>​/<em>n</em>)−<em>f</em>(<em>p</em>)∣&lt;<em>ϵ</em>。这部分贡献小于 ϵ⋅1=ϵ<em>ϵ</em>⋅1=<em>ϵ</em>。</p>
+</li>
+<li><strong>坏情况</strong>：∣Sn/n−p∣≥δ∣<em>S</em><em>n</em>/<em>n</em>−<em>p</em>∣≥<em>δ</em>。
+     此时，虽然函数差值可能很大，但最大不会超过 2M2<em>M</em>。这部分发生的概率由切比雪夫不等式控制。</li>
+</ol>
+<p>综合起来：</p>
+<p>E∣f(Sn/n)−f(p)∣≤ϵ⋅1+2M⋅P(∣Sn/n−p∣≥δ)<em>E</em>∣<em>f</em>(<em>S</em><em>n</em>/<em>n</em>)−<em>f</em>(<em>p</em>)∣≤<em>ϵ</em>⋅1+2<em>M</em>⋅<em>P</em>(∣<em>S</em><em>n</em>/<em>n</em>−<em>p</em>∣≥<em>δ</em>)</p>
+<ol>
+<li><strong>代入概率上界</strong>：
+   将第 2 步得到的概率上界代入：</li>
+</ol>
+<p>E∣f(Sn/n)−f(p)∣≤ϵ+2M⋅14nδ2<em>E</em>∣<em>f</em>(<em>S</em><em>n</em>/<em>n</em>)−<em>f</em>(<em>p</em>)∣≤<em>ϵ</em>+2<em>M</em>⋅4<em>n</em><em>δ</em>21</p>
+<ol>
+<li><strong>取极限</strong>：
+   当 n→∞<em>n</em>→∞ 时，第二项 2M4nδ2→04<em>n</em><em>δ</em>22<em>M</em>​→0。因此：</li>
+</ol>
+<p>lim sup⁡n→∞∣E[f(Sn/n)]−f(p)∣≤ϵ<em>n</em>→∞limsup∣<em>E</em>[<em>f</em>(<em>S</em><em>n</em>/<em>n</em>)]−<em>f</em>(<em>p</em>)∣≤<em>ϵ</em></p>
+<ol>
+<li><strong>最终结论</strong>：
+   由于 ϵ<em>ϵ</em> 是任意小的正数，这个上极限必须为 0，即：</li>
+</ol>
+<p>lim⁡n→∞∣E[f(Sn/n)]−f(p)∣=0<em>n</em>→∞lim∣<em>E</em>[<em>f</em>(<em>S</em><em>n</em>/<em>n</em>)]−<em>f</em>(<em>p</em>)∣=0</p>
+<p>而 E[f(Sn/n)]=fn(p)<em>E</em>[<em>f</em>(<em>S</em><em>n</em>/<em>n</em>)]=<em>f</em><em>n</em>(<em>p</em>)，所以 fn(p)→f(p)<em>f</em><em>n</em>(<em>p</em>)→<em>f</em>(<em>p</em>)。</p>
+<ol>
+<li><strong>从逐点收敛到一致收敛</strong>：
+   上述证明中，δ<em>δ</em> 的选取只依赖于 ϵ<em>ϵ</em> 和函数 f<em>f</em> 本身，与具体的 p<em>p</em> 值无关。切比雪夫不等式的上界 14nδ24<em>n</em><em>δ</em>21​ 也与 p<em>p</em> 无关。因此，收敛速度对所有 p∈[0,1]<em>p</em>∈[0,1] 是一致的。这就意味着：</li>
+</ol>
+<p>sup⁡x∈[0,1]∣fn(x)−f(x)∣→0<em>x</em>∈[0,1]sup∣<em>f</em><em>n</em>(<em>x</em>)−<em>f</em>(<em>x</em>)∣→0</p>
+<hr />
+<h2 id="2">2 强大数定律</h2>
+<blockquote>
+<p><strong>待补充内容：</strong>
+- [ ] Borel-Cantelli 引理的详细证明
+- [ ] 弱大数定律
+- [ ] 经典例子：彩票兑奖问题</p>
+</blockquote>
+<h3 id="21">2.1 强大数定律的陈述</h3>
+<p>若随机变量序列 <span class="arithmatex">\(X_1, X_2, \ldots\)</span> 独立同分布，且 <span class="arithmatex">\(E|X_1| &lt; \infty\)</span>，记 <span class="arithmatex">\(\mu = EX_1\)</span>，部分和 <span class="arithmatex">\(S_n = \sum_{i=1}^n X_i\)</span>，则：</p>
+<div class="arithmatex">\[\frac{S_n}{n} \to \mu \quad \text{几乎必然（a.s.）}\]</div>
+<h3 id="22-borel-cantelli">2.2 截断技巧与 Borel-Cantelli 引理</h3>
+<p>构造截断随机变量：</p>
+<div class="arithmatex">\[Y_k = X_k \cdot \mathbf{1}_{\{|X_k| \leq k\}}\]</div>
+<p>（即当 <span class="arithmatex">\(|X_k| \leq k\)</span> 时 <span class="arithmatex">\(Y_k = X_k\)</span>，否则 <span class="arithmatex">\(Y_k = 0\)</span>）。</p>
+<p>由期望的非负性与积分性质，对 <span class="arithmatex">\(P(|Y_k| &gt; k) = P(|X_k| &gt; k)\)</span>，有：</p>
+<div class="arithmatex">\[\sum_{k=1}^{\infty} P(|Y_k| &gt; k) = \sum_{k=1}^{\infty} P(|X_k| &gt; k) \leq E|X_1| &lt; \infty\]</div>
+<p>根据 <strong>Borel-Cantelli 引理</strong>，得 <span class="arithmatex">\(P(X_k \neq Y_k \text{ i.o.}) = 0\)</span>，即 "<span class="arithmatex">\(X_k\)</span> 与 <span class="arithmatex">\(Y_k\)</span> 几乎必然只有有限次不同"。</p>
+<h3 id="23">2.3 方差与积分的估计</h3>
+<p>对截断变量 <span class="arithmatex">\(Y_k\)</span>，计算方差：</p>
+<div class="arithmatex">\[\text{Var}(Y_k) \leq E(Y_k^2)\]</div>
+<p>进一步，通过积分变换（将求和转化为积分）估计 <span class="arithmatex">\(\sum_{k=1}^{\infty} \frac{E(Y_k^2)}{k^2}\)</span>：</p>
+<div class="arithmatex">\[\sum_{k=1}^{\infty} \frac{E(Y_k^2)}{k^2} \leq \int_0^{\infty} \sum_{k \geq y} \frac{1}{k^2} \cdot 2y P(X_1 &gt; y) dy\]</div>
+<p>利用级数和 <span class="arithmatex">\(\sum_{k \geq y} \frac{1}{k^2} \leq \int_{y-1}^{\infty} \frac{1}{t^2} dt \leq \frac{1}{y-1}\)</span>（<span class="arithmatex">\(y \geq 1\)</span>），可证上述积分小于 <span class="arithmatex">\(4E|X_1|\)</span>，即级数 <span class="arithmatex">\(\sum \frac{\text{Var}(Y_k)}{k^2}\)</span> 收敛。</p>
+<h3 id="24">2.4 子序列的几乎必然收敛</h3>
+<p>对指数增长的子序列 <span class="arithmatex">\(k_n = \lfloor \alpha^n \rfloor\)</span>（<span class="arithmatex">\(\alpha &gt; 1\)</span>），考虑部分和 <span class="arithmatex">\(T_{k_n} = X_1 + X_2 + \cdots + X_{k_n}\)</span>，利用切比雪夫不等式：</p>
+<div class="arithmatex">\[P\left(\left|\frac{T_{k_n}}{k_n} - \frac{ET_{k_n}}{k_n}\right| &gt; \varepsilon\right) \leq \frac{\text{Var}(T_{k_n})}{\varepsilon^2 k_n^2}\]</div>
+<p>若 <span class="arithmatex">\(\sum_{n=1}^{\infty} \frac{\text{Var}(T_{k_n})}{k_n^2} &lt; \infty\)</span>，由 Borel-Cantelli 引理得：</p>
+<div class="arithmatex">\[\frac{T_{k_n}}{k_n} - \frac{ET_{k_n}}{k_n} \to 0 \quad \text{几乎必然（a.s.）}\]</div>
+<h3 id="25">2.5 单调性与全序列的收敛</h3>
+<p>通过单调性将子序列的收敛推广到整个序列 <span class="arithmatex">\(\{n\}\)</span>：对任意 <span class="arithmatex">\(n\)</span>，存在 <span class="arithmatex">\(k_n, k_{n+1}\)</span> 使得 <span class="arithmatex">\(k_n \leq n &lt; k_{n+1}\)</span>，故</p>
+<div class="arithmatex">\[\frac{1}{\alpha} \cdot \frac{T_{k_n}}{k_{n+1}} \leq \frac{T_n}{n} \leq \frac{T_{k_{n+1}}}{k_n} \leq 2\alpha\mu\]</div>
+<p>令 <span class="arithmatex">\(\alpha \to 1\)</span>，结合子序列的收敛性，可推导 <span class="arithmatex">\(\frac{T_n}{n}\)</span> 的极限行为（需补充 <span class="arithmatex">\(ET_{k_n}/k_n \to \mu\)</span> 等条件）。</p>
+<h3 id="26">2.6 期望存在性的截断分析</h3>
+<p>当 <span class="arithmatex">\(EX_i^+ = \infty\)</span>（正部期望无穷）且 <span class="arithmatex">\(EX_i^- &lt; \infty\)</span>（负部期望有限）时，截断技巧（令 <span class="arithmatex">\(X_i^M = X_i \cdot \mathbf{1}_{\{|X_i| \leq M\}}\)</span>）面临困境：</p>
+<ul>
+<li>截断后 <span class="arithmatex">\(S_n^M/n \to EX_i^M\)</span>（强大数定律对截断变量成立）；</li>
+<li>但 <span class="arithmatex">\(\liminf_{n \to \infty} \frac{S_n}{n} \geq EX_i^M\)</span>，且当 <span class="arithmatex">\(M \to \infty\)</span> 时，<span class="arithmatex">\(E(X_i^M)^+ \to EX_i^+ = \infty\)</span>；</li>
+<li>故 <span class="arithmatex">\(\liminf_{n \to \infty} \frac{S_n}{n} = \infty\)</span>（正部主导导致和无界增长）。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 huangblac
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/HuangBlac" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

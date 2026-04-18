@@ -1,0 +1,2234 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="从基础数学到AI4Math前沿的知识库">
+      
+      
+        <meta name="author" content="huangblac">
+      
+      
+        <link rel="canonical" href="https://huangblac.github.io/AI-Math-Docs/ai4math/pinn-critique/">
+      
+      
+        <link rel="prev" href="../pinn-seminar/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>PINN训练体会 - AI & Math</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#3-pinntricktoy-model" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="AI &amp; Math" class="md-header__button md-logo" aria-label="AI & Math" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI & Math
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              PINN训练体会
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到暗色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到暗色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到亮色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到亮色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  序言与总览
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../math/" class="md-tabs__link">
+          
+  
+  
+  基础数学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../computation/" class="md-tabs__link">
+          
+  
+  
+  计算数学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../algorithms/" class="md-tabs__link">
+          
+  
+  
+  算法介绍
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  AI4MATH前沿
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AI &amp; Math" class="md-nav__button md-logo" aria-label="AI & Math" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI & Math
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    序言与总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础数学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    基础数学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础数学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数学分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高等代数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/measure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    测度论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/probability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概率论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/ode-pde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    微分方程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/functional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    泛函分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/statistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数理统计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/multivariate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多元统计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/causality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    因果推断
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算数学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    计算数学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算数学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/num-linalg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值线性代数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/num-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/num-pde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值微分方程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    凸优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/stat-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计计算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/learning-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计学习理论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法介绍
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    算法介绍
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    机器学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/neural-networks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    神经网络
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/decision-trees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    决策树与集成学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/bayesian/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    贝叶斯学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/deep-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    深度学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/compressed-sensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    压缩感知
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI4MATH前沿
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI4MATH前沿
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI4MATH前沿
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    经典论文
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法实例与训练体会
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../improvements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    改良与实验
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pinn-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN概览与拷打
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pinn-seminar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN讨论班讲义
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN训练体会
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN训练体会
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#3-pinntricktoy-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 PINN真的慢，真的不稳定，不用trick效果很烂，简单toy model很难超过传统数值
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 PINN真的慢，真的不稳定，不用trick效果很烂，简单toy model很难超过传统数值">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ntk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是NTK
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ntkpinn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么要用NTK视角分析PINN？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pinnsntk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        具体操作：计算PINNs的NTK
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pinn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        谱偏差：为什么PINN学得慢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        损失函数失衡：为什么收敛速度很慢
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        算法：动态权重调整
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 数值实验
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 单元刚度矩阵计算
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考单元上的积分转换
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        线性元的梯度特性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cxcn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常数系数简化（c(x)=cn）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 载荷向量计算
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考单元上的积分转换
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#3-pinntricktoy-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 PINN真的慢，真的不稳定，不用trick效果很烂，简单toy model很难超过传统数值
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 PINN真的慢，真的不稳定，不用trick效果很烂，简单toy model很难超过传统数值">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ntk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是NTK
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ntkpinn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么要用NTK视角分析PINN？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pinnsntk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        具体操作：计算PINNs的NTK
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pinn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        谱偏差：为什么PINN学得慢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        损失函数失衡：为什么收敛速度很慢
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        算法：动态权重调整
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 数值实验
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 单元刚度矩阵计算
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考单元上的积分转换
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        线性元的梯度特性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cxcn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常数系数简化（c(x)=cn）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 载荷向量计算
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考单元上的积分转换
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>PINN训练体会</h1>
+
+<h2 id="3-pinntricktoy-model">3 PINN真的慢，真的不稳定，不用trick效果很烂，简单toy model很难超过传统数值</h2>
+<p>PINN天生就被大家寄予厚望，然而他在处理小规模问题取得了让人哄堂大笑的结果。真不知道当初Rassi是怎么说服审稿人这个方法有希望的。而关于PINN是不是没活硬整的算法已经讲了很多了，这里我仅仅介绍一些训练时的真实体会。</p>
+<p>1为什么PINN这么慢？</p>
+<p>因为神经网络非线性层+自动微分架构。在数据科学领域他是一把”精密手术刀“，但在计算数学的领域我们要的是“激光点打击”。一个两层的神经网络和一个1000阶的线性方程组相比：恕我直言，前者还是有待加强</p>
+<p>2PINN到底是一个什么样的问题？</p>
+<p>所有人看到Loss，这是一个优化问题，到底谁才是主项谁才是约束？这是一个很经典的“数学上等价但是数值上不等价的问题”</p>
+<p>答案你可能意想不到：其实我们实际计算的过程中，是在PDE项增加调参系数，是将其视为一个PDE约束的逼近优化问题。</p>
+<p>一般来讲，我们是用一个好项去balance一个坏项，例如说用L1正则项让问题稀疏化。但是确实从直觉的角度来看，我们要解的是方程，边界只是一个约束。但现在我们逼近的是边界，而方程只是约束条件。这个说法就听上去有点奇怪。</p>
+<p>但如果我说，边界项是我们观察到的已知数据，方程是作为物理信息“嵌入”神经网络，也就是打包进Loss呢？这么说来看，PDE才是那个“来者不善”的来者。</p>
+<p>所以，我这里采用分阶段训练居然意外的取得了很好的效果。从1e-1一直连降了三个数量级，虽然依然效果很烂就是了</p>
+<p>而在此基础上，我们可以用控制的视角去看PINN，毕竟，将PDE作为约束就是那类问题所做的。</p>
+<p>下期我或许会做这个？</p>
+<p>3 方程艰险，数据如何求解？PINNs空耗算力，不如回归传统。数据规模太小，谁能做求解器？</p>
+<p>PINN更多的是作为一种全新的范式，就从他发表的JCP之中，就可以看出，它实际上目标并非是收敛性的分析，而是一个大胆的尝试。用更编程的一些说法，PINN有点类似于Python，虽然它运行效率很慢，但是方便快捷，一列Loss的轮椅打法本身就是一大优势。甚至于我们嘲笑说自然语言编程，但现实就是在收敛速度分析之外，计算数学的初衷或许就是让更多人面对一个工程物理问题时能够算出来，将大家从痛苦的matlab画格子的痛苦解救出来，并且考虑到python的训练语料真的很多，至少远远多于Matlab，与其调包，不如加入AI coding的怀抱中</p>
+<p>最后，所有人，立刻打开github,关注deepxde，里面有很多的代码</p>
+<p>书接上回，我们尝试着训练一个网络，然而，可谓是拼尽全力无法战胜loss曲线。PINN的调参确实是玄学……吗？</p>
+<p>纯新人的PINN训练指北7 赞同 · 2 评论 文章</p>
+<p>让我们掌声有请deepmind，深度学习高手为我们带来大名鼎鼎的PINN-NTK自适应调节方法。</p>
+<p>在此之前，我们不得不问一件事情：</p>
+<h3 id="ntk">什么是NTK</h3>
+<p>NTK（Neural Tangent Kernel）神经正切核讨论的是一类极限情况，对于宽度趋近于无穷的神经网络：</p>
+<p>初始化时：神经网络 ≈ 高斯过程（GP） </p>
+<p>f(x,θ)∼N(0,Σ(x,x′))</p>
+<p>训练时：神经网络 ≈ 核回归 </p>
+<p>fNTK(x)=Kx,training⋅Ktraining,training−1⋅y</p>
+<p>而且核矩阵在训练过程中保持常数</p>
+<h3 id="ntkpinn">为什么要用NTK视角分析PINN？</h3>
+<p>回到PINN问题本身，我们会发现PINN常常会出现这三大问题：</p>
+<ul>
+<li>PINN训练为什么有时候会失败？</li>
+<li>为什么会出现梯度不平衡？</li>
+<li>如何科学地选择超参数？</li>
+</ul>
+<p>而面对着三个挑战，NTK 理论为其提供了严谨的理论分析框架。</p>
+<p>其以神经网络隐藏层宽度趋于无限为核心假设，将复杂的 PINN 训练转化为可解析的核回归问题，让收敛速率、谱特性等关键训练规律变得定量且明确。</p>
+<p>在这个基础上，我们能精准剖析 PINN 训练失败的根源、梯度不平衡的本质，并为超参数选择提供科学的理论依据，而非经验性试错。</p>
+<h3 id="pinnsntk">具体操作：计算PINNs的NTK</h3>
+<p>首先我们来计算一下，对于这样的深度学习网络之中的NTK正切核矩阵到底是怎么样的</p>
+<p>考虑一个简单的边值PDE问题：其中 L 表示一个微分算子</p>
+<p>Lu(x)=f(x),x∈Ω</p>
+<p>u(x)=g(x),x∈∂Ω</p>
+<p>可以定义一个PINN损失函数： </p>
+<p>L(θ)=Lb(θ)+Lr(θ)</p>
+<p>其中边界损失：</p>
+<p>Lb(θ)=12Nb∑i=1Nb|u(xib,θ)−g(xib)|2</p>
+<p>PDE残差损失： </p>
+<p>Lr(θ)=12Nr∑i=1Nr|Lu(xir,θ)−f(xir)|2</p>
+<p>NTK矩阵定义： </p>
+<p>K(t)=(Kuu(t)Kur(t)Kru(t)Krr(t))</p>
+<p>其中： </p>
+<p>(Kuu)ij=∂u(xib,θ)∂θ⋅∂u(xjb,θ)∂θ</p>
+<p>(Krr)ij=∂Lu(xir,θ)∂θ⋅∂Lu(xjr,θ)∂θ</p>
+<h3 id="pinn">谱偏差：为什么PINN学得慢？</h3>
+<p>在我们计算出核矩阵之后，我们就可以基于NTK的有关结论来说明问题的来源</p>
+<p>NTK核矩阵，其特征值分布为 </p>
+<p>K=QTΛQ,Λ=diag(λ1,λ2,…,λN)</p>
+<p>此时，训练误差衰减： </p>
+<p>‖error(t)‖≈‖e−Kt‖</p>
+<p>不同的特征值会带来谱偏差现象：</p>
+<ul>
+<li>大特征值 → 快速收敛（低频成分）</li>
+<li>小特征值 → 缓慢收敛（高频成分）</li>
+<li>特征值快速衰减 → 高频成分难以学习</li>
+</ul>
+<p>PPT图示（文字描述）：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>特征值衰减曲线：
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>λ ████████████░░░░░░░░░░░
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  ▏
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  ▏
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  ▏
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  ▏低频 ←→ 高频
+</span></code></pre></div>
+<p>因此：NTK的特征值分解揭示了PINN训练困难的根本原因——谱偏差。较大的特征值对应的模式会快速收敛，而较小的特征值（通常对应高频成分）收敛极慢。这解释了为什么含有高频特征的解将会使得核矩阵的特征值奇异，使得它难以用PINN准确学习。</p>
+<h3 id="_1">损失函数失衡：为什么收敛速度很慢</h3>
+<p>除了谱偏差外，PINN的另一个核心问题是不同损失项之间的不平衡。边界条件和PDE残差的收敛速度可能差异巨大，导致训练过程中需要不断调整权重。</p>
+<p>PINN的损失函数包含多个项： </p>
+<p>L=λbLb+λrLr</p>
+<ul>
+<li>Lb 和 Lr 的收敛速度可能相差数十个数量级</li>
+<li>导致某些项已收敛而另一些项仍很大</li>
+<li>传统的固定权重无法解决</li>
+</ul>
+<p>PPT图示：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>训练过程：
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>损失值
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  ↑
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  │    _______ 边界损失（快）
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  │   /
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  │  /
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>  │ /
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>  │/__________________ → 迭代次数
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>  │    ~~~~~~~ PDE损失（慢）
+</span></code></pre></div>
+<h3 id="_2"><strong>算法：动态权重调整</strong></h3>
+<p>每 k 步更新权重： </p>
+<p>λb(k+1)=λb(k)⋅tr(Krr)tr(Kuu)</p>
+<p>λr(k+1)=λr(k)⋅tr(Kuu)tr(Krr)</p>
+<p>或者使用梯度归一化： </p>
+<p>g~b=gb‖gb‖,g~r=gr‖gr‖</p>
+<p>Lnew=Lb+Lr</p>
+<p>文案： 基于NTK分析，作者提出了一种自适应训练算法。核心思想是根据NTK特征值的trace来动态调整不同损失项的权重，使得不同组件的收敛速度达到平衡。</p>
+<h3 id="38">3.8 数值实验</h3>
+<p>PPT内容： <strong>实验1：一维Poisson方程</strong> </p>
+<p>uxx=f(x),x∈[−1,1]</p>
+<p>u(−1)=u(1)=0</p>
+<p>真解：u(x)=sin⁡(πx)</p>
+<p>结果对比：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>相对L2误差</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>标准PINN</td>
+<td>1.2e-2</td>
+</tr>
+<tr>
+<td>+ 动态权重</td>
+<td>3.1e-4</td>
+</tr>
+</tbody>
+</table>
+<p><strong>实验2：多尺度问题</strong> 高频解 u(x)=sin⁡(10πx)</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>相对L2误差</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>标准PINN</td>
+<td>8.5e-1</td>
+</tr>
+<tr>
+<td>+ 动态权重</td>
+<td>2.3e-2</td>
+</tr>
+</tbody>
+</table>
+<p>文案： 数值实验验证了NTK理论的分析和自适应算法的有效性。在高频和多尺度问题上，动态权重调整显著提升了PINN的性能。</p>
+<p>偏微分方程：</p>
+<p>Cauchy-Riemann方程是一类什么样的方程：</p>
+<p>∂u∂t=∂v∂x∂v∂t=−∂u∂x 其次，构造了如下的能量方法： E(t)=∑k=0∞(ρkk!)2∫(|∂xku|2+|∂xkv|2)dx </p>
+<p>对E关于t求导，考虑 ρ=ρ(t) ，得到两项</p>
+<p>E(t)=∑k=0∞2kρ(ρkk!)2∫(|∂xku|2+|∂xkv|2)dx+∑k=0∞(ρkk!)2ddt∫(|∂xku|2+|∂xkv|2)dx </p>
+<p>这是两个部分组成的，可以考虑一个函数： </p>
+<p>Y(t)=∑k=0∞2kρ(ρkk!)2∫(|∂xku|2+|∂xkv|2)dx </p>
+<p>因此函数的第一项实际上就是 ρ′(t)Y(t) </p>
+<p>第二项则考虑进行放缩</p>
+<p>∑k=0∞ddt∫(|∂xku|2+|∂xkv|2)dx≤∑k=0∞∫(∂xku∂xk(∂tu)+∂xkv∂xk(∂tv))dx≤∑k=0∞∫(∂xku∂xk+1v)−∂xkv∂xk+1udx≤∑k=0∞(∫∂xku2)12(∫∂xk+1v2)12+∑k=0∞(∫∂xkv2)12(∫∂xk+1u2)12=A </p>
+<p>这样的到了相似的两项，继续进行放缩：</p>
+<p>∑k=0∞(ρkk!)2(∫∂xkv2)12(∫∂xk+1u2)12≤∑k=0∞kρ(ρkk!)2(∫∂xkv2)+∑k=0∞ρk(ρkk!)2(∫∂xk+1v2)=∑k=0∞kρ(ρkk!)2(∫∂xku2)+∑k=0∞k+1k(ρk+1k+1!)2(∫∂xk+1v2) </p>
+<p>而对于另一项，求和同样可以得到：</p>
+<p>A=Y(t)+∑k+1k(ρk+1k+1!)2(∫∂xk+1v2)≤Y(t)+2Y(t) </p>
+<p>因此 E(t)≤(3+ρ′(t))Y(t) </p>
+<p>我们先来考虑一个简单的二阶线性偏微分方程：</p>
+<p>u-\Delta u = f</p>
+<p>需要给出一个弱解u\in H_0^1(\Omega)，即在\Omega这个区间内存在紧支撑集，且一阶弱导数与原函数平方可积。</p>
+<p>而弱解，实际上就是要满足对于任意的g \in H_0^1(\Omega)</p>
+<p>\int_{\Omega} (ug-\Delta u g)dx = \int fg</p>
+<p>这里就使用小名鼎鼎的Reisz表示定理，对于一个Hilbert空间上的内积(u,g)</p>
+<p>(u,g)=Tg存在唯一解，当且仅当T是一个有界算子</p>
+<p>那么，问题就转化为了：</p>
+<p>1(u,g)是不是一个内积</p>
+<p>2Tg是不是一个有界算子</p>
+<p>首先我们回答第一个问题，H_0^1空间内这是不是一个内积，或者说，对于这样的Soblev空间如何定义内积。</p>
+<p>要想证明内积，实际上是可以通过范数诱导得到。根据H_0^1空间的定义:</p>
+<p>||u||H02=||u||L22+∑j=1||∂xju||L22 </p>
+<p>这样定义实际上希望满足Cauchy性，一个解的Cauchy列的极限希望是这个解，而对于偏微分方程就需要原函数接近的同时导数也接近，因此这样定义标准内积。</p>
+<p>在这个基础上，用范数诱导内积。得到：</p>
+<p><u,g>H01=∫Ωug+∇u⋅∇g </p>
+<p>这实际上可以通过积分得到，考虑到g在H_0^1上，所以在边界处取零，无需考虑边界项，因此</p>
+<p>我们确实可以把原问题转化为 ∫Ωug+∇u⋅∇g=∫Ωfg </p>
+<p>接下来，我们就需要回答两个问题，这么诱导能不能诱导出一个内积，以及\intfg是不是有界的。</p>
+<p>内积是满足三条性质的双线性函数:1对称，2双线性，3正定。</p>
+<p>对称性<u,g>=<g,u>,双线性<au_1+bu_2,g>=a<u_1,g>+b<u_2,g>，正定<u,u> \ge 0确实都是满足的。</p>
+<p>这三条性质同时满足，这确实是一个内积。而且在H_0^1的框架下，是一个有界的量。</p>
+<p>接下来，我们验证右边是一个有界算子，将f视作一个固定的函数，那么</p>
+<p>Tu:u→∫Ωfu 是一个从Soblev空间到实数的一个泛函，而且也确实满足：</p>
+<p>∫Ωfg≤∫Ω|f|2dx∫|g|2≤∫Ω|f|2dx∫Ω(|g|2+|∇g|2)dx=C||g||H01 </p>
+<p>在凑成Reisz表示定理的羁绊之后我们直接套用结论，很好，结果是有界的。</p>
+<p>不过我们还有个疑问，如果没有凑出这个特有的内积形式，那怎么办？举个例子，我们现在要面对这样的问题：</p>
+<p>\int_{\Omega} \nabla u \cdot \nabla g dx= \int_{\Omega}  fg dx </p>
+<p>我们需要证明左边与原内积依然是等价的，所谓等价，就是只差一个常数</p>
+<p>这就需要使用Poincre不等式证明：</p>
+<p>∫f2dx≤C∫|∇f|2dx </p>
+<p>对于一个有界区域这是成立的，因为我们可以先考虑一维的情形</p>
+<p>∫f2dx≤∫ab∫axff′dsdx≤∫abfdx∫abf′≤(b−a)(∫abf2dx)1/2(∫ab(f′)2dx)1/2 </p>
+<p>而对于高维的情况，已知这样对于每一个变量都成立，即：</p>
+<p>∫f2dx≤C∫∂xif2dx 通过取最大 sup{|xj−yj||x,y∈Ω} 的方法给出一个估计： ∫f2dx≤C∫|Df|2dx </p>
+<p>但这样的常数选取实际上依赖于有界区间,在此基础上，介绍另一个不等式，Hardy不等式，适用于处理误解区间的情形。</p>
+<p>通过这些证明原函数可以被高阶导数控制，可以证明C||\nabla u|| \ge ||u||_{H_0^1} 因此可以得到两种内积的等价性，证明 ∫Ω∇u⋅∇g=∫Ωfg 也存在唯一解</p>
+<p>当然，我们还可以证明更一般的情形，也就是Lax-Milgram定理所阐述的情形</p>
+<p>数值解：有限元方法</p>
+<p>主唱要成为人类，今后这个号不发木柜子乐队和傻逼二次元动漫了</p>
+<p>1偏微分方程的弱形式：</p>
+<p>考虑一个经典的热方程： ∇⋅(c∇u)=−f </p>
+<p>考虑Dirchlet边界条件： ，u=g，x∈∂Ω </p>
+<p>这个方程差不多已经出现过很多次，我们引入变分操作，实际上就是把能够乘进去的v全都乘一遍，然后将其做积分</p>
+<p>∫∇⋅(c∇u)vdx=−∫fvdx </p>
+<p>我们要求对于任意的v都能够满足方程，这样就能求得一个解。</p>
+<p>所以什么是“能够乘进去的v”呢？可以考虑一个好函数空间 ϕ(x) ：</p>
+<p>好函数要求是无限可微的，而且好函数空间具有紧支撑集。</p>
+<p>你可能不需要知道这是什么意思，在此处就是要让我们不需要考虑边界项，而且无限光滑，也就是让它可以随便积分随便求导。</p>
+<p>有一个“好函数”作伙伴，”不那么好函数“u(x)，只需要满足可积性条件，也可以求导了</p>
+<p>∫v(x)ϕ(x)dx=−∫u(x)ϕ(x)dx </p>
+<p>如果对任意的好函数\phi(x)都能满足这样的题意，那么就称此时的v是一个弱导数，此后我们如果不加以说明，所有的导数都是以弱导数为基础，包括梯度项</p>
+<p>原本的可积性条件就是平方可积 ∫f2dx&lt;∞ ,此后不加以说明，</p>
+<p>回到原本的变分问题：</p>
+<p>如果我们对于v加一些限制，它需要在\Omega上是一个紧支集，意味着它在边界处取零</p>
+<p>这样就可以化简为一个对称的: ∫c∇u(x)⋅∇v(x)dx=∫fvdx </p>
+<p>基于此，我们就得到了这个方程解的存在空间，需要一阶导数L^2与原函数L^2平方可积。</p>
+<p>平方可积也并非是随便搞的，原函数的平方可积是基础，导数平方可积这实际上就是利用Cauchy不等式：</p>
+<p>∫c(x)∇u⋅∇v≤||c(x)||∞∫|∇u(x)|2dx∫|∇v(x)|2dx&lt;∞ </p>
+<p>因此，我们就得到了Soblev空间，这在偏微分方程界的地位相当于线性方程组之中一个欧式空间R^n</p>
+<p>Reisz定理说明，这样的方程必然是存在唯一解的，但是R老师并没告诉怎么求解这个问题。</p>
+<p>到头来，往往需要找一个有限维的子空间，通过在这个子空间上得到解。至于有限维怎么求解，当然是构造线性方程组然后求解线性方程组。</p>
+<p>这样的子空间也就是大名鼎鼎的”有限元空间“，构造有限元空间，生成有限元基函数并且求解有限元方程组的整个过程就被称之为”有限元方法“。</p>
+<p>回到原问题之中：如果我们已知函数处在一个有限维的有限元空间 Uh ，从中任意选取试探函数 vh ，都存在 uh </p>
+<p>∫c(x)DuhDvhdx=∫fvhdx ,若将左项写成 a(uh,vh)=∫Ωc(x)uhvh 右项写成内积的形式</p>
+<p>也可以写成 ，a(uh,vh)=(f,vh)，∀vh∈Uh ,</p>
+<p>已知有限元空间是一个有限维的网络，因此我们可以选取一组基 {ϕ1,ϕ2,⋯,ϕn} , uh=∑uiϕi </p>
+<p>其中 a(uh,ϕi)=∑uja(ϕi,ϕj)=(f,ϕj) </p>
+<p>这实际上最终将会构成一个矩阵 （）A=（a(ϕi,ϕj)）u=(ui),v=(f,ϕj) </p>
+<p>这样实际上就构成了一个线性方程组Au = v</p>
+<p>关键在于如何求解这个刚度矩阵A之中的每个元素了，而且既然基函数是我们亲自选的，这个A当然得是一个好矩阵：它是稀疏的，大部分元素都是零。</p>
+<p>那么问题就在于，怎样选取基函数？怎样组装刚度矩阵?</p>
+<p>我们举个最简单的1d网络剖分为例：[a，b]区间内，划分n个区域共0-N，总共N+1个点</p>
+<p>这样就很自然的得到一组基所需要满足的条件： ϕj(xi)=δij ，n个点，n个基，可以确定一个n次方程组，得到一组拉格朗日基底。</p>
+<p>但还需要考虑稀疏性：因此需要构造一个分片多项式的函数，例如线性函数就是一次元，二次函数就是二次元，以此类推。</p>
+<p>举个线性元的例子：假设考虑</p>
+<p>那就是 ϕj(x)=(x/h−(j−1))I[j−1h,jh]+((j+1)−x/h)I[jh,j+1h],j=1,2,3,⋯,N−1 </p>
+<p>（ϕ0(x)=（1−x/h)I[0,h],ϕN(x)=(N−1)h+x/h)I[N−1h,Nh] </p>
+<p>这样，就可以考虑根据分片性质得到稀疏矩阵，仅仅在主对角线和副对角线上生成一个三对角矩阵。此时考虑从1到N+1开始编号</p>
+<p>首先考虑i=2,3,\cdots,N</p>
+<p>对角线上 Aii=1h2∫i−2hihc(x)dx,Aii−1=−1h2∫i−2hi−1hc(x)dx,Aii+1=−1h2∫i−1hihc(x)dx </p>
+<p>i=1,N+1时需要考虑边界条件A_{1,1}=1/h^2\int_0^hc(x)dx,A_{N+1,N+1}=1/h^2\int_{N-1h}^{Nh}c(x)</p>
+<p>（）bj=（f,ϕj）=∫(j−2)hj−1hf(x)(x/h−j+2)dx+∫(j−1)hjhf(x)(−x/h+j)dx,j=2,3,4,⋯,N=∫0hf(x)(1−x/h)dx,j=1=∫N−1hNhf(x)(x/h−(N−1)h)dx,j=N+1 </p>
+<p>与此同时，还需要对于边界项进行额外的考虑，对于1d网络，实际上就是要让</p>
+<p>u1=ua,uN+1=ub </p>
+<p>调整刚度矩阵</p>
+<p>A[1,:]=0,A[1,1]=1,A[N+1,:]=0,A[N+1,N+1]=1,b[0]=ua,b[N+1]=ub </p>
+<p>有限元空间划分网格-构造基函数-计算参考点-组装刚度矩阵-考虑边界条件-求解线性方程组，这样我们就求解一个有限元解。</p>
+<p>而对于2d和更高次的网络，往往需要考虑网络本身的性质，考虑选取一个划分</p>
+<p>一方面可以使用三角形网格，另一方面可以采用矩形网络。一般情况下，不规则网络采用三角形划分，规则网络采用矩形划分。</p>
+<p>我们首先考虑选取N个有限元单位,N_m个节点</p>
+<p>E_n表示第n个有限元单位，Z_k为第k个节点。</p>
+<p>P是一个N_m*N_m维信息矩阵，表示一个邻点矩阵。</p>
+<p>T是一个N*N_m维信息矩阵，表示每个有限元单位上所包含节点</p>
+<p>首先，依然是需要首先构造一个有限元函数空间，这包括构造有限元函数的基。这实际上依然是类似于一维时的操作，构造一组拉格朗日基底。</p>
+<p>考虑X_k一系列的节点，共有N_b个节点，依然是可以构造对应的拉格朗日基底函数。</p>
+<ol>
+<li>三角形网格上的线性元</li>
+<li>1 参考单元上的基函数 对于参考三角形 K^（顶点 (0,0),(1,0),(0,1)）：</li>
+</ol>
+<p>节点  基函数 ϕi(ξ,η) (0,0)   ϕ1=1−ξ−η (1,0)  ϕ2=ξ (0,1)  ϕ3=η</p>
+<p>2.2 实际单元的映射</p>
+<p>实际单元 K 的顶点为 (x1,y1),(x2,y2),(x3,y3)，映射关系如下：</p>
+<p>[xy]=[x1y1]+[x2−x1x3−x1y2−y1y3−y1][ξη]</p>
+<p>雅可比矩阵 J 定义为：</p>
+<p>J=[∂x∂ξ∂x∂η∂y∂ξ∂y∂η]</p>
+<h3 id="23">2.3 单元刚度矩阵计算</h3>
+<p>对于单元 En，其刚度矩阵元素定义为：</p>
+<p>An,αβ=∫Enc(x)∇ϕnα⋅∇ϕnβdx</p>
+<h3 id="_3">参考单元上的积分转换</h3>
+<p>通过坐标映射将实际单元积分转化为参考单元 K^ 上的计算，公式变为：</p>
+<p>An,αβ=∫K^c(x(ξ,η))(∇ϕα)T(JJT)−1(∇ϕβ)|detJ|dξdη</p>
+<h3 id="_4">线性元的梯度特性</h3>
+<p>对于三角形线性单元，形函数的梯度为常数，具体为：</p>
+<p>∇ϕ1=[−1−1],∇ϕ2=[10],∇ϕ3=[01]</p>
+<h3 id="cxcn">常数系数简化（c(x)=cn）</h3>
+<p>若扩散系数 c(x) 在单元 En 内近似为常数 cn，则单元刚度矩阵可简化为：</p>
+<p>An=cn|detJ|⋅BT(JJT)−1B</p>
+<p>其中，矩阵 B 由形函数梯度构成： </p>
+<p>B=[∇ϕ1,∇ϕ2,∇ϕ3]</p>
+<h3 id="24">2.4 载荷向量计算</h3>
+<p>单元 En 的载荷向量元素定义为：</p>
+<p>Fn,α=∫Enf(x)ϕnα(x)dx</p>
+<h3 id="_5">参考单元上的积分转换</h3>
+<p>通过坐标映射将实际单元积分转化为参考单元 K^ 上的计算，公式变为：</p>
+<p>Fn,α=∫K^f(x(ξ,η))ϕα(ξ,η)|detJ|dξdη</p>
+<p>首先考虑三角形的基底，构造一个(x_i,y_i)的三个点，这将会对应三个基函数。</p>
+<p>我们可以通过规范三角形，三个点分别为(0,0),(0,1),(1,0)，分别构造三个basis函数：</p>
+<p>对应的三个基函数分别是1-x-y,x,y，取值限制在这个小三角形单元上。</p>
+<p>对于第n个小三角形单元，可以得到三个基函数\phi_{p_s}(x),p表示节点标号。</p>
+<p>在得到基函数之后，就可以得到刚度矩阵A,A刚度矩阵实际上有3*N行，其中上述的积分实际上是T()</p>
+<p>本质上，狄利克雷边界条件<em>u</em>=<em>g</em>给出了所有边界有限元节点处的解。</p>
+<p>由于有限元解<em>uh</em>=∑_{<em>j</em>=1}^{<em>Nb}</em><em>u_j</em><em>φ_j</em>中的系数<em>uj</em>，实际上就是有限元节点<em>Xj</em>（<em>j</em>=1,⋯,<em>Nb</em>）处的数值解，</p>
+<p>因此我们其实已知那些对应于边界有限元节点的<em>uj</em>。</p>
+<p>需注意，boundarynodes(2,:)存储了所有边界有限元节点的全局节点编号。</p>
+<p>若<em>m</em>∈boundarynodes(2,:)，则第<em>m</em>个方程被称为边界节点方程。</p>
+<p>设<em>nbn</em>为边界节点的数量；</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 huangblac
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/HuangBlac" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

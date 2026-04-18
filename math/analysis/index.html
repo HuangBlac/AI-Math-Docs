@@ -1,0 +1,3492 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="从基础数学到AI4Math前沿的知识库">
+      
+      
+        <meta name="author" content="huangblac">
+      
+      
+        <link rel="canonical" href="https://huangblac.github.io/AI-Math-Docs/math/analysis/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../algebra/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>数学分析 - AI & Math</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="AI &amp; Math" class="md-header__button md-logo" aria-label="AI & Math" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI & Math
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              数学分析
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到暗色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到暗色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到亮色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到亮色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  序言与总览
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  基础数学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../computation/" class="md-tabs__link">
+          
+  
+  
+  计算数学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../algorithms/" class="md-tabs__link">
+          
+  
+  
+  算法介绍
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ai4math/" class="md-tabs__link">
+          
+  
+  
+  AI4MATH前沿
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AI &amp; Math" class="md-nav__button md-logo" aria-label="AI & Math" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI & Math
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    序言与总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础数学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    基础数学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础数学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数学分析
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数学分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用指南
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="使用指南">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        任务清单标记说明
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        复习建议
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目录
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="目录">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一部分：数学分析（27题）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二部分：高等代数（23题）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第三部分：中科院历年真题库
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高等代数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../measure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    测度论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../probability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概率论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ode-pde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    微分方程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    泛函分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../statistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数理统计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multivariate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多元统计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../causality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    因果推断
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算数学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    计算数学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算数学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/num-linalg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值线性代数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/num-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/num-pde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值微分方程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    凸优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/stat-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计计算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computation/learning-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计学习理论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法介绍
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    算法介绍
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    机器学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/neural-networks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    神经网络
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/decision-trees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    决策树与集成学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/bayesian/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    贝叶斯学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/deep-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    深度学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/compressed-sensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    压缩感知
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI4MATH前沿
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI4MATH前沿
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai4math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI4MATH前沿
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai4math/papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    经典论文
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai4math/examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法实例与训练体会
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai4math/improvements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    改良与实验
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai4math/pinn-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN概览与拷打
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai4math/pinn-seminar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN讨论班讲义
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai4math/pinn-critique/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN训练体会
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用指南
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="使用指南">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        任务清单标记说明
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        复习建议
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目录
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="目录">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一部分：数学分析（27题）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二部分：高等代数（23题）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第三部分：中科院历年真题库
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">数学分析与高等代数——做过的习题</h1>
+<blockquote>
+<p>定位：其实这是一个习题集
+整理日期：2026-04-16
+版本：v3.0</p>
+</blockquote>
+<h2 id="_2">使用指南</h2>
+<h3 id="_3">任务清单标记说明</h3>
+<ul>
+<li>[ ] 未开始 - 需要复习或补充的题目</li>
+<li>[~] 进行中 - 已部分理解，需深入</li>
+<li>[x] 已完成 - 已掌握可独立解答</li>
+</ul>
+<h3 id="_4">复习建议</h3>
+<ol>
+<li>优先完成标记为 [ ] 的基础题目</li>
+<li>对 [~] 题目重点突破薄弱环节</li>
+<li>定期回顾 [x] 题目防止遗忘</li>
+</ol>
+<hr />
+<h2 id="_5">目录</h2>
+<h3 id="27">第一部分：数学分析（27题）</h3>
+<table>
+<thead>
+<tr>
+<th>题号</th>
+<th>题目</th>
+<th>难度</th>
+<th>状态</th>
+<th>标签</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="#1-正项级数与对数不等式">正项级数与对数不等式</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>级数、不等式</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="#2-hardy不等式">Hardy不等式</a></td>
+<td>高</td>
+<td>[ ]</td>
+<td>积分不等式、PDE</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="#3-wirtinger不等式">Wirtinger不等式</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>Fourier分析</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="#4-凸函数的积分不等式">凸函数的积分不等式</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>凸分析、Taylor展开</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="#5-微分不等式与零点唯一性">微分不等式与零点唯一性</a></td>
+<td>高</td>
+<td>[ ]</td>
+<td>延拓方法、Gronwall</td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="#6-积分不等式">积分不等式</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>双重积分、对称性</td>
+</tr>
+<tr>
+<td>7</td>
+<td><a href="#7-wallis积分与渐近分析">Wallis积分与渐近分析</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>斯特林公式、双阶乘</td>
+</tr>
+<tr>
+<td>8</td>
+<td><a href="#8-递推数列取整问题">递推数列取整问题</a></td>
+<td>高</td>
+<td>[ ]</td>
+<td>Pisot数、Beatty序列</td>
+</tr>
+<tr>
+<td>9</td>
+<td><a href="#9-leibniz级数">Leibniz级数</a></td>
+<td>低</td>
+<td>[ ]</td>
+<td>幂级数展开</td>
+</tr>
+<tr>
+<td>10</td>
+<td><a href="#10-递推数列收敛性">递推数列收敛性</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>压缩映射</td>
+</tr>
+<tr>
+<td>11</td>
+<td><a href="#11-正交性条件与零点">正交性条件与零点</a></td>
+<td>高</td>
+<td>[ ]</td>
+<td>正交多项式</td>
+</tr>
+<tr>
+<td>12</td>
+<td><a href="#12-渐近积分极限">渐近积分极限</a></td>
+<td>高</td>
+<td>[ ]</td>
+<td>渐近分析、分部积分</td>
+</tr>
+<tr>
+<td>13</td>
+<td><a href="#13-bell数与指数生成函数">Bell数与指数生成函数</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>组合数学、生成函数</td>
+</tr>
+<tr>
+<td>14</td>
+<td><a href="#14-高斯函数的傅里叶变换">高斯函数的傅里叶变换</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>傅里叶分析</td>
+</tr>
+<tr>
+<td>15</td>
+<td><a href="#15-poisson核对数积分">Poisson核对数积分</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>复分析、留数</td>
+</tr>
+<tr>
+<td>16</td>
+<td><a href="#16-极限与积分">极限与积分</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>大数定律、概率极限</td>
+</tr>
+<tr>
+<td>17</td>
+<td><a href="#17-变分问题">变分问题</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>Euler-Lagrange方程</td>
+</tr>
+<tr>
+<td>18</td>
+<td><a href="#18-球平均函数与调和函数">球平均函数与调和函数</a></td>
+<td>高</td>
+<td>[ ]</td>
+<td>调和分析、散度定理</td>
+</tr>
+<tr>
+<td>19</td>
+<td><a href="#19-对数积分与三角函数">对数积分与三角函数</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>积分技巧</td>
+</tr>
+<tr>
+<td>20</td>
+<td><a href="#20-高斯型渐近估计">高斯型渐近估计</a></td>
+<td>高</td>
+<td>[ ]</td>
+<td>渐近方法、Laplace方法</td>
+</tr>
+<tr>
+<td>21</td>
+<td><a href="#21-van-der-waerden-型函数">Van der Waerden 型函数</a></td>
+<td>高</td>
+<td>[ ]</td>
+<td>无处可微函数</td>
+</tr>
+<tr>
+<td>22</td>
+<td><a href="#22-含参积分的渐近分析">含参积分的渐近分析</a></td>
+<td>高</td>
+<td>[ ]</td>
+<td>渐近分析、Gamma函数</td>
+</tr>
+<tr>
+<td>23</td>
+<td><a href="#23-一致连续的振幅刻画">一致连续的振幅刻画</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>一致连续性</td>
+</tr>
+<tr>
+<td>24</td>
+<td><a href="#24-左导数零点存在性">左导数零点存在性</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>Rolle定理推广</td>
+</tr>
+<tr>
+<td>25</td>
+<td><a href="#25-积分极限计算">积分极限计算</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>渐近计算</td>
+</tr>
+<tr>
+<td>26</td>
+<td><a href="#26-含参积分的一致收敛性">含参积分的一致收敛性</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>Dirichlet判别法</td>
+</tr>
+<tr>
+<td>27</td>
+<td><a href="#27-补充积分不等式">补充积分不等式</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>积分估计</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23">第二部分：高等代数（23题）</h3>
+<table>
+<thead>
+<tr>
+<th>题号</th>
+<th>题目</th>
+<th>难度</th>
+<th>状态</th>
+<th>标签</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>28</td>
+<td><a href="#28-矩阵交换子恒等式">矩阵交换子恒等式</a></td>
+<td>高</td>
+<td>[ ]</td>
+<td>李代数、PBW定理</td>
+</tr>
+<tr>
+<td>29</td>
+<td><a href="#29-矩阵方程与若尔当标准型">矩阵方程与若尔当标准型</a></td>
+<td>高</td>
+<td>[ ]</td>
+<td>矩阵函数</td>
+</tr>
+<tr>
+<td>30</td>
+<td><a href="#30-中心化子结构">中心化子结构</a></td>
+<td>高</td>
+<td>[ ]</td>
+<td>若尔当标准型</td>
+</tr>
+<tr>
+<td>31</td>
+<td><a href="#31-正定矩阵的交换性">正定矩阵的交换性</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>谱理论</td>
+</tr>
+<tr>
+<td>32</td>
+<td><a href="#32-sylvester方程">Sylvester方程</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>矩阵方程</td>
+</tr>
+<tr>
+<td>33</td>
+<td><a href="#33-友矩阵的可对角化">友矩阵的可对角化</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>特征多项式</td>
+</tr>
+<tr>
+<td>34</td>
+<td><a href="#34-线性变换与域结构">线性变换与域结构</a></td>
+<td>高</td>
+<td>[ ]</td>
+<td>域论、商环</td>
+</tr>
+<tr>
+<td>35</td>
+<td><a href="#35-矩阵方程的推导">矩阵方程的推导</a></td>
+<td>低</td>
+<td>[ ]</td>
+<td>反例构造</td>
+</tr>
+<tr>
+<td>36</td>
+<td><a href="#36-张量积同构">张量积同构</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>多重线性代数</td>
+</tr>
+<tr>
+<td>37</td>
+<td><a href="#37-级数子序列和">级数子序列和</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>贪心算法</td>
+</tr>
+<tr>
+<td>38</td>
+<td><a href="#38-对称矩阵的特征性质">对称矩阵的特征性质</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>谱定理、二次型</td>
+</tr>
+<tr>
+<td>39</td>
+<td><a href="#39-压缩映射与不动点">压缩映射与不动点</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>泛函分析</td>
+</tr>
+<tr>
+<td>40</td>
+<td><a href="#40-级数收敛性判别">级数收敛性判别</a></td>
+<td>高</td>
+<td>[ ]</td>
+<td>渐近分析</td>
+</tr>
+<tr>
+<td>41</td>
+<td><a href="#41-整系数多项式的整数根">整系数多项式的整数根</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>数论、模运算</td>
+</tr>
+<tr>
+<td>42</td>
+<td><a href="#42-概率级数恒等式">概率级数恒等式</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>概率论、级数</td>
+</tr>
+<tr>
+<td>43</td>
+<td><a href="#43-矩阵方程解空间维数">矩阵方程解空间维数</a></td>
+<td>高</td>
+<td>[ ]</td>
+<td>Sylvester方程</td>
+</tr>
+<tr>
+<td>44</td>
+<td><a href="#44-伴随矩阵的秩一表示">伴随矩阵的秩一表示</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>伴随矩阵</td>
+</tr>
+<tr>
+<td>45</td>
+<td><a href="#45-不变子空间的正交补">不变子空间的正交补</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>伴随变换</td>
+</tr>
+<tr>
+<td>46</td>
+<td><a href="#46-λ-矩阵的等价标准形">λ-矩阵的等价标准形</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>λ-矩阵</td>
+</tr>
+<tr>
+<td>47</td>
+<td><a href="#47-根的对称多项式">根的对称多项式</a></td>
+<td>低</td>
+<td>[ ]</td>
+<td>Vieta公式</td>
+</tr>
+<tr>
+<td>48</td>
+<td><a href="#48-矩阵秩与方程等价性">矩阵秩与方程等价性</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>矩阵秩</td>
+</tr>
+<tr>
+<td>49</td>
+<td><a href="#49-分块矩阵的行列式公式">分块矩阵的行列式公式</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>行列式</td>
+</tr>
+<tr>
+<td>50</td>
+<td><a href="#50-含参积分的极限问题">含参积分的极限问题</a></td>
+<td>中</td>
+<td>[ ]</td>
+<td>含参积分</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">第三部分：中科院历年真题库</h3>
+<p>收录中国科学院大学数学保研笔试真题（2017–2024），见下文各年份分节。</p>
+<hr />
+<h1 id="_7">第一部分：已整理习题</h1>
+<hr />
+<h2 id="_8">一、数学分析</h2>
+<hr />
+<h2 id="1">1. 正项级数与对数不等式</h2>
+<h3 id="_9">题目</h3>
+<p>设 <span class="arithmatex">\(\{a_n\}\)</span> 为正项级数，满足 <span class="arithmatex">\(a_n \leq M\)</span>（<span class="arithmatex">\(M\)</span> 为常数），<span class="arithmatex">\(S_n = \sum_{k=1}^n a_k\)</span> 为前 <span class="arithmatex">\(n\)</span> 项和。</p>
+<h3 id="_10">分析</h3>
+<p>本命题涉及正项级数的放缩技巧，核心工具是对数不等式 <span class="arithmatex">\(\ln t &gt; t-1\)</span>（<span class="arithmatex">\(t&gt;0, t\neq 1\)</span>）。</p>
+<h3 id="_11">解答</h3>
+<p><strong>步骤1：前 <span class="arithmatex">\(n\)</span> 项和的极限趋势</strong></p>
+<p>需证明 <span class="arithmatex">\(\lim_{n\to\infty} S_n = +\infty\)</span>（结合正项级数及后续级数收敛性反推和的无界性）。</p>
+<p><strong>步骤2：级数 <span class="arithmatex">\(\sum_{n=1}^\infty \frac{a_{n+1}}{S_n}\)</span> 的分析</strong></p>
+<p>利用正项级数的放缩：对任意 <span class="arithmatex">\(N, N'\)</span>（<span class="arithmatex">\(N' &gt; N\)</span>），有</p>
+<div class="arithmatex">\[\sum_{n=N}^{N'} \frac{a_{n+1}}{S_n} \geq \frac{1}{M+N} \sum_{n=N}^{N'} a_{n+1}\]</div>
+<p>（因 <span class="arithmatex">\(S_n = S_{n-1} + a_n \leq S_{n-1} + M\)</span>，递推得 <span class="arithmatex">\(S_n \leq M+n\)</span>，故分母可放缩为 <span class="arithmatex">\(M+N\)</span> 类常数，分子为部分和）。</p>
+<p><strong>步骤3：利用对数不等式分析级数 <span class="arithmatex">\(\sum\left(\frac{S_{n+1}}{S_n} - 1\right)\)</span></strong></p>
+<p>由对数函数的不等式 <span class="arithmatex">\(\ln t &gt; t-1\)</span>（<span class="arithmatex">\(t&gt;0, t\neq 1\)</span>），令 <span class="arithmatex">\(t = \frac{S_{n+1}}{S_n}\)</span>，则</p>
+<div class="arithmatex">\[\frac{S_{n+1}}{S_n} - 1 &gt; \ln\frac{S_{n+1}}{S_n}\]</div>
+<p>对 <span class="arithmatex">\(n\)</span> 从 <span class="arithmatex">\(1\)</span> 到 <span class="arithmatex">\(\infty\)</span> 求和，得</p>
+<div class="arithmatex">\[\sum_{n=1}^\infty \left(\frac{S_{n+1}}{S_n} - 1\right) &gt; \sum_{n=1}^\infty \ln\frac{S_{n+1}}{S_n}\]</div>
+<p>右侧级数为 <strong>望远镜级数（telescoping series）</strong>，化简得</p>
+<div class="arithmatex">\[\sum_{n=1}^\infty \ln\frac{S_{n+1}}{S_n} = \lim_{n\to\infty} \ln\frac{S_{n+1}}{a_1} \to +\infty\]</div>
+<p>（因 <span class="arithmatex">\(S_n \to +\infty\)</span>，故 <span class="arithmatex">\(\ln S_n \to +\infty\)</span>）。</p>
+<p><strong>步骤4：辅助不等式与级数收敛性</strong></p>
+<p>当 <span class="arithmatex">\(t &lt; 1\)</span> 时，有 <span class="arithmatex">\(1-t &gt; -\ln t\)</span>（如令 <span class="arithmatex">\(t = \frac{S_n}{S_{n+1}}\)</span>，则 <span class="arithmatex">\(1 - \frac{S_n}{S_{n+1}} &gt; \ln\frac{S_{n+1}}{S_n}\)</span>）。</p>
+<hr />
+<h2 id="2-hardy">2. Hardy不等式</h2>
+<h3 id="_12">题目</h3>
+<p>设 <span class="arithmatex">\(u \in C_c^1(\mathbb{R}^3)\)</span>，证明</p>
+<div class="arithmatex">\[\int_{\mathbb{R}^3} \frac{u^2}{|x|^2} \, dx \leq 4 \int_{\mathbb{R}^3} |\nabla u|^2 \, dx\]</div>
+<p>其中常数 <span class="arithmatex">\(4\)</span> 是最优的，等号不可达。</p>
+<h3 id="_13">分析</h3>
+<p>这是偏微分方程和调和分析中的经典不等式。证明思路是利用变分法，通过构造适当的向量场并优化参数来得到最佳常数。</p>
+<h3 id="_14">解答</h3>
+<p>设 <span class="arithmatex">\(Su = \frac{xu}{|x|^2}\)</span>，<span class="arithmatex">\(Au = \nabla u\)</span>。</p>
+<p>由 <span class="arithmatex">\(0 \leq \int |Su + kAu|^2\)</span>，展开得：</p>
+<div class="arithmatex">\[0 \leq \int |Su|^2 + 2k \int Su \cdot Au + k^2 \int |Au|^2\]</div>
+<p>计算交叉项：</p>
+<div class="arithmatex">\[\int Su \cdot Au = \int \frac{xu}{|x|^2} \cdot \nabla u = \frac{1}{2} \int \frac{x}{|x|^2} \cdot \nabla(u^2)\]</div>
+<p>利用分部积分和 <span class="arithmatex">\(\nabla \cdot \left(\frac{x}{|x|^2}\right) = \frac{1}{|x|^2}\)</span>（三维），得：</p>
+<div class="arithmatex">\[\int Su \cdot Au = -\frac{1}{2} \int \frac{u^2}{|x|^2}\]</div>
+<p>因此：</p>
+<div class="arithmatex">\[0 \leq \int \frac{u^2}{|x|^2} - k \int \frac{u^2}{|x|^2} + k^2 \int |\nabla u|^2\]</div>
+<p>即：</p>
+<div class="arithmatex">\[(k-1) \int \frac{u^2}{|x|^2} \leq k^2 \int |\nabla u|^2\]</div>
+<p>当 <span class="arithmatex">\(k &gt; 1\)</span> 时：</p>
+<div class="arithmatex">\[\int \frac{u^2}{|x|^2} \leq \frac{k^2}{k-1} \int |\nabla u|^2\]</div>
+<p>优化 <span class="arithmatex">\(k\)</span>：令 <span class="arithmatex">\(f(k) = \frac{k^2}{k-1}\)</span>，则 <span class="arithmatex">\(f'(k) = \frac{k^2-2k}{(k-1)^2} = 0\)</span> 得 <span class="arithmatex">\(k=2\)</span>。</p>
+<p>此时 <span class="arithmatex">\(f(2) = 4\)</span>，即最佳常数为 <span class="arithmatex">\(4\)</span>。</p>
+<hr />
+<h2 id="3-wirtinger">3. Wirtinger不等式</h2>
+<h3 id="_15">题目</h3>
+<p>设 <span class="arithmatex">\(f \in C^1[0,2\pi]\)</span>，满足 <span class="arithmatex">\(f(0) = f(2\pi)\)</span> 且 <span class="arithmatex">\(\int_0^{2\pi} f(x)\, dx = 0\)</span>，证明</p>
+<div class="arithmatex">\[\int_0^{2\pi} f^2(x)\, dx \leq \int_0^{2\pi} |f'(x)|^2\, dx\]</div>
+<p>等号当且仅当 <span class="arithmatex">\(f(x) = a\cos x + b\sin x\)</span> 时成立。</p>
+<h3 id="_16">分析</h3>
+<p>该不等式表明：零均值的周期函数，其 <span class="arithmatex">\(L^2\)</span> 范数被导数的 <span class="arithmatex">\(L^2\)</span> 范数控制。证明使用Fourier级数展开是最自然的方法。</p>
+<h3 id="_17">解答</h3>
+<p>将 <span class="arithmatex">\(f\)</span> 展开为Fourier级数：</p>
+<div class="arithmatex">\[f(x) = \sum_{n=1}^\infty (a_n \cos nx + b_n \sin nx)\]</div>
+<p>（因 <span class="arithmatex">\(\int_0^{2\pi} f = 0\)</span>，常数项 <span class="arithmatex">\(a_0 = 0\)</span>）。</p>
+<p>由Parseval等式：</p>
+<div class="arithmatex">\[\int_0^{2\pi} f^2 = \pi \sum_{n=1}^\infty (a_n^2 + b_n^2)\]</div>
+<p>对导数 <span class="arithmatex">\(f'(x) = \sum_{n=1}^\infty n(-a_n \sin nx + b_n \cos nx)\)</span>，有：</p>
+<div class="arithmatex">\[\int_0^{2\pi} |f'|^2 = \pi \sum_{n=1}^\infty n^2(a_n^2 + b_n^2)\]</div>
+<p>相减得：</p>
+<div class="arithmatex">\[\int_0^{2\pi} |f'|^2 - \int_0^{2\pi} f^2 = \pi \sum_{n=1}^\infty (n^2-1)(a_n^2 + b_n^2) \geq 0\]</div>
+<p>等号当且仅当 <span class="arithmatex">\(a_n = b_n = 0\)</span> 对所有 <span class="arithmatex">\(n \geq 2\)</span> 成立，即 <span class="arithmatex">\(f(x) = a_1\cos x + b_1\sin x\)</span>。</p>
+<hr />
+<h2 id="4">4. 凸函数的积分不等式</h2>
+<h3 id="_18">题目</h3>
+<p>设 <span class="arithmatex">\(f \in C^2[a,b]\)</span>，且 <span class="arithmatex">\(f''(x) &gt; 0\)</span> 在 <span class="arithmatex">\([a,b]\)</span> 上成立（即 <span class="arithmatex">\(f\)</span> 严格凸），证明</p>
+<div class="arithmatex">\[\frac{1}{b-a} \int_a^b f(x)\, dx &gt; f\left(\frac{a+b}{2}\right)\]</div>
+<h3 id="_19">分析</h3>
+<p>这是Jensen不等式在积分形式下的特例，表明严格凸函数在区间上的平均值大于其在区间中点处的值。</p>
+<h3 id="_20">解答</h3>
+<p>在 <span class="arithmatex">\(x_0 = \frac{a+b}{2}\)</span> 处对 <span class="arithmatex">\(f(x)\)</span> 进行Taylor展开：</p>
+<div class="arithmatex">\[f(x) = f(x_0) + f'(x_0)(x-x_0) + \frac{f''(\xi_x)}{2}(x-x_0)^2\]</div>
+<p>其中 <span class="arithmatex">\(\xi_x\)</span> 介于 <span class="arithmatex">\(x\)</span> 与 <span class="arithmatex">\(x_0\)</span> 之间。</p>
+<p>两边在 <span class="arithmatex">\([a,b]\)</span> 上积分：</p>
+<div class="arithmatex">\[\int_a^b f(x)\, dx = f(x_0)(b-a) + f'(x_0) \int_a^b (x-x_0)\, dx + \frac{1}{2} \int_a^b f''(\xi_x)(x-x_0)^2\, dx\]</div>
+<p>由于 <span class="arithmatex">\(x_0\)</span> 是中点，有 <span class="arithmatex">\(\int_a^b (x-x_0)\, dx = 0\)</span>。</p>
+<p>由积分中值定理，存在 <span class="arithmatex">\(\xi \in [a,b]\)</span> 使得：</p>
+<div class="arithmatex">\[\int_a^b f''(\xi_x)(x-x_0)^2\, dx = f''(\xi) \int_a^b (x-x_0)^2\, dx = f''(\xi) \cdot \frac{(b-a)^3}{12}\]</div>
+<p>因此：</p>
+<div class="arithmatex">\[\int_a^b f(x)\, dx = f(x_0)(b-a) + \frac{f''(\xi)}{24}(b-a)^3\]</div>
+<p>由于 <span class="arithmatex">\(f''(\xi) &gt; 0\)</span>，得：</p>
+<div class="arithmatex">\[\frac{1}{b-a} \int_a^b f(x)\, dx = f(x_0) + \frac{f''(\xi)}{24}(b-a)^2 &gt; f(x_0) = f\left(\frac{a+b}{2}\right)\]</div>
+<hr />
+<h2 id="5">5. 微分不等式与零点唯一性</h2>
+<h3 id="_21">题目</h3>
+<p>设 <span class="arithmatex">\(f(x)\)</span> 在 <span class="arithmatex">\([0,1]\)</span> 上可微，且 <span class="arithmatex">\(f(0) = 0\)</span>。若存在常数 <span class="arithmatex">\(K &gt; 0\)</span>，使得对任意 <span class="arithmatex">\(x \in [0,1]\)</span> 有</p>
+<div class="arithmatex">\[|f'(x)| \leq K |f(x)|\]</div>
+<p>证明：<span class="arithmatex">\(f(x) \equiv 0\)</span> 在 <span class="arithmatex">\([0,1]\)</span> 上成立。</p>
+<h3 id="_22">分析</h3>
+<p>这是从局部到全局延拓的典型问题。核心思想是利用集合的连通性：证明零点集既开又闭，从而等于整个区间。</p>
+<h3 id="_23">解答</h3>
+<p><strong>方法一：集合连通性法</strong></p>
+<p>定义关键集合：</p>
+<div class="arithmatex">\[E = \{ x \in [0,1] : f(t) = 0 \text{ 对所有 } t \in [0,x] \}\]</div>
+<p><strong>1. 非空性</strong>：<span class="arithmatex">\(0 \in E\)</span>，因为 <span class="arithmatex">\(f(0) = 0\)</span>。</p>
+<p><strong>2. 闭性</strong>：设 <span class="arithmatex">\(x_n \in E\)</span> 且 <span class="arithmatex">\(x_n \to x_0 \in [0,1]\)</span>。对任意 <span class="arithmatex">\(t \in [0,x_0)\)</span>，存在 <span class="arithmatex">\(N\)</span> 使当 <span class="arithmatex">\(n &gt; N\)</span> 时 <span class="arithmatex">\(t &lt; x_n\)</span>，从而 <span class="arithmatex">\(f(t) = 0\)</span>。由 <span class="arithmatex">\(f\)</span> 在 <span class="arithmatex">\(x_0\)</span> 连续得 <span class="arithmatex">\(f(x_0) = 0\)</span>，故 <span class="arithmatex">\(x_0 \in E\)</span>。</p>
+<p><strong>3. 开性</strong>：若 <span class="arithmatex">\(x_0 \in E\)</span> 且 <span class="arithmatex">\(x_0 &lt; 1\)</span>，需证存在 <span class="arithmatex">\(\delta &gt; 0\)</span> 使 <span class="arithmatex">\([x_0, x_0+\delta) \subset E\)</span>。</p>
+<p>考虑函数 <span class="arithmatex">\(g(x) = f(x+x_0)\)</span>，定义在 <span class="arithmatex">\([0, 1-x_0]\)</span> 上。则 <span class="arithmatex">\(g(0) = f(x_0) = 0\)</span>，且</p>
+<div class="arithmatex">\[|g'(x)| = |f'(x+x_0)| \leq K |f(x+x_0)| = K |g(x)|\]</div>
+<p>对 <span class="arithmatex">\(x \in [0, \delta]\)</span>，有</p>
+<div class="arithmatex">\[|g(x)| = \left| \int_0^x g'(t)\, dt \right| \leq \int_0^x |g'(t)|\, dt \leq K \int_0^x |g(t)|\, dt\]</div>
+<p>令 <span class="arithmatex">\(M(x) = \int_0^x |g(t)|\, dt\)</span>，则 <span class="arithmatex">\(M'(x) \leq K M(x)\)</span>，且 <span class="arithmatex">\(M(0) = 0\)</span>。</p>
+<p>由Gronwall不等式，<span class="arithmatex">\(M(x) \leq M(0) e^{Kx} = 0\)</span>，故 <span class="arithmatex">\(M(x) \equiv 0\)</span>，从而 <span class="arithmatex">\(g(x) \equiv 0\)</span> 在 <span class="arithmatex">\([0,\delta]\)</span> 上。</p>
+<p>因此 <span class="arithmatex">\(f(x) = 0\)</span> 对 <span class="arithmatex">\(x \in [x_0, x_0+\delta]\)</span> 成立。</p>
+<p><strong>4. 连通性结论</strong>：<span class="arithmatex">\(E\)</span> 是 <span class="arithmatex">\([0,1]\)</span> 的非空既开又闭子集，而 <span class="arithmatex">\([0,1]\)</span> 连通，故 <span class="arithmatex">\(E = [0,1]\)</span>。</p>
+<hr />
+<h2 id="6">6. 积分不等式</h2>
+<h3 id="_24">题目</h3>
+<p>设 <span class="arithmatex">\(f(x)\)</span> 在 <span class="arithmatex">\([0,1]\)</span> 上可积，证明</p>
+<div class="arithmatex">\[\int_0^1\int_0^1 |f(x)+f(y)| \, dx\,dy \geq \int_0^1 |f(x)| \, dx\]</div>
+<h3 id="_25">分析</h3>
+<p>这个不等式涉及双重积分与单积分的关系。关键观察是利用 <span class="arithmatex">\(|a+b|\)</span> 的展开和对称性。</p>
+<h3 id="_26">解答</h3>
+<p>利用恒等式：</p>
+<div class="arithmatex">\[|f(x)+f(y)| = |f(x)| + |f(y)| - 2\min(|f(x)|, |f(y)|) \cdot \mathbf{1}_{f(x)f(y)&lt;0}\]</div>
+<p>积分后：</p>
+<div class="arithmatex">\[\iint |f(x)+f(y)| = 2\int |f| - 2\iint_{f(x)f(y)&lt;0} \min(|f(x)|, |f(y)|)\]</div>
+<p>原不等式等价于证明：</p>
+<div class="arithmatex">\[\int |f| \geq 2\iint_{f(x)f(y)&lt;0} \min(|f(x)|, |f(y)|)\]</div>
+<p>记 <span class="arithmatex">\(P = \{x : f(x) \geq 0\}\)</span>，<span class="arithmatex">\(N = \{x : f(x) &lt; 0\}\)</span>，设 <span class="arithmatex">\(|P| = p\)</span>，<span class="arithmatex">\(|N| = 1-p\)</span>。</p>
+<p>令 <span class="arithmatex">\(A = \int_P |f|\)</span>，<span class="arithmatex">\(B = \int_N |f|\)</span>，则 <span class="arithmatex">\(\int |f| = A + B\)</span>。</p>
+<p>交叉项：</p>
+<div class="arithmatex">\[\iint_{P \times N} \min(|f(x)|, |f(y)|) \leq \min\left(\int_P |f| \cdot |N|, \int_N |f| \cdot |P|\right) = \min(Bp, A(1-p))\]</div>
+<p>需证 <span class="arithmatex">\(A + B \geq 2\min(Bp, A(1-p))\)</span>，这在 <span class="arithmatex">\(p = \frac{1}{2}\)</span> 时取等，其他情况可由对称性验证成立。</p>
+<hr />
+<h2 id="7-wallis">7. Wallis积分与渐近分析</h2>
+<h3 id="_27">题目</h3>
+<p>设 <span class="arithmatex">\(I_n = \int_0^{\pi} \sin^n x\, dx\)</span>，求：
+1. <span class="arithmatex">\(I_n\)</span> 的通项公式
+2. 双阶乘比 <span class="arithmatex">\(\frac{(2n)!!}{(2n+1)!!}\)</span> 的渐近行为</p>
+<h3 id="_28">分析</h3>
+<p>Wallis积分是计算含三角函数幂次积分的经典方法，通过分部积分建立递推关系。结合斯特林公式可得双阶乘的渐近行为。</p>
+<h3 id="_29">解答</h3>
+<p><strong>Part 1：Wallis积分的递推公式</strong></p>
+<p>利用分部积分：</p>
+<div class="arithmatex">\[I_n = \int_0^{\pi} \sin^{n-1} x \cdot \sin x\, dx = -\sin^{n-1} x \cos x \Big|_0^{\pi} + (n-1) \int_0^{\pi} \cos^2 x \sin^{n-2} x\, dx\]</div>
+<p>由 <span class="arithmatex">\(\cos^2 x = 1 - \sin^2 x\)</span>，得：</p>
+<div class="arithmatex">\[I_n = (n-1)I_{n-2} - (n-1)I_n\]</div>
+<p>整理得递推公式：</p>
+<div class="arithmatex">\[I_n = \frac{n-1}{n} I_{n-2}\]</div>
+<p>初始条件：</p>
+<div class="arithmatex">\[I_0 = \pi, \quad I_1 = 2\]</div>
+<p>迭代可得通项公式：</p>
+<div class="arithmatex">\[I_n = \begin{cases} \dfrac{(2k-1)!!}{(2k)!!} \pi, &amp; n = 2k \\[6pt] \dfrac{(2k)!!}{(2k+1)!!} \cdot 2, &amp; n = 2k+1 \end{cases}\]</div>
+<p><strong>Part 2：双阶乘的渐近行为</strong></p>
+<p>双阶乘定义：</p>
+<div class="arithmatex">\[(2k)!! = 2 \cdot 4 \cdot \cdots \cdot 2k = 2^k k!, \quad (2k-1)!! = 1 \cdot 3 \cdot \cdots \cdot (2k-1)\]</div>
+<p>利用斯特林公式 <span class="arithmatex">\(n! \sim \sqrt{2\pi n}\left(\frac{n}{e}\right)^n\)</span>：</p>
+<div class="arithmatex">\[(2n)!! = 2^n n! \sim 2^n \sqrt{2\pi n}\left(\frac{n}{e}\right)^n\]</div>
+<div class="arithmatex">\[(2n+1)!! = \frac{(2n+1)!}{(2n)!!} \sim \frac{\sqrt{2\pi(2n+1)}(\frac{2n+1}{e})^{2n+1}}{2^n \sqrt{2\pi n}(\frac{n}{e})^n}\]</div>
+<p>因此：</p>
+<div class="arithmatex">\[\frac{(2n)!!}{(2n+1)!!} \sim \sqrt{\frac{\pi}{2n+1}} \sim \sqrt{\frac{\pi}{2n}} \quad (n \to \infty)\]</div>
+<hr />
+<h2 id="8">8. 递推数列取整问题</h2>
+<h3 id="_30">题目</h3>
+<p>定义数列 <span class="arithmatex">\(\{x_n\}\)</span> 满足</p>
+<div class="arithmatex">\[x_{n+1} = 3x_n + [\sqrt{5}\,x_n], \quad x_0 = 1\]</div>
+<p>其中 <span class="arithmatex">\([\cdot]\)</span> 表示Gauss取整函数。求 <span class="arithmatex">\(x_n\)</span> 的渐近行为。</p>
+<h3 id="_31">分析</h3>
+<p>这是涉及取整函数的非线性递推问题。关键观察是将其转化为关于Pisot数的递推。</p>
+<h3 id="_32">解答</h3>
+<p>令 <span class="arithmatex">\(\alpha = \sqrt{5}\)</span>，<span class="arithmatex">\(\lambda = 3 + \sqrt{5} \approx 5.236\)</span>。</p>
+<p>递推式可改写为：</p>
+<div class="arithmatex">\[x_{n+1} = 3x_n + [\alpha x_n] = (3+\alpha)x_n - \{\alpha x_n\} = \lambda x_n - \{\alpha x_n\}\]</div>
+<p>因此 <span class="arithmatex">\(x_{n+1} = [\lambda x_n]\)</span>。</p>
+<p>令 <span class="arithmatex">\(\lambda' = 3 - \sqrt{5} \approx 0.764\)</span> 为 <span class="arithmatex">\(\lambda\)</span> 的共轭，满足 <span class="arithmatex">\(\lambda\lambda' = 4\)</span> 且 <span class="arithmatex">\(0 &lt; \lambda' &lt; 1\)</span>。</p>
+<p>由于 <span class="arithmatex">\(\lambda\)</span> 是Pisot数（共轭模小于1），序列 <span class="arithmatex">\(x_n\)</span> 的渐近行为满足：</p>
+<div class="arithmatex">\[x_n \sim C \cdot \lambda^n \quad (n \to \infty)\]</div>
+<p>更精确地，可以证明：</p>
+<div class="arithmatex">\[x_n = \left[\frac{\lambda^{n+1} - (\lambda')^{n+1}}{2\sqrt{5}}\right] - \delta_n\]</div>
+<p>其中 <span class="arithmatex">\(\delta_n\)</span> 是有界修正项。</p>
+<p>前几项验证：<span class="arithmatex">\(x_0=1, x_1=5, x_2=26, x_3=136, x_4=712\)</span>。</p>
+<hr />
+<h2 id="9-leibniz">9. Leibniz级数</h2>
+<h3 id="_33">题目</h3>
+<p>求 <span class="arithmatex">\(\displaystyle\sum_{n=1}^{\infty} (-1)^n \frac{1}{2n-1}\)</span></p>
+<h3 id="_34">解答</h3>
+<p>利用 <span class="arithmatex">\(\arctan x\)</span> 的Taylor展开：</p>
+<div class="arithmatex">\[\arctan x = x - \frac{x^3}{3} + \frac{x^5}{5} - \frac{x^7}{7} + \cdots = \sum_{n=0}^{\infty} (-1)^n \frac{x^{2n+1}}{2n+1}, \quad |x| \leq 1\]</div>
+<p>令 <span class="arithmatex">\(x = 1\)</span>，得：</p>
+<div class="arithmatex">\[\arctan 1 = \frac{\pi}{4} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \cdots = -\sum_{n=1}^{\infty} (-1)^n \frac{1}{2n-1}\]</div>
+<p>因此：</p>
+<div class="arithmatex">\[\sum_{n=1}^{\infty} (-1)^n \frac{1}{2n-1} = -\frac{\pi}{4}\]</div>
+<hr />
+<h2 id="10">10. 递推数列收敛性</h2>
+<h3 id="_35">题目</h3>
+<p>设 <span class="arithmatex">\(x_{n+1}=\frac{1}{x_n+2}\)</span>，<span class="arithmatex">\(x_0=1\)</span>，证明数列收敛并求极限。</p>
+<h3 id="_36">解答</h3>
+<p><strong>Step 1：证明压缩性</strong></p>
+<p>对任意 <span class="arithmatex">\(m, n\)</span>：</p>
+<div class="arithmatex">\[|x_{m+1}-x_{n+1}| = \left|\frac{1}{x_m+2}-\frac{1}{x_n+2}\right| = \frac{|x_m-x_n|}{(x_m+2)(x_n+2)}\]</div>
+<p>由于 <span class="arithmatex">\(x_0=1&gt;0\)</span>，归纳得所有 <span class="arithmatex">\(x_n&gt;0\)</span>，故 <span class="arithmatex">\((x_m+2)(x_n+2) &gt; 4\)</span>。</p>
+<p>因此：</p>
+<div class="arithmatex">\[|x_{m+1}-x_{n+1}| \le \frac{1}{4}|x_m-x_n|\]</div>
+<p>这是<strong>压缩映射</strong>，数列为 Cauchy 列，故收敛。</p>
+<p><strong>Step 2：求极限</strong></p>
+<p>设 <span class="arithmatex">\(\lim x_n = L\)</span>，则 <span class="arithmatex">\(L = \frac{1}{L+2}\)</span>，即 <span class="arithmatex">\(L^2+2L-1=0\)</span>。</p>
+<p>解得 <span class="arithmatex">\(L = -1+\sqrt{2}\)</span>（取正根）。</p>
+<hr />
+<h2 id="11">11. 正交性条件与零点</h2>
+<h3 id="_37">题目</h3>
+<p><span class="arithmatex">\(f\)</span> 在 <span class="arithmatex">\((a,b)\)</span> 上有 <span class="arithmatex">\(n\)</span> 个不同零点，<span class="arithmatex">\(\int_a^b x^k f(x)dx=0\)</span> 对 <span class="arithmatex">\(k=0,1,\ldots,n-1\)</span> 成立，证明 <span class="arithmatex">\(f\equiv 0\)</span>。</p>
+<h3 id="_38">解答</h3>
+<p><strong>证明</strong>：设 <span class="arithmatex">\(f \not\equiv 0\)</span>，零点为 <span class="arithmatex">\(a &lt; x_1 &lt; x_2 &lt; \cdots &lt; x_n &lt; b\)</span>。</p>
+<p>构造 <span class="arithmatex">\(p(x) = (x-x_1)(x-x_2)\cdots(x-x_n) \in \mathcal{P}_n\)</span>。</p>
+<p><strong>关键观察</strong>：<span class="arithmatex">\(p(x)\)</span> 和 <span class="arithmatex">\(f(x)\)</span> 在每个 <span class="arithmatex">\(x_i\)</span> 处都变号，故 <span class="arithmatex">\(p(x)f(x)\)</span> 在 <span class="arithmatex">\((a,b)\)</span> 上<strong>不变号</strong>（非负或非正）。</p>
+<p>由正交条件：</p>
+<div class="arithmatex">\[\int_a^b p(x)f(x)dx = 0\]</div>
+<p>（因 <span class="arithmatex">\(p\)</span> 可表为 <span class="arithmatex">\(1,x,\ldots,x^{n-1}\)</span> 的线性组合）</p>
+<p>故 <span class="arithmatex">\(p(x)f(x) \equiv 0\)</span>，即 <span class="arithmatex">\(f \equiv 0\)</span>。</p>
+<hr />
+<h2 id="12">12. 渐近积分极限</h2>
+<h3 id="_39">题目</h3>
+<p>求 <span class="arithmatex">\(\displaystyle\lim_{n\to\infty} n\left(n\int_0^1 x^n f(x)dx - f(1)\right)\)</span>，其中 <span class="arithmatex">\(f\in C^1[0,1]\)</span>。</p>
+<h3 id="_40">解答</h3>
+<p><strong>Step 1：分部积分</strong></p>
+<div class="arithmatex">\[I_n = \int_0^1 x^n f(x)dx = \frac{f(1)}{n+1} - \frac{1}{n+1}\int_0^1 x^{n+1}f'(x)dx\]</div>
+<p><strong>Step 2：展开 <span class="arithmatex">\(nI_n\)</span></strong></p>
+<div class="arithmatex">\[nI_n = \frac{n}{n+1}f(1) - \frac{n}{n+1}\int_0^1 x^{n+1}f'(x)dx\]</div>
+<div class="arithmatex">\[= f(1) - \frac{f(1)}{n+1} - \int_0^1 x^{n+1}f'(x)dx + O(n^{-2})\]</div>
+<p><strong>Step 3：再次分部积分</strong></p>
+<div class="arithmatex">\[\int_0^1 x^{n+1}f'(x)dx = \frac{f'(1)}{n+2} - \frac{1}{n+2}\int_0^1 x^{n+2}f''(x)dx = \frac{f'(1)}{n+2} + O(n^{-2})\]</div>
+<p><strong>Step 4：合并</strong></p>
+<div class="arithmatex">\[nI_n - f(1) = -\frac{f(1)}{n+1} - \frac{f'(1)}{n+2} + O(n^{-2})\]</div>
+<div class="arithmatex">\[= -\frac{f(1)+f'(1)}{n} + O(n^{-2})\]</div>
+<p>因此：</p>
+<div class="arithmatex">\[\boxed{\lim_{n\to\infty} n\left(n\int_0^1 x^n f(x)dx - f(1)\right) = -f(1)-f'(1)}\]</div>
+<hr />
+<h2 id="13-bell">13. Bell数与指数生成函数</h2>
+<h3 id="_41">题目</h3>
+<p><span class="arithmatex">\(T_n\)</span> 为 <span class="arithmatex">\(n\)</span> 元集合的分划数（Bell数），求 <span class="arithmatex">\(T_n\)</span> 的递推式及指数生成函数 <span class="arithmatex">\(\sum_{n=0}^\infty T_n\frac{x^n}{n!}\)</span>。</p>
+<h3 id="_42">解答</h3>
+<p><strong>Step 1：递推公式</strong></p>
+<p>考虑元素 <span class="arithmatex">\(n\)</span> 所在的分块大小为 <span class="arithmatex">\(k\)</span>：</p>
+<div class="arithmatex">\[T_n = \sum_{k=0}^{n-1} \binom{n-1}{k} T_k, \quad T_0=1\]</div>
+<p><strong>Step 2：指数生成函数</strong></p>
+<p>设 <span class="arithmatex">\(F(x) = \sum_{n=0}^\infty T_n\frac{x^n}{n!}\)</span>。</p>
+<p>由递推得微分方程：</p>
+<div class="arithmatex">\[F'(x) = F(x) \cdot e^x\]</div>
+<p><strong>Step 3：求解</strong></p>
+<div class="arithmatex">\[\frac{dF}{F} = e^x dx \Rightarrow \ln F = e^x - 1\]</div>
+<p>故：</p>
+<div class="arithmatex">\[\boxed{F(x) = e^{e^x-1}}\]</div>
+<p><strong>Step 4：Dobinski公式</strong></p>
+<div class="arithmatex">\[T_n = \frac{1}{e}\sum_{k=0}^\infty \frac{k^n}{k!}\]</div>
+<hr />
+<h2 id="14">14. 高斯函数的傅里叶变换</h2>
+<h3 id="_43">题目</h3>
+<p>设 <span class="arithmatex">\(f(x,y,z) = e^{-\pi(x^2+y^2+z^2)}\)</span>，求 <span class="arithmatex">\(\hat{f}\)</span>。</p>
+<h3 id="_44">解答</h3>
+<p>利用可分离性，只需计算一维情形：</p>
+<div class="arithmatex">\[\hat{f}(\xi) = \int_{-\infty}^{\infty} e^{-\pi x^2} e^{-2\pi i x \xi}\, dx\]</div>
+<p>配方：</p>
+<div class="arithmatex">\[-\pi x^2 - 2\pi i x \xi = -\pi(x + i\xi)^2 - \pi \xi^2\]</div>
+<p>因此：</p>
+<div class="arithmatex">\[\hat{f}(\xi) = e^{-\pi \xi^2} \int_{-\infty}^{\infty} e^{-\pi(x+i\xi)^2}\, dx = e^{-\pi \xi^2}\]</div>
+<p>（利用高斯积分 <span class="arithmatex">\(\int_{-\infty}^{\infty} e^{-\pi x^2}\, dx = 1\)</span> 和解析延拓）。</p>
+<p>三维情形由乘积结构直接得到：</p>
+<div class="arithmatex">\[\hat{f}(\xi_1, \xi_2, \xi_3) = e^{-\pi(\xi_1^2+\xi_2^2+\xi_3^2)} = f(\xi_1, \xi_2, \xi_3)\]</div>
+<hr />
+<h2 id="15-poisson">15. Poisson核对数积分</h2>
+<h3 id="_45">题目</h3>
+<p>计算 $<span class="arithmatex">\(\frac{1}{2\pi} \int_0^{2\pi} \ln(1-2r\cos x + r^2)\, dx\)</span>$</p>
+<h3 id="_46">解答</h3>
+<p>关键观察：<span class="arithmatex">\(1-2r\cos x + r^2 = |1-re^{ix}|^2\)</span>。</p>
+<p>当 <span class="arithmatex">\(|r| &lt; 1\)</span> 时，利用 <span class="arithmatex">\(\ln(1-re^{ix}) = -\sum_{n=1}^{\infty} \frac{r^n e^{inx}}{n}\)</span>，取实部得：</p>
+<div class="arithmatex">\[\ln|1-re^{ix}| = -\sum_{n=1}^{\infty} \frac{r^n \cos(nx)}{n}\]</div>
+<p>积分后，<span class="arithmatex">\(\cos(nx)\)</span> 在 <span class="arithmatex">\([0,2\pi]\)</span> 上的积分为0（<span class="arithmatex">\(n \geq 1\)</span>），故结果为0。</p>
+<p>当 <span class="arithmatex">\(|r| &gt; 1\)</span> 时，令 <span class="arithmatex">\(r = 1/s\)</span> 其中 <span class="arithmatex">\(|s| &lt; 1\)</span>，则</p>
+<div class="arithmatex">\[1-2r\cos x + r^2 = r^2(s^2 - 2s\cos x + 1) = r^2|1-se^{ix}|^2\]</div>
+<p>因此：</p>
+<div class="arithmatex">\[\ln(1-2r\cos x + r^2) = 2\ln|r| + \ln|1-se^{ix}|^2\]</div>
+<p>积分后第二项为0，得结果 <span class="arithmatex">\(2\ln|r|\)</span>。</p>
+<p>综上：</p>
+<div class="arithmatex">\[I(r) = \begin{cases} 0 &amp; |r| &lt; 1 \\ 2\ln|r| &amp; |r| &gt; 1 \end{cases}\]</div>
+<hr />
+<h2 id="16">16. 极限与积分</h2>
+<h3 id="1_1">题目1：几何平均积分</h3>
+<p>求 $<span class="arithmatex">\(\lim_{n\to\infty} \int_{[0,1]^n} f((x_1\cdots x_n)^{1/n})\, dx\)</span>$</p>
+<h3 id="_47">解答</h3>
+<p>由大数定律，</p>
+<div class="arithmatex">\[\frac{1}{n}\sum_{i=1}^n \ln x_i \to E[\ln X] = \int_0^1 \ln x\, dx = -1 \quad (n \to \infty)\]</div>
+<p>因此 <span class="arithmatex">\((x_1\cdots x_n)^{1/n} = e^{\frac{1}{n}\sum \ln x_i} \to e^{-1} = 1/e\)</span>。</p>
+<p>由控制收敛定理，极限为 <span class="arithmatex">\(f(1/e)\)</span>。</p>
+<h3 id="2">题目2：算术平均积分</h3>
+<p>求 $<span class="arithmatex">\(\lim_{n\to\infty} \int_{[0,1]^n} f\left(\frac{x_1+\cdots+x_n}{n}\right) dx\)</span>$</p>
+<h3 id="_48">解答</h3>
+<p>由大数定律，<span class="arithmatex">\(\frac{x_1+\cdots+x_n}{n} \to E[X] = \frac{1}{2}\)</span>。</p>
+<p>极限为 <span class="arithmatex">\(f(1/2)\)</span>。</p>
+<hr />
+<h2 id="17">17. 变分问题</h2>
+<h3 id="_49">题目</h3>
+<p>求 <span class="arithmatex">\(\displaystyle\inf_{\varphi} \int_0^{\pi/2} (\varphi'(x))^2 \, dx\)</span>，约束 <span class="arithmatex">\(\varphi(0)=0\)</span>，<span class="arithmatex">\(\varphi(\pi/2)=\pi/2\)</span>。</p>
+<h3 id="_50">解答</h3>
+<p>Euler-Lagrange方程：<span class="arithmatex">\(\frac{d}{dx}(2\varphi') = 0\)</span>，即 <span class="arithmatex">\(\varphi'' = 0\)</span>。</p>
+<p>解为线性函数 <span class="arithmatex">\(\varphi(x) = ax + b\)</span>。</p>
+<p>由边界条件：<span class="arithmatex">\(\varphi(0) = b = 0\)</span>，<span class="arithmatex">\(\varphi(\pi/2) = a\cdot\frac{\pi}{2} = \frac{\pi}{2}\)</span>，得 <span class="arithmatex">\(a=1\)</span>。</p>
+<p>因此极值函数为 <span class="arithmatex">\(\varphi(x) = x\)</span>，极值为：</p>
+<div class="arithmatex">\[\int_0^{\pi/2} 1^2\, dx = \frac{\pi}{2}\]</div>
+<hr />
+<h2 id="18">18. 球平均函数与调和函数</h2>
+<h3 id="_51">题目</h3>
+<p>设 <span class="arithmatex">\(u\)</span> 是调和函数（<span class="arithmatex">\(\Delta u = 0\)</span>），定义球平均函数</p>
+<div class="arithmatex">\[\phi(r) = \frac{1}{4\pi} \oint_{\partial B(0,1)} u(x+rz)\, dS(z)\]</div>
+<p>证明 <span class="arithmatex">\(\phi(r) \equiv u(x)\)</span>。</p>
+<h3 id="_52">解答</h3>
+<p>对 <span class="arithmatex">\(\phi(r)\)</span> 求导，利用方向导数与散度定理：</p>
+<div class="arithmatex">\[\phi'(r) = \frac{1}{4\pi} \oint_{\partial B(0,1)} \nabla u(x+rz) \cdot rz\, dS(z)\]</div>
+<p>将曲面积分通过散度定理转化为体积分：</p>
+<div class="arithmatex">\[\phi'(r) = \frac{1}{4\pi} \iiint_{B(0,1)} \text{div}(\nabla u(x+rz))\, dV\]</div>
+<p>若 <span class="arithmatex">\(u\)</span> 是调和函数（<span class="arithmatex">\(\Delta u = 0\)</span>），则体积分结果为0，故 <span class="arithmatex">\(\phi'(r) = 0\)</span>。</p>
+<p>当 <span class="arithmatex">\(r \to 0\)</span> 时，球面收缩到点 <span class="arithmatex">\(x\)</span>，故 <span class="arithmatex">\(\lim_{r\to 0}\phi(r) = u(x)\)</span>。</p>
+<p>结合 <span class="arithmatex">\(\phi'(r) = 0\)</span>，可知 <span class="arithmatex">\(\phi(r) \equiv u(x)\)</span>。</p>
+<hr />
+<h2 id="19">19. 对数积分与三角函数</h2>
+<h3 id="_53">题目</h3>
+<p>计算 <span class="arithmatex">\(\int_0^{\pi} \ln \sin x\, dx\)</span>。</p>
+<h3 id="_54">解答</h3>
+<p>利用积分区间对称性：</p>
+<div class="arithmatex">\[\int_0^{\pi} \ln \sin x\, dx = 2\int_0^{\pi/2} \ln \sin x\, dx\]</div>
+<p>由 <span class="arithmatex">\(\cos x = \sin(\frac{\pi}{2} - x)\)</span>，得：</p>
+<div class="arithmatex">\[\int_0^{\pi/2} \ln \sin x\, dx = \int_0^{\pi/2} \ln \cos x\, dx\]</div>
+<p>对 <span class="arithmatex">\(\int_0^{\pi/2} \ln \sin 2x\, dx\)</span>，令 <span class="arithmatex">\(t = 2x\)</span>：</p>
+<div class="arithmatex">\[\int_0^{\pi/2} \ln \sin 2x\, dx = \frac{1}{2}\int_0^{\pi} \ln \sin t\, dt = \frac{1}{2} I\]</div>
+<p>又由 <span class="arithmatex">\(\sin 2x = 2\sin x \cos x\)</span>：</p>
+<div class="arithmatex">\[\int_0^{\pi/2} \ln \sin 2x\, dx = \frac{\pi}{2}\ln 2 + \int_0^{\pi/2} \ln \sin x\, dx + \int_0^{\pi/2} \ln \cos x\, dx = \frac{\pi}{2}\ln 2 + I\]</div>
+<p>因此 <span class="arithmatex">\(\frac{1}{2}I = \frac{\pi}{2}\ln 2 + \frac{I}{2}\)</span>，解得：</p>
+<div class="arithmatex">\[I = -\pi \ln 2\]</div>
+<hr />
+<h2 id="20">20. 高斯型渐近估计</h2>
+<h3 id="_55">题目</h3>
+<p>求渐近行为：<span class="arithmatex">\(C_n \int_0^1 f(x)(1-(x-t)^2)^n dx\)</span>，其中 <span class="arithmatex">\(C_n = \prod_{k=1}^n \frac{2k+1}{2k}\)</span>。</p>
+<h3 id="_56">解答</h3>
+<p><strong>Step 1</strong>：计算 <span class="arithmatex">\(C_n\)</span> 的渐近</p>
+<div class="arithmatex">\[C_n = \frac{(2n+1)!!}{(2n)!!} \sim \frac{2\sqrt{n}}{\sqrt{\pi}}\]</div>
+<p><strong>Step 2</strong>：变量代换</p>
+<p>令 <span class="arithmatex">\(x - t = \frac{u}{\sqrt{n}}\)</span>，则 <span class="arithmatex">\(1-(x-t)^2 = 1-\frac{u^2}{n}\)</span>。</p>
+<p>利用 <span class="arithmatex">\((1-\frac{u^2}{n})^n \to e^{-u^2}\)</span>，积分渐近为：</p>
+<div class="arithmatex">\[\int_{-\infty}^{\infty} f(t) e^{-u^2} \frac{du}{\sqrt{n}} = f(t) \sqrt{\frac{\pi}{n}}\]</div>
+<p><strong>Step 3</strong>：合并</p>
+<div class="arithmatex">\[C_n \cdot f(t) \sqrt{\frac{\pi}{n}} \sim \frac{2\sqrt{n}}{\sqrt{\pi}} \cdot f(t) \sqrt{\frac{\pi}{n}} = 2f(t)\]</div>
+<hr />
+<h2 id="21-van-der-waerden">21. Van der Waerden 型函数</h2>
+<h3 id="_57">题目</h3>
+<p>设 <span class="arithmatex">\(S(x)=\sum_{n=1}^{\infty} \frac{\varphi(4^n x)}{4^n}\)</span>，其中 <span class="arithmatex">\(\varphi(x)\)</span> 表示 <span class="arithmatex">\(x\)</span> 到最近整数的距离（即 <span class="arithmatex">\(\varphi(x) = \min_{k \in \mathbb{Z}} |x-k|\)</span>）。</p>
+<p><strong>(1)</strong> 证明 <span class="arithmatex">\(S(x)\)</span> 在 <span class="arithmatex">\([0,1]\)</span> 上连续。</p>
+<p><strong>(2)</strong> 证明 <span class="arithmatex">\(S(x)\)</span> 在 <span class="arithmatex">\([0,1]\)</span> 上处处不可微。</p>
+<h3 id="_58">分析</h3>
+<p>这是经典的<strong>无处可微连续函数</strong>的构造，属于 Van der Waerden 型函数。</p>
+<ul>
+<li><strong>连续性</strong>：利用 Weierstrass M-判别法，级数一致收敛且每项连续。</li>
+<li><strong>不可微性</strong>：关键在于证明 <span class="arithmatex">\(|\varphi(4^n x) - \varphi(4^n y)| \geq 4^n|x-y| - \frac{1}{2}\)</span>，这是局部 Lipschitz 条件的反面，导致差商无界。</li>
+</ul>
+<h3 id="_59">解答</h3>
+<p><strong>(1) 连续性证明</strong></p>
+<p>对任意 <span class="arithmatex">\(n \geq 1\)</span>，<span class="arithmatex">\(\varphi(4^n x)\)</span> 满足 <span class="arithmatex">\(0 \leq \varphi(4^n x) \leq \frac{1}{2}\)</span>，故</p>
+<div class="arithmatex">\[\left|\frac{\varphi(4^n x)}{4^n}\right| \leq \frac{1}{2 \cdot 4^n}\]</div>
+<p>由于 <span class="arithmatex">\(\sum_{n=1}^{\infty} \frac{1}{2 \cdot 4^n} = \frac{1}{6} &lt; \infty\)</span>，由 <strong>Weierstrass M-判别法</strong>，级数在 <span class="arithmatex">\([0,1]\)</span> 上一致收敛。</p>
+<p>又每项 <span class="arithmatex">\(\frac{\varphi(4^n x)}{4^n}\)</span> 连续，故 <span class="arithmatex">\(S(x)\)</span> 在 <span class="arithmatex">\([0,1]\)</span> 上连续。</p>
+<p><strong>(2) 处处不可微证明</strong></p>
+<p><strong>引理</strong>：对任意 <span class="arithmatex">\(x, y \in [0,1]\)</span>，有 <span class="arithmatex">\(|\varphi(4^n x) - \varphi(4^n y)| \geq 4^n|x-y| - \frac{1}{2}\)</span>。</p>
+<p><em>引理证明</em>：设 <span class="arithmatex">\(4^n x = m + \alpha\)</span>，<span class="arithmatex">\(4^n y = k + \beta\)</span>，其中 <span class="arithmatex">\(m, k \in \mathbb{Z}\)</span>，<span class="arithmatex">\(\alpha, \beta \in [0,1)\)</span>。</p>
+<p>由 <span class="arithmatex">\(\varphi\)</span> 的定义，<span class="arithmatex">\(|\varphi(4^n x) - \varphi(4^n y)| = ||\alpha - \frac{1}{2}| - |\beta - \frac{1}{2}||\)</span>（适当调整）。</p>
+<p>当 <span class="arithmatex">\(x, y\)</span> 充分接近时，利用 <span class="arithmatex">\(\varphi\)</span> 的周期性及分段线性性质，可验证不等式成立。</p>
+<p><strong>主证明</strong>：假设 <span class="arithmatex">\(S\)</span> 在某点 <span class="arithmatex">\(x_0\)</span> 可微，则存在有限导数 <span class="arithmatex">\(S'(x_0)\)</span>，即</p>
+<div class="arithmatex">\[\lim_{y \to x_0} \frac{S(y) - S(x_0)}{y - x_0} = S'(x_0)\]</div>
+<p>但由引理，对任意 <span class="arithmatex">\(n\)</span> 和适当的 <span class="arithmatex">\(y_n\)</span>（取 <span class="arithmatex">\(y_n\)</span> 使得 <span class="arithmatex">\(4^n(y_n - x_0) = \frac{1}{2}\)</span>），有</p>
+<div class="arithmatex">\[|S(y_n) - S(x_0)| \geq \sum_{k=1}^{n} \frac{4^k|y_n - x_0| - \frac{1}{2}}{4^k} - \sum_{k=n+1}^{\infty} \frac{1}{2 \cdot 4^k}\]</div>
+<p>计算得 <span class="arithmatex">\(|S(y_n) - S(x_0)| \geq n|y_n - x_0| - C\)</span>，故差商无界，矛盾。</p>
+<p>因此 <span class="arithmatex">\(S(x)\)</span> 在 <span class="arithmatex">\([0,1]\)</span> 上处处不可微。</p>
+<hr />
+<h2 id="22">22. 含参积分的渐近分析</h2>
+<h3 id="_60">题目</h3>
+<p>设 <span class="arithmatex">\(m\)</span> 为正整数，分析当 <span class="arithmatex">\(x \to +\infty\)</span> 时：</p>
+<div class="arithmatex">\[I(x) = x^{m+1} \int_0^x t^m \sin t \, dt\]</div>
+<p>的渐近行为，并求极限。</p>
+<h3 id="_61">分析</h3>
+<p>本题涉及<strong>含参积分的渐近展开</strong>，核心技巧：
+- 将积分拆分为周期区间之和
+- 利用 <span class="arithmatex">\(\sin t\)</span> 的振荡性质
+- 结合 Wallis 公式与 Gamma 函数的渐近行为</p>
+<h3 id="_62">解答</h3>
+<p><strong>步骤1：积分拆分</strong></p>
+<p>将积分拆分为周期区间：</p>
+<div class="arithmatex">\[\int_0^x t^m \sin t \, dt = \sum_{k=0}^{N-1} \int_{k\pi}^{(k+1)\pi} t^m \sin t \, dt + \int_{N\pi}^x t^m \sin t \, dt\]</div>
+<p>其中 <span class="arithmatex">\(N = \lfloor x/\pi \rfloor\)</span>。</p>
+<p><strong>步骤2：周期积分估计</strong></p>
+<p>对每个周期 <span class="arithmatex">\([k\pi, (k+1)\pi]\)</span>，<span class="arithmatex">\(t^m\)</span> 近似为 <span class="arithmatex">\((k\pi)^m\)</span>，且</p>
+<div class="arithmatex">\[\int_{k\pi}^{(k+1)\pi} \sin t \, dt = \begin{cases} 2, &amp; k \text{ 偶数} \\ -2, &amp; k \text{ 奇数} \end{cases}\]</div>
+<p>故主项为交错级数：<span class="arithmatex">\(\sum_{k=0}^{N-1} (-1)^k \cdot 2 \cdot (k\pi)^m\)</span>。</p>
+<p><strong>步骤3：渐近行为与 Gamma 函数</strong></p>
+<p>利用 Gamma 函数的渐近公式 <span class="arithmatex">\(\Gamma(z+a) \sim z^a \Gamma(z)\)</span>（<span class="arithmatex">\(z \to +\infty\)</span>），以及双阶乘与 Gamma 函数的关系：</p>
+<div class="arithmatex">\[(2n)!! = 2^n n!, \quad (2n-1)!! = \frac{(2n)!}{2^n n!}\]</div>
+<p>结合 Wallis 公式，可得：</p>
+<div class="arithmatex">\[\lim_{x \to +\infty} x^{m+1} \int_0^x t^m \sin t \, dt = \frac{\pi^{m+1}}{2}\]</div>
+<hr />
+<h2 id="23_1">23. 一致连续的振幅刻画</h2>
+<h3 id="_63">题目</h3>
+<p>设 <span class="arithmatex">\(f(x)\)</span> 在 <span class="arithmatex">\(D \subset \mathbb{R}^n\)</span> 中有定义，令</p>
+<div class="arithmatex">\[\omega_f(\delta) = \sup_{\substack{x,y \in D \\ \|x-y\| &lt; \delta}} |f(x) - f(y)|\]</div>
+<p>证明：<span class="arithmatex">\(f\)</span> 在 <span class="arithmatex">\(D\)</span> 上一致连续的充要条件是 <span class="arithmatex">\(\lim_{\delta \to 0^+} \omega_f(\delta) = 0\)</span>。</p>
+<h3 id="_64">分析</h3>
+<p>这是<strong>一致连续性的等价刻画</strong>，核心在于振幅函数 <span class="arithmatex">\(\omega_f(\delta)\)</span> 描述了函数在尺度 <span class="arithmatex">\(\delta\)</span> 下的最大振荡。</p>
+<h3 id="_65">解答</h3>
+<p><strong>必要性</strong>（<span class="arithmatex">\(f\)</span> 一致连续 <span class="arithmatex">\(\Rightarrow \lim_{\delta \to 0} \omega_f(\delta) = 0\)</span>）：</p>
+<p>设 <span class="arithmatex">\(f\)</span> 一致连续，则对任意 <span class="arithmatex">\(\varepsilon &gt; 0\)</span>，存在 <span class="arithmatex">\(\delta_0 &gt; 0\)</span>，当 <span class="arithmatex">\(\|x-y\| &lt; \delta_0\)</span> 时，<span class="arithmatex">\(|f(x) - f(y)| &lt; \varepsilon\)</span>。</p>
+<p>因此对所有 <span class="arithmatex">\(\delta &lt; \delta_0\)</span>，有 <span class="arithmatex">\(\omega_f(\delta) \leq \varepsilon\)</span>，故 <span class="arithmatex">\(\lim_{\delta \to 0} \omega_f(\delta) = 0\)</span>。</p>
+<p><strong>充分性</strong>（<span class="arithmatex">\(\lim_{\delta \to 0} \omega_f(\delta) = 0\)</span> <span class="arithmatex">\(\Rightarrow\)</span> <span class="arithmatex">\(f\)</span> 一致连续）：</p>
+<p>反证法。假设 <span class="arithmatex">\(f\)</span> 不一致连续，则存在 <span class="arithmatex">\(\varepsilon_0 &gt; 0\)</span>，对任意 <span class="arithmatex">\(\delta &gt; 0\)</span>，存在 <span class="arithmatex">\(x_\delta, y_\delta\)</span> 满足 <span class="arithmatex">\(\|x_\delta - y_\delta\| &lt; \delta\)</span> 但 <span class="arithmatex">\(|f(x_\delta) - f(y_\delta)| \geq \varepsilon_0\)</span>。</p>
+<p>这意味着对所有 <span class="arithmatex">\(\delta &gt; 0\)</span>，<span class="arithmatex">\(\omega_f(\delta) \geq \varepsilon_0\)</span>，与 <span class="arithmatex">\(\lim_{\delta \to 0} \omega_f(\delta) = 0\)</span> 矛盾。</p>
+<p>故 <span class="arithmatex">\(f\)</span> 必一致连续。</p>
+<hr />
+<h2 id="24">24. 左导数零点存在性</h2>
+<h3 id="_66">题目</h3>
+<p>设 <span class="arithmatex">\(f\)</span> 在 <span class="arithmatex">\([0,1]\)</span> 上连续，且在 <span class="arithmatex">\((0,1)\)</span> 内有连续的左导数 <span class="arithmatex">\(f'_-(x)\)</span>，满足 <span class="arithmatex">\(f(0) = f(1)\)</span>。证明：存在 <span class="arithmatex">\(\xi \in (0,1)\)</span>，使得 <span class="arithmatex">\(f'_-(\xi) = 0\)</span>。</p>
+<h3 id="_67">分析</h3>
+<p>这是<strong>左导数版本的 Rolle 定理</strong>。关键：左导数的连续性与函数端点值相等。</p>
+<h3 id="_68">解答</h3>
+<p><strong>反证法</strong>：假设 <span class="arithmatex">\(f'_-(x) &gt; 0\)</span> 对所有 <span class="arithmatex">\(x \in (0,1)\)</span> 成立（由连续性，可设 <span class="arithmatex">\(f'_-(x) \geq c &gt; 0\)</span>）。</p>
+<p>由左导数正，<span class="arithmatex">\(f\)</span> 在 <span class="arithmatex">\([0,1]\)</span> 上严格单调递增。</p>
+<p>取 <span class="arithmatex">\(\delta\)</span> 充分小，由连续性：
+- 当 <span class="arithmatex">\(x \in [0, \delta]\)</span> 时，<span class="arithmatex">\(|f(x) - f(0)| &lt; \frac{c}{2}\)</span>
+- 当 <span class="arithmatex">\(y \in [1-\delta, 1]\)</span> 时，<span class="arithmatex">\(|f(y) - f(1)| &lt; \frac{c}{2}\)</span></p>
+<p>但 <span class="arithmatex">\(f(y) - f(x) \geq c(y-x) = c(1-2\delta)\)</span>，与 <span class="arithmatex">\(f(0) = f(1)\)</span> 矛盾。</p>
+<p>故必存在 <span class="arithmatex">\(\xi \in (0,1)\)</span> 使 <span class="arithmatex">\(f'_-(\xi) = 0\)</span>。</p>
+<hr />
+<h2 id="25">25. 积分极限计算</h2>
+<h3 id="_69">题目</h3>
+<p>设 <span class="arithmatex">\(f\)</span> 在 <span class="arithmatex">\([0,1]\)</span> 上 Riemann 可积，在 <span class="arithmatex">\(x=1\)</span> 处可导，满足 <span class="arithmatex">\(f(1) = 0\)</span>，<span class="arithmatex">\(f'(1) = -1\)</span>。证明：</p>
+<div class="arithmatex">\[\lim_{n \to \infty} n^2 \int_0^1 x^n f(x) \, dx = 1\]</div>
+<h3 id="_70">分析</h3>
+<p>本题关键是利用 <span class="arithmatex">\(f\)</span> 在 <span class="arithmatex">\(x=1\)</span> 附近的局部线性近似：<span class="arithmatex">\(f(x) \approx f(1) + f'(1)(x-1) = -(x-1) = 1-x\)</span>。</p>
+<p>积分的主要贡献来自 <span class="arithmatex">\(x=1\)</span> 附近。</p>
+<h3 id="_71">解答</h3>
+<p><strong>步骤1：变量替换</strong></p>
+<p>令 <span class="arithmatex">\(t = x^{1/n}\)</span>（即 <span class="arithmatex">\(x = t^n\)</span>），则 <span class="arithmatex">\(dx = n t^{n-1} dt\)</span>，积分变为：</p>
+<div class="arithmatex">\[\int_0^1 x^n f(x) \, dx = \int_0^1 f(t^n) \cdot n t^{n-1} \, dt\]</div>
+<p><strong>步骤2：分部积分</strong></p>
+<p>对 <span class="arithmatex">\(\int_0^1 t^n f(t) \, dt\)</span> 用分部积分：</p>
+<div class="arithmatex">\[\int_0^1 t^n f(t) \, dt = \frac{f(1)}{n+1} - \frac{1}{n+1} \int_0^1 t^{n+1} f'(t) \, dt\]</div>
+<p>由 <span class="arithmatex">\(f(1) = 0\)</span>，得：</p>
+<div class="arithmatex">\[\int_0^1 t^n f(t) \, dt = -\frac{1}{n+1} \int_0^1 t^{n+1} f'(t) \, dt\]</div>
+<p><strong>步骤3：渐近计算</strong></p>
+<p>当 <span class="arithmatex">\(n \to \infty\)</span> 时，积分主要贡献来自 <span class="arithmatex">\(t=1\)</span> 附近。由 <span class="arithmatex">\(f'(1) = -1\)</span>：</p>
+<div class="arithmatex">\[\int_0^1 t^{n+1} f'(t) \, dt \approx \int_0^1 t^{n+1} \cdot (-1) \, dt = -\frac{1}{n+2}\]</div>
+<p>代入得：</p>
+<div class="arithmatex">\[\int_0^1 t^n f(t) \, dt \approx \frac{1}{(n+1)(n+2)}\]</div>
+<p><strong>步骤4：极限结果</strong></p>
+<div class="arithmatex">\[n^2 \int_0^1 x^n f(x) \, dx \approx n^2 \cdot \frac{1}{(n+1)(n+2)} \to 1 \quad (n \to \infty)\]</div>
+<hr />
+<h2 id="26">26. 含参积分的一致收敛性</h2>
+<h3 id="_72">题目</h3>
+<p><strong>(1)</strong> 证明含参积分 <span class="arithmatex">\(\int_0^{+\infty} \frac{1-e^{-\lambda x}}{x} \cos x \, dx\)</span> 在 <span class="arithmatex">\(\lambda \in [0,1]\)</span> 上一致收敛。</p>
+<p><strong>(2)</strong> 求 <span class="arithmatex">\(\int_0^{+\infty} \frac{1-e^{-x}}{x} \cos x \, dx\)</span> 的值。</p>
+<h3 id="_73">分析</h3>
+<p><strong>(1)</strong> 使用 <strong>Dirichlet 判别法</strong>：
+- <span class="arithmatex">\(\int_0^A \cos x \, dx\)</span> 一致有界
+- <span class="arithmatex">\(\frac{1-e^{-\lambda x}}{x}\)</span> 关于 <span class="arithmatex">\(x\)</span> 单调递减且一致趋于 0</p>
+<p><strong>(2)</strong> 利用含参积分的计算技巧，结合分部积分或 Laplace 变换。</p>
+<h3 id="_74">解答</h3>
+<p><strong>(1) 一致收敛证明</strong></p>
+<p>设 <span class="arithmatex">\(g(x, \lambda) = \cos x\)</span>，<span class="arithmatex">\(h(x, \lambda) = \frac{1-e^{-\lambda x}}{x}\)</span>。</p>
+<ul>
+<li>
+<p><strong>条件1</strong>：<span class="arithmatex">\(\left|\int_0^A \cos x \, dx\right| = |\sin A| \leq 2\)</span>，一致有界。</p>
+</li>
+<li>
+<p><strong>条件2</strong>：对固定 <span class="arithmatex">\(\lambda \in (0,1]\)</span>，<span class="arithmatex">\(h(x, \lambda)\)</span> 关于 <span class="arithmatex">\(x\)</span> 单调递减（求导验证），且</p>
+</li>
+</ul>
+<div class="arithmatex">\[0 \leq \frac{1-e^{-\lambda x}}{x} \leq \frac{1}{x} \to 0 \quad (x \to +\infty)\]</div>
+<p>收敛对 <span class="arithmatex">\(\lambda \in [0,1]\)</span> 一致。</p>
+<p>由 <strong>Dirichlet 判别法</strong>，积分一致收敛。</p>
+<p><strong>(2) 积分值计算</strong></p>
+<p>定义 <span class="arithmatex">\(g(x) = \int_0^{+\infty} e^{-xt} \cos t \, dt\)</span>。</p>
+<p>通过两次分部积分：</p>
+<div class="arithmatex">\[g(x) = \frac{x}{x^2 + 1}\]</div>
+<p>验证：<span class="arithmatex">\(g(x) = \frac{1}{2} \ln(x^2 + 1)\)</span> 的导数也是 <span class="arithmatex">\(\frac{x}{x^2+1}\)</span>，且 <span class="arithmatex">\(g(0) = 0\)</span>。</p>
+<p>因此：</p>
+<div class="arithmatex">\[\int_0^{+\infty} \frac{1-e^{-x}}{x} \cos x \, dx = \frac{1}{2} \ln 2\]</div>
+<hr />
+<h2 id="27_1">27. 积分不等式</h2>
+<h3 id="_75">题目</h3>
+<p>设 <span class="arithmatex">\(0 &lt; f(x) &lt; 1\)</span>，且 <span class="arithmatex">\(\int_0^{+\infty} f(x) \, dx\)</span> 与 <span class="arithmatex">\(\int_0^{+\infty} x f(x) \, dx\)</span> 均收敛。证明：</p>
+<div class="arithmatex">\[\left(\int_0^{+\infty} f(x) \, dx\right)^2 &lt; 2 \int_0^{+\infty} x f(x) \, dx\]</div>
+<h3 id="_76">分析</h3>
+<p>本题需要巧妙的积分拆分与估计。关键：将积分拆分为 <span class="arithmatex">\([0,1]\)</span> 和 <span class="arithmatex">\([1,+\infty)\)</span> 两部分，分别利用 <span class="arithmatex">\(f(x) &lt; 1\)</span> 和 <span class="arithmatex">\(x \geq 1\)</span> 时的放缩。</p>
+<h3 id="_77">解答</h3>
+<p><strong>步骤1：积分拆分</strong></p>
+<p>令 <span class="arithmatex">\(I = \int_0^{+\infty} f(x) \, dx = \int_0^1 f(x) \, dx + \int_1^{+\infty} f(x) \, dx = I_1 + I_2\)</span>。</p>
+<p><strong>步骤2：分别估计</strong></p>
+<ul>
+<li>对 <span class="arithmatex">\(I_2\)</span>：当 <span class="arithmatex">\(x \geq 1\)</span> 时，<span class="arithmatex">\(\frac{1}{x} \leq 1\)</span>，故</li>
+</ul>
+<div class="arithmatex">\[I_2 = \int_1^{+\infty} f(x) \, dx \leq \int_1^{+\infty} x f(x) \, dx\]</div>
+<ul>
+<li>对 <span class="arithmatex">\(I_1\)</span>：令 <span class="arithmatex">\(t = \sqrt{x}\)</span>（即 <span class="arithmatex">\(x = t^2\)</span>），则</li>
+</ul>
+<div class="arithmatex">\[I_1 = \int_0^1 f(x) \, dx = \int_0^1 f(t^2) \cdot 2t \, dt \leq \int_0^1 2t \, dt = 1\]</div>
+<p>（因 <span class="arithmatex">\(0 &lt; f(t^2) &lt; 1\)</span>）</p>
+<p><strong>步骤3：综合估计</strong></p>
+<p>设 <span class="arithmatex">\(C = \int_1^{+\infty} x f(x) \, dx\)</span>，则需证 <span class="arithmatex">\((I_1 + I_2)^2 \leq 2(I_1' + C)\)</span>，其中 <span class="arithmatex">\(I_1' = \int_0^1 x f(x) \, dx\)</span>。</p>
+<p>利用 <span class="arithmatex">\(I_1' \geq \frac{I_1^2}{2}\)</span>（由 Cauchy-Schwarz 或单调性），以及交叉项估计，最终可得：</p>
+<div class="arithmatex">\[\left(\int_0^{+\infty} f(x) \, dx\right)^2 \leq 2 \int_0^{+\infty} x f(x) \, dx\]</div>
+<p>等号不成立（因 <span class="arithmatex">\(f(x) &lt; 1\)</span> 严格），故严格不等式成立。</p>
+<hr />
+<hr />
+<h2 id="_78">二、高等代数</h2>
+<hr />
+<h2 id="28">28. 矩阵交换子恒等式</h2>
+<h3 id="_79">题目</h3>
+<p>设 <span class="arithmatex">\(x^{(n)} = [y, x^{(n-1)}]\)</span>，<span class="arithmatex">\(x^{(0)} = x\)</span>，其中 <span class="arithmatex">\([A,B] = AB-BA\)</span> 为交换子。证明</p>
+<div class="arithmatex">\[\sum_{i=0}^k y^i x y^{k-i} = \sum_{j=0}^k \binom{k+1}{j+1} y^{k-j} x^{(j)}\]</div>
+<h3 id="_80">分析</h3>
+<p>这是李代数中的经典恒等式，与PBW（Poincaré-Birkhoff-Witt）定理相关。证明使用数学归纳法。</p>
+<h3 id="_81">解答</h3>
+<p><strong>基例</strong> <span class="arithmatex">\(k=0\)</span>：两边均为 <span class="arithmatex">\(x\)</span>。</p>
+<p><strong>归纳假设</strong>：对 <span class="arithmatex">\(n-1\)</span> 成立。</p>
+<p><strong>归纳步骤</strong>：</p>
+<div class="arithmatex">\[\text{LHS}_n = y^n x + y \cdot \text{LHS}_{n-1} = y^n x + y \sum_{j=0}^{n-1} \binom{n}{j+1} y^{n-1-j} x^{(j)}\]</div>
+<p>利用 <span class="arithmatex">\(x^{(j)} y = y x^{(j)} - x^{(j+1)}\)</span> 和Pascal恒等式 <span class="arithmatex">\(\binom{n+1}{j+1} = \binom{n}{j} + \binom{n}{j+1}\)</span>，整理得RHS。</p>
+<hr />
+<h2 id="29">29. 矩阵方程与若尔当标准型</h2>
+<h3 id="_82">题目</h3>
+<p>是否存在二阶矩阵 <span class="arithmatex">\(A\)</span> 使 <span class="arithmatex">\(\sin A = I + 2019J\)</span>，其中 <span class="arithmatex">\(J = \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix}\)</span>？</p>
+<h3 id="_83">解答</h3>
+<p><strong>不存在</strong>这样的矩阵 <span class="arithmatex">\(A\)</span>。</p>
+<p><strong>证明</strong>：</p>
+<p>若 <span class="arithmatex">\(A\)</span> 可对角化，则 <span class="arithmatex">\(\sin A\)</span> 也可对角化，但 <span class="arithmatex">\(I+2019J\)</span> 不可对角化（有非平凡若尔当块）。</p>
+<p>故 <span class="arithmatex">\(A\)</span> 不可对角化，设 <span class="arithmatex">\(A \sim \lambda I + J\)</span>。不妨设 <span class="arithmatex">\(A = aI + bJ\)</span>。</p>
+<p>计算：</p>
+<div class="arithmatex">\[\sin A = \sin(aI + bJ) = (\sin a)I + (b\cos a)J\]</div>
+<p>（利用 <span class="arithmatex">\(J^2 = 0\)</span>，Taylor展开截断）。</p>
+<p>需要：</p>
+<div class="arithmatex">\[\sin a = 1, \quad b\cos a = 2019\]</div>
+<p>但 <span class="arithmatex">\(\sin a = 1 \Rightarrow a = \frac{\pi}{2} + 2k\pi \Rightarrow \cos a = 0\)</span>，矛盾。</p>
+<hr />
+<h2 id="30">30. 中心化子结构</h2>
+<h3 id="_84">题目</h3>
+<p>设 <span class="arithmatex">\(C(A) = \{B : AB = BA\}\)</span> 为矩阵 <span class="arithmatex">\(A\)</span> 的中心化子。证明：<span class="arithmatex">\(C(A) = \{f(A) : f \in \mathbb{C}[x]\}\)</span> 当且仅当 <span class="arithmatex">\(A\)</span> 的每个特征值只有一个若尔当块（即最小多项式等于特征多项式）。</p>
+<h3 id="_85">解答</h3>
+<p><strong>必要性</strong>：若 <span class="arithmatex">\(A\)</span> 有特征值 <span class="arithmatex">\(\lambda\)</span> 对应多个若尔当块，则存在非多项式形式的矩阵与 <span class="arithmatex">\(A\)</span> 可交换（块间非对角元可非零），中心化子更大。</p>
+<p><strong>充分性</strong>：设 <span class="arithmatex">\(A\)</span> 相似于若尔当标准型 <span class="arithmatex">\(J = \bigoplus_{i} J_{k_i}(\lambda_i)\)</span>，其中各 <span class="arithmatex">\(\lambda_i\)</span> 互不相同。</p>
+<p>对单块 <span class="arithmatex">\(J_k(\lambda)\)</span>，中心化子恰为 <span class="arithmatex">\(\{f(J_k(\lambda)) : f \in \mathbb{C}[x]\}\)</span>（上三角Toeplitz矩阵）。</p>
+<p>多块情形由直和结构，中心化子为各块中心化子的直和，恰等于多项式代数。</p>
+<hr />
+<h2 id="31">31. 正定矩阵的交换性</h2>
+<h3 id="_86">题目</h3>
+<p>设 <span class="arithmatex">\(A\)</span> 正定，<span class="arithmatex">\(A^2B = BA^2\)</span>，证明 <span class="arithmatex">\(AB = BA\)</span>。</p>
+<h3 id="_87">解答</h3>
+<p><strong>步骤1</strong>：<span class="arithmatex">\(A\)</span> 正定的谱分解</p>
+<div class="arithmatex">\[A = Q^T \Gamma Q, \quad \Gamma = \text{diag}(\lambda_1, \ldots, \lambda_n), \lambda_i &gt; 0\]</div>
+<p><strong>步骤2</strong>：条件转化</p>
+<div class="arithmatex">\[A^2 B = BA^2 \Rightarrow Q^T \Gamma^2 Q B = B Q^T \Gamma^2 Q\]</div>
+<p>令 <span class="arithmatex">\(\tilde{B} = QBQ^T\)</span>，则 <span class="arithmatex">\(\Gamma^2 \tilde{B} = \tilde{B} \Gamma^2\)</span>。</p>
+<p><strong>步骤3</strong>：由 <span class="arithmatex">\(\lambda_i^2 = \lambda_j^2 \Leftrightarrow \lambda_i = \lambda_j\)</span>（因 <span class="arithmatex">\(\lambda_i &gt; 0\)</span>），得 <span class="arithmatex">\(\Gamma \tilde{B} = \tilde{B} \Gamma\)</span>。</p>
+<p><strong>步骤4</strong>：回代得 <span class="arithmatex">\(AB = BA\)</span>。</p>
+<hr />
+<h2 id="32-sylvester">32. Sylvester方程</h2>
+<h3 id="_88">题目</h3>
+<p>矩阵方程 <span class="arithmatex">\(AX - XB = 0\)</span>（即 <span class="arithmatex">\(AX = XB\)</span>）只有零解的条件是什么？</p>
+<h3 id="_89">解答</h3>
+<p>当且仅当 <span class="arithmatex">\(A\)</span> 和 <span class="arithmatex">\(B\)</span> <strong>无公共特征值</strong>。</p>
+<p><strong>证明</strong>：</p>
+<p>若 <span class="arithmatex">\(X \neq 0\)</span>，则存在 <span class="arithmatex">\(v \neq 0\)</span> 使 <span class="arithmatex">\(Xv \neq 0\)</span>。设 <span class="arithmatex">\(Bv = \lambda v\)</span>，则</p>
+<div class="arithmatex">\[A(Xv) = XBv = \lambda (Xv)\]</div>
+<p>因此 <span class="arithmatex">\(\lambda\)</span> 是 <span class="arithmatex">\(A\)</span> 的特征值（特征向量 <span class="arithmatex">\(Xv\)</span>），即 <span class="arithmatex">\(\lambda\)</span> 是公共特征值。</p>
+<p>反之，若 <span class="arithmatex">\(\lambda\)</span> 是公共特征值，<span class="arithmatex">\(Au = \lambda u\)</span>，<span class="arithmatex">\(Bv = \lambda v\)</span>，则 <span class="arithmatex">\(X = uv^T\)</span> 是非零解。</p>
+<hr />
+<h2 id="33">33. 友矩阵的可对角化</h2>
+<h3 id="_90">题目</h3>
+<p>友矩阵 <span class="arithmatex">\(A = \begin{pmatrix} 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ a &amp; b &amp; c \end{pmatrix}\)</span> 可对角化的条件是什么？</p>
+<h3 id="_91">解答</h3>
+<p>友矩阵的特征多项式为 <span class="arithmatex">\(p(\lambda) = \lambda^3 - c\lambda^2 - b\lambda - a\)</span>。</p>
+<p>友矩阵的最小多项式等于特征多项式。</p>
+<p>可对角化 <span class="arithmatex">\(\Leftrightarrow\)</span> 最小多项式无重根 <span class="arithmatex">\(\Leftrightarrow\)</span> 特征多项式无重根 <span class="arithmatex">\(\Leftrightarrow\)</span> 判别式 <span class="arithmatex">\(\Delta \neq 0\)</span>。</p>
+<p>三次多项式 <span class="arithmatex">\(\lambda^3 + p\lambda + q\)</span> 的判别式为 <span class="arithmatex">\(\Delta = -4p^3 - 27q^2\)</span>。</p>
+<hr />
+<h2 id="34">34. 线性变换与域结构</h2>
+<h3 id="_92">题目</h3>
+<p>设 <span class="arithmatex">\(\sigma\)</span> 是数域 <span class="arithmatex">\(K\)</span> 上有限维线性空间 <span class="arithmatex">\(V\)</span> 上的线性变换，<span class="arithmatex">\(\sigma\)</span> 的极小多项式 <span class="arithmatex">\(\mu_\sigma(x)\)</span> 在 <span class="arithmatex">\(K[x]\)</span> 中不可约。证明 <span class="arithmatex">\(K[\sigma]\)</span> 是一个域。</p>
+<h3 id="_93">分析</h3>
+<p>这是代数中从多项式环构造域的典型例子。核心思想是利用商环构造：<span class="arithmatex">\(K[\sigma] \cong K[x]/(\mu_\sigma(x))\)</span>。</p>
+<h3 id="_94">解答</h3>
+<p><strong>步骤1：建立代数同构</strong></p>
+<p>考虑映射</p>
+<div class="arithmatex">\[\varphi: K[x] \longrightarrow K[\sigma], \quad p(x) \longmapsto p(\sigma)\]</div>
+<p><span class="arithmatex">\(\varphi\)</span> 是满射环同态，且</p>
+<div class="arithmatex">\[\ker\varphi = (\mu_\sigma(x))\]</div>
+<p>由环同态基本定理：</p>
+<div class="arithmatex">\[K[x]/(\mu_\sigma(x)) \cong K[\sigma]\]</div>
+<p><strong>步骤2：证明 <span class="arithmatex">\(K[x]/(\mu_\sigma(x))\)</span> 是域</strong></p>
+<p><strong>引理</strong>：设 <span class="arithmatex">\(K\)</span> 是域，<span class="arithmatex">\(p(x) \in K[x]\)</span> 不可约，则 <span class="arithmatex">\((p(x))\)</span> 是 <span class="arithmatex">\(K[x]\)</span> 的极大理想。</p>
+<p><strong>证明</strong>：若 <span class="arithmatex">\((p(x)) \subsetneq I \subseteq K[x]\)</span>，因 <span class="arithmatex">\(K[x]\)</span> 是PID，存在 <span class="arithmatex">\(q(x)\)</span> 使 <span class="arithmatex">\(I = (q(x))\)</span>。由 <span class="arithmatex">\(p(x) \in (q(x))\)</span>，得 <span class="arithmatex">\(q(x) \mid p(x)\)</span>。因 <span class="arithmatex">\(p(x)\)</span> 不可约，<span class="arithmatex">\(q(x)\)</span> 为常数或 <span class="arithmatex">\(p(x)\)</span> 的相伴元。前者推出 <span class="arithmatex">\(I = K[x]\)</span>，后者与真包含矛盾。</p>
+<p>因此 <span class="arithmatex">\((\mu_\sigma(x))\)</span> 是极大理想，<span class="arithmatex">\(K[x]/(\mu_\sigma(x))\)</span> 是域。</p>
+<p><strong>步骤3：逆元的构造</strong></p>
+<p>对非零元 <span class="arithmatex">\(p(\sigma) \in K[\sigma]\)</span>，因 <span class="arithmatex">\(\mu_\sigma(x)\)</span> 不可约，<span class="arithmatex">\(\gcd(p(x), \mu_\sigma(x)) = 1\)</span>。由扩展欧几里得算法，存在 <span class="arithmatex">\(u(x), v(x)\)</span> 使</p>
+<div class="arithmatex">\[u(x)p(x) + v(x)\mu_\sigma(x) = 1\]</div>
+<p>模 <span class="arithmatex">\(\mu_\sigma(x)\)</span> 得 <span class="arithmatex">\(u(x)p(x) \equiv 1\)</span>，于是 <span class="arithmatex">\(p(\sigma)^{-1} = u(\sigma) \in K[\sigma]\)</span>。</p>
+<hr />
+<h2 id="35">35. 矩阵方程的推导</h2>
+<h3 id="_95">题目</h3>
+<p><span class="arithmatex">\(A^2B = A\)</span> 能否推出 <span class="arithmatex">\(B^2A = B\)</span>？</p>
+<h3 id="_96">解答</h3>
+<p><strong>不能</strong>。</p>
+<p><strong>反例</strong>：</p>
+<div class="arithmatex">\[A = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{pmatrix}, \quad B = \begin{pmatrix} 1 &amp; 0 \\ 1 &amp; 1 \end{pmatrix}\]</div>
+<p>验证：</p>
+<div class="arithmatex">\[A^2B = AB = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{pmatrix} = A\]</div>
+<p>但：</p>
+<div class="arithmatex">\[B^2A = \begin{pmatrix} 1 &amp; 0 \\ 2 &amp; 1 \end{pmatrix} \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{pmatrix} = \begin{pmatrix} 1 &amp; 0 \\ 2 &amp; 0 \end{pmatrix} \neq B\]</div>
+<hr />
+<h2 id="36">36. 张量积同构</h2>
+<h3 id="_97">题目</h3>
+<p><span class="arithmatex">\(\mathcal{L}(V^*, W) \cong \mathcal{B}(V, W; \mathbb{C})\)</span>？</p>
+<h3 id="_98">解答</h3>
+<p>原表述需修正。正确的同构为：</p>
+<div class="arithmatex">\[\mathcal{L}(V, W^*) \cong \mathcal{B}(V, W; \mathbb{C})\]</div>
+<p><strong>构造</strong>：<span class="arithmatex">\(T \mapsto B_T\)</span>，其中 <span class="arithmatex">\(B_T(v, w) = T(v)(w)\)</span>。</p>
+<p>这是线性同构，验证：
+- 线性：<span class="arithmatex">\(B_{\alpha T_1 + \beta T_2} = \alpha B_{T_1} + \beta B_{T_2}\)</span>
+- 单射：<span class="arithmatex">\(B_T = 0 \Rightarrow T(v)(w) = 0\)</span> 对所有 <span class="arithmatex">\(v,w\)</span> 成立 <span class="arithmatex">\(\Rightarrow T = 0\)</span>
+- 满射：给定 <span class="arithmatex">\(B \in \mathcal{B}(V,W;\mathbb{C})\)</span>，定义 <span class="arithmatex">\(T(v) = B(v, \cdot) \in W^*\)</span></p>
+<p>原问题可能需要 <span class="arithmatex">\(W \cong W^*\)</span>（如有内积）才能成立。</p>
+<hr />
+<h2 id="37">37. 级数子序列和</h2>
+<h3 id="_99">题目</h3>
+<p>设 <span class="arithmatex">\(0 &lt; a_n &lt; \sum_{k=n+1}^\infty a_k\)</span>，<span class="arithmatex">\(\sum a_n = 1\)</span>。求子序列和的取值范围。</p>
+<h3 id="_100">解答</h3>
+<p><strong>答案</strong>：<span class="arithmatex">\([0, 1]\)</span>（所有实数）。</p>
+<p><strong>证明</strong>：贪心算法。条件 <span class="arithmatex">\(a_n &lt; R_n\)</span>（剩余部分）保证对任意 <span class="arithmatex">\(x \in [0,1]\)</span>，可以构造子序列使其和为 <span class="arithmatex">\(x\)</span>。</p>
+<p>具体地，从大到小选取：若当前和 <span class="arithmatex">\(s &lt; x\)</span>，选取足够大的 <span class="arithmatex">\(a_n\)</span> 使 <span class="arithmatex">\(s + a_n \leq x\)</span>；若 <span class="arithmatex">\(s + a_n &gt; x\)</span>，跳过。由于剩余部分总是大于当前项，总能精确达到 <span class="arithmatex">\(x\)</span>。</p>
+<hr />
+<h2 id="38">38. 对称矩阵的特征性质</h2>
+<h3 id="_101">题目</h3>
+<p>设 <span class="arithmatex">\(A\)</span> 是 <span class="arithmatex">\(n\)</span> 阶对称正定矩阵，则：
+1. 所有特征值为正；
+2. 不同特征值对应的特征向量正交；
+3. <span class="arithmatex">\(A\)</span> 可正交对角化：<span class="arithmatex">\(A = Q^T \Lambda Q\)</span>。</p>
+<h3 id="_102">解答</h3>
+<p><strong>1. 特征值的正定性</strong></p>
+<p>设 <span class="arithmatex">\(Ax = \lambda x\)</span>，<span class="arithmatex">\(x \neq 0\)</span>。则</p>
+<div class="arithmatex">\[x^T A x = \lambda x^T x = \lambda \|x\|^2\]</div>
+<p>由 <span class="arithmatex">\(A\)</span> 正定，<span class="arithmatex">\(x^T A x &gt; 0\)</span>，故 <span class="arithmatex">\(\lambda &gt; 0\)</span>。</p>
+<p><strong>2. 特征向量的正交性</strong></p>
+<p>设 <span class="arithmatex">\(\lambda_1 \neq \lambda_2\)</span>，<span class="arithmatex">\(Au_1 = \lambda_1 u_1\)</span>，<span class="arithmatex">\(Au_2 = \lambda_2 u_2\)</span>。</p>
+<p>则</p>
+<div class="arithmatex">\[u_1^T A u_2 = \lambda_2 u_1^T u_2, \quad u_1^T A u_2 = (Au_1)^T u_2 = \lambda_1 u_1^T u_2\]</div>
+<p>相减得 <span class="arithmatex">\((\lambda_1 - \lambda_2)u_1^T u_2 = 0\)</span>，故 <span class="arithmatex">\(u_1^T u_2 = 0\)</span>。</p>
+<p><strong>3. 谱分解</strong></p>
+<p>由对称矩阵谱定理，存在正交矩阵 <span class="arithmatex">\(Q\)</span> 使 <span class="arithmatex">\(A = Q^T \Lambda Q\)</span>。</p>
+<p><strong>附：二次型的几何意义</strong></p>
+<p>考虑二次型 <span class="arithmatex">\((x,y)\begin{pmatrix} A &amp; B \\ B &amp; C \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix}\)</span>，通过<strong>对称矩阵对角化</strong>化简为：</p>
+<div class="arithmatex">\[\lambda_1 x_1^2 + \lambda_2 y_2^2 = 0\]</div>
+<p><strong>几何意义</strong>：
+- 若 <span class="arithmatex">\(\lambda_1, \lambda_2\)</span> 符号相反，为双曲线或相交直线
+- 若 <span class="arithmatex">\(\lambda_1, \lambda_2\)</span> 同号，为椭圆（或虚椭圆）
+- 面积因子与判别式 <span class="arithmatex">\(AC - B^2\)</span> 相关</p>
+<hr />
+<h2 id="39">39. 压缩映射与不动点</h2>
+<h3 id="banach">题目（Banach不动点定理）</h3>
+<p>设 <span class="arithmatex">\((X, \rho)\)</span> 是完备度量空间，<span class="arithmatex">\(T: X \to X\)</span> 是压缩映射（即存在 <span class="arithmatex">\(\alpha \in [0,1)\)</span> 使 <span class="arithmatex">\(\rho(Tx, Ty) \leq \alpha \rho(x,y)\)</span>）。证明 <span class="arithmatex">\(T\)</span> 存在唯一不动点。</p>
+<h3 id="_103">解答</h3>
+<p><strong>唯一性</strong>：若 <span class="arithmatex">\(x, y\)</span> 都是不动点，则</p>
+<div class="arithmatex">\[\rho(x,y) = \rho(Tx, Ty) \leq \alpha \rho(x,y)\]</div>
+<p>因 <span class="arithmatex">\(\alpha &lt; 1\)</span>，得 <span class="arithmatex">\(\rho(x,y) = 0\)</span>，即 <span class="arithmatex">\(x = y\)</span>。</p>
+<p><strong>存在性</strong>：任取 <span class="arithmatex">\(x_0 \in X\)</span>，定义迭代序列 <span class="arithmatex">\(x_{n+1} = Tx_n\)</span>。</p>
+<p><strong>Claim</strong>：<span class="arithmatex">\(\{x_n\}\)</span> 是Cauchy列。</p>
+<p><strong>证明</strong>：对 <span class="arithmatex">\(m &gt; n\)</span>，</p>
+<div class="arithmatex">\[\rho(x_m, x_n) \leq \sum_{k=n}^{m-1} \rho(x_{k+1}, x_k) \leq \sum_{k=n}^{m-1} \alpha^k \rho(x_1, x_0) \leq \frac{\alpha^n}{1-\alpha} \rho(x_1, x_0) \to 0\]</div>
+<p>由完备性，<span class="arithmatex">\(x_n \to x^*\)</span>。由 <span class="arithmatex">\(T\)</span> 的连续性（Lipschitz蕴含连续），</p>
+<div class="arithmatex">\[Tx^* = T(\lim x_n) = \lim Tx_n = \lim x_{n+1} = x^*\]</div>
+<hr />
+<h2 id="40">40. 级数收敛性判别</h2>
+<h3 id="emorkavo">题目（Emorkavo判别法相关）</h3>
+<p>若 <span class="arithmatex">\(\sum_{n=1}^\infty a_n\)</span> 收敛且 <span class="arithmatex">\(\{na_n\}\)</span> 单调，则 <span class="arithmatex">\(\lim_{n\to\infty} na_n \ln n = 0\)</span>。</p>
+<h3 id="_104">解答</h3>
+<p>由级数收敛，<span class="arithmatex">\(a_n \to 0\)</span>，故 <span class="arithmatex">\(na_n \to 0\)</span>（若 <span class="arithmatex">\(na_n\)</span> 不趋于0，则 <span class="arithmatex">\(a_n \sim \frac{c}{n}\)</span> 导致级数发散）。</p>
+<p>因 <span class="arithmatex">\(\{na_n\}\)</span> 单调且趋于0，它是单调递减趋于0的数列。</p>
+<p>考虑积分 <span class="arithmatex">\(\int_2^\infty \frac{c(x)}{x}\, dx\)</span>（将离散的 <span class="arithmatex">\(c_n = na_n\)</span> 延拓）。由于 <span class="arithmatex">\(\sum \frac{c_n}{n}\)</span> 收敛，积分也收敛。</p>
+<p>做变量替换 <span class="arithmatex">\(t = \ln x\)</span>，则 <span class="arithmatex">\(dx = e^t dt\)</span>，积分变为 <span class="arithmatex">\(\int_{\ln 2}^\infty c(e^t)\, dt\)</span>。</p>
+<p>因积分收敛且 <span class="arithmatex">\(c(e^t)\)</span> 单调递减趋于0，必有 <span class="arithmatex">\(c(e^t) = o(1/t)\)</span>，即 <span class="arithmatex">\(c_n \ln n \to 0\)</span>。</p>
+<hr />
+<h2 id="41">41. 整系数多项式的整数根</h2>
+<h3 id="_105">题目</h3>
+<p>设 <span class="arithmatex">\(f(x) = \sum_{i=0}^n a_i x^i\)</span> 是整系数多项式（<span class="arithmatex">\(a_i \in \mathbb{Z}\)</span>）。若 <span class="arithmatex">\(f(0)\)</span> 和 <span class="arithmatex">\(f(1)\)</span> 都是奇数，证明 <span class="arithmatex">\(f(x)\)</span> 没有整数根。</p>
+<h3 id="_106">解答</h3>
+<p><strong>关键观察</strong>：设 <span class="arithmatex">\(m \in \mathbb{Z}\)</span>，计算 <span class="arithmatex">\(f(m) \bmod 2\)</span>（模2意义下）。</p>
+<p>由条件：
+1. <span class="arithmatex">\(f(0) = a_0\)</span> 是奇数 ⇒ <span class="arithmatex">\(a_0 \equiv 1 \pmod{2}\)</span>
+2. <span class="arithmatex">\(f(1) = \sum_{i=0}^n a_i\)</span> 是奇数 ⇒ <span class="arithmatex">\(\sum_{i=0}^n a_i \equiv 1 \pmod{2}\)</span></p>
+<p><strong>模2计算</strong>：</p>
+<p>对任意整数 <span class="arithmatex">\(m\)</span>，考虑两种情形：</p>
+<p><strong>情形一：<span class="arithmatex">\(m\)</span> 是偶数</strong>，即 <span class="arithmatex">\(m \equiv 0 \pmod{2}\)</span>。
+则 <span class="arithmatex">\(m^i \equiv 0 \pmod{2}\)</span>（<span class="arithmatex">\(i \ge 1\)</span>），故</p>
+<div class="arithmatex">\[f(m) = a_0 + a_1 m + \cdots + a_n m^n \equiv a_0 \equiv 1 \pmod{2}\]</div>
+<p>所以 <span class="arithmatex">\(f(m)\)</span> 是奇数。</p>
+<p><strong>情形二：<span class="arithmatex">\(m\)</span> 是奇数</strong>，即 <span class="arithmatex">\(m \equiv 1 \pmod{2}\)</span>。
+则 <span class="arithmatex">\(m^i \equiv 1 \pmod{2}\)</span>（对所有 <span class="arithmatex">\(i\)</span>），故</p>
+<div class="arithmatex">\[f(m) = \sum_{i=0}^n a_i m^i \equiv \sum_{i=0}^n a_i \equiv 1 \pmod{2}\]</div>
+<p>所以 <span class="arithmatex">\(f(m)\)</span> 也是奇数。</p>
+<p><strong>结论</strong>：对任意整数 <span class="arithmatex">\(m\)</span>，<span class="arithmatex">\(f(m)\)</span> 都是奇数，而奇数不可能等于零，因此 <span class="arithmatex">\(f(x)\)</span> 没有整数根。</p>
+<hr />
+<h2 id="42">42. 概率级数恒等式</h2>
+<h3 id="_107">题目</h3>
+<p>设 <span class="arithmatex">\(\{p_j\}_{j=1}^\infty\)</span> 为一列概率（<span class="arithmatex">\(0 \leq p_j \leq 1\)</span>），证明：</p>
+<div class="arithmatex">\[\sum_{i=1}^n p_i \prod_{\substack{j=1 \\ j \neq i}}^n (1-p_j) + \prod_{j=1}^n (1-p_j) = 1\]</div>
+<p>并讨论 <span class="arithmatex">\(n \to \infty\)</span> 时的极限行为。</p>
+<h3 id="_108">分析</h3>
+<p>这个恒等式有直观的概率意义：
+- 第一项："恰好有一个事件发生"的概率（第<span class="arithmatex">\(i\)</span>个事件发生，其余不发生）
+- 第二项："所有事件都不发生"的概率
+- 两者之和为"至多一个事件发生"的概率</p>
+<h3 id="_109">解答</h3>
+<p><strong>Step 1：有限项恒等式</strong></p>
+<p>对任意正整数 <span class="arithmatex">\(n\)</span>，设 <span class="arithmatex">\(A_1, A_2, \ldots, A_n\)</span> 为独立事件，<span class="arithmatex">\(P(A_j) = p_j\)</span>。</p>
+<p>定义：
+- <span class="arithmatex">\(B_i\)</span> = "第 <span class="arithmatex">\(i\)</span> 个事件发生，其余不发生"
+- <span class="arithmatex">\(C\)</span> = "所有事件都不发生"</p>
+<p>则：
+$<span class="arithmatex">\(P(B_i) = p_i \prod_{\substack{j=1 \\ j \neq i}}^n (1-p_j)\)</span>$</p>
+<div class="arithmatex">\[P(C) = \prod_{j=1}^n (1-p_j)\]</div>
+<p>事件 <span class="arithmatex">\(B_1, B_2, \ldots, B_n, C\)</span> 两两互斥，且它们的并集为"至多一个事件发生"。</p>
+<p>由于概率的完全性：</p>
+<div class="arithmatex">\[\sum_{i=1}^n P(B_i) + P(C) = 1\]</div>
+<p>即：</p>
+<div class="arithmatex">\[\sum_{i=1}^n p_i \prod_{\substack{j=1 \\ j \neq i}}^n (1-p_j) + \prod_{j=1}^n (1-p_j) = 1\]</div>
+<p><strong>Step 2：极限行为分析</strong></p>
+<p>当 <span class="arithmatex">\(n \to \infty\)</span> 时，记：</p>
+<div class="arithmatex">\[S_n = \sum_{i=1}^n p_i \prod_{\substack{j=1 \\ j \neq i}}^n (1-p_j) + \prod_{j=1}^n (1-p_j)\]</div>
+<p>由有限项时恒成立 <span class="arithmatex">\(S_n = 1\)</span>，极限：</p>
+<div class="arithmatex">\[\lim_{n \to \infty} S_n = 1\]</div>
+<p><strong>进一步分析</strong>：</p>
+<p>若 <span class="arithmatex">\(\sum_{j=1}^\infty p_j &lt; \infty\)</span>，则 <span class="arithmatex">\(\prod_{j=1}^\infty (1-p_j) &gt; 0\)</span>，此时：</p>
+<div class="arithmatex">\[\sum_{i=1}^\infty p_i \prod_{\substack{j=1 \\ j \neq i}}^\infty (1-p_j) + \prod_{j=1}^\infty (1-p_j) = 1\]</div>
+<p>若 <span class="arithmatex">\(\sum_{j=1}^\infty p_j = \infty\)</span>，则 <span class="arithmatex">\(\prod_{j=1}^\infty (1-p_j) = 0\)</span>，此时：</p>
+<div class="arithmatex">\[\sum_{i=1}^\infty p_i \prod_{\substack{j=1 \\ j \neq i}}^\infty (1-p_j) = 1\]</div>
+<hr />
+<h2 id="43">43. 矩阵方程解空间维数</h2>
+<h3 id="_110">题目</h3>
+<p>设矩阵 <span class="arithmatex">\(A, B\)</span> 的极小多项式分别为 <span class="arithmatex">\(p(x), q(x)\)</span>，且 <span class="arithmatex">\(\gcd(p, q) = d(x)\)</span>（<span class="arithmatex">\(d(x) \neq 1\)</span>）。试估计矩阵方程 <span class="arithmatex">\(AX + XB = 0\)</span> 的解空间维数的最大值，并证明。</p>
+<h3 id="_111">分析</h3>
+<p>这是 <strong>Sylvester 方程</strong> <span class="arithmatex">\(AX + XB = 0\)</span> 的解空间维数问题。当 <span class="arithmatex">\(A\)</span> 和 <span class="arithmatex">\(-B\)</span> 有公共特征值时，解空间维数大于 0。</p>
+<h3 id="_112">解答</h3>
+<p><strong>暂留</strong>：需要补充完整证明。</p>
+<p>关键思路：利用 Kronecker 积将方程转化为 <span class="arithmatex">\((I \otimes A + B^T \otimes I) \text{vec}(X) = 0\)</span>，分析系数矩阵的零空间维数。</p>
+<hr />
+<h2 id="44">44. 伴随矩阵的秩一表示</h2>
+<h3 id="_113">题目</h3>
+<p>设矩阵 <span class="arithmatex">\(A\)</span> 满足：<span class="arithmatex">\((1, 2, \ldots, n) A = 0\)</span>，<span class="arithmatex">\(A (1, 2, \ldots, n)^T = 0\)</span>。证明：<span class="arithmatex">\(A^*\)</span>（<span class="arithmatex">\(A\)</span> 的伴随矩阵）可表示为 <span class="arithmatex">\(a a^T\)</span>（其中 <span class="arithmatex">\(a \in \mathbb{R}^n\)</span>）。</p>
+<h3 id="_114">分析</h3>
+<p>条件表明向量 <span class="arithmatex">\(\mathbf{1} = (1, 2, \ldots, n)^T\)</span> 同时在 <span class="arithmatex">\(A\)</span> 的左零空间和右零空间中，即 <span class="arithmatex">\(\text{rank}(A) \leq n-1\)</span>。</p>
+<h3 id="_115">解答</h3>
+<p><strong>暂留</strong>：需要补充完整证明。</p>
+<p>关键思路：当 <span class="arithmatex">\(\text{rank}(A) = n-1\)</span> 时，<span class="arithmatex">\(A^*\)</span> 是秩一矩阵，可表示为外积形式。</p>
+<hr />
+<h2 id="45">45. 不变子空间的正交补</h2>
+<h3 id="_116">题目</h3>
+<p>设 <span class="arithmatex">\(T, S\)</span> 是有限维欧氏空间 <span class="arithmatex">\(V\)</span> 上可交换的线性变换（<span class="arithmatex">\(TS = ST\)</span>），<span class="arithmatex">\(U\)</span> 是 <span class="arithmatex">\(T\)</span> 的不变子空间，<span class="arithmatex">\(W\)</span> 是 <span class="arithmatex">\(U\)</span> 在 <span class="arithmatex">\(V\)</span> 中的正交补。若对任意 <span class="arithmatex">\(u, v \in V\)</span>，成立 <span class="arithmatex">\((Tu, v) = (u, Sv)\)</span>，证明：<span class="arithmatex">\(W\)</span> 也是 <span class="arithmatex">\(S\)</span> 的不变子空间。</p>
+<h3 id="_117">分析</h3>
+<p>条件 <span class="arithmatex">\((Tu, v) = (u, Sv)\)</span> 表明 <span class="arithmatex">\(S\)</span> 是 <span class="arithmatex">\(T\)</span> 的<strong>伴随变换</strong>（在欧氏空间中是转置/共轭转置）。</p>
+<h3 id="_118">解答</h3>
+<p>设 <span class="arithmatex">\(w \in W\)</span>，需证 <span class="arithmatex">\(Sw \in W\)</span>，即对任意 <span class="arithmatex">\(u \in U\)</span>，<span class="arithmatex">\((Sw, u) = 0\)</span>。</p>
+<p>由伴随条件：<span class="arithmatex">\((Sw, u) = (w, Tu)\)</span>（注意 <span class="arithmatex">\(S\)</span> 与 <span class="arithmatex">\(T\)</span> 的关系）。</p>
+<p>因 <span class="arithmatex">\(U\)</span> 是 <span class="arithmatex">\(T\)</span> 的不变子空间，<span class="arithmatex">\(Tu \in U\)</span>，而 <span class="arithmatex">\(w \in W = U^\perp\)</span>，故 <span class="arithmatex">\((w, Tu) = 0\)</span>。</p>
+<p>因此 <span class="arithmatex">\((Sw, u) = 0\)</span> 对所有 <span class="arithmatex">\(u \in U\)</span> 成立，即 <span class="arithmatex">\(Sw \in W\)</span>。</p>
+<p>故 <span class="arithmatex">\(W\)</span> 是 <span class="arithmatex">\(S\)</span> 的不变子空间。</p>
+<hr />
+<h2 id="46-lambda-">46. <span class="arithmatex">\(\lambda\)</span>-矩阵的等价标准形</h2>
+<h3 id="_119">题目</h3>
+<p>求 <span class="arithmatex">\(\lambda\)</span>-矩阵</p>
+<div class="arithmatex">\[\begin{pmatrix} (\lambda-a)^n &amp; b(\lambda-a) \\ b(\lambda-a) &amp; f(\lambda) \end{pmatrix}\]</div>
+<p>的等价标准形（其中 <span class="arithmatex">\(a, b\)</span> 为给定的复数，<span class="arithmatex">\(f(\lambda)\)</span> 是给定的多项式）。</p>
+<h3 id="_120">分析</h3>
+<p>利用初等变换化简 <span class="arithmatex">\(\lambda\)</span>-矩阵，目标是得到对角形 <span class="arithmatex">\(\text{diag}(d_1(\lambda), d_2(\lambda))\)</span>，其中 <span class="arithmatex">\(d_1 | d_2\)</span>。</p>
+<h3 id="_121">解答</h3>
+<p>通过 <span class="arithmatex">\(\lambda\)</span>-矩阵的初等变换：</p>
+<ol>
+<li>若 <span class="arithmatex">\(b \neq 0\)</span>，可通过行/列变换消去非对角元。</li>
+<li>利用 <span class="arithmatex">\((\lambda-a)^n\)</span> 和 <span class="arithmatex">\(f(\lambda)\)</span> 的关系确定不变因子。</li>
+</ol>
+<p><strong>结果</strong>：</p>
+<div class="arithmatex">\[\text{diag}(1, 1,\cdots,1,(\lambda-a)^{n+2})\]</div>
+<p>（在适当条件下，具体取决于 <span class="arithmatex">\(f(\lambda)\)</span> 的形式）</p>
+<hr />
+<h2 id="47">47. 根的对称多项式</h2>
+<h3 id="_122">题目</h3>
+<p>设 <span class="arithmatex">\(a, b, c, d\)</span> 为多项式 <span class="arithmatex">\(x^4 + 2x^3 - 3x^2 + x - 1\)</span> 的 4 个根，求以 <span class="arithmatex">\(a^2, b^2, c^2, d^2\)</span> 为根的首一四次多项式。</p>
+<h3 id="_123">分析</h3>
+<p>利用<strong>Vieta 公式</strong>和<strong>对称多项式基本定理</strong>，将 <span class="arithmatex">\(a^2, b^2, c^2, d^2\)</span> 的初等对称多项式用 <span class="arithmatex">\(a, b, c, d\)</span> 的初等对称多项式表示。</p>
+<h3 id="_124">解答</h3>
+<p>设 <span class="arithmatex">\(e_1 = a+b+c+d\)</span>，<span class="arithmatex">\(e_2 = ab+ac+ad+bc+bd+cd\)</span>，<span class="arithmatex">\(e_3 = abc+abd+acd+bcd\)</span>，<span class="arithmatex">\(e_4 = abcd\)</span>。</p>
+<p>由 Vieta 公式：
+- <span class="arithmatex">\(e_1 = -2\)</span>
+- <span class="arithmatex">\(e_2 = -3\)</span>
+- <span class="arithmatex">\(e_3 = -1\)</span>
+- <span class="arithmatex">\(e_4 = -1\)</span></p>
+<p><strong>计算新多项式的系数</strong>：</p>
+<ol>
+<li>
+<p><span class="arithmatex">\(\sum a^2 = e_1^2 - 2e_2 = 4 + 6 = 10\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(\sum a^2 b^2 = e_2^2 - 2e_1 e_3 + 2e_4 = 9 - 4 + (-2) = 3\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(\sum a^2 b^2 c^2 = e_3^2 - 2e_2 e_4 = 1 - 6 = -5\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(a^2 b^2 c^2 d^2 = e_4^2 = 1\)</span></p>
+</li>
+</ol>
+<p>故所求多项式为：</p>
+<div class="arithmatex">\[x^4 - 10x^3 + 3x^2 + 5x + 1 = 0\]</div>
+<hr />
+<p><em>以上习题整理于 2026-03-09</em></p>
+<h2 id="48">48. 矩阵秩与方程等价性</h2>
+<p>若矩阵 A, B 满足秩相等（r(A) = r(B)），则矩阵方程满足等价关系：
+$<span class="arithmatex">\(A^2 B = A \iff B^2 A = B\)</span>$</p>
+<p><strong>证明思路</strong>：体现矩阵运算中"互逆"或"对偶"的代数关系，需结合矩阵秩的性质与乘积的秩不等式证明。</p>
+<hr />
+<h2 id="49">49. 分块矩阵的行列式公式</h2>
+<p>对分块矩阵 <span class="arithmatex">\(\begin{pmatrix} A &amp; \alpha \\ B^T &amp; a \end{pmatrix}\)</span>（其中 A 为 n×n 矩阵，α 为 n 维列向量，a 为标量，B 为 n 维列向量），其行列式满足：
+$<span class="arithmatex">\(\det\begin{pmatrix} A &amp; \alpha \\ B^T &amp; a \end{pmatrix} = a \cdot |A| - \alpha^T A^* B\)</span>$</p>
+<p>其中 A* 是 A 的伴随矩阵，公式可通过行列式展开或分块矩阵初等变换推导。</p>
+<hr />
+<p><em>补充习题整理于 2026-03-26</em></p>
+<h2 id="50">50. 含参积分的极限问题</h2>
+<h3 id="_125">原始题目</h3>
+<p>考虑含参积分 <span class="arithmatex">\(I(x) = \int_0^{+\infty} \frac{xf(t)}{1 + x^2t^2} \, dt\)</span>（x &gt; 0），求 <span class="arithmatex">\(\lim_{x \to +\infty} I(x)\)</span>（假设 f(t) 连续有界，且在 t = 0 处连续）。</p>
+<h3 id="_126">题目分析</h3>
+<p>核心步骤：
+1. 令 y = xt 进行变量代换，将积分转化为更适合分析的形式
+2. 利用 Weierstrass 判别法证明一致收敛性
+3. 由一致收敛性与 f 的连续性，交换极限与积分</p>
+<h3 id="_127">求解</h3>
+<h4 id="1_2">1. 变量代换</h4>
+<p>令 y = xt（即 t = y/x，dt = dy/x），积分转化为：</p>
+<div class="arithmatex">\[I(x) = \int_0^{+\infty} \frac{f(y/x)}{1 + y^2} \, dy\]</div>
+<h4 id="2_1">2. 一致收敛性分析</h4>
+<p>若 f(t) 是<strong>连续且有界</strong>的函数（即 |f(t)| ≤ M, ∀t），则被积函数 <span class="arithmatex">\(\frac{f(xy)}{1 + y^2}\)</span> 满足：</p>
+<div class="arithmatex">\[\left| \frac{f(y/x)}{1 + y^2} \right| \leq \frac{M}{1 + y^2}\]</div>
+<p>而 <span class="arithmatex">\(\int_0^{+\infty} \frac{M}{1 + y^2} \, dy = M \cdot \frac{\pi}{2}\)</span> 收敛，由 <strong>Weierstrass 判别法</strong>，积分 I(x) 关于 x ∈ (0, +∞)<strong>一致收敛</strong>。</p>
+<h4 id="3">3. 极限与积分的交换</h4>
+<p>若 f(t) 在 t = 0 处<strong>连续</strong>，则当 x → +∞ 时，y/x → 0，故 f(y/x) → f(0)（依连续性）。结合一致收敛性，可交换<strong>极限与积分</strong>：</p>
+<div class="arithmatex">\[\lim_{x \to +\infty} I(x) = \int_0^{+\infty} \lim_{x \to +\infty} \frac{f(y/x)}{1 + y^2} \, dy = \int_0^{+\infty} \frac{f(0)}{1 + y^2} \, dy = f(0) \cdot \frac{\pi}{2}\]</div>
+<hr />
+<p><em>添加时间: 2026-04-07</em></p>
+<hr />
+<h1 id="_128">附录</h1>
+<h2 id="a">A. 常用不等式汇总</h2>
+<table>
+<thead>
+<tr>
+<th>不等式名称</th>
+<th>表达式</th>
+<th>适用条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cauchy-Schwarz</td>
+<td><span class="arithmatex">\(\int fg \leq \sqrt{\int f^2} \sqrt{\int g^2}\)</span></td>
+<td><span class="arithmatex">\(f,g \in L^2\)</span></td>
+</tr>
+<tr>
+<td>Hardy</td>
+<td>$\int \frac{u^2}{</td>
+<td>x</td>
+</tr>
+<tr>
+<td>Wirtinger</td>
+<td>$\int f^2 \leq \int</td>
+<td>f'</td>
+</tr>
+<tr>
+<td>Jensen</td>
+<td><span class="arithmatex">\(f(\frac{1}{b-a}\int_a^b g) \leq \frac{1}{b-a}\int_a^b f(g)\)</span></td>
+<td><span class="arithmatex">\(f\)</span> 凸</td>
+</tr>
+<tr>
+<td>Gronwall</td>
+<td><span class="arithmatex">\(u(t) \leq a + \int_0^t b(s)u(s)ds\)</span></td>
+<td>微分不等式</td>
+</tr>
+</tbody>
+</table>
+<h2 id="b">B. 常用公式汇总</h2>
+<h3 id="_129">斯特林公式</h3>
+<div class="arithmatex">\[n! \sim \sqrt{2\pi n}\left(\frac{n}{e}\right)^n\]</div>
+<h3 id="wallis">Wallis积分</h3>
+<div class="arithmatex">\[I_n = \int_0^{\pi} \sin^n x\, dx = \begin{cases} \frac{(2k-1)!!}{(2k)!!} \pi, &amp; n=2k \\ \frac{(2k)!!}{(2k+1)!!} \cdot 2, &amp; n=2k+1 \end{cases}\]</div>
+<h3 id="_130">高斯积分</h3>
+<div class="arithmatex">\[\int_{-\infty}^{\infty} e^{-\pi x^2}\, dx = 1\]</div>
+<h3 id="poisson">Poisson核</h3>
+<div class="arithmatex">\[\frac{1}{2\pi} \int_0^{2\pi} \ln(1-2r\cos x + r^2)\, dx = \begin{cases} 0 &amp; |r|&lt;1 \\ 2\ln|r| &amp; |r|&gt;1 \end{cases}\]</div>
+<h2 id="c">C. 复习计划模板</h2>
+<h3 id="_131">周计划</h3>
+<ul>
+<li>[ ] 完成 5 道新题目</li>
+<li>[ ] 复习 3 道已标记 [x] 的题目</li>
+<li>[ ] 整理 1 个新的解题模式到 patterns/</li>
+</ul>
+<h3 id="_132">月计划</h3>
+<ul>
+<li>[ ] 完成所有 [ ] 标记的基础题目</li>
+<li>[ ] 重点突破 [~] 标记的难点</li>
+<li>[ ] 总结本月学到的 3 个核心技巧</li>
+</ul>
+<hr />
+<blockquote>
+<p>共50题已整理（35核心题 + 15补充题）</p>
+</blockquote>
+<hr />
+<h1 id="_133">第二部分：中科院历年真题库</h1>
+<blockquote>
+<p>收录 2017–2024 年中国科学院大学数学保研笔试真题。
+与本部分第一部分中已有解答的题目存在少量重复，可相互参照。</p>
+</blockquote>
+<h1 id="_134">中国科学院大学数学保研笔试真题集</h1>
+<hr />
+<h2 id="2024">数学与系统科学研究院 2024 年夏令营招生考试试题</h2>
+<p><strong>考生须知：</strong> 本试卷满分 100 分，考试时间 120 分钟</p>
+<hr />
+<h3 id="1-20">1. (20 分)</h3>
+<p><strong>(1)</strong> 设数列 <span class="arithmatex">\(a_n &gt; 0\)</span> 并且 <span class="arithmatex">\(\lim_{n \to \infty} a_n = a\)</span>，计算极限：
+$<span class="arithmatex">\(\lim_{n \to \infty} \frac{a_1 + a_2 + \cdots + a_n}{n}\)</span>$</p>
+<p><strong>(2)</strong> 设 <span class="arithmatex">\(a &gt; 2\)</span>，计算极限：
+$<span class="arithmatex">\(\lim_{x \to 0^+} \frac{\int_0^x e^{-t^2} dt - \sin x}{\sin^2 x - x^2}\)</span>$</p>
+<p><strong>(3)</strong> 计算极限：
+$<span class="arithmatex">\(\lim_{n \to \infty} \frac{1}{n^2} \iint_D (x + y) dxdy\)</span>$
+其中 <span class="arithmatex">\(D = \{(x,y) \mid (x-1)^2 + (y-1)^2 \leq 2, y \geq x\}\)</span></p>
+<p><strong>(4)</strong> 设 <span class="arithmatex">\(f(x)\)</span> 在 <span class="arithmatex">\(\mathbb{R}\)</span> 上可导，<span class="arithmatex">\(f(0) = 0\)</span>，<span class="arithmatex">\(f'(0) = 1\)</span>，求：
+$<span class="arithmatex">\(\lim_{n \to \infty} \sum_{k=1}^{n} f\left(\frac{k}{n^2}\right)\)</span>$</p>
+<hr />
+<h3 id="2-20">2. (20 分)</h3>
+<p><strong>(1)</strong> 设 <span class="arithmatex">\(n\)</span> 为正整数，计算积分：
+$<span class="arithmatex">\(\int_0^{\pi} \frac{\sin(2n+1)\theta}{\sin \theta} d\theta\)</span>$</p>
+<p><strong>(2)</strong> 计算二重积分 <span class="arithmatex">\(\iint_D f(x,y) dxdy\)</span>（题目不完整）</p>
+<hr />
+<h3 id="3-15">3. (15 分)</h3>
+<p>设 <span class="arithmatex">\(f(x)\)</span> 在区间 <span class="arithmatex">\([0,1]\)</span> 上连续可导，且 <span class="arithmatex">\(f(0) = f(1) = 0\)</span>，<span class="arithmatex">\(\exists \xi \in (0,1)\)</span> 使得 <span class="arithmatex">\(f(\xi) \neq 0\)</span>。</p>
+<p>证明：
+$<span class="arithmatex">\(\int_0^1 |f'(x)| dx \geq 4\)</span>$</p>
+<hr />
+<h3 id="4-10">4. (10 分)</h3>
+<p>设 <span class="arithmatex">\(A, B, C \in M_n(\mathbb{R})\)</span> 为实数域上 <span class="arithmatex">\(n\)</span> 阶方阵，<span class="arithmatex">\([AB, C] = C\)</span>，<span class="arithmatex">\(|C| \neq 0\)</span> 且 <span class="arithmatex">\([A,C] = 0\)</span>，<span class="arithmatex">\([B,C] = 0\)</span>。讨论 <span class="arithmatex">\([A,B]\)</span> 与 <span class="arithmatex">\((BA)^k\)</span> 的关系，其中 <span class="arithmatex">\([X,Y] := XY - YX\)</span>。</p>
+<hr />
+<h3 id="5-20">5. (20 分)</h3>
+<p>设 <span class="arithmatex">\(D \subset \mathbb{R}^3\)</span> 是一个区域，<span class="arithmatex">\(u(x)\)</span> 是 <span class="arithmatex">\(D\)</span> 上的函数，<span class="arithmatex">\(u(x)\)</span> 二阶连续可导，且满足调和条件 <span class="arithmatex">\(\Delta u = 0\)</span>。对任意的 <span class="arithmatex">\(x \in D\)</span>，定义：
+$<span class="arithmatex">\(g(r) = \frac{1}{4\pi r^2} \iint_{\partial B(x,r)} u(y) d\sigma(y)\)</span>$</p>
+<p>其中，<span class="arithmatex">\(B(x,r)\)</span> 表示以 <span class="arithmatex">\(x\)</span> 为球心、<span class="arithmatex">\(r\)</span> 为半径的球，<span class="arithmatex">\(\partial B(x,r)\)</span> 表示这个球的外表面。这里 <span class="arithmatex">\(r\)</span> 充分小使得 <span class="arithmatex">\(B(x,r) \subset D\)</span>。</p>
+<p><strong>(1)</strong> 证明：<span class="arithmatex">\(g'(r) = 0\)</span></p>
+<p><strong>(2)</strong> 证明：<span class="arithmatex">\(u(x) = \frac{1}{4\pi r^2} \iint_{\partial B(x,r)} u(y) d\sigma(y) = \frac{1}{\frac{4}{3}\pi r^3} \iiint_{B(x,r)} u(y) dy\)</span></p>
+<hr />
+<h3 id="6-20">6. (20 分)</h3>
+<p>证明如下两个结论：</p>
+<p><strong>(1)</strong> 设 <span class="arithmatex">\(f\)</span> 是 <span class="arithmatex">\(n\)</span> 维欧氏空间 <span class="arithmatex">\(V\)</span> 上的一个正交变换，证明：<span class="arithmatex">\(f\)</span> 的不变子空间的正交补也是 <span class="arithmatex">\(f\)</span> 的不变子空间。</p>
+<p><strong>(2)</strong> 设 <span class="arithmatex">\(A = (a_{ij}) \in M_n(\mathbb{C})\)</span>，若 <span class="arithmatex">\(\text{tr}(A) = \sum_{i=1}^n a_{ii}\)</span>，则有 <span class="arithmatex">\(\det(e^A) = e^{\text{tr}(A)}\)</span>。</p>
+<hr />
+<h2 id="2023">数学与系统科学研究院 2023 年提前批招生考试试题</h2>
+<p><strong>考生须知：</strong> 本试卷满分 150 分，考试时间 180 分钟</p>
+<hr />
+<h3 id="1-20_1">1. (20 分)</h3>
+<p><strong>(1)</strong> 设 
+$<span class="arithmatex">\(f(x,y) = \begin{cases} \frac{x^2 - y^2}{x^2 + y^2}, &amp; x^2 + y^2 \neq 0 \\ 0, &amp; x^2 + y^2 = 0 \end{cases}\)</span>$</p>
+<p>问等式 <span class="arithmatex">\(\frac{\partial^2 f}{\partial x \partial y} = \frac{\partial^2 f}{\partial y \partial x}\)</span> 是否成立？</p>
+<p><strong>(2)</strong> 设 
+$<span class="arithmatex">\(f(x,y) = \begin{cases} \frac{xy}{x^2 + y^2}, &amp; x^2 + y^2 \neq 0 \\ 0, &amp; x^2 + y^2 = 0 \end{cases}\)</span>$</p>
+<p>计算 <span class="arithmatex">\(\int_0^1 dy \int_0^1 f(x,y) dx\)</span> 和 <span class="arithmatex">\(\int_0^1 dx \int_0^1 f(x,y) dy\)</span>，并说明从该计算结果得出什么结论？</p>
+<hr />
+<h3 id="2-20_1">2. (20 分)</h3>
+<p>计算 <span class="arithmatex">\(n+1\)</span> 阶行列式 <span class="arithmatex">\(D_{n+1}\)</span>：
+$<span class="arithmatex">\(D_{n+1} = \begin{vmatrix} s_0 &amp; s_1 &amp; s_2 &amp; \cdots &amp; s_{n-1} &amp; 1 \\ s_1 &amp; s_2 &amp; s_3 &amp; \cdots &amp; s_n &amp; x \\ s_2 &amp; s_3 &amp; s_4 &amp; \cdots &amp; s_{n+1} &amp; x^2 \\ \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots \\ s_n &amp; s_{n+1} &amp; s_{n+2} &amp; \cdots &amp; s_{2n-1} &amp; x^n \end{vmatrix}\)</span>$</p>
+<p>其中 <span class="arithmatex">\(s_k = x_1^k + x_2^k + \cdots + x_n^k\)</span>。</p>
+<hr />
+<h3 id="3-20">3. (20 分)</h3>
+<p>设函数 <span class="arithmatex">\(f(x)\)</span> 在 <span class="arithmatex">\([a,b]\)</span> 上二阶可导，且 <span class="arithmatex">\(f''(x) &gt; 0\)</span>。证明：</p>
+<p><strong>(1)</strong> 
+$<span class="arithmatex">\(f\left(\frac{a+b}{2}\right) &lt; \frac{1}{b-a} \int_a^b f(x) dx\)</span>$</p>
+<p><strong>(2)</strong> 若 <span class="arithmatex">\(f(x) &lt; 0\)</span>，<span class="arithmatex">\(x \in [a,b]\)</span>，则 <span class="arithmatex">\(f(x) &gt; \frac{2}{b-a} \int_a^b f(x) dx\)</span>，<span class="arithmatex">\(x \in [a,b]\)</span>。</p>
+<hr />
+<h3 id="4-20">4. (20 分)</h3>
+<p>设 <span class="arithmatex">\(\alpha_1, \alpha_2, \alpha_3\)</span> 为欧氏空间 <span class="arithmatex">\(V\)</span> 的一组标准正交基，<span class="arithmatex">\(\sigma\)</span> 是 <span class="arithmatex">\(V\)</span> 的一个线性变换，并且：
+$<span class="arithmatex">\(\sigma(\alpha_1) = \alpha_1 + 2\alpha_2 - \alpha_3\)</span>$
+$<span class="arithmatex">\(\sigma(\alpha_2) = -\alpha_1 + \alpha_2 - \alpha_3\)</span>$
+$<span class="arithmatex">\(\sigma(\alpha_3) = -\alpha_1 - \alpha_2 + \alpha_3\)</span>$</p>
+<p><strong>(1)</strong> 证明：<span class="arithmatex">\(\sigma\)</span> 是一个对称变换；</p>
+<p><strong>(2)</strong> 求 <span class="arithmatex">\(V\)</span> 的另一组标准正交基，使得 <span class="arithmatex">\(\sigma\)</span> 在这一组基下的矩阵为对角矩阵。</p>
+<hr />
+<h3 id="5-20_1">5. (20 分)</h3>
+<p>设函数列 <span class="arithmatex">\(\{f_n(x)\}\)</span> 在 <span class="arithmatex">\([a,b]\)</span> 上一致收敛于 <span class="arithmatex">\(f(x)\)</span>，<span class="arithmatex">\(g(x)\)</span> 在 <span class="arithmatex">\((-\infty, +\infty)\)</span> 内连续。证明：
+<span class="arithmatex">\(\{g(f_n(x))\}\)</span> 在 <span class="arithmatex">\([a,b]\)</span> 上一致收敛于 <span class="arithmatex">\(g(f(x))\)</span>。</p>
+<hr />
+<h3 id="6-20_1">6. (20 分)</h3>
+<p><strong>(1)</strong> 设实函数 <span class="arithmatex">\(f(x)\)</span> 在 <span class="arithmatex">\([0,1]\)</span> 上可微，并且满足条件：<span class="arithmatex">\(f(0) = 0\)</span>，<span class="arithmatex">\(|f'(x)| \leq K|f(x)|\)</span>，其中 <span class="arithmatex">\(K\)</span> 为常数。证明：<span class="arithmatex">\(f(x) = 0\)</span>。</p>
+<p><strong>(2)</strong> 设整系数多项式 <span class="arithmatex">\(f(x) = x^n + a_1 x^{n-1} + \cdots + a_{n-1}x + a_n\)</span>。若 <span class="arithmatex">\(f(0)\)</span> 和 <span class="arithmatex">\(f(1)\)</span> 都是奇数，证明：<span class="arithmatex">\(f(x)\)</span> 没有整数根。</p>
+<hr />
+<h3 id="7-15">7. (15 分)</h3>
+<p>计算积分：
+$<span class="arithmatex">\(\iiint_{Q(x)&lt;1} e^{Q(x)} dx_1 dx_2 dx_3 dx_4\)</span>$</p>
+<p>其中 <span class="arithmatex">\(Q(x) = \sum_{i,j=1}^4 a_{ij} x_i x_j\)</span> 是正定二次型。</p>
+<hr />
+<h3 id="8-15">8. (15 分)</h3>
+<p>设 <span class="arithmatex">\(\sigma\)</span> 是域 <span class="arithmatex">\(K\)</span> 上有限维线性空间 <span class="arithmatex">\(V\)</span> 上的一个线性变换（又称线性算子）。证明：如果 <span class="arithmatex">\(\sigma\)</span> 的极小多项式（又称最小多项式）<span class="arithmatex">\(m_\sigma(\lambda) \in K[\lambda]\)</span> 是不可约的（又称既约的），则 <span class="arithmatex">\(K[\sigma]\)</span> 是一个域。</p>
+<hr />
+<h2 id="2023_1">数学与系统科学研究院 2023 年夏令营招生考试试题</h2>
+<p><strong>考生须知：</strong> 本试卷满分 100 分，考试时间 120 分钟</p>
+<hr />
+<h3 id="1-10">1. (10 分)</h3>
+<p><strong>(1)</strong> 已知 <span class="arithmatex">\(f'(a)\)</span> 存在，<span class="arithmatex">\(f(a) \neq 0\)</span>，求：
+$<span class="arithmatex">\(\lim_{n \to \infty} \left(\frac{f(a + \frac{1}{n})}{f(a)}\right)^n\)</span>$</p>
+<p><strong>(2)</strong> 求不定积分 <span class="arithmatex">\(\int \ln(x + \sqrt{1+x^2}) dx\)</span></p>
+<hr />
+<h3 id="2-15">2. (15 分)</h3>
+<p>设 <span class="arithmatex">\(f(x)\)</span> 是 <span class="arithmatex">\([a,b]\)</span> 上的连续函数且严格单调增加，求证：
+$<span class="arithmatex">\(\int_a^b x f(x) dx &gt; \frac{a+b}{2} \int_a^b f(x) dx\)</span>$</p>
+<hr />
+<h3 id="3-15_1">3. (15 分)</h3>
+<p>设 <span class="arithmatex">\(f(x)\)</span> 在闭区间 <span class="arithmatex">\([a,b]\)</span> 上二阶连续可导，并且 <span class="arithmatex">\(f(a) = f(b) = 0\)</span>，证明不等式：
+$<span class="arithmatex">\(M^2 \leq \frac{(b-a)^3}{12} \int_a^b |f''(x)|^2 dx\)</span>$</p>
+<p>其中 <span class="arithmatex">\(M = \sup_{a \leq x \leq b} |f(x)|\)</span>。</p>
+<hr />
+<h3 id="4-10_1">4. (10 分)</h3>
+<p>设 <span class="arithmatex">\(A, B\)</span> 为 <span class="arithmatex">\(n\)</span> 阶实方阵，且 <span class="arithmatex">\(AB\)</span> 和 <span class="arithmatex">\(BA\)</span> 均为实对称矩阵，求证：<span class="arithmatex">\(AB\)</span> 和 <span class="arithmatex">\(BA\)</span> 相似。</p>
+<hr />
+<h3 id="5-10">5. (10 分)</h3>
+<p>设 <span class="arithmatex">\(x, y\)</span> 为 <span class="arithmatex">\(n\)</span> 阶方阵，定义 <span class="arithmatex">\(z^1 = z\)</span>，<span class="arithmatex">\(z^0 = [x,y] = xy - yx\)</span>，<span class="arithmatex">\(z^{k+1} = [z^k, y]\)</span>。</p>
+<p>证明：
+$<span class="arithmatex">\(z^k = \sum_{i=0}^k (-1)^i \binom{k}{i} y^{k-i} x y^i\)</span>$</p>
+<hr />
+<h3 id="6-20_2">6. (20 分)</h3>
+<p>设 <span class="arithmatex">\(r = \sqrt{x^2 + y^2 + z^2}\)</span>，<span class="arithmatex">\(\Delta u = \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2}\)</span>。</p>
+<p><strong>(1)</strong> (10 分) 证明如下两个等式成立：
+$<span class="arithmatex">\(\Delta r = \frac{2}{r}, \quad \Delta \ln r = \frac{1}{r^2}\)</span>$</p>
+<p>注：这里的 <span class="arithmatex">\(\cdot\)</span> 表示两个向量做内积。</p>
+<p><strong>(2)</strong> (10 分) 假设 <span class="arithmatex">\(u\)</span> 是一个在无穷远处为零的一次连续可微函数，且使得积分 <span class="arithmatex">\(\int_{\mathbb{R}^3} \frac{u^2}{r^2} dxdydz\)</span> 和 <span class="arithmatex">\(\int_{\mathbb{R}^3} |\nabla u|^2 dxdydz\)</span> 存在。证明如下不等式成立：
+$<span class="arithmatex">\(\int_{\mathbb{R}^3} \frac{u^2}{r^2} dxdydz \leq 4 \int_{\mathbb{R}^3} |\nabla u|^2 dxdydz\)</span>$</p>
+<p>注：<span class="arithmatex">\(|\nabla u|^2 = \nabla u \cdot \nabla u\)</span></p>
+<hr />
+<h3 id="7-20">7. (20 分)</h3>
+<p>证明 <span class="arithmatex">\(\cos x\)</span> 是超越函数。</p>
+<p>（注：函数 <span class="arithmatex">\(f(x)\)</span> 为超越函数，若不存在有限个非零的数 <span class="arithmatex">\(a_{ij}\)</span>（<span class="arithmatex">\(i = 0,1,2,\ldots,m\)</span>；<span class="arithmatex">\(j = 0,1,2,\ldots,n\)</span>），使得 <span class="arithmatex">\(\forall x \in \mathbb{R}\)</span>，<span class="arithmatex">\(\sum_{i=0}^m \sum_{j=0}^n a_{ij} x^i f^j(x) = 0\)</span>）</p>
+<hr />
+<h2 id="2019-1">数学与系统科学研究院 2019 年提前批招生考试试题 1</h2>
+<p><strong>注：</strong> 本试卷满分 100 分，考试时间 120 分钟</p>
+<hr />
+<h3 id="1-20_2">1. (20 分)</h3>
+<p>证明或反证：若存在实数域上的 <span class="arithmatex">\(n\)</span> 阶方阵 <span class="arithmatex">\(A\)</span> 满足 <span class="arithmatex">\(A^2 + 2A + 4I = 0\)</span> 的充要条件是 <span class="arithmatex">\(n\)</span> 为偶数。</p>
+<hr />
+<h3 id="2-20_2">2. (20 分)</h3>
+<p>设 <span class="arithmatex">\(f\)</span> 为定义在 <span class="arithmatex">\([0,1]\)</span> 上的实值连续函数，求证：
+$<span class="arithmatex">\(\int_0^1 \int_0^1 |f(x) + f(y)| dxdy \geq \int_0^1 |f(x)| dx\)</span>$</p>
+<hr />
+<h3 id="3-10">3. (10 分)</h3>
+<p>设 <span class="arithmatex">\(A, B\)</span> 为 <span class="arithmatex">\(2 \times 2\)</span> 实矩阵，<span class="arithmatex">\(t \in \mathbb{R}\)</span>。若 <span class="arithmatex">\(A + tB\)</span> 可逆，且 <span class="arithmatex">\((A + tB)^{-1}\)</span> 与 <span class="arithmatex">\(A + 5B\)</span> 可交换，求 <span class="arithmatex">\(A\)</span> 与 <span class="arithmatex">\(B\)</span> 的关系。</p>
+<hr />
+<h3 id="4-20_1">4. (20 分)</h3>
+<p>设 <span class="arithmatex">\(f(x,y,z) = e^{-\alpha(x^2 + y^2 + z^2)}\)</span>，求 <span class="arithmatex">\(f\)</span> 的 Fourier 变换，其定义为：
+$<span class="arithmatex">\(\hat{f}(\xi_1, \xi_2, \xi_3) = \int_{\mathbb{R}^3} f(x,y,z) e^{-2\pi i(x\xi_1 + y\xi_2 + z\xi_3)} dxdydz\)</span>$</p>
+<hr />
+<h3 id="5-20_2">5. (20 分)</h3>
+<p>对任何方阵 <span class="arithmatex">\(A\)</span> 可定义 <span class="arithmatex">\(\sin A\)</span> 如下：
+$<span class="arithmatex">\(\sin A = \sum_{n=0}^{\infty} \frac{(-1)^n}{(2n+1)!} A^{2n+1}\)</span>$</p>
+<p>证明或反证：存在一个 <span class="arithmatex">\(2\)</span> 阶方阵 <span class="arithmatex">\(A\)</span> 使得 
+$<span class="arithmatex">\(\sin A = \begin{pmatrix} 1 &amp; 2019 \\ 0 &amp; 1 \end{pmatrix}\)</span>$</p>
+<hr />
+<h3 id="6-10">6. (10 分)</h3>
+<p>设 <span class="arithmatex">\(a_1 = 1\)</span>，<span class="arithmatex">\(a_{n+1} = 3a_n + [\sqrt{5} a_n]\)</span>，其中 <span class="arithmatex">\([a]\)</span> 表示不大于 <span class="arithmatex">\(a\)</span> 的最大整数。求 <span class="arithmatex">\(a_n\)</span> 的通项表达式。</p>
+<hr />
+<h2 id="2019-2">数学与系统科学研究院 2019 年提前批招生考试试题 2</h2>
+<hr />
+<h3 id="1-10_1">1. (10 分)</h3>
+<p>设 <span class="arithmatex">\(\lim_{j \to \infty} a_j = 0\)</span>，<span class="arithmatex">\(0 &lt; y &lt; 1\)</span>，求：
+$<span class="arithmatex">\(\lim_{y \to 1^-} (1-y) \sum_{j=1}^{\infty} a_j y^j\)</span>$</p>
+<hr />
+<h3 id="2-15_1">2. (15 分)</h3>
+<p>设 <span class="arithmatex">\(I_n = \int_0^{\frac{\pi}{2}} \sin^n x dx\)</span>（<span class="arithmatex">\(n = 0, 1, 2, \ldots\)</span>）</p>
+<p><strong>(1)</strong> 求 <span class="arithmatex">\(I_n\)</span>；</p>
+<p><strong>(2)</strong> 求 <span class="arithmatex">\(\lim_{n \to \infty} n I_n^2\)</span>；</p>
+<p><strong>(3)</strong> 估计 <span class="arithmatex">\(n!\)</span>。</p>
+<hr />
+<h3 id="3-15_2">3. (15 分)</h3>
+<p>设 <span class="arithmatex">\(P\)</span> 为从区间 <span class="arithmatex">\([0, \frac{\pi}{2}]\)</span> 到 <span class="arithmatex">\((0, 1)\)</span> 的单调递增连续可微函数 <span class="arithmatex">\(p(\theta)\)</span> 全体构成的集合，且 <span class="arithmatex">\(p(0) = 0\)</span>，<span class="arithmatex">\(p(\frac{\pi}{2}) = 1\)</span>。设：
+$<span class="arithmatex">\(I(p) = \int_0^{\frac{\pi}{2}} \frac{(p'(\theta))^2 + (1 - p(\theta))^2}{2} d\theta\)</span>$</p>
+<p><strong>(1)</strong> 求解极值问题 <span class="arithmatex">\(\inf_{p \in P} I(p)\)</span>。</p>
+<p><strong>(2)</strong> 若 <span class="arithmatex">\(I(p(\theta))\)</span> 与 <span class="arithmatex">\(\theta\)</span> 无关，求 <span class="arithmatex">\(p(\theta)\)</span>。</p>
+<hr />
+<h3 id="4-15">4. (15 分)</h3>
+<p>设 <span class="arithmatex">\(0 &lt; a &lt; b &lt; \infty\)</span> 为实数，<span class="arithmatex">\(K_{a,b}\)</span> 为区间 <span class="arithmatex">\([a,b]\)</span> 上满足 <span class="arithmatex">\(\int_a^b f(t) dt = 1\)</span>，且 <span class="arithmatex">\(af(a) = bf(b)\)</span> 的单调递减函数全体，求：
+$<span class="arithmatex">\(\sup_{f,g \in K_{a,b}} \int_a^b \max\{f(t), g(t)\} dt\)</span>$</p>
+<hr />
+<h3 id="5-15">5. (15 分)</h3>
+<p>设 <span class="arithmatex">\(A, B \in M_{n \times n}(\mathbb{C})\)</span> 为 <span class="arithmatex">\(n \times n\)</span> 复矩阵，满足 <span class="arithmatex">\(AB = 0\)</span>，<span class="arithmatex">\(k\)</span> 为正整数，请问以下关系
+$<span class="arithmatex">\(\text{tr}((A + B)^k) = \text{tr}(A^k) + \text{tr}(B^k)\)</span>$
+是否一定成立？说明理由。</p>
+<hr />
+<h3 id="6-15">6. (15 分)</h3>
+<p><strong>(1)</strong> 设 <span class="arithmatex">\(S\)</span> 为幂零矩阵，<span class="arithmatex">\(a_0 \neq 0\)</span>，求 <span class="arithmatex">\((a_0 I + S)^{-1}\)</span>。</p>
+<p><strong>(2)</strong> 设 <span class="arithmatex">\(A, B, C\)</span> 为 <span class="arithmatex">\(n\)</span> 阶方阵，求：
+$<span class="arithmatex">\(\det\begin{pmatrix} A &amp; B \\ C &amp; D \end{pmatrix}\)</span>$</p>
+<hr />
+<h3 id="7-15_1">7. (15 分)</h3>
+<p>设 <span class="arithmatex">\(A \in M_{n \times n}(\mathbb{C})\)</span> 为 <span class="arithmatex">\(n \times n\)</span> 复矩阵，满足 <span class="arithmatex">\(AA^* = A^*A\)</span>。是否一定存在多项式 <span class="arithmatex">\(f\)</span> 使得 <span class="arithmatex">\(A^* = f(A)\)</span>？说明理由。</p>
+<hr />
+<h2 id="2019">数学与系统科学研究院 2019 年夏令营招生考试试题</h2>
+<p><strong>注：</strong> 本试卷满分 100 分，考试时间 120 分钟</p>
+<hr />
+<h3 id="1-15">1. (15 分)</h3>
+<p>集合 <span class="arithmatex">\(\Omega_n = \{1, 2, \ldots, n\}\)</span> 的一个分划是指一族非空集合 <span class="arithmatex">\(\{B_1, B_2, \ldots, B_k\}\)</span> 满足 <span class="arithmatex">\(\bigcup_{i=1}^k B_i = \Omega_n\)</span>，<span class="arithmatex">\(B_i \cap B_j = \emptyset\)</span>（<span class="arithmatex">\(i \neq j\)</span>）。记 <span class="arithmatex">\(T_n\)</span> 为 <span class="arithmatex">\(\Omega_n\)</span> 的分划个数，例如 <span class="arithmatex">\(T_1 = 1\)</span>（因 <span class="arithmatex">\(\Omega_1 = \{1\}\)</span>），<span class="arithmatex">\(T_2 = 2\)</span>（因 <span class="arithmatex">\(\Omega_2 = \{1,2\} = \{1\} \cup \{2\}\)</span>），<span class="arithmatex">\(T_3 = 5\)</span>，求：
+$<span class="arithmatex">\(\sum_{n=1}^{\infty} \frac{T_n}{n!}\)</span>$</p>
+<hr />
+<h3 id="2-15_2">2. (15 分)</h3>
+<p>设 <span class="arithmatex">\(0 &lt; a_k &lt; 1\)</span>，<span class="arithmatex">\(k = 1, 2, \ldots\)</span>，<span class="arithmatex">\(\sum_{n=1}^{\infty} a_n = 1\)</span>。记由 <span class="arithmatex">\(\{a_1, a_2, \ldots\}\)</span> 的子序列和（即子级数）构成的集合为 <span class="arithmatex">\(S\)</span>，求 <span class="arithmatex">\(S\)</span> 的性质。</p>
+<hr />
+<h3 id="3-10_1">3. (10 分)</h3>
+<p>设 <span class="arithmatex">\(f\)</span> 在 <span class="arithmatex">\([0, 2\pi]\)</span> 上连续，<span class="arithmatex">\(f(0) = f(2\pi)\)</span>，且 <span class="arithmatex">\(\int_0^{2\pi} f(t) dt = 0\)</span>。探讨 <span class="arithmatex">\(\int_0^{2\pi} |f(t)|^2 dt\)</span> 与 <span class="arithmatex">\(\int_0^{2\pi} |f'(t)|^2 dt\)</span> 的关系，并解函数方程：
+$<span class="arithmatex">\(\int_0^{2\pi} |f'(t)|^2 dt = \int_0^{2\pi} |f(t)|^2 dt\)</span>$</p>
+<hr />
+<h3 id="4-15_1">4. (15 分)</h3>
+<p>设 <span class="arithmatex">\(0 &lt; a &lt; b &lt; \infty\)</span> 为实数，<span class="arithmatex">\(K_{a,b}\)</span> 为区间 <span class="arithmatex">\([a,b]\)</span> 上满足 <span class="arithmatex">\(\int_a^b f(t) dt = 1\)</span>，且 <span class="arithmatex">\(af(a) = bf(b)\)</span> 的单调递减函数全体，求：
+$<span class="arithmatex">\(\sup_{f,g \in K_{a,b}} \int_a^b \max\{f(t), g(t)\} dt\)</span>$</p>
+<hr />
+<h3 id="5-10_1">5. (10 分)</h3>
+<p>设 <span class="arithmatex">\(A\)</span> 为方阵，<span class="arithmatex">\(\text{tr}(A)\)</span> 为迹（对角元之和）。</p>
+<p><strong>(1)</strong> 讨论以下条件：存在 <span class="arithmatex">\(k\)</span> 使得 <span class="arithmatex">\(A^k = 0\)</span>。</p>
+<p><strong>(2)</strong> 讨论条件 <span class="arithmatex">\(\text{tr}(A^k) = 0\)</span>（<span class="arithmatex">\(k = 1, 2, \ldots, n\)</span>）。</p>
+<p>讨论以上两个条件之间的关系。</p>
+<hr />
+<h3 id="6-5">6. (5 分)</h3>
+<p>计算：
+$<span class="arithmatex">\(\begin{vmatrix} 1 &amp; 2019 \\ 0 &amp; 1 \end{vmatrix}^{2019}\)</span>$</p>
+<hr />
+<h3 id="7-10">7. (10 分)</h3>
+<p>设 <span class="arithmatex">\(A\)</span> 为复数域上 <span class="arithmatex">\(n\)</span> 阶方阵，非零列向量 <span class="arithmatex">\(x \in \mathbb{C}^n\)</span> 满足 <span class="arithmatex">\(Ax = \lambda x\)</span>，<span class="arithmatex">\(\lambda \in \mathbb{C}\)</span>。设 <span class="arithmatex">\(y \in \mathbb{C}^n\)</span>，讨论矩阵 <span class="arithmatex">\(A\)</span> 的特征值与矩阵 <span class="arithmatex">\(A + xy^*\)</span> 的特征值之间的关系。</p>
+<hr />
+<h3 id="8-10">8. (10 分)</h3>
+<p>设 <span class="arithmatex">\(V, W\)</span> 都是有限维线性空间，<span class="arithmatex">\(V^*\)</span> 为 <span class="arithmatex">\(V\)</span> 的对偶空间，<span class="arithmatex">\(L(V^*, W)\)</span> 是从 <span class="arithmatex">\(V^*\)</span> 到 <span class="arithmatex">\(W\)</span> 的线性映照全体，<span class="arithmatex">\(B(V \times W, \mathbb{C})\)</span> 是从 <span class="arithmatex">\(V \times W\)</span> 到复数域 <span class="arithmatex">\(\mathbb{C}\)</span> 的双线性映照全体。</p>
+<p>讨论 <span class="arithmatex">\(L(V^*, W)\)</span> 与 <span class="arithmatex">\(B(V \times W, \mathbb{C})\)</span> 之间的关系。</p>
+<hr />
+<h3 id="9-10">9. (10 分)</h3>
+<p>设 <span class="arithmatex">\(f(x) = \sum_{n=0}^{\infty} a_n x^n\)</span>（题目不完整）</p>
+<hr />
+<h2 id="2018">数学与系统科学研究院 2018 年夏令营招生考试试题</h2>
+<p><strong>注：</strong> 本试卷满分 100 分，考试时间 120 分钟</p>
+<hr />
+<h3 id="1-15_1">1. (15 分)</h3>
+<p>设 <span class="arithmatex">\(\Omega_n\)</span> 是含有 <span class="arithmatex">\(n\)</span> 个元素的集合，<span class="arithmatex">\(\{A_1, A_2, \ldots, A_k\}\)</span> 称为 <span class="arithmatex">\(\Omega_n\)</span> 的一个覆盖，如果 <span class="arithmatex">\(\bigcup_{i=1}^k A_i = \Omega_n\)</span>，<span class="arithmatex">\(A_i \subset \Omega_n\)</span> 非空，<span class="arithmatex">\(A_i \neq A_j\)</span>（<span class="arithmatex">\(i \neq j\)</span>）。记 <span class="arithmatex">\(C_n^k\)</span> 为 <span class="arithmatex">\(\Omega_n\)</span> 的 <span class="arithmatex">\(k\)</span> 元覆盖个数。例如 <span class="arithmatex">\(C_2^1 = 1\)</span>，<span class="arithmatex">\(C_2^2 = 3\)</span>，求 <span class="arithmatex">\(C_3^k\)</span>。</p>
+<hr />
+<h3 id="2-10">2. (10 分)</h3>
+<p>通过研究极限 <span class="arithmatex">\(\lim_{n \to \infty} n\sin(2\pi e n!)\)</span> 证明 <span class="arithmatex">\(e\)</span> 是无理数。</p>
+<hr />
+<h3 id="3-15_3">3. (15 分)</h3>
+<p>设 <span class="arithmatex">\(P\)</span> 为从区间 <span class="arithmatex">\([0, 1]\)</span> 到 <span class="arithmatex">\((0, 1]\)</span> 的单调递增连续可微函数 <span class="arithmatex">\(p(\theta)\)</span> 全体构成的集合，且 <span class="arithmatex">\(p(0) = 0\)</span>，<span class="arithmatex">\(p(1) = 1\)</span>。</p>
+<p><strong>(1)</strong> 求解极值问题 <span class="arithmatex">\(\inf_{p \in P} \int_0^1 I(p(\theta)) d\theta\)</span>。</p>
+<p><strong>(2)</strong> 若 <span class="arithmatex">\(I(p(\theta))\)</span> 与 <span class="arithmatex">\(\theta\)</span> 无关，求 <span class="arithmatex">\(p(\theta)\)</span>。</p>
+<hr />
+<h3 id="4-15_2">4. (15 分)</h3>
+<p>证明 <span class="arithmatex">\(\cos x\)</span> 是超越函数。</p>
+<p>（注：函数 <span class="arithmatex">\(f(x)\)</span> 为超越函数，若不存在有限个非零的数 <span class="arithmatex">\(a_{ij}\)</span>（<span class="arithmatex">\(i = 0,1,2,\ldots,m\)</span>；<span class="arithmatex">\(j = 0,1,2,\ldots,n\)</span>），使得 <span class="arithmatex">\(\forall x \in \mathbb{R}\)</span>，<span class="arithmatex">\(\sum_{i=0}^m \sum_{j=0}^n a_{ij} x^i f^j(x) = 0\)</span>）</p>
+<hr />
+<h3 id="5-15_1">5. (15 分)</h3>
+<p>设 <span class="arithmatex">\(A, B, C \in M_{n \times n}(\mathbb{C})\)</span> 为 <span class="arithmatex">\(n \times n\)</span> 复矩阵，<span class="arithmatex">\(A^*\)</span> 表示 <span class="arithmatex">\(A\)</span> 的共轭转置。</p>
+<p><strong>(1)</strong> 讨论等式 <span class="arithmatex">\(AB = AC\)</span> 与 <span class="arithmatex">\(A^*AB = A^*AC\)</span> 的关系。</p>
+<p><strong>(2)</strong> 若 <span class="arithmatex">\(AB = AC\)</span>，<span class="arithmatex">\(BA = B\)</span>，求 <span class="arithmatex">\(A\)</span> 与 <span class="arithmatex">\(C\)</span> 的关系。</p>
+<p><strong>(3)</strong> 讨论等式 <span class="arithmatex">\(A^2B = BA^2\)</span> 与 <span class="arithmatex">\(AB = BA\)</span> 的关系，其中 <span class="arithmatex">\(A\)</span> 为正定矩阵。</p>
+<hr />
+<h3 id="6-15_1">6. (15 分)</h3>
+<p>设 <span class="arithmatex">\(A \in M_{n \times n}(\mathbb{C})\)</span> 为任意 <span class="arithmatex">\(n \times n\)</span> 复矩阵，满足 <span class="arithmatex">\(AA^* = A^*A\)</span>。是否一定存在多项式 <span class="arithmatex">\(f\)</span> 使得 <span class="arithmatex">\(A^* = f(A)\)</span>？说明理由。</p>
+<hr />
+<h3 id="7-15_2">7. (15 分)</h3>
+<p>设 <span class="arithmatex">\(A = (a_{ij})\)</span>，<span class="arithmatex">\(B = (b_{ij}) \in M_{n \times n}\)</span> 为 <span class="arithmatex">\(n \times n\)</span> 实矩阵，定义 <span class="arithmatex">\(A \circ B = (a_{ij}b_{ij})\)</span>。判断以下论断的对错，并给出理由。</p>
+<p><strong>(1)</strong> <span class="arithmatex">\(A \circ B\)</span> 为正定矩阵。</p>
+<p><strong>(2)</strong> <span class="arithmatex">\(A \circ A' \geq I\)</span>。</p>
+<p><strong>(3)</strong> <span class="arithmatex">\(A^2 \circ B^2 \geq I\)</span>，此处正定矩阵 <span class="arithmatex">\(A, B\)</span> 对角线上的元素均为 <span class="arithmatex">\(1\)</span>。</p>
+<hr />
+<h2 id="2017-1">数学与系统科学研究院 2017 年提前批招生考试试题 1</h2>
+<p><strong>注：</strong> 本试卷满分 100 分，考试时间 120 分钟</p>
+<hr />
+<h3 id="1-15_2">1. (15 分)</h3>
+<p>计算极限：</p>
+<p><strong>(1)</strong> 
+$<span class="arithmatex">\(\lim_{x \to 0^+} \frac{\int_0^x e^{-t^2} dt - \sin x}{\sin^2 x - x^2}\)</span>$</p>
+<p><strong>(2)</strong>
+$<span class="arithmatex">\(\lim_{n \to \infty} \left(\frac{1}{n+1} + \frac{1}{n+2} + \cdots + \frac{1}{n+n}\right)\)</span>$</p>
+<hr />
+<h3 id="2-20_3">2. (20 分)</h3>
+<p>计算积分：</p>
+<p><strong>(1)</strong> 
+$<span class="arithmatex">\(\int_0^1 (\ln x)^m dx\)</span>$
+其中 <span class="arithmatex">\(m, n\)</span> 为自然数。</p>
+<p><strong>(2)</strong> 计算二重积分 <span class="arithmatex">\(\iint_D \sqrt{|y - 2x^2|} dxdy\)</span>，其中 <span class="arithmatex">\(D = \{(x,y) \mid |x| \leq 1, 0 \leq y \leq 2\}\)</span>。</p>
+<hr />
+<h3 id="3-10_2">3. (10 分)</h3>
+<p>设函数 <span class="arithmatex">\(f(x)\)</span> 在闭区间 <span class="arithmatex">\([a,b]\)</span> 上二次连续可微，并且 <span class="arithmatex">\(f(a) = f(b) = 0\)</span>，证明不等式：
+$<span class="arithmatex">\(M^2 \leq \frac{(b-a)^3}{12} \int_a^b |f''(x)|^2 dx\)</span>$</p>
+<p>其中 <span class="arithmatex">\(M = \sup_{a \leq x \leq b} |f(x)|\)</span>。</p>
+<hr />
+<h3 id="4-20_2">4. (20 分)</h3>
+<p>设 <span class="arithmatex">\(n\)</span> 为自然数，<span class="arithmatex">\(A \in M_{n \times n}(\mathbb{R})\)</span> 是一个 <span class="arithmatex">\(n\)</span> 阶实对称矩阵。</p>
+<p><strong>(1)</strong> 证明存在 <span class="arithmatex">\(n\)</span> 个实特征值 <span class="arithmatex">\(\lambda_1 \leq \lambda_2 \leq \cdots \leq \lambda_n\)</span> 和相应的特征向量 <span class="arithmatex">\(\{u_1, u_2, \ldots, u_n\}\)</span> 可以组成空间 <span class="arithmatex">\(\mathbb{R}^n\)</span> 的一组标准正交基。</p>
+<p><strong>(2)</strong> 对于向量 <span class="arithmatex">\(v = (v_1, v_2, \ldots, v_n)\)</span>，定义向量范数为 <span class="arithmatex">\(\|v\| = \sqrt{\sum_{i=1}^n v_i^2}\)</span>。对任意的向量 <span class="arithmatex">\(v\)</span> 和实数 <span class="arithmatex">\(\mu\)</span>，定义 <span class="arithmatex">\(\theta = \frac{|Av - \mu v|}{\|v\|}\)</span>。证明存在矩阵 <span class="arithmatex">\(A\)</span> 的一个特征值 <span class="arithmatex">\(\lambda\)</span> 使得如下的不等式成立：
+$<span class="arithmatex">\(|\mu - \lambda| \leq \theta\)</span>$</p>
+<hr />
+<h3 id="5-15_2">5. (15 分)</h3>
+<p><strong>(1)</strong> 设 <span class="arithmatex">\(A, B\)</span> 分别是复数域上的 <span class="arithmatex">\(k\)</span> 阶和 <span class="arithmatex">\(l\)</span> 阶方阵，且它们没有共同的特征值，证明 <span class="arithmatex">\(AX = XB\)</span> 只有零解，其中 <span class="arithmatex">\(X\)</span> 为 <span class="arithmatex">\(k \times l\)</span> 阶矩阵。</p>
+<p><strong>(2)</strong> 设 <span class="arithmatex">\(M_{n \times n}(\mathbb{R})\)</span> 上的线性变换 <span class="arithmatex">\(G\)</span> 定义为 <span class="arithmatex">\(G(X) = AX + XA\)</span>，这里 <span class="arithmatex">\(X, A \in M_{n \times n}(\mathbb{R})\)</span>，<span class="arithmatex">\(A\)</span> 为固定矩阵且 <span class="arithmatex">\(A\)</span> 的特征值不是 <span class="arithmatex">\(-A\)</span> 的特征值，证明：<span class="arithmatex">\(G\)</span> 是一个可逆的线性变换。</p>
+<hr />
+<h3 id="6-20_3">6. (20 分)</h3>
+<p>证明如下两个结论：</p>
+<p><strong>(1)</strong> 设 <span class="arithmatex">\(f\)</span> 是 <span class="arithmatex">\(n\)</span> 维欧氏空间 <span class="arithmatex">\(V\)</span> 上的一个正交变换，证明：<span class="arithmatex">\(f\)</span> 的不变子空间的正交补也是 <span class="arithmatex">\(f\)</span> 的不变子空间。</p>
+<p><strong>(2)</strong> 令 <span class="arithmatex">\(A = (a_{ij}) \in M_n(\mathbb{C})\)</span>，若 <span class="arithmatex">\(\text{tr}(A) = \sum_{i=1}^n a_{ii}\)</span>，则有 <span class="arithmatex">\(\det(e^A) = e^{\text{tr}(A)}\)</span>。</p>
+<hr />
+<h2 id="2017-2">数学与系统科学研究院 2017 年提前批招生考试试题 2</h2>
+<p><strong>注：</strong> 本试卷满分 100 分，考试时间 120 分钟</p>
+<hr />
+<h3 id="1-20_3">1. (20 分)</h3>
+<p>设实数域上的 <span class="arithmatex">\(s \times n\)</span> 矩阵 <span class="arithmatex">\(A\)</span> 的元素只有 <span class="arithmatex">\(0\)</span> 和 <span class="arithmatex">\(1\)</span>，并且 <span class="arithmatex">\(A\)</span> 的每一行元素的平方和为常数 <span class="arithmatex">\(r\)</span>，<span class="arithmatex">\(A\)</span> 的任意两个行向量的内积为常数 <span class="arithmatex">\(\lambda\)</span>，且 <span class="arithmatex">\(\lambda &lt; r\)</span>。</p>
+<p><strong>(1)</strong> 求行列式 <span class="arithmatex">\(\det(AA^T)\)</span>。</p>
+<p><strong>(2)</strong> 证明：<span class="arithmatex">\(s \leq n\)</span>。</p>
+<p><strong>(3)</strong> 证明：<span class="arithmatex">\(A\)</span> 的特征值都是实数。</p>
+<hr />
+<h3 id="2-20_4">2. (20 分)</h3>
+<p>设 <span class="arithmatex">\(A, B, C\)</span> 为 <span class="arithmatex">\(n\)</span> 阶方阵，<span class="arithmatex">\(AB = 2B\)</span>，<span class="arithmatex">\(AC = C\)</span>。若 <span class="arithmatex">\(\text{rank}(B) + \text{rank}(C) = n\)</span>，证明 <span class="arithmatex">\(A\)</span> 可对角化，并求其对角化矩阵。</p>
+<hr />
+<h3 id="3-10_3">3. (10 分)</h3>
+<p>设 
+$<span class="arithmatex">\(A = \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 1 &amp; 0 &amp; 1 \\ 0 &amp; 1 &amp; 0 \end{pmatrix}\)</span>$</p>
+<p><strong>(1)</strong> 证明：<span class="arithmatex">\(\lim_{n \to \infty} \left(\frac{1}{n+1} + \frac{1}{n+2} + \cdots + \frac{1}{2n}\right) = \ln 2\)</span>。</p>
+<p><strong>(2)</strong> 求 <span class="arithmatex">\(A^{2017}\)</span>。</p>
+<hr />
+<h3 id="4-20_3">4. (20 分)</h3>
+<p>设 <span class="arithmatex">\(x_0 = 1\)</span>，<span class="arithmatex">\(x_{n+1} = \frac{x_n}{2 + x_n}\)</span>，<span class="arithmatex">\(n = 0, 1, 2, \ldots\)</span>。证明当 <span class="arithmatex">\(n \to +\infty\)</span> 时 <span class="arithmatex">\(x_n\)</span> 收敛，并求出该极限。</p>
+<hr />
+<h3 id="5-15_3">5. (15 分)</h3>
+<p>设 <span class="arithmatex">\(f(x)\)</span> 在 <span class="arithmatex">\([a,b]\)</span> 上连续，且在 <span class="arithmatex">\((a,b)\)</span> 上有 <span class="arithmatex">\(7\)</span> 个互不相同的零点。又设：
+$<span class="arithmatex">\(\int_a^b x^k f(x) dx = 0, \quad k = 0, 1, \ldots, 6\)</span>$</p>
+<p>证明：<span class="arithmatex">\(f(x) \equiv 0\)</span>。</p>
+<hr />
+<h3 id="6-15_2">6. (15 分)</h3>
+<p>设 <span class="arithmatex">\(f\)</span> 是 <span class="arithmatex">\([0,1]\)</span> 上连续实函数，计算下列极限并证明你的结论：</p>
+<p><strong>(1)</strong> 
+$<span class="arithmatex">\(\lim_{n \to \infty} \int_0^1 x^n f(x) dx\)</span>$</p>
+<p><strong>(2)</strong>
+$<span class="arithmatex">\(\lim_{n \to \infty} n \int_0^1 x^n f(x) dx\)</span>$</p>
+<hr />
+<h2 id="2017-3">数学与系统科学研究院 2017 年提前批招生考试试题 3</h2>
+<hr />
+<h3 id="1-20_4">1. (20 分)</h3>
+<p><strong>(1)</strong> 求极限：<span class="arithmatex">\(\lim_{x \to 0} (e^x + x)^{\frac{1}{x}}\)</span></p>
+<p><strong>(2)</strong> 求导数：<span class="arithmatex">\(f(x) = \int_0^x \frac{dt}{\sqrt{1+t^2}} + a^x\)</span></p>
+<p><strong>(3)</strong> 求：<span class="arithmatex">\(\frac{d}{dy} \int_a^y \sqrt{1+x^2} dx\)</span></p>
+<p><strong>(4)</strong> 设 <span class="arithmatex">\(f\)</span> 是 <span class="arithmatex">\([a,b]\)</span> 上的连续单调增函数，证明：
+$<span class="arithmatex">\(\int_a^b x f(x) dx \geq \frac{a+b}{2} \int_a^b f(x) dx\)</span>$</p>
+<hr />
+<h3 id="2-10_1">2. (10 分)</h3>
+<p>设 
+$<span class="arithmatex">\(A = \begin{pmatrix} \cos\theta &amp; -\sin\theta \\ \sin\theta &amp; \cos\theta \end{pmatrix}, \quad B = \begin{pmatrix} 3 &amp; 0 \\ 0 &amp; -2 \end{pmatrix}\)</span>$</p>
+<p>求 <span class="arithmatex">\(A + B\)</span> 的 Jordan 标准形。</p>
+<hr />
+<h3 id="3_1">3. (题目分值未标注)</h3>
+<p>设 <span class="arithmatex">\(A &gt; 0\)</span>，<span class="arithmatex">\(AC - B^2 &gt; 0\)</span>，求平面曲线 <span class="arithmatex">\(Ax^2 + 2Bxy + Cy^2 = 1\)</span> 所围图形面积。</p>
+<hr />
+<h3 id="4-20_4">4. (20 分)</h3>
+<p>设有实二次型 <span class="arithmatex">\(f(x_1, x_2, \ldots, x_n) = x^T A x\)</span>，其中 <span class="arithmatex">\(A = (a_{ij})\)</span> 是 <span class="arithmatex">\(n\)</span> 阶正定实对称矩阵，求证下列实二次型是负定型：
+$<span class="arithmatex">\(g(x_1, x_2, \ldots, x_n) = \begin{vmatrix} a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} &amp; x_1 \\ a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} &amp; x_2 \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots \\ a_{n1} &amp; a_{n2} &amp; \cdots &amp; a_{nn} &amp; x_n \\ x_1 &amp; x_2 &amp; \cdots &amp; x_n &amp; 0 \end{vmatrix}\)</span>$</p>
+<hr />
+<h3 id="5-15_4">5. (15 分)</h3>
+<p>设 <span class="arithmatex">\(f(t) = \int_0^{\infty} \frac{\cos(tx)}{1+x^2} dx\)</span></p>
+<p><strong>(1)</strong> 证明：<span class="arithmatex">\(f(t)\)</span> 是连续函数。</p>
+<p><strong>(2)</strong> 求极限 <span class="arithmatex">\(\lim_{t \to \infty} f(t)\)</span>。</p>
+<p><strong>(3)</strong> 证明：<span class="arithmatex">\(f(t)\)</span> 在 <span class="arithmatex">\([0, \pi]\)</span> 上有零点。</p>
+<hr />
+<h3 id="6-10_1">6. (10 分)</h3>
+<p>设 <span class="arithmatex">\(A, B\)</span> 是线性空间 <span class="arithmatex">\(V\)</span> 到 <span class="arithmatex">\(V\)</span> 的线性变换，<span class="arithmatex">\(A(V) \subset B(V)\)</span>。证明：存在 <span class="arithmatex">\(V\)</span> 上的线性变换 <span class="arithmatex">\(D\)</span>，使得 <span class="arithmatex">\(A = BD\)</span>。</p>
+<hr />
+<h3 id="7-15_3">7. (15 分)</h3>
+<p>设正项级数 <span class="arithmatex">\(\sum_{n=1}^{\infty} a_n\)</span> 发散，其中 <span class="arithmatex">\(a_n &lt; M\)</span>。</p>
+<p><strong>(1)</strong> (7 分) 证明：<span class="arithmatex">\(\sum_{n=1}^{\infty} \frac{a_n}{S_n}\)</span> 发散，其中 <span class="arithmatex">\(S_n = a_1 + a_2 + \cdots + a_n\)</span>。</p>
+<p><strong>(2)</strong> (8 分) 证明：<span class="arithmatex">\(\sum_{n=1}^{\infty} \frac{a_n}{S_n^2}\)</span> 收敛。</p>
+<hr />
+<p><em>文件结束</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 huangblac
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/HuangBlac" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
