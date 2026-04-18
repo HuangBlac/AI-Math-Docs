@@ -1,0 +1,108 @@
+site_name: AI & Math
+site_description: 从基础数学到AI4Math前沿的知识库
+site_author: huangblac
+site_url: https://huangblac.github.io/AI-Math-Docs/
+
+theme:
+  name: material
+  language: zh
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: 切换到暗色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: 切换到亮色模式
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+  icon:
+    repo: fontawesome/brands/github
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/HuangBlac
+  generator: false
+
+plugins:
+  - search:
+      lang:
+        - zh
+        - en
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - attr_list
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - 序言与总览: index.md
+  - 基础数学:
+    - math/index.md
+    - 数学分析: math/analysis.md
+    - 高等代数: math/algebra.md
+    - 测度论: math/measure.md
+    - 概率论: math/probability.md
+    - 微分方程: math/ode-pde.md
+    - 泛函分析: math/functional.md
+    - 数理统计: math/statistics.md
+    - 多元统计: math/multivariate.md
+    - 因果推断: math/causality.md
+  - 计算数学:
+    - computation/index.md
+    - 数值线性代数: computation/num-linalg.md
+    - 数值分析: computation/num-analysis.md
+    - 数值微分方程: computation/num-pde.md
+    - 凸优化: computation/optimization.md
+    - 统计计算: computation/stat-computing.md
+    - 统计学习理论: computation/learning-theory.md
+  - 算法介绍:
+    - algorithms/index.md
+    - 神经网络: algorithms/neural-networks.md
+    - 决策树与集成学习: algorithms/decision-trees.md
+    - 贝叶斯学习: algorithms/bayesian.md
+    - 深度学习: algorithms/deep-learning.md
+    - 压缩感知: algorithms/compressed-sensing.md
+  - AI4MATH前沿:
+    - ai4math/index.md
+    - 经典论文: ai4math/papers.md
+    - 算法实例与训练体会: ai4math/examples.md
+    - 改良与实验: ai4math/improvements.md
+    - PINN概览与拷打: ai4math/pinn-overview.md
+    - PINN讨论班讲义: ai4math/pinn-seminar.md
+    - PINN训练体会: ai4math/pinn-critique.md
+
+copyright: Copyright &copy; 2026 huangblac
