@@ -6,6 +6,8 @@
 ## 内容规划（路线图）
 
 - [x] 概率工具：次高斯与集中不等式 ← 本页已开张
+- [x] Bayes 最优预测器（条件均值 / Bayes 分类器 / 超额风险）
+- [x] 分布间的差异：KL 散度 vs 范数
 - [ ] 经验风险最小化与一致偏差（见 [LFTP Ch4](lftp/ch4-erm.md)）
 - [ ] Rademacher 复杂度与泛化误差界
 - [ ] 偏差–方差分解
@@ -114,4 +116,55 @@ $$
 
 **一句话**：$\text{统计误差}\approx\dfrac{\text{模型复杂度}\ (\log\mathcal{N})}{\text{样本量}\ n}$。能拿到 $1/n$（而非 $1/\sqrt n$）全靠 Bernstein 条件 $\mathrm{Var}(g)\lesssim\mathbb{E}[g]$ 把方差与超额风险绑定。
 
+---
+
+## Bayes 最优预测器：理论最优 $f^*$ 长什么样
+
+ERM 想逼近的理论最优是 $f^*=\arg\min_f \mathcal{L}(f)$，$\mathcal{L}(f)=\mathbb{E}_{(X,Y)\sim P}[\ell(f(X),Y)]$。**关键技巧**：总体风险按塔式法则拆成逐点条件风险
+
+$$
+\mathcal{L}(f)=\mathbb{E}_X\big[\,\mathbb{E}[\ell(f(x),Y)\mid X=x]\,\big],
+$$
+
+当 $\mathcal{F}$ 足够大（含所有可测函数）时，最小化整体积分 $\iff$ 对每个 $x$ 逐点最优化：
+
+$$
+f^*(x)=\arg\min_{a}\ \mathbb{E}[\ell(a,Y)\mid X=x].
+$$
+
+最优预测随损失而变：
+
+| 损失 $\ell(a,y)$ | 最优 $f^*(x)$ | 名称 |
+|---|---|---|
+| 平方 $\tfrac12(a-y)^2$ | $\mathbb{E}[Y\mid X=x]$ | 条件均值 |
+| 绝对值 $\lvert a-y\rvert$ | 条件中位数 | |
+| 0-1 $\mathbf{1}_{a\neq y}$ | $\mathbf{1}[\eta(x)\ge\tfrac12],\ \eta(x)=\mathbb{P}(Y{=}1\mid x)$ | Bayes 分类器 |
+
+**平方损失的证明**（配方）：令 $m(x)=\mathbb{E}[Y\mid x]$，则
+
+$$
+\mathbb{E}[(a-Y)^2\mid x]=(a-m(x))^2+\underbrace{\mathbb{E}[(Y-m(x))^2\mid x]}_{\text{与 }a\text{ 无关}},
+$$
+
+故 $a=m(x)$ 时最小。**0-1 损失**：预测 1 的风险是 $1-\eta(x)$、预测 0 的风险是 $\eta(x)$，比大小即得 Bayes 分类器。
+
+!!! note "$f^*$ 不一定是"真实函数""
+    仅当 $Y=f_0(X)+\varepsilon$ 且 $\mathbb{E}[\varepsilon\mid X]=0$ 时 $f^*=f_0$；否则 $f^*$ 只是该损失下的最优预测。分类里更没有"真标签函数"——同一 $x$ 下 $Y$ 本就随机。衡量学到的 $\hat f$ 差多少，用**超额风险** $\mathcal{E}(\hat f)=\mathcal{L}(\hat f)-\mathcal{L}(f^*)$。
+
+## 分布间的差异：为何用 KL 散度而非范数
+
+> **一句话**：范数把概率分布当**函数**比几何距离；KL 把它当**信息源**比编码/似然代价。
+
+可以对密度构造范数（$\|p-q\|_1$ 对应 total variation，$\|p-q\|_2$ 等），但：
+
+- **概率分布集不是线性空间**：$p+q$ 积分为 2、$p-q$ 可为负，都不再是密度。它更像凸集。
+- **KL 来自"用错分布编码的额外代价"**：$D_{\mathrm{KL}}(P\|Q)=\int p\log\tfrac{p}{q}$。
+- **最大似然 $\equiv$ 最小化 KL**：$D_{\mathrm{KL}}(P_{\mathrm{data}}\|Q_\theta)=\mathbb{E}[\log p_{\mathrm{data}}]-\mathbb{E}[\log q_\theta]$，首项与 $\theta$ 无关，故 $\min_\theta \mathrm{KL}\iff \max_\theta \mathbb{E}_{P_{\mathrm{data}}}[\log q_\theta]$。这是范数没有的统计意义。
+- **对致命错误敏感**：$p(x)>0$ 而 $q(x)=0$ 时 $D_{\mathrm{KL}}=+\infty$；KL 关心比值 $p/q$ 而非绝对差 $p-q$。
+- **非对称是特性**：$D_{\mathrm{KL}}(P\|Q)$（forward，mode-covering）vs $D_{\mathrm{KL}}(Q\|P)$（reverse，mode-seeking）——变分推断/生成模型常据此选向。
+- $D_{\mathrm{KL}}(P\|Q)=0\iff P=Q$（密度意义下几乎处处相等）。
+
+其它分布距离各有所长：**TV**（与 $L^1$ 相关）、**Wasserstein**（最优传输）、**Hellinger**（更像几何距离）、**MMD**（核嵌入）。统计推断/最大似然天然对应 KL；几何比较、测度收敛则用范数/度量。
+
 > **待续**：Rademacher 复杂度、泛化误差界、偏差–方差分解，将从对应复习对话继续蒸馏补入。
+> **关联（凸优化，归 [optimization](optimization.md)）**：LASSO 次梯度、软阈值算子 $S_\lambda$、proximal gradient/ISTA、$\ell_\infty$ 范数次梯度、下半连续/闭函数/下水平集——来自同批复习对话，待整合到优化页。
