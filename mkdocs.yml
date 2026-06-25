@@ -89,6 +89,8 @@ nav:
     - 凸优化: computation/optimization.md
     - 统计计算: computation/stat-computing.md
     - 统计学习理论: computation/learning-theory.md
+    - "LFTP 精读（Bach）":
+      - Ch4 经验风险最小化: computation/lftp/ch4-erm.md
   - 算法介绍:
     - algorithms/index.md
     - 神经网络: algorithms/neural-networks.md
