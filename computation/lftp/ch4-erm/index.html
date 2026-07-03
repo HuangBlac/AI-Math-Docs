@@ -1909,7 +1909,7 @@
 <h2 id="_2">从理论最优到经验风险</h2>
 <p>对于分类问题以及一系列机器学习问题，本质上就是要找一个满足泛函极小化的解：</p>
 <div class="arithmatex">\[
-f^\ast = \arg\min_{f}\ \mathcal{L}(f) = \mathbb{E}_{(X,Y)\sim\mathbb{P}}\, \ell(f(X),Y).
+f^* = \arg\min_{f}\ \mathcal{L}\,(f) = \mathbb{E}_{(X,Y)\sim\mathbb{P}}\, \ell(f(X),Y).
 \]</div>
 <p>但我们并不知道真实的数据分布，所以实际采用平均值来代替期望。</p>
 <blockquote>
@@ -1927,7 +1927,7 @@ f^\ast = \arg\min_{f}\ \mathcal{L}(f) = \mathbb{E}_{(X,Y)\sim\mathbb{P}}\, \ell(
 \]</div>
 <p>但 <span class="arithmatex">\(\operatorname{sign}\)</span> 不连续，而且在零点没有定义，不能直接套进去。于是把原问题转化为选取 <span class="arithmatex">\(g\)</span>：</p>
 <div class="arithmatex">\[
-\mathcal{L}(g) = \arg\min\ \mathbb{P}\big(f(X)\neq Y\big) = \arg\min\ \mathbb{P}\big(\operatorname{sign}(g(X))\neq Y\big) = \arg\min\ \mathbb{P}\big(Yg(X)&lt;0\big).
+\mathcal{L}\,(g) = \arg\min\ \mathbb{P}\big(f(X)\neq Y\big) = \arg\min\ \mathbb{P}\big(\operatorname{sign}(g(X))\neq Y\big) = \arg\min\ \mathbb{P}\big(Yg(X)&lt;0\big).
 \]</div>
 <p>实际上就是要让 <span class="arithmatex">\(Yg(X)\)</span> 异号的概率尽可能小（同号的概率尽可能大）。重新写成期望形式：</p>
 <div class="arithmatex">\[
@@ -1936,33 +1936,33 @@ f^\ast = \arg\min_{f}\ \mathcal{L}(f) = \mathbb{E}_{(X,Y)\sim\mathbb{P}}\, \ell(
 \]</div>
 <p>因此原问题依然转化为选取 <span class="arithmatex">\(g\)</span> 使期望极小化。但 <span class="arithmatex">\(\Phi_{0\text{-}1}\)</span> 不连续，所以我们可以采用不同的近似方式，对应不同的模型：</p>
 <p><strong>平方损失</strong> <span class="arithmatex">\(\Phi(u)=(u-1)^2\)</span>。因为 <span class="arithmatex">\(y^2=1\)</span>，所以 <span class="arithmatex">\(\Phi(yg(x))=(y-g(x))^2\)</span>，这就退回到了最小二乘回归，预测时取 <span class="arithmatex">\(g(x)\)</span> 的符号。注意它是图里唯一在 <span class="arithmatex">\(u&gt;1\)</span> 后又往上翘的——对"分得太对"也会惩罚，这是它和其它（单调不增的）损失的区别。</p>
-<p><strong>Logistic 损失</strong> <span class="arithmatex">\(\Phi(u)=\log(1+e^{-u})=-\log\sigma(u)\)</span>，其中 <span class="arithmatex">\(\sigma\)</span> 是 sigmoid，对应逻辑回归，也就是常说的交叉熵；从概率角度看，令 <span class="arithmatex">\(\mathbb{P}(y=1\mid x)=\sigma(g(x))\)</span>，这个风险就是负的条件对数似然（第 14 章细讲）。</p>
+<p><strong>Logistic 损失</strong> <span class="arithmatex">\(\Phi(u)=\log(1+e^{-u})=-\log\sigma(u)\)</span>，其中 <span class="arithmatex">\(\sigma\)</span> 是 sigmoid，对应逻辑回归，也就是常说的交叉熵；从概率角度看，令 <span class="arithmatex">\(\mathbb{P}\,(y=1\mid x)=\sigma(g(x))\)</span>，这个风险就是负的条件对数似然（第 14 章细讲）。</p>
 <p><strong>Hinge 损失</strong> <span class="arithmatex">\(\Phi(u)=\max(1-u,0)\)</span>。配上线性预测器就是 SVM，这里的 <span class="arithmatex">\(yg(x)\)</span> 就是"间隔"一词的出处（几何解释在带菱形的 4.1.2）。</p>
 <p><strong>平方 hinge</strong> <span class="arithmatex">\(\max(1-u,0)^2\)</span>，hinge 的光滑版。</p>
 <p><strong>指数损失</strong> <span class="arithmatex">\(\Phi(u)=e^{-u}\)</span>，boosting / AdaBoost 里用的。</p>
 <p>事实上，Hinge 损失对应的就是 SVM 支持向量机。</p>
 <h2 id="4243">4.2–4.3 风险分解与逼近误差</h2>
-<p>我们并不是从真实分布求理论最佳函数 <span class="arithmatex">\(f^\ast\)</span>，也不是在所有可能的函数空间内搜索。我们有 <span class="arithmatex">\(n\)</span> 个样本 <span class="arithmatex">\(\{(X_i,Y_i)\}\)</span>，每个样本独立同分布，实际求的是</p>
+<p>我们并不是从真实分布求理论最佳函数 <span class="arithmatex">\(f^*\)</span>，也不是在所有可能的函数空间内搜索。我们有 <span class="arithmatex">\(n\)</span> 个样本 <span class="arithmatex">\(\{(X_i,Y_i)\}\)</span>，每个样本独立同分布，实际求的是</p>
 <div class="arithmatex">\[
 \hat f = \arg\min_{f\in\mathcal{F}}\ \frac1n\sum_{i=1}^n \ell(f(X_i),Y_i).
 \]</div>
 <p>大数定理告诉我们频率趋近于概率，但毕竟有差别。更具体地，可以把超额风险拆成两部分：</p>
 <div class="arithmatex">\[
-\mathcal{L}(\hat f) - \mathcal{L}(f^\ast) = \underbrace{\mathcal{L}(\hat f) - \inf_{f\in\mathcal{F}}\mathcal{L}(f)}_{\text{估计误差 estimation error}} + \underbrace{\inf_{f\in\mathcal{F}}\mathcal{L}(f) - \mathcal{L}(f^\ast)}_{\text{逼近误差 approximation error}}.
+\mathcal{L}\,(\hat f) - \mathcal{L}\,(f^*) = \underbrace{\mathcal{L}\,(\hat f) - \inf_{f\in\mathcal{F}}\mathcal{L}\,(f)}_{\text{估计误差 estimation error}} + \underbrace{\inf_{f\in\mathcal{F}}\mathcal{L}\,(f) - \mathcal{L}\,(f^*)}_{\text{逼近误差 approximation error}}.
 \]</div>
 <p>前者由样本有限导致（估计误差），后者由函数类 <span class="arithmatex">\(\mathcal{F}\)</span> 不够大导致（逼近误差）。</p>
 <h3 id="_3">先分析逼近误差</h3>
 <p>对函数类往往考虑这样的情形（也符合实际算法的构建）：<span class="arithmatex">\(\mathcal{F}=\{f_\theta\mid \theta\in\Theta\}\)</span>。</p>
-<p>举个例子，神经网络函数空间 <span class="arithmatex">\(\mathcal{NN}(2,100,\theta)\)</span>：<span class="arithmatex">\(L\le 2,\ W\le 100,\ |B|\le 10\)</span>，表示一个两层、宽度 100、参数绝对值 <span class="arithmatex">\(\le 10\)</span> 的网络对应的函数空间。严格来说，<span class="arithmatex">\(\Theta\)</span> 在计算机里只能取离散值（如 double、float）。考虑这一点，逼近误差可以进一步分解：</p>
+<p>举个例子，神经网络函数空间 <span class="arithmatex">\(\mathcal{NN}\,(2,100,\theta)\)</span>：<span class="arithmatex">\(L\le 2,\ W\le 100,\ |B|\le 10\)</span>，表示一个两层、宽度 100、参数绝对值 <span class="arithmatex">\(\le 10\)</span> 的网络对应的函数空间。严格来说，<span class="arithmatex">\(\Theta\)</span> 在计算机里只能取离散值（如 double、float）。考虑这一点，逼近误差可以进一步分解：</p>
 <div class="arithmatex">\[
-\inf_{\theta\in\Theta}\mathcal{L}(f_\theta) - \mathcal{L}(f^\ast)
-= \underbrace{\inf_{\theta\in\Theta}\mathcal{L}(f_\theta) - \inf_{\theta\in\mathbb{R}^n}\mathcal{L}(f_\theta)}_{\text{可优化部分}}
-+ \underbrace{\inf_{\theta\in\mathbb{R}^n}\mathcal{L}(f_\theta) - \mathcal{L}(f^\ast)}_{\text{不可压缩项}}.
+\inf_{\theta\in\Theta}\mathcal{L}\,(f_\theta) - \mathcal{L}\,(f^*)
+= \underbrace{\inf_{\theta\in\Theta}\mathcal{L}\,(f_\theta) - \inf_{\theta\in\mathbb{R}^n}\mathcal{L}\,(f_\theta)}_{\text{可优化部分}}
++ \underbrace{\inf_{\theta\in\mathbb{R}^n}\mathcal{L}\,(f_\theta) - \mathcal{L}\,(f^*)}_{\text{不可压缩项}}.
 \]</div>
 <p>第二部分单纯靠提高精度无法解决，除非改变算法结构本身，被称为<strong>不可压缩项</strong>。而对固定模型（如神经网络、SVM），第二项往往可以压得很小（万能逼近定理等），所以重点先分析第一块。</p>
 <p>考虑一个具体的回归情景 <span class="arithmatex">\(f_\theta(x)=\theta^\top\varphi(x)\)</span>。第一部分误差可以借助损失函数关于第二个变量 <span class="arithmatex">\(G\)</span>-Lipschitz 写成：</p>
 <div class="arithmatex">\[
-\mathcal{L}(f_\theta)-\mathcal{L}(f_{\theta'}) = \mathbb{E}\big[\ell(y,f_\theta(x))-\ell(y,f_{\theta'}(x))\big]\le G\,\mathbb{E}\big[|f_\theta(x)-f_{\theta'}(x)|\big].
+\mathcal{L}\,(f_\theta)-\mathcal{L}\,(f_{\theta'}) = \mathbb{E}\big[\ell(y,f_\theta(x))-\ell(y,f_{\theta'}(x))\big]\le G\,\mathbb{E}\big[|f_\theta(x)-f_{\theta'}(x)|\big].
 \]</div>
 <p>再假设 <span class="arithmatex">\(\|\theta\|_2\le D\)</span>。在经典范例 <span class="arithmatex">\(f_\theta(x)=\theta^\top\varphi(x)\)</span> 下，预测差为 <span class="arithmatex">\(|f_\theta(x)-f_{\theta'}(x)| = |(\theta-\theta')^\top\varphi(x)|\le \|\theta-\theta'\|_2\,\|\varphi(x)\|_2\)</span>。代回去，约束代价被压成</p>
 <div class="arithmatex">\[
@@ -1977,11 +1977,11 @@ f^\ast = \arg\min_{f}\ \mathcal{L}(f) = \mathbb{E}_{(X,Y)\sim\mathbb{P}}\, \ell(
 <div class="arithmatex">\[
 R(\hat f) - \inf_{f\in\mathcal{F}} R(f) \;\leq\; 2\sup_{f\in\mathcal{F}} \big|\hat R(f) - R(f)\big|.
 \]</div>
-<p>推导过程（记 <span class="arithmatex">\(g_{\mathcal F}\)</span> 为 <span class="arithmatex">\(\mathcal F\)</span> 内的最优）：</p>
+<p>推导过程（记 <span class="arithmatex">\(g_{\mathcal{F}}\)</span> 为 <span class="arithmatex">\(\mathcal{F}\)</span> 内的最优）：</p>
 <div class="arithmatex">\[
-R(\hat f) - R(g_{\mathcal F}) = \underbrace{\{R(\hat f) - \hat R(\hat f)\}}_{①} + \underbrace{\{\hat R(\hat f) - \hat R(g_{\mathcal F})\}}_{②} + \underbrace{\{\hat R(g_{\mathcal F}) - R(g_{\mathcal F})\}}_{③}.
+R(\hat f) - R(g_{\mathcal{F}}) = \underbrace{\{R(\hat f) - \hat R(\hat f)\}}_{①} + \underbrace{\{\hat R(\hat f) - \hat R(g_{\mathcal{F}})\}}_{②} + \underbrace{\{\hat R(g_{\mathcal{F}}) - R(g_{\mathcal{F}})\}}_{③}.
 \]</div>
-<p>①、③ 都可以被 <span class="arithmatex">\(\sup_{f\in\mathcal{F}}\big(R(f)-\hat R(f)\big)\)</span> 控制；② 中由于 <span class="arithmatex">\(\hat f\)</span> 是 <span class="arithmatex">\(\hat R\)</span> 的极小化结果，<span class="arithmatex">\(\hat R(\hat f)\le \hat R(g_{\mathcal F})\)</span>，所以 <span class="arithmatex">\(②\le 0\)</span>。</p>
+<p>①、③ 都可以被 <span class="arithmatex">\(\sup_{f\in\mathcal{F}}\big(R(f)-\hat R(f)\big)\)</span> 控制；② 中由于 <span class="arithmatex">\(\hat f\)</span> 是 <span class="arithmatex">\(\hat R\)</span> 的极小化结果，<span class="arithmatex">\(\hat R(\hat f)\le \hat R(g_{\mathcal{F}})\)</span>，所以 <span class="arithmatex">\(②\le 0\)</span>。</p>
 <h3 id="mcdiarmid">McDiarmid 不等式（完整证明）</h3>
 <p>记 <span class="arithmatex">\(H(z_1,\dots,z_n)=\sup_{f\in\mathcal{F}}\big(R(f)-\hat R(f)\big)\)</span>。损失有界在 <span class="arithmatex">\([0,\ell_\infty]\)</span> 时，<strong>改动单个样本 <span class="arithmatex">\(z_i\)</span>，<span class="arithmatex">\(H\)</span> 至多变化 <span class="arithmatex">\(\ell_\infty/n\)</span></strong>（有界差分性质）。于是 McDiarmid 不等式给出集中：以概率 <span class="arithmatex">\(\geq 1-\delta\)</span>，</p>
 <div class="arithmatex">\[
@@ -1990,7 +1990,7 @@ H - \mathbb{E}[H] \;\leq\; \frac{\ell_\infty}{\sqrt{2n}}\sqrt{\log\tfrac{1}{\del
 <p>下面用 <strong>Doob martingale + Hoeffding 引理 + Chernoff bound</strong> 证明它。</p>
 <p><strong>第 1 步 · 设置鞅。</strong> 定义 filtration <span class="arithmatex">\(\mathcal{F}_i=\sigma(Z_1,\dots,Z_i)\)</span>（表示"已经看到前 <span class="arithmatex">\(i\)</span> 个样本"），并令 <span class="arithmatex">\(M_i=\mathbb{E}[H\mid Z_1,\dots,Z_i]\)</span>。则</p>
 <div class="arithmatex">\[
-H-\mathbb{E}H = M_n-M_0 = \sum_{i=1}^n (M_i-M_{i-1}),\qquad D_i := M_i-M_{i-1}.
+H-\mathbb{E}\,H = M_n-M_0 = \sum_{i=1}^n (M_i-M_{i-1}),\qquad D_i := M_i-M_{i-1}.
 \]</div>
 <p>问题变成控制 <span class="arithmatex">\(\sum_{i=1}^n D_i\)</span>。</p>
 <p><strong>第 2 步 · 每步波动被 <span class="arithmatex">\(c_i\)</span> 控制。</strong> 固定 <span class="arithmatex">\(Z_1=z_1,\dots,Z_{i-1}=z_{i-1}\)</span>，考虑</p>
@@ -2001,21 +2001,21 @@ H-\mathbb{E}H = M_n-M_0 = \sum_{i=1}^n (M_i-M_{i-1}),\qquad D_i := M_i-M_{i-1}.
 <div class="arithmatex">\[
 D_i = \phi_i(Z_i)-\mathbb{E}[\phi_i(Z_i)\mid\mathcal{F}_{i-1}],\qquad \mathbb{E}[D_i\mid\mathcal{F}_{i-1}]=0,\quad D_i\in[a_i,b_i],\ b_i-a_i\le c_i.
 \]</div>
-<p><strong>第 3 步 · 使用 Hoeffding 引理。</strong> 若 <span class="arithmatex">\(\mathbb{E}X=0,\ X\in[a,b]\)</span>，则对任意 <span class="arithmatex">\(\lambda&gt;0\)</span>，<span class="arithmatex">\(\mathbb{E}e^{\lambda X}\le\exp\!\big(\tfrac{\lambda^2(b-a)^2}{8}\big)\)</span>。对 <span class="arithmatex">\(D_i\)</span> 用条件版：</p>
+<p><strong>第 3 步 · 使用 Hoeffding 引理。</strong> 若 <span class="arithmatex">\(\mathbb{E}\,X=0,\ X\in[a,b]\)</span>，则对任意 <span class="arithmatex">\(\lambda&gt;0\)</span>，<span class="arithmatex">\(\mathbb{E}\,e^{\lambda X}\le\exp\!\big(\tfrac{\lambda^2(b-a)^2}{8}\big)\)</span>。对 <span class="arithmatex">\(D_i\)</span> 用条件版：</p>
 <div class="arithmatex">\[
 \mathbb{E}\big[e^{\lambda D_i}\mid\mathcal{F}_{i-1}\big]\le \exp\!\left(\frac{\lambda^2 c_i^2}{8}\right).
 \]</div>
 <p><strong>第 4 步 · 控制整体矩母函数。</strong> 用条件期望一层层剥：</p>
 <div class="arithmatex">\[
-\mathbb{E}e^{\lambda\sum_{i=1}^n D_i} = \mathbb{E}\Big[e^{\lambda\sum_{i=1}^{n-1}D_i}\,\mathbb{E}(e^{\lambda D_n}\mid\mathcal{F}_{n-1})\Big]\le \exp\!\left(\frac{\lambda^2 c_n^2}{8}\right)\mathbb{E}e^{\lambda\sum_{i=1}^{n-1}D_i}.
+\mathbb{E}\,e^{\lambda\sum_{i=1}^n D_i} = \mathbb{E}\Big[e^{\lambda\sum_{i=1}^{n-1}D_i}\,\mathbb{E}\,(e^{\lambda D_n}\mid\mathcal{F}_{n-1})\Big]\le \exp\!\left(\frac{\lambda^2 c_n^2}{8}\right)\mathbb{E}\,e^{\lambda\sum_{i=1}^{n-1}D_i}.
 \]</div>
 <p>不断递推：</p>
 <div class="arithmatex">\[
-\mathbb{E}e^{\lambda(H-\mathbb{E}H)}\le \exp\!\left(\frac{\lambda^2}{8}\sum_{i=1}^n c_i^2\right).
+\mathbb{E}\,e^{\lambda(H-\mathbb{E}\,H)}\le \exp\!\left(\frac{\lambda^2}{8}\sum_{i=1}^n c_i^2\right).
 \]</div>
-<p><strong>第 5 步 · Chernoff bound 取尾界。</strong> 由 Markov，<span class="arithmatex">\(\mathbb{P}(H-\mathbb{E}H&gt;t)\le e^{-\lambda t}\,\mathbb{E}e^{\lambda(H-\mathbb{E}H)}\le \exp\!\big(-\lambda t+\tfrac{\lambda^2}{8}C\big)\)</span>，其中 <span class="arithmatex">\(C=\sum_i c_i^2\)</span>。对 <span class="arithmatex">\(\lambda\)</span> 优化，<span class="arithmatex">\(-t+\tfrac{\lambda C}{4}=0\Rightarrow\lambda=\tfrac{4t}{C}\)</span>，代回得 <span class="arithmatex">\(-\tfrac{2t^2}{C}\)</span>。因此</p>
+<p><strong>第 5 步 · Chernoff bound 取尾界。</strong> 由 Markov，<span class="arithmatex">\(\mathbb{P}\,(H-\mathbb{E}\,H&gt;t)\le e^{-\lambda t}\,\mathbb{E}\,e^{\lambda(H-\mathbb{E}\,H)}\le \exp\!\big(-\lambda t+\tfrac{\lambda^2}{8}C\big)\)</span>，其中 <span class="arithmatex">\(C=\sum_i c_i^2\)</span>。对 <span class="arithmatex">\(\lambda\)</span> 优化，<span class="arithmatex">\(-t+\tfrac{\lambda C}{4}=0\Rightarrow\lambda=\tfrac{4t}{C}\)</span>，代回得 <span class="arithmatex">\(-\tfrac{2t^2}{C}\)</span>。因此</p>
 <div class="arithmatex">\[
-\boxed{\ \mathbb{P}(H-\mathbb{E}H&gt;t)\le \exp\!\left(-\frac{2t^2}{\sum_{i=1}^n c_i^2}\right)\ }
+\boxed{\ \mathbb{P}\,(H-\mathbb{E}\,H&gt;t)\le \exp\!\left(-\frac{2t^2}{\sum_{i=1}^n c_i^2}\right)\ }
 \]</div>
 <p>这就是 McDiarmid 不等式。</p>
 <p>它把"高概率界定 <span class="arithmatex">\(H\)</span>"<strong>化简成"只需界定它的期望 <span class="arithmatex">\(\mathbb{E}[H]=\mathbb{E}[\sup_f(R-\hat R)]\)</span>"</strong>，再加一个 <span class="arithmatex">\(\frac{\ell_\infty}{\sqrt{2n}}\sqrt{\log(2/\delta)}\)</span> 的尾项就够了。整章剩下的内容，本质都是在用越来越精的工具界定这一个期望。</p>

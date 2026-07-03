@@ -3195,7 +3195,7 @@ $$
 无限宽极限（宽度 → ∞）下：</p>
 <p>初始化时：神经网络 ≈ 高斯过程（GP）
 $$
-f(x, \theta) \sim \mathcal{N}(0, \Sigma(x, x'))
+f(x, \theta) \sim \mathcal{N}\,(0, \Sigma(x, x'))
 $$</p>
 <p>训练时：神经网络 ≈ 核回归
 $$
@@ -3264,15 +3264,15 @@ $$</p>
 <p>文案：
 除了谱偏差外，PINN的另一个核心问题是不同损失项之间的不平衡。边界条件和PDE残差的收敛速度可能差异巨大，导致训练过程中需要不断调整权重。</p>
 <h3 id="35-pinnsntk">3.5 具体操作：计算PINNs的NTK</h3>
-<p>PPT内容： 考虑一般PDE问题： $$ \mathcal{L}u(x) = f(x), \quad x \in \Omega $$ $$ u(x) = g(x), \quad x \in \partial\Omega $$</p>
-<p>定义PINN的损失函数： $$ \mathcal{L}(\theta) = \mathcal{L}_b(\theta) + \mathcal{L}_r(\theta) $$</p>
+<p>PPT内容： 考虑一般PDE问题： $$ \mathcal{L}\,u(x) = f(x), \quad x \in \Omega $$ $$ u(x) = g(x), \quad x \in \partial\Omega $$</p>
+<p>定义PINN的损失函数： $$ \mathcal{L}\,(\theta) = \mathcal{L}_b(\theta) + \mathcal{L}_r(\theta) $$</p>
 <p>其中边界损失： </p>
 <p>$$ </p>
 <p>\mathcal{L}<em i="1">b(\theta) = \frac{1}{2N_b}\sum</em>|u(x_i^b, \theta) - g(x_i^b)|^2 }^{N_b</p>
 <p>$$ </p>
-<p>PDE残差损失： $$ \mathcal{L}<em i="1">r(\theta) = \frac{1}{2N_r}\sum</em>u(x_i^r, \theta) - f(x_i^r)|^2 $$}^{N_r}|\mathcal{L</p>
+<p>PDE残差损失： $$ \mathcal{L}<em i="1">r(\theta) = \frac{1}{2N_r}\sum</em>\,u(x_i^r, \theta) - f(x_i^r)|^2 $$}^{N_r}|\mathcal{L</p>
 <p>NTK矩阵定义： $$ K(t) = \begin{pmatrix} K_{uu}(t) &amp; K_{ur}(t) \ K_{ru}(t) &amp; K_{rr}(t) \end{pmatrix} $$</p>
-<p>其中： $$ (K_{uu}){ij} = \frac{\partial u(x_i^b, \theta)}{\partial \theta} \cdot \frac{\partial u(x_j^b, \theta)}{\partial \theta} $$ $$ (K{rr})_{ij} = \frac{\partial \mathcal{L}u(x_i^r, \theta)}{\partial \theta} \cdot \frac{\partial \mathcal{L}u(x_j^r, \theta)}{\partial \theta} $$</p>
+<p>其中： $$ (K_{uu}){ij} = \frac{\partial u(x_i^b, \theta)}{\partial \theta} \cdot \frac{\partial u(x_j^b, \theta)}{\partial \theta} $$ $$ (K{rr})_{ij} = \frac{\partial \mathcal{L}\,u(x_i^r, \theta)}{\partial \theta} \cdot \frac{\partial \mathcal{L}\,u(x_j^r, \theta)}{\partial \theta} $$</p>
 <p>文案： 我们将NTK的概念推广到PINN。关键的区别在于，PINN的输出不仅包括网络本身的值，还包括PDE残差。因此，PINN的NTK是一个分块矩阵，分别描述边界损失和PDE残差的梯度相关性。</p>
 <h3 id="37">3.7 自适应训练算法</h3>
 <p>PPT内容：

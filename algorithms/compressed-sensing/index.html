@@ -1623,7 +1623,7 @@ $$</p>
 $$
 s = Ax^* + \varepsilon
 $$
-其中 <span class="arithmatex">\(\varepsilon \sim \mathcal{N}(0, \sigma^2 I)\)</span> 是高斯噪声。</p>
+其中 <span class="arithmatex">\(\varepsilon \sim \mathcal{N}\,(0, \sigma^2 I)\)</span> 是高斯噪声。</p>
 <p>所要求解的是：
 $$
 \hat{x} = \arg\min_{x \in \mathbb{R}^d, |x|_0 \leq s} |Ax - s|_2^2
@@ -1691,7 +1691,7 @@ $$
 |\langle A\Delta, \varepsilon \rangle| = |\Delta|_2 \left|\langle A u, \varepsilon \rangle\right|
 $$</p>
 <p>关键问题：控制 <span class="arithmatex">\(\sup_{u \in \mathcal{B}_{2s}} |\langle A u, \varepsilon \rangle|\)</span>。</p>
-<p>使用<strong>覆盖方法</strong>：用有限个向量覆盖 <span class="arithmatex">\(\mathcal{B}_{2s}\)</span>，然后用联合界。覆盖数的上界是 <span class="arithmatex">\(\mathcal{N} \leq \left(\frac{3}{\rho}\right)^{2s}\)</span>。对每个固定的覆盖向量 <span class="arithmatex">\(u\)</span>，<span class="arithmatex">\(\langle A u, \varepsilon \rangle \sim \mathcal{N}(0, \sigma^2\|Au\|_2^2)\)</span>。</p>
+<p>使用<strong>覆盖方法</strong>：用有限个向量覆盖 <span class="arithmatex">\(\mathcal{B}_{2s}\)</span>，然后用联合界。覆盖数的上界是 <span class="arithmatex">\(\mathcal{N} \leq \left(\frac{3}{\rho}\right)^{2s}\)</span>。对每个固定的覆盖向量 <span class="arithmatex">\(u\)</span>，<span class="arithmatex">\(\langle A u, \varepsilon \rangle \sim \mathcal{N}\,(0, \sigma^2\|Au\|_2^2)\)</span>。</p>
 <p>用标准高斯尾概率界（在概率 <span class="arithmatex">\(1 - \delta\)</span> 下）：
 $$
 \sup_{u \in \mathcal{B}_{2s}} |\langle A u, \varepsilon \rangle| \leq C_0\sigma\sqrt{\log\left(\frac{d}{\delta}\right)}
@@ -1743,7 +1743,7 @@ $$
 \text{L1 (Lasso)}: \quad \hat{x} = \arg\min_x \left( \frac{1}{2n}|Ax - s|_2^2 + \lambda|x|_1 \right)
 $$</p>
 <p>三月七：不过，我这里倒还要问一个和正则项没关系的问题，为什么残差用的是L2范数而不是L1？这是不是也可以带来什么稀疏性</p>
-<p>长夜月：这里的 <span class="arithmatex">\(\|Ax - s\|_2^2\)</span> 不是正则项，而是来自测量误差的统计性质。我们假设观测 <span class="arithmatex">\(s = Ax^* + \varepsilon\)</span>，其中 <span class="arithmatex">\(\varepsilon \sim \mathcal{N}(0, \sigma^2 I)\)</span>。高斯噪声下的最大似然估计自然给出L2损失。</p>
+<p>长夜月：这里的 <span class="arithmatex">\(\|Ax - s\|_2^2\)</span> 不是正则项，而是来自测量误差的统计性质。我们假设观测 <span class="arithmatex">\(s = Ax^* + \varepsilon\)</span>，其中 <span class="arithmatex">\(\varepsilon \sim \mathcal{N}\,(0, \sigma^2 I)\)</span>。高斯噪声下的最大似然估计自然给出L2损失。</p>
 <p>而L1罚项才是用来形成稀疏性的。</p>
 <p>但这个损失确实也会因问题而异：例如某些图像还原问题，就会加上图像的导数信息L1范数来作为损失，让得到的图象是光滑的……我跟你说得着这个吗</p>
 <hr />
