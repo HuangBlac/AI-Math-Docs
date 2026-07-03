@@ -1297,20 +1297,20 @@ $$B^2A = \begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 0
 
 ### 题目
 
-$\mathcal{L}(V^*, W) \cong \mathcal{B}(V, W; \mathbb{C})$？
+$\mathcal{L}\,(V^*, W) \cong \mathcal{B}\,(V, W; \mathbb{C})$？
 
 ### 解答
 
 原表述需修正。正确的同构为：
 
-$$\mathcal{L}(V, W^*) \cong \mathcal{B}(V, W; \mathbb{C})$$
+$$\mathcal{L}\,(V, W^*) \cong \mathcal{B}\,(V, W; \mathbb{C})$$
 
 **构造**：$T \mapsto B_T$，其中 $B_T(v, w) = T(v)(w)$。
 
 这是线性同构，验证：
 - 线性：$B_{\alpha T_1 + \beta T_2} = \alpha B_{T_1} + \beta B_{T_2}$
 - 单射：$B_T = 0 \Rightarrow T(v)(w) = 0$ 对所有 $v,w$ 成立 $\Rightarrow T = 0$
-- 满射：给定 $B \in \mathcal{B}(V,W;\mathbb{C})$，定义 $T(v) = B(v, \cdot) \in W^*$
+- 满射：给定 $B \in \mathcal{B}\,(V,W;\mathbb{C})$，定义 $T(v) = B(v, \cdot) \in W^*$
 
 原问题可能需要 $W \cong W^*$（如有内积）才能成立。
 

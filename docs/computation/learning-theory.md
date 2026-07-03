@@ -26,17 +26,17 @@
 称零均值随机变量 $X$ 是**次高斯的**（参数 $\sigma^2$），若其矩母函数被同方差高斯的矩母函数控制：
 
 $$
-\mathbb{E}\,e^{\lambda(X-\mathbb{E}X)} \le e^{\lambda^2\sigma^2/2},\qquad \forall \lambda\in\mathbb{R}.
+\mathbb{E}\,e^{\lambda(X-\mathbb{E}\,X)} \le e^{\lambda^2\sigma^2/2},\qquad \forall \lambda\in\mathbb{R}.
 $$
 
-直觉：**尾巴不比高斯重**。由此可直接导出双边指数尾 $\mathbb{P}(|X-\mathbb{E}X|\ge t)\le 2e^{-t^2/(2\sigma^2)}$。
+直觉：**尾巴不比高斯重**。由此可直接导出双边指数尾 $\mathbb{P}\,(|X-\mathbb{E}\,X|\ge t)\le 2e^{-t^2/(2\sigma^2)}$。
 
 ### 有界 ⟹ 次高斯（Hoeffding 引理）
 
-> **结论**：任意有界随机变量都是次高斯的。若 $a\le X\le b$ 几乎必然，则中心化的 $X-\mathbb{E}X$ 次高斯，且
+> **结论**：任意有界随机变量都是次高斯的。若 $a\le X\le b$ 几乎必然，则中心化的 $X-\mathbb{E}\,X$ 次高斯，且
 
 $$
-\mathbb{E}\,e^{\lambda(X-\mathbb{E}X)} \le \exp\!\left(\frac{\lambda^2 (b-a)^2}{8}\right)\qquad(\text{Hoeffding 引理}).
+\mathbb{E}\,e^{\lambda(X-\mathbb{E}\,X)} \le \exp\!\left(\frac{\lambda^2 (b-a)^2}{8}\right)\qquad(\text{Hoeffding 引理}).
 $$
 
 与定义 $e^{\lambda^2\sigma^2/2}$ 对比，可取次高斯参数 $\sigma^2=\dfrac{(b-a)^2}{4}$。
@@ -44,7 +44,7 @@ $$
 **为什么直觉上成立**：有界变量根本跑不出 $[a,b]$，尾部比高斯还轻，中心化后自然次高斯。（特例 $|X|\le M$ 时可取 $\sigma^2=M^2$。）
 
 !!! warning "两种"次高斯"用法别混"
-    一种要求**中心化后** $X-\mathbb{E}X$ 满足条件；另一种直接写 $\mathbb{E}e^{\lambda X}\le e^{C\lambda^2}$，默认 $X$ 已零均值。严谨说法：**任意有界 $X$，其中心化 $X-\mathbb{E}X$ 一定次高斯**；若 $X$ 本就零均值，则 $X$ 自己次高斯。
+    一种要求**中心化后** $X-\mathbb{E}\,X$ 满足条件；另一种直接写 $\mathbb{E}\,e^{\lambda X}\le e^{C\lambda^2}$，默认 $X$ 已零均值。严谨说法：**任意有界 $X$，其中心化 $X-\mathbb{E}\,X$ 一定次高斯**；若 $X$ 本就零均值，则 $X$ 自己次高斯。
 
 ### 证明心法：log-MGF + 指数倾斜
 
@@ -80,7 +80,7 @@ $$
 
 [LFTP Ch4](lftp/ch4-erm.md) 用覆盖数把无限类的一致偏差控住，得到的是**慢速率** $\sqrt{\log\mathcal{N}/n}$。但若损失再满足一个 **Bernstein 条件（间隔条件）**——方差被超额风险控制——速率能提升到 $\log\mathcal{N}/n$（快一个平方）。
 
-**目标**：控制统计误差 $\mathcal{E}_{sta}=\mathbb{E}\big[\sup_{f\in\mathcal{F}}\tfrac1n\sum_i G(f,Z_i)\big]$，其中超额损失 $g(f,z)=\ell(f,z)-\ell(f^\ast,z)$，并令 $G(f,z)=\mathbb{E}[g(f,Z)]-2g(f,z)$。
+**目标**：控制统计误差 $\mathcal{E}_{sta}=\mathbb{E}\big[\sup_{f\in\mathcal{F}}\tfrac1n\sum_i G(f,Z_i)\big]$，其中超额损失 $g(f,z)=\ell(f,z)-\ell(f^*,z)$，并令 $G(f,z)=\mathbb{E}[g(f,Z)]-2g(f,z)$。
 
 **① 覆盖数：无限类 → 有限网。** 取 $\|\cdot\|_\infty$ 下的 $\delta$-网 $\mathcal{C}=\{\tilde f_1,\dots,\tilde f_{\mathcal{N}}\}$。损失 $\lambda$-Lipschitz $\Rightarrow |g(f,z)-g(\tilde f,z)|\le\lambda\delta$，从而 $|G(f,z)-G(\tilde f,z)|\le 3\lambda\delta$，于是 sup 转嫁给最近代表，代价 $3\lambda\delta$：
 
@@ -90,10 +90,10 @@ $$
 
 **② 固定 $\tilde f$，中心化。** 由 $G(\tilde f,Z_i)=\mathbb{E}[g]-2g_i$ 整理，要控制的是零均值和 $\tfrac1n\sum_i X_i$，其中 $X_i=\mathbb{E}[g]-g_i$，阈值 $u=\tfrac t2+\tfrac12\mathbb{E}[g]$。
 
-**③ Bernstein 条件（关键）。** 有界性给 $|X_i|\le b=4\lambda B$；间隔条件 $c\|\tilde f-f^\ast\|^2\le\mathbb{E}[g]$ 配 Lipschitz 给
+**③ Bernstein 条件（关键）。** 有界性给 $|X_i|\le b=4\lambda B$；间隔条件 $c\|\tilde f-f^*\|^2\le\mathbb{E}[g]$ 配 Lipschitz 给
 
 $$
-\sigma^2=\mathrm{Var}(g)\le \mathbb{E}[g^2]\le \lambda^2\,\mathbb{E}\|\tilde f-f^\ast\|^2\le \frac{\lambda^2}{c}\,\mathbb{E}[g].
+\sigma^2=\mathrm{Var}(g)\le \mathbb{E}[g^2]\le \lambda^2\,\mathbb{E}\|\tilde f-f^*\|^2\le \frac{\lambda^2}{c}\,\mathbb{E}[g].
 $$
 
 **方差被期望（超额风险）控制** —— 这是快速率的全部秘密。
@@ -120,10 +120,10 @@ $$
 
 ## Bayes 最优预测器：理论最优 $f^*$ 长什么样
 
-ERM 想逼近的理论最优是 $f^*=\arg\min_f \mathcal{L}(f)$，$\mathcal{L}(f)=\mathbb{E}_{(X,Y)\sim P}[\ell(f(X),Y)]$。**关键技巧**：总体风险按塔式法则拆成逐点条件风险
+ERM 想逼近的理论最优是 $f^*=\arg\min_f \mathcal{L}\,(f)$，$\mathcal{L}\,(f)=\mathbb{E}_{(X,Y)\sim P}[\ell(f(X),Y)]$。**关键技巧**：总体风险按塔式法则拆成逐点条件风险
 
 $$
-\mathcal{L}(f)=\mathbb{E}_X\big[\,\mathbb{E}[\ell(f(x),Y)\mid X=x]\,\big],
+\mathcal{L}\,(f)=\mathbb{E}_X\big[\,\mathbb{E}[\ell(f(x),Y)\mid X=x]\,\big],
 $$
 
 当 $\mathcal{F}$ 足够大（含所有可测函数）时，最小化整体积分 $\iff$ 对每个 $x$ 逐点最优化：
@@ -138,7 +138,7 @@ $$
 |---|---|---|
 | 平方 $\tfrac12(a-y)^2$ | $\mathbb{E}[Y\mid X=x]$ | 条件均值 |
 | 绝对值 $\lvert a-y\rvert$ | 条件中位数 | |
-| 0-1 $\mathbf{1}_{a\neq y}$ | $\mathbf{1}[\eta(x)\ge\tfrac12],\ \eta(x)=\mathbb{P}(Y{=}1\mid x)$ | Bayes 分类器 |
+| 0-1 $\mathbf{1}_{a\neq y}$ | $\mathbf{1}[\eta(x)\ge\tfrac12],\ \eta(x)=\mathbb{P}\,(Y{=}1\mid x)$ | Bayes 分类器 |
 
 **平方损失的证明**（配方）：令 $m(x)=\mathbb{E}[Y\mid x]$，则
 
@@ -149,7 +149,7 @@ $$
 故 $a=m(x)$ 时最小。**0-1 损失**：预测 1 的风险是 $1-\eta(x)$、预测 0 的风险是 $\eta(x)$，比大小即得 Bayes 分类器。
 
 !!! note "$f^*$ 不一定是"真实函数""
-    仅当 $Y=f_0(X)+\varepsilon$ 且 $\mathbb{E}[\varepsilon\mid X]=0$ 时 $f^*=f_0$；否则 $f^*$ 只是该损失下的最优预测。分类里更没有"真标签函数"——同一 $x$ 下 $Y$ 本就随机。衡量学到的 $\hat f$ 差多少，用**超额风险** $\mathcal{E}(\hat f)=\mathcal{L}(\hat f)-\mathcal{L}(f^*)$。
+    仅当 $Y=f_0(X)+\varepsilon$ 且 $\mathbb{E}[\varepsilon\mid X]=0$ 时 $f^*=f_0$；否则 $f^*$ 只是该损失下的最优预测。分类里更没有"真标签函数"——同一 $x$ 下 $Y$ 本就随机。衡量学到的 $\hat f$ 差多少，用**超额风险** $\mathcal{E}\,(\hat f)=\mathcal{L}\,(\hat f)-\mathcal{L}\,(f^*)$。
 
 ## 分布间的差异：为何用 KL 散度而非范数
 

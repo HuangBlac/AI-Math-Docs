@@ -53,11 +53,11 @@ u^\varepsilon \in L^\infty(0,T; H^1(\mathbb{R}^n; \mathbb{R}^m)), \quad u^{\vare
    \end{cases}
    \]
 
-   由**热传导方程的基本解**（§2.3.1），该方程存在唯一解 \( u \)，且 \( u \in L^\infty(0,T; H^1) \)、\( u^\prime \in L^2(0,T; L^2) \)，故可定义映射 \( \mathcal{F}: X \to X \)，即 \( \mathcal{F}(v) = u \)。
+   由**热传导方程的基本解**（§2.3.1），该方程存在唯一解 \( u \)，且 \( u \in L^\infty(0,T; H^1) \)、\( u^\prime \in L^2(0,T; L^2) \)，故可定义映射 \( \mathcal{F}: X \to X \)，即 \( \mathcal{F}\,(v) = u \)。
 
 2. **作差与估计式推导**
 
-   取 \( \tilde{v} \in X \)，设 \( \tilde{u} = \mathcal{F}(\tilde{v}) \)，令 \( \tilde{u} = u - \tilde{u} \)，则 \( \tilde{u} \) 满足：
+   取 \( \tilde{v} \in X \)，设 \( \tilde{u} = \mathcal{F}\,(\tilde{v}) \)，令 \( \tilde{u} = u - \tilde{u} \)，则 \( \tilde{u} \) 满足：
    \[
    \begin{cases}
    \tilde{u}_t - \varepsilon \Delta \tilde{u} = - \sum_{j=1}^n B_j \tilde{v}_{x_j}, & \text{在 } \mathbb{R}^n \times (0,T] \text{ 中}, \\
@@ -74,10 +74,10 @@ u^\varepsilon \in L^\infty(0,T; H^1(\mathbb{R}^n; \mathbb{R}^m)), \quad u^{\vare
 
    取 \( T > 0 \) 足够小，使 \( C(\varepsilon) T^{1/2} \leq 1/2 \)，则映射 \( \mathcal{F}: X \to X \) 满足**压缩性**：
    \[
-   \|\mathcal{F}(v) - \mathcal{F}(\tilde{v})\|_X \leq \frac{1}{2} \|v - \tilde{v}\|_X
+   \|\mathcal{F}\,(v) - \mathcal{F}\,(\tilde{v})\|_X \leq \frac{1}{2} \|v - \tilde{v}\|_X
    \]
 
-   由**Banach不动点定理**，\( \mathcal{F} \) 存在唯一不动点 \( u^\varepsilon \in X \)，即 \( u^\varepsilon = \mathcal{F}(u^\varepsilon) \)，故 \( u^\varepsilon \) 是原方程的解。
+   由**Banach不动点定理**，\( \mathcal{F} \) 存在唯一不动点 \( u^\varepsilon \in X \)，即 \( u^\varepsilon = \mathcal{F}\,(u^\varepsilon) \)，故 \( u^\varepsilon \) 是原方程的解。
 
 ###### 关键要点
 

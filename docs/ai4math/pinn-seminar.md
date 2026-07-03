@@ -513,7 +513,7 @@ PPT内容：
 
 初始化时：神经网络 ≈ 高斯过程（GP）
 $$
-f(x, \theta) \sim \mathcal{N}(0, \Sigma(x, x'))
+f(x, \theta) \sim \mathcal{N}\,(0, \Sigma(x, x'))
 $$
 
 训练时：神经网络 ≈ 核回归
@@ -601,9 +601,9 @@ PPT图示：
 
 ### 3.5 具体操作：计算PINNs的NTK
 
-PPT内容： 考虑一般PDE问题： $$ \mathcal{L}u(x) = f(x), \quad x \in \Omega $$ $$ u(x) = g(x), \quad x \in \partial\Omega $$
+PPT内容： 考虑一般PDE问题： $$ \mathcal{L}\,u(x) = f(x), \quad x \in \Omega $$ $$ u(x) = g(x), \quad x \in \partial\Omega $$
 
-定义PINN的损失函数： $$ \mathcal{L}(\theta) = \mathcal{L}_b(\theta) + \mathcal{L}_r(\theta) $$
+定义PINN的损失函数： $$ \mathcal{L}\,(\theta) = \mathcal{L}_b(\theta) + \mathcal{L}_r(\theta) $$
 
 其中边界损失： 
 
@@ -613,11 +613,11 @@ $$
 
 $$ 
 
-PDE残差损失： $$ \mathcal{L}_r(\theta) = \frac{1}{2N_r}\sum_{i=1}^{N_r}|\mathcal{L}u(x_i^r, \theta) - f(x_i^r)|^2 $$
+PDE残差损失： $$ \mathcal{L}_r(\theta) = \frac{1}{2N_r}\sum_{i=1}^{N_r}|\mathcal{L}\,u(x_i^r, \theta) - f(x_i^r)|^2 $$
 
 NTK矩阵定义： $$ K(t) = \begin{pmatrix} K_{uu}(t) & K_{ur}(t) \ K_{ru}(t) & K_{rr}(t) \end{pmatrix} $$
 
-其中： $$ (K_{uu}){ij} = \frac{\partial u(x_i^b, \theta)}{\partial \theta} \cdot \frac{\partial u(x_j^b, \theta)}{\partial \theta} $$ $$ (K{rr})_{ij} = \frac{\partial \mathcal{L}u(x_i^r, \theta)}{\partial \theta} \cdot \frac{\partial \mathcal{L}u(x_j^r, \theta)}{\partial \theta} $$
+其中： $$ (K_{uu}){ij} = \frac{\partial u(x_i^b, \theta)}{\partial \theta} \cdot \frac{\partial u(x_j^b, \theta)}{\partial \theta} $$ $$ (K{rr})_{ij} = \frac{\partial \mathcal{L}\,u(x_i^r, \theta)}{\partial \theta} \cdot \frac{\partial \mathcal{L}\,u(x_j^r, \theta)}{\partial \theta} $$
 
 文案： 我们将NTK的概念推广到PINN。关键的区别在于，PINN的输出不仅包括网络本身的值，还包括PDE残差。因此，PINN的NTK是一个分块矩阵，分别描述边界损失和PDE残差的梯度相关性。
 

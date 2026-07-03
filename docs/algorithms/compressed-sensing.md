@@ -53,7 +53,7 @@ $$
 $$
 s = Ax^* + \varepsilon
 $$
-其中 $\varepsilon \sim \mathcal{N}(0, \sigma^2 I)$ 是高斯噪声。
+其中 $\varepsilon \sim \mathcal{N}\,(0, \sigma^2 I)$ 是高斯噪声。
 
 所要求解的是：
 $$
@@ -157,7 +157,7 @@ $$
 
 关键问题：控制 $\sup_{u \in \mathcal{B}_{2s}} |\langle A u, \varepsilon \rangle|$。
 
-使用**覆盖方法**：用有限个向量覆盖 $\mathcal{B}_{2s}$，然后用联合界。覆盖数的上界是 $\mathcal{N} \leq \left(\frac{3}{\rho}\right)^{2s}$。对每个固定的覆盖向量 $u$，$\langle A u, \varepsilon \rangle \sim \mathcal{N}(0, \sigma^2\|Au\|_2^2)$。
+使用**覆盖方法**：用有限个向量覆盖 $\mathcal{B}_{2s}$，然后用联合界。覆盖数的上界是 $\mathcal{N} \leq \left(\frac{3}{\rho}\right)^{2s}$。对每个固定的覆盖向量 $u$，$\langle A u, \varepsilon \rangle \sim \mathcal{N}\,(0, \sigma^2\|Au\|_2^2)$。
 
 用标准高斯尾概率界（在概率 $1 - \delta$ 下）：
 $$
@@ -223,7 +223,7 @@ $$
 
 三月七：不过，我这里倒还要问一个和正则项没关系的问题，为什么残差用的是L2范数而不是L1？这是不是也可以带来什么稀疏性
 
-长夜月：这里的 $\|Ax - s\|_2^2$ 不是正则项，而是来自测量误差的统计性质。我们假设观测 $s = Ax^* + \varepsilon$，其中 $\varepsilon \sim \mathcal{N}(0, \sigma^2 I)$。高斯噪声下的最大似然估计自然给出L2损失。
+长夜月：这里的 $\|Ax - s\|_2^2$ 不是正则项，而是来自测量误差的统计性质。我们假设观测 $s = Ax^* + \varepsilon$，其中 $\varepsilon \sim \mathcal{N}\,(0, \sigma^2 I)$。高斯噪声下的最大似然估计自然给出L2损失。
 
 而L1罚项才是用来形成稀疏性的。
 

@@ -26,7 +26,7 @@
 对于分类问题以及一系列机器学习问题，本质上就是要找一个满足泛函极小化的解：
 
 $$
-f^\ast = \arg\min_{f}\ \mathcal{L}(f) = \mathbb{E}_{(X,Y)\sim\mathbb{P}}\, \ell(f(X),Y).
+f^* = \arg\min_{f}\ \mathcal{L}\,(f) = \mathbb{E}_{(X,Y)\sim\mathbb{P}}\, \ell(f(X),Y).
 $$
 
 但我们并不知道真实的数据分布，所以实际采用平均值来代替期望。
@@ -52,7 +52,7 @@ $$
 但 $\operatorname{sign}$ 不连续，而且在零点没有定义，不能直接套进去。于是把原问题转化为选取 $g$：
 
 $$
-\mathcal{L}(g) = \arg\min\ \mathbb{P}\big(f(X)\neq Y\big) = \arg\min\ \mathbb{P}\big(\operatorname{sign}(g(X))\neq Y\big) = \arg\min\ \mathbb{P}\big(Yg(X)<0\big).
+\mathcal{L}\,(g) = \arg\min\ \mathbb{P}\big(f(X)\neq Y\big) = \arg\min\ \mathbb{P}\big(\operatorname{sign}(g(X))\neq Y\big) = \arg\min\ \mathbb{P}\big(Yg(X)<0\big).
 $$
 
 实际上就是要让 $Yg(X)$ 异号的概率尽可能小（同号的概率尽可能大）。重新写成期望形式：
@@ -66,7 +66,7 @@ $$
 
 **平方损失** $\Phi(u)=(u-1)^2$。因为 $y^2=1$，所以 $\Phi(yg(x))=(y-g(x))^2$，这就退回到了最小二乘回归，预测时取 $g(x)$ 的符号。注意它是图里唯一在 $u>1$ 后又往上翘的——对"分得太对"也会惩罚，这是它和其它（单调不增的）损失的区别。
 
-**Logistic 损失** $\Phi(u)=\log(1+e^{-u})=-\log\sigma(u)$，其中 $\sigma$ 是 sigmoid，对应逻辑回归，也就是常说的交叉熵；从概率角度看，令 $\mathbb{P}(y=1\mid x)=\sigma(g(x))$，这个风险就是负的条件对数似然（第 14 章细讲）。
+**Logistic 损失** $\Phi(u)=\log(1+e^{-u})=-\log\sigma(u)$，其中 $\sigma$ 是 sigmoid，对应逻辑回归，也就是常说的交叉熵；从概率角度看，令 $\mathbb{P}\,(y=1\mid x)=\sigma(g(x))$，这个风险就是负的条件对数似然（第 14 章细讲）。
 
 **Hinge 损失** $\Phi(u)=\max(1-u,0)$。配上线性预测器就是 SVM，这里的 $yg(x)$ 就是"间隔"一词的出处（几何解释在带菱形的 4.1.2）。
 
@@ -78,7 +78,7 @@ $$
 
 ## 4.2–4.3 风险分解与逼近误差
 
-我们并不是从真实分布求理论最佳函数 $f^\ast$，也不是在所有可能的函数空间内搜索。我们有 $n$ 个样本 $\{(X_i,Y_i)\}$，每个样本独立同分布，实际求的是
+我们并不是从真实分布求理论最佳函数 $f^*$，也不是在所有可能的函数空间内搜索。我们有 $n$ 个样本 $\{(X_i,Y_i)\}$，每个样本独立同分布，实际求的是
 
 $$
 \hat f = \arg\min_{f\in\mathcal{F}}\ \frac1n\sum_{i=1}^n \ell(f(X_i),Y_i).
@@ -87,7 +87,7 @@ $$
 大数定理告诉我们频率趋近于概率，但毕竟有差别。更具体地，可以把超额风险拆成两部分：
 
 $$
-\mathcal{L}(\hat f) - \mathcal{L}(f^\ast) = \underbrace{\mathcal{L}(\hat f) - \inf_{f\in\mathcal{F}}\mathcal{L}(f)}_{\text{估计误差 estimation error}} + \underbrace{\inf_{f\in\mathcal{F}}\mathcal{L}(f) - \mathcal{L}(f^\ast)}_{\text{逼近误差 approximation error}}.
+\mathcal{L}\,(\hat f) - \mathcal{L}\,(f^*) = \underbrace{\mathcal{L}\,(\hat f) - \inf_{f\in\mathcal{F}}\mathcal{L}\,(f)}_{\text{估计误差 estimation error}} + \underbrace{\inf_{f\in\mathcal{F}}\mathcal{L}\,(f) - \mathcal{L}\,(f^*)}_{\text{逼近误差 approximation error}}.
 $$
 
 前者由样本有限导致（估计误差），后者由函数类 $\mathcal{F}$ 不够大导致（逼近误差）。
@@ -96,12 +96,12 @@ $$
 
 对函数类往往考虑这样的情形（也符合实际算法的构建）：$\mathcal{F}=\{f_\theta\mid \theta\in\Theta\}$。
 
-举个例子，神经网络函数空间 $\mathcal{NN}(2,100,\theta)$：$L\le 2,\ W\le 100,\ |B|\le 10$，表示一个两层、宽度 100、参数绝对值 $\le 10$ 的网络对应的函数空间。严格来说，$\Theta$ 在计算机里只能取离散值（如 double、float）。考虑这一点，逼近误差可以进一步分解：
+举个例子，神经网络函数空间 $\mathcal{NN}\,(2,100,\theta)$：$L\le 2,\ W\le 100,\ |B|\le 10$，表示一个两层、宽度 100、参数绝对值 $\le 10$ 的网络对应的函数空间。严格来说，$\Theta$ 在计算机里只能取离散值（如 double、float）。考虑这一点，逼近误差可以进一步分解：
 
 $$
-\inf_{\theta\in\Theta}\mathcal{L}(f_\theta) - \mathcal{L}(f^\ast)
-= \underbrace{\inf_{\theta\in\Theta}\mathcal{L}(f_\theta) - \inf_{\theta\in\mathbb{R}^n}\mathcal{L}(f_\theta)}_{\text{可优化部分}}
-+ \underbrace{\inf_{\theta\in\mathbb{R}^n}\mathcal{L}(f_\theta) - \mathcal{L}(f^\ast)}_{\text{不可压缩项}}.
+\inf_{\theta\in\Theta}\mathcal{L}\,(f_\theta) - \mathcal{L}\,(f^*)
+= \underbrace{\inf_{\theta\in\Theta}\mathcal{L}\,(f_\theta) - \inf_{\theta\in\mathbb{R}^n}\mathcal{L}\,(f_\theta)}_{\text{可优化部分}}
++ \underbrace{\inf_{\theta\in\mathbb{R}^n}\mathcal{L}\,(f_\theta) - \mathcal{L}\,(f^*)}_{\text{不可压缩项}}.
 $$
 
 第二部分单纯靠提高精度无法解决，除非改变算法结构本身，被称为**不可压缩项**。而对固定模型（如神经网络、SVM），第二项往往可以压得很小（万能逼近定理等），所以重点先分析第一块。
@@ -109,7 +109,7 @@ $$
 考虑一个具体的回归情景 $f_\theta(x)=\theta^\top\varphi(x)$。第一部分误差可以借助损失函数关于第二个变量 $G$-Lipschitz 写成：
 
 $$
-\mathcal{L}(f_\theta)-\mathcal{L}(f_{\theta'}) = \mathbb{E}\big[\ell(y,f_\theta(x))-\ell(y,f_{\theta'}(x))\big]\le G\,\mathbb{E}\big[|f_\theta(x)-f_{\theta'}(x)|\big].
+\mathcal{L}\,(f_\theta)-\mathcal{L}\,(f_{\theta'}) = \mathbb{E}\big[\ell(y,f_\theta(x))-\ell(y,f_{\theta'}(x))\big]\le G\,\mathbb{E}\big[|f_\theta(x)-f_{\theta'}(x)|\big].
 $$
 
 再假设 $\|\theta\|_2\le D$。在经典范例 $f_\theta(x)=\theta^\top\varphi(x)$ 下，预测差为 $|f_\theta(x)-f_{\theta'}(x)| = |(\theta-\theta')^\top\varphi(x)|\le \|\theta-\theta'\|_2\,\|\varphi(x)\|_2$。代回去，约束代价被压成
@@ -132,13 +132,13 @@ $$
 R(\hat f) - \inf_{f\in\mathcal{F}} R(f) \;\leq\; 2\sup_{f\in\mathcal{F}} \big|\hat R(f) - R(f)\big|.
 $$
 
-推导过程（记 $g_{\mathcal F}$ 为 $\mathcal F$ 内的最优）：
+推导过程（记 $g_{\mathcal{F}}$ 为 $\mathcal{F}$ 内的最优）：
 
 $$
-R(\hat f) - R(g_{\mathcal F}) = \underbrace{\{R(\hat f) - \hat R(\hat f)\}}_{①} + \underbrace{\{\hat R(\hat f) - \hat R(g_{\mathcal F})\}}_{②} + \underbrace{\{\hat R(g_{\mathcal F}) - R(g_{\mathcal F})\}}_{③}.
+R(\hat f) - R(g_{\mathcal{F}}) = \underbrace{\{R(\hat f) - \hat R(\hat f)\}}_{①} + \underbrace{\{\hat R(\hat f) - \hat R(g_{\mathcal{F}})\}}_{②} + \underbrace{\{\hat R(g_{\mathcal{F}}) - R(g_{\mathcal{F}})\}}_{③}.
 $$
 
-①、③ 都可以被 $\sup_{f\in\mathcal{F}}\big(R(f)-\hat R(f)\big)$ 控制；② 中由于 $\hat f$ 是 $\hat R$ 的极小化结果，$\hat R(\hat f)\le \hat R(g_{\mathcal F})$，所以 $②\le 0$。
+①、③ 都可以被 $\sup_{f\in\mathcal{F}}\big(R(f)-\hat R(f)\big)$ 控制；② 中由于 $\hat f$ 是 $\hat R$ 的极小化结果，$\hat R(\hat f)\le \hat R(g_{\mathcal{F}})$，所以 $②\le 0$。
 
 ### McDiarmid 不等式（完整证明）
 
@@ -153,7 +153,7 @@ $$
 **第 1 步 · 设置鞅。** 定义 filtration $\mathcal{F}_i=\sigma(Z_1,\dots,Z_i)$（表示"已经看到前 $i$ 个样本"），并令 $M_i=\mathbb{E}[H\mid Z_1,\dots,Z_i]$。则
 
 $$
-H-\mathbb{E}H = M_n-M_0 = \sum_{i=1}^n (M_i-M_{i-1}),\qquad D_i := M_i-M_{i-1}.
+H-\mathbb{E}\,H = M_n-M_0 = \sum_{i=1}^n (M_i-M_{i-1}),\qquad D_i := M_i-M_{i-1}.
 $$
 
 问题变成控制 $\sum_{i=1}^n D_i$。
@@ -170,7 +170,7 @@ $$
 D_i = \phi_i(Z_i)-\mathbb{E}[\phi_i(Z_i)\mid\mathcal{F}_{i-1}],\qquad \mathbb{E}[D_i\mid\mathcal{F}_{i-1}]=0,\quad D_i\in[a_i,b_i],\ b_i-a_i\le c_i.
 $$
 
-**第 3 步 · 使用 Hoeffding 引理。** 若 $\mathbb{E}X=0,\ X\in[a,b]$，则对任意 $\lambda>0$，$\mathbb{E}e^{\lambda X}\le\exp\!\big(\tfrac{\lambda^2(b-a)^2}{8}\big)$。对 $D_i$ 用条件版：
+**第 3 步 · 使用 Hoeffding 引理。** 若 $\mathbb{E}\,X=0,\ X\in[a,b]$，则对任意 $\lambda>0$，$\mathbb{E}\,e^{\lambda X}\le\exp\!\big(\tfrac{\lambda^2(b-a)^2}{8}\big)$。对 $D_i$ 用条件版：
 
 $$
 \mathbb{E}\big[e^{\lambda D_i}\mid\mathcal{F}_{i-1}\big]\le \exp\!\left(\frac{\lambda^2 c_i^2}{8}\right).
@@ -179,19 +179,19 @@ $$
 **第 4 步 · 控制整体矩母函数。** 用条件期望一层层剥：
 
 $$
-\mathbb{E}e^{\lambda\sum_{i=1}^n D_i} = \mathbb{E}\Big[e^{\lambda\sum_{i=1}^{n-1}D_i}\,\mathbb{E}(e^{\lambda D_n}\mid\mathcal{F}_{n-1})\Big]\le \exp\!\left(\frac{\lambda^2 c_n^2}{8}\right)\mathbb{E}e^{\lambda\sum_{i=1}^{n-1}D_i}.
+\mathbb{E}\,e^{\lambda\sum_{i=1}^n D_i} = \mathbb{E}\Big[e^{\lambda\sum_{i=1}^{n-1}D_i}\,\mathbb{E}\,(e^{\lambda D_n}\mid\mathcal{F}_{n-1})\Big]\le \exp\!\left(\frac{\lambda^2 c_n^2}{8}\right)\mathbb{E}\,e^{\lambda\sum_{i=1}^{n-1}D_i}.
 $$
 
 不断递推：
 
 $$
-\mathbb{E}e^{\lambda(H-\mathbb{E}H)}\le \exp\!\left(\frac{\lambda^2}{8}\sum_{i=1}^n c_i^2\right).
+\mathbb{E}\,e^{\lambda(H-\mathbb{E}\,H)}\le \exp\!\left(\frac{\lambda^2}{8}\sum_{i=1}^n c_i^2\right).
 $$
 
-**第 5 步 · Chernoff bound 取尾界。** 由 Markov，$\mathbb{P}(H-\mathbb{E}H>t)\le e^{-\lambda t}\,\mathbb{E}e^{\lambda(H-\mathbb{E}H)}\le \exp\!\big(-\lambda t+\tfrac{\lambda^2}{8}C\big)$，其中 $C=\sum_i c_i^2$。对 $\lambda$ 优化，$-t+\tfrac{\lambda C}{4}=0\Rightarrow\lambda=\tfrac{4t}{C}$，代回得 $-\tfrac{2t^2}{C}$。因此
+**第 5 步 · Chernoff bound 取尾界。** 由 Markov，$\mathbb{P}\,(H-\mathbb{E}\,H>t)\le e^{-\lambda t}\,\mathbb{E}\,e^{\lambda(H-\mathbb{E}\,H)}\le \exp\!\big(-\lambda t+\tfrac{\lambda^2}{8}C\big)$，其中 $C=\sum_i c_i^2$。对 $\lambda$ 优化，$-t+\tfrac{\lambda C}{4}=0\Rightarrow\lambda=\tfrac{4t}{C}$，代回得 $-\tfrac{2t^2}{C}$。因此
 
 $$
-\boxed{\ \mathbb{P}(H-\mathbb{E}H>t)\le \exp\!\left(-\frac{2t^2}{\sum_{i=1}^n c_i^2}\right)\ }
+\boxed{\ \mathbb{P}\,(H-\mathbb{E}\,H>t)\le \exp\!\left(-\frac{2t^2}{\sum_{i=1}^n c_i^2}\right)\ }
 $$
 
 这就是 McDiarmid 不等式。
