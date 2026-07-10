@@ -89,12 +89,16 @@ nav:
     - 凸优化: computation/optimization.md
     - 统计计算: computation/stat-computing.md
     - 统计学习理论: computation/learning-theory.md
-    - "LFTP 精读（Bach）":
+    - "学习笔记":
+      - 总览: computation/lftp/index.md
+      - Ch2 监督学习导论: computation/lftp/ch2-supervised-learning.md
       - Ch4 经验风险最小化: computation/lftp/ch4-erm.md
       - Ch4 Rademacher复杂度: computation/lftp/ch4-rademacher.md
       - Ch4.4 Massart引理与Dudley积分: computation/lftp/ch4-4-massart.md
       - 机器学习基础: computation/lftp/machine-learning.md
       - 稀疏学习与特征学习: computation/lftp/sparse-feature-learning.md
+      - 数据科学导论: computation/lftp/data-science-intro.md
+      - 统计计算总复习: computation/lftp/stat-computing-review.md
   - 算法介绍:
     - algorithms/index.md
     - 神经网络: algorithms/neural-networks.md
