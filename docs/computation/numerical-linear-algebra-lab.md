@@ -58,7 +58,7 @@
 
 ## 代码索引
 
-MATLAB 实现（22 个文件，见 [`code/numlinalg/`](code/numlinalg/)）：
+MATLAB 实现（22 个文件，见 [GitHub 目录 `code/numlinalg/`](https://github.com/HuangBlac/AI-Math-Docs/tree/wiki-experiment/docs/computation/code/numlinalg)）：
 
 **直接法**
 - `fullPivotGauss.m` — 全主元高斯消元
