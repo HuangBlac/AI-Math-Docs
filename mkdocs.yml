@@ -87,6 +87,7 @@ nav:
     - 数值分析: computation/num-analysis.md
     - 数值微分方程: computation/num-pde.md
     - 凸优化: computation/optimization.md
+    - 无约束优化算法对比: computation/unconstrained-optimization.md
     - 统计计算: computation/stat-computing.md
     - 统计学习理论: computation/learning-theory.md
     - "学习笔记":
