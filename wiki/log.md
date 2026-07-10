@@ -38,3 +38,11 @@
 - concepts/statistical-computing/data-science.md — 数据科学导论
 
 所有页面已建立 [[wikilinks]] 交叉引用，index.md 已更新。
+
+## [2026-07-10] ingest | PDF 源材料 + Entity 页面
+
+- `raw/lftp.pdf` (11.6 MB) — LFTP 原书 PDF
+- `raw/data-science-ppt.pdf` (32 MB) — 数据科学 PPT
+- entities/lftp-book.md — LFTP 精读追踪（含各章进度）
+- entities/data-science-course.md — 数据科学课程简介
+- index.md 更新为 12 页，新增 Entities 和 Raw Sources 章节

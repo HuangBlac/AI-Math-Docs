@@ -1,0 +1,208 @@
+{
+  "main": {
+    "id": "2bba82a317961ead",
+    "type": "split",
+    "children": [
+      {
+        "id": "6697ded9ae91812e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "03b858d486fab7fa",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "index.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "index"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "194ad9dfc4178fa0",
+    "type": "split",
+    "children": [
+      {
+        "id": "62bde6edf1c0d3cb",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cdd0791b50e8309c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "69c0a273f75275d4",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "6c1e506be15f9a89",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "4a638ff757d7a19e",
+    "type": "split",
+    "children": [
+      {
+        "id": "6cfc0c5d0ef4fd57",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fcefebc271c671e7",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "index.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "index 的反向链接列表"
+            }
+          },
+          {
+            "id": "f998d22e6011a257",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "index.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "index 的出链列表"
+            }
+          },
+          {
+            "id": "882517fe93748d6b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "6d1c728532ad3ef4",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "176a89b680393e99",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "index.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "index 的大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false
+    }
+  },
+  "active": "cdd0791b50e8309c",
+  "lastOpenFiles": [
+    "entities/lftp-book.md",
+    "entities/data-science-course.md",
+    "raw/data-science-ppt.pdf",
+    "raw/lftp.pdf",
+    "concepts/statistical-computing/statistical-computing.md",
+    "concepts/statistical-computing/data-science.md",
+    "concepts/learning-theory/sparse-feature-learning.md",
+    "concepts/learning-theory/rademacher-complexity.md",
+    "concepts/learning-theory/massart-dudley.md",
+    "concepts/learning-theory/machine-learning.md",
+    "concepts/learning-theory/erm.md",
+    "concepts/learning-theory/concentration-inequality.md",
+    "concepts/learning-theory/bias-variance.md",
+    "index.md",
+    "raw/lftp/index.md",
+    "raw/lftp/data-science-intro.md",
+    "raw/lftp/ch4-erm.md",
+    "raw/lftp/ch4-4-massart.md",
+    "raw/lftp/ch2-supervised-learning.md"
+  ]
+}
