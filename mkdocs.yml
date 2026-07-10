@@ -97,6 +97,7 @@ nav:
       - Ch4 经验风险最小化: computation/lftp/ch4-erm.md
       - Ch4 Rademacher复杂度: computation/lftp/ch4-rademacher.md
       - Ch4.4 Massart引理与Dudley积分: computation/lftp/ch4-4-massart.md
+      - Ch5 优化：GD/SGD/SVRG: computation/lftp/ch5-optimization.md
       - 机器学习基础: computation/lftp/machine-learning.md
       - 稀疏学习与特征学习: computation/lftp/sparse-feature-learning.md
       - 数据科学导论: computation/lftp/data-science-intro.md
