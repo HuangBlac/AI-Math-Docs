@@ -91,6 +91,10 @@ nav:
     - 统计学习理论: computation/learning-theory.md
     - "LFTP 精读（Bach）":
       - Ch4 经验风险最小化: computation/lftp/ch4-erm.md
+      - Ch4 Rademacher复杂度: computation/lftp/ch4-rademacher.md
+      - Ch4.4 Massart引理与Dudley积分: computation/lftp/ch4-4-massart.md
+      - 机器学习基础: computation/lftp/machine-learning.md
+      - 稀疏学习与特征学习: computation/lftp/sparse-feature-learning.md
   - 算法介绍:
     - algorithms/index.md
     - 神经网络: algorithms/neural-networks.md
