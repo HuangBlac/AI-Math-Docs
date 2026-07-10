@@ -84,6 +84,7 @@ nav:
   - 计算数学:
     - computation/index.md
     - 数值线性代数: computation/num-linalg.md
+    - 数值线代上机实验: computation/numerical-linear-algebra-lab.md
     - 数值分析: computation/num-analysis.md
     - 数值微分方程: computation/num-pde.md
     - 凸优化: computation/optimization.md
