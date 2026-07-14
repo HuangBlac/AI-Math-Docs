@@ -3339,23 +3339,23 @@ f(x)=\sum_{i=1}^n f_i(x).
 <ol>
 <li>从上一 epoch 的内层点中选取快照</li>
 </ol>
-<p>$$
+<div class="arithmatex">\[
    \tilde x_{s-1}=x_{s-1,j},
    \qquad
-   j\sim\operatorname{Unif}{0,\ldots,T-1}.
-   $$</p>
+   j\sim\operatorname{Unif}\{0,\ldots,T-1\}.
+\]</div>
 <ol>
 <li>计算全梯度</li>
 </ol>
-<p>$$
+<div class="arithmatex">\[
    \tilde g_s=\nabla f(\tilde x_{s-1}).
-   $$</p>
+\]</div>
 <ol>
 <li>令</li>
 </ol>
-<p>$$
+<div class="arithmatex">\[
    x_{s,0}=\tilde x_{s-1}.
-   $$</p>
+\]</div>
 <ol>
 <li>
 <p>对 <span class="arithmatex">\(k=0,\ldots,T-1\)</span>：</p>
@@ -3363,34 +3363,32 @@ f(x)=\sum_{i=1}^n f_i(x).
 <li>
 <p>以概率 <span class="arithmatex">\(\mathbb P(i_k=j)=p_j\)</span> 抽取 <span class="arithmatex">\(i_k\)</span>；</p>
 </li>
-<li>
-<p>计算</p>
-<p>$$
- g_{s,k}
- =
- \frac{\nabla f_{i_k}(x_{s,k})}{p_{i_k}},
- \qquad
- \tilde g_{s,k}
- =
- \frac{\nabla f_{i_k}(\tilde x_{s-1})}{p_{i_k}};
- $$</p>
-</li>
-<li>
-<p>更新</p>
-<p>$$
- \boxed{
- x_{s,k+1}
- =
- \operatorname{Prox}<em s_k="s,k">{\alpha h}
- \left(
- x</em>
- -\alpha
- \bigl(g_{s,k}-\tilde g_{s,k}+\tilde g_s\bigr)
- \right)
- }.
- $$</p>
-</li>
+<li>计算</li>
 </ol>
+<div class="arithmatex">\[
+     g_{s,k}
+     =
+     \frac{\nabla f_{i_k}(x_{s,k})}{p_{i_k}},
+     \qquad
+     \tilde g_{s,k}
+     =
+     \frac{\nabla f_{i_k}(\tilde x_{s-1})}{p_{i_k}};
+\]</div>
+<ul>
+<li>更新</li>
+</ul>
+<div class="arithmatex">\[
+     \boxed{
+     x_{s,k+1}
+     =
+     \operatorname{Prox}_{\alpha h}
+     \left(
+     x_{s,k}
+     -\alpha
+     \bigl(g_{s,k}-\tilde g_{s,k}+\tilde g_s\bigr)
+     \right)
+     }.
+\]</div>
 <p>每个 epoch 大约需要 <span class="arithmatex">\(n+2T\)</span> 次分量梯度计算。</p>
 <h3 id="83">8.3 线性收敛结论</h3>
 <p>假设：</p>

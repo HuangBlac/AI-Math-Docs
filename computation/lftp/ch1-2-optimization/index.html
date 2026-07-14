@@ -2930,24 +2930,13 @@ R(f_{\widehat\theta})-\inf_{\theta\in\Theta}R(f_\theta)
 \]</div>
 <p>右侧分为两部分：</p>
 <ul>
-<li><strong>统计误差</strong></li>
+<li>
+<p><strong>统计误差</strong> <span class="arithmatex">\(\displaystyle \operatorname{err}_{\mathrm{stat}} = 2\sup_{f\in\mathcal F_\Theta} \left|R(f)-\widehat R(f)\right|.\)</span></p>
+</li>
+<li>
+<p><strong>优化误差</strong> <span class="arithmatex">\(\displaystyle \operatorname{err}_{\mathrm{opt}} = \widehat R(f_{\widehat\theta}) - \inf_{\theta\in\Theta}\widehat R(f_\theta).\)</span></p>
+</li>
 </ul>
-<p>$$
-  \operatorname{err}<em F__Theta="F_\Theta" f_in_mathcal="f\in\mathcal">{\mathrm{stat}}
-  =
-  2\sup</em>
-  \left|R(f)-\widehat R(f)\right|.
-  $$</p>
-<ul>
-<li><strong>优化误差</strong></li>
-</ul>
-<p>$$
-  \operatorname{err}<em _widehat_theta="\widehat\theta">{\mathrm{opt}}
-  =
-  \widehat R(f</em>)
-  -
-  \inf_{\theta\in\Theta}\widehat R(f_\theta).
-  $$</p>
 <p>统计误差通常由函数类复杂度控制。对有限函数类可以使用集中不等式与并合界；对无限函数类，可使用覆盖数或 Rademacher 复杂度。经过对称化后，常出现形如</p>
 <div class="arithmatex">\[
 2\operatorname{Rad}_n(\mathcal F_\Theta)
