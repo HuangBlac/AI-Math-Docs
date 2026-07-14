@@ -4290,23 +4290,23 @@
 <p>考虑一阶常微分方程（ODE，作为 PDE 特例）：</p>
 <p>u′=1−2tu,u(0)=0</p>
 <ul>
-<li><strong>解析解</strong>：通过<strong>积分因子法</strong>求解，方程变形为 u′+2tu=1，积分因子为 e∫2tdt=et2，两边乘积分因子得：</li>
+<li><strong>解析解</strong>：通过**积分因子法**求解，方程变形为 u′+2tu=1，积分因子为 e∫2tdt=et2，两边乘积分因子得：</li>
 </ul>
 <p>(uet2)′=et2⟹uet2=∫0tes2ds⟹u(t)=e−t2∫0tes2ds.</p>
 <ul>
-<li><strong>数值解（中心差分）</strong>：对 u′(ti)，用<strong>中心差分格式</strong>近似（步长 h）：</li>
+<li><strong>数值解（中心差分）</strong>：对 u′(ti)，用**中心差分格式**近似（步长 h）：</li>
 </ul>
 <p>u′(ti)≈2hui+1−ui−1+O(h2)</p>
 <p>（O(h2) 为截断误差，中心差分具有二阶精度）；更高阶导数（如 u′′(ti)）可通过类似差分格式近似。</p>
 <p>考虑椭圆型偏微分方程（以一维为例）：</p>
 <p>−dx2d2u+g(x)u=f(x)</p>
-<p>通过<strong>有限差分法</strong>离散化（步长 h，网格点 ui≈u(xi)），二阶导数用中心差分近似：</p>
+<p>通过**有限差分法**离散化（步长 h，网格点 ui≈u(xi)），二阶导数用中心差分近似：</p>
 <p>h2ui+1−2ui+ui−1+giui=fi</p>
 <p>（推广到高维椭圆方程 −∇⋅(p∇u)+r⋅∇u+gu=f 时，需用梯度与散度的差分近似，核心是通过离散化将 PDE 转化为代数方程组 Lhu=f）。</p>
 <hr />
 <h4 id="3-pde">3. 逼近解的存在性定理（抛物型 PDE）</h4>
 <h5 id="1">定理1（逼近解的存在性）</h5>
-<p>对每个 <span class="arithmatex">\( \varepsilon \in (0,1) \)</span>，存在<strong>唯一的解 <span class="arithmatex">\( u^\varepsilon \)</span></strong>，且满足：
+<p>对每个 <span class="arithmatex">\( \varepsilon \in (0,1) \)</span>，存在**唯一的解 <span class="arithmatex">\( u^\varepsilon \)</span>**，且满足：
 [
 u^\varepsilon \in L^\infty(0,T; H^1(\mathbb{R}^n; \mathbb{R}^m)), \quad u^{\varepsilon\prime} \in L^2(0,T; L^2(\mathbb{R}^n; \mathbb{R}^m))
 ]</p>
@@ -4314,14 +4314,14 @@ u^\varepsilon \in L^\infty(0,T; H^1(\mathbb{R}^n; \mathbb{R}^m)), \quad u^{\vare
 <ol>
 <li><strong>定义解映射与线性方程</strong></li>
 </ol>
-<p>设空间 <span class="arithmatex">\( X = L^\infty(0,T; H^1(\mathbb{R}^n; \mathbb{R}^m)) \)</span>。对任意 <span class="arithmatex">\( v \in X \)</span>，考虑<strong>线性抛物型方程组</strong>：
+<p>设空间 <span class="arithmatex">\( X = L^\infty(0,T; H^1(\mathbb{R}^n; \mathbb{R}^m)) \)</span>。对任意 <span class="arithmatex">\( v \in X \)</span>，考虑**线性抛物型方程组**：
    [
    \begin{cases}
    u_t - \varepsilon \Delta u = f - \sum_{j=1}^n B_j v_{x_j}, &amp; \text{在 } \mathbb{R}^n \times (0,T] \text{ 中}, \
    u = g^\varepsilon, &amp; \text{在 } \mathbb{R}^n \times {t=0} \text{ 上}.
    \end{cases}
    ]</p>
-<p>由<strong>热传导方程的基本解</strong>（§2.3.1），该方程存在唯一解 <span class="arithmatex">\( u \)</span>，且 <span class="arithmatex">\( u \in L^\infty(0,T; H^1) \)</span>、<span class="arithmatex">\( u^\prime \in L^2(0,T; L^2) \)</span>，故可定义映射 <span class="arithmatex">\( \mathcal{F}: X \to X \)</span>，即 <span class="arithmatex">\( \mathcal{F}\,(v) = u \)</span>。</p>
+<p>由**热传导方程的基本解**（§2.3.1），该方程存在唯一解 <span class="arithmatex">\( u \)</span>，且 <span class="arithmatex">\( u \in L^\infty(0,T; H^1) \)</span>、<span class="arithmatex">\( u^\prime \in L^2(0,T; L^2) \)</span>，故可定义映射 <span class="arithmatex">\( \mathcal{F}: X \to X \)</span>，即 <span class="arithmatex">\( \mathcal{F}\,(v) = u \)</span>。</p>
 <ol>
 <li><strong>作差与估计式推导</strong></li>
 </ol>
@@ -4332,18 +4332,18 @@ u^\varepsilon \in L^\infty(0,T; H^1(\mathbb{R}^n; \mathbb{R}^m)), \quad u^{\vare
    \tilde{u} = 0, &amp; \text{在 } \mathbb{R}^n \times {t=0} \text{ 上}.
    \end{cases}
    ]}^n B_j \tilde{v}_{x_j}, &amp; \text{在 } \mathbb{R}^n \times (0,T] \text{ 中</p>
-<p>结合热传导基本解与Sobolev空间估计，得<strong>范数估计</strong>：
+<p>结合热传导基本解与Sobolev空间估计，得**范数估计**：
    [
    \text{ess sup}<em H_1_mathbb_R="H^1(\mathbb{R">{0 \leq t \leq T} |\tilde{u}(t)|</em>
    ]}^n)} \leq C(\varepsilon) T^{1/2} |\tilde{v}|_{L^\infty(0,T; H^1)</p>
 <ol>
 <li><strong>Banach不动点定理的应用</strong></li>
 </ol>
-<p>取 <span class="arithmatex">\( T &gt; 0 \)</span> 足够小，使 <span class="arithmatex">\( C(\varepsilon) T^{1/2} \leq 1/2 \)</span>，则映射 <span class="arithmatex">\( \mathcal{F}: X \to X \)</span> 满足<strong>压缩性</strong>：
+<p>取 <span class="arithmatex">\( T &gt; 0 \)</span> 足够小，使 <span class="arithmatex">\( C(\varepsilon) T^{1/2} \leq 1/2 \)</span>，则映射 <span class="arithmatex">\( \mathcal{F}: X \to X \)</span> 满足**压缩性**：
    [
    |\mathcal{F}\,(v) - \mathcal{F}\,(\tilde{v})|_X \leq \frac{1}{2} |v - \tilde{v}|_X
    ]</p>
-<p>由<strong>Banach不动点定理</strong>，<span class="arithmatex">\( \mathcal{F} \)</span> 存在唯一不动点 <span class="arithmatex">\( u^\varepsilon \in X \)</span>，即 <span class="arithmatex">\( u^\varepsilon = \mathcal{F}\,(u^\varepsilon) \)</span>，故 <span class="arithmatex">\( u^\varepsilon \)</span> 是原方程的解。</p>
+<p>由**Banach不动点定理**，<span class="arithmatex">\( \mathcal{F} \)</span> 存在唯一不动点 <span class="arithmatex">\( u^\varepsilon \in X \)</span>，即 <span class="arithmatex">\( u^\varepsilon = \mathcal{F}\,(u^\varepsilon) \)</span>，故 <span class="arithmatex">\( u^\varepsilon \)</span> 是原方程的解。</p>
 <h6 id="_3">关键要点</h6>
 <ul>
 <li><strong>空间选择</strong>：<span class="arithmatex">\( X = L^\infty(0,T; H^1(\mathbb{R}^n; \mathbb{R}^m)) \)</span> 为合适的函数空间</li>
@@ -4354,11 +4354,11 @@ u^\varepsilon \in L^\infty(0,T; H^1(\mathbb{R}^n; \mathbb{R}^m)), \quad u^{\vare
 <hr />
 <h4 id="4-lax">4. Lax等价定理与差分格式</h4>
 <h5 id="_4">微分方程与差分格式</h5>
-<p>考虑<strong>二阶常微分方程</strong>：
+<p>考虑**二阶常微分方程**：
 [
 -\frac{d^2 u}{dx^2} + g u = f
 ]
-用<strong>中心差分</strong>近似二阶导数，构造差分格式：
+用**中心差分**近似二阶导数，构造差分格式：
 [
 u_{i+1} - 2u_i + u_{i-1} \quad (\text{对应 } -\frac{d^2 u}{dx^2} \text{ 的差分近似，步长隐含为 } h)
 ]</p>
@@ -4368,17 +4368,17 @@ u_{i+1} - 2u_i + u_{i-1} \quad (\text{对应 } -\frac{d^2 u}{dx^2} \text{ 的差
 - <strong>收敛性</strong>：数值解 <span class="arithmatex">\( u^m \)</span> 与真解 <span class="arithmatex">\( u \)</span> 满足 <span class="arithmatex">\( \| u^m - u \| &lt; \varepsilon \)</span>（数值解逼近真解）；
 - <strong>稳定性</strong>：若初值 <span class="arithmatex">\( \| u^0 - v^0 \| &lt; \varepsilon \)</span>，则数值解满足 <span class="arithmatex">\( \| u^m - v^m \| &lt; K \varepsilon \)</span>（初值小扰动下数值解扰动可控）。</p>
 <h5 id="_5">截断误差与收敛条件</h5>
-<p>对差分格式，<strong>截断误差收敛</strong>需满足：
-当初值<strong>充分光滑</strong>时，存在常数 <span class="arithmatex">\( K \)</span>，使
+<p>对差分格式，**截断误差收敛**需满足：
+当初值**充分光滑**时，存在常数 <span class="arithmatex">\( K \)</span>，使
 [
 T \sum_{\ell=0}^{m-1} | T^\ell | \to 0 \quad (\text{其中 } T(h) \to 0 \text{ 当步长 } h \to 0, \forall m \leq t_{\text{max}})
 ]
 （<span class="arithmatex">\( T \)</span> 为差分算子，<span class="arithmatex">\( T^\ell \)</span> 表示算子的 <span class="arithmatex">\( \ell \)</span> 次复合，和式刻画累积误差的衰减）。</p>
-<p>若初值<strong>非光滑</strong>，需通过"函数替换"将问题转化为光滑情形分析。</p>
+<p>若初值**非光滑**，需通过"函数替换"将问题转化为光滑情形分析。</p>
 <hr />
 <h4 id="5">5. 差分格式的稳定性与矩阵范数估计</h4>
 <h5 id="_6">差分格式的稳定性设定</h5>
-<p>考虑<strong>有限维向量</strong>下的差分格式，形式为：
+<p>考虑**有限维向量**下的差分格式，形式为：
 [
 B_1 V^{m+1} = B_0 V^m + F^m
 ]
@@ -4395,20 +4395,20 @@ V^{m+1} - W^{m+1} = B_1^{-1} B_0 (V^m - W^m)
 ]
 递推得 <span class="arithmatex">\( \| V^m - W^m \| \leq \| (B_1^{-1} B_0)^m \| \| V^0 - W^0 \| \)</span>，故需估计 <span class="arithmatex">\( \| (B_1^{-1} B_0)^m \| \)</span> 的增长性。</p>
 <h5 id="_8">矩阵范数的指数估计</h5>
-<p>引入<strong>误差项 <span class="arithmatex">\( E(t) \)</span></strong>（如截断误差对应的矩阵），考虑含扰动的矩阵 <span class="arithmatex">\( B_1^{-1} B_0 + T E(t) \)</span>，利用<strong>二项式展开</strong>估计其 <span class="arithmatex">\( m \)</span> 次幂的范数：
+<p>引入**误差项 <span class="arithmatex">\( E(t) \)</span><strong>（如截断误差对应的矩阵），考虑含扰动的矩阵 <span class="arithmatex">\( B_1^{-1} B_0 + T E(t) \)</span>，利用**二项式展开**估计其 <span class="arithmatex">\( m \)</span> 次幂的范数：
 [
-\begin{align<em>}
+\begin{align*}
 | (B_1^{-1} B_0 + T E(t))^m | &amp;\leq \sum_{j=0}^m \binom{m}{j} | (B_1^{-1} B_0)^j | | (T E(t))^{m-j} | \
 &amp;\leq K_1 \sum_{j=0}^m \binom{m}{j} K_1^j (T K_2)^{m-j} \quad (\text{设 } | (B_1^{-1} B_0)^j | \leq K_1^j, | E(t) | \leq K_2) \
 &amp;= K_1 (1 + T K_1 K_2)^m
-\end{align</em>}
+\end{align*}
 ]
-再由<strong>指数函数的单调性</strong>（<span class="arithmatex">\( 1 + x \leq e^x \)</span> 对 <span class="arithmatex">\( x \geq 0 \)</span>），得：
+再由**指数函数的单调性</strong>（<span class="arithmatex">\( 1 + x \leq e^x \)</span> 对 <span class="arithmatex">\( x \geq 0 \)</span>），得：
 [
 K_1 (1 + T K_1 K_2)^m \leq K_1 e^{T m K_1 K_2}
 ]</p>
 <h5 id="_9">与偏微分方程的关联</h5>
-<p>上述差分格式对应<strong>抛物型偏微分方程</strong>的半离散化形式：
+<p>上述差分格式对应**抛物型偏微分方程**的半离散化形式：
 [
 \frac{\partial u}{\partial t} = L(u(x,t)) + f
 ]
@@ -4420,26 +4420,26 @@ K_1 (1 + T K_1 K_2)^m \leq K_1 e^{T m K_1 K_2}
 <hr />
 <h4 id="6-cfl">6. 双曲型方程与CFL条件</h4>
 <h5 id="_10">二阶双曲方程的一阶拆分</h5>
-<p>对<strong>二阶线性双曲方程</strong>，通过变量替换转化为<strong>一阶双曲方程组</strong>：
+<p>对**二阶线性双曲方程**，通过变量替换转化为**一阶双曲方程组**：
 令 <span class="arithmatex">\( v_0 = u_t \)</span>，<span class="arithmatex">\( v_1 = u_x \)</span>，则原方程可化为形式：
 [
 v_t + \sum_{i} A_i v_{x_i} + B v = \psi
 ]
 （<span class="arithmatex">\( A_i, B \)</span> 为系数矩阵/函数，<span class="arithmatex">\( \psi \)</span> 为非齐次项，实现"二阶→一阶"的降阶）。</p>
 <h5 id="cfl">特征线与CFL条件的核心思想</h5>
-<p>考虑<strong>一阶线性双曲方程</strong> <span class="arithmatex">\( \frac{\partial u}{\partial t} + a \frac{\partial u}{\partial x} = 0 \)</span>，其<strong>特征线</strong>满足常微分方程：
+<p>考虑**一阶线性双曲方程** <span class="arithmatex">\( \frac{\partial u}{\partial t} + a \frac{\partial u}{\partial x} = 0 \)</span>，其**特征线**满足常微分方程：
 [
 \frac{dx}{dt} = a(x,t)
 ]
 沿特征线，解满足 <span class="arithmatex">\( \frac{du}{dt} = \frac{\partial u}{\partial t} + a \frac{\partial u}{\partial x} = 0 \)</span>（即 <span class="arithmatex">\( u \)</span> 沿特征线为常数）。</p>
 <p><strong>CFL条件</strong>（Courant-Friedrichs-Lewy条件）：数值解的依赖区域需包含真解的依赖区域（保证数值格式能"捕捉"真解的传播特性）。</p>
 <h5 id="cfl_1">迎风格式与CFL条件的验证</h5>
-<p>以<strong>迎风格式</strong>为例，格式形式为：
+<p>以**迎风格式**为例，格式形式为：
 [
 u_j^{m+1} - u_j^m = \frac{a \tau}{h} (u_j^m - u_{j-1}^m)
 ]
 （<span class="arithmatex">\( \tau \)</span> 为时间步长，<span class="arithmatex">\( h \)</span> 为空间步长，<span class="arithmatex">\( u_j^m \)</span> 为第 <span class="arithmatex">\( m \)</span> 步 <span class="arithmatex">\( x_j \)</span> 处的数值解）。</p>
-<p>分析<strong>依赖区域</strong>：<span class="arithmatex">\( u_j^{m+1} \)</span> 依赖 <span class="arithmatex">\( u_j^m, u_{j-1}^m \)</span>（当 <span class="arithmatex">\( a &gt; 0 \)</span> 时，特征线向右传播，迎风取左侧节点）。为满足CFL条件，需保证"真解依赖的区域被数值依赖区域包含"，即：
+<p>分析**依赖区域**：<span class="arithmatex">\( u_j^{m+1} \)</span> 依赖 <span class="arithmatex">\( u_j^m, u_{j-1}^m \)</span>（当 <span class="arithmatex">\( a &gt; 0 \)</span> 时，特征线向右传播，迎风取左侧节点）。为满足CFL条件，需保证"真解依赖的区域被数值依赖区域包含"，即：
 [
 \left| \frac{a \tau}{h} \right| \leq 1
 ]
@@ -4447,19 +4447,19 @@ u_j^{m+1} - u_j^m = \frac{a \tau}{h} (u_j^m - u_{j-1}^m)
 <hr />
 <h4 id="7">7. 双曲型方程的数值格式与截断误差</h4>
 <h5 id="_11">特征线与数值格式的关联</h5>
-<p>考虑双曲型方程的<strong>特征线</strong>满足：
+<p>考虑双曲型方程的**特征线**满足：
 [
 \frac{dx}{dt} = a(u), \quad \frac{du}{dt} = u
 ]
 （<span class="arithmatex">\( a(u) \)</span> 为特征速度，反映解的传播方向）。</p>
-<p>经典数值格式如 <strong>Lax-Wendroff格式</strong>、<strong>Beam-Warming格式</strong>，需结合<strong>CFL条件</strong>（<span class="arithmatex">\( \left| a \frac{\tau}{h} \right| \leq 1 \)</span>，<span class="arithmatex">\( \tau \)</span> 为时间步长，<span class="arithmatex">\( h \)</span> 为空间步长）保证稳定性。</p>
+<p>经典数值格式如 <strong>Lax-Wendroff格式</strong>、<strong>Beam-Warming格式</strong>，需结合**CFL条件**（<span class="arithmatex">\( \left| a \frac{\tau}{h} \right| \leq 1 \)</span>，<span class="arithmatex">\( \tau \)</span> 为时间步长，<span class="arithmatex">\( h \)</span> 为空间步长）保证稳定性。</p>
 <h5 id="_12">格式的离散与插值展开</h5>
 <p>以某差分格式为例，形式为：
 [
 u_j^{m+1} = -\frac{u_j^{m+1} - 2u_j^m}{2h} + \text{高阶修正项}
 ]
 （含一阶差分项，刻画时间/空间的变化率）。</p>
-<p>通过<strong>二次函数插值</strong>细化展开，利用节点 <span class="arithmatex">\( x_{j-1}, x_j, x_{j+1} \)</span> 构造插值多项式：
+<p>通过**二次函数插值**细化展开，利用节点 <span class="arithmatex">\( x_{j-1}, x_j, x_{j+1} \)</span> 构造插值多项式：
 [
 u_j^m + \frac{1}{2}(u_j^{m+1} - u_j^m) \cdot \frac{(x - x_{j-1})(x - x_j)}{(x_{j+1} - x_j)(x_{j+1} - x_{j-1})} + \dots
 ]
@@ -4478,13 +4478,13 @@ u_j^m + \frac{1}{2}(u_j^{m+1} - u_j^m) \cdot \frac{(x - x_{j-1})(x - x_j)}{(x_{j
 <hr />
 <h4 id="8-fourier">8. 微分方程数值解与Fourier方法</h4>
 <h5 id="_14">微分不等式与初值估计</h5>
-<p>考虑<strong>微分不等式</strong>：
+<p>考虑**微分不等式**：
 [
 \frac{d}{dt} \left( u e^{-ct} \right) \leq F(t) e^{-ct}
 ]
 两边积分并结合初值 <span class="arithmatex">\( u(0) \)</span>，可得 <span class="arithmatex">\( u(t) \)</span> 的上界估计（用于分析解的增长性或稳定性）。</p>
 <h5 id="_15">有限差分法的"三性"</h5>
-<p>有限差分法需满足<strong>相容性、稳定性、收敛性</strong>：
+<p>有限差分法需满足**相容性、稳定性、收敛性**：
 - <strong>相容性</strong>：差分格式与原微分方程的截断误差趋于0；
 - <strong>稳定性</strong>：初值小扰动下，数值解的扰动被控制（范数估计如 <span class="arithmatex">\( \| B_0 \| \leq K \)</span>，<span class="arithmatex">\( \| u_m - v_m \| \leq \| B_0^m \| K \)</span>，其中 <span class="arithmatex">\( B_0, B_1 \)</span> 为差分格式的系数矩阵）；
 - <strong>收敛性</strong>：数值解逼近真解。</p>
@@ -4494,7 +4494,7 @@ B_0 u^{m+1} = B_1 u^m + F^m
 ]
 （<span class="arithmatex">\( u^m \)</span> 为第 <span class="arithmatex">\( m \)</span> 步数值解，<span class="arithmatex">\( F^m \)</span> 为右端项）。</p>
 <h5 id="fourier">Fourier方法分析对流扩散方程</h5>
-<p>以<strong>对流扩散方程</strong> <span class="arithmatex">\( \frac{\partial u}{\partial t} + a \frac{\partial u}{\partial x} = 0 \)</span>（初值 <span class="arithmatex">\( u(x,0) = g(x) \)</span>）为例，用Fourier方法分析数值格式：</p>
+<p>以**对流扩散方程** <span class="arithmatex">\( \frac{\partial u}{\partial t} + a \frac{\partial u}{\partial x} = 0 \)</span>（初值 <span class="arithmatex">\( u(x,0) = g(x) \)</span>）为例，用Fourier方法分析数值格式：</p>
 <ul>
 <li>
 <p><strong>数值格式近似</strong>：构造差分格式近似时间与空间导数，如
@@ -4504,7 +4504,7 @@ B_0 u^{m+1} = B_1 u^m + F^m
   （<span class="arithmatex">\( \lambda = \frac{\tau}{h} \)</span>，<span class="arithmatex">\( \tau \)</span> 为时间步长，<span class="arithmatex">\( h \)</span> 为空间步长）。</p>
 </li>
 <li>
-<p><strong>局部近似与Fourier变换</strong>：将数值解 <span class="arithmatex">\( u_j^{m+1} \)</span> 局部近似为 <span class="arithmatex">\( u(x, t_{m+1}) \)</span> 在区间 <span class="arithmatex">\( [x_j - \frac{h}{2}, x_j + \frac{h}{2}] \)</span> 上的代表值，再通过<strong>Fourier变换</strong>分析格式的频率特性（如增长因子、稳定性条件），Fourier变换形式为：
+<p><strong>局部近似与Fourier变换</strong>：将数值解 <span class="arithmatex">\( u_j^{m+1} \)</span> 局部近似为 <span class="arithmatex">\( u(x, t_{m+1}) \)</span> 在区间 <span class="arithmatex">\( [x_j - \frac{h}{2}, x_j + \frac{h}{2}] \)</span> 上的代表值，再通过**Fourier变换**分析格式的频率特性（如增长因子、稳定性条件），Fourier变换形式为：
   [
   \frac{1}{\sqrt{m}} \int \hat{u}(x, t_m) e^{itx} dx
   ]</p>
@@ -4513,14 +4513,14 @@ B_0 u^{m+1} = B_1 u^m + F^m
 <hr />
 <h4 id="9-sobolev">9. Sobolev嵌入与一阶双曲型方程组</h4>
 <h5 id="sobolev">Sobolev空间的嵌入算子</h5>
-<p>考虑<strong>算子 <span class="arithmatex">\( T \)</span></strong>：<span class="arithmatex">\( W^{k,p}(U) \to L^q(\Omega) \)</span>（<span class="arithmatex">\( U \)</span> 为定义域，<span class="arithmatex">\( \Omega \)</span> 为目标区域），若 <span class="arithmatex">\( u \in W^{k,p}(U) \cap C(\bar{U}) \)</span>，则 <span class="arithmatex">\( Tu = u|_\Omega \)</span>（将 <span class="arithmatex">\( u \)</span> 限制到 <span class="arithmatex">\( \Omega \)</span> 上）。</p>
-<p><strong>嵌入性质</strong>：存在<strong>有界线性算子 <span class="arithmatex">\( T \)</span></strong>，满足范数估计：
+<p>考虑**算子 <span class="arithmatex">\( T \)</span>**：<span class="arithmatex">\( W^{k,p}(U) \to L^q(\Omega) \)</span>（<span class="arithmatex">\( U \)</span> 为定义域，<span class="arithmatex">\( \Omega \)</span> 为目标区域），若 <span class="arithmatex">\( u \in W^{k,p}(U) \cap C(\bar{U}) \)</span>，则 <span class="arithmatex">\( Tu = u|_\Omega \)</span>（将 <span class="arithmatex">\( u \)</span> 限制到 <span class="arithmatex">\( \Omega \)</span> 上）。</p>
+<p><strong>嵌入性质</strong>：存在**有界线性算子 <span class="arithmatex">\( T \)</span>**，满足范数估计：
 [
 | Tu |<em W_k_p="W^{k,p">{L^q(\Omega)} \leq C | u |</em>
 ]
 （即Sobolev空间 }(U)<span class="arithmatex">\( W^{k,p}(U) \)</span> 可"嵌入"到 <span class="arithmatex">\( L^q(\Omega) \)</span> 空间，由Sobolev不等式保证）。</p>
 <h5 id="_16">一阶双曲型方程组</h5>
-<p>考虑<strong>一阶线性双曲型方程组</strong>：
+<p>考虑**一阶线性双曲型方程组**：
 [
 u_t + \sum_{j=1}^n B_j(x, t) u_{x_j} = f(x, t), \quad u|_{t=0} = g(x)
 ]
@@ -4528,7 +4528,7 @@ u_t + \sum_{j=1}^n B_j(x, t) u_{x_j} = f(x, t), \quad u|_{t=0} = g(x)
 <h5 id="_17">双曲性与变分形式</h5>
 <ul>
 <li>
-<p><strong>双曲性条件</strong>：定义方向矩阵 <span class="arithmatex">\( B(t, x; t, y) = \sum_{j=1}^n y_j B_j(x, t) \)</span>（<span class="arithmatex">\( y \in \mathbb{R}^n \)</span>）。若对任意 <span class="arithmatex">\( x, t, y \)</span>，<span class="arithmatex">\( B(t, x; t, y) \)</span> 有 <span class="arithmatex">\( m \)</span> 个<strong>实特征值</strong> <span class="arithmatex">\( r_1(x, t; y), \dots, r_m(x, t; y) \)</span>，则方程组是双曲型的。</p>
+<p><strong>双曲性条件</strong>：定义方向矩阵 <span class="arithmatex">\( B(t, x; t, y) = \sum_{j=1}^n y_j B_j(x, t) \)</span>（<span class="arithmatex">\( y \in \mathbb{R}^n \)</span>）。若对任意 <span class="arithmatex">\( x, t, y \)</span>，<span class="arithmatex">\( B(t, x; t, y) \)</span> 有 <span class="arithmatex">\( m \)</span> 个**实特征值** <span class="arithmatex">\( r_1(x, t; y), \dots, r_m(x, t; y) \)</span>，则方程组是双曲型的。</p>
 </li>
 <li>
 <p><strong>变分形式</strong>：取测试函数 <span class="arithmatex">\( v \in H^1(\mathbb{R}^n) \)</span>，通过分部积分得弱形式：
@@ -4542,7 +4542,7 @@ u_t + \sum_{j=1}^n B_j(x, t) u_{x_j} = f(x, t), \quad u|_{t=0} = g(x)
 </li>
 </ul>
 <h5 id="_18">正则化方法（消去法）</h5>
-<p>为处理原方程的奇性，引入小参数 <span class="arithmatex">\( \varepsilon &gt; 0 \)</span>，构造<strong>正则化方程组</strong>：
+<p>为处理原方程的奇性，引入小参数 <span class="arithmatex">\( \varepsilon &gt; 0 \)</span>，构造**正则化方程组**：
 [
 u_t^\varepsilon - \varepsilon \Delta u^\varepsilon + \sum_{j=1}^n B_j(x, t) u_{x_j}^\varepsilon = f(x, t), \quad u^\varepsilon|_{t=0} = g^\varepsilon(x)
 ]
@@ -4550,13 +4550,13 @@ u_t^\varepsilon - \varepsilon \Delta u^\varepsilon + \sum_{j=1}^n B_j(x, t) u_{x
 <hr />
 <h4 id="10-pdesobolev">10. PDE弱解与Sobolev空间插值</h4>
 <h5 id="_19">守恒律方程的积分形式</h5>
-<p>考虑<strong>守恒律方程</strong> <span class="arithmatex">\( u_t + (f(u))_x = 0 \)</span>，对时间区间 <span class="arithmatex">\( [t_a, t_b] \)</span> 积分得：
+<p>考虑**守恒律方程** <span class="arithmatex">\( u_t + (f(u))_x = 0 \)</span>，对时间区间 <span class="arithmatex">\( [t_a, t_b] \)</span> 积分得：
 [
 \int_{\mathbb{R}} u(t_b, x) dx - \int_{\mathbb{R}} u(t_a, x) dx = \int_{t_a}^{t_b} \int_{\mathbb{R}} \frac{\partial}{\partial x} f(u(t, x)) dx dt
 ]
 （体现"积分守恒"：区间内总量的变化等于边界通量的累积）。</p>
 <h5 id="cea">Céa引理与弱解误差</h5>
-<p><strong>Céa引理</strong>用于有限元法的误差分析：将<strong>真解 <span class="arithmatex">\( u \)</span></strong>与<strong>数值解 <span class="arithmatex">\( u_h \)</span></strong>的范数误差 <span class="arithmatex">\( \| u - u_h \| \)</span>，转化为"逼近误差"（依赖于有限元空间 <span class="arithmatex">\( V_h \)</span> 对真解的近似能力）。</p>
+<p>**Céa引理**用于有限元法的误差分析：将**真解 <span class="arithmatex">\( u \)</span>**与**数值解 <span class="arithmatex">\( u_h \)</span>**的范数误差 <span class="arithmatex">\( \| u - u_h \| \)</span>，转化为"逼近误差"（依赖于有限元空间 <span class="arithmatex">\( V_h \)</span> 对真解的近似能力）。</p>
 <hr />
 <h2 id="_20">数学物理方程复习</h2>
 <h3 id="1-">1. 波动方程（双曲型）- 弦振动方程</h3>
@@ -4599,36 +4599,36 @@ $<span class="arithmatex">\(I(x) = \sum_{n=1}^{\infty} \frac{2^n [\sin(n+2)x + \
 <hr />
 <h2 id="neumann">泊松方程的 Neumann 边界条件数值解</h2>
 <h3 id="1-neumann">1. 问题模型（泊松方程与 Neumann 边界条件）</h3>
-<p>考虑<strong>泊松方程</strong>结合<strong>Neumann 边界条件</strong>的边值问题：</p>
+<p>考虑**泊松方程**结合**Neumann 边界条件**的边值问题：</p>
 <div class="arithmatex">\[\begin{cases}
 -\Delta u = f &amp; \text{（区域内部）} \\
 \frac{\partial u}{\partial n} = g &amp; \text{（区域边界，} n \text{ 为外法向）}
 \end{cases}\]</div>
 <h3 id="2_1">2. 内部节点的有限差分格式</h3>
-<p>对<strong>内部网格点</strong> (i, j)，拉普拉斯算子 Δu 用<strong>二阶中心差分</strong>近似：</p>
+<p>对**内部网格点** (i, j)，拉普拉斯算子 Δu 用**二阶中心差分**近似：</p>
 <div class="arithmatex">\[\Delta u \approx \frac{u_{i+1,j} + u_{i-1,j} + u_{i,j+1} + u_{i,j-1} - 4u_{i,j}}{h^2}\]</div>
 <p>（h 为网格步长，u_{i,j} 表示网格点 (ih, jh) 处的数值解）。</p>
 <p>代入泊松方程 -Δu = f，得内部节点的离散方程：</p>
 <div class="arithmatex">\[\frac{u_{i+1,j} + u_{i-1,j} + u_{i,j+1} + u_{i,j-1} - 4u_{i,j}}{h^2} = f_{i,j}\]</div>
 <h3 id="3-neumann">3. 边界节点的 Neumann 条件离散</h3>
-<p>对<strong>边界网格点</strong>（以 (0, j) 为例，位于左边界 x = 0），Neumann 条件 ∂u/∂x = g 用<strong>一阶中心差分</strong>近似：</p>
+<p>对**边界网格点**（以 (0, j) 为例，位于左边界 x = 0），Neumann 条件 ∂u/∂x = g 用**一阶中心差分**近似：</p>
 <div class="arithmatex">\[\frac{\partial u}{\partial x}(0,j) \approx \frac{u_{1,j} - u_{-1,j}}{2h} = g_{0,j}\]</div>
 <p>（u_{-1,j} 为 "虚构网格点" (-h, jh) 处的数值，需通过边界条件消去）。</p>
 <p>结合内部格式，对边界点 (0, j) 推导得离散方程：</p>
 <div class="arithmatex">\[u_{0,j+1} + u_{0,j-1} + u_{1,j} + u_{-1,j} - 4u_{0,j} = -2hg_{0,j} + f_{0,j}h^2\]</div>
 <p>再由 Neumann 条件的差分近似 u_{-1,j} = u_{1,j} - 2hg_{0,j}，代入后可消去虚构点 u_{-1,j}，得到仅含真实网格点的方程。</p>
 <h3 id="4">4. 角点的边界条件处理</h3>
-<p>对<strong>角点</strong>（如 (0, 0)），需同时处理两个方向的 Neumann 条件（∂u/∂x = g_x，∂u/∂y = g_y），离散为：</p>
+<p>对**角点**（如 (0, 0)），需同时处理两个方向的 Neumann 条件（∂u/∂x = g_x，∂u/∂y = g_y），离散为：</p>
 <div class="arithmatex">\[u_{-1,0} = u_{1,0} - 2hg_{x,0,0}, \quad u_{0,-1} = u_{0,1} - 2hg_{y,0,0}\]</div>
 <hr />
 <p><em>添加时间: 2026-04-07</em></p>
 <hr />
 <h2 id="finite-volume-method">有限体积法（Finite Volume Method）</h2>
 <h3 id="1_2">1. 有限体积法的核心方程（泊松方程）</h3>
-<p>对泊松方程 Δu = f，<strong>有限体积法</strong>通过 "对偶单元积分" 建立离散格式：</p>
+<p>对泊松方程 Δu = f，**有限体积法**通过 "对偶单元积分" 建立离散格式：</p>
 <ul>
 <li>
-<p>构造围绕节点 i 的<strong>对偶控制体</strong> Ω_i；</p>
+<p>构造围绕节点 i 的**对偶控制体** Ω_i；</p>
 </li>
 <li>
 <p>对 Ω_i 积分泊松方程，得</p>
@@ -4636,7 +4636,7 @@ $<span class="arithmatex">\(I(x) = \sum_{n=1}^{\infty} \frac{2^n [\sin(n+2)x + \
 </ul>
 <p>$<span class="arithmatex">\(\iint_{\Omega_i} \Delta u \, dx = \iint_{\Omega_i} f \, dx\)</span>$</p>
 <ul>
-<li>由散度定理（高斯公式），左边体积分转化为<strong>边界通量积分</strong>：</li>
+<li>由散度定理（高斯公式），左边体积分转化为**边界通量积分**：</li>
 </ul>
 <p>$<span class="arithmatex">\(\iint_{\Omega_i} \Delta u \, dx = \int_{\partial\Omega_i} \frac{\partial u}{\partial n} \, dx\)</span>$</p>
 <p>（∂u/∂n 是 u 沿边界外法向的方向导数，即 "通量密度"）。</p>
@@ -4652,27 +4652,27 @@ $<span class="arithmatex">\(I(x) = \sum_{n=1}^{\infty} \frac{2^n [\sin(n+2)x + \
 <p>$<span class="arithmatex">\(\int_{Q_iQ_{i+1}} \frac{\partial u}{\partial n} \, dS(x) \approx \sum \frac{|P_0P_{i+1}|}{q_iq_{i+1}} \cdot P_0P_{i+1} [u(P_m) - u(P_0)] + \text{高阶小项}\)</span>$</p>
 <p>（通过 "节点值的差" 近似通量，q_iq_{i+1} 与 P_0P_{i+1} 的几何关系决定权重）。</p>
 <h3 id="3-neumann_1">3. 边界条件的处理（Neumann 边界）</h3>
-<p>若边界给定<strong>Neumann 条件</strong> ∂u/∂n = g，则边界边的通量积分直接替换为：</p>
+<p>若边界给定**Neumann 条件** ∂u/∂n = g，则边界边的通量积分直接替换为：</p>
 <div class="arithmatex">\[\int_{\text{边界边}} \frac{\partial u}{\partial n} \, dS = \int_{\text{边界边}} g \, dS\]</div>
 <hr />
 <p><em>添加时间: 2026-04-07</em></p>
 <hr />
 <h2 id="_22">线性多步法的误差分析</h2>
 <h3 id="1_3">1. 线性多步法的算子表示</h3>
-<p>考虑线性多步法的离散格式，设 u_n 为<strong>数值解</strong>，真解为 u(t_n)，将格式表示为算子形式：</p>
+<p>考虑线性多步法的离散格式，设 u_n 为**数值解**，真解为 u(t_n)，将格式表示为算子形式：</p>
 <div class="arithmatex">\[u_{n+1} = L_h u_n\]</div>
 <p>（其中 L_h 是由差分格式诱导的线性算子，示例为二阶中心差分的抛物型方程格式：τ(u_j^{n+1} - u_j^n) = h²(u_{j+1}^n - 2u_j^n + u_{j-1}^n)，对应 u_j^{n+1} = (h²/τ)(u_{j+1}^n - 2u_j^n + u_{j-1}^n) + u_j^n，即 L_h 对网格函数的作用为包含邻点的线性组合）。</p>
 <h3 id="2_3">2. 真解的算子方程与误差源</h3>
 <p>真解 u(t) 满足 "带余项的算子方程"：</p>
 <div class="arithmatex">\[u(t_{n+1}) = L_h u(t_n) + R_n\]</div>
-<p>（其中 R_n 是<strong>局部截断误差</strong>，源于差分格式对微分方程的近似误差）。</p>
+<p>（其中 R_n 是**局部截断误差**，源于差分格式对微分方程的近似误差）。</p>
 <h3 id="3">3. 误差的递推估计</h3>
-<p>设 e_n = u(t_n) - u_n 为<strong>第 n 步的误差</strong>，则误差满足递推关系：</p>
+<p>设 e_n = u(t_n) - u_n 为**第 n 步的误差**，则误差满足递推关系：</p>
 <div class="arithmatex">\[e_{n+1} = u(t_{n+1}) - u_{n+1} = (L_h u(t_n) + R_n) - L_h u_n = L_h e_n + R_n\]</div>
 <p>由算子范数的性质（‖L_h e_n‖ ≤ ‖L_h‖ ‖e_n‖），递推得：</p>
 <div class="arithmatex">\[e_{n+1} \leq \|L_h\| e_n + R_n\]</div>
 <h3 id="4_1">4. 整体误差的几何级数估计</h3>
-<p>通过递推关系迭代展开，结合<strong>几何级数求和</strong>，可得整体误差上界：</p>
+<p>通过递推关系迭代展开，结合**几何级数求和**，可得整体误差上界：</p>
 <ul>
 <li>若 ‖L_h‖ &lt; 1，则递推误差满足：</li>
 </ul>
@@ -4687,10 +4687,10 @@ $<span class="arithmatex">\(I(x) = \sum_{n=1}^{\infty} \frac{2^n [\sin(n+2)x + \
 <hr />
 <h2 id="_23">极值原理与差分格式稳定性</h2>
 <h3 id="1_4">1. 极值原理与内部性态</h3>
-<p>对椭圆型方程（或其差分近似），<strong>最大值原理</strong>是核心工具：若 u′′+gu′&gt;0，则函数的最大值 "只在边界处" 达到（内部无极大值）。</p>
+<p>对椭圆型方程（或其差分近似），**最大值原理**是核心工具：若 u′′+gu′&gt;0，则函数的最大值 "只在边界处" 达到（内部无极大值）。</p>
 <p>对内部点 P，若满足 ∇u(P)=0（梯度为 0，疑似极值点），则需 Δu(P)≤0（Hessian 负定或半负定，保证是极大值点而非极小值点）；若方程为 Δu+g⋅∇u=0，则内部点的 Laplace 算子与梯度的组合需满足 "无正定性"，从而保证极值在边界。</p>
 <h3 id="2_4">2. 函数极小值的二阶条件</h3>
-<p>若函数 f(x,y) 在 x0 处取<strong>极小值</strong>，则需满足：</p>
+<p>若函数 f(x,y) 在 x0 处取**极小值**，则需满足：</p>
 <ul>
 <li>
 <p>一阶条件：∂x∂f=0，∂y∂f=0（梯度为 0）；</p>
@@ -4702,7 +4702,7 @@ $<span class="arithmatex">\(I(x) = \sum_{n=1}^{\infty} \frac{2^n [\sin(n+2)x + \
 <p>(∂x2∂2f)(∂y2∂2f)−(∂x∂y∂2f)2&gt;0</p>
 <p>（保证是 "严格极小值"，而非鞍点或极大值）。</p>
 <h3 id="3_1">3. 差分格式的稳定性</h3>
-<p>对椭圆型方程的<strong>差分格式</strong>Lhuh=f，稳定性通常通过 "算子的强制性" 或 "范数估计" 证明：</p>
+<p>对椭圆型方程的**差分格式**Lhuh=f，稳定性通常通过 "算子的强制性" 或 "范数估计" 证明：</p>
 <p>若存在常数 C,δ&gt;0，使对任意网格函数 uh，有</p>
 <p>C∥Lhuh−Lhvh∥≥δ∥uh−vh∥</p>
 <p>（Lh 是差分算子），则格式稳定（扰动的解误差被扰动的右端项控制）。</p>
@@ -4710,9 +4710,9 @@ $<span class="arithmatex">\(I(x) = \sum_{n=1}^{\infty} \frac{2^n [\sin(n+2)x + \
 <p>∥uh,i−ui∥≤∥Lhuh,i−Lhui∥⋅∥Lh−1∥</p>
 <p>（若 Lh 可逆且逆算子范数有界，则格式稳定）。</p>
 <h3 id="4_2">4. 差分格式的极值原理框架</h3>
-<p>考虑椭圆型方程的<strong>差分格式</strong> Lhuh=f，其中 Lh 是离散椭圆算子（如五点差分算子）。设<strong>误差项</strong> e_i = u_i - u_h_i（ui 为真解，u_h_i 为数值解），需证明 Lhei≤0，且边界误差 e0=en=0。</p>
+<p>考虑椭圆型方程的**差分格式** Lhuh=f，其中 Lh 是离散椭圆算子（如五点差分算子）。设**误差项** e_i = u_i - u_h_i（ui 为真解，u_h_i 为数值解），需证明 Lhei≤0，且边界误差 e0=en=0。</p>
 <h3 id="5_1">5. 极值的边界性（反证法）</h3>
-<p>假设误差 ei 在<strong>内部点</strong>取到正的最大值（或负的最小值），通过差分算子的离散形式推导矛盾：</p>
+<p>假设误差 ei 在**内部点**取到正的最大值（或负的最小值），通过差分算子的离散形式推导矛盾：</p>
 <ul>
 <li>对五点差分格式（二维 Laplace 算子），若 ei 在内部点 (i,j) 取最大值，则需满足：</li>
 </ul>
@@ -4732,28 +4732,28 @@ $<span class="arithmatex">\(I(x) = \sum_{n=1}^{\infty} \frac{2^n [\sin(n+2)x + \
 <hr />
 <h2 id="richardson">Richardson 差分格式与截断误差分析</h2>
 <h3 id="1_5">1. 时间导数的泰勒展开近似</h3>
-<p>对函数 <span class="arithmatex">\(u(x,t)\)</span> 关于时间 <span class="arithmatex">\(t\)</span> 做<strong>泰勒展开</strong>（中心差分近似 <span class="arithmatex">\(u_t\)</span>）：</p>
+<p>对函数 <span class="arithmatex">\(u(x,t)\)</span> 关于时间 <span class="arithmatex">\(t\)</span> 做**泰勒展开**（中心差分近似 <span class="arithmatex">\(u_t\)</span>）：</p>
 <div class="arithmatex">\[u(x,t+\tau)=u(x,t)+\tau u_t(x,t)+\frac{\tau^2}{2!} u_{tt}(x,t)+\frac{\tau^3}{3!} u_{ttt}(x,t)+O(\tau^4)\]</div>
 <div class="arithmatex">\[u(x,t-\tau)=u(x,t)-\tau u_t(x,t)+\frac{\tau^2}{2!} u_{tt}(x,t)-\frac{\tau^3}{3!} u_{ttt}(x,t)+O(\tau^4)\]</div>
-<p>两式相减并整理，得<strong>时间导数的中心差分近似</strong>：</p>
+<p>两式相减并整理，得**时间导数的中心差分近似**：</p>
 <div class="arithmatex">\[\frac{u(x,t+\tau)-u(x,t-\tau)}{2\tau}=u_t(x,t)+\frac{\tau^2}{6}u_{ttt}(x,t)+O(\tau^4)\]</div>
 <h3 id="2_5">2. 空间导数的泰勒展开近似</h3>
-<p>对函数 <span class="arithmatex">\(u(x,t)\)</span> 关于空间 <span class="arithmatex">\(x\)</span> 做<strong>泰勒展开</strong>（中心差分近似 <span class="arithmatex">\(u_{xx}\)</span>）：</p>
+<p>对函数 <span class="arithmatex">\(u(x,t)\)</span> 关于空间 <span class="arithmatex">\(x\)</span> 做**泰勒展开**（中心差分近似 <span class="arithmatex">\(u_{xx}\)</span>）：</p>
 <div class="arithmatex">\[u(x+h,t)=u(x,t)+hu_x(x,t)+\frac{h^2}{2!}u_{xx}(x,t)+\frac{h^3}{3!}u_{xxx}(x,t)+\frac{h^4}{4!}u_{xxxx}(x,t)+O(h^5)\]</div>
 <div class="arithmatex">\[u(x-h,t)=u(x,t)-hu_x(x,t)+\frac{h^2}{2!}u_{xx}(x,t)-\frac{h^3}{3!}u_{xxx}(x,t)+\frac{h^4}{4!}u_{xxxx}(x,t)+O(h^5)\]</div>
-<p>两式相加并整理，得<strong>空间二阶导数的中心差分近似</strong>：</p>
+<p>两式相加并整理，得**空间二阶导数的中心差分近似**：</p>
 <div class="arithmatex">\[\frac{u(x+h,t)-2u(x,t)+u(x-h,t)}{h^2}=u_{xx}(x,t)+\frac{h^2}{12}u_{xxxx}(x,t)+O(h^4)\]</div>
 <h3 id="3-richardson">3. Richardson 格式的截断误差</h3>
-<p>Richardson 格式通常用于近似波动方程等双曲型方程（如 <span class="arithmatex">\(u_t=u_{xx}\)</span> 类方程），将"时间、空间的中心差分近似"代入格式，组合后分析<strong>截断误差</strong>：</p>
+<p>Richardson 格式通常用于近似波动方程等双曲型方程（如 <span class="arithmatex">\(u_t=u_{xx}\)</span> 类方程），将"时间、空间的中心差分近似"代入格式，组合后分析**截断误差**：</p>
 <p>格式的截断误差由时间和空间近似的误差共同决定，由于时间近似的主误差项是 <span class="arithmatex">\(O(\tau^2)\)</span>，空间近似的主误差项是 <span class="arithmatex">\(O(h^2)\)</span>，因此 Richardson 格式的截断误差为 <strong>二阶</strong>（即 <span class="arithmatex">\(O(\tau^2+h^2)\)</span>），当 <span class="arithmatex">\(\tau,h\to0\)</span> 时，误差随 <span class="arithmatex">\(\tau^2\)</span> 和 <span class="arithmatex">\(h^2\)</span> 衰减。</p>
 <hr />
 <h2 id="_24">稳定性估计与比较原理</h2>
 <h3 id="1_6">1. 稳定性的核心估计</h3>
-<p>考虑差分算子 <span class="arithmatex">\(L_h\)</span>，若误差 <span class="arithmatex">\(e_n\)</span> 满足 <span class="arithmatex">\(L_h e_n = R_h\)</span>（<span class="arithmatex">\(R_h\)</span> 为残差项），则<strong>稳定性估计</strong>为：</p>
+<p>考虑差分算子 <span class="arithmatex">\(L_h\)</span>，若误差 <span class="arithmatex">\(e_n\)</span> 满足 <span class="arithmatex">\(L_h e_n = R_h\)</span>（<span class="arithmatex">\(R_h\)</span> 为残差项），则**稳定性估计**为：</p>
 <div class="arithmatex">\[\|e_n\|_\infty \leq C\|R_h\|_\infty\]</div>
 <p>（<span class="arithmatex">\(C&gt;0\)</span> 为常数，体现"误差的无穷范数被残差的无穷范数控制"，格式稳定）。</p>
 <h3 id="2_6">2. 比较原理的应用</h3>
-<p>对任意网格函数 <span class="arithmatex">\(v_i\)</span>，若存在另一个网格函数 <span class="arithmatex">\(w_i\)</span> 满足 <span class="arithmatex">\(L_h w_i \geq |L_h v_i|\)</span>，则由<strong>比较原理</strong>可得：</p>
+<p>对任意网格函数 <span class="arithmatex">\(v_i\)</span>，若存在另一个网格函数 <span class="arithmatex">\(w_i\)</span> 满足 <span class="arithmatex">\(L_h w_i \geq |L_h v_i|\)</span>，则由**比较原理**可得：</p>
 <div class="arithmatex">\[\|v_i\|_\infty \leq \|w_i\|_\infty \leq C\|g\|_\infty\]</div>
 <p>（<span class="arithmatex">\(g\)</span> 为右端项，通过"更'大'的函数 <span class="arithmatex">\(w_i\)</span> 控制 <span class="arithmatex">\(v_i\)</span> 的范数"，将复杂函数的范数估计转化为简单函数）。</p>
 <h3 id="3_2">3. 网格函数的构造与验证</h3>
@@ -4768,15 +4768,15 @@ $<span class="arithmatex">\(I(x) = \sum_{n=1}^{\infty} \frac{2^n [\sin(n+2)x + \
 <hr />
 <h2 id="_25">差分格式的唯一性与极值原理</h2>
 <h3 id="1_7">1. 差分格式的唯一性（极值原理）</h3>
-<p>对椭圆型差分方程（如 <span class="arithmatex">\(-Δu=0\)</span> 的差分近似），利用<strong>极值原理</strong>证明解的唯一性：</p>
-<p>若差分格式的解 <span class="arithmatex">\(u\)</span> 满足"内部点的极值由边界点决定"（即若 <span class="arithmatex">\(u\geq0\)</span>，则内部 <span class="arithmatex">\(u\leq0\)</span>，极值只在边界取），则"零边值下只有零解"，从而格式<strong>存在唯一解</strong>。</p>
+<p>对椭圆型差分方程（如 <span class="arithmatex">\(-Δu=0\)</span> 的差分近似），利用**极值原理**证明解的唯一性：</p>
+<p>若差分格式的解 <span class="arithmatex">\(u\)</span> 满足"内部点的极值由边界点决定"（即若 <span class="arithmatex">\(u\geq0\)</span>，则内部 <span class="arithmatex">\(u\leq0\)</span>，极值只在边界取），则"零边值下只有零解"，从而格式**存在唯一解**。</p>
 <h3 id="2_7">2. 稳定性与辅助函数构造</h3>
 <p>为分析稳定性，<strong>构造辅助函数</strong> <span class="arithmatex">\(\phi(x,y)\)</span>（如 <span class="arithmatex">\(\phi(x,y)=\sum x^2\)</span>，其 Laplace 算子 <span class="arithmatex">\(Δ\phi=2\)</span>），令 <span class="arithmatex">\(u_{i,j}+k\phi_{i,j}\)</span> 满足：</p>
 <div class="arithmatex">\[Δ u_{i,j} + k\phi_{i,j} \geq 0\]</div>
 <p>结合极值原理，可确保"区域内的最大值不超过边界最大值"，即：</p>
 <div class="arithmatex">\[\max_\Omega u_{i,j} \leq \max_{\partial\Omega} u_{i,j}\]</div>
 <h3 id="3_3">3. 误差界的推导</h3>
-<p>设误差 <span class="arithmatex">\(e=u-u_h\)</span>（<span class="arithmatex">\(u\)</span> 为真解，<span class="arithmatex">\(u_h\)</span> 为数值解），利用辅助函数与极值原理，推导<strong>无穷范数下的误差界</strong>：</p>
+<p>设误差 <span class="arithmatex">\(e=u-u_h\)</span>（<span class="arithmatex">\(u\)</span> 为真解，<span class="arithmatex">\(u_h\)</span> 为数值解），利用辅助函数与极值原理，推导**无穷范数下的误差界**：</p>
 <div class="arithmatex">\[\|e\|_\infty \leq C\|Δe\|_\infty\]</div>
 <p>（<span class="arithmatex">\(C\)</span> 为常数，体现"误差的无穷范数被误差 Laplace 算子的无穷范数控制"，格式稳定）。</p>
 <p>进一步，通过更精细的辅助函数（如 <span class="arithmatex">\(\phi_{i,j}=\frac{1}{4}(x^2+y^2)\)</span>），可将误差界与右端项 <span class="arithmatex">\(f\)</span> 关联，得到 <span class="arithmatex">\(\|u+k\phi_{i,j}\|_\infty \leq \max_\Omega |f|\)</span>，完成稳定性分析。</p>
@@ -4786,7 +4786,7 @@ $<span class="arithmatex">\(I(x) = \sum_{n=1}^{\infty} \frac{2^n [\sin(n+2)x + \
 $$
 | B + \Delta t C(\Delta t) | \leq | B | \cdot | I - \Delta t C(\Delta t) |
 $$
-通过<strong>矩阵范数的三角不等式</strong>与<strong>摄动理论</strong>，结合 <span class="arithmatex">\( C(t) \)</span> 的时变特性，说明 <span class="arithmatex">\( B + C(t) \)</span> 因摄动项 <span class="arithmatex">\( C(t) \)</span> 失去稳定性（核心：稳定矩阵受时变摄动后可能不稳定）。</p>
+通过**矩阵范数的三角不等式**与**摄动理论**，结合 <span class="arithmatex">\( C(t) \)</span> 的时变特性，说明 <span class="arithmatex">\( B + C(t) \)</span> 因摄动项 <span class="arithmatex">\( C(t) \)</span> 失去稳定性（核心：稳定矩阵受时变摄动后可能不稳定）。</p>
 <p>证明过程：</p>
 <hr />
 <p><em>添加时间: 2026-04-11</em></p>
@@ -4818,12 +4818,12 @@ $<span class="arithmatex">\(-\frac{1}{3}V_0^3 + V_0 - \frac{V_0+a}{b} + I = 0\)<
 $<span class="arithmatex">\(V^3 + 0.75V + 2.625 = 0\)</span>$</p>
 <p>因 <span class="arithmatex">\(f'(V) = 3V^2 + 0.75 &gt; 0\)</span>，函数单调递增，方程有唯一实根。试值得 <span class="arithmatex">\(V^* \approx -1.199\)</span>，对应 <span class="arithmatex">\(W^* \approx -0.624\)</span>。</p>
 <p><strong><span class="arithmatex">\(V\)</span>-零倾线的分支判定</strong>：
-<span class="arithmatex">\(V\)</span>-零倾线 <span class="arithmatex">\(W = V - \frac{1}{3}V^3\)</span> 的极值点出现在 <span class="arithmatex">\(1-V^2=0\)</span>，即 <span class="arithmatex">\(V=\pm 1\)</span>。因 <span class="arithmatex">\(V^* \approx -1.199 &lt; -1\)</span>，平衡点严格位于<strong>左支</strong>，是<strong>稳定结点</strong>（对应神经元的静息状态）。</p>
+<span class="arithmatex">\(V\)</span>-零倾线 <span class="arithmatex">\(W = V - \frac{1}{3}V^3\)</span> 的极值点出现在 <span class="arithmatex">\(1-V^2=0\)</span>，即 <span class="arithmatex">\(V=\pm 1\)</span>。因 <span class="arithmatex">\(V^* \approx -1.199 &lt; -1\)</span>，平衡点严格位于**左支**，是**稳定结点**（对应神经元的静息状态）。</p>
 <h3 id="3_4">3. 脉冲电流响应分析</h3>
 <p>考虑脉冲 <span class="arithmatex">\(I(t) = I_0 \delta(t-t_0)\)</span>，积分 <span class="arithmatex">\(dV/dt\)</span> 中的冲击项得：</p>
 <div class="arithmatex">\[\Delta V = \int_{t_0^-}^{t_0^+} I_0 \delta(t-t_0) dt = I_0\]</div>
 <p>脉冲瞬间，<span class="arithmatex">\(V\)</span> 跳变 <span class="arithmatex">\(I_0\)</span>，而慢变量 <span class="arithmatex">\(W\)</span> 来不及改变。新状态为 <span class="arithmatex">\((V_0', W_0) = (V^*+I_0,\; W^*)\)</span>。</p>
-<p><strong>阈值判别</strong>：系统是否能产生动作电位（全或无的尖峰），取决于扰动后状态是否落在<strong>激发域</strong>内。</p>
+<p><strong>阈值判别</strong>：系统是否能产生动作电位（全或无的尖峰），取决于扰动后状态是否落在**激发域**内。</p>
 <p><strong>近似激发阈值</strong>（经验法则）：
 若扰动将 <span class="arithmatex">\(V\)</span> 推至超过 <span class="arithmatex">\(V\)</span>-零倾线的局部极大值对应坐标 <span class="arithmatex">\(V_{\max}=1\)</span>，则系统必然跳到右支。即要求：</p>
 <div class="arithmatex">\[V^* + I_0 \geq V_{\max} = 1\]</div>

@@ -2752,7 +2752,7 @@
 <p>由于 <span class="arithmatex">\(x_0=1&gt;0\)</span>，归纳得所有 <span class="arithmatex">\(x_n&gt;0\)</span>，故 <span class="arithmatex">\((x_m+2)(x_n+2) &gt; 4\)</span>。</p>
 <p>因此：</p>
 <div class="arithmatex">\[|x_{m+1}-x_{n+1}| \le \frac{1}{4}|x_m-x_n|\]</div>
-<p>这是<strong>压缩映射</strong>，数列为 Cauchy 列，故收敛。</p>
+<p>这是**压缩映射**，数列为 Cauchy 列，故收敛。</p>
 <p><strong>Step 2：求极限</strong></p>
 <p>设 <span class="arithmatex">\(\lim x_n = L\)</span>，则 <span class="arithmatex">\(L = \frac{1}{L+2}\)</span>，即 <span class="arithmatex">\(L^2+2L-1=0\)</span>。</p>
 <p>解得 <span class="arithmatex">\(L = -1+\sqrt{2}\)</span>（取正根）。</p>
@@ -2763,7 +2763,7 @@
 <h3 id="_38">解答</h3>
 <p><strong>证明</strong>：设 <span class="arithmatex">\(f \not\equiv 0\)</span>，零点为 <span class="arithmatex">\(a &lt; x_1 &lt; x_2 &lt; \cdots &lt; x_n &lt; b\)</span>。</p>
 <p>构造 <span class="arithmatex">\(p(x) = (x-x_1)(x-x_2)\cdots(x-x_n) \in \mathcal{P}_n\)</span>。</p>
-<p><strong>关键观察</strong>：<span class="arithmatex">\(p(x)\)</span> 和 <span class="arithmatex">\(f(x)\)</span> 在每个 <span class="arithmatex">\(x_i\)</span> 处都变号，故 <span class="arithmatex">\(p(x)f(x)\)</span> 在 <span class="arithmatex">\((a,b)\)</span> 上<strong>不变号</strong>（非负或非正）。</p>
+<p><strong>关键观察</strong>：<span class="arithmatex">\(p(x)\)</span> 和 <span class="arithmatex">\(f(x)\)</span> 在每个 <span class="arithmatex">\(x_i\)</span> 处都变号，故 <span class="arithmatex">\(p(x)f(x)\)</span> 在 <span class="arithmatex">\((a,b)\)</span> 上**不变号**（非负或非正）。</p>
 <p>由正交条件：</p>
 <div class="arithmatex">\[\int_a^b p(x)f(x)dx = 0\]</div>
 <p>（因 <span class="arithmatex">\(p\)</span> 可表为 <span class="arithmatex">\(1,x,\ldots,x^{n-1}\)</span> 的线性组合）</p>
@@ -2906,7 +2906,7 @@
 <p><strong>(1)</strong> 证明 <span class="arithmatex">\(S(x)\)</span> 在 <span class="arithmatex">\([0,1]\)</span> 上连续。</p>
 <p><strong>(2)</strong> 证明 <span class="arithmatex">\(S(x)\)</span> 在 <span class="arithmatex">\([0,1]\)</span> 上处处不可微。</p>
 <h3 id="_58">分析</h3>
-<p>这是经典的<strong>无处可微连续函数</strong>的构造，属于 Van der Waerden 型函数。</p>
+<p>这是经典的**无处可微连续函数**的构造，属于 Van der Waerden 型函数。</p>
 <ul>
 <li><strong>连续性</strong>：利用 Weierstrass M-判别法，级数一致收敛且每项连续。</li>
 <li><strong>不可微性</strong>：关键在于证明 <span class="arithmatex">\(|\varphi(4^n x) - \varphi(4^n y)| \geq 4^n|x-y| - \frac{1}{2}\)</span>，这是局部 Lipschitz 条件的反面，导致差商无界。</li>
@@ -2935,7 +2935,7 @@
 <div class="arithmatex">\[I(x) = x^{m+1} \int_0^x t^m \sin t \, dt\]</div>
 <p>的渐近行为，并求极限。</p>
 <h3 id="_61">分析</h3>
-<p>本题涉及<strong>含参积分的渐近展开</strong>，核心技巧：
+<p>本题涉及**含参积分的渐近展开**，核心技巧：
 - 将积分拆分为周期区间之和
 - 利用 <span class="arithmatex">\(\sin t\)</span> 的振荡性质
 - 结合 Wallis 公式与 Gamma 函数的渐近行为</p>
@@ -2960,7 +2960,7 @@
 <div class="arithmatex">\[\omega_f(\delta) = \sup_{\substack{x,y \in D \\ \|x-y\| &lt; \delta}} |f(x) - f(y)|\]</div>
 <p>证明：<span class="arithmatex">\(f\)</span> 在 <span class="arithmatex">\(D\)</span> 上一致连续的充要条件是 <span class="arithmatex">\(\lim_{\delta \to 0^+} \omega_f(\delta) = 0\)</span>。</p>
 <h3 id="_64">分析</h3>
-<p>这是<strong>一致连续性的等价刻画</strong>，核心在于振幅函数 <span class="arithmatex">\(\omega_f(\delta)\)</span> 描述了函数在尺度 <span class="arithmatex">\(\delta\)</span> 下的最大振荡。</p>
+<p>这是**一致连续性的等价刻画**，核心在于振幅函数 <span class="arithmatex">\(\omega_f(\delta)\)</span> 描述了函数在尺度 <span class="arithmatex">\(\delta\)</span> 下的最大振荡。</p>
 <h3 id="_65">解答</h3>
 <p><strong>必要性</strong>（<span class="arithmatex">\(f\)</span> 一致连续 <span class="arithmatex">\(\Rightarrow \lim_{\delta \to 0} \omega_f(\delta) = 0\)</span>）：</p>
 <p>设 <span class="arithmatex">\(f\)</span> 一致连续，则对任意 <span class="arithmatex">\(\varepsilon &gt; 0\)</span>，存在 <span class="arithmatex">\(\delta_0 &gt; 0\)</span>，当 <span class="arithmatex">\(\|x-y\| &lt; \delta_0\)</span> 时，<span class="arithmatex">\(|f(x) - f(y)| &lt; \varepsilon\)</span>。</p>
@@ -2974,7 +2974,7 @@
 <h3 id="_66">题目</h3>
 <p>设 <span class="arithmatex">\(f\)</span> 在 <span class="arithmatex">\([0,1]\)</span> 上连续，且在 <span class="arithmatex">\((0,1)\)</span> 内有连续的左导数 <span class="arithmatex">\(f'_-(x)\)</span>，满足 <span class="arithmatex">\(f(0) = f(1)\)</span>。证明：存在 <span class="arithmatex">\(\xi \in (0,1)\)</span>，使得 <span class="arithmatex">\(f'_-(\xi) = 0\)</span>。</p>
 <h3 id="_67">分析</h3>
-<p>这是<strong>左导数版本的 Rolle 定理</strong>。关键：左导数的连续性与函数端点值相等。</p>
+<p>这是**左导数版本的 Rolle 定理**。关键：左导数的连续性与函数端点值相等。</p>
 <h3 id="_68">解答</h3>
 <p><strong>反证法</strong>：假设 <span class="arithmatex">\(f'_-(x) &gt; 0\)</span> 对所有 <span class="arithmatex">\(x \in (0,1)\)</span> 成立（由连续性，可设 <span class="arithmatex">\(f'_-(x) \geq c &gt; 0\)</span>）。</p>
 <p>由左导数正，<span class="arithmatex">\(f\)</span> 在 <span class="arithmatex">\([0,1]\)</span> 上严格单调递增。</p>
@@ -3084,7 +3084,7 @@
 <h3 id="_82">题目</h3>
 <p>是否存在二阶矩阵 <span class="arithmatex">\(A\)</span> 使 <span class="arithmatex">\(\sin A = I + 2019J\)</span>，其中 <span class="arithmatex">\(J = \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix}\)</span>？</p>
 <h3 id="_83">解答</h3>
-<p><strong>不存在</strong>这样的矩阵 <span class="arithmatex">\(A\)</span>。</p>
+<p>**不存在**这样的矩阵 <span class="arithmatex">\(A\)</span>。</p>
 <p><strong>证明</strong>：</p>
 <p>若 <span class="arithmatex">\(A\)</span> 可对角化，则 <span class="arithmatex">\(\sin A\)</span> 也可对角化，但 <span class="arithmatex">\(I+2019J\)</span> 不可对角化（有非平凡若尔当块）。</p>
 <p>故 <span class="arithmatex">\(A\)</span> 不可对角化，设 <span class="arithmatex">\(A \sim \lambda I + J\)</span>。不妨设 <span class="arithmatex">\(A = aI + bJ\)</span>。</p>
@@ -3210,7 +3210,7 @@
 <p><strong>3. 谱分解</strong></p>
 <p>由对称矩阵谱定理，存在正交矩阵 <span class="arithmatex">\(Q\)</span> 使 <span class="arithmatex">\(A = Q^T \Lambda Q\)</span>。</p>
 <p><strong>附：二次型的几何意义</strong></p>
-<p>考虑二次型 <span class="arithmatex">\((x,y)\begin{pmatrix} A &amp; B \\ B &amp; C \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix}\)</span>，通过<strong>对称矩阵对角化</strong>化简为：</p>
+<p>考虑二次型 <span class="arithmatex">\((x,y)\begin{pmatrix} A &amp; B \\ B &amp; C \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix}\)</span>，通过**对称矩阵对角化**化简为：</p>
 <div class="arithmatex">\[\lambda_1 x_1^2 + \lambda_2 y_2^2 = 0\]</div>
 <p><strong>几何意义</strong>：
 - 若 <span class="arithmatex">\(\lambda_1, \lambda_2\)</span> 符号相反，为双曲线或相交直线
@@ -3318,7 +3318,7 @@ $<span class="arithmatex">\(P(B_i) = p_i \prod_{\substack{j=1 \\ j \neq i}}^n (1
 <h3 id="_116">题目</h3>
 <p>设 <span class="arithmatex">\(T, S\)</span> 是有限维欧氏空间 <span class="arithmatex">\(V\)</span> 上可交换的线性变换（<span class="arithmatex">\(TS = ST\)</span>），<span class="arithmatex">\(U\)</span> 是 <span class="arithmatex">\(T\)</span> 的不变子空间，<span class="arithmatex">\(W\)</span> 是 <span class="arithmatex">\(U\)</span> 在 <span class="arithmatex">\(V\)</span> 中的正交补。若对任意 <span class="arithmatex">\(u, v \in V\)</span>，成立 <span class="arithmatex">\((Tu, v) = (u, Sv)\)</span>，证明：<span class="arithmatex">\(W\)</span> 也是 <span class="arithmatex">\(S\)</span> 的不变子空间。</p>
 <h3 id="_117">分析</h3>
-<p>条件 <span class="arithmatex">\((Tu, v) = (u, Sv)\)</span> 表明 <span class="arithmatex">\(S\)</span> 是 <span class="arithmatex">\(T\)</span> 的<strong>伴随变换</strong>（在欧氏空间中是转置/共轭转置）。</p>
+<p>条件 <span class="arithmatex">\((Tu, v) = (u, Sv)\)</span> 表明 <span class="arithmatex">\(S\)</span> 是 <span class="arithmatex">\(T\)</span> 的**伴随变换**（在欧氏空间中是转置/共轭转置）。</p>
 <h3 id="_118">解答</h3>
 <p>设 <span class="arithmatex">\(w \in W\)</span>，需证 <span class="arithmatex">\(Sw \in W\)</span>，即对任意 <span class="arithmatex">\(u \in U\)</span>，<span class="arithmatex">\((Sw, u) = 0\)</span>。</p>
 <p>由伴随条件：<span class="arithmatex">\((Sw, u) = (w, Tu)\)</span>（注意 <span class="arithmatex">\(S\)</span> 与 <span class="arithmatex">\(T\)</span> 的关系）。</p>
@@ -3347,7 +3347,7 @@ $<span class="arithmatex">\(P(B_i) = p_i \prod_{\substack{j=1 \\ j \neq i}}^n (1
 <h3 id="_122">题目</h3>
 <p>设 <span class="arithmatex">\(a, b, c, d\)</span> 为多项式 <span class="arithmatex">\(x^4 + 2x^3 - 3x^2 + x - 1\)</span> 的 4 个根，求以 <span class="arithmatex">\(a^2, b^2, c^2, d^2\)</span> 为根的首一四次多项式。</p>
 <h3 id="_123">分析</h3>
-<p>利用<strong>Vieta 公式</strong>和<strong>对称多项式基本定理</strong>，将 <span class="arithmatex">\(a^2, b^2, c^2, d^2\)</span> 的初等对称多项式用 <span class="arithmatex">\(a, b, c, d\)</span> 的初等对称多项式表示。</p>
+<p>利用**Vieta 公式**和**对称多项式基本定理**，将 <span class="arithmatex">\(a^2, b^2, c^2, d^2\)</span> 的初等对称多项式用 <span class="arithmatex">\(a, b, c, d\)</span> 的初等对称多项式表示。</p>
 <h3 id="_124">解答</h3>
 <p>设 <span class="arithmatex">\(e_1 = a+b+c+d\)</span>，<span class="arithmatex">\(e_2 = ab+ac+ad+bc+bd+cd\)</span>，<span class="arithmatex">\(e_3 = abc+abd+acd+bcd\)</span>，<span class="arithmatex">\(e_4 = abcd\)</span>。</p>
 <p>由 Vieta 公式：
@@ -3398,11 +3398,11 @@ $<span class="arithmatex">\(\det\begin{pmatrix} A &amp; \alpha \\ B^T &amp; a \e
 <p>令 y = xt（即 t = y/x，dt = dy/x），积分转化为：</p>
 <div class="arithmatex">\[I(x) = \int_0^{+\infty} \frac{f(y/x)}{1 + y^2} \, dy\]</div>
 <h4 id="2_1">2. 一致收敛性分析</h4>
-<p>若 f(t) 是<strong>连续且有界</strong>的函数（即 |f(t)| ≤ M, ∀t），则被积函数 <span class="arithmatex">\(\frac{f(xy)}{1 + y^2}\)</span> 满足：</p>
+<p>若 f(t) 是**连续且有界**的函数（即 |f(t)| ≤ M, ∀t），则被积函数 <span class="arithmatex">\(\frac{f(xy)}{1 + y^2}\)</span> 满足：</p>
 <div class="arithmatex">\[\left| \frac{f(y/x)}{1 + y^2} \right| \leq \frac{M}{1 + y^2}\]</div>
 <p>而 <span class="arithmatex">\(\int_0^{+\infty} \frac{M}{1 + y^2} \, dy = M \cdot \frac{\pi}{2}\)</span> 收敛，由 <strong>Weierstrass 判别法</strong>，积分 I(x) 关于 x ∈ (0, +∞)<strong>一致收敛</strong>。</p>
 <h4 id="3">3. 极限与积分的交换</h4>
-<p>若 f(t) 在 t = 0 处<strong>连续</strong>，则当 x → +∞ 时，y/x → 0，故 f(y/x) → f(0)（依连续性）。结合一致收敛性，可交换<strong>极限与积分</strong>：</p>
+<p>若 f(t) 在 t = 0 处**连续**，则当 x → +∞ 时，y/x → 0，故 f(y/x) → f(0)（依连续性）。结合一致收敛性，可交换**极限与积分**：</p>
 <div class="arithmatex">\[\lim_{x \to +\infty} I(x) = \int_0^{+\infty} \lim_{x \to +\infty} \frac{f(y/x)}{1 + y^2} \, dy = \int_0^{+\infty} \frac{f(0)}{1 + y^2} \, dy = f(0) \cdot \frac{\pi}{2}\]</div>
 <hr />
 <p><em>添加时间: 2026-04-07</em></p>

@@ -2880,43 +2880,56 @@
 <h2 id="1">1. 学习问题中的三类误差</h2>
 <h3 id="11">1.1 风险与正则化经验目标</h3>
 <p>给定预测函数 <span class="arithmatex">\(f\)</span>，总体风险为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 R(f)=\mathbb E\bigl[\ell(y,f(x))\bigr].
-\]</div>
+</script>
+</div>
 <p>对参数化模型 <span class="arithmatex">\(f_\theta\)</span>，训练时常考虑</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\theta)
 =
 \frac1n\sum_{i=1}^n \ell\bigl(y_i,f_\theta(x_i)\bigr)
 +\Omega(\theta),
-\]</div>
+</script>
+</div>
 <p>其中 <span class="arithmatex">\(\Omega(\theta)\)</span> 是正则项。若暂时不考虑正则项，则经验风险记为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \widehat R(f)
 =
 \frac1n\sum_{i=1}^n \ell(y_i,f(x_i)).
-\]</div>
+</script>
+</div>
 <p>设模型类为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathcal F_\Theta=\{f_\theta:\theta\in\Theta\}.
-\]</div>
+</script>
+</div>
 <h3 id="12">1.2 估计误差：统计误差与优化误差</h3>
 <p>令</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \theta^*\in\arg\min_{\theta\in\Theta}R(f_\theta),
-\]</div>
+</script>
+</div>
 <p>而 <span class="arithmatex">\(\widehat\theta\)</span> 是算法实际返回的参数，不一定精确最小化经验风险。则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 R(f_{\widehat\theta})-R(f_{\theta^*})
-={}&amp;
+={}&
 \bigl[R(f_{\widehat\theta})-\widehat R(f_{\widehat\theta})\bigr]\\
-&amp;+\bigl[\widehat R(f_{\widehat\theta})-\widehat R(f_{\theta^*})\bigr]\\
-&amp;+\bigl[\widehat R(f_{\theta^*})-R(f_{\theta^*})\bigr].
+&+\bigl[\widehat R(f_{\widehat\theta})-\widehat R(f_{\theta^*})\bigr]\\
+&+\bigl[\widehat R(f_{\theta^*})-R(f_{\theta^*})\bigr].
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>因此</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 R(f_{\widehat\theta})-\inf_{\theta\in\Theta}R(f_\theta)
 \le
 2\sup_{f\in\mathcal F_\Theta}
@@ -2927,7 +2940,8 @@ R(f_{\widehat\theta})-\inf_{\theta\in\Theta}R(f_\theta)
 -
 \inf_{\theta\in\Theta}\widehat R(f_\theta)
 \right].
-\]</div>
+</script>
+</div>
 <p>右侧分为两部分：</p>
 <ul>
 <li>
@@ -2938,22 +2952,27 @@ R(f_{\widehat\theta})-\inf_{\theta\in\Theta}R(f_\theta)
 </li>
 </ul>
 <p>统计误差通常由函数类复杂度控制。对有限函数类可以使用集中不等式与并合界；对无限函数类，可使用覆盖数或 Rademacher 复杂度。经过对称化后，常出现形如</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 2\operatorname{Rad}_n(\mathcal F_\Theta)
-\]</div>
+</script>
+</div>
 <p>的控制项，典型样本尺度为 <span class="arithmatex">\(O(n^{-1/2})\)</span>。</p>
 <p>实际训练中，<span class="arithmatex">\(f_{\widehat\theta}\)</span> 往往是由 GD 或 SGD 在有限步后得到的，而不是经验风险的精确极小点。用于泛化误差分析时，通常没有必要把优化误差压得远小于统计误差；令二者达到同一数量级即可。</p>
 <h3 id="13">1.3 逼近误差</h3>
 <p>相对于所有可测预测函数的最优风险，还存在</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \operatorname{err}_{\mathrm{approx}}
 =
 \inf_{\theta\in\Theta}R(f_\theta)
 -
 \inf_{f}R(f).
-\]</div>
+</script>
+</div>
 <p>于是总超额风险可以概括为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 R(f_{\widehat\theta})-\inf_f R(f)
 \le
@@ -2963,7 +2982,8 @@ R(f_{\widehat\theta})-\inf_f R(f)
 +
 \operatorname{err}_{\mathrm{approx}}.
 }
-\]</div>
+</script>
+</div>
 <p>三者的含义分别是：</p>
 <ul>
 <li>统计误差：有限样本导致经验风险偏离总体风险；</li>
@@ -3001,11 +3021,14 @@ R(f_{\widehat\theta})-\inf_f R(f)
 <hr />
 <h2 id="2">2. 最小二乘问题上的梯度下降</h2>
 <p>考虑</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\theta)=\frac1{2n}\|\Phi\theta-y\|_2^2.
-\]</div>
+</script>
+</div>
 <p>其梯度和 Hessian 为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \nabla F(\theta)
 =
 \frac1n\Phi^\top(\Phi\theta-y),
@@ -3013,87 +3036,111 @@ F(\theta)=\frac1{2n}\|\Phi\theta-y\|_2^2.
 \nabla^2F(\theta)
 =
 H:=\frac1n\Phi^\top\Phi.
-\]</div>
+</script>
+</div>
 <p>梯度下降迭代为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \theta_t
 =
 \theta_{t-1}-\alpha\nabla F(\theta_{t-1}).
-\]</div>
+</script>
+</div>
 <p>设 <span class="arithmatex">\(\theta_*\)</span> 为一个极小点，则 <span class="arithmatex">\(\nabla F(\theta_*)=0\)</span>。因此</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \theta_t-\theta_*
-&amp;=
+&=
 \theta_{t-1}-\theta_*
 -
 \alpha\frac1n\Phi^\top\Phi(\theta_{t-1}-\theta_*)\\
-&amp;=(I-\alpha H)(\theta_{t-1}-\theta_*).
+&=(I-\alpha H)(\theta_{t-1}-\theta_*).
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>递推得到</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \theta_t-\theta_*
 =(I-\alpha H)^t(\theta_0-\theta_*).
-\]</div>
+</script>
+</div>
 <p>若 <span class="arithmatex">\(H\)</span> 的特征值位于 <span class="arithmatex">\([\mu,L]\)</span>，其中 <span class="arithmatex">\(0&lt;\mu\le L\)</span>，则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \|\theta_t-\theta_*\|_2^2
 \le
 \max_{\lambda\in[\mu,L]}|1-\alpha\lambda|^{2t}
 \|\theta_0-\theta_*\|_2^2.
-\]</div>
+</script>
+</div>
 <h3 id="_2">最优常步长</h3>
 <p>取</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \alpha=\frac{2}{\mu+L},
-\]</div>
+</script>
+</div>
 <p>可以平衡区间两端的收缩因子：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \max_{\lambda\in[\mu,L]}|1-\alpha\lambda|
 =
 \frac{L-\mu}{L+\mu}.
-\]</div>
+</script>
+</div>
 <p>令条件数</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \kappa=\frac{L}{\mu},
-\]</div>
+</script>
+</div>
 <p>则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \|\theta_t-\theta_*\|_2^2
 \le
 \left(\frac{\kappa-1}{\kappa+1}\right)^{2t}
 \|\theta_0-\theta_*\|_2^2.
-\]</div>
+</script>
+</div>
 <p>进一步，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \left(\frac{\kappa-1}{\kappa+1}\right)^{2t}
 \le
 \left(1-\frac1\kappa\right)^{2t}
 \le
 \exp\left(-\frac{2t}{\kappa}\right).
-\]</div>
+</script>
+</div>
 <p>因此条件数越大，收敛越慢；当 <span class="arithmatex">\(\kappa\)</span> 有界时，梯度下降呈线性（几何）收敛。</p>
 <hr />
 <h2 id="3-pl">3. 凸性、光滑性、强凸性与 PL 不等式</h2>
 <h3 id="31">3.1 凸函数</h3>
 <p>若 <span class="arithmatex">\(F\)</span> 可微，则凸性等价于</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\eta)
 \ge
 F(\theta)
 +
 \nabla F(\theta)^\top(\eta-\theta).
-\]</div>
+</script>
+</div>
 <p>取 <span class="arithmatex">\(\eta=\theta_*\)</span> 可得</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\theta)-F(\theta_*)
 \le
 \nabla F(\theta)^\top(\theta-\theta_*).
-\]</div>
+</script>
+</div>
 <h3 id="32-l-">3.2 <span class="arithmatex">\(L\)</span>-光滑</h3>
 <p><span class="arithmatex">\(F\)</span> 为 <span class="arithmatex">\(L\)</span>-光滑，意味着</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\eta)
 \le
 F(\theta)
@@ -3101,10 +3148,12 @@ F(\theta)
 \nabla F(\theta)^\top(\eta-\theta)
 +
 \frac L2\|\eta-\theta\|_2^2.
-\]</div>
+</script>
+</div>
 <h3 id="33-mu-">3.3 <span class="arithmatex">\(\mu\)</span>-强凸</h3>
 <p><span class="arithmatex">\(F\)</span> 为 <span class="arithmatex">\(\mu\)</span>-强凸，意味着</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\eta)
 \ge
 F(\theta)
@@ -3112,18 +3161,22 @@ F(\theta)
 \nabla F(\theta)^\top(\eta-\theta)
 +
 \frac\mu2\|\eta-\theta\|_2^2.
-\]</div>
+</script>
+</div>
 <h3 id="34-ojasiewicz-polyakojasiewicz">3.4 Łojasiewicz / Polyak–Łojasiewicz 不等式</h3>
 <p>强凸函数满足</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \|\nabla F(\theta)\|_2^2
 \ge
 2\mu\bigl(F(\theta)-F^*\bigr).
 }
-\]</div>
+</script>
+</div>
 <p>证明：由强凸性，对任意 <span class="arithmatex">\(\eta\)</span>，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\eta)
 \ge
 F(\theta)
@@ -3131,35 +3184,45 @@ F(\theta)
 \nabla F(\theta)^\top(\eta-\theta)
 +
 \frac\mu2\|\eta-\theta\|_2^2.
-\]</div>
+</script>
+</div>
 <p>右侧关于 <span class="arithmatex">\(\eta\)</span> 的二次函数在</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \widetilde\eta
 =
 \theta-\frac1\mu\nabla F(\theta)
-\]</div>
+</script>
+</div>
 <p>处取最小值。代入得</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\widetilde\eta)
 \ge
 F(\theta)-\frac1{2\mu}\|\nabla F(\theta)\|_2^2.
-\]</div>
+</script>
+</div>
 <p>更直接地，对上式两端关于 <span class="arithmatex">\(\eta\)</span> 取下确界：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F^*
 \ge
 F(\theta)-\frac1{2\mu}\|\nabla F(\theta)\|_2^2,
-\]</div>
+</script>
+</div>
 <p>整理即得结论。</p>
 <hr />
 <h2 id="4">4. 线性代数技巧</h2>
 <h3 id="41">4.1 秩一扰动矩阵的逆</h3>
 <p>设 <span class="arithmatex">\(\mathbf 1_n\in\mathbb R^n\)</span> 为全 1 向量，且</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 1+n\alpha\ne0.
-\]</div>
+</script>
+</div>
 <p>则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 (I+\alpha\mathbf 1_n\mathbf 1_n^\top)^{-1}
 =
@@ -3167,7 +3230,8 @@ I-
 \frac{\alpha}{1+n\alpha}
 \mathbf 1_n\mathbf 1_n^\top.
 }
-\]</div>
+</script>
+</div>
 <p>理由是：</p>
 <ul>
 <li>在 <span class="arithmatex">\(\operatorname{span}\{\mathbf 1_n\}\)</span> 上，矩阵的特征值为 <span class="arithmatex">\(1+n\alpha\)</span>；</li>
@@ -3177,115 +3241,138 @@ I-
 <p>这是 Sherman–Morrison / Woodbury 公式的一个特例。</p>
 <h3 id="42-schur">4.2 Schur 补与分块矩阵求逆</h3>
 <p>设</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 M=
 \begin{pmatrix}
-A&amp;B\\
-C&amp;D
+A&B\\
+C&D
 \end{pmatrix}.
-\]</div>
+</script>
+</div>
 <p>若 <span class="arithmatex">\(A\)</span> 可逆，定义 <span class="arithmatex">\(A\)</span> 的 Schur 补</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 M/A=D-CA^{-1}B.
-\]</div>
+</script>
+</div>
 <p>若 <span class="arithmatex">\(D\)</span> 可逆，定义 <span class="arithmatex">\(D\)</span> 的 Schur 补</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 M/D=A-BD^{-1}C.
-\]</div>
+</script>
+</div>
 <h4 id="a">以 <span class="arithmatex">\(A\)</span> 为主块的分解</h4>
 <p>若 <span class="arithmatex">\(A\)</span> 与 <span class="arithmatex">\(M/A\)</span> 均可逆，则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 M
 =
 \begin{pmatrix}
-I&amp;0\\
-CA^{-1}&amp;I
+I&0\\
+CA^{-1}&I
 \end{pmatrix}
 \begin{pmatrix}
-A&amp;0\\
-0&amp;M/A
+A&0\\
+0&M/A
 \end{pmatrix}
 \begin{pmatrix}
-I&amp;A^{-1}B\\
-0&amp;I
+I&A^{-1}B\\
+0&I
 \end{pmatrix}.
-\]</div>
+</script>
+</div>
 <p>因此</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 M^{-1}
 =
 \begin{pmatrix}
-I&amp;-A^{-1}B\\
-0&amp;I
+I&-A^{-1}B\\
+0&I
 \end{pmatrix}
 \begin{pmatrix}
-A^{-1}&amp;0\\
-0&amp;(M/A)^{-1}
+A^{-1}&0\\
+0&(M/A)^{-1}
 \end{pmatrix}
 \begin{pmatrix}
-I&amp;0\\
--CA^{-1}&amp;I
+I&0\\
+-CA^{-1}&I
 \end{pmatrix},
-\]</div>
+</script>
+</div>
 <p>即</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 M^{-1}
 =
 \begin{pmatrix}
 A^{-1}+A^{-1}B(M/A)^{-1}CA^{-1}
-&amp;-A^{-1}B(M/A)^{-1}\\
+&-A^{-1}B(M/A)^{-1}\\
 -(M/A)^{-1}CA^{-1}
-&amp;(M/A)^{-1}
+&(M/A)^{-1}
 \end{pmatrix}.
 }
-\]</div>
+</script>
+</div>
 <h4 id="d">以 <span class="arithmatex">\(D\)</span> 为主块的公式</h4>
 <p>若 <span class="arithmatex">\(D\)</span> 与 <span class="arithmatex">\(M/D\)</span> 均可逆，则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 M^{-1}
 =
 \begin{pmatrix}
 (M/D)^{-1}
-&amp;-(M/D)^{-1}BD^{-1}\\
+&-(M/D)^{-1}BD^{-1}\\
 -D^{-1}C(M/D)^{-1}
-&amp;D^{-1}+D^{-1}C(M/D)^{-1}BD^{-1}
+&D^{-1}+D^{-1}C(M/D)^{-1}BD^{-1}
 \end{pmatrix}.
 }
-\]</div>
+</script>
+</div>
 <h4 id="woodbury">Woodbury 型恒等式</h4>
 <p>比较上述两个分块逆公式，可得</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 (A-BD^{-1}C)^{-1}
 =
 A^{-1}
 +A^{-1}B(D-CA^{-1}B)^{-1}CA^{-1},
-\]</div>
+</script>
+</div>
 <p>以及</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 (D-CA^{-1}B)^{-1}
 =
 D^{-1}
 +D^{-1}C(A-BD^{-1}C)^{-1}BD^{-1}.
-\]</div>
+</script>
+</div>
 <p>常用特例为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 (I+BB^\top)^{-1}
 =
 I-B(I+B^\top B)^{-1}B^\top.
 }
-\]</div>
+</script>
+</div>
 <p>右乘 <span class="arithmatex">\(B\)</span> 后还有</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 (I+BB^\top)^{-1}B
 =
 B(I+B^\top B)^{-1}.
-\]</div>
+</script>
+</div>
 <h3 id="43">4.3 分块行列式</h3>
 <p>在上述可逆条件下，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \det M
 =
@@ -3293,30 +3380,36 @@ B(I+B^\top B)^{-1}.
 =
 \det(D)\det(M/D).
 }
-\]</div>
+</script>
+</div>
 <h3 id="44">4.4 高斯向量的条件均值与条件协方差</h3>
 <p>若联合高斯向量</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{pmatrix}x\\y\end{pmatrix}
 \sim
 \mathcal N\left(
 \begin{pmatrix}\mu_x\\\mu_y\end{pmatrix},
 \begin{pmatrix}
-\Sigma_{xx}&amp;\Sigma_{xy}\\
-\Sigma_{yx}&amp;\Sigma_{yy}
+\Sigma_{xx}&\Sigma_{xy}\\
+\Sigma_{yx}&\Sigma_{yy}
 \end{pmatrix}
 \right),
-\]</div>
+</script>
+</div>
 <p>则给定 <span class="arithmatex">\(x=x'\)</span> 后，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \mu_{y\mid x'}
 =
 \mu_y+
 \Sigma_{yx}\Sigma_{xx}^{-1}(x'-\mu_x),
 }
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \Sigma_{y\mid x}
 =
@@ -3324,44 +3417,54 @@ B(I+B^\top B)^{-1}.
 -
 \Sigma_{yx}\Sigma_{xx}^{-1}\Sigma_{xy}.
 }
-\]</div>
+</script>
+</div>
 <p>条件协方差正是一个 Schur 补。</p>
 <h3 id="45-svd">4.5 SVD 与特征值分解</h3>
 <p>设 <span class="arithmatex">\(X\)</span> 的薄 SVD 为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 X=U\Sigma V^\top
 =
 \sum_{i=1}^r\sigma_i u_i v_i^\top.
-\]</div>
+</script>
+</div>
 <p>于是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 XX^\top
 =U\Sigma^2U^\top
 =
 \sum_{i=1}^r\sigma_i^2u_i u_i^\top,
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 X^\top X
 =V\Sigma^2V^\top
 =
 \sum_{i=1}^r\sigma_i^2v_i v_i^\top.
-\]</div>
+</script>
+</div>
 <p>因此：</p>
 <ul>
 <li><span class="arithmatex">\(u_i\)</span> 是 <span class="arithmatex">\(XX^\top\)</span> 的特征向量，特征值为 <span class="arithmatex">\(\sigma_i^2\)</span>；</li>
 <li><span class="arithmatex">\(v_i\)</span> 是 <span class="arithmatex">\(X^\top X\)</span> 的特征向量，特征值为 <span class="arithmatex">\(\sigma_i^2\)</span>。</li>
 </ul>
 <p>再考虑对称扩张</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathcal M
 =
 \begin{pmatrix}
-0&amp;X\\
-X^\top&amp;0
+0&X\\
+X^\top&0
 \end{pmatrix}.
-\]</div>
+</script>
+</div>
 <p>由 <span class="arithmatex">\(Xv_i=\sigma_i u_i\)</span>、<span class="arithmatex">\(X^\top u_i=\sigma_i v_i\)</span>，有</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathcal M
 \frac1{\sqrt2}
 \begin{pmatrix}u_i\\v_i\end{pmatrix}
@@ -3369,8 +3472,10 @@ X^\top&amp;0
 \sigma_i
 \frac1{\sqrt2}
 \begin{pmatrix}u_i\\v_i\end{pmatrix},
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathcal M
 \frac1{\sqrt2}
 \begin{pmatrix}u_i\\-v_i\end{pmatrix}
@@ -3378,64 +3483,82 @@ X^\top&amp;0
 -\sigma_i
 \frac1{\sqrt2}
 \begin{pmatrix}u_i\\-v_i\end{pmatrix}.
-\]</div>
+</script>
+</div>
 <p>因此 <span class="arithmatex">\(\mathcal M\)</span> 的非零特征值为奇异值 <span class="arithmatex">\(\sigma_i\)</span> 及其相反数 <span class="arithmatex">\(-\sigma_i\)</span>。</p>
 <hr />
 <h2 id="5">5. 向量与矩阵函数求导</h2>
 <p>以下使用 Frobenius 内积</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \langle A,B\rangle_F=\operatorname{tr}(A^\top B),
-\]</div>
+</script>
+</div>
 <p>并通过</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 df(X)=\langle \nabla_X f(X),dX\rangle_F
-\]</div>
+</script>
+</div>
 <p>识别梯度。</p>
 <h3 id="51">5.1 二次型</h3>
 <p>设</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\theta)
 =
 \frac12\theta^\top A\theta-b^\top\theta.
-\]</div>
+</script>
+</div>
 <p>则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \nabla F(\theta)
 =
 \frac12(A+A^\top)\theta-b,
 }
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \nabla^2F(\theta)
 =
 \frac12(A+A^\top).
 }
-\]</div>
+</script>
+</div>
 <p>若 <span class="arithmatex">\(A=A^\top\)</span>，则简化为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \nabla F(\theta)=A\theta-b,
 \qquad
 \nabla^2F(\theta)=A.
-\]</div>
+</script>
+</div>
 <h3 id="52">5.2 最小二乘</h3>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\theta)
 =
 \frac1{2n}\|y-X\theta\|_2^2.
-\]</div>
+</script>
+</div>
 <p>展开为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\theta)
 =
 \frac1{2n}
 \left(
  y^\top y-2y^\top X\theta+\theta^\top X^\top X\theta
 \right).
-\]</div>
+</script>
+</div>
 <p>因此</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \nabla F(\theta)
 =
@@ -3443,340 +3566,442 @@ F(\theta)
 =
 \frac1nX^\top(X\theta-y),
 }
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \nabla^2F(\theta)
 =
 \frac1nX^\top X.
 }
-\]</div>
+</script>
+</div>
 <h3 id="53-logistic">5.3 Logistic 回归</h3>
 <p>令 <span class="arithmatex">\(x_i^\top\)</span> 为 <span class="arithmatex">\(X\)</span> 的第 <span class="arithmatex">\(i\)</span> 行，<span class="arithmatex">\(y_i\in\{-1,1\}\)</span>，并定义</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\theta)
 =
 \frac1n\sum_{i=1}^n
 \log\left(1+\exp(-y_ix_i^\top\theta)\right).
-\]</div>
+</script>
+</div>
 <p>记</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \varphi(t)=\log(1+e^t),
 \qquad
 \varphi'(t)=\sigma(t)=\frac1{1+e^{-t}},
-\]</div>
+</script>
+</div>
 <p>以及</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \varphi''(t)
 =
 \sigma(t)\sigma(-t).
-\]</div>
+</script>
+</div>
 <p>对第 <span class="arithmatex">\(i\)</span> 项求导：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \nabla_\theta
 \varphi(-y_ix_i^\top\theta)
 =
 -y_i\sigma(-y_ix_i^\top\theta)x_i.
-\]</div>
+</script>
+</div>
 <p>定义 <span class="arithmatex">\(g\in\mathbb R^n\)</span>：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 g_i
 =-y_i\sigma(-y_ix_i^\top\theta),
-\]</div>
+</script>
+</div>
 <p>则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \nabla F(\theta)
 =
 \frac1nX^\top g.
 }
-\]</div>
+</script>
+</div>
 <p>再定义</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 h_i
 =
 \sigma(y_ix_i^\top\theta)
 \sigma(-y_ix_i^\top\theta),
-\]</div>
+</script>
+</div>
 <p>则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \nabla^2F(\theta)
 =
 \frac1nX^\top\operatorname{Diag}(h)X.
 }
-\]</div>
+</script>
+</div>
 <p>由于 <span class="arithmatex">\(h_i\ge0\)</span>，Hessian 半正定，所以 Logistic 回归目标是凸函数。</p>
 <h3 id="54">5.4 常见迹函数</h3>
 <h4 id="_3">线性迹函数</h4>
 <p>若</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f(X)=\operatorname{tr}(A^\top X),
-\]</div>
+</script>
+</div>
 <p>则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 df=\operatorname{tr}(A^\top dX)
 =\langle A,dX\rangle_F,
-\]</div>
+</script>
+</div>
 <p>故</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{\nabla_X f(X)=A.}
-\]</div>
+</script>
+</div>
 <p>若</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f(X)=\operatorname{tr}(AXB),
-\]</div>
+</script>
+</div>
 <p>利用迹的循环不变性，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 df
 =\operatorname{tr}(A\,dX\,B)
 =\operatorname{tr}(BA\,dX),
-\]</div>
+</script>
+</div>
 <p>故</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \nabla_X f(X)=A^\top B^\top.
 }
-\]</div>
+</script>
+</div>
 <h4 id="_4">矩阵二次型</h4>
 <p>若</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f(X)=\operatorname{tr}(X^\top AX),
-\]</div>
+</script>
+</div>
 <p>则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \nabla_X f(X)=AX+A^\top X.
 }
-\]</div>
+</script>
+</div>
 <p>若 <span class="arithmatex">\(A\)</span> 对称，则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \nabla_X f(X)=2AX.
-\]</div>
+</script>
+</div>
 <p>更一般地，若</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f(X)=\operatorname{tr}(X^\top A X B),
-\]</div>
+</script>
+</div>
 <p>则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \nabla_X f(X)=AXB+A^\top X B^\top.
 }
-\]</div>
+</script>
+</div>
 <h3 id="55">5.5 逆矩阵的微分</h3>
 <p>由</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 XX^{-1}=I
-\]</div>
+</script>
+</div>
 <p>两侧求微分：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 (dX)X^{-1}+X\,d(X^{-1})=0.
-\]</div>
+</script>
+</div>
 <p>因此</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 d(X^{-1})
 =-X^{-1}(dX)X^{-1}.
 }
-\]</div>
+</script>
+</div>
 <h3 id="56-operatornametrax-1">5.6 <span class="arithmatex">\(\operatorname{tr}(AX^{-1})\)</span> 的梯度</h3>
 <p>令</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f(X)=\operatorname{tr}(AX^{-1}).
-\]</div>
+</script>
+</div>
 <p>则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 df
-&amp;=\operatorname{tr}\bigl(A\,d(X^{-1})\bigr)\\
-&amp;=-\operatorname{tr}\bigl(AX^{-1}(dX)X^{-1}\bigr)\\
-&amp;=-\operatorname{tr}\bigl(X^{-1}AX^{-1}dX\bigr).
+&=\operatorname{tr}\bigl(A\,d(X^{-1})\bigr)\\
+&=-\operatorname{tr}\bigl(AX^{-1}(dX)X^{-1}\bigr)\\
+&=-\operatorname{tr}\bigl(X^{-1}AX^{-1}dX\bigr).
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>所以一般情形下</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \nabla_X f(X)
 =-X^{-\top}A^\top X^{-\top}.
 }
-\]</div>
+</script>
+</div>
 <p>若 <span class="arithmatex">\(A\)</span> 与 <span class="arithmatex">\(X\)</span> 均为对称矩阵，则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \nabla_X\operatorname{tr}(AX^{-1})
 =-X^{-1}AX^{-1}.
 }
-\]</div>
+</script>
+</div>
 <h3 id="57">5.7 行列式与对数行列式</h3>
 <p>Jacobi 公式为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 d\det X
 =
 \det X\,\operatorname{tr}(X^{-1}dX).
 }
-\]</div>
+</script>
+</div>
 <p>可由</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \det(X+tH)
 =
 \det X\,\det(I+tX^{-1}H)
-\]</div>
+</script>
+</div>
 <p>以及</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \left.\frac{d}{dt}\det(I+tB)\right|_{t=0}
 =\operatorname{tr}(B)
-\]</div>
+</script>
+</div>
 <p>得到。</p>
 <p>因此</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \nabla_X\det X
 =
 \det(X)X^{-\top}.
 }
-\]</div>
+</script>
+</div>
 <p>进一步，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 d\log\det X
 =
 \operatorname{tr}(X^{-1}dX),
-\]</div>
+</script>
+</div>
 <p>故</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \nabla_X\log\det X
 =X^{-\top}.
 }
-\]</div>
+</script>
+</div>
 <p>若变量限制在可逆对称矩阵上，则分别写为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \nabla_X\det X=\det(X)X^{-1},
 \qquad
 \boxed{
 \nabla_X\log\det X=X^{-1}.
 }
-\]</div>
+</script>
+</div>
 <hr />
 <h2 id="6">6. 标准高斯尾概率的上下界</h2>
 <p>设</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 Z\sim\mathcal N(0,1),
 \qquad
 \phi(x)=\frac1{\sqrt{2\pi}}e^{-x^2/2}.
-\]</div>
+</script>
+</div>
 <p>目标是证明，对任意 <span class="arithmatex">\(t&gt;0\)</span>，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \frac14e^{-t^2}
 \le
-\mathbb P(Z&gt;t)
+\mathbb P(Z>t)
 \le
  e^{-t^2/2}.
 }
-\]</div>
+</script>
+</div>
 <h3 id="61">6.1 上界</h3>
 <p>对任意 <span class="arithmatex">\(s&gt;0\)</span>，由 Chernoff 方法，</p>
-<div class="arithmatex">\[
-\mathbb P(Z&gt;t)
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb P(Z>t)
 =
-\mathbb P(e^{sZ}&gt;e^{st})
+\mathbb P(e^{sZ}>e^{st})
 \le
  e^{-st}\mathbb E[e^{sZ}].
-\]</div>
+</script>
+</div>
 <p>标准高斯的矩母函数为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E[e^{sZ}]=e^{s^2/2}.
-\]</div>
+</script>
+</div>
 <p>因此</p>
-<div class="arithmatex">\[
-\mathbb P(Z&gt;t)
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb P(Z>t)
 \le
 \exp\left(-st+\frac{s^2}{2}\right).
-\]</div>
+</script>
+</div>
 <p>取 <span class="arithmatex">\(s=t\)</span> 得</p>
-<div class="arithmatex">\[
-\mathbb P(Z&gt;t)
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb P(Z>t)
 \le
  e^{-t^2/2}.
-\]</div>
+</script>
+</div>
 <h3 id="62-0le-tle1">6.2 下界：<span class="arithmatex">\(0\le t\le1\)</span></h3>
 <p>因为 <span class="arithmatex">\(\phi(x)\le\phi(0)=1/\sqrt{2\pi}\)</span>，所以</p>
-<div class="arithmatex">\[
-\mathbb P(Z&gt;t)
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb P(Z>t)
 =
 \frac12-\int_0^t\phi(x)\,dx
 \ge
 \frac12-\frac{t}{\sqrt{2\pi}}.
-\]</div>
+</script>
+</div>
 <p>只需证明</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac12-\frac{t}{\sqrt{2\pi}}
 \ge
 \frac14e^{-t^2}.
-\]</div>
+</script>
+</div>
 <p>定义</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f(t)
 =
 \frac12-\frac{t}{\sqrt{2\pi}}
 -
 \frac14e^{-t^2}.
-\]</div>
+</script>
+</div>
 <p>则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f'(t)
 =-\frac1{\sqrt{2\pi}}
 +
 \frac t2e^{-t^2}.
-\]</div>
+</script>
+</div>
 <p>函数 <span class="arithmatex">\(te^{-t^2}\)</span> 在 <span class="arithmatex">\(t=1/\sqrt2\)</span> 处达到最大值 <span class="arithmatex">\(1/\sqrt{2e}\)</span>，故</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac t2e^{-t^2}
 \le
 \frac1{2\sqrt{2e}}
-&lt;
+<
 \frac1{\sqrt{2\pi}}.
-\]</div>
+</script>
+</div>
 <p>所以 <span class="arithmatex">\(f'(t)&lt;0\)</span>。于是 <span class="arithmatex">\(f\)</span> 在 <span class="arithmatex">\([0,1]\)</span> 上递减，而</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f(1)
 =
-\frac12-\frac1{\sqrt{2\pi}}-\frac1{4e}&gt;0.
-\]</div>
+\frac12-\frac1{\sqrt{2\pi}}-\frac1{4e}>0.
+</script>
+</div>
 <p>故 <span class="arithmatex">\(f(t)&gt;0\)</span>，从而</p>
-<div class="arithmatex">\[
-\mathbb P(Z&gt;t)
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb P(Z>t)
 \ge
 \frac14e^{-t^2},
 \qquad 0\le t\le1.
-\]</div>
+</script>
+</div>
 <h3 id="63-t1">6.3 下界：<span class="arithmatex">\(t&gt;1\)</span></h3>
 <p>记</p>
-<div class="arithmatex">\[
-Q(t)=\mathbb P(Z&gt;t)=\int_t^\infty\phi(x)\,dx.
-\]</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+Q(t)=\mathbb P(Z>t)=\int_t^\infty\phi(x)\,dx.
+</script>
+</div>
 <p>利用 <span class="arithmatex">\(\phi'(x)=-x\phi(x)\)</span>，分部积分得</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 Q(t)
-&amp;=
+&=
 \int_t^\infty \frac1x\,x\phi(x)\,dx\\
-&amp;=-\int_t^\infty\frac1x\phi'(x)\,dx\\
-&amp;=
+&=-\int_t^\infty\frac1x\phi'(x)\,dx\\
+&=
 \frac{\phi(t)}{t}
 -
 \int_t^\infty\frac{\phi(x)}{x^2}\,dx.
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>当 <span class="arithmatex">\(x\ge t\)</span> 时，<span class="arithmatex">\(x^{-2}\le t^{-2}\)</span>，因此</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 Q(t)
 \ge
 \frac{\phi(t)}t-\frac{Q(t)}{t^2}.
-\]</div>
+</script>
+</div>
 <p>整理得到经典 Mills 比下界</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 Q(t)
 \ge
@@ -3784,51 +4009,64 @@ Q(t)
 =
 \frac{t}{\sqrt{2\pi}(1+t^2)}e^{-t^2/2}.
 }
-\]</div>
+</script>
+</div>
 <p>最后只需验证，对 <span class="arithmatex">\(t\ge1\)</span>，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac{t}{\sqrt{2\pi}(1+t^2)}e^{-t^2/2}
 \ge
 \frac14e^{-t^2}.
-\]</div>
+</script>
+</div>
 <p>等价于</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 G(t)
 :=
 \frac{4t}{\sqrt{2\pi}(1+t^2)}e^{t^2/2}
 \ge1.
-\]</div>
+</script>
+</div>
 <p>其对数导数为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac{d}{dt}\log G(t)
 =
 \frac1t-\frac{2t}{1+t^2}+t
 =
-\frac{1+t^4}{t(1+t^2)}&gt;0.
-\]</div>
+\frac{1+t^4}{t(1+t^2)}>0.
+</script>
+</div>
 <p>所以 <span class="arithmatex">\(G\)</span> 在 <span class="arithmatex">\([1,\infty)\)</span> 上递增，并且</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 G(1)
 =
-\sqrt{\frac{2e}{\pi}}&gt;1.
-\]</div>
+\sqrt{\frac{2e}{\pi}}>1.
+</script>
+</div>
 <p>故对所有 <span class="arithmatex">\(t&gt;1\)</span>，同样有</p>
-<div class="arithmatex">\[
-\mathbb P(Z&gt;t)
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb P(Z>t)
 \ge
 \frac14e^{-t^2}.
-\]</div>
+</script>
+</div>
 <p>综上，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \frac14e^{-t^2}
 \le
-\mathbb P(Z&gt;t)
+\mathbb P(Z>t)
 \le
  e^{-t^2/2},
-\qquad t&gt;0.
+\qquad t>0.
 }
-\]</div>
+</script>
+</div>
 
 
 

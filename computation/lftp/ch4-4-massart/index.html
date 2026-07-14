@@ -2038,30 +2038,37 @@
 
 <p>第 4 章 · 经验风险最小化与统计学习理论</p>
 <p>Chaining链式法，主要用于经验误差估计之中对于Rademacher复杂度，也就是用来估计
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 R_n(\mathcal H) =\mathbb E_\varepsilon\left[
 \sup_{h\in\mathcal H}
 \frac1n\sum_{i=1}^n \varepsilon_i h(z_i)
 \right]
-$$
+</script>
+</div>
 如果对于有限的函数类，那么<span class="arithmatex">\(R_n(\mathcal H)\)</span>可以被这么估计</p>
 <p>Bach 书里 4.4.4 正是这样引入 covering number：用有限个函数 <span class="arithmatex">\(f_1,\dots,f_m\)</span> 近似整个函数类；如果每个 <span class="arithmatex">\(f\)</span> 都能被某个 <span class="arithmatex">\(f_i\)</span> 以误差 <span class="arithmatex">\(\varepsilon\)</span> 近似，那么 <span class="arithmatex">\(m(\varepsilon)\)</span> 就是 covering number。</p>
 <p>单层 <span class="arithmatex">\(\varepsilon\)</span>-net 会得到类似：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \text{误差}
 \lesssim
 \varepsilon
 +
 \sqrt{\frac{\log N(\varepsilon,\mathcal H)}{n}}.
-$$
+</script>
+</div>
 问题是：这个 bound 往往不够精细。书里也指出，单纯的 covering number argument 可能不够，需要更精细的 covering number 计算或者更高级工具，例如 chaining。</p>
 <p>Massart lemma:</p>
 <p>固定样本 <span class="arithmatex">\(z_1,\dots,z_n\)</span>。令
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 v_j=(h_j(z_1),\dots,h_j(z_n))\in\mathbb R^n.
-$$
+</script>
+</div>
 经验 Rademacher complexity 是
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \widehat R_n(\mathcal H)
 =
 \mathbb E_\varepsilon
@@ -2069,46 +2076,58 @@ $$
 \max_{1\le j\le m}
 \frac1n\sum_{i=1}^n \varepsilon_i h_j(z_i)
 \right].
-$$
+</script>
+</div>
 记
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 X_j=\frac1n\sum_{i=1}^n \varepsilon_i h_j(z_i)
 =
 \frac1n\langle \varepsilon,v_j\rangle.
-$$
+</script>
+</div>
 所以要证明的是
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E_\varepsilon\max_j X_j
 \le
 R\sqrt{\frac{2\log m}{n}}.
-$$</p>
+</script>
+</div></p>
 <hr />
 <h2 id="log-sum-exp-max">第一步：用 log-sum-exp 控制 max</h2>
 <p>对任意 <span class="arithmatex">\(\lambda&gt;0\)</span>，有
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \max_j X_j
 =
 \frac1\lambda \log e^{\lambda\max_j X_j}
 =
 \frac1\lambda \log \max_j e^{\lambda X_j}.
-$$
+</script>
+</div>
 而
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \max_j e^{\lambda X_j}
 \le
 \sum_{j=1}^m e^{\lambda X_j}.
-$$
+</script>
+</div>
 所以
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \max_j X_j
 \le
 \frac1\lambda
 \log\left(
 \sum_{j=1}^m e^{\lambda X_j}
 \right).
-$$
+</script>
+</div>
 取期望：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E\max_j X_j
 \le
 \frac1\lambda
@@ -2116,15 +2135,19 @@ $$
 \log\left(
 \sum_{j=1}^m e^{\lambda X_j}
 \right).
-$$
+</script>
+</div>
 再用 Jensen，因为 <span class="arithmatex">\(\log\)</span> 是凹函数：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E\log Y
 \le
 \log \mathbb E Y.
-$$
+</script>
+</div>
 于是
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E\max_j X_j
 \le
 \frac1\lambda
@@ -2132,21 +2155,27 @@ $$
 \left(
 \sum_{j=1}^m \mathbb E e^{\lambda X_j}
 \right).
-$$
+</script>
+</div>
 所以现在只要控制每个
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E e^{\lambda X_j}.
-$$</p>
+</script>
+</div></p>
 <hr />
 <h2 id="x_j-sub-gaussian">第二步：证明每个 <span class="arithmatex">\(X_j\)</span> 是 sub-Gaussian</h2>
 <p>固定 <span class="arithmatex">\(j\)</span>，有
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 X_j
 =
 \frac1n\sum_{i=1}^n \varepsilon_i h_j(z_i).
-$$
+</script>
+</div>
 由于 <span class="arithmatex">\(\varepsilon_i\)</span> 独立，
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E_\varepsilon e^{\lambda X_j}
 =
 \prod_{i=1}^n
@@ -2154,22 +2183,28 @@ $$
 \exp\left(
 \frac{\lambda}{n}\varepsilon_i h_j(z_i)
 \right).
-$$
+</script>
+</div>
 因为 <span class="arithmatex">\(\varepsilon_i=\pm1\)</span> 等概率，
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E_{\varepsilon_i}
 e^{t\varepsilon_i}
 =
 \frac{e^t+e^{-t}}2
 =
 \cosh(t).
-$$
+</script>
+</div>
 并且有基本不等式
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \cosh(t)\le e^{t^2/2}.
-$$
+</script>
+</div>
 所以
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E_{\varepsilon_i}
 \exp\left(
 \frac{\lambda}{n}\varepsilon_i h_j(z_i)
@@ -2178,109 +2213,134 @@ $$
 \exp\left(
 \frac{\lambda^2 h_j(z_i)^2}{2n^2}
 \right).
-$$
+</script>
+</div>
 连乘得到
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \mathbb E_\varepsilon e^{\lambda X_j}
-&amp;\le
+&\le
 \prod_{i=1}^n
 \exp\left(
 \frac{\lambda^2 h_j(z_i)^2}{2n^2}
-\right)\
-&amp;=
+\right)\\
+&=
 \exp\left(
 \frac{\lambda^2}{2n^2}
 \sum_{i=1}^n h_j(z_i)^2
 \right).
 \end{aligned}
-$$
+</script>
+</div>
 由假设
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac1n\sum_{i=1}^n h_j(z_i)^2\le R^2,
-$$
+</script>
+</div>
 即
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \sum_{i=1}^n h_j(z_i)^2\le nR^2.
-$$
+</script>
+</div>
 所以
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E_\varepsilon e^{\lambda X_j}
 \le
 \exp\left(
 \frac{\lambda^2R^2}{2n}
 \right).
-$$
+</script>
+</div>
 这说明每个 <span class="arithmatex">\(X_j\)</span> 都是尺度约为 <span class="arithmatex">\(R/\sqrt n\)</span> 的 sub-Gaussian 变量。</p>
 <hr />
 <h2 id="max">第三步：代回 max 的上界</h2>
 <p>有
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \sum_{j=1}^m \mathbb E e^{\lambda X_j}
 \le
 m\exp\left(
 \frac{\lambda^2R^2}{2n}
 \right).
-$$
+</script>
+</div>
 因此
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \mathbb E\max_j X_j
-&amp;\le
+&\le
 \frac1\lambda
 \log
 \left[
 m\exp\left(
 \frac{\lambda^2R^2}{2n}
 \right)
-\right]\
-&amp;=
+\right]\\
+&=
 \frac{\log m}{\lambda}
 +
 \frac{\lambda R^2}{2n}.
 \end{aligned}
-$$
+</script>
+</div>
 这个不等式对任意 <span class="arithmatex">\(\lambda&gt;0\)</span> 成立，所以现在优化 <span class="arithmatex">\(\lambda\)</span>。</p>
 <p>令
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac{\log m}{\lambda}
 =
 \frac{\lambda R^2}{2n},
-$$
+</script>
+</div>
 得到
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \lambda^2
 =
 \frac{2n\log m}{R^2},
-$$
+</script>
+</div>
 即
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \lambda
 =
 \frac{\sqrt{2n\log m}}{R}.
-$$
+</script>
+</div>
 代入：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E\max_j X_j
 \le
 R\sqrt{\frac{2\log m}{n}}.
-$$
+</script>
+</div>
 于是
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \widehat R_n(\mathcal H)
 \le
 R\sqrt{\frac{2\log m}{n}}.
 }
-$$
+</script>
+</div>
 再对样本 <span class="arithmatex">\(D\)</span> 取期望，得到理论 Rademacher complexity：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 R_n(\mathcal H)
 \le
 R\sqrt{\frac{2\log m}{n}}.
 }
-$$
+</script>
+</div>
 Dudley积分不等式</p>
 <p>先估计<span class="arithmatex">\(\hat R_D(\mathcal H)\)</span>,然后在对样本D取期望，就能得到实际的Rademacher复杂度。</p>
 <p>可以把它拆成：<span class="arithmatex">\(R_n(\mathcal H)=\mathbb E_D\left[\underbrace{\mathbb E_\varepsilon\left[\sup_{h\in\mathcal H}\frac1n\sum_{i=1}^n\varepsilon_i h(z_i)\right]}_{\widehat R_D(\mathcal H)}\right]\)</span></p>

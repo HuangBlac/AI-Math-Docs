@@ -1926,21 +1926,26 @@
 <p>为什么要引入这个东西：</p>
 <p>因为我们估计<span class="arithmatex">\(\mathcal R(f)-\mathcal R(\hat{f})\)</span>,已经将其转化为了<span class="arithmatex">\(sup_{f\in\mathcal{F}}\mathcal R(f)-\mathcal{\hat R}(f)\)</span>这个统计量的估计</p>
 <p>也就是要讨论对于一个函数类（取决于不同的学习算法，例如神经网络函数类，决策树学习类，线性回归函数类）
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 sup E(h(z))-\frac{1}{n}\sum_{i=1}^n h(z_i)
-$$
+</script>
+</div>
 我们可以通过定义函数类<span class="arithmatex">\(\mathcal H\)</span>的复杂度,数据类<span class="arithmatex">\(D = \{z1, . . . , zn\}\)</span>,复杂度<span class="arithmatex">\(R_n(\mathcal H)\)</span>
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 R_n(\mathcal H) = E_{ε,D}[sup_{h∈\mathcal{H}}\frac{1}{n}\sum^n_{i=1}ε_ih(zi)]
-$$
+</script>
+</div>
 <span class="arithmatex">\(h_0 : Z → R, R_n(H + {h_0}) = R_n(H)\)</span>因为<span class="arithmatex">\(R_n(\{h_0\})=E_{ε,D}[\frac{1}{n}\sum^n_{i=1}ε_i h_0(z_i)]=0\)</span></p>
 <p>因为单元素函数类没有真正的 supremum 可取：
-$$
-R_n({h_0})
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+R_n(\{h_0\})
 =
 \mathbb E_{z,\varepsilon}
 \left[
-\sup_{h\in{h_0}}
+\sup_{h\in\{h_0\}}
 \frac1n\sum_{i=1}^n \varepsilon_i h(z_i)
 \right]
 =
@@ -1948,9 +1953,11 @@ R_n({h_0})
 \left[
 \frac1n\sum_{i=1}^n \varepsilon_i h_0(z_i)
 \right].
-$$
+</script>
+</div>
 对固定的样本 <span class="arithmatex">\(z_1,\dots,z_n\)</span>，有
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E_\varepsilon
 \left[
 \frac1n\sum_{i=1}^n \varepsilon_i h_0(z_i)
@@ -1958,126 +1965,164 @@ $$
 =
 \frac1n\sum_{i=1}^n h_0(z_i)\mathbb E[\varepsilon_i]
 =0.
-$$
+</script>
+</div>
 所以再对 <span class="arithmatex">\(z\)</span> 取期望仍然是
-$$
-R_n({h_0})=0.
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+R_n(\{h_0\})=0.
+</script>
+</div>
 同理，经验 Rademacher complexity 也是
-$$
-\widehat R_n({h_0})
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\widehat R_n(\{h_0\})
 =
 \mathbb E_\varepsilon
 \left[
 \frac1n\sum_{i=1}^n \varepsilon_i h_0(z_i)
 \right]
 =0.
-$$
+</script>
+</div>
 此外，<span class="arithmatex">\(R_n(H + H') = R_n(H)+R_n(H'),H+H' = \{h_1+h_2|h_1\in H,h_2\in H'\}\)</span></p>
 <p>固定样本 <span class="arithmatex">\(z_1,\dots,z_n\)</span> 和 Rademacher 符号 <span class="arithmatex">\(\varepsilon_1,\dots,\varepsilon_n\)</span>，定义一个线性泛函
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 L(h)
 =
 \frac1n\sum_{i=1}^n \varepsilon_i h(z_i).
-$$
+</script>
+</div>
 Rademacher complexity 里面就是在算
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \sup_{h\in\mathcal H}L(h)
-$$
+</script>
+</div>
 然后对样本和 <span class="arithmatex">\(\varepsilon\)</span> 取期望。</p>
 <p>现在看凸包。任取
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 g\in \operatorname{conv}(\mathcal H),
-$$
+</script>
+</div>
 则存在
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 h_1,\dots,h_m\in\mathcal H,\qquad
 \alpha_j\ge 0,\qquad
 \sum_{j=1}^m\alpha_j=1,
-$$
+</script>
+</div>
 使得
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 g=\sum_{j=1}^m\alpha_j h_j.
-$$
+</script>
+</div>
 于是
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 L(g)
-&amp;=
-L\left(\sum_{j=1}^m\alpha_j h_j\right)\
-&amp;=
-\sum_{j=1}^m\alpha_j L(h_j)\
-&amp;\le
-\sum_{j=1}^m\alpha_j \sup_{h\in\mathcal H}L(h)\
-&amp;=
+&=
+L\left(\sum_{j=1}^m\alpha_j h_j\right)\\
+&=
+\sum_{j=1}^m\alpha_j L(h_j)\\
+&\le
+\sum_{j=1}^m\alpha_j \sup_{h\in\mathcal H}L(h)\\
+&=
 \sup_{h\in\mathcal H}L(h).
 \end{aligned}
-$$
+</script>
+</div>
 所以
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \sup_{g\in\operatorname{conv}(\mathcal H)}L(g)
 \le
 \sup_{h\in\mathcal H}L(h).
-$$
+</script>
+</div>
 反过来，因为
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathcal H\subset \operatorname{conv}(\mathcal H),
-$$
+</script>
+</div>
 所以显然有
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \sup_{g\in\operatorname{conv}(\mathcal H)}L(g)
 \ge
 \sup_{h\in\mathcal H}L(h).
-$$
+</script>
+</div>
 两边合起来：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \sup_{g\in\operatorname{conv}(\mathcal H)}
 \frac1n\sum_{i=1}^n\varepsilon_i g(z_i)
 =
 \sup_{h\in\mathcal H}
 \frac1n\sum_{i=1}^n\varepsilon_i h(z_i).
-$$
+</script>
+</div>
 最后对 <span class="arithmatex">\(z,\varepsilon\)</span> 取期望，就得到
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 R_n(\operatorname{conv}(\mathcal H))
 =
 R_n(\mathcal H).
-$$
+</script>
+</div>
 Massart lemma：</p>
 <p>如果这个函数类能够造出界<span class="arithmatex">\(sup_{h\in \mathcal{H}}\sum_{i=1}^nh(x_i)^2\le R^2\)</span>此时<span class="arithmatex">\(R_n(\mathcal{H})\le\sqrt{\frac{2log m}{n}}R\)</span></p>
 <p>接下来，我们可以证明：
-$$
-E{sup_{h\in\mathcal H} {|E(h(z))-\frac{1}{n}\sum_{i=1}^n h(z_i)|}}\le2R_n(\mathcal H)
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+E\{sup_{h\in\mathcal H} \{|E(h(z))-\frac{1}{n}\sum_{i=1}^n h(z_i)|\}\}\le2R_n(\mathcal H)
+</script>
+</div>
 我们分别证明：</p>
 <p><span class="arithmatex">\(E\{sup_{h\in\mathcal H} \{E(h(z))-\frac{1}{n}\sum_{i=1}^n h(z_i)\}\}\le2R_n(\mathcal H)\)</span>,<span class="arithmatex">\(E\{sup_{h\in\mathcal H} \{\frac{1}{n}\sum_{i=1}^n h(z_i)-E[h(z)]\}\}\le2R_n(\mathcal H)\)</span></p>
 <p>考虑一组同分布的数据<span class="arithmatex">\(\mathcal D'=\{z'_1,z_2'\cdots,z_n'\}\)</span></p>
 <p>因此，我们可以将期望转化为需样本的条件期望
-$$
-E{sup_{h\in\mathcal H} {E(h(z))-\frac{1}{n}\sum_{i=1}^n h(z_i)}}=E{sup_{h\in\mathcal H} {E[\frac{1}{n}\sum_{i=1}^n h(z'<em i="1">i)|\mathcal D]-\frac{1}{n}\sum</em>^n h(z_i)}}\
-\le E[sup_{h\in\mathcal H}E[\frac{1}{n}\sum_{i=1}^nh(z'<em H="H" h_in_mathcal="h\in\mathcal">i)-h(z_i)|\mathcal D]]\
-\le E[E[sup</em>^nh(z'}\frac{1}{n}\sum_{i=1<em H="H" _mathcal="\mathcal" h_in="h\in">i)-h(z_i)|\mathcal D]]\
-\le E[sup</em>^n{h(z'}\sum_{i=1<em H="H" h_in_mathcal="h\in\mathcal">i)-h(z_i)}]
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+E\{sup_{h\in\mathcal H} \{E(h(z))-\frac{1}{n}\sum_{i=1}^n h(z_i)\}\}=E\{sup_{h\in\mathcal H} \{E[\frac{1}{n}\sum_{i=1}^n h(z'_i)|\mathcal D]-\frac{1}{n}\sum_{i=1}^n h(z_i)\}\}\\
+\le E[sup_{h\in\mathcal H}E[\frac{1}{n}\sum_{i=1}^nh(z'_i)-h(z_i)|\mathcal D]]\\
+\le E[E[sup_{h\in\mathcal H}\frac{1}{n}\sum_{i=1}^nh(z'_i)-h(z_i)|\mathcal D]]\\
+\le E[sup_{h\in \mathcal H}\sum_{i=1}^n\{h(z'_i)-h(z_i)\}]
+</script>
+</div>
 而同理可得，
-$$
-E[sup</em>^n{h(z_i)-h(z'} {\frac{1}{n}\sum_{i=1}^n h(z_i)-E(h(z))}]\le E[sup_{h\in \mathcal H}\sum_{i=1<em H="H" _mathcal="\mathcal" h_in="h\in">i)}]
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+E[sup_{h\in\mathcal H} \{\frac{1}{n}\sum_{i=1}^n h(z_i)-E(h(z))\}]\le E[sup_{h\in \mathcal H}\sum_{i=1}^n\{h(z_i)-h(z'_i)\}]
+</script>
+</div>
 接下来，我们又可以根据对称性知道：
-$$
-E[sup</em>^n{h(z'}\frac{1}{n}\sum_{i=1<em H="H" _mathcal="\mathcal" h_in="h\in">i)-h(z_i)}]\
-=E[sup</em>^n\varepsilon_i{h(z'}\frac{1}{n}\sum_{i=1<em H="H" _mathcal="\mathcal" h_in="h\in">i)-h(z_i)}]\
-\le E[sup</em>^n\varepsilon_i{h(z'}\frac{1}{n}\sum_{i=1<em H="H" _mathcal="\mathcal" h_in="h\in">i)-h(z_i)}]\
-\le E[sup</em>^n\varepsilon_ih(z'}\frac{1}{n}\sum_{i=1<em H="H" _mathcal="\mathcal" h_in="h\in">i)]+E[sup</em>^n-\varepsilon_ih(z_i)] \
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+E[sup_{h\in \mathcal H}\frac{1}{n}\sum_{i=1}^n\{h(z'_i)-h(z_i)\}]\\
+=E[sup_{h\in \mathcal H}\frac{1}{n}\sum_{i=1}^n\varepsilon_i\{h(z'_i)-h(z_i)\}]\\
+\le E[sup_{h\in \mathcal H}\frac{1}{n}\sum_{i=1}^n\varepsilon_i\{h(z'_i)-h(z_i)\}]\\
+\le E[sup_{h\in \mathcal H}\frac{1}{n}\sum_{i=1}^n\varepsilon_ih(z'_i)]+E[sup_{h\in \mathcal H}\frac{1}{n}\sum_{i=1}^n-\varepsilon_ih(z_i)] \\
 \le 2R_n(\mathcal{H})
-$$
-众所周知，期望可以按照概率被处理，使用集中不等式使用最大值+}\frac{1}{n}\sum_{i=1<span class="arithmatex">\(\delta\)</span>小量可以让不等式按照<span class="arithmatex">\(1-\delta\)</span>概率成立</p>
+</script>
+</div>
+众所周知，期望可以按照概率被处理，使用集中不等式使用最大值+<span class="arithmatex">\(\delta\)</span>小量可以让不等式按照<span class="arithmatex">\(1-\delta\)</span>概率成立</p>
 <p>若
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 h(z)\in[0,\ell_\infty],
-$$
+</script>
+</div>
 则以概率至少 <span class="arithmatex">\(1-\delta\)</span>，对所有 <span class="arithmatex">\(h\in\mathcal H\)</span>，
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E[h(z)]
 \le
 \frac1n\sum_{i=1}^n h(z_i)
@@ -2086,80 +2131,92 @@ $$
 +
 \frac{\ell_\infty}{\sqrt{2n}}
 \sqrt{\log\frac1\delta}.
-$$
+</script>
+</div>
 给定任意函数
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 a_i:\Theta\to \mathbb R,
-$$
+</script>
+</div>
 以及 1-Lipschitz 函数
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \varphi_i:\mathbb R\to \mathbb R,
-$$
+</script>
+</div>
 则
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E_\varepsilon
 \left[
 \sup_{\theta\in\Theta}
-\left{
+\left\{
 b(\theta)
 +
 \sum_{i=1}^n \varepsilon_i
 \varphi_i(a_i(\theta))
-\right}
+\right\}
 \right]
 \le
 \mathbb E_\varepsilon
 \left[
 \sup_{\theta\in\Theta}
-\left{
+\left\{
 b(\theta)
 +
 \sum_{i=1}^n \varepsilon_i
 a_i(\theta)
-\right}
+\right\}
 \right].
-$$
+</script>
+</div>
 它的意思是：</p>
 <blockquote>
 <p>对函数值先做一个 1-Lipschitz 变换，不会增加 Rademacher complexity。</p>
 </blockquote>
 <p>因为 Lipschitz 函数不会把距离放大，所以它不会让函数类更容易拟合随机符号：</p>
 <p>记
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 B(\theta)
 =
 b(\theta)
 +
 \sum_{i=1}^n \varepsilon_i\varphi_i(a_i(\theta)).
-$$
+</script>
+</div>
 考虑第 <span class="arithmatex">\(n+1\)</span> 个 Rademacher 符号。对 <span class="arithmatex">\(\varepsilon_{n+1}\)</span> 显式取期望：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
-&amp;\mathbb E_{\varepsilon_{n+1}}
+&\mathbb E_{\varepsilon_{n+1}}
 \left[
 \sup_\theta
-\left{
+\left\{
 B(\theta)
 +
 \varepsilon_{n+1}
 \varphi_{n+1}(a_{n+1}(\theta))
-\right}
-\right] \
-&amp;=
+\right\}
+\right] \\
+&=
 \frac12
 \sup_\theta
-{B(\theta)+\varphi_{n+1}(a_{n+1}(\theta))}
+\{B(\theta)+\varphi_{n+1}(a_{n+1}(\theta))\}
 +
 \frac12
 \sup_{\theta'}
-{B(\theta')-\varphi_{n+1}(a_{n+1}(\theta'))}.
+\{B(\theta')-\varphi_{n+1}(a_{n+1}(\theta'))\}.
 \end{aligned}
-$$
+</script>
+</div>
 把两个 supremum 合并成对 <span class="arithmatex">\((\theta,\theta')\)</span> 的 supremum：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 =
 \sup_{\theta,\theta'}
-\left{
+\left\{
 \frac{B(\theta)+B(\theta')}{2}
 +
 \frac{
@@ -2167,18 +2224,22 @@ $$
 -
 \varphi_{n+1}(a_{n+1}(\theta'))
 }{2}
-\right}.
-$$
+\right\}.
+</script>
+</div>
 因为 <span class="arithmatex">\(\varphi_{n+1}\)</span> 是 1-Lipschitz，
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \left|
 \varphi_{n+1}(u)-\varphi_{n+1}(v)
 \right|
 \le
 |u-v|.
-$$
+</script>
+</div>
 所以
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac{
 \varphi_{n+1}(a_{n+1}(\theta))
 -
@@ -2188,33 +2249,45 @@ $$
 \frac{
 |a_{n+1}(\theta)-a_{n+1}(\theta')|
 }{2}.
-$$
+</script>
+</div>
 再利用 supremum 同时包含 <span class="arithmatex">\((\theta,\theta')\)</span> 和 <span class="arithmatex">\((\theta',\theta)\)</span>，可以把绝对值处理成相当于引入一个新的 Rademacher 符号：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac{
 |a_{n+1}(\theta)-a_{n+1}(\theta')|
 }{2}
-$$
+</script>
+</div>
 对应
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \varepsilon_{n+1}a_{n+1}(\theta).
-$$
+</script>
+</div>
 于是就把
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \varepsilon_{n+1}\varphi_{n+1}(a_{n+1}(\theta))
-$$
+</script>
+</div>
 替换成了
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \varepsilon_{n+1}a_{n+1}(\theta).
-$$
+</script>
+</div>
 剩下前 <span class="arithmatex">\(n\)</span> 项用归纳假设处理。</p>
 <p>Proposition 4.4 是：</p>
 <p>若 <span class="arithmatex">\(\varphi_i\)</span> 是 1-Lipschitz 且
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \varphi_i(0)=0,
-$$
+</script>
+</div>
 则
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E_\varepsilon
 \left[
 \sup_{\theta\in\Theta}
@@ -2235,32 +2308,40 @@ $$
 a_i(\theta)
 \right|
 \right].
-$$
+</script>
+</div>
 这里多了 <span class="arithmatex">\(2\)</span>，主要是因为 supremum 里面有绝对值：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \sup_\theta |S_\theta|
 =
-\max\left{
+\max\left\{
 \sup_\theta S_\theta,
 \sup_\theta (-S_\theta)
-\right}.
-$$
+\right\}.
+</script>
+</div>
 要同时控制正方向和负方向，会额外损失一个常数。这个版本常用于绝对值型或对称化后的表达。</p>
 <p>我们接下来考虑线性函数类的特殊情况</p>
 <p><span class="arithmatex">\(f_θ(x)=θ^⊤φ(x),Ω(θ)≤D\)</span>,</p>
 <p>令设计矩阵
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Phi\in\mathbb R^{n\times d},
-$$
+</script>
+</div>
 第 <span class="arithmatex">\(i\)</span> 行是
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \varphi(x_i)^\top.
-$$
+</script>
+</div>
 则
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 R_n(\mathcal F)
-&amp;=
+&=
 \mathbb E
 \left[
 \sup_{\Omega(\theta)\le D}
@@ -2268,15 +2349,15 @@ R_n(\mathcal F)
 \sum_{i=1}^n
 \varepsilon_i
 \theta^\top\varphi(x_i)
-\right]\
-&amp;=
+\right]\\
+&=
 \mathbb E
 \left[
 \sup_{\Omega(\theta)\le D}
 \frac1n
 \varepsilon^\top \Phi\theta
-\right]\
-&amp;=
+\right]\\
+&=
 \mathbb E
 \left[
 \sup_{\Omega(\theta)\le D}
@@ -2284,23 +2365,29 @@ R_n(\mathcal F)
 \theta^\top \Phi^\top\varepsilon
 \right].
 \end{aligned}
-$$
+</script>
+</div>
 利用对偶范数定义：
-$$
-\Omega^<em>(u)
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\Omega^*(u)
 =
 \sup_{\Omega(\theta)\le 1}
 u^\top \theta.
-$$
+</script>
+</div>
 所以
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \sup_{\Omega(\theta)\le D}
 \theta^\top u
 =
-D\Omega^</em>(u).
-$$
+D\Omega^*(u).
+</script>
+</div>
 于是就有
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 R_n(\mathcal F)
 =
 \frac{D}{n}
@@ -2308,50 +2395,64 @@ R_n(\mathcal F)
 \left[
 \Omega^*(\Phi^\top\varepsilon)
 \right].
-$$
+</script>
+</div>
 不同范数给出不同复杂度：
-$$
-\Omega=|\cdot|_2
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\Omega=\|\cdot\|_2
 \quad\Longrightarrow\quad
 R_n(\mathcal F)
 \le
 \frac{D}{\sqrt n}
-\sqrt{\mathbb E|\varphi(x)|_2^2}.
-$$</p>
-<div class="arithmatex">\[
+\sqrt{\mathbb E\|\varphi(x)\|_2^2}.
+</script>
+</div></p>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Omega = \|\cdot\|_1
 \quad\Longrightarrow\quad
 R_n(\mathcal F)
 \le
 \frac{D}{n}\mathbb E[\|\Phi^T\varepsilon\|_{\infty}]=max_j\{\sum_{i=1}^n\varphi_j(x_i)\varepsilon_i\}
-\]</div>
+</script>
+</div>
 <p>在固定数据 <span class="arithmatex">\(x_1,\dots,x_n\)</span> 后，这是一个 Rademacher 加权和。由于
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 |\varphi_j(x_i)|\le R,
-$$
+</script>
+</div>
 所以每个坐标都是 sub-Gaussian，方差代理量满足
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \sum_{i=1}^n \varphi_j(x_i)^2
 \le
 nR^2.
-$$
+</script>
+</div>
 于是最大值满足经典 bound：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E_\varepsilon
 \max_{1\le j\le d}
 |(\Phi^\top\varepsilon)_j|
 \le
 R\sqrt{2n\log(2d)}.
-$$
+</script>
+</div>
 这里的 <span class="arithmatex">\(2d\)</span> 来自绝对值：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \max_j |S_j|
 =
-\max{S_1,\dots,S_d,-S_1,\dots,-S_d},
-$$
+\max\{S_1,\dots,S_d,-S_1,\dots,-S_d\},
+</script>
+</div>
 总共有 <span class="arithmatex">\(2d\)</span> 个 sub-Gaussian 变量取最大。</p>
 <p>代回：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 R_n(\mathcal F)
 \le
 \frac{D}{n}
@@ -2361,11 +2462,14 @@ RD
 \sqrt{
 \frac{2\log(2d)}{n}
 }.
-$$
+</script>
+</div>
 这就是 <span class="arithmatex">\(\ell_1\)</span> ball 的 Rademacher complexity。它的特点是只出现
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \log d
-$$
+</script>
+</div>
 而不是 <span class="arithmatex">\(d\)</span>。这正是稀疏学习中 <span class="arithmatex">\(\ell_1\)</span> 约束的优势。</p>
 
 

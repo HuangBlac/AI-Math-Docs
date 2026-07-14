@@ -2120,9 +2120,11 @@ i=1
 <h3 id="bayes-risk-and-bayes-predictor-loss">Bayes Risk and Bayes Predictor: loss伪全知视角能干到多小</h3>
 <p><span class="arithmatex">\(R(f) = \mathbb Eℓ(y, f(x))= \mathbb E [\mathbb E[ℓ(y, f(x))|x]]\)</span></p>
 <p>将其拆解成积分的形式，因此我们可以计算每一个x对应的让风险极小化对应的值<span class="arithmatex">\(f^*(x)\)</span>
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f^*(x_0) = argmin_{a\in \mathcal Y}\mathbb E[\ell(a,y)|x=x_0]
-$$
+</script>
+</div>
 对应的多分类问题：</p>
 <p><span class="arithmatex">\(f(x)=argmax_{k\in K} \mathbb P(Y=k|X=x)\)</span></p>
 <p>对于回归问题：</p>
@@ -2136,107 +2138,143 @@ $$
 <p>a=-1<span class="arithmatex">\(c_{+}(1-p)&gt;c_{-}p,1/p&lt;c_-/c_++1)\)</span></p>
 <p>Exercise 2.2 We consider a learning problem on <span class="arithmatex">\(X × Y\)</span>, with <span class="arithmatex">\(Y = \mathbb R\)</span> and the absolute
 loss defined as <span class="arithmatex">\(ℓ(y, z) = |y − z|\)</span>. Compute a Bayes predictor <span class="arithmatex">\(f^∗ : X \rightarrow \mathbb R\)</span>.
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f∗(x′)∈argmin_{z∈R}E[∣y−z∣∣x=x′] = \int |y-z| dP(y|x) = \int 1_{y\le z}(z-y) dP(y|x) +\int 1_{y\ge z}(y-z) dP(y|x) 
-$$
+</script>
+</div>
 我们要最小化
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \phi(z)=\mathbb E[|Y-z|\mid X=x].
-$$
+</script>
+</div>
 先假设条件分布连续，没有原子点。对 <span class="arithmatex">\(z\)</span> 求导：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac{d}{dz}|Y-z|
 =
 \begin{cases}
-1, &amp; Y<z,\\
+1, & Y<z,\\
 -1, & Y>z.
 \end{cases}
-$$
+</script>
+</div>
 所以
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \phi'(z)
 =
 \mathbb P(Y<z\mid X=x)-\mathbb P(Y>z\mid X=x).
-$$
+</script>
+</div>
 因为连续分布下
-$$
-\mathbb P(Y&lt;z\mid X=x)=F_x(z),
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb P(Y<z\mid X=x)=F_x(z),
+</script>
+</div>
 令<span class="arithmatex">\(F_x(m)=1/2\)</span>，此时<span class="arithmatex">\(\phi'(m) = 0,z = m\)</span></p>
 <p>因此
-$$
-f^<em>(x)=\operatorname{median}(Y\mid X=x),P(Y\ge f^</em>(x)|X=x)=\frac{1}{2}
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+f^*(x)=\operatorname{median}(Y\mid X=x),P(Y\ge f^*(x)|X=x)=\frac{1}{2}
+</script>
+</div>
 Exercise 2.3 We consider a learning problem on X × Y, with Y = R and the “pinball”
 loss <span class="arithmatex">\(ℓ(y, z) = α(y − z)^+ + (1 − α)(z − y)^+\)</span>, for <span class="arithmatex">\(α ∈ (0, 1)\)</span>. Compute a Bayes predictor
 f∗ : X → R. Provide an interpretation in terms of quantiles.
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \phi(z) = \mathbb E(\ell (Y,a)|X=x)=\int_z^{\infty}\alpha(y-z)dP_x(y)+\int_{-\infty}^z(1-\alpha)(z-y)dP_x(y)
-$$
+</script>
+</div>
 对于第一项：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac{d}{dz}(Y-z)^+
 =
--\mathbf 1_{{Y&gt;z}}.
-$$
+-\mathbf 1_{\{Y>z\}}.
+</script>
+</div>
 对于第二项：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac{d}{dz}(z-Y)^+
 =
-\mathbf 1_{{Y<z\}}.
-$$
+\mathbf 1_{\{Y<z\}}.
+</script>
+</div>
 所以
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \phi'(z)
 =
 -\alpha \mathbb P(Y>z\mid X=x)
 +
 (1-\alpha)\mathbb P(Y<z\mid X=x).
-$$
+</script>
+</div>
 连续分布下，
-$$
-\mathbb P(Y\<z\mid X=x)=F_x(z),
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb P(Y<z\mid X=x)=F_x(z),
+</script>
+</div>
 因此
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \phi'(z)
 =
 -\alpha(1-F_x(z))
 +
 (1-\alpha)F_x(z).
-$$
+</script>
+</div>
 展开：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \phi'(z)
 =
 -\alpha+\alpha F_x(z)+F_x(z)-\alpha F_x(z)
 =
 F_x(z)-\alpha.
-$$
+</script>
+</div>
 令导数为 <span class="arithmatex">\(0\)</span>，得到
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F_x(z)=\alpha.
-$$
+</script>
+</div>
 所以 Bayes predictor 是条件 <span class="arithmatex">\(\alpha\)</span>-分位数：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f^*(x)\in \{z:F_x(z)=\alpha\}.
-$$
+</script>
+</div>
 更标准地写：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f^*(x)=Q_\alpha(Y\mid X=x),
-$$
+</script>
+</div>
 其中
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 Q_\alpha(Y\mid X=x)
 =
 \inf\{z\in\mathbb R:F_x(z)\ge \alpha\}.
-$$
+</script>
+</div>
 Exercise 2.4 Characterize Bayes predictors for regression with the “ε-insensitive”
 loss defined as <span class="arithmatex">\(ℓ(y, z) = max\{0, |y − z|-\varepsilon \}\)</span>. If for each x, y is supported in an interval
 of length less than 2ε, what are the Bayes predictors?
-$$
-\phi(z) = E(\ell(y,z)|X=x) = \int_{R} 1_{|y-z|>\varepsilon}(|y-z|-\varepsilon)dP_x(y) = \int_{R} 1_{y-\varepsilon>z}(y-z-\varepsilon)dP_x(y)+ \int_{R} 1_{y+\varepsilon&lt;z}(z-y-\varepsilon)dP_x(y)
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\phi(z) = E(\ell(y,z)|X=x) = \int_{R} 1_{|y-z|>\varepsilon}(|y-z|-\varepsilon)dP_x(y) = \int_{R} 1_{y-\varepsilon>z}(y-z-\varepsilon)dP_x(y)+ \int_{R} 1_{y+\varepsilon<z}(z-y-\varepsilon)dP_x(y)
+</script>
+</div>
 <span class="arithmatex">\(P(z&gt;y-\varepsilon|X=x)+P(z&gt;y+\varepsilon|X=x)=1,f^*(x)=z\)</span></p>
 <p>Exercise 2.5 (Inverting predictions) Consider the binary classification problem with
 Y = {−1, 1} and the 0–1 loss. Relate the risk of a prediction f to that of its opposite −f.
@@ -2252,257 +2290,348 @@ balance between classes)?</p>
 <p>随着训练样本的增加，test先减后增</p>
 <p>随机抽一份训练集 <span class="arithmatex">\(D_n(p)\)</span>，用算法 <span class="arithmatex">\(A\)</span> 训练出模型 <span class="arithmatex">\(A(D_n(p))\)</span>。那么这个模型的真实风险 <span class="arithmatex">\(R_p(A(D_n(p)))\)</span> 距离最优 Bayes risk <span class="arithmatex">\(R_p^*\)</span> 不超过 <span class="arithmatex">\(\varepsilon\)</span> 的概率至少是 <span class="arithmatex">\(1-\delta\)</span>。</p>
 <p>学习理论想证明类似：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 R_p(A(D_n(p)))-R_p^*
 \le
 C\sqrt{\frac{\log(1/\delta)}{n}}
-$$
+</script>
+</div>
 with probability at least <span class="arithmatex">\(1-\delta\)</span>。</p>
 <p>这时就可以说：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \varepsilon(n,\delta)
 =
 C\sqrt{\frac{\log(1/\delta)}{n}}.
-$$
+</script>
+</div>
 样本数 <span class="arithmatex">\(n\)</span> 越大，误差界越小；置信度要求越高，即 <span class="arithmatex">\(\delta\)</span> 越小，误差界通常会稍微变大。</p>
 <h2 id="no-free-lunch">No Free Lunch</h2>
 <p>二分类，<span class="arithmatex">\(Y=\{0,1\}\)</span>，0–1 loss：
-$$
-\ell(y,\hat y)=\mathbf 1_{{y\ne \hat y}}.
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\ell(y,\hat y)=\mathbf 1_{\{y\ne \hat y\}}.
+</script>
+</div>
 对某个分布 <span class="arithmatex">\(p\)</span>，分类器 <span class="arithmatex">\(f\)</span> 的风险是
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 R_p(f)=\mathbb P_p(f(X)\ne Y).
-$$
+</script>
+</div>
 也就是测试时分类错误的概率。</p>
 <p><span class="arithmatex">\(R_p^*\)</span> 是 Bayes risk，即如果你完全知道真实分布 <span class="arithmatex">\(p\)</span>，理论上能达到的最小错误率：
-$$
-R_p^<em>=\inf_f R_p(f).
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+R_p^*=\inf_f R_p(f).
+</script>
+</div>
 学习算法 <span class="arithmatex">\(A\)</span> 接收训练集
-$$
-D_n(p)={(X_1,Y_1),\dots,(X_n,Y_n)}
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+D_n(p)=\{(X_1,Y_1),\dots,(X_n,Y_n)\}
+</script>
+</div>
 并输出一个分类器
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 A(D_n(p)).
-$$
+</script>
+</div>
 所以
-$$
-\mathbb E\left[R_p(A(D_n(p)))\right]-R_p^</em>
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb E\left[R_p(A(D_n(p)))\right]-R_p^*
+</script>
+</div>
 命题说：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \sup_{p\in\mathcal P}
-\left{
-\mathbb E\left[R_p(A(D_n(p)))\right]-R_p^<em>
-\right}&gt; \frac12.
-$$
-意思是：</em><em>不管你选什么算法 <span class="arithmatex">\(A\)</span>，只要样本数 <span class="arithmatex">\(n\)</span> 固定，总能找到一个坏分布 <span class="arithmatex">\(p\)</span>，使得你的期望 excess risk 超过 <span class="arithmatex">\(1/2\)</span>。</em>*</p>
+\left\{
+\mathbb E\left[R_p(A(D_n(p)))\right]-R_p^*
+\right\}> \frac12.
+</script>
+</div>
+意思是：<strong>不管你选什么算法 <span class="arithmatex">\(A\)</span>，只要样本数 <span class="arithmatex">\(n\)</span> 固定，总能找到一个坏分布 <span class="arithmatex">\(p\)</span>，使得你的期望 excess risk 超过 <span class="arithmatex">\(1/2\)</span>。</strong></p>
 <p>证明的构造大概是这样。</p>
 <p>因为 <span class="arithmatex">\(X\)</span> 无限，所以可以从 <span class="arithmatex">\(X\)</span> 中挑出 <span class="arithmatex">\(k\)</span> 个不同点：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 1,2,\dots,k.
-$$
+</script>
+</div>
 令 <span class="arithmatex">\(X\)</span> 在这 <span class="arithmatex">\(k\)</span> 个点上均匀分布：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb P(X=j)=\frac1k.
-$$
+</script>
+</div>
 然后给每个点指定一个标签：
-$$
-r=(r_1,\dots,r_k)\in{0,1}^k,
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+r=(r_1,\dots,r_k)\in\{0,1\}^k,
+</script>
+</div>
 并令
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 Y=r_X.
-$$
+</script>
+</div>
 也就是说，标签是确定性的。因此 Bayes 分类器只要记住这张表就可以零错误：
-$$
-R_p^<em>=0.
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+R_p^*=0.
+</script>
+</div>
 要证明：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \sup_{p\in\mathcal P}
-\left{
-\mathbb E\big[R_p(A(D_n(p)))\big]-R_p^</em>
-\right}</p>
-<blockquote>
-<p>\frac12.
-$$
+\left\{
+\mathbb E\big[R_p(A(D_n(p)))\big]-R_p^*
+\right\}
+> \frac12.
+</script>
+</div>
 也就是：对任意学习算法 <span class="arithmatex">\(A\)</span>，总能找到一个坏分布 <span class="arithmatex">\(p\)</span>，使得算法的期望 excess risk 至少接近 <span class="arithmatex">\(1/2\)</span>。</p>
-</blockquote>
 <p>因为后面构造的分布满足
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 R_p^*=0,
-$$
+</script>
+</div>
 所以只需要证明
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E[R_p(A(D_n(p)))]
-$$
+</script>
+</div>
 接近 <span class="arithmatex">\(1/2\)</span>。</p>
 <p>原文：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \hat f_{D_n}=A(D_n(p)).
-$$
+</script>
+</div>
 这里
-$$
-D_n(p)={(x_1,y_1),\dots,(x_n,y_n)}
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+D_n(p)=\{(x_1,y_1),\dots,(x_n,y_n)\}
+</script>
+</div>
 是训练集。由于当前构造里
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 y_i=r_{x_i},
-$$
+</script>
+</div>
 所以训练集其实是
-$$
-D_n(p)={(x_1,r_{x_1}),\dots,(x_n,r_{x_n})}.
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+D_n(p)=\{(x_1,r_{x_1}),\dots,(x_n,r_{x_n})\}.
+</script>
+</div>
 算法 <span class="arithmatex">\(A\)</span> 看到这个训练集以后，输出分类器：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \hat f_{D_n}.
-$$
+</script>
+</div>
 注意：<span class="arithmatex">\(\hat f_{D_n}\)</span> 是随机的，因为训练集 <span class="arithmatex">\(D_n\)</span> 是随机的。</p>
 <p>原文：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 S(r)=\mathbb E\left[R_p(\hat f_{D_n})\right].
-$$
+</script>
+</div>
 这里 <span class="arithmatex">\(p\)</span> 其实依赖于 <span class="arithmatex">\(r\)</span>，更准确写作 <span class="arithmatex">\(p_r\)</span>：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 S(r)=\mathbb E_{D_n\sim p_r^n}
 \left[
 R_{p_r}(\hat f_{D_n})
 \right].
-$$
+</script>
+</div>
 它表示：当真实标签表是 <span class="arithmatex">\(r\)</span> 时，算法 <span class="arithmatex">\(A\)</span> 的期望测试错误率。</p>
 <p>因为这个构造下
-$$
-R_{p_r}^<em>=0,
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+R_{p_r}^*=0,
+</script>
+</div>
 所以
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 S(r)
 =
-\mathbb E[R_{p_r}(\hat f_{D_n})]-R_{p_r}^</em>.
-$$
+\mathbb E[R_{p_r}(\hat f_{D_n})]-R_{p_r}^*.
+</script>
+</div>
 也就是说 <span class="arithmatex">\(S(r)\)</span> 就是这个问题上的期望 excess risk。</p>
 <p>we want to maximize S(r) with respect to r∈{0,1}k.</p>
 <p>因为证明目标是找一个坏分布 <span class="arithmatex">\(p\)</span>。而每一个 <span class="arithmatex">\(r\)</span> 都对应一个分布 <span class="arithmatex">\(p_r\)</span>。所以只要能找到某个 <span class="arithmatex">\(r\)</span>，使得
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 S(r)
-$$
+</script>
+</div>
 很大，就找到坏分布了。</p>
 <p>也就是：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \sup_{p\in\mathcal P}
 \mathbb E[R_p(A(D_n(p)))]-R_p^*
 \ge
-\max_{r\in{0,1}^k} S(r).
-$$
+\max_{r\in\{0,1\}^k} S(r).
+</script>
+</div>
 原文：
-$$
-\max_{r\in{0,1}^k}S(r)</p>
-<blockquote>
-<p>\mathbb E_{r\sim q}[S(r)].
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\max_{r\in\{0,1\}^k}S(r)
+>
+\mathbb E_{r\sim q}[S(r)].
+</script>
+</div>
 严格说，这里应理解为
-$$
-\max_{r\in{0,1}^k}S(r)
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\max_{r\in\{0,1\}^k}S(r)
 \ge
 \mathbb E_{r\sim q}[S(r)].
-$$
+</script>
+</div>
 含义很简单：一堆数的最大值至少不小于它们的平均值。</p>
-</blockquote>
 <p>这里 <span class="arithmatex">\(q\)</span> 是 <span class="arithmatex">\(r\)</span> 上的均匀分布，也就是让
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 r_1,\dots,r_k
-$$
+</script>
+</div>
 彼此独立，并且
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb P(r_j=0)=\mathbb P(r_j=1)=\frac12.
-$$
+</script>
+</div>
 这一步是典型的 probabilistic method：</p>
 <blockquote>
 <p>如果随机选 <span class="arithmatex">\(r\)</span> 时平均表现已经很坏，那么至少存在一个具体的 <span class="arithmatex">\(r\)</span> 也很坏。</p>
 </blockquote>
 <p>原文：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E_{r\sim q}[S(r)]
 =
 \mathbb P(\hat f_{D_n}(x)\ne y)
 =
 \mathbb P(\hat f_{D_n}(x)\ne r_x).
-$$
+</script>
+</div>
 先看
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 R_p(\hat f_{D_n})
 =
 \mathbb P(\hat f_{D_n}(x)\ne y).
-$$
+</script>
+</div>
 这是 0–1 loss 下风险的定义。</p>
 <p>对训练集 <span class="arithmatex">\(D_n\)</span> 再取期望，就是：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E[R_p(\hat f_{D_n})]
 =
 \mathbb P(\hat f_{D_n}(x)\ne y),
-$$
+</script>
+</div>
 其中概率同时包含训练集随机性和测试点随机性。</p>
 <p>又因为在构造中
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 y=r_x
-$$
+</script>
+</div>
 几乎必然成立，所以
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb P(\hat f_{D_n}(x)\ne y)
 =
 \mathbb P(\hat f_{D_n}(x)\ne r_x).
-$$
+</script>
+</div>
 原文：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 x_1,\dots,x_n,x,r
-$$
+</script>
+</div>
 都在取随机性。</p>
 <p>具体是：
-$$
-x_1,\dots,x_n\sim \mathrm{Unif}{1,\dots,k}
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+x_1,\dots,x_n\sim \mathrm{Unif}\{1,\dots,k\}
+</script>
+</div>
 是训练输入；
-$$
-x\sim \mathrm{Unif}{1,\dots,k}
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+x\sim \mathrm{Unif}\{1,\dots,k\}
+</script>
+</div>
 是测试输入；
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 r_1,\dots,r_k\sim \mathrm{Bernoulli}(1/2)
-$$
+</script>
+</div>
 是随机标签表。</p>
 <p>并且这些对象彼此独立，除了标签由
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 y_i=r_{x_i},\qquad y=r_x
-$$
+</script>
+</div>
 决定。</p>
 <p>Dn(p)={(x1,rx1),…,(xn,rxn)}.</p>
 <p>意思是算法实际看见的是这些信息：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 x_1,\dots,x_n
-$$
+</script>
+</div>
 以及对应标签
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 r_{x_1},\dots,r_{x_n}.
-$$
+</script>
+</div>
 它没有看见其他点的标签，比如如果测试点 <span class="arithmatex">\(x\)</span> 没出现在训练集中，那么 <span class="arithmatex">\(r_x\)</span> 对算法来说就是未知的。</p>
 <p>问题是，算法只有 <span class="arithmatex">\(n\)</span> 个训练样本。当 <span class="arithmatex">\(k\gg n\)</span> 时，训练集只覆盖了这 <span class="arithmatex">\(k\)</span> 个点中的很小一部分。测试点 <span class="arithmatex">\(X\)</span> 没出现在训练集中的概率是
-$$
-\mathbb P(X\notin {X_1,\dots,X_n})
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb P(X\notin \{X_1,\dots,X_n\})
 =
 \left(1-\frac1k\right)^n.
-$$
+</script>
+</div>
 当 <span class="arithmatex">\(k\to\infty\)</span> 且 <span class="arithmatex">\(n\)</span> 固定时，
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \left(1-\frac1k\right)^n\to 1.
-$$
+</script>
+</div>
 也就是说，测试点几乎一定是训练集中没见过的点。</p>
 <p>对于没见过的点，如果标签向量 <span class="arithmatex">\(r\)</span> 是任意的，算法没有任何信息判断 <span class="arithmatex">\(r_X\)</span> 是 0 还是 1。于是错误概率至少接近
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac12\left(1-\frac1k\right)^n.
-$$
+</script>
+</div>
 令 <span class="arithmatex">\(k\)</span> 足够大，就能让这个量任意接近 <span class="arithmatex">\(1/2\)</span>。因此对任意算法，都存在坏分布让它的 excess risk 接近随机猜测水平。书中的证明正是用这种“在 <span class="arithmatex">\(k\)</span> 个点上构造任意标签表”的方法。</p>
 
 

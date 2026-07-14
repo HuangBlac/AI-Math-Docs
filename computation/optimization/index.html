@@ -2256,13 +2256,13 @@
 </ul>
 <h3 id="2">2. 对偶形式推导</h3>
 <ul>
-<li>从<strong>经济解释</strong>推导： </li>
+<li>从**经济解释**推导： </li>
 <li>每个约束看作一种资源； </li>
 <li>yiy_iyi 表示第 i 种资源的单位价格； </li>
 <li>目标是以最小资源成本满足生产需求： min⁡{b⊤y∣A⊤y≥c,y≥0}\min{ b^\top y \mid A^\top y \ge c, y \ge 0 }min{b⊤y∣A⊤y≥c,y≥0} </li>
 </ul>
 <p>而对于新得到的对偶问题,另一个需要考虑的点就是它与原问题之间的关系,这又被称之为对偶性:</p>
-<p>我们首先考虑弱对偶性:p^{<em>}作为原问题的最优解,</em>d^{<em>}作为对偶问题的最优解,实际上存在d^</em>{<em>}\lep^{</em>}</p>
+<p>我们首先考虑弱对偶性:p^{<em>}作为原问题的最优解,*d^{</em>}作为对偶问题的最优解,实际上存在d^<em>{</em>}\lep^{*}</p>
 <p>这样，对于所有 λ≥0 ,都有</p>
 <p>L(x,λ,μ)=f(x)+∑i∈Iλici(x)+∑i∈Eμici(x)≤f(x),∀x </p>
 <p>而对于两边同时对于变量x取下确界，就得到了弱对偶性对应的不等式，</p>
@@ -2279,9 +2279,9 @@
 <p>sup⁡(D)≥b⊤yε&gt;v⋆−ε(∀ε&gt;0).\sup(D)\ge b^\top y_\varepsilon&gt;v^\star-\varepsilon\quad(\forall\,\varepsilon&gt;0).sup(D)≥b⊤yε&gt;v⋆−ε(∀ε&gt;0).</p>
 <p>令 ε↓0\varepsilon\downarrow0ε↓0 得 sup⁡(D)≥v⋆\sup(D)\ge v^\starsup(D)≥v⋆。再结合弱对偶 sup⁡(D)≤v⋆\sup(D)\le v^\starsup(D)≤v⋆，从而</p>
 <p>sup⁡(D)=v⋆=inf⁡(P).\sup(D)=v^\star=\inf(P).sup(D)=v⋆=inf(P).</p>
-<p>故<strong>无对偶间隙</strong>成立。</p>
+<p>故**无对偶间隙**成立。</p>
 <h2 id="_4">第二步：对偶最优解存在（可达性）</h2>
-<p>我们还需证明 sup⁡(D)\sup(D)sup(D) 不仅是上确界，而且在某个 y⋆y^\stary⋆ 处<strong>达到</strong>。为此用 Minkowski–Weyl 分解论证。</p>
+<p>我们还需证明 sup⁡(D)\sup(D)sup(D) 不仅是上确界，而且在某个 y⋆y^\stary⋆ 处**达到**。为此用 Minkowski–Weyl 分解论证。</p>
 <p>设对偶可行域是多面体</p>
 <p>Y:={y∈Rm∣Ay≤c}.\mathcal{Y}:={y\in\mathbb{R}^m\mid Ay\le c}.Y:={y∈Rm∣Ay≤c}.</p>
 <p>Minkowski–Weyl 告诉我们存在有限顶点集 VVV 与有限极向量（射线）集 RRR 使</p>
@@ -2290,7 +2290,7 @@
 <p>b⊤d≤0,∀d∈R,b^\top d\le 0,\quad\forall\, d\in R,b⊤d≤0,∀d∈R,</p>
 <p>否则可沿某条射线 ddd 使 b⊤(y+td)→+∞b^\top(y+td)\to +\inftyb⊤(y+td)→+∞ 与有限性矛盾。于是</p>
 <p>sup⁡y∈Yb⊤y=sup⁡v∈conv⁡(V),d∈cone⁡(R)b⊤(v+d)=sup⁡v∈conv⁡(V)b⊤v,\sup_{y\in\mathcal{Y}} b^\top y = \sup_{v\in\operatorname{conv}(V),\ d\in\operatorname{cone}(R)} b^\top(v+d) = \sup_{v\in\operatorname{conv}(V)} b^\top v,y∈Ysupb⊤y=v∈conv(V),d∈cone(R)supb⊤(v+d)=v∈conv(V)supb⊤v,</p>
-<p>其中最后一步用到了对所有射线 ddd 都有 b⊤d≤0b^\top d\le0b⊤d≤0。而在线性函数对<strong>紧集</strong> conv⁡(V)\operatorname{conv}(V)conv(V)（一个有限点集的凸包）上必然取得最大值；于是存在 v⋆∈conv⁡(V)⊂Yv^\star\in\operatorname{conv}(V)\subset\mathcal{Y}\,v⋆∈conv(V)⊂Y 使</p>
+<p>其中最后一步用到了对所有射线 ddd 都有 b⊤d≤0b^\top d\le0b⊤d≤0。而在线性函数对**紧集** conv⁡(V)\operatorname{conv}(V)conv(V)（一个有限点集的凸包）上必然取得最大值；于是存在 v⋆∈conv⁡(V)⊂Yv^\star\in\operatorname{conv}(V)\subset\mathcal{Y}\,v⋆∈conv(V)⊂Y 使</p>
 <p>b⊤v⋆=sup⁡(D)=v⋆.b^\top v^\star=\sup(D)=v^\star.b⊤v⋆=sup(D)=v⋆.</p>
 <p>取 y⋆:=v⋆y^\star:=v^\stary⋆:=v⋆ 即得对偶最优解。<strong>可达性证毕</strong>。</p>
 <blockquote>
@@ -2304,7 +2304,7 @@
 <p>想必每一个试图学习鞅论的人都会遇到一个不可绕开的例子，那就是公平赌博问题。</p>
 <p>它描述这样的一件事情：对于一个第n轮投掷硬币的情形，你可以下注金额H_n，然后你有1/2获得2H_n的金钱，并有1/2的概率失去所有,每一轮的赌博结果彼此独立。</p>
 <p>这样看来，看似就是个普通的赌博游戏，在每轮投一块钱的时候，第n轮的收益记作  </p>
-<p>考虑第n轮的累计收益之和 <em>S</em><em>n</em>=∑<em>n</em><em>k</em>=1<em>X</em><em>k</em> ，那么  的分布实际上已知，而且具有名为马氏性的良好性质。</p>
+<p>考虑第n轮的累计收益之和 <em>S**n</em>=∑<em>n**k</em>=1*X**k* ，那么  的分布实际上已知，而且具有名为马氏性的良好性质。</p>
 <p>马氏性指的是  ,它只与前一个时刻相关。</p>
 <p>当然，这并不是我们今天所讨论的重点。关键在于，一个沉迷投硬币、输光了本金的赌徒坚信自己有一套稳赢策略，即考虑每一轮的情况决定下注额：  </p>
 <p>换算成具体的语言，就是“赢一把就睡”，每次下注都比之前翻倍直到有所收益。</p>
@@ -2401,11 +2401,11 @@
 <p>二阶必要条件：</p>
 <p>若 (x∗,λ∗) 满足 KKT 条件，并且对所有 d∈C(x∗,λ∗)∖{0} </p>
 <p>有： dT∇xx2L(x∗,λ∗)d≥0, </p>
-<p>否则若存在某方向  d∈C 使得 dT∇xx2L(x∗,λ∗)d&lt;0  那么可以沿该方向在二阶近似下减少 f(x) 而不违反约束，这与局部最小性矛盾。 因此，对局部极小点而言， Lxx 在临界锥上的二次型必须是<strong>半正定</strong>（非负）。</p>
+<p>否则若存在某方向  d∈C 使得 dT∇xx2L(x∗,λ∗)d&lt;0  那么可以沿该方向在二阶近似下减少 f(x) 而不违反约束，这与局部最小性矛盾。 因此，对局部极小点而言， Lxx 在临界锥上的二次型必须是**半正定**（非负）。</p>
 <p>二阶充分条件</p>
 <p>若 (x∗,λ∗) 满足 KKT 条件，并且对所有 d∈C(x∗,λ∗)∖{0} </p>
 <p>有： dT∇xx2L(x∗,λ∗)d&gt;0, </p>
-<p>则 x∗ 是一个<strong>严格局部极小点（Strict Local Minimum）</strong>。</p>
+<p>则 x∗ 是一个**严格局部极小点（Strict Local Minimum）**。</p>
 <h3 id="_6"></h3>
 <p>机器学习：聚类算法</p>
 <p>聚类算法是我最喜欢的算法，在我心里就像mujica一样。不同于之前的决策树，线性回归，支持向量机，决策树，以及adaboost，XGboost。这些算法都需要预先告诉标签才能训练好。聚类算法不需要标签，只需要给定样本点，然后划分数据将数据聚成几类。</p>

@@ -2187,7 +2187,7 @@
 <h1 id="_1">统计学习理论</h1>
 <div class="admonition note">
 <p class="admonition-title">本页来源与说明</p>
-<p>本页内容正在从我自己的复习对话（与 ChatGPT/Claude，2026-05~06）中<strong>逐主题蒸馏</strong>而来，含 AI 生成成分，<strong>待我本人校对</strong>。配套精读见 <a href="../lftp/ch4-erm/">LFTP Ch4 经验风险最小化</a>。</p>
+<p>本页内容正在从我自己的复习对话（与 ChatGPT/Claude，2026-05~06）中**逐主题蒸馏**而来，含 AI 生成成分，<strong>待我本人校对</strong>。配套精读见 <a href="../lftp/ch4-erm/">LFTP Ch4 经验风险最小化</a>。</p>
 </div>
 <h2 id="_2">内容规划（路线图）</h2>
 <ul>
@@ -2205,7 +2205,7 @@
 <h2 id="_3">概率工具 · 次高斯与集中不等式</h2>
 <p>学习理论里几乎所有泛化界，都建立在"经验均值偏离期望的幅度是 <span class="arithmatex">\(O(1/\sqrt n)\)</span>、且尾巴指数衰减"这一事实上。把这件事说精确的统一语言，就是 <strong>次高斯（sub-Gaussian）</strong>。</p>
 <h3 id="_4">次高斯随机变量</h3>
-<p>称零均值随机变量 <span class="arithmatex">\(X\)</span> 是<strong>次高斯的</strong>（参数 <span class="arithmatex">\(\sigma^2\)</span>），若其矩母函数被同方差高斯的矩母函数控制：</p>
+<p>称零均值随机变量 <span class="arithmatex">\(X\)</span> 是**次高斯的**（参数 <span class="arithmatex">\(\sigma^2\)</span>），若其矩母函数被同方差高斯的矩母函数控制：</p>
 <div class="arithmatex">\[
 \mathbb{E}\,e^{\lambda(X-\mathbb{E}\,X)} \le e^{\lambda^2\sigma^2/2},\qquad \forall \lambda\in\mathbb{R}.
 \]</div>
@@ -2221,7 +2221,7 @@
 <p><strong>为什么直觉上成立</strong>：有界变量根本跑不出 <span class="arithmatex">\([a,b]\)</span>，尾部比高斯还轻，中心化后自然次高斯。（特例 <span class="arithmatex">\(|X|\le M\)</span> 时可取 <span class="arithmatex">\(\sigma^2=M^2\)</span>。）</p>
 <div class="admonition warning">
 <p class="admonition-title">两种"次高斯"用法别混</p>
-<p>一种要求<strong>中心化后</strong> <span class="arithmatex">\(X-\mathbb{E}\,X\)</span> 满足条件；另一种直接写 <span class="arithmatex">\(\mathbb{E}\,e^{\lambda X}\le e^{C\lambda^2}\)</span>，默认 <span class="arithmatex">\(X\)</span> 已零均值。严谨说法：<strong>任意有界 <span class="arithmatex">\(X\)</span>，其中心化 <span class="arithmatex">\(X-\mathbb{E}\,X\)</span> 一定次高斯</strong>；若 <span class="arithmatex">\(X\)</span> 本就零均值，则 <span class="arithmatex">\(X\)</span> 自己次高斯。</p>
+<p>一种要求**中心化后** <span class="arithmatex">\(X-\mathbb{E}\,X\)</span> 满足条件；另一种直接写 <span class="arithmatex">\(\mathbb{E}\,e^{\lambda X}\le e^{C\lambda^2}\)</span>，默认 <span class="arithmatex">\(X\)</span> 已零均值。严谨说法：<strong>任意有界 <span class="arithmatex">\(X\)</span>，其中心化 <span class="arithmatex">\(X-\mathbb{E}\,X\)</span> 一定次高斯</strong>；若 <span class="arithmatex">\(X\)</span> 本就零均值，则 <span class="arithmatex">\(X\)</span> 自己次高斯。</p>
 </div>
 <h3 id="log-mgf">证明心法：log-MGF + 指数倾斜</h3>
 <p>Hoeffding 引理的证法是研究 <strong>log-矩母函数</strong> <span class="arithmatex">\(\psi(s)=\log\mathbb{E}\,e^{sX}\)</span>，目标 <span class="arithmatex">\(\psi(s)\le \dfrac{s^2(b-a)^2}{8}\)</span>。取 log 后导数结构很好：</p>
@@ -2229,7 +2229,7 @@
 \psi'(s)=\frac{\mathbb{E}[Xe^{sX}]}{\mathbb{E}[e^{sX}]},\qquad
 \psi''(s)=\frac{\mathbb{E}[X^2e^{sX}]}{\mathbb{E}[e^{sX}]}-\left(\frac{\mathbb{E}[Xe^{sX}]}{\mathbb{E}[e^{sX}]}\right)^2 .
 \]</div>
-<p><strong>关键观察</strong>：<span class="arithmatex">\(\psi''(s)\)</span> 恰是某个新测度 <span class="arithmatex">\(Q\)</span> 下 <span class="arithmatex">\(X\)</span> 的方差。这个 <span class="arithmatex">\(Q\)</span> 由<strong>指数倾斜（exponential tilting / Esscher 变换）</strong>给出：</p>
+<p><strong>关键观察</strong>：<span class="arithmatex">\(\psi''(s)\)</span> 恰是某个新测度 <span class="arithmatex">\(Q\)</span> 下 <span class="arithmatex">\(X\)</span> 的方差。这个 <span class="arithmatex">\(Q\)</span> 由**指数倾斜（exponential tilting / Esscher 变换）**给出：</p>
 <div class="arithmatex">\[
 dQ = \frac{e^{sX}}{\mathbb{E}[e^{sX}]}\,dP.
 \]</div>
@@ -2247,7 +2247,7 @@ dQ = \frac{e^{sX}}{\mathbb{E}[e^{sX}]}\,dP.
 <p class="admonition-title">来源</p>
 <p>整理自我对一页讲义放缩过程的复盘（原题为手写讲义图，已据推导复述）。承接 <a href="../lftp/ch4-erm/">LFTP Ch4</a> 的覆盖数一节。</p>
 </div>
-<p><a href="../lftp/ch4-erm/">LFTP Ch4</a> 用覆盖数把无限类的一致偏差控住，得到的是<strong>慢速率</strong> <span class="arithmatex">\(\sqrt{\log\mathcal{N}/n}\)</span>。但若损失再满足一个 <strong>Bernstein 条件（间隔条件）</strong>——方差被超额风险控制——速率能提升到 <span class="arithmatex">\(\log\mathcal{N}/n\)</span>（快一个平方）。</p>
+<p><a href="../lftp/ch4-erm/">LFTP Ch4</a> 用覆盖数把无限类的一致偏差控住，得到的是**慢速率** <span class="arithmatex">\(\sqrt{\log\mathcal{N}/n}\)</span>。但若损失再满足一个 <strong>Bernstein 条件（间隔条件）</strong>——方差被超额风险控制——速率能提升到 <span class="arithmatex">\(\log\mathcal{N}/n\)</span>（快一个平方）。</p>
 <p><strong>目标</strong>：控制统计误差 <span class="arithmatex">\(\mathcal{E}_{sta}=\mathbb{E}\big[\sup_{f\in\mathcal{F}}\tfrac1n\sum_i G(f,Z_i)\big]\)</span>，其中超额损失 <span class="arithmatex">\(g(f,z)=\ell(f,z)-\ell(f^*,z)\)</span>，并令 <span class="arithmatex">\(G(f,z)=\mathbb{E}[g(f,Z)]-2g(f,z)\)</span>。</p>
 <p><strong>① 覆盖数：无限类 → 有限网。</strong> 取 <span class="arithmatex">\(\|\cdot\|_\infty\)</span> 下的 <span class="arithmatex">\(\delta\)</span>-网 <span class="arithmatex">\(\mathcal{C}=\{\tilde f_1,\dots,\tilde f_{\mathcal{N}}\}\)</span>。损失 <span class="arithmatex">\(\lambda\)</span>-Lipschitz <span class="arithmatex">\(\Rightarrow |g(f,z)-g(\tilde f,z)|\le\lambda\delta\)</span>，从而 <span class="arithmatex">\(|G(f,z)-G(\tilde f,z)|\le 3\lambda\delta\)</span>，于是 sup 转嫁给最近代表，代价 <span class="arithmatex">\(3\lambda\delta\)</span>：</p>
 <div class="arithmatex">\[
@@ -2314,11 +2314,11 @@ f^*(x)=\arg\min_{a}\ \mathbb{E}[\ell(a,Y)\mid X=x].
 <p>故 <span class="arithmatex">\(a=m(x)\)</span> 时最小。<strong>0-1 损失</strong>：预测 1 的风险是 <span class="arithmatex">\(1-\eta(x)\)</span>、预测 0 的风险是 <span class="arithmatex">\(\eta(x)\)</span>，比大小即得 Bayes 分类器。</p>
 <div class="admonition note">
 <p class="admonition-title"><span class="arithmatex">\(f^*\)</span> 不一定是"真实函数"</p>
-<p>仅当 <span class="arithmatex">\(Y=f_0(X)+\varepsilon\)</span> 且 <span class="arithmatex">\(\mathbb{E}[\varepsilon\mid X]=0\)</span> 时 <span class="arithmatex">\(f^*=f_0\)</span>；否则 <span class="arithmatex">\(f^*\)</span> 只是该损失下的最优预测。分类里更没有"真标签函数"——同一 <span class="arithmatex">\(x\)</span> 下 <span class="arithmatex">\(Y\)</span> 本就随机。衡量学到的 <span class="arithmatex">\(\hat f\)</span> 差多少，用<strong>超额风险</strong> <span class="arithmatex">\(\mathcal{E}\,(\hat f)=\mathcal{L}\,(\hat f)-\mathcal{L}\,(f^*)\)</span>。</p>
+<p>仅当 <span class="arithmatex">\(Y=f_0(X)+\varepsilon\)</span> 且 <span class="arithmatex">\(\mathbb{E}[\varepsilon\mid X]=0\)</span> 时 <span class="arithmatex">\(f^*=f_0\)</span>；否则 <span class="arithmatex">\(f^*\)</span> 只是该损失下的最优预测。分类里更没有"真标签函数"——同一 <span class="arithmatex">\(x\)</span> 下 <span class="arithmatex">\(Y\)</span> 本就随机。衡量学到的 <span class="arithmatex">\(\hat f\)</span> 差多少，用**超额风险** <span class="arithmatex">\(\mathcal{E}\,(\hat f)=\mathcal{L}\,(\hat f)-\mathcal{L}\,(f^*)\)</span>。</p>
 </div>
 <h2 id="kl">分布间的差异：为何用 KL 散度而非范数</h2>
 <blockquote>
-<p><strong>一句话</strong>：范数把概率分布当<strong>函数</strong>比几何距离；KL 把它当<strong>信息源</strong>比编码/似然代价。</p>
+<p><strong>一句话</strong>：范数把概率分布当**函数**比几何距离；KL 把它当**信息源**比编码/似然代价。</p>
 </blockquote>
 <p>可以对密度构造范数（<span class="arithmatex">\(\|p-q\|_1\)</span> 对应 total variation，<span class="arithmatex">\(\|p-q\|_2\)</span> 等），但：</p>
 <ul>

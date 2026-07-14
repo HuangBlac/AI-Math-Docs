@@ -2699,7 +2699,7 @@
 <p>利用链式法则计算时间导数 <span class="arithmatex">\(\partial_t h\)</span> 和空间导数 <span class="arithmatex">\(\partial_r h,\partial_r^4 h\)</span>，代入原始四阶抛物方程： 
 -时间导数：<span class="arithmatex">\(\partial_t h=-\lambda(t_R-t)^{\lambda-1}H(\eta)+\beta(t_R-t)^{\lambda-1}\eta H'(\eta)\)</span>
 - 空间导数：<span class="arithmatex">\(\partial_r h=(t_R-t)^{\lambda-\beta}H'(\eta)\)</span>.高阶导数同理按链式法则展开 
-- 化简结果：消去 <span class="arithmatex">\((t_R-t)^{\lambda-1-\beta^4}\)</span> 等标度因子后，得到仅关于 <span class="arithmatex">\(\eta\)</span> 的<strong>稳态常微分方程（ODE）</strong>： 
+- 化简结果：消去 <span class="arithmatex">\((t_R-t)^{\lambda-1-\beta^4}\)</span> 等标度因子后，得到仅关于 <span class="arithmatex">\(\eta\)</span> 的**稳态常微分方程（ODE）**： 
 - 轴对称场景：<span class="arithmatex">\(\frac{1}{5}(H-2\eta H')=\frac{1}{\eta}\left[\frac{\eta H'}{H}+\eta H^3\left(\frac{(\eta H')'}{\eta}\right)'\right]'\)</span>（已代入文献标度 <span class="arithmatex">\(\lambda=1/5,\beta=2/5\)</span>，PINN可自主优化验证） 
 - 二维对称场景：<span class="arithmatex">\(H\)</span></p>
 <h2 id="2_2">三、步骤2：嵌入数学结构，构造约束化解拟设</h2>
@@ -2740,7 +2740,7 @@ $$</p>
 <li>最终输出：<span class="arithmatex">\(H(\eta)=H_1(\eta)+\Delta H(\eta)\)</span>，提升高梯度区域（如 <span class="arithmatex">\(\eta\approx3\sim5\)</span>）的拟合精度。 </li>
 </ul>
 <h2 id="4">五、步骤4：配置二阶优化器，加速收敛</h2>
-<p>摒弃一阶优化器（如Adam），采用<strong>全矩阵高斯-牛顿优化器</strong>（基于kfac-jax实现），适配四阶方程的强非线性：</p>
+<p>摒弃一阶优化器（如Adam），采用**全矩阵高斯-牛顿优化器**（基于kfac-jax实现），适配四阶方程的强非线性：</p>
 <h3 id="1_4">1. 优化器参数设置</h3>
 <ul>
 <li>学习率：自适应调整（初始值 <span class="arithmatex">\(1e-3\)</span>，残差下降停滞时衰减至 <span class="arithmatex">\(1e-5\)</span>）； </li>

@@ -1971,9 +1971,11 @@ as real-valued outputs, with so-called convex surrogates of loss functions.</p>
 <p>实际上就是要找一个Yg(X)异号的概率尽可能小，或者同号的概率尽可能大。</p>
 <p>我们重新写成期望的形式：</p>
 <p><span class="arithmatex">\(E[Φ_{0-1}(yg(x))]\)</span>,
-$$
-Φ_{0-1}(u)= 1 (u&lt;0),1/2(u = 0),0 (u&gt;0)
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+Φ_{0-1}(u)= 1 (u<0),1/2(u = 0),0 (u>0)
+</script>
+</div>
 因此原函数依然转化为了选取g使得期望极小化的问题</p>
 <p>但是，那个问题没有消失，<span class="arithmatex">\(Φ_{0-1}\)</span>是不连续的，所以我们可以采用集中不同的近似方式，对应不同的模型。</p>
 <p><strong>平方损失</strong> </p>
@@ -1986,13 +1988,17 @@ $$
 <p>但我们并不是从真实分布来求取<span class="arithmatex">\(f^*\)</span>这个理论最佳函数，也不是在所有可能的函数空间内</p>
 <p>以这个分布问题为例，我们实际上是</p>
 <p>我们这里有n个样本<span class="arithmatex">\(\{(X_i,Y_i)\}\)</span>其中，每一个样本都是独立同分布的。
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \hat f = argmin_{f\in \mathcal{F}} \frac{1}{n}\sum_{i=1}^n l(f(X_i),Y_i)
-$$
+</script>
+</div>
 大数定理告诉我们，频率趋近于概率。但是这毕竟还是有差别，更具体来说，我们可以将其拆成两个部分
-$$
-\mathcal{L}(\hat f) - \mathcal L({f^<em>}) = \mathcal{L}(\hat f)  - inf_{f\in \mathcal F} \mathcal L(f)  +  inf_{f\in \mathcal F} \mathcal L(f) - \mathcal L({f^</em>})
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathcal{L}(\hat f) - \mathcal L({f^*}) = \mathcal{L}(\hat f)  - inf_{f\in \mathcal F} \mathcal L(f)  +  inf_{f\in \mathcal F} \mathcal L(f) - \mathcal L({f^*})
+</script>
+</div>
 前者是由样本所导致的，被称之为估计误差estimation error</p>
 <p>后者则是由于<span class="arithmatex">\(\mathcal{F}\)</span>这个函数类不够大导致的，也被称之为逼近误差</p>
 <p>我们先来分析一下逼近误差这个成分：</p>
@@ -2000,131 +2006,176 @@ $$
 <p>举个例子，神经网络函数空间<span class="arithmatex">\(\mathcal{NN}(2,100,\theta)，L\le2,W\le 100,|B|\le 10\)</span></p>
 <p>表示一个两层，宽度100，神经元绝对值参数小于等于10的网络对应的一个函数空间。而且严格来说，<span class="arithmatex">\(\Theta\)</span>在计算机之中只能取离散的值，例如double,float。</p>
 <p>考虑这一点，我们可以将逼近误差进一步的分解：
-$$
-inf_{\theta \in \Theta} \mathcal L(f) - \mathcal L({f^<em>}) =inf_{\theta \in \Theta}\mathcal L(f_\theta) - inf_{\theta \in R^n} \mathcal L(f_\theta) + inf_{\theta \in R^n}\mathcal L(f_\theta)- \mathcal L({f^</em>})
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+inf_{\theta \in \Theta} \mathcal L(f) - \mathcal L({f^*}) =inf_{\theta \in \Theta}\mathcal L(f_\theta) - inf_{\theta \in R^n} \mathcal L(f_\theta) + inf_{\theta \in R^n}\mathcal L(f_\theta)- \mathcal L({f^*})
+</script>
+</div>
 事实上，第二个部分是我们单纯依靠提高精度什么的无法解决的，除非我们改变算法本身的结构，也被称之为不可压缩项。</p>
 <p>而且，对于固定的模型例如神经网络，或者SVM实际上往往可以被压缩到很小，因为万能逼近定理等操作，但我们的重点先是分析第一块。</p>
 <p>我们考虑一个具体的回归情景：</p>
 <p><span class="arithmatex">\(f_{\theta}(x) = \theta^T\varphi(x)\)</span></p>
 <p>因此第一部分的误差可以根据损失函数关于第二边缘G-Lipicisz写成如下的形式
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathcal L(f_θ)−\mathcal L(f_{θ′})=E[ℓ(y,f_θ(x))−ℓ(y,f_{θ′}(x))]≤GE[∣f_θ(x)−f_{θ′}(x)∣]
-$$
+</script>
+</div>
 其次，我们假设<span class="arithmatex">\(||\theta||_2\le D\)</span></p>
 <p>在经典范例 <span class="arithmatex">\(f_\theta(x) = \theta^\top \varphi(x)\)</span>下</p>
 <p>预测差表示为 <span class="arithmatex">\(|f_\theta(x) - f_{\theta'}(x)| = |(\theta-\theta')^\top \varphi(x)| \leq \|\theta-\theta'\|_2\,\|\varphi(x)\|_2\)</span>。代回去,约束代价就被压成
-$$
-\inf_{\theta\in\Theta} R(f_\theta) - \inf_{\theta'\in\mathbb{R}^d} R(f_{\theta'}) \;\leq\; G\,\mathbb{E}\big[|\varphi(x)|<em>2\big]\cdot \inf</em>{|\theta|<em>2\leq D}|\theta - \theta</em>\ast|<em _theta_in_Theta="\theta\in\Theta">2
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\inf_{\theta\in\Theta} R(f_\theta) - \inf_{\theta'\in\mathbb{R}^d} R(f_{\theta'}) \;\leq\; G\,\mathbb{E}\big[\|\varphi(x)\|_2\big]\cdot \inf_{\|\theta\|_2\leq D}\|\theta - \theta_\ast\|_2
+</script>
+</div>
 而对于练习当中认为<span class="arithmatex">\(||\theta||_1\le D\)</span>，依然可以使用Holder不等式
-$$
-\inf</em>\big[|\varphi(x)|} R(f_\theta) - \inf_{\theta'\in\mathbb{R}^d} R(f_{\theta'}) \;\leq\; G\,\mathbb{E<em>{\infty}\big]\cdot \inf</em>{|\theta|<em>1\leq D}|\theta - \theta</em>\ast|_1
-$$</p>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\inf_{\theta\in\Theta} R(f_\theta) - \inf_{\theta'\in\mathbb{R}^d} R(f_{\theta'}) \;\leq\; G\,\mathbb{E}\big[\|\varphi(x)\|_{\infty}\big]\cdot \inf_{\|\theta\|_1\leq D}\|\theta - \theta_\ast\|_1
+</script>
+</div></p>
 <p>当然，分析完逼近误差之后，我们需要考虑估计误差</p>
 <p>估计误差 <span class="arithmatex">\(R(\hat f) - \inf_{f\in\mathcal{F}} R(f)\)</span> 没法逐点控制,根子在于 <span class="arithmatex">\(\hat f\)</span> 是从数据里选出来的.</p>
 <p>书上的做法就是将其转化为一个一致偏差</p>
 <p><strong>一致偏差</strong>:
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 R(\hat f) - \inf_{f\in\mathcal{F}} R(f) \;\leq\; 2\sup_{f\in\mathcal{F}} \big|\hat R(f) - R(f)\big|
-$$
+</script>
+</div>
 推导过程：
-$$
-R(\hat f) - \inf_{f\in\mathcal{F}} R(f) = R(\hat f) - R(g_{\mathcal F}) = \underbrace{{R(\hat f) - \hat R(\hat f)}}<em F="F" _mathcal="\mathcal">{\text{①}} + \underbrace{{\hat R(\hat f) - \hat R(g</em>})}<em F="F" _mathcal="\mathcal">{\text{②}} + \underbrace{{\hat R(g</em>
-$$
-对于第一项，第三项，都可以被}) - R(g_{\mathcal F})}}_{\text{③}<span class="arithmatex">\(\sup_{f\in\mathcal{F}}\big(R(f) - \hat R(f)\big)\)</span>控制</p>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+R(\hat f) - \inf_{f\in\mathcal{F}} R(f) = R(\hat f) - R(g_{\mathcal F}) = \underbrace{\{R(\hat f) - \hat R(\hat f)\}}_{\text{①}} + \underbrace{\{\hat R(\hat f) - \hat R(g_{\mathcal F})\}}_{\text{②}} + \underbrace{\{\hat R(g_{\mathcal F}) - R(g_{\mathcal F})\}}_{\text{③}}
+</script>
+</div>
+对于第一项，第三项，都可以被<span class="arithmatex">\(\sup_{f\in\mathcal{F}}\big(R(f) - \hat R(f)\big)\)</span>控制</p>
 <p>对于第二项，由于<span class="arithmatex">\(\hat R(\hat f) \le \hat R(g_{\mathcal F})\)</span>,<span class="arithmatex">\(\hat{f}\)</span>是<span class="arithmatex">\(\hat{R}\)</span>的极小化结果</p>
 <p>记 <span class="arithmatex">\(H(z_1,\dots,z_n) = \sup_{f\in\mathcal{F}}\big(R(f) - \hat R(f)\big)\)</span>。损失有界在 <span class="arithmatex">\([0,\ell_\infty]\)</span> 时,<strong>改动单个样本 <span class="arithmatex">\(z_i\)</span>,<span class="arithmatex">\(H\)</span> 至多变化 <span class="arithmatex">\(\ell_\infty/n\)</span></strong>(有界差分性质)。于是 McDiarmid 不等式给出集中:以概率 <span class="arithmatex">\(\geq 1-\delta\)</span>,
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 H - \mathbb{E}[H] \;\leq\; \frac{\ell_\infty}{\sqrt{2n}}\sqrt{\log\tfrac{1}{\delta}}
-$$
-我们接下来需要证明这个不等式，是通过<strong>Doob martingale + Hoeffding 引理 + Chernoff bound</strong> 推出来。</p>
+</script>
+</div>
+我们接下来需要证明这个不等式，是通过**Doob martingale + Hoeffding 引理 + Chernoff bound** 推出来。</p>
 <p>定义 filtration：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathcal F_i=\sigma(Z_1,\dots,Z_i),
-$$
+</script>
+</div>
 表示“已经看到前 <span class="arithmatex">\(i\)</span> 个样本”。</p>
 <p>定义
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 M_i=\mathbb E[H\mid Z_1,\dots,Z_i].
-$$</p>
-<div class="arithmatex">\[
+</script>
+</div></p>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 H-\mathbb EH
 =
 M_n-M_0
 =
 \sum_{i=1}^n (M_i-M_{i-1}).
-\]</div>
+</script>
+</div>
 <p>记 martingale difference 为
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 D_i=M_i-M_{i-1}.
-$$
+</script>
+</div>
 因此问题变成控制
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \sum_{i=1}^n D_i.
-$$</p>
+</script>
+</div></p>
 <h1 id="3-c_i">3. 关键：证明每一步的波动被 <span class="arithmatex">\(c_i\)</span> 控制</h1>
 <p>固定前面的变量
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 Z_1=z_1,\dots,Z_{i-1}=z_{i-1}.
-$$
+</script>
+</div>
 考虑函数
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \phi_i(z_i)
 =
 \mathbb E_{Z_{i+1},\dots,Z_n}
 \left[
 H(z_1,\dots,z_{i-1},z_i,Z_{i+1},\dots,Z_n)
 \right].
-$$
+</script>
+</div>
 也就是说，<span class="arithmatex">\(\phi_i(z_i)\)</span> 是在前 <span class="arithmatex">\(i-1\)</span> 个变量固定、第 <span class="arithmatex">\(i\)</span> 个变量取值为 <span class="arithmatex">\(z_i\)</span> 时，对后面的变量取期望。</p>
 <p>因为 <span class="arithmatex">\(H\)</span> 满足 bounded difference 条件，所以只改变第 <span class="arithmatex">\(i\)</span> 个变量时，
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 |H(\dots,z_i,\dots)-H(\dots,z_i',\dots)|\le c_i.
-$$
+</script>
+</div>
 对后面的随机变量取期望后，这个差距仍然不超过 <span class="arithmatex">\(c_i\)</span>，因此
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 |\phi_i(z_i)-\phi_i(z_i')|\le c_i.
-$$
+</script>
+</div>
 所以 <span class="arithmatex">\(\phi_i(Z_i)\)</span> 的取值范围长度不超过 <span class="arithmatex">\(c_i\)</span>。</p>
 <p>而
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 M_i=\phi_i(Z_i),
-$$
+</script>
+</div>
 因此
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 D_i
 =
 M_i-M_{i-1}
 =
 \phi_i(Z_i)-\mathbb E[\phi_i(Z_i)\mid \mathcal F_{i-1}].
-$$
+</script>
+</div>
 它是一个条件均值为零的随机变量，并且它的条件取值范围长度不超过 <span class="arithmatex">\(c_i\)</span>。</p>
 <p>也就是说：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E[D_i\mid \mathcal F_{i-1}]=0,
-$$
+</script>
+</div>
 且在给定 <span class="arithmatex">\(\mathcal F_{i-1}\)</span> 后，
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 D_i \in [a_i,b_i],
 \qquad b_i-a_i\le c_i.
-$$
+</script>
+</div>
 使用 Hoeffding 引理</p>
 <p>Hoeffding 引理说：</p>
 <p>如果随机变量 <span class="arithmatex">\(X\)</span> 满足
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E X=0,
 \qquad X\in[a,b],
-$$
+</script>
+</div>
 Hoeffding引理：</p>
 <p>那么对任意 <span class="arithmatex">\(\lambda&gt;0\)</span>，
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E e^{\lambda X}
 \le
 \exp\left(\frac{\lambda^2(b-a)^2}{8}\right).
-$$
+</script>
+</div>
 这里对 <span class="arithmatex">\(D_i\)</span> 使用条件版 Hoeffding 引理：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E\left[
 e^{\lambda D_i}
 \mid
@@ -2134,98 +2185,126 @@ e^{\lambda D_i}
 \exp\left(
 \frac{\lambda^2c_i^2}{8}
 \right).
-$$
+</script>
+</div>
 控制整体矩母函数</p>
 <p>因为
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 H-\mathbb EH
 =
 \sum_{i=1}^n D_i,
-$$
+</script>
+</div>
 所以
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E e^{\lambda(H-\mathbb EH)}
 =
 \mathbb E e^{\lambda\sum_{i=1}^n D_i}.
-$$
+</script>
+</div>
 用条件期望一层一层剥掉：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E e^{\lambda\sum_{i=1}^n D_i}
 =
 \mathbb E\left[
 e^{\lambda\sum_{i=1}^{n-1}D_i}
 \mathbb E(e^{\lambda D_n}\mid \mathcal F_{n-1})
 \right].
-$$
+</script>
+</div>
 由 Hoeffding 引理，
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E(e^{\lambda D_n}\mid \mathcal F_{n-1})
 \le
 \exp\left(
 \frac{\lambda^2c_n^2}{8}
 \right).
-$$
+</script>
+</div>
 于是
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E e^{\lambda\sum_{i=1}^nD_i}
 \le
 \exp\left(
 \frac{\lambda^2c_n^2}{8}
 \right)
 \mathbb E e^{\lambda\sum_{i=1}^{n-1}D_i}.
-$$
+</script>
+</div>
 不断递推，得到
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E e^{\lambda(H-\mathbb EH)}
 \le
 \exp\left(
 \frac{\lambda^2}{8}
 \sum_{i=1}^n c_i^2
 \right).
-$$
+</script>
+</div>
 用 Chernoff bound 得到尾界</p>
 <p>对任意 <span class="arithmatex">\(\lambda&gt;0\)</span>，
-$$
-\mathbb P(H-\mathbb EH&gt;t)
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb P(H-\mathbb EH>t)
 =
-\mathbb P(e^{\lambda(H-\mathbb EH)}&gt;e^{\lambda t}).
-$$
+\mathbb P(e^{\lambda(H-\mathbb EH)}>e^{\lambda t}).
+</script>
+</div>
 由 Markov 不等式，
-$$
-\mathbb P(H-\mathbb EH&gt;t)
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb P(H-\mathbb EH>t)
 \le
 e^{-\lambda t}
 \mathbb E e^{\lambda(H-\mathbb EH)}.
-$$
+</script>
+</div>
 代入上面的矩母函数界：
-$$
-\mathbb P(H-\mathbb EH&gt;t)
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb P(H-\mathbb EH>t)
 \le
 \exp\left(
 -\lambda t
 +
 \frac{\lambda^2}{8}\sum_{i=1}^n c_i^2
 \right).
-$$
+</script>
+</div>
 现在对 <span class="arithmatex">\(\lambda\)</span> 优化。</p>
 <p>令
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 C=\sum_{i=1}^n c_i^2.
-$$
+</script>
+</div>
 需要最小化
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 -\lambda t+\frac{\lambda^2C}{8}.
-$$
+</script>
+</div>
 求导：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 -t+\frac{\lambda C}{4}=0.
-$$
+</script>
+</div>
 所以
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \lambda=\frac{4t}{C}.
-$$
+</script>
+</div>
 代回去：
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 -\lambda t+\frac{\lambda^2C}{8}
 =
 -\frac{4t^2}{C}
@@ -2237,24 +2316,29 @@ $$
 \frac{2t^2}{C}
 =
 -\frac{2t^2}{C}.
-$$
+</script>
+</div>
 因此
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
-\mathbb P(H-\mathbb EH&gt;t)
+\mathbb P(H-\mathbb EH>t)
 \le
 \exp\left(
 -\frac{2t^2}{\sum_{i=1}^n c_i^2}
 \right)
 }
-$$
+</script>
+</div>
 这就是 McDiarmid 不等式。</p>
 <p>把"高概率界定 <span class="arithmatex">\(H\)</span>"<strong>化简成"只需界定它的期望 <span class="arithmatex">\(\mathbb{E}[H]=\mathbb{E}[\sup_f(R-\hat R)]\)</span>"</strong>,再加一个 <span class="arithmatex">\(\frac{\ell_\infty}{\sqrt{2n}}\sqrt{\log(2/\delta)}\)</span> 的尾项就够了。整章剩下的内容,本质都是在用越来越精的工具界定这一个期望。</p>
 <p><strong>4.4.2 二次损失(暖身一):</strong> 取平方损失 <span class="arithmatex">\(\ell=(y-\theta^\top\varphi(x))^2\)</span> 加 <span class="arithmatex">\(\|\theta\|_2\leq D\)</span> 的约束。
-$$
-\hat R(f)-R(f) = \theta^\top\Big(\underbrace{\tfrac1n\textstyle\sum_i \varphi(x_i)\varphi(x_i)^\top - \mathbb{E}[\varphi(x)\varphi(x)^\top]}<em _text_向量偏差="\text{向量偏差">{\text{矩阵偏差 } \Delta_2}\Big)\theta \;-\;2\theta^\top\underbrace{\Big(\tfrac1n\textstyle\sum_i y_i\varphi(x_i)-\mathbb{E}[y\varphi(x)]\Big)}</em>
-$$
-要点在于:}\Delta_1} \;+\;\underbrace{\Big(\tfrac1n\textstyle\sum_i y_i^2-\mathbb{E}[y^2]\Big)}_{\text{标量偏差 }\Delta_0<strong>它关于 <span class="arithmatex">\(\theta\)</span> 是个二次型</strong>(二次项 + 线性项 + 常数)。</p>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\hat R(f)-R(f) = \theta^\top\Big(\underbrace{\tfrac1n\textstyle\sum_i \varphi(x_i)\varphi(x_i)^\top - \mathbb{E}[\varphi(x)\varphi(x)^\top]}_{\text{矩阵偏差 } \Delta_2}\Big)\theta \;-\;2\theta^\top\underbrace{\Big(\tfrac1n\textstyle\sum_i y_i\varphi(x_i)-\mathbb{E}[y\varphi(x)]\Big)}_{\text{向量偏差 }\Delta_1} \;+\;\underbrace{\Big(\tfrac1n\textstyle\sum_i y_i^2-\mathbb{E}[y^2]\Big)}_{\text{标量偏差 }\Delta_0}
+</script>
+</div>
+要点在于:<strong>它关于 <span class="arithmatex">\(\theta\)</span> 是个二次型</strong>(二次项 + 线性项 + 常数)。</p>
 <p>偏差展开成三项</p>
 <ul>
 <li>二次项:<span class="arithmatex">\(|\theta^\top\Delta_2\,\theta|\leq \|\Delta_2\|_{\text{op}}\|\theta\|_2^2 \leq D^2\|\Delta_2\|_{\text{op}}\)</span>(用算子范数,<span class="arithmatex">\(\|\Delta_2\|_{\text{op}}=\sup_{\|u\|_2=1}\|\Delta_2 u\|_2\)</span>);</li>
@@ -2262,55 +2346,75 @@ $$
 <li>常数项:就是 <span class="arithmatex">\(|\Delta_0|\)</span>。</li>
 </ul>
 <p>合起来:
-$$
-\sup_{|\theta|<em _text_op="\text{op">2\leq D}\big|R(f)-\hat R(f)\big| \;\leq\; D^2\,\big|\Delta_2\big|</em> \;+\; 2D\,\big|\Delta_1\big|_2 \;+\; \big|\Delta_0\big|
-$$
-}<strong><span class="arithmatex">\(\theta\)</span> 和 sup 在这一步就被彻底消掉了。</strong></p>
-<p>由于关于 <span class="arithmatex">\(\theta\)</span> 是二次的,在球上的 sup 能<strong>闭式</strong>算出来(用算子范数),于是只剩三个<strong>非一致</strong>的偏差,每个都是 <span class="arithmatex">\(O(1/\sqrt n)\)</span>,直接拼出 <span class="arithmatex">\(O(1/\sqrt n)\)</span> 的一致界。</p>
-<p>教训:平方损失靠闭式很轻松,但别的损失没有闭式,所以<strong>必须引入新工具</strong>。</p>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\sup_{\|\theta\|_2\leq D}\big|R(f)-\hat R(f)\big| \;\leq\; D^2\,\big\|\Delta_2\big\|_{\text{op}} \;+\; 2D\,\big\|\Delta_1\big\|_2 \;+\; \big|\Delta_0\big|
+</script>
+</div>
+<strong><span class="arithmatex">\(\theta\)</span> 和 sup 在这一步就被彻底消掉了。</strong></p>
+<p>由于关于 <span class="arithmatex">\(\theta\)</span> 是二次的,在球上的 sup 能**闭式**算出来(用算子范数),于是只剩三个**非一致**的偏差,每个都是 <span class="arithmatex">\(O(1/\sqrt n)\)</span>,直接拼出 <span class="arithmatex">\(O(1/\sqrt n)\)</span> 的一致界。</p>
+<p>教训:平方损失靠闭式很轻松,但别的损失没有闭式,所以**必须引入新工具**。</p>
 <p>(书还提醒:从这节起不再要求损失是凸的)</p>
 <p><strong>4.4.3 有限模型类(暖身二):</strong> <span class="arithmatex">\(\mathcal{F}\)</span> 有限时,用并集界把 sup 拆开,对每个 <span class="arithmatex">\(f\)</span> 套 Hoeffding,得到</p>
 <p><strong>第一步,并集界把 sup 拆成逐个。</strong> "存在某个 $f $ 偏差 $\geq t $"这件事,无非是"各个 $f $ 偏差 $\geq t $"这些事件的并,于是概率可加:
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb{P}\Big(\sup_{f\in\mathcal{F}}\big(\hat R(f)-R(f)\big)\geq t\Big) \;\leq\; \sum_{f\in\mathcal{F}}\mathbb{P}\big(\hat R(f)-R(f)\geq t\big)
-$$
-这一步的好处是右边每一项都是<strong>固定的</strong> $f $,sup 的纠缠没了。</p>
+</script>
+</div>
+这一步的好处是右边每一项都是**固定的** $f $,sup 的纠缠没了。</p>
 <p><strong>第二步,对每个固定 <span class="arithmatex">\(f\)</span> 套 Hoeffding。</strong> <span class="arithmatex">\(\hat R(f)\)</span> 是 <span class="arithmatex">\(n\)</span> 个有界独立量的平均,期望为 <span class="arithmatex">\(R(f)\)</span>,所以 <span class="arithmatex">\(\mathbb{P}\big(\hat R(f)-R(f)\geq t\big)\leq \exp(-2nt^2/\ell_\infty^2)\)</span>。代回去,<span class="arithmatex">\(|\mathcal{F}|\)</span> 项一加(连同两侧的因子 2):
-$$
-\mathbb{P}\Big(\sup_{f\in\mathcal{F}}\big(\hat R(f)-R(f)\big)\geq t\Big) \;\leq\; 2|\mathcal{F}|\exp!\Big(\frac{-2nt^2}{\ell_\infty^2}\Big)
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb{P}\Big(\sup_{f\in\mathcal{F}}\big(\hat R(f)-R(f)\big)\geq t\Big) \;\leq\; 2|\mathcal{F}|\exp\!\Big(\frac{-2nt^2}{\ell_\infty^2}\Big)
+</script>
+</div>
 <strong>第三步,令右边 $=\delta $ 反解 $t $。</strong> 得到:以概率 $\geq 1-\delta $,
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \sup_{f\in\mathcal{F}}\big(\hat R(f)-R(f)\big) \;\leq\; \frac{\ell_\infty}{\sqrt{2n}}\sqrt{\log\frac{2|\mathcal{F}|}{\delta}} \;\leq\; \ell_\infty\sqrt{\frac{\log(2|\mathcal{F}|)}{2n}} \;+\; \frac{\ell_\infty}{\sqrt{2n}}\sqrt{\log\frac{1}{\delta}}
-$$</p>
-<p>$$
+</script>
+</div></p>
+<p><div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb{E}\Big[\sup_{f\in\mathcal{F}}\big(\hat R(f) - R(f)\big)\Big] \;\leq\; \ell_\infty\sqrt{\frac{\log(2|\mathcal{F}|)}{2n}}
-$$
+</script>
+</div>
 结论很干净:<strong>当 <span class="arithmatex">\(\log|\mathcal{F}| \ll n\)</span> 时学习就可行</strong>。函数类的"大小"只通过 <span class="arithmatex">\(\log|\mathcal{F}|\)</span> 进来。这是对一致偏差的第一个通用控制。</p>
 <p><strong>4.4.4 无限类 → 覆盖数(♦):</strong> </p>
 <p>无限的 <span class="arithmatex">\(\mathcal{F}\)</span> 用有限的 <strong>ε-网</strong> 近似——在伪距离 <span class="arithmatex">\(\Delta(f,f')=\mathbb{E}|f-f'|\)</span> 下,用 <span class="arithmatex">\(m(\varepsilon)\)</span> 个 ε-球盖住 $\mathcal{F} <span class="arithmatex">\(,\)</span>m(\varepsilon) $ 就是覆盖数。</p>
 <p>有了覆盖,就能把任意 $f $ 的偏差转嫁给离它最近的代表 $f_i $。用 $\hat R $ 和 $R $ 都对 $\Delta $ 是 $G $-Lipschitz 这一点,做一个"三段跳":
-$$
-\hat R(f) - R(f) = \underbrace{\hat R(f)-\hat R(f_i)}<em G_Delta_f_f_i_="G\Delta(f,f_i)" _leq_="\leq\,">{\leq\, G\Delta(f,f_i)} + \big(\hat R(f_i)-R(f_i)\big) + \underbrace{R(f_i)-R(f)}</em> \;\leq\; 2G\,\Delta(f,f_i) + \big(\hat R(f_i)-R(f_i)\big)
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\hat R(f) - R(f) = \underbrace{\hat R(f)-\hat R(f_i)}_{\leq\, G\Delta(f,f_i)} + \big(\hat R(f_i)-R(f_i)\big) + \underbrace{R(f_i)-R(f)}_{\leq\, G\Delta(f,f_i)} \;\leq\; 2G\,\Delta(f,f_i) + \big(\hat R(f_i)-R(f_i)\big)
+</script>
+</div>
 取离 $f $ 最近的代表($\Delta(f,f_i)\leq\varepsilon $),再对所有 $f $ 取 sup:
-$$
-\sup_{f\in\mathcal{F}}\big(\hat R(f)-R(f)\big) \;\leq\; 2G\varepsilon + \underbrace{\sup_{j\in{1,\dots,m(\varepsilon)}}\big(\hat R(f_j)-R(f_j)\big)}<em f_in_mathcal_F="f\in\mathcal{F">{\text{这是有限类,套 4.4.3}}
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\sup_{f\in\mathcal{F}}\big(\hat R(f)-R(f)\big) \;\leq\; 2G\varepsilon + \underbrace{\sup_{j\in\{1,\dots,m(\varepsilon)\}}\big(\hat R(f_j)-R(f_j)\big)}_{\text{这是有限类,套 4.4.3}}
+</script>
+</div>
 右边第二项里只剩 $m(\varepsilon) $ 个代表——<strong>有限了</strong>,直接套 4.4.3 的并集界,把 $|\mathcal{F}| $ 换成 $m(\varepsilon) $。于是以概率 $\geq 1-\delta $:
-$$
-\sup</em>
-$$
-这里出现了一个}}\big(\hat R(f)-R(f)\big) \;\leq\; 2G\varepsilon + \ell_\infty\sqrt{\frac{\log(2m(\varepsilon))}{2n}} + \frac{\ell_\infty}{\sqrt{2n}}\sqrt{\log\frac1\delta<strong>张力</strong>,全在那两项的反向变化上:$\varepsilon $ 调小 → 第一项 <span class="arithmatex">\(2G\varepsilon\)</span> 变小,但覆盖数 $m(\varepsilon)\sim\varepsilon^{-d} $ 变大,第二项的 $\log m(\varepsilon)\sim d\log(1/\varepsilon) $ 变大。要权衡的量大致是
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\sup_{f\in\mathcal{F}}\big(\hat R(f)-R(f)\big) \;\leq\; 2G\varepsilon + \ell_\infty\sqrt{\frac{\log(2m(\varepsilon))}{2n}} + \frac{\ell_\infty}{\sqrt{2n}}\sqrt{\log\frac1\delta}
+</script>
+</div>
+这里出现了一个**张力**,全在那两项的反向变化上:$\varepsilon $ 调小 → 第一项 <span class="arithmatex">\(2G\varepsilon\)</span> 变小,但覆盖数 $m(\varepsilon)\sim\varepsilon^{-d} $ 变大,第二项的 $\log m(\varepsilon)\sim d\log(1/\varepsilon) $ 变大。要权衡的量大致是
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \varepsilon + \sqrt{\frac{d\log(1/\varepsilon)}{n}}
-$$
+</script>
+</div>
 取 $\varepsilon\propto 1/\sqrt n $,得到速率约
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \sqrt{\frac{d}{n}\log n}
-$$
+</script>
+</div>
 <span class="arithmatex">\(d\)</span> 维时通常 <span class="arithmatex">\(m(\varepsilon)\sim\varepsilon^{-d}\)</span>,故 <span class="arithmatex">\(\log m(\varepsilon)\sim d\log(1/\varepsilon)\)</span>。</p>
-<p>ε-网论证给出 <span class="arithmatex">\(\hat R(f)-R(f)\leq 2G\varepsilon + (\text{有限网上的 sup})\)</span>,再对 <span class="arithmatex">\(\varepsilon\propto 1/\sqrt n\)</span> 优化,得到约 <span class="arithmatex">\(\sqrt{(d/n)\log n}\)</span> 的速率——接近 <span class="arithmatex">\(1/\sqrt n\)</span>,但<strong>多了个 <span class="arithmatex">\(\log\)</span> 因子</strong>。</p>
+<p>ε-网论证给出 <span class="arithmatex">\(\hat R(f)-R(f)\leq 2G\varepsilon + (\text{有限网上的 sup})\)</span>,再对 <span class="arithmatex">\(\varepsilon\propto 1/\sqrt n\)</span> 优化,得到约 <span class="arithmatex">\(\sqrt{(d/n)\log n}\)</span> 的速率——接近 <span class="arithmatex">\(1/\sqrt n\)</span>,但**多了个 <span class="arithmatex">\(\log\)</span> 因子**。</p>
 <p>这正是它属于菱形可跳过内容的原因:不用链式法(chaining)等更精的工具就会损失这个 log,而 4.5 的 Rademacher 复杂度能做得更干净。</p>
 
 

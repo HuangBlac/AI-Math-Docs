@@ -2192,7 +2192,7 @@
 <p>围绕"求解 <span class="arithmatex">\(Ax=b\)</span>"这一核心，本实验实现并对比了三类方法：直接法、古典迭代法、特征值算法。</p>
 <h2 id="_2">一、直接法求解线性方程组</h2>
 <h3 id="11">1.1 高斯消元（列主元 / 全主元）</h3>
-<p>通过高斯变换 <span class="arithmatex">\(L_k\)</span> 逐列将矩阵下三角部分消为零，最终上三角化。<strong>列主元</strong>在每一列选取绝对值最大的元素移到对角位以避免小主元导致的数值不稳定；<strong>全主元</strong>同时在行、列中选主元，稳定性最好但代价更高。</p>
+<p>通过高斯变换 <span class="arithmatex">\(L_k\)</span> 逐列将矩阵下三角部分消为零，最终上三角化。**列主元**在每一列选取绝对值最大的元素移到对角位以避免小主元导致的数值不稳定；**全主元**同时在行、列中选主元，稳定性最好但代价更高。</p>
 <h3 id="12-cholesky">1.2 平方根法（Cholesky 分解）</h3>
 <p>针对对称正定矩阵 <span class="arithmatex">\(A\)</span>，将 <span class="arithmatex">\(A=LL^\top\)</span>。按列计算：先算对角元 <span class="arithmatex">\(l_{ii}\)</span>，再算该列非对角元 <span class="arithmatex">\(l_{ij}\ (j&lt;i)\)</span>。利用对称性，计算量约为 LU 分解的一半。</p>
 <h3 id="13-qr-householder-givens">1.3 QR 分解（Householder / Givens）</h3>

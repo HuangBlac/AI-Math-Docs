@@ -1985,7 +1985,7 @@ $$</p>
 $$
 |A\Delta + \varepsilon|_2^2 = |A\Delta|_2^2 + 2\langle A\Delta, \varepsilon \rangle + |\varepsilon|_2^2
 $$</p>
-<p>代回不等式，消去 <span class="arithmatex">\(\|\varepsilon\|_2^2\)</span> 得<strong>基本不等式</strong>：
+<p>代回不等式，消去 <span class="arithmatex">\(\|\varepsilon\|_2^2\)</span> 得**基本不等式**：
 $$
 |A\Delta|_2^2 + 2\langle A\Delta, \varepsilon \rangle \leq 0
 $$</p>
@@ -2017,7 +2017,7 @@ $$
 |\Delta|<em 2s="2s">2^2 \leq \frac{2}{1 - \delta</em>|\langle A\Delta, \varepsilon \rangle|
 $$}</p>
 <p>三月：现在只剩下噪声项 <span class="arithmatex">\(|\langle A\Delta, \varepsilon \rangle|\)</span> 需要控制了。</p>
-<p>长夜月：没错，这是随机项。用<strong>集中不等式</strong>来控制它。</p>
+<p>长夜月：没错，这是随机项。用**集中不等式**来控制它。</p>
 <hr />
 <h3 id="_5">第三步：集中不等式控制噪声项</h3>
 <p>三月：集中不等式，就是说变量集中在一个特定的区域内，“很大”的概率很低？</p>
@@ -2027,7 +2027,7 @@ $$
 |\langle A\Delta, \varepsilon \rangle| = |\Delta|_2 \left|\langle A u, \varepsilon \rangle\right|
 $$</p>
 <p>关键问题：控制 <span class="arithmatex">\(\sup_{u \in \mathcal{B}_{2s}} |\langle A u, \varepsilon \rangle|\)</span>。</p>
-<p>使用<strong>覆盖方法</strong>：用有限个向量覆盖 <span class="arithmatex">\(\mathcal{B}_{2s}\)</span>，然后用联合界。覆盖数的上界是 <span class="arithmatex">\(\mathcal{N} \leq \left(\frac{3}{\rho}\right)^{2s}\)</span>。对每个固定的覆盖向量 <span class="arithmatex">\(u\)</span>，<span class="arithmatex">\(\langle A u, \varepsilon \rangle \sim \mathcal{N}\,(0, \sigma^2\|Au\|_2^2)\)</span>。</p>
+<p>使用**覆盖方法**：用有限个向量覆盖 <span class="arithmatex">\(\mathcal{B}_{2s}\)</span>，然后用联合界。覆盖数的上界是 <span class="arithmatex">\(\mathcal{N} \leq \left(\frac{3}{\rho}\right)^{2s}\)</span>。对每个固定的覆盖向量 <span class="arithmatex">\(u\)</span>，<span class="arithmatex">\(\langle A u, \varepsilon \rangle \sim \mathcal{N}\,(0, \sigma^2\|Au\|_2^2)\)</span>。</p>
 <p>用标准高斯尾概率界（在概率 <span class="arithmatex">\(1 - \delta\)</span> 下）：
 $$
 \sup_{u \in \mathcal{B}_{2s}} |\langle A u, \varepsilon \rangle| \leq C_0\sigma\sqrt{\log\left(\frac{d}{\delta}\right)}
@@ -2041,7 +2041,7 @@ $$</p>
 $$
 |\Delta|<em 2s="2s">2^2 \leq \frac{2C_0\sigma}{1 - \delta</em>
 $$}}|\Delta|_2\sqrt{\log\left(\frac{d}{\delta}\right)</p>
-<p>两边除以 <span class="arithmatex">\(\|\Delta\|_2\)</span> 得到最终<strong>L0 误差界</strong>：
+<p>两边除以 <span class="arithmatex">\(\|\Delta\|_2\)</span> 得到最终**L0 误差界**：
 $$
 |\hat{x} - x^*|<em 2s="2s">2 \leq \frac{C_0\sigma}{1 - \delta</em>
 $$}}\sqrt{\log\left(\frac{d}{\delta}\right)</p>
@@ -2066,9 +2066,9 @@ $$}}\sqrt{\log\left(\frac{d}{\delta}\right)</p>
 <h2 id="lassol0l1">三、Lasso问题：从L0到L1</h2>
 <h3 id="l1">为什么要引入L1优化？</h3>
 <p>三月：所以上一节我们用L0范数约束来求解压缩感知问题，直接数”非零元的个数”这个操作听上去很好啊。为什么就是不行呢？</p>
-<p>长夜月：问题不来自于数学，而来自于<strong>计算复杂度</strong>。L0优化需要在所有 <span class="arithmatex">\(\binom{d}{k}\)</span> 个可能的支撑集中搜索（<span class="arithmatex">\(d\)</span> 是信号维度，<span class="arithmatex">\(k\)</span> 是稀疏度），这是NP难的——简单来说，就是即使你拥有全宇宙最强大的计算机，也未必能在有限时间内找到答案。</p>
+<p>长夜月：问题不来自于数学，而来自于**计算复杂度**。L0优化需要在所有 <span class="arithmatex">\(\binom{d}{k}\)</span> 个可能的支撑集中搜索（<span class="arithmatex">\(d\)</span> 是信号维度，<span class="arithmatex">\(k\)</span> 是稀疏度），这是NP难的——简单来说，就是即使你拥有全宇宙最强大的计算机，也未必能在有限时间内找到答案。</p>
 <p>三月：那能不能换一种约束方式，但仍然让变量变稀疏？</p>
-<p>长夜月：好问题。考虑二维情形：L0约束要求非零元个数 <span class="arithmatex">\(\leq k\)</span>，等价于坐标轴上只取有限个点。而L1约束 <span class="arithmatex">\(\|x\|_1 \leq R\)</span> 对应的是一个<strong>菱形</strong>，L2约束 <span class="arithmatex">\(\|x\|_2 \leq R\)</span> 对应的是一个<strong>圆</strong>。</p>
+<p>长夜月：好问题。考虑二维情形：L0约束要求非零元个数 <span class="arithmatex">\(\leq k\)</span>，等价于坐标轴上只取有限个点。而L1约束 <span class="arithmatex">\(\|x\|_1 \leq R\)</span> 对应的是一个**菱形**，L2约束 <span class="arithmatex">\(\|x\|_2 \leq R\)</span> 对应的是一个**圆**。</p>
 <p>关键观察：菱形的顶点恰好落在坐标轴上——也就是说，L1约束天然倾向于把解”推”到坐标轴上，让某些分量恰好为零。而L2约束的圆没有棱角，不具备这种稀疏诱导性。</p>
 <p>长夜月：没错。于是我们将压缩感知问题从
 $$
@@ -2089,7 +2089,7 @@ $$</p>
 <h4 id="_7">第一步：基本不等式</h4>
 <p>设 <span class="arithmatex">\(\hat{x}\)</span> 是 Lasso 的解，<span class="arithmatex">\(x^*\)</span> 是真实稀疏信号，令 <span class="arithmatex">\(\Delta = \hat{x} - x^*\)</span>。因为 <span class="arithmatex">\(\hat{x}\)</span> 是最小化点，所以：
 $$
-\frac{1}{2n}|A\hat{x} - s|_2^2 + \lambda|\hat{x}|_1 \leq \frac{1}{2n}|Ax^<em> - s|_2^2 + \lambda|x^</em>|_1
+\frac{1}{2n}|A\hat{x} - s|_2^2 + \lambda|\hat{x}|_1 \leq \frac{1}{2n}|Ax^* - s|_2^2 + \lambda|x^*|_1
 $$</p>
 <p>把 <span class="arithmatex">\(s = Ax^* + \varepsilon\)</span> 代入，展开左边：
 $$
@@ -2099,7 +2099,7 @@ $$</p>
 $$
 \frac{1}{2n}|A\Delta|_2^2 + \frac{1}{n}\langle A\Delta, \varepsilon \rangle + \lambda|\hat{x}|_1 \leq \lambda|x^*|_1
 $$</p>
-<p>移项得到<strong>基本不等式</strong>：
+<p>移项得到**基本不等式**：
 $$
 \frac{1}{2n}|A\Delta|_2^2 + \lambda|\hat{x}|_1 \leq \lambda|x^*|_1 - \frac{1}{n}\langle A\Delta, \varepsilon \rangle
 $$</p>
@@ -2151,7 +2151,7 @@ $$
 |\Delta_{(A^<em>)^c}|<em>1 \leq 3|\Delta</em>{A^</em>}|_1
 $$</p>
 <p>三月七（猛地惊醒）这就是说，支撑集外的误差被支撑集内的误差控制了？</p>
-<p>长夜月：对！这就是稀疏估计的<strong>集中性</strong>：L1正则化不会在非支撑集上产生太大的误差。用 <span class="arithmatex">\(\ell_2\)</span> 范数表述就是（由 Cauchy-Schwarz，<span class="arithmatex">\(\|\Delta_{A^*}\|_1 \leq \sqrt{s}\|\Delta_{A^*}\|_2\)</span>）：
+<p>长夜月：对！这就是稀疏估计的**集中性**：L1正则化不会在非支撑集上产生太大的误差。用 <span class="arithmatex">\(\ell_2\)</span> 范数表述就是（由 Cauchy-Schwarz，<span class="arithmatex">\(\|\Delta_{A^*}\|_1 \leq \sqrt{s}\|\Delta_{A^*}\|_2\)</span>）：
 $$
 |\Delta_{(A^<em>)^c}|<em>2 \leq |\Delta</em>{(A^</em>)^c}|<em>1 \leq 3|\Delta</em>{A^<em>}|<em>1 \leq 3\sqrt{s}|\Delta</em>{A^</em>}|_2
 $$</p>
@@ -2174,7 +2174,7 @@ RIP蕴含RE（取 <span class="arithmatex">\(\gamma^2 = 1 - \delta_{2s}\)</span>
 <div class="arithmatex">\[
 \frac{\gamma^2}{2}\|\Delta\|_2^2 \leq \frac{1}{2n}\|A\Delta\|_2^2 \leq \frac{3\lambda\sqrt{s}}{2}\|\Delta_{A^*}\|_2 \leq \frac{3\lambda\sqrt{s}}{2}\|\Delta\|_2
 \]</div>
-<p>两边消去 <span class="arithmatex">\(\|\Delta\|_2\)</span>，得到最终<strong>Lasso 误差界</strong>：
+<p>两边消去 <span class="arithmatex">\(\|\Delta\|_2\)</span>，得到最终**Lasso 误差界**：
 $$
 |\hat{x} - x^*|_2 \leq \frac{3\lambda\sqrt{s}}{\gamma^2} = \frac{3\sigma\sqrt{s}}{\gamma^2}\sqrt{\frac{2\log(2d/\delta)}{n}}
 $$</p>
@@ -2187,7 +2187,7 @@ $$</p>
 <hr />
 <h3 id="l1_2">L1优化怎么求解？近端梯度下降</h3>
 <p>三月七：所以，引入L1正则项之后问题变得简单了吗？</p>
-<p>长夜月：变简单了——但也没有完全变简单。L0问题是NP难的，而L1问题不但在求解上没有问题，而且是一个<strong>凸优化问题</strong>，意味着一定可以求解。但L1范数不可微，所以普通的梯度下降不能直接用。</p>
+<p>长夜月：变简单了——但也没有完全变简单。L0问题是NP难的，而L1问题不但在求解上没有问题，而且是一个**凸优化问题**，意味着一定可以求解。但L1范数不可微，所以普通的梯度下降不能直接用。</p>
 <p>三月七：不可微？（扔掉手中的《最优化理论》）那我之前学的那些一阶优化条件完全没用了？在0那个点连导数都没有</p>
 <p>长夜月：没有导数就需要创造导数所以我们引入一个关键工具——<strong>次微分</strong>。我们这里考虑凸函数，即使不可微，我们也可以定义”次梯度”：如果对所有的 <span class="arithmatex">\(y\)</span> 都有
 $$
@@ -2214,12 +2214,12 @@ $$
 \frac{1}{n}A^\top(A\hat{x} - s) + \lambda\,\partial|\hat{x}|_1 \ni 0
 $$</p>
 <p>三月：<span class="arithmatex">\(\partial\|x\|_1\)</span> 不是一个单值函数，怎么求解？</p>
-<p>长夜月：这就是<strong>近端梯度下降（Proximal Gradient Descent）</strong>出场的时候了。核心思路是：先对光滑项走一步梯度，再对L1项做”近端算子”处理。</p>
+<p>长夜月：这就是**近端梯度下降（Proximal Gradient Descent）**出场的时候了。核心思路是：先对光滑项走一步梯度，再对L1项做”近端算子”处理。</p>
 <p>先看一维辅助问题：<span class="arithmatex">\(f(x) = \frac{1}{2}(x - t)^2 + \lambda|x|\)</span>，求 <span class="arithmatex">\(0 \in \partial f(x^*)\)</span>：
 - <span class="arithmatex">\(x &gt; 0\)</span>：<span class="arithmatex">\(\partial f(x) = (x - t) + \lambda\)</span>
 - <span class="arithmatex">\(x &lt; 0\)</span>：<span class="arithmatex">\(\partial f(x) = (x - t) - \lambda\)</span>
 - <span class="arithmatex">\(x = 0\)</span>：<span class="arithmatex">\(\partial f(0) = [-t - \lambda,\; -t + \lambda]\)</span></p>
-<p>解就是<strong>软阈值算子</strong> <span class="arithmatex">\(S_\lambda(t)\)</span>：
+<p>解就是**软阈值算子** <span class="arithmatex">\(S_\lambda(t)\)</span>：
 $$
 S_\lambda(t) = \begin{cases}
 0, &amp; |t| \leq \lambda \
@@ -2234,7 +2234,7 @@ x^{(k+1)} = S_{\lambda\tau}!\left(x^{(k)} - \tau \cdot \frac{1}{n}A^\top(Ax^{(k)
 $$</p>
 <p>每一步先沿光滑项的负梯度方向走一步（步长 <span class="arithmatex">\(\tau\)</span>），再用软阈值算子把小的分量归零。等价的不动点形式是：
 $$
-x^<em> = S_{\lambda\tau}!\left(x^</em> - \tau \cdot \frac{1}{n}A^\top(Ax^* - s)\right)
+x^* = S_{\lambda\tau}!\left(x^* - \tau \cdot \frac{1}{n}A^\top(Ax^* - s)\right)
 $$</p>
 <p>三月：为什么这个不动点就是最优解？这看上去都不搭吧？</p>
 <p>长夜月：一变量变成多变量的你就不会了？那好吧，我们来仔细推导一下。</p>
