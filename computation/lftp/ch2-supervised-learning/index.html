@@ -1512,17 +1512,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#bayes-risk-and-bayes-predictor-loss" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Bayes Risk and Bayes Predictor: loss伪全知视角能干到多小
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1768,118 +1757,6 @@
     
   
     Ch5.4 随机梯度下降
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
   
 
     
@@ -2620,17 +2497,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#bayes-risk-and-bayes-predictor-loss" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Bayes Risk and Bayes Predictor: loss伪全知视角能干到多小
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -2692,26 +2558,33 @@ p(x) on X. Note that we make no assumptions at this point on the input space X.<
 <p>多分类问题<span class="arithmatex">\(ℓ(y, z) = 1_{y\neq z} (0–1 loss)\)</span></p>
 <p>回归问题:<span class="arithmatex">\(ℓ(y, z) = (y-z)^2\)</span></p>
 <p>对于一个预测的函数， f : X → Y,一个损失函数ℓ : Y × Y → R, 和一个概率分布p on X × Y, f的期望风险被定义为</p>
-<div class="arithmatex">\[R(f) = \mathbb{E}ℓ(y, f(x))=\int_{X×Y}ℓ(y, f(x))dp(x, y)\]</div>
-<p>Be careful with the randomness, or lack thereof, of f: when performing learning
+<p><div class="arithmatex">
+<script type="math/tex; mode=display">
+    R(f) = \mathbb{E}ℓ(y, f(x))=\int_{X×Y}ℓ(y, f(x))dp(x, y)
+Be careful with the randomness, or lack thereof, of f: when performing learning
 from data, f will depend on the random training data, not on the testing
 data, and thus R(f) is typically random because of the dependence on the
-training data. </p>
-<p>如果是作为泛函，那么期望风险是一个由f决定的泛函，但是f 是一个依赖于随机变量（训练集）的一个函数。在抽训练集之前，它仍然是随机变量。</p>
-<p>此外，由于实际我们只有离散的数据点，所以我们会构造经验风险：</p>
-<p>对于一个待预测的函数f : X → Y,一个损失函数: Y × Y → R, and data (xi, yi) ∈ X × Y, i = 1, . . . , n, the empirical risk of f is
+training data. 
+
+如果是作为泛函，那么期望风险是一个由f决定的泛函，但是f 是一个依赖于随机变量（训练集）的一个函数。在抽训练集之前，它仍然是随机变量。
+
+此外，由于实际我们只有离散的数据点，所以我们会构造经验风险：
+
+对于一个待预测的函数f : X → Y,一个损失函数: Y × Y → R, and data (xi, yi) ∈ X × Y, i = 1, . . . , n, the empirical risk of f is
 defined as
 bR(f) =
 1
 n
 Xn
 i=1
-ℓ(yi, f(xi)).</p>
-<h3 id="bayes-risk-and-bayes-predictor-loss">Bayes Risk and Bayes Predictor: loss伪全知视角能干到多小</h3>
-<p><span class="arithmatex">\(R(f) = \mathbb Eℓ(y, f(x))= \mathbb E [\mathbb E[ℓ(y, f(x))|x]]\)</span></p>
-<p>将其拆解成积分的形式，因此我们可以计算每一个x对应的让风险极小化对应的值<span class="arithmatex">\(f^*(x)\)</span>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+ℓ(yi, f(xi)).
+
+### Bayes Risk and Bayes Predictor: loss伪全知视角能干到多小
+
+$R(f) = \mathbb Eℓ(y, f(x))= \mathbb E [\mathbb E[ℓ(y, f(x))|x]]$
+
+将其拆解成积分的形式，因此我们可以计算每一个x对应的让风险极小化对应的值$f^*(x)$
+```math
 f^*(x_0) = argmin_{a\in \mathcal Y}\mathbb E[\ell(a,y)|x=x_0]
 </script>
 </div>

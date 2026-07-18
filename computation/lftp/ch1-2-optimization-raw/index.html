@@ -1830,118 +1830,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -2767,321 +2655,493 @@
 <p>云端视觉模型转录 · 待人工校对</p>
 </blockquote>
 <h2 id="1">第 1 页</h2>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
-R(f) &amp;= E[l(y, f(x))] \\
-F(\theta) &amp;= \frac{1}{n} \sum_{i=1}^{n} l(y_i, f_\theta(x_i)) + \Omega(\theta) \\
-R(f_\theta^*) - \inf_{\theta \in \mathbb{R}^d} R(f_\theta) &amp;= R(f_\theta^*) - \hat{R}(f_\theta^*) + \hat{R}(f_\theta^*) - \hat{R}(f_\theta^*) + \hat{R}(f_\theta^*) - R(f_\theta^*) \\
-&amp;= \tilde{R} \\
-&amp;\leq 2 \sup_{f \in \mathcal{F}_0} |R(f) - \hat{R}(f)| + \hat{R}(f_\theta^*) - \hat{R}(f_\theta^*) \\
-&amp;\quad \text{(err(sta))} \quad \text{(err(cpt))} \\
-R(f_\theta^*) - \inf_{\theta \in \mathbb{R}^d} \hat{R}(f_\theta) &amp;\leq \sup_{f \in \mathcal{F}} |R(f) - \hat{R}(f)| \text{ 统计误差, 可以被 } 2 \operatorname{Rad}(\mathcal{F}_0) \text{ 控制} \\
-\mathcal{F}_0 &amp;\text{为有限类 } \sqrt{}, \text{无限类, 先用有限覆盖变成有界类, 结论为 } \mathfrak{D}\left(\frac{1}{\eta}\right) \\
-f_\theta^* &amp;\text{不一定是 } R(f) \text{ 泛函极小, 它是用优化算法 } GD/SGD \text{ 求出的 } f_\theta^*, \text{ 事实上, 由于误差分解.} \\
-\hat{R}(f_\theta^*) - \inf_{\theta \in \mathbb{R}^d} \hat{R}(f_\theta^*) &amp;\text{ err(cpt)} \text{ 与 err(sta) 同阶即} \\
-\text{但, } \theta_t &amp;\text{ 往往对应带正则的 } f_\theta \text{ 的下降, 而且多少步才让统计与优化近似?} \\
-GD: F(\theta_t) - F^* &amp;= \mathcal{O}\left(\frac{1}{t}\right) \text{ 一般凸问题 } \mathcal{O}\left(e^{-t}\right) \text{ 强凸光滑} \\
-SGD &amp;\quad \mathcal{O}\left(\frac{1}{\sqrt{t}}\right), \text{ 弱凸光滑 } \mathcal{O}\left(\frac{1}{t}\right) \\
-\text{还有一个问题: } \inf_{\theta \in \mathbb{R}^d} R(f_\theta^*) - \inf_{f \in \mathcal{F}} R(f) &amp;= \text{ 这是逼近误差, 得到三部分} \\
-&amp;\quad \text{(err(approximation))} \\
+R(f) &= E[l(y, f(x))] \\
+F(\theta) &= \frac{1}{n} \sum_{i=1}^{n} l(y_i, f_\theta(x_i)) + \Omega(\theta) \\
+R(f_\theta^*) - \inf_{\theta \in \mathbb{R}^d} R(f_\theta) &= R(f_\theta^*) - \hat{R}(f_\theta^*) + \hat{R}(f_\theta^*) - \hat{R}(f_\theta^*) + \hat{R}(f_\theta^*) - R(f_\theta^*) \\
+&= \tilde{R} \\
+&\leq 2 \sup_{f \in \mathcal{F}_0} |R(f) - \hat{R}(f)| + \hat{R}(f_\theta^*) - \hat{R}(f_\theta^*) \\
+&\quad \text{(err(sta))} \quad \text{(err(cpt))} \\
+R(f_\theta^*) - \inf_{\theta \in \mathbb{R}^d} \hat{R}(f_\theta) &\leq \sup_{f \in \mathcal{F}} |R(f) - \hat{R}(f)| \text{ 统计误差, 可以被 } 2 \operatorname{Rad}(\mathcal{F}_0) \text{ 控制} \\
+\mathcal{F}_0 &\text{为有限类 } \sqrt{}, \text{无限类, 先用有限覆盖变成有界类, 结论为 } \mathfrak{D}\left(\frac{1}{\eta}\right) \\
+f_\theta^* &\text{不一定是 } R(f) \text{ 泛函极小, 它是用优化算法 } GD/SGD \text{ 求出的 } f_\theta^*, \text{ 事实上, 由于误差分解.} \\
+\hat{R}(f_\theta^*) - \inf_{\theta \in \mathbb{R}^d} \hat{R}(f_\theta^*) &\text{ err(cpt)} \text{ 与 err(sta) 同阶即} \\
+\text{但, } \theta_t &\text{ 往往对应带正则的 } f_\theta \text{ 的下降, 而且多少步才让统计与优化近似?} \\
+GD: F(\theta_t) - F^* &= \mathcal{O}\left(\frac{1}{t}\right) \text{ 一般凸问题 } \mathcal{O}\left(e^{-t}\right) \text{ 强凸光滑} \\
+SGD &\quad \mathcal{O}\left(\frac{1}{\sqrt{t}}\right), \text{ 弱凸光滑 } \mathcal{O}\left(\frac{1}{t}\right) \\
+\text{还有一个问题: } \inf_{\theta \in \mathbb{R}^d} R(f_\theta^*) - \inf_{f \in \mathcal{F}} R(f) &= \text{ 这是逼近误差, 得到三部分} \\
+&\quad \text{(err(approximation))} \\
 \text{回到重点 - 优化误差计算}
 \end{aligned}
-\]</div>
+</script>
+</div>
 <h2 id="2">第 2 页</h2>
 <p><strong>优化误差：</strong></p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\theta) = \frac{1}{n} \sum_{i=1}^{n} \ell(y_i, f_\theta(x_i)) + \Omega(\theta)
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \theta_t = \theta_{t-1} - \eta \nabla F(\theta)
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\theta) = \frac{1}{2n} \| \phi \theta - y \|_2^2
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F'(\theta_{t+1}) = 0 \quad (\text{Fermat lemma})
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F'(\theta) = \frac{1}{n} \phi^\top (\phi \theta - y)
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \theta_t = \theta_{t-1} - \frac{\eta}{n} \phi^\top \phi (\theta_{t-1} - y)
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \tilde{\theta}_t = \theta_t - \eta n_* = \theta_{t-1} - \theta_* - \frac{\eta}{n} \phi^\top \phi (\theta_{t-1} - y)
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 = (I - \frac{\eta}{n} \phi^\top \phi)(\theta_{t-1} - \eta n_*)
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \theta_t - \eta n_* = (I - \eta H)^t (\theta_{t-1} - \eta n_*)
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \| \theta_t - \eta n_* \|_2^2 = \| (I - \eta H)^t (\theta_{t-1} - \eta n_*) \|_2^2
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \| (I - \eta H)^t (\theta_{t-1} - \eta n_*) \|_2^2 \leq \lambda_{\max}(I - \eta H)^{2t} \| \theta_{t-1} - \eta n_* \|_2^2
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \lambda_{\max}((I - \eta H)^t)^2 \leq \left( \frac{1 - \eta \lambda}{1 + \eta \lambda} \right)^{2t}
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac{2}{n} \leq \frac{2}{L} \quad \text{and} \quad 1 - \frac{2}{K} \leq 1
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \alpha = \frac{2}{\mu + L}, \quad \text{此时} \quad \| I - \alpha \lambda I \|_2 \leq \frac{|L - \mu|}{\mu + L} \leq \frac{K - 1}{K}
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 (1 - \frac{1}{K})^{2t} \leq \exp(-\frac{t}{K})
-\]</div>
+</script>
+</div>
 <p><strong>Lipschitz - 梯度：</strong></p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\theta_{t+1}) \geq F(\theta_t) + F'(\theta_t)^\top (\theta_{t+1} - \theta_t)
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\theta) - F(\theta_{t+1}) \leq F'(\theta_t)^\top (\theta_{t+1} - \theta)
-\]</div>
+</script>
+</div>
 <p><strong>强凸性：</strong></p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\eta) \geq F(\theta) + F'(\theta)^\top (\eta - \theta) + \frac{\mu}{2} \| \eta - \theta \|_2^2
-\]</div>
+</script>
+</div>
 <h2 id="3">第 3 页</h2>
 <p><strong>Lojasiewicz's inequality</strong></p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \|F'(\theta)\|_2^2 \geq 2\mu(F(\theta) - F(\theta^*))
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\theta) - F(\theta^*) \geq F'(\theta)(\theta - \eta) + \frac{1}{2}\mu\|\theta - \eta\|^2
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \theta \geq F(\eta) + \frac{1}{\mu}F'(\theta)
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \|F'(\theta)\|_2 \cdot \|\theta - \eta\| \geq \frac{1}{2}\mu\|\theta - \eta\|^2
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \tilde{\eta} = \theta - \frac{1}{\mu}F'(\theta)
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\tilde{\eta}) \geq F(\theta) + F'(\theta)^T(-\frac{1}{\mu}F'(\theta)) + \frac{1}{2}\mu\|\theta - \frac{1}{\mu}F'(\theta)\|^2
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 = F(\theta) - \frac{1}{2\mu}\|F'(\theta)\|^2
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f(\theta) \leq F(\tilde{\eta})
-\]</div>
+</script>
+</div>
 <p>如果有 <span class="arithmatex">\(K = \frac{1}{\mu}\)</span>，那么套用线性有指数下降</p>
 <p><strong>引理 1.1 数分高代复习</strong></p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \text{Ex. 1.1 } (I + 2\lambda_n 1_n 1_n^T) \text{ 可逆且 } (I + 2\lambda_n 1_n 1_n^T)^{-1} = (I - \frac{2\lambda_n}{1 + n\lambda_n} 1_n 1_n^T)
-\]</div>
+</script>
+</div>
 <p>已知 <span class="arithmatex">\(A = I + \alpha 1_n 1_n^T\)</span>，<span class="arithmatex">\(A\)</span> 特征值 <span class="arithmatex">\(\lambda\)</span>；</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \det(\lambda I - I - \alpha 1_n 1_n^T) = (\lambda - 1)^{n-1}(\lambda - 1 - n\alpha)
-\]</div>
+</script>
+</div>
 <p>当 <span class="arithmatex">\(1 + n\alpha \neq 0\)</span>，<span class="arithmatex">\(A\)</span> 没有零特征值，<span class="arithmatex">\(I + \alpha 1_n 1_n^T\)</span> 可逆。</p>
 <p>其次 <span class="arithmatex">\((I + \alpha 1_n 1_n^T)^{-1} = I - \frac{\alpha}{1 + n\alpha} 1_n 1_n^T\)</span></p>
 <p>用引理 <span class="arithmatex">\((I + BB^T)^{-1} = I - B(I + B^TB)^{-1}B^T\)</span></p>
 <p><strong>分块矩阵求逆：</strong></p>
-<div class="arithmatex">\[
-\begin{pmatrix} A &amp; B \\ C &amp; D \end{pmatrix}^{-1}
-\]</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\begin{pmatrix} A & B \\ C & D \end{pmatrix}^{-1}
+</script>
+</div>
 <h2 id="4">第 4 页</h2>
 <p><strong>优化误差：</strong></p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\theta) = \frac{1}{n} \sum_{i=1}^{n} \ell(y_i, f_\theta(x_i)) + \Omega(\theta)
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \theta_{t+1} = \theta_t - 2 \nabla F(\theta_t)
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\theta) = \frac{1}{2n} \| \Phi \theta - y \|^2
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F'(\theta_+) = 0 \quad (\text{Fermat lemma})
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F'(\theta) = \frac{1}{n} \Phi^\top (\Phi \theta - y)
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \theta_{t+1} = \theta_{t+1} - \frac{\alpha}{n} \Phi^\top \Phi (\theta_{t+1} - y)
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 = (I - \frac{\alpha}{n} \Phi^\top \Phi) (\theta_{t+1} - \eta_+)
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \theta_t - \eta_+ = (I - \alpha H)^t (\theta_{t+1} - \eta_+)
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \| \theta_t - \eta_+ \|^2 = \| (I - \alpha H)^t (\theta_{t+1} - \eta_+) \|^2
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \| (\theta_0 - \eta_+)^T (I - \alpha H)^t (\theta_{t+1} - \eta_+) \| \leq \lambda_{\max} (I - \alpha H)^{2t} \| \theta_0 - \eta_+ \|^2
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \lambda_{\max} (I - \alpha H)^{2t} \leq \left( \frac{1 - \alpha \lambda}{1 + \alpha \lambda} \right)^{2t}
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \alpha = \frac{2}{\mu + L}, \quad \text{此时} \quad \| I - \alpha \lambda I \|^2 \leq \frac{L - \mu}{\mu + L} \left( 1 - \frac{1}{K} \right)
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 (1 - \frac{1}{K})^{2t} \leq \exp(-\kappa t)
-\]</div>
+</script>
+</div>
 <p><strong>Lipschitz 梯度：</strong></p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\theta_+) \leq F(\theta) + F'(\theta)^T (\theta_+ - \theta) + \frac{L}{2} \| \theta_+ - \theta \|^2
-\]</div>
+</script>
+</div>
 <p><strong>强凸性：</strong></p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\eta) \geq F(\theta) + F'(\theta)^T (\eta - \theta) + \frac{\mu}{2} \| \eta - \theta \|^2
-\]</div>
+</script>
+</div>
 <h2 id="5">第 5 页</h2>
 <p><strong>分块矩阵求逆公式：</strong></p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 (MA)^{-1} = A^{-1}(D - CA^{-1}B)^{-1} = D^{-1} + D^{-1}C(A - BD^{-1}C)^{-1}BD^{-1}
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 (WD)^{-1} = (A - BD^{-1}C)^{-1} \approx A^{-1} + A^{-1}B(D - CA^{-1}B)^{-1}CA^{-1}
-\]</div>
-<div class="arithmatex">\[
-\det\begin{pmatrix} A &amp; B \\ C &amp; D \end{pmatrix} = \det A \det(MA) = \det D \det(M/D)
-\]</div>
-<div class="arithmatex">\[
-M = \begin{pmatrix} A &amp; B \\ C &amp; D \end{pmatrix} = \begin{pmatrix} I &amp; 0 \\ CA^{-1} &amp; I \end{pmatrix} \begin{pmatrix} A &amp; 0 \\ 0 &amp; M/A \end{pmatrix} \begin{pmatrix} I &amp; A^{-1}B \\ 0 &amp; I \end{pmatrix}
-\]</div>
-<div class="arithmatex">\[
-M^{-1} = \begin{pmatrix} A &amp; B \\ C &amp; D \end{pmatrix}^{-1} = \begin{pmatrix} I &amp; -A^{-1}B \\ 0 &amp; I \end{pmatrix} \begin{pmatrix} A^{-1} &amp; 0 \\ 0 &amp; (MA)^{-1} \end{pmatrix} \begin{pmatrix} I &amp; 0 \\ -CA^{-1} &amp; I \end{pmatrix}
-\]</div>
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\det\begin{pmatrix} A & B \\ C & D \end{pmatrix} = \det A \det(MA) = \det D \det(M/D)
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+M = \begin{pmatrix} A & B \\ C & D \end{pmatrix} = \begin{pmatrix} I & 0 \\ CA^{-1} & I \end{pmatrix} \begin{pmatrix} A & 0 \\ 0 & M/A \end{pmatrix} \begin{pmatrix} I & A^{-1}B \\ 0 & I \end{pmatrix}
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+M^{-1} = \begin{pmatrix} A & B \\ C & D \end{pmatrix}^{-1} = \begin{pmatrix} I & -A^{-1}B \\ 0 & I \end{pmatrix} \begin{pmatrix} A^{-1} & 0 \\ 0 & (MA)^{-1} \end{pmatrix} \begin{pmatrix} I & 0 \\ -CA^{-1} & I \end{pmatrix}
+</script>
+</div>
 <p>当 <span class="arithmatex">\(A\)</span> 可逆</p>
 <p><strong>SVD 与特征分解：</strong></p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 X = U\Sigma V^{T}
-\]</div>
-<div class="arithmatex">\[
-\begin{pmatrix} O &amp; X \\ X^{T} &amp; O \end{pmatrix}
-\]</div>
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\begin{pmatrix} O & X \\ X^{T} & O \end{pmatrix}
+</script>
+</div>
 <h2 id="6">第 6 页</h2>
 <p><strong>SVD 特征向量构造：</strong></p>
-<div class="arithmatex">\[
-M = \begin{pmatrix} O &amp; X \\ X^T &amp; O \end{pmatrix}, \quad X = U \Sigma V^T
-\]</div>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+M = \begin{pmatrix} O & X \\ X^T & O \end{pmatrix}, \quad X = U \Sigma V^T
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 M(u_i) = \begin{pmatrix} X v_i \\ X^T u_i \end{pmatrix} = \sigma_i \begin{pmatrix} u_i \\ v_i \end{pmatrix}
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 M(-v_i) = \begin{pmatrix} -X v_i \\ X^T u_i \end{pmatrix} = -\sigma_i \begin{pmatrix} -u_i \\ v_i \end{pmatrix}
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 XX^T = U \Sigma^2 U^T = \frac{n}{n-1} \hat{\sigma}^2 u_i u_i^T \quad \text{特征向量}(u_i)
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 X^T X = V \Sigma^2 V^T = \sum \sigma_i v_i v_i^T \quad \text{特征向量}(v_i)
-\]</div>
+</script>
+</div>
 <p><strong>二次优化：</strong></p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\theta) = \frac{1}{2} \theta^T A \theta - b^T \theta
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F'(\theta) = \frac{1}{2} (A + A^T) \theta - b
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F''(\theta) = \frac{1}{2} (A + A^T)
-\]</div>
+</script>
+</div>
 <p><strong>线性回归：</strong></p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\theta) = \frac{1}{2n} \| y - X \theta \|^2 = \frac{1}{n} (y^T y - 2 y^T X \theta + \theta^T X^T X \theta)
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F'(\theta) = -\frac{1}{n} X^T (y - X \theta)
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F''(\theta) = \frac{1}{n} X^T X
-\]</div>
+</script>
+</div>
 <p><strong>逻辑回归：</strong></p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\theta) = \frac{1}{n} \sum \log(1 + \exp(-y_i (X \theta)_i))
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac{\partial F}{\partial \theta_j} = \frac{1}{n} \sum_{i=1}^n \frac{-y_i x_{ij}}{1 + \exp(-y_i (X \theta)_i)}
-\]</div>
+</script>
+</div>
 <h2 id="7">第 7 页</h2>
 <p><strong>逻辑回归梯度与 Hessian：</strong></p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(\theta) = \sum_{i=1}^{n} \log(1 + \exp(-y_i \langle x_i, \theta \rangle))
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \phi(t) = \log(1 + \exp(t)), \quad \phi'(t) = \frac{1}{1 + e^{-t}} = \sigma(t)
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F'(\theta) = -\frac{1}{n} X^T g, \quad g_i = -\frac{y_i}{1 + \exp(-y_i \langle x_i, \theta \rangle)}
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F''(\theta) = \frac{1}{n} X^T \operatorname{diag}(g_1(\theta), \ldots, g_n(\theta)) X
-\]</div>
+</script>
+</div>
 <p>利用 <span class="arithmatex">\(y_i^2 = 1\)</span> 和 sigmoid 导数性质：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F''(\theta) = \frac{1}{n} X^T \operatorname{diag}(\sigma(-y_i \langle x_i, \theta \rangle) \sigma(y_i \langle x_i, \theta \rangle)) X
-\]</div>
+</script>
+</div>
 <p><strong>矩阵微积分：</strong></p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \operatorname{tr}(A A^T) = \operatorname{tr}(A^T A)
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f(X) = \operatorname{tr}(A^T X), \quad f'(X) = A
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac{\partial}{\partial X} X^T A X = (A + A^T) X
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f(A) = X^T A X, \quad f'(A) = X X^T
-\]</div>
+</script>
+</div>
 <h2 id="8">第 8 页</h2>
 <p><strong>矩阵微积分（续）：</strong></p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f(CX) = \operatorname{tr}(CX^T A CX) = \operatorname{tr}(A X X^T)
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac{d(X X^T)}{dX} = A X + A^T X
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 d(A X B) = A (dX) B, \quad \text{导数为 } A^T X B^T + A X B
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 0 = d(X \cdot X^{-1}) = (dX) X^{-1} + X d(X^{-1})
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 d(X^{-1}) = -X^{-1} (dX) X^{-1}
-\]</div>
+</script>
+</div>
 <p><strong>行列式导数：</strong></p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac{d(\det(X))}{dt} = \det(X) \operatorname{tr}(X^{-1} dX)
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f(X) = \log \det X, \quad f'(X) = X^{-1}
-\]</div>
+</script>
+</div>
 <h2 id="9">第 9 页</h2>
 <p><strong>概率不等式（尾部 bound）：</strong></p>
 <p><span class="arithmatex">\(t \in [0, 1)\)</span> 时：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac{1}{x} - \frac{x}{\sqrt{n}} \geq \frac{1}{4}e^{-t}, \quad t \geq 0
-\]</div>
+</script>
+</div>
 <p>由于 <span class="arithmatex">\(f(t) = \frac{1}{x} - \frac{x}{\sqrt{n}} - \frac{1}{4}e^{-t}\)</span></p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f'(t) = -\frac{1}{\sqrt{n}} + \frac{1}{2}te^{-t}
-\]</div>
+</script>
+</div>
 <p><span class="arithmatex">\(f\)</span> 在 <span class="arithmatex">\([0, n]\)</span> 上递减。</p>
 <p><span class="arithmatex">\(t &gt; 1\)</span> 时，尾部积分估计：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 a(t) = \int_{t}^{\infty} \phi(x) dx = \frac{1}{t} \phi(t) - \int_{t}^{\infty} \frac{1}{x^2} \phi(x) dx
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \int_{t}^{\infty} \phi(x) dx \geq \frac{t}{1+t} \phi(t)
-\]</div>
+</script>
+</div>
 <p>验证等价条件：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac{t}{\sqrt{2\pi}(1+t)} e^{-\frac{1}{2}t^2} = \frac{1}{4}e^{-t^2} \iff \frac{4t}{\sqrt{2\pi}(1+t)} e^{\frac{1}{2}t^2} \geq 1
-\]</div>
+</script>
+</div>
 
 
 

@@ -1684,118 +1684,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -2018,28 +1906,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#12-pca" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.2 PCA 主成分分析
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#13-pca" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.3 核 PCA
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#14" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2074,45 +1940,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="二、特征筛选">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#21" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.1 特征筛选策略
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-l1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.2 嵌入式特征选择（L1 正则化）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#23" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.3 稀疏表示与字典学习
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2726,28 +2553,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#12-pca" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.2 PCA 主成分分析
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#13-pca" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.3 核 PCA
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#14" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2782,45 +2587,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="二、特征筛选">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#21" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.1 特征筛选策略
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-l1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.2 嵌入式特征选择（L1 正则化）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#23" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.3 稀疏表示与字典学习
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2879,42 +2645,64 @@
 <p>对 <span class="arithmatex">\(D\)</span> 进行变换，得到内积矩阵 <span class="arithmatex">\(B\)</span>，<span class="arithmatex">\(B\)</span> 需满足列和、行和、<span class="arithmatex">\(\text{tr}(B)\)</span> 均为零：</p>
 </li>
 </ol>
-<div class="arithmatex">\[b_{ij} = -\frac{1}{2}\left(\text{dist}_{ij}^2 - \text{dist}_{i\cdot}^2 - \text{dist}_{\cdot j}^2 + \text{dist}_{\cdot\cdot}^2\right)\]</div>
-<p>其中：
-- <span class="arithmatex">\(\text{dist}_{i\cdot}^2 = \frac{1}{m}\sum_{j=1}^m \text{dist}_{ij}^2\)</span>
-- <span class="arithmatex">\(\text{dist}_{\cdot j}^2 = \frac{1}{m}\sum_{i=1}^m \text{dist}_{ij}^2\)</span>
-- <span class="arithmatex">\(\text{dist}_{\cdot\cdot}^2 = \frac{1}{m^2}\|D\|_F^2\)</span></p>
-<ol>
-<li>
-<p>对 <span class="arithmatex">\(B\)</span> 进行特征值分解：<span class="arithmatex">\(B = V^T \Sigma V\)</span></p>
-</li>
-<li>
-<p>选取最大的前 <span class="arithmatex">\(k\)</span> 个特征值构成：<span class="arithmatex">\(Z = \Sigma^{1/2} \tilde{V}\)</span></p>
-</li>
-</ol>
-<p><span class="arithmatex">\(Z\)</span> 即为所求的降维结果。</p>
-<h3 id="12-pca">1.2 PCA 主成分分析</h3>
-<p>PCA 是降维界"最高的山"。核心思想：找一个超平面，使得所有样本点尽可能在这个超平面上，而且点在超平面上的投影分得特别开。</p>
-<p>这与 SVM 不同：SVM 想要把样本点"隔"开来，而 PCA 是想要把向量放在这个平面上，而且这些点分得尽可能开。</p>
-<p><strong>算法推导：</strong></p>
-<p>对样本点进行归一化，得到样本 <span class="arithmatex">\(\{x_n\}\)</span>。假设经过坐标变换得到新坐标系 <span class="arithmatex">\(\{\omega_i\}\)</span>，共 <span class="arithmatex">\(d\)</span> 个向量。</p>
-<p>投影坐标：<span class="arithmatex">\(x_i = \sum_{j=1}^d z_{ji} \omega_j\)</span></p>
-<p>取前 <span class="arithmatex">\(d'\)</span> 个分量：<span class="arithmatex">\(x_i' = \sum_{j=1}^{d'} z_{ji} \omega_j\)</span></p>
-<p>目标：让 <span class="arithmatex">\(\sum_{i=1}^n \|x_i' - x_i\|_2^2\)</span> 尽可能小</p>
-<p>设 <span class="arithmatex">\(W = [w_1, w_2, \ldots, w_{d'}]\)</span>，<span class="arithmatex">\(z = [z_1, z_2, \ldots, z_{d'}]^T\)</span></p>
-<div class="arithmatex">\[\|Wz - x\|_2^2 = z^T W^T W z - 2x_i^T W z + \|x_i\|^2\]</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+    b_{ij} = -\frac{1}{2}\left(\text{dist}_{ij}^2 - \text{dist}_{i\cdot}^2 - \text{dist}_{\cdot j}^2 + \text{dist}_{\cdot\cdot}^2\right)
+其中：
+- $\text{dist}_{i\cdot}^2 = \frac{1}{m}\sum_{j=1}^m \text{dist}_{ij}^2$
+- $\text{dist}_{\cdot j}^2 = \frac{1}{m}\sum_{i=1}^m \text{dist}_{ij}^2$
+- $\text{dist}_{\cdot\cdot}^2 = \frac{1}{m^2}\|D\|_F^2$
+
+3. 对 $B$ 进行特征值分解：$B = V^T \Sigma V$
+
+4. 选取最大的前 $k$ 个特征值构成：$Z = \Sigma^{1/2} \tilde{V}$
+
+$Z$ 即为所求的降维结果。
+
+### 1.2 PCA 主成分分析
+
+PCA 是降维界"最高的山"。核心思想：找一个超平面，使得所有样本点尽可能在这个超平面上，而且点在超平面上的投影分得特别开。
+
+这与 SVM 不同：SVM 想要把样本点"隔"开来，而 PCA 是想要把向量放在这个平面上，而且这些点分得尽可能开。
+
+**算法推导：**
+
+对样本点进行归一化，得到样本 $\{x_n\}$。假设经过坐标变换得到新坐标系 $\{\omega_i\}$，共 $d$ 个向量。
+
+投影坐标：$x_i = \sum_{j=1}^d z_{ji} \omega_j$
+
+取前 $d'$ 个分量：$x_i' = \sum_{j=1}^{d'} z_{ji} \omega_j$
+
+目标：让 $\sum_{i=1}^n \|x_i' - x_i\|_2^2$ 尽可能小
+
+设 $W = [w_1, w_2, \ldots, w_{d'}]$，$z = [z_1, z_2, \ldots, z_{d'}]^T$
+
+```math
+\|Wz - x\|_2^2 = z^T W^T W z - 2x_i^T W z + \|x_i\|^2
+</script>
+</div>
 <p>去掉常数，即最小化：<span class="arithmatex">\(\sum_{i=1}^n z_i^T z_i - 2\sum_{i=1}^n x_i^T W z_i\)</span></p>
 <p>由 <span class="arithmatex">\(z_i = W x_i\)</span>，原式化为：</p>
-<div class="arithmatex">\[\min -\text{tr}(W^T X X^T W)\]</div>
-<p>其中 <span class="arithmatex">\(X = [x_1, x_2, \ldots, x_n]\)</span>，且 <span class="arithmatex">\(W^T W = I\)</span>（正交约束）。</p>
-<p><strong>结论</strong>：选取 <span class="arithmatex">\(X X^T\)</span> 的最大特征值，<span class="arithmatex">\(w\)</span> 依次选取特征向量。</p>
-<p><strong>PCA 的局限</strong>：
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+    \min -\text{tr}(W^T X X^T W)
+其中 $X = [x_1, x_2, \ldots, x_n]$，且 $W^T W = I$（正交约束）。
+
+**结论**：选取 $X X^T$ 的最大特征值，$w$ 依次选取特征向量。
+
+**PCA 的局限**：
 - 高维投影或许本身具有特定的结构
 - 损失了一维的信息
-- 低维嵌入是线性的近似，维度之间可能没有线性关系</p>
-<h3 id="13-pca">1.3 核 PCA</h3>
-<p>采用非线性映射 <span class="arithmatex">\(\phi\)</span>，将非线性分布的数据投影到超平面上：</p>
-<div class="arithmatex">\[\min -\text{tr}(W^T X X^T W), \quad X = [\phi(x_1), \phi(x_2), \ldots, \phi(x_n)]\]</div>
+- 低维嵌入是线性的近似，维度之间可能没有线性关系
+
+### 1.3 核 PCA
+
+采用非线性映射 $\phi$，将非线性分布的数据投影到超平面上：
+
+```math
+\min -\text{tr}(W^T X X^T W), \quad X = [\phi(x_1), \phi(x_2), \ldots, \phi(x_n)]
+</script>
+</div>
 <h3 id="14">1.4 流形学习</h3>
 <p>非线性问题主要解决：将高维数据投影到低维平面，所生成的很多路径实际上是"不可达的"。就像是一根螺旋线，投影到地面上就是重叠，但是在三维上仍有信息，但毕竟这根线依然是一维的，我们实际上可以"贴地走"，把这种距离信息保留下来。</p>
 <p><strong>等度量嵌入（Isomap）</strong>：</p>
@@ -2933,10 +2721,17 @@
 </ol>
 <p><strong>局部线性嵌入（LLE）</strong>：</p>
 <p>假设数据被前 <span class="arithmatex">\(k\)</span> 个数据线性表示，即需要得到一组权重：</p>
-<div class="arithmatex">\[\min_w \sum_{i=1}^n \left\|x_i - \sum_{j=1}^n w_{ij} x_j\right\|\]</div>
-<p>其中 <span class="arithmatex">\(w_{ij}\)</span> 满足稀疏性条件，仅在离 <span class="arithmatex">\(x_i\)</span> 最近的 <span class="arithmatex">\(k\)</span> 个点处赋值，且 <span class="arithmatex">\(\sum_{j \in Q_i} w_{ij} = 1\)</span>。</p>
-<p>降维后依然能被线性表示：</p>
-<div class="arithmatex">\[\min_z \sum_{i=1}^n \left\|z_i - \sum_{j=1}^n w_{ij} z_j\right\|, \quad Z^T Z = I\]</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+    \min_w \sum_{i=1}^n \left\|x_i - \sum_{j=1}^n w_{ij} x_j\right\|
+其中 $w_{ij}$ 满足稀疏性条件，仅在离 $x_i$ 最近的 $k$ 个点处赋值，且 $\sum_{j \in Q_i} w_{ij} = 1$。
+
+降维后依然能被线性表示：
+
+```math
+\min_z \sum_{i=1}^n \left\|z_i - \sum_{j=1}^n w_{ij} z_j\right\|, \quad Z^T Z = I
+</script>
+</div>
 <p>转化为：<span class="arithmatex">\(\min \text{tr}(Z^T M Z)\)</span>，其中 <span class="arithmatex">\(M = (I - W^T)(I - W)\)</span>。</p>
 <h3 id="15">1.5 度量学习</h3>
 <p>降维的目的是正确认识数据，用更简单的方法衡量之间的关系。这实际上就是要靠**度量**。</p>
@@ -2947,9 +2742,15 @@
 2. <span class="arithmatex">\(k\)</span> 的大小 —— <span class="arithmatex">\(k\)</span> 越大，误差越大，方差相对减小；<span class="arithmatex">\(k\)</span> 越小，模型越"复杂"，越容易捕获复杂边界</p>
 <p><strong>近邻成分分析（NCA）</strong>：</p>
 <p>兼听则明，不均等听取少数人的建议：</p>
-<div class="arithmatex">\[p_{ij} = \frac{\exp(-\|x_i - x_j\|_M)}{\sum_{l=1}^m \exp(-\|x_i - x_l\|_M)}\]</div>
-<p>第 <span class="arithmatex">\(i\)</span> 个样本分类正确的概率：</p>
-<div class="arithmatex">\[p_i = \sum_{j \in \Omega_i} p_{ij}\]</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+    p_{ij} = \frac{\exp(-\|x_i - x_j\|_M)}{\sum_{l=1}^m \exp(-\|x_i - x_l\|_M)}
+第 $i$ 个样本分类正确的概率：
+
+```math
+p_i = \sum_{j \in \Omega_i} p_{ij}
+</script>
+</div>
 <p>目标：<span class="arithmatex">\(\arg\min_M 1 - \sum_{i=1}^n \sum_{j \in \Omega_i} p_{ij}\)</span></p>
 <p>即适当选取度量：<span class="arithmatex">\(\|x\|_M = \sqrt{x^T M x}\)</span>。</p>
 <hr />
@@ -2959,34 +2760,27 @@
 2. 一个个把不重要的特征筛掉</p>
 <p>这是一种贪心的策略，因为 <span class="arithmatex">\(n\)</span> 个数据中找最优的 <span class="arithmatex">\(k\)</span> 个是 NP-hard 操作。</p>
 <p><strong>信息增益</strong>：</p>
-<div class="arithmatex">\[\text{Gain}(D, a) = \text{Ent}(D) - \sum_{v} \frac{|D^v|}{|D|} \text{Ent}(D^v)\]</div>
-<h3 id="21">2.1 特征筛选策略</h3>
-<table>
-<thead>
-<tr>
-<th>策略</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Filter</td>
-<td>过滤式，先特征选择再训练</td>
-</tr>
-<tr>
-<td>Wrapper</td>
-<td>包裹式，用学习器性能作为评价</td>
-</tr>
-<tr>
-<td>Embedding</td>
-<td>嵌入式，训练过程中自动选择</td>
-</tr>
-</tbody>
-</table>
-<h3 id="22-l1">2.2 嵌入式特征选择（L1 正则化）</h3>
-<p>通过直接采取某种损失函数的操作间接实现"减少特征数目"的效果。采取 <span class="arithmatex">\(L^1\)</span> 正则会让最终选取的结果落在边界上，实现减小特征的操作。</p>
-<p>对于线性回归问题：</p>
-<div class="arithmatex">\[\min \|y_i - w x_i\|_2^2 + \lambda \|w\|_1\]</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+    \text{Gain}(D, a) = \text{Ent}(D) - \sum_{v} \frac{|D^v|}{|D|} \text{Ent}(D^v)
+### 2.1 特征筛选策略
+
+| 策略 | 说明 |
+|------|------|
+| Filter | 过滤式，先特征选择再训练 |
+| Wrapper | 包裹式，用学习器性能作为评价 |
+| Embedding | 嵌入式，训练过程中自动选择 |
+
+### 2.2 嵌入式特征选择（L1 正则化）
+
+通过直接采取某种损失函数的操作间接实现"减少特征数目"的效果。采取 $L^1$ 正则会让最终选取的结果落在边界上，实现减小特征的操作。
+
+对于线性回归问题：
+
+```math
+\min \|y_i - w x_i\|_2^2 + \lambda \|w\|_1
+</script>
+</div>
 <p>几乎任何问题都可以塞入一个 <span class="arithmatex">\(L_1\)</span> 正则项，但问题会变得难解很多。</p>
 <p><strong>近端梯度下降（Proximal Gradient Descent）</strong>：</p>
 <ol>
@@ -2997,12 +2791,21 @@
 <p>在 <span class="arithmatex">\(w\)</span> 的领域内选取极小化：</p>
 </li>
 </ol>
-<div class="arithmatex">\[w_{t+1} = \arg\min_w \frac{1}{2\eta} \|w - z_t\|_2^2 + \lambda \|w\|_1\]</div>
-<p>转化为一个一维的问题，每个 <span class="arithmatex">\(w\)</span> 的分量都是独立的。</p>
-<h3 id="23">2.3 稀疏表示与字典学习</h3>
-<p>预先假定数据分布是"稀疏"的，只有少数几个 basis 组成。</p>
-<p><strong>模型</strong>：</p>
-<div class="arithmatex">\[\min_{B, \alpha} \|x_i - B \alpha_i\|_2^2 + \lambda_i \|\alpha_i\|_1\]</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+    w_{t+1} = \arg\min_w \frac{1}{2\eta} \|w - z_t\|_2^2 + \lambda \|w\|_1
+转化为一个一维的问题，每个 $w$ 的分量都是独立的。
+
+### 2.3 稀疏表示与字典学习
+
+预先假定数据分布是"稀疏"的，只有少数几个 basis 组成。
+
+**模型**：
+
+```math
+\min_{B, \alpha} \|x_i - B \alpha_i\|_2^2 + \lambda_i \|\alpha_i\|_1
+</script>
+</div>
 <p>其中：
 - <span class="arithmatex">\(B \in \mathbb{R}^{d \times k}\)</span> 是字典矩阵
 - 每个 <span class="arithmatex">\(n\)</span> 维向量 <span class="arithmatex">\(x_i\)</span> 由 <span class="arithmatex">\(B\)</span> 的 <span class="arithmatex">\(k\)</span> 个字符线性组合而成

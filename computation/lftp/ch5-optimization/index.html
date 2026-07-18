@@ -1669,118 +1669,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -2835,331 +2723,416 @@
 <h2 id="1">1. 梯度下降</h2>
 <h3 id="11">1.1 算法定义</h3>
 <p>设目标函数为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \min_{x\in\mathbb R^d} f(x).
-\]</div>
+</script>
+</div>
 <p>给定初始点 <span class="arithmatex">\(x_0\)</span>，梯度下降迭代为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 x_{k+1}=x_k-\alpha_k\nabla f(x_k),
 \qquad k=0,1,\ldots,
-\]</div>
+</script>
+</div>
 <p>其中 <span class="arithmatex">\(\alpha_k&gt;0\)</span> 为步长。</p>
 <p>为什么选择负梯度方向作为下降方向？</p>
 <p>关键在于：如果 <span class="arithmatex">\(\nabla f\)</span> 是 <span class="arithmatex">\(L\)</span>-Lipschitz 连续的，即
-$$
-|\nabla f(x)-\nabla f(y)|_2\le L|x-y|_2,
-$$</p>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\|\nabla f(x)-\nabla f(y)\|_2\le L\|x-y\|_2,
+</script>
+</div></p>
 <p>注：对于二阶可微的情况下，这等价于Hesse阵的2范数小于等于L</p>
 <p>那么由下降引理（descent lemma），对任意 <span class="arithmatex">\(x,y\in\mathbb R^d\)</span>，都有
-$$
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f(y)
 \le
 f(x)+\langle \nabla f(x),y-x\rangle
-+\frac L2|y-x|_2^2.
-$$</p>
++\frac L2\|y-x\|_2^2.
+</script>
+</div></p>
 <p>令</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 y=x-\alpha\nabla f(x),
-\]</div>
+</script>
+</div>
 <p>则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 f(y)
-&amp;\le
+&\le
 f(x)-\alpha\|\nabla f(x)\|_2^2
 +\frac{L\alpha^2}{2}\|\nabla f(x)\|_2^2\\
-&amp;=
+&=
 f(x)-\alpha\left(1-\frac{L\alpha}{2}\right)
 \|\nabla f(x)\|_2^2.
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>因此，只要下降的步长足够小，在此处可以写为<span class="arithmatex">\(0&lt;\alpha_k&lt;\frac{2}{L}\)</span></p>
 <p>就有</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f(x_{k+1})\le f(x_k).
-\]</div>
+</script>
+</div>
 <h3 id="12">1.2 梯度范数的次线性收敛</h3>
 <p>将上面的下降不等式应用于梯度下降，并对 <span class="arithmatex">\(k&lt;t\)</span> 求和：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
-\sum_{k&lt;t}
+\sum_{k<t}
 \alpha_k\left(1-\frac{L\alpha_k}{2}\right)
 \|\nabla f(x_k)\|_2^2
-&amp;\le
-\sum_{k&lt;t}\bigl(f(x_k)-f(x_{k+1})\bigr)\\
-&amp;=f(x_0)-f(x_t).
+&\le
+\sum_{k<t}\bigl(f(x_k)-f(x_{k+1})\bigr)\\
+&=f(x_0)-f(x_t).
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>若取常数步长</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \alpha_k=\alpha\in\left(0,\frac{2}{L}\right),
-\]</div>
+</script>
+</div>
 <p>则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
-\min_{k&lt;t}\|\nabla f(x_k)\|_2^2
-&amp;\le
-\frac1t\sum_{k&lt;t}\|\nabla f(x_k)\|_2^2\\
-&amp;\le
+\min_{k<t}\|\nabla f(x_k)\|_2^2
+&\le
+\frac1t\sum_{k<t}\|\nabla f(x_k)\|_2^2\\
+&\le
 \frac{2}{t\alpha(2-\alpha L)}
 \bigl(f(x_0)-f(x_t)\bigr)\\
-&amp;\le
+&\le
 \frac{2}{t\alpha(2-\alpha L)}
 \bigl(f(x_0)-f(x^*)\bigr).
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>对 <span class="arithmatex">\(\alpha\)</span> 优化可得 <span class="arithmatex">\(\alpha=1/L\)</span>，于是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
-\min_{k&lt;t}\|\nabla f(x_k)\|_2^2
+\min_{k<t}\|\nabla f(x_k)\|_2^2
 \le
 \frac{2L}{t}\bigl(f(x_0)-f(x^*)\bigr)
 }.
-\]</div>
+</script>
+</div>
 <p>这里并没有使用凸性。因此，对一般光滑非凸函数，梯度下降至少可以保证在 <span class="arithmatex">\(O(1/t)\)</span> 的意义下找到近似驻点。</p>
 <h3 id="13-mm">1.3 MM 算法视角</h3>
 <p>梯度下降也可以放在 MM（Majorization-Minimization）框架中理解。构造代理函数</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 M(x,y)
 =
 f(x)+\langle\nabla f(x),y-x\rangle
 +\frac L2\|y-x\|_2^2.
-\]</div>
+</script>
+</div>
 <p>由下降引理，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 M(x,y)\ge f(y),
 \qquad
 M(x,x)=f(x).
-\]</div>
+</script>
+</div>
 <p>然后令</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 x_{k+1}\in\arg\min_y M(x_k,y).
-\]</div>
+</script>
+</div>
 <p>对 <span class="arithmatex">\(M(x_k,y)\)</span> 关于 <span class="arithmatex">\(y\)</span> 求最小值，便得到</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 x_{k+1}=x_k-\frac1L\nabla f(x_k).
-\]</div>
+</script>
+</div>
 <hr />
 <p>当然，我们关于梯度下降算法，例如牛顿法，拟牛顿法等部分放在了优化对应的部分，还附上了一些数值实验。</p>
 <h2 id="2">2. 不要求凸性时的函数值收敛</h2>
 <h3 id="21">2.1 一个广义星凸条件</h3>
 <p>假设存在 <span class="arithmatex">\(\gamma&gt;0\)</span>，使得</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \langle\nabla f(x),x-x^*\rangle
 \ge
 \gamma\bigl(f(x)-f(x^*)\bigr).
 \tag{1}
-\]</div>
+</script>
+</div>
 <p>由 Cauchy--Schwarz 不等式，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \gamma\bigl(f(x)-f(x^*)\bigr)
 \le
 \langle\nabla f(x),x-x^*\rangle
 \le
 \|\nabla f(x)\|_2\|x-x^*\|_2.
-\]</div>
+</script>
+</div>
 <p>采用步长 <span class="arithmatex">\(1/L\)</span>：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 x_{k+1}=x_k-\frac1L\nabla f(x_k).
-\]</div>
+</script>
+</div>
 <p>记</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \varepsilon_k=f(x_k)-f(x^*),
-\]</div>
+</script>
+</div>
 <p>并定义初始水平集半径</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 R=
 \max_{f(x)\le f(x_0)}\|x-x^*\|_2.
-\]</div>
+</script>
+</div>
 <p>由于函数值单调下降，所有 <span class="arithmatex">\(x_k\)</span> 都位于该水平集内。因此，由条件 (1)，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \varepsilon_k
 \le
 \frac1\gamma\|x_k-x^*\|_2\|\nabla f(x_k)\|_2
 \le
 \frac R\gamma\|\nabla f(x_k)\|_2.
-\]</div>
+</script>
+</div>
 <p>另一方面，由下降引理，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f(x_{k+1})
 \le
 f(x_k)-\frac1{2L}\|\nabla f(x_k)\|_2^2.
-\]</div>
+</script>
+</div>
 <p>于是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \varepsilon_{k+1}
 \le
 \varepsilon_k-
 \frac1{2L}
 \left(\frac{\gamma\varepsilon_k}{R}\right)^2.
-\]</div>
+</script>
+</div>
 <p>即</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \varepsilon_k-\varepsilon_{k+1}
 \ge
 \frac{\gamma^2}{2LR^2}\varepsilon_k^2.
-\]</div>
+</script>
+</div>
 <p>由于 <span class="arithmatex">\(\varepsilon_{k+1}\le\varepsilon_k\)</span>，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \frac1{\varepsilon_{k+1}}-
 \frac1{\varepsilon_k}
-&amp;=
+&=
 \frac{\varepsilon_k-\varepsilon_{k+1}}
 {\varepsilon_k\varepsilon_{k+1}}\\
-&amp;\ge
+&\ge
 \frac{\varepsilon_k-\varepsilon_{k+1}}
 {\varepsilon_k^2}\\
-&amp;\ge
+&\ge
 \frac{\gamma^2}{2LR^2}.
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>若 <span class="arithmatex">\(x^*\)</span> 是可微函数的极小点，则 <span class="arithmatex">\(\nabla f(x^*)=0\)</span>。再由 <span class="arithmatex">\(L\)</span>-光滑性，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \varepsilon_0
 =f(x_0)-f(x^*)
 \le
 \frac L2\|x_0-x^*\|_2^2
 \le
 \frac{LR^2}{2}.
-\]</div>
+</script>
+</div>
 <p>对 <span class="arithmatex">\(k=0,\ldots,t-1\)</span> 求和：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \frac1{\varepsilon_t}
-&amp;\ge
+&\ge
 \frac1{\varepsilon_0}
 +\frac{t\gamma^2}{2LR^2}\\
-&amp;\ge
+&\ge
 \frac{2}{LR^2}
 +\frac{t\gamma^2}{2LR^2}\\
-&amp;=
+&=
 \frac{\gamma^2t+4}{2LR^2}.
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>因此</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 f(x_t)-f(x^*)
 \le
 \frac{2LR^2}{\gamma^2t+4}
 =O\left(\frac1t\right)
 }.
-\]</div>
+</script>
+</div>
 <h3 id="22-pl">2.2 PL 条件与线性收敛</h3>
 <p>若希望函数值线性收敛，并不一定需要强凸性。一个常用条件是 Polyak--Łojasiewicz（PL）条件：存在 <span class="arithmatex">\(m&gt;0\)</span>，使得</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \|\nabla f(x)\|_2^2
 \ge
 2m\bigl(f(x)-f(x^*)\bigr),
 \qquad \forall x.
-\]</div>
+</script>
+</div>
 <p>结合步长 <span class="arithmatex">\(1/L\)</span> 时的下降不等式，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f(x_{k+1})
 \le
 f(x_k)-\frac1{2L}\|\nabla f(x_k)\|_2^2,
-\]</div>
+</script>
+</div>
 <p>可得</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f(x_{k+1})-f(x^*)
 \le
 \left(1-\frac mL\right)
 \bigl(f(x_k)-f(x^*)\bigr).
-\]</div>
+</script>
+</div>
 <p>因此</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 f(x_k)-f(x^*)
 \le
 \left(1-\frac mL\right)^k
 \bigl(f(x_0)-f(x^*)\bigr)
 }.
-\]</div>
+</script>
+</div>
 <p>PL 条件不蕴含凸性。例如，PPT 中给出的非凸例子是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f(x)=x^2+3\sin^2 x.
-\]</div>
+</script>
+</div>
 <p>PL 条件对于分析过参数化深度学习中的 GD 与 SGD 很重要。</p>
 <hr />
 <h2 id="3">3. 不可微优化与近端梯度</h2>
 <p>对于不可微但凸的函数，可以用次梯度代替梯度。例如，ReLU 在 <span class="arithmatex">\(x=0\)</span> 处不可微，但存在次梯度。</p>
 <p>需要注意的是，即使每一层所使用的函数本身是凸函数，函数复合后也未必保持凸性。因此，神经网络的整体优化问题通常仍然是非凸的。</p>
 <p>考虑复合优化问题</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \min_{x\in\mathbb R^d} F(x)
 =
 \min_{x\in\mathbb R^d}\bigl(f(x)+h(x)\bigr),
-\]</div>
+</script>
+</div>
 <p>其中 <span class="arithmatex">\(f\)</span> 光滑，<span class="arithmatex">\(h\)</span> 可以不可微。近端梯度下降为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 x_{k+1}
 =
 \operatorname{Prox}_{\alpha_k h}
 \bigl(x_k-\alpha_k\nabla f(x_k)\bigr)
 },
-\]</div>
+</script>
+</div>
 <p>其中</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \operatorname{Prox}_{\alpha h}(v)
 :=
 \arg\min_x
 \left\{
  h(x)+\frac1{2\alpha}\|x-v\|_2^2
 \right\}.
-\]</div>
+</script>
+</div>
 <hr />
 <h2 id="4-sgd">4. 近似梯度与 SGD 的基本不等式</h2>
 <p>考虑凸优化问题</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \min_{x\in\mathbb R^d}f(x),
-\]</div>
+</script>
+</div>
 <p>并采用近似梯度迭代</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 x_{k+1}=x_k-\alpha_k g_k,
-\]</div>
+</script>
+</div>
 <p>其中 <span class="arithmatex">\(g_k\)</span> 是 <span class="arithmatex">\(\nabla f(x_k)\)</span> 的近似。</p>
 <h3 id="41-key-step">4.1 Key step</h3>
 <p>取常数步长 <span class="arithmatex">\(\alpha_k=\alpha\)</span>。对任意比较点 <span class="arithmatex">\(z\)</span>，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \|x_{k+1}-z\|_2^2
-&amp;=
+&=
 \|x_k-\alpha g_k-z\|_2^2\\
-&amp;=
+&=
 \|x_k-z\|_2^2
 -2\alpha\langle g_k,x_k-z\rangle
 +\alpha^2\|g_k\|_2^2\\
-&amp;=
+&=
 \|x_k-z\|_2^2
 +2\alpha
 \langle g_k-\nabla f(x_k)+\nabla f(x_k),z-x_k\rangle
 +\alpha^2\|g_k\|_2^2.
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>由凸性，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \langle\nabla f(x_k),z-x_k\rangle
 \le
 f(z)-f(x_k).
-\]</div>
+</script>
+</div>
 <p>定义误差项</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \varepsilon_k
 :=
 \langle g_k-\nabla f(x_k),z-x_k\rangle.
-\]</div>
+</script>
+</div>
 <p>于是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \|x_{k+1}-z\|_2^2
 \le
 \|x_k-z\|_2^2
 +2\alpha\bigl(f(z)-f(x_k)+\varepsilon_k\bigr)
 +\alpha^2\|g_k\|_2^2.
-\]</div>
+</script>
+</div>
 <p>整理得到基本不等式：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 f(x_k)
 \le
@@ -3169,124 +3142,154 @@ f(z)
 +\varepsilon_k
 +\frac\alpha2\|g_k\|_2^2
 }.
-\]</div>
+</script>
+</div>
 <h3 id="42">4.2 平均迭代点的误差界</h3>
 <p>设</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 G=
 \max_k\max\bigl\{
 \|g_k\|_2,
 \|\nabla f(x_k)\|_2
 \bigr\},
-\]</div>
+</script>
+</div>
 <p>并取</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \alpha=\frac c{\sqrt t}.
-\]</div>
+</script>
+</div>
 <p>定义平均迭代点</p>
-<div class="arithmatex">\[
-\bar x_t=\frac1t\sum_{k&lt;t}x_k.
-\]</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\bar x_t=\frac1t\sum_{k<t}x_k.
+</script>
+</div>
 <p>将基本不等式对 <span class="arithmatex">\(k&lt;t\)</span> 求和，再利用凸性，得到</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 f(\bar x_t)
-&amp;\le
-\frac1t\sum_{k&lt;t}f(x_k)\\
-&amp;\le
+&\le
+\frac1t\sum_{k<t}f(x_k)\\
+&\le
 f(z)
 +\frac{\|x_0-z\|_2^2}{2c\sqrt t}
 +\frac{cG^2}{2\sqrt t}
-+\frac1t\sum_{k&lt;t}\varepsilon_k.
++\frac1t\sum_{k<t}\varepsilon_k.
 \end{aligned}
-\]</div>
+</script>
+</div>
 <hr />
 <h2 id="5-sgd">5. SGD 的鞅差误差项</h2>
 <p>SGD 中假设随机梯度满足无偏性：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E\!\left[g_k\mid\mathcal F_{k-1}\right]
 =
 \nabla f(x_k),
-\]</div>
+</script>
+</div>
 <p>其中 <span class="arithmatex">\(\mathcal F_{k-1}\)</span> 表示第 <span class="arithmatex">\(k\)</span> 次采样前的历史信息。</p>
 <p>由于 <span class="arithmatex">\(x_k\)</span> 对 <span class="arithmatex">\(\mathcal F_{k-1}\)</span> 可测，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \mathbb E\!\left[\varepsilon_k\mid\mathcal F_{k-1}\right]
-&amp;=
+&=
 \mathbb E\!\left[
 \langle g_k-\nabla f(x_k),z-x_k\rangle
 \mid\mathcal F_{k-1}
 \right]\\
-&amp;=
+&=
 \left\langle
 \mathbb E\!\left[g_k-\nabla f(x_k)
 \mid\mathcal F_{k-1}\right],
  z-x_k
 \right\rangle\\
-&amp;=0.
+&=0.
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>因此 <span class="arithmatex">\(\{\varepsilon_k\}\)</span> 是鞅差序列，并且</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E[\varepsilon_k]=0.
-\]</div>
+</script>
+</div>
 <p>若</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 D=\max_k\|x_k-z\|_2,
-\]</div>
+</script>
+</div>
 <p>则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 |\varepsilon_k|
-&amp;\le
+&\le
 \|g_k-\nabla f(x_k)\|_2\|z-x_k\|_2\\
-&amp;\le
+&\le
 2GD
 =:B.
 \end{aligned}
-\]</div>
+</script>
+</div>
 <h3 id="51">5.1 高概率界</h3>
 <p>由条件 Hoeffding 引理，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E\!\left[e^{\lambda\varepsilon_k}
 \mid\mathcal F_{k-1}\right]
 \le
 \exp\left(\frac{\lambda^2B^2}{2}\right).
-\]</div>
+</script>
+</div>
 <p>递推可得</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E\exp\left(
-\lambda\sum_{k&lt;t}\varepsilon_k
+\lambda\sum_{k<t}\varepsilon_k
 \right)
 \le
 \exp\left(\frac{\lambda^2tB^2}{2}\right).
-\]</div>
+</script>
+</div>
 <p>因此，对任意 <span class="arithmatex">\(s&gt;0\)</span>，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \mathbb P\left(
-\sum_{k&lt;t}\varepsilon_k\ge s
+\sum_{k<t}\varepsilon_k\ge s
 \right)
-&amp;\le
+&\le
 \exp\left(-\lambda s+
 \frac{\lambda^2tB^2}{2}\right)\\
-&amp;\le
+&\le
 \exp\left(-\frac{s^2}{2tB^2}\right),
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>其中最后一步取</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \lambda=\frac{s}{tB^2}.
-\]</div>
+</script>
+</div>
 <p>令右端等于 <span class="arithmatex">\(\delta\)</span>，则以至少 <span class="arithmatex">\(1-\delta\)</span> 的概率，</p>
-<div class="arithmatex">\[
-\sum_{k&lt;t}\varepsilon_k
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\sum_{k<t}\varepsilon_k
 \le
 B\sqrt{2t\log\frac1\delta}.
-\]</div>
+</script>
+</div>
 <p>取 <span class="arithmatex">\(z=x^*\)</span>，可得</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 f(\bar x_t)-f^*
 \le
@@ -3294,81 +3297,102 @@ f(\bar x_t)-f^*
 +\frac{cG^2}{2\sqrt t}
 +B\sqrt{\frac{2\log(1/\delta)}{t}}
 }
-\]</div>
+</script>
+</div>
 <p>以至少 <span class="arithmatex">\(1-\delta\)</span> 的概率成立。</p>
 <h3 id="52">5.2 期望界</h3>
 <p>由塔式法则，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E[\varepsilon_k]
 =
 \mathbb E\!\left[
 \mathbb E[\varepsilon_k\mid\mathcal F_{k-1}]
 \right]
 =0.
-\]</div>
+</script>
+</div>
 <p>因此</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \mathbb E\bigl[f(\bar x_t)-f^*\bigr]
 \le
 \frac{\|x_0-x^*\|_2^2}{2c\sqrt t}
 +\frac{cG^2}{2\sqrt t}
 }.
-\]</div>
+</script>
+</div>
 <p>这给出了凸情形下 SGD 的典型 <span class="arithmatex">\(O(t^{-1/2})\)</span> 收敛率。</p>
 <hr />
 <h2 id="6-sgd">6. SGD 在经验风险最小化中的形式</h2>
 <h3 id="61-erm">6.1 有限样本 ERM</h3>
 <p>经验风险最小化可以写成</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \min_x f(x),
 \qquad
 f(x)=\sum_{i=1}^n f_i(x),
-\]</div>
+</script>
+</div>
 <p>其中</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f_i(x)
 =
 \frac1n\ell\bigl(Y_i,\phi_x(X_i)\bigr),
-\]</div>
+</script>
+</div>
 <p>且 <span class="arithmatex">\((X_i,Y_i)\)</span> 是来自分布 <span class="arithmatex">\(P\)</span> 的 i.i.d. 样本。</p>
 <p>在第 <span class="arithmatex">\(k\)</span> 次迭代中，以概率</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb P(i_k=j)=p_j
-\]</div>
+</script>
+</div>
 <p>抽取样本指标 <span class="arithmatex">\(i_k\)</span>，并令</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 g_k
 =
 \frac{\nabla f_{i_k}(x_k)}{p_{i_k}}.
-\]</div>
+</script>
+</div>
 <p>则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E[g_k\mid x_k]
 =
 \sum_{j=1}^np_j
 \frac{\nabla f_j(x_k)}{p_j}
 =
 \nabla f(x_k).
-\]</div>
+</script>
+</div>
 <h3 id="62">6.2 总体风险最小化</h3>
 <p>总体风险写为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \min_x f(x)
 =
 \mathbb E_{(X,Y)\sim P}
 \bigl[\ell(\phi_x(X),Y)\bigr].
-\]</div>
+</script>
+</div>
 <p>第 <span class="arithmatex">\(k\)</span> 次迭代抽取</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 (X_k,Y_k)\sim P,
-\]</div>
+</script>
+</div>
 <p>并令</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 g_k
 =
 \nabla_x\ell\bigl(\phi_{x_k}(X_k),Y_k\bigr).
-\]</div>
+</script>
+</div>
 <hr />
 <h2 id="7-sgd">7. 强凸条件下的 SGD</h2>
 <p>假设：</p>
@@ -3377,25 +3401,30 @@ g_k
 <li><span class="arithmatex">\(\nabla f\)</span> 是 <span class="arithmatex">\(L\)</span>-Lipschitz 连续的；</li>
 <li>随机梯度满足</li>
 </ol>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E\|g(x)\|_2^2
 \le
 G^2+M_f\|\nabla f(x)\|_2^2.
-\]</div>
+</script>
+</div>
 <p>取常数步长 <span class="arithmatex">\(\alpha_k=\alpha\)</span>。有</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \|x_{k+1}-x^*\|_2^2
-&amp;=
+&=
 \|x_k-\alpha g_k-x^*\|_2^2\\
-&amp;=
+&=
 \|x_k-x^*\|_2^2
 -2\alpha\langle g_k,x_k-x^*\rangle
 +\alpha^2\|g_k\|_2^2.
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>对于 <span class="arithmatex">\(m\)</span>-强凸且 <span class="arithmatex">\(L\)</span>-光滑的函数，有强化余单调不等式</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \langle\nabla f(x)-\nabla f(y),x-y\rangle
 \ge
@@ -3404,52 +3433,64 @@ G^2+M_f\|\nabla f(x)\|_2^2.
 \frac1{m+L}
 \|\nabla f(x)-\nabla f(y)\|_2^2
 }.
-\]</div>
+</script>
+</div>
 <p>令 <span class="arithmatex">\(y=x^*\)</span>，并使用 <span class="arithmatex">\(\nabla f(x^*)=0\)</span>，得到</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \langle\nabla f(x_k),x_k-x^*\rangle
 \ge
 \frac{mL}{m+L}\|x_k-x^*\|_2^2
 +
 \frac1{m+L}\|\nabla f(x_k)\|_2^2.
-\]</div>
+</script>
+</div>
 <p>对递推式取期望：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \mathbb E\|x_{k+1}-x^*\|_2^2
-&amp;\le
+&\le
 \left(1-\frac{2mL\alpha}{m+L}\right)
 \mathbb E\|x_k-x^*\|_2^2\\
-&amp;\quad
+&\quad
 +\alpha^2G^2\\
-&amp;\quad
+&\quad
 +\left(
 \alpha^2M_f-
 \frac{2\alpha}{m+L}
 \right)
 \mathbb E\|\nabla f(x_k)\|_2^2.
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>若选择</p>
-<div class="arithmatex">\[
-0&lt;\alpha
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+0<\alpha
 \le
 \frac{2}{(m+L)M_f},
-\]</div>
+</script>
+</div>
 <p>则最后一项非正。又因为 <span class="arithmatex">\(L\ge m\)</span>，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac{2mL}{m+L}\ge m,
-\]</div>
+</script>
+</div>
 <p>从而</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E\|x_{k+1}-x^*\|_2^2
 \le
 (1-\alpha m)
 \mathbb E\|x_k-x^*\|_2^2
 +\alpha^2G^2.
-\]</div>
+</script>
+</div>
 <p>递推得到</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \mathbb E\|x_k-x^*\|_2^2
 \le
@@ -3457,13 +3498,16 @@ G^2+M_f\|\nabla f(x)\|_2^2.
 +
 \frac{\alpha G^2}{m}
 }.
-\]</div>
+</script>
+</div>
 <p>这说明：使用常数步长时，SGD 在初期呈线性收敛，但最终只能收敛到一个半径由 <span class="arithmatex">\(\alpha G^2/m\)</span> 控制的噪声邻域。若要继续提高精度，就需要减小步长或降低方差。</p>
 <h3 id="71-gd-sgd">7.1 GD 与 SGD 的计算复杂度比较</h3>
 <p>在强凸有限和问题中，令条件数</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \kappa=\frac Lm.
-\]</div>
+</script>
+</div>
 <p>典型复杂度可概括为：</p>
 <table>
 <thead>
@@ -3490,32 +3534,39 @@ G^2+M_f\|\nabla f(x)\|_2^2.
 </tbody>
 </table>
 <p>因此，当样本量 <span class="arithmatex">\(n\)</span> 很大且只要求中等精度时，SGD 往往更有吸引力。粗略地说，当</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac1\varepsilon
-&lt;
+<
 n\kappa\log\frac1\varepsilon
-\]</div>
+</script>
+</div>
 <p>时，SGD 的总计算量可能小于 GD。</p>
 <hr />
 <h2 id="8-svrg">8. 方差缩减：SVRG</h2>
 <h3 id="81">8.1 控制变量思想</h3>
 <p>设</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 Z_\theta
 =
 X-\theta\bigl(Y-\mathbb E[Y]\bigr).
-\]</div>
+</script>
+</div>
 <p>则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \operatorname{Var}(Z_\theta)
 =
 \operatorname{Var}(X)
 +\theta^2\operatorname{Var}(Y)
 -2\theta\operatorname{Cov}(X,Y).
-\]</div>
+</script>
+</div>
 <p>如果 <span class="arithmatex">\(Y\)</span> 与 <span class="arithmatex">\(X\)</span> 正相关，并且 <span class="arithmatex">\(\mathbb E[Y]\)</span> 容易计算，就可以通过适当选择 <span class="arithmatex">\(\theta\)</span> 降低方差。</p>
 <p>SVRG（Johnson--Zhang, 2013）使用</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 X=
 \frac{\nabla f_{i_k}(x_k)}{p_{i_k}},
 \qquad
@@ -3523,41 +3574,52 @@ Y=
 \frac{\nabla f_{i_k}(\tilde x)}{p_{i_k}},
 \qquad
 \theta=1,
-\]</div>
+</script>
+</div>
 <p>其中 <span class="arithmatex">\(\tilde x\)</span> 是外层循环中保存的快照点，并且</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E[Y]=\nabla f(\tilde x).
-\]</div>
+</script>
+</div>
 <h3 id="82-svrg">8.2 SVRG 算法</h3>
 <p>考虑</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \min_x F(x)
 =
 f(x)+h(x),
 \qquad
 f(x)=\sum_{i=1}^n f_i(x).
-\]</div>
+</script>
+</div>
 <p>给定内层迭代次数 <span class="arithmatex">\(T\)</span>。在第 <span class="arithmatex">\(s\)</span> 个 epoch：</p>
 <ol>
 <li>从上一 epoch 的内层点中选取快照</li>
 </ol>
-<p>$$
-   \tilde x_{s-1}=x_{s-1,j},
-   \qquad
-   j\sim\operatorname{Unif}{0,\ldots,T-1}.
-   $$</p>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\tilde x_{s-1}=x_{s-1,j},
+\qquad
+j\sim\operatorname{Unif}\{0,\ldots,T-1\}.
+</script>
+</div>
 <ol>
 <li>计算全梯度</li>
 </ol>
-<p>$$
-   \tilde g_s=\nabla f(\tilde x_{s-1}).
-   $$</p>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\tilde g_s=\nabla f(\tilde x_{s-1}).
+</script>
+</div>
 <ol>
 <li>令</li>
 </ol>
-<p>$$
-   x_{s,0}=\tilde x_{s-1}.
-   $$</p>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+x_{s,0}=\tilde x_{s-1}.
+</script>
+</div>
 <ol>
 <li>
 <p>对 <span class="arithmatex">\(k=0,\ldots,T-1\)</span>：</p>
@@ -3567,30 +3629,34 @@ f(x)=\sum_{i=1}^n f_i(x).
 </li>
 <li>
 <p>计算</p>
-<p>$$
- g_{s,k}
- =
- \frac{\nabla f_{i_k}(x_{s,k})}{p_{i_k}},
- \qquad
- \tilde g_{s,k}
- =
- \frac{\nabla f_{i_k}(\tilde x_{s-1})}{p_{i_k}};
- $$</p>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+g_{s,k}
+=
+\frac{\nabla f_{i_k}(x_{s,k})}{p_{i_k}},
+\qquad
+\tilde g_{s,k}
+=
+\frac{\nabla f_{i_k}(\tilde x_{s-1})}{p_{i_k}};
+</script>
+</div>
 </li>
 <li>
 <p>更新</p>
-<p>$$
- \boxed{
- x_{s,k+1}
- =
- \operatorname{Prox}<em s_k="s,k">{\alpha h}
- \left(
- x</em>
- -\alpha
- \bigl(g_{s,k}-\tilde g_{s,k}+\tilde g_s\bigr)
- \right)
- }.
- $$</p>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\boxed{
+x_{s,k+1}
+=
+\operatorname{Prox}_{\alpha h}
+\left(
+x_{s,k}
+-\alpha
+\bigl(g_{s,k}-\tilde g_{s,k}+\tilde g_s\bigr)
+\right)
+}.
+</script>
+</div>
 </li>
 </ol>
 <p>每个 epoch 大约需要 <span class="arithmatex">\(n+2T\)</span> 次分量梯度计算。</p>
@@ -3603,95 +3669,120 @@ f(x)=\sum_{i=1}^n f_i(x).
 <li>暂取 <span class="arithmatex">\(h=0\)</span>。</li>
 </ul>
 <p>若 <span class="arithmatex">\(T\)</span> 足够大，并且</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \rho
 =
 \frac{1}{m\alpha(1-2L\alpha)T}
 +
 \frac{2L\alpha}{1-2L\alpha}
-&lt;1,
-\]</div>
+<1,
+</script>
+</div>
 <p>则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \mathbb E\bigl[f(\tilde x_s)-f^*\bigr]
 \le
 \rho^s
 \bigl(f(\tilde x_0)-f^*\bigr)
 }.
-\]</div>
+</script>
+</div>
 <p>例如，选择</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 T\ge\frac{9L}{m}=9\kappa,
 \qquad
 \alpha=\frac1{6L},
-\]</div>
+</script>
+</div>
 <p>可得</p>
-<div class="arithmatex">\[
-0&lt;\rho&lt;\frac56.
-\]</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+0<\rho<\frac56.
+</script>
+</div>
 <p>因此达到精度 <span class="arithmatex">\(\varepsilon\)</span> 需要</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 O\left(\log\frac1\varepsilon\right)
-\]</div>
+</script>
+</div>
 <p>个 epoch。若 <span class="arithmatex">\(T\asymp\max\{n,\kappa\}\)</span>，总计算成本为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 O\left(
 (n+\kappa)
 \log\frac1\varepsilon
 \right)
 }.
-\]</div>
+</script>
+</div>
 <p>相比之下，GD 的复杂度为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 O\left(
 n\kappa\log\frac1\varepsilon
 \right).
-\]</div>
+</script>
+</div>
 <hr />
 <h2 id="9-svrg">9. SVRG 收敛证明梗概</h2>
 <p>为简化记号，令</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 G_{s,k}
 =
 g_{s,k}-\tilde g_{s,k}+\tilde g_s,
-\]</div>
+</script>
+</div>
 <p>则内层更新为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 x_{s,k+1}=x_{s,k}-\alpha G_{s,k}.
-\]</div>
+</script>
+</div>
 <p>定义</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \varepsilon_{s,k}
 =
 \langle
 G_{s,k}-\nabla f(x_{s,k}),
  x^*-x_{s,k}
 \rangle.
-\]</div>
+</script>
+</div>
 <p>由构造可知</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E\!\left[G_{s,k}\mid\mathcal F_{s,k}\right]
 =
 \nabla f(x_{s,k}),
 \qquad
 \mathbb E[\varepsilon_{s,k}]=0.
-\]</div>
+</script>
+</div>
 <p>由前面的 key step，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \mathbb E\|x_{s,k+1}-x^*\|_2^2
-&amp;\le
+&\le
 \mathbb E\|x_{s,k}-x^*\|_2^2
 +2\alpha
 \mathbb E\bigl[f(x^*)-f(x_{s,k})\bigr]\\
-&amp;\quad
+&\quad
 +\alpha^2\mathbb E\|G_{s,k}\|_2^2.
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>SVRG 的核心是证明方差界</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \mathbb E\|G_{s,k}\|_2^2
 \le
@@ -3701,111 +3792,135 @@ G_{s,k}-\nabla f(x_{s,k}),
  +f(\tilde x_{s-1})-f(x^*)
 \right]
 }.
-\]</div>
+</script>
+</div>
 <p>于是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \mathbb E\|x_{s,k+1}-x^*\|_2^2
-&amp;\le
+&\le
 \mathbb E\|x_{s,k}-x^*\|_2^2\\
-&amp;\quad
+&\quad
 -2\alpha(1-2L\alpha)
 \mathbb E\bigl[f(x_{s,k})-f^*\bigr]\\
-&amp;\quad
+&\quad
 +4L\alpha^2
 \mathbb E\bigl[f(\tilde x_{s-1})-f^*\bigr].
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>对 <span class="arithmatex">\(k=0,\ldots,T-1\)</span> 求和，并使用</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 x_{s,0}=\tilde x_{s-1}
-\]</div>
+</script>
+</div>
 <p>以及强凸性给出的</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \|\tilde x_{s-1}-x^*\|_2^2
 \le
 \frac2m
 \bigl(f(\tilde x_{s-1})-f^*\bigr),
-\]</div>
+</script>
+</div>
 <p>可得</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 2\alpha(1-2L\alpha)T\,
 \mathbb E\bigl[f(\tilde x_s)-f^*\bigr]
-&amp;\le
+&\le
 \left(
 \frac2m+4LT\alpha^2
 \right)
 \mathbb E\bigl[f(\tilde x_{s-1})-f^*\bigr].
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>两边除以 <span class="arithmatex">\(2\alpha(1-2L\alpha)T\)</span>，便得到</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E\bigl[f(\tilde x_s)-f^*\bigr]
 \le
 \rho\,
 \mathbb E\bigl[f(\tilde x_{s-1})-f^*\bigr],
-\]</div>
+</script>
+</div>
 <p>其中</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \rho
 =
 \frac{1}{m\alpha(1-2L\alpha)T}
 +
 \frac{2L\alpha}{1-2L\alpha}.
-\]</div>
+</script>
+</div>
 <p>只要 <span class="arithmatex">\(\rho&lt;1\)</span>，就得到按 epoch 计算的线性收敛。</p>
 <h3 id="91">9.1 方差界的标准推导</h3>
 <p>在均匀采样或适当归一化的记号下，可将 <span class="arithmatex">\(G_{s,k}\)</span> 写成</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 G_{s,k}
-&amp;=
+&=
 \bigl(\nabla f_{i_k}(x_{s,k})-
 \nabla f_{i_k}(x^*)\bigr)\\
-&amp;\quad
+&\quad
 -
 \bigl(\nabla f_{i_k}(\tilde x_{s-1})-
 \nabla f_{i_k}(x^*)\bigr)\\
-&amp;\quad
+&\quad
 +\nabla f(\tilde x_{s-1}).
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>利用</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \|a+b\|_2^2\le2\|a\|_2^2+2\|b\|_2^2
-\]</div>
+</script>
+</div>
 <p>以及</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E\|Z-\mathbb E Z\|_2^2
 \le
 \mathbb E\|Z\|_2^2,
-\]</div>
+</script>
+</div>
 <p>可得</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \mathbb E\|G_{s,k}\|_2^2
-&amp;\le
+&\le
 2\mathbb E
 \|\nabla f_{i_k}(x_{s,k})-
 \nabla f_{i_k}(x^*)\|_2^2\\
-&amp;\quad
+&\quad
 +2\mathbb E
 \|\nabla f_{i_k}(\tilde x_{s-1})-
 \nabla f_{i_k}(x^*)\|_2^2.
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>对凸且 <span class="arithmatex">\(L\)</span>-光滑的 <span class="arithmatex">\(f_i\)</span>，有</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \|\nabla f_i(x)-\nabla f_i(x^*)\|_2^2
 \le
 2L\left(
  f_i(x)-f_i(x^*)
 -\langle\nabla f_i(x^*),x-x^*\rangle
 \right).
-\]</div>
+</script>
+</div>
 <p>对 <span class="arithmatex">\(i\)</span> 取期望并利用 <span class="arithmatex">\(\nabla f(x^*)=0\)</span>，最终得到</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E\|G_{s,k}\|_2^2
 \le
 4L\,
@@ -3813,7 +3928,8 @@ G_{s,k}
  f(x_{s,k})-f(x^*)
  +f(\tilde x_{s-1})-f(x^*)
 \right].
-\]</div>
+</script>
+</div>
 
 
 

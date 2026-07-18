@@ -2105,118 +2105,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -3406,70 +3294,94 @@ than for ridge regression, with the identification k ∼ 1
 <hr />
 <h2 id="1-pca">1. PCA 后到底在回归什么</h2>
 <p>原始设计矩阵为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Phi\in\mathbb R^{n\times d},
 \qquad
 \widehat\Sigma=\frac1n\Phi^\top\Phi.
-\]</div>
+</script>
+</div>
 <p>设经验协方差矩阵的特征值分解为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \widehat\Sigma
 =
 U\operatorname{Diag}(\lambda_1,\ldots,\lambda_d)U^\top,
 \qquad
 \lambda_1\ge\lambda_2\ge\cdots\ge\lambda_d\ge0.
-\]</div>
+</script>
+</div>
 <p>取前 <span class="arithmatex">\(k\)</span> 个特征向量：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 V=[u_1,\ldots,u_k]\in\mathbb R^{d\times k}.
-\]</div>
+</script>
+</div>
 <p>原始特征向量是 <span class="arithmatex">\(\phi(x)\in\mathbb R^d\)</span>，PCA 后的新特征是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 V^\top\phi(x)\in\mathbb R^k.
-\]</div>
+</script>
+</div>
 <p>对整个数据矩阵而言，新设计矩阵是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Phi V\in\mathbb R^{n\times k}.
-\]</div>
+</script>
+</div>
 <p>于是我们求解</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \widehat\eta
 =
 \arg\min_{\eta\in\mathbb R^k}
 \|y-\Phi V\eta\|_2^2,
-\]</div>
+</script>
+</div>
 <p>其闭式解为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \widehat\eta
 =
 (V^\top\Phi^\top\Phi V)^{-1}V^\top\Phi^\top y.
-\]</div>
+</script>
+</div>
 <p>对应预测向量</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \widehat y
 =
 \Phi V\widehat\eta.
-\]</div>
+</script>
+</div>
 <hr />
 <h2 id="2">2. 把预测写成一个投影</h2>
 <p>定义</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 P_k
 =
 \Phi V(V^\top\Phi^\top\Phi V)^{-1}V^\top\Phi^\top.
-\]</div>
+</script>
+</div>
 <p>那么</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \widehat y=P_k y.
-\]</div>
+</script>
+</div>
 <p><span class="arithmatex">\(P_k\)</span> 是到子空间</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \operatorname{Im}(\Phi V)\subseteq\mathbb R^n
-\]</div>
+</script>
+</div>
 <p>的正交投影。因此</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 P_k^\top=P_k,\qquad P_k^2=P_k,\qquad \operatorname{rank}(P_k)=k.
-\]</div>
+</script>
+</div>
 <p>这说明 PCR 实际上是：</p>
 <ol>
 <li>只允许预测向量落在前 <span class="arithmatex">\(k\)</span> 个主成分生成的子空间中；</li>
@@ -3478,51 +3390,64 @@ P_k^\top=P_k,\qquad P_k^2=P_k,\qquad \operatorname{rank}(P_k)=k.
 <hr />
 <h2 id="3">3. 代入线性模型</h2>
 <p>假设固定设计模型</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 y=\Phi\theta_*+\varepsilon,
-\]</div>
+</script>
+</div>
 <p>其中</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E[\varepsilon]=0,
 \qquad
 \mathbb E[\varepsilon\varepsilon^\top]=\sigma^2I_n.
-\]</div>
+</script>
+</div>
 <p>记无噪声的真实响应向量为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mu=\Phi\theta_*.
-\]</div>
+</script>
+</div>
 <p>PCR 的预测误差为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \widehat y-\mu
 =
 P_k(\mu+\varepsilon)-\mu
 =
 -(I-P_k)\mu+P_k\varepsilon.
-\]</div>
+</script>
+</div>
 <p>其中：</p>
 <ul>
 <li><span class="arithmatex">\(-(I-P_k)\mu\)</span> 是因为只保留前 <span class="arithmatex">\(k\)</span> 个主成分造成的系统误差；</li>
 <li><span class="arithmatex">\(P_k\varepsilon\)</span> 是投影后的噪声。</li>
 </ul>
 <p>平方并取期望：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \mathbb E_\varepsilon
 \|\widehat y-\mu\|_2^2
-&amp;=
+&=
 \|(I-P_k)\mu\|_2^2
 +
 \mathbb E\|P_k\varepsilon\|_2^2\\
-&amp;\quad
+&\quad
 -2\mathbb E\langle (I-P_k)\mu,P_k\varepsilon\rangle.
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>交叉项为零，因为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb E[\varepsilon]=0.
-\]</div>
+</script>
+</div>
 <p>所以得到了标准的偏差-方差分解：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac1n
 \mathbb E_\varepsilon
 \|\widehat y-\Phi\theta_*\|_2^2
@@ -3534,75 +3459,93 @@ P_k(\mu+\varepsilon)-\mu
 \underbrace{
 \frac1n\|(I-P_k)\Phi\theta_*\|_2^2
 }_{\text{bias}}.
-\]</div>
+</script>
+</div>
 <hr />
 <h2 id="4-sigma2kn">4. 为什么方差等于 <span class="arithmatex">\(\sigma^2k/n\)</span></h2>
 <p>利用迹公式，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \mathbb E\|P_k\varepsilon\|_2^2
-&amp;=
+&=
 \mathbb E[\varepsilon^\top P_k^\top P_k\varepsilon]\\
-&amp;=
+&=
 \mathbb E[\varepsilon^\top P_k\varepsilon]\\
-&amp;=
+&=
 \operatorname{tr}\!\left(
 P_k\mathbb E[\varepsilon\varepsilon^\top]
 \right)\\
-&amp;=
+&=
 \sigma^2\operatorname{tr}(P_k).
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>由于 <span class="arithmatex">\(P_k\)</span> 是秩为 <span class="arithmatex">\(k\)</span> 的正交投影，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \operatorname{tr}(P_k)=k.
-\]</div>
+</script>
+</div>
 <p>因此</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \frac1n\mathbb E\|P_k\varepsilon\|_2^2
 =
 \frac{\sigma^2k}{n}.
 }
-\]</div>
+</script>
+</div>
 <p>直观上，每保留一个自由方向，就要付出约</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac{\sigma^2}{n}
-\]</div>
+</script>
+</div>
 <p>的方差代价；保留 <span class="arithmatex">\(k\)</span> 个方向就是 <span class="arithmatex">\(\sigma^2k/n\)</span>。</p>
 <hr />
 <h2 id="5">5. 偏差项如何变成矩阵形式</h2>
 <p>偏差项为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac1n\|(I-P_k)\Phi\theta_*\|_2^2.
-\]</div>
+</script>
+</div>
 <p>由于 <span class="arithmatex">\(P_k\)</span> 是正交投影，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 (I-P_k)^\top(I-P_k)=I-P_k.
-\]</div>
+</script>
+</div>
 <p>所以</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \frac1n\|(I-P_k)\Phi\theta_*\|_2^2
-&amp;=
+&=
 \frac1n
 \theta_*^\top\Phi^\top(I-P_k)\Phi\theta_*\\
-&amp;=
+&=
 \theta_*^\top\widehat\Sigma\theta_*
 -
 \frac1n\theta_*^\top\Phi^\top P_k\Phi\theta_*.
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>再代入 <span class="arithmatex">\(P_k\)</span>，得到</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac1n\Phi^\top P_k\Phi
 =
 \widehat\Sigma V
 (V^\top\widehat\Sigma V)^{-1}
 V^\top\widehat\Sigma.
-\]</div>
+</script>
+</div>
 <p>因此偏差为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \theta_*^\top\widehat\Sigma\theta_*
 -
@@ -3612,9 +3555,11 @@ V^\top\widehat\Sigma.
 V^\top\widehat\Sigma
 \theta_*.
 }
-\]</div>
+</script>
+</div>
 <p>于是总风险是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac1n
 \mathbb E_\varepsilon
 \|\widehat y-\Phi\theta_*\|_2^2
@@ -3627,47 +3572,61 @@ V^\top\widehat\Sigma
 \widehat\Sigma V
 (V^\top\widehat\Sigma V)^{-1}
 V^\top\widehat\Sigma\theta_*.
-\]</div>
+</script>
+</div>
 <hr />
 <h2 id="6">6. 为什么利用特征向量后会简化</h2>
 <p>因为 <span class="arithmatex">\(V\)</span> 的列是 <span class="arithmatex">\(\widehat\Sigma\)</span> 的前 <span class="arithmatex">\(k\)</span> 个特征向量，所以</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \widehat\Sigma V=VD,
-\]</div>
+</script>
+</div>
 <p>其中</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 D=\operatorname{Diag}(\lambda_1,\ldots,\lambda_k).
-\]</div>
+</script>
+</div>
 <p>同时</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 V^\top\widehat\Sigma V=D.
-\]</div>
+</script>
+</div>
 <p>因此</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \widehat\Sigma V
 (V^\top\widehat\Sigma V)^{-1}
 V^\top\widehat\Sigma
-&amp;=
+&=
 VD D^{-1}DV^\top\\
-&amp;=
+&=
 VDV^\top.
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>所以偏差项化为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \theta_*^\top
 (\widehat\Sigma-VDV^\top)
 \theta_*.
-\]</div>
+</script>
+</div>
 <p>又因为 <span class="arithmatex">\(VV^\top\)</span> 是前 <span class="arithmatex">\(k\)</span> 个特征方向上的投影，而且它与 <span class="arithmatex">\(\widehat\Sigma\)</span> 可交换，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \widehat\Sigma-VDV^\top
 =
 (I-VV^\top)\widehat\Sigma(I-VV^\top).
-\]</div>
+</script>
+</div>
 <p>所以</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \frac1n
 \mathbb E_\varepsilon
@@ -3681,27 +3640,35 @@ VDV^\top.
 (I-VV^\top)
 \theta_*.
 }
-\]</div>
+</script>
+</div>
 <hr />
 <h2 id="7">7. 在特征坐标下看最清楚</h2>
 <p>把真实参数展开为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \theta_*=\sum_{j=1}^d a_j u_j.
-\]</div>
+</script>
+</div>
 <p>PCR 保留 <span class="arithmatex">\(u_1,\ldots,u_k\)</span>，丢弃 <span class="arithmatex">\(u_{k+1},\ldots,u_d\)</span>。因此</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 (I-VV^\top)\theta_*
 =
-\sum_{j&gt;k}a_j u_j.
-\]</div>
+\sum_{j>k}a_j u_j.
+</script>
+</div>
 <p>于是偏差精确等于</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \sum_{j=k+1}^d\lambda_j a_j^2.
 }
-\]</div>
+</script>
+</div>
 <p>所以整个风险的精确表达式是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \frac1n
 \mathbb E_\varepsilon
@@ -3709,9 +3676,10 @@ VDV^\top.
 =
 \frac{\sigma^2k}{n}
 +
-\sum_{j&gt;k}\lambda_j a_j^2.
+\sum_{j>k}\lambda_j a_j^2.
 }
-\]</div>
+</script>
+</div>
 <p>这比教材后面的粗略上界更有解释力：</p>
 <ul>
 <li>保留的每个方向贡献方差 <span class="arithmatex">\(\sigma^2/n\)</span>；</li>
@@ -3720,43 +3688,54 @@ VDV^\top.
 <hr />
 <h2 id="8-lambda_k1theta_2">8. 为什么偏差不超过 <span class="arithmatex">\(\lambda_{k+1}\|\theta_*\|^2\)</span></h2>
 <p>由于对所有 <span class="arithmatex">\(j&gt;k\)</span>，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \lambda_j\le\lambda_{k+1},
-\]</div>
+</script>
+</div>
 <p>所以</p>
-<div class="arithmatex">\[
-\sum_{j&gt;k}\lambda_j a_j^2
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\sum_{j>k}\lambda_j a_j^2
 \le
-\lambda_{k+1}\sum_{j&gt;k}a_j^2
+\lambda_{k+1}\sum_{j>k}a_j^2
 \le
 \lambda_{k+1}\|\theta_*\|_2^2.
-\]</div>
+</script>
+</div>
 <p>也可以从算子范数角度说：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \left\|
 (I-VV^\top)\widehat\Sigma(I-VV^\top)
 \right\|_{\mathrm{op}}
 =
 \lambda_{k+1}.
-\]</div>
+</script>
+</div>
 <p>因此</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \theta_*^\top
 (I-VV^\top)\widehat\Sigma(I-VV^\top)
 \theta_*
 \le
 \lambda_{k+1}\|\theta_*\|_2^2.
-\]</div>
+</script>
+</div>
 <hr />
 <h2 id="9-lambda_k1le-operatornametrwidehatsigmak1">9. 为什么 <span class="arithmatex">\(\lambda_{k+1}\le \operatorname{tr}(\widehat\Sigma)/(k+1)\)</span></h2>
 <p>由于特征值按降序排列，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \lambda_1,\ldots,\lambda_{k+1}
 \ge
 \lambda_{k+1}.
-\]</div>
+</script>
+</div>
 <p>于是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 (k+1)\lambda_{k+1}
 \le
 \sum_{j=1}^{k+1}\lambda_j
@@ -3764,17 +3743,21 @@ VDV^\top.
 \sum_{j=1}^d\lambda_j
 =
 \operatorname{tr}(\widehat\Sigma).
-\]</div>
+</script>
+</div>
 <p>所以</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \lambda_{k+1}
 \le
 \frac{\operatorname{tr}(\widehat\Sigma)}{k+1}
 \le
 \frac{\operatorname{tr}(\widehat\Sigma)}{k}.
-\]</div>
+</script>
+</div>
 <p>最终得到较粗但简洁的风险界：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \frac1n
 \mathbb E_\varepsilon
@@ -3784,30 +3767,40 @@ VDV^\top.
 +
 \frac{\|\theta_*\|_2^2\operatorname{tr}(\widehat\Sigma)}{k}.
 }
-\]</div>
+</script>
+</div>
 <p>这里第一项随 <span class="arithmatex">\(k\)</span> 增大，第二项随 <span class="arithmatex">\(k\)</span> 减小，正是偏差-方差权衡。</p>
 <hr />
 <h2 id="10-k">10. 最优的 <span class="arithmatex">\(k\)</span> 怎么算</h2>
 <p>记</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 A=\frac{\sigma^2}{n},
 \qquad
 B=\|\theta_*\|_2^2\operatorname{tr}(\widehat\Sigma).
-\]</div>
+</script>
+</div>
 <p>需要近似最小化</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 Ak+\frac{B}{k}.
-\]</div>
+</script>
+</div>
 <p>将 <span class="arithmatex">\(k\)</span> 暂时视作正实数，求导：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 A-\frac{B}{k^2}=0.
-\]</div>
+</script>
+</div>
 <p>所以</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 k^2=\frac BA,
-\]</div>
+</script>
+</div>
 <p>即</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 k_*
 =
@@ -3815,85 +3808,108 @@ k_*
 \sqrt{\operatorname{tr}(\widehat\Sigma)}
 \sqrt n}{\sigma}.
 }
-\]</div>
+</script>
+</div>
 <p>实际需要取最接近的可行整数，并满足</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 1\le k\le \operatorname{rank}(\Phi).
-\]</div>
+</script>
+</div>
 <p>此时风险量级为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \frac{\sigma\|\theta_*\|_2
 \sqrt{\operatorname{tr}(\widehat\Sigma)}}{\sqrt n}
 }
-\]</div>
+</script>
+</div>
 <p>差一个常数因子 <span class="arithmatex">\(2\)</span>。</p>
 <p>实际中 <span class="arithmatex">\(\theta_*\)</span> 和 <span class="arithmatex">\(\sigma\)</span> 未知，因此 <span class="arithmatex">\(k\)</span> 通常通过验证集或交叉验证选择。</p>
 <hr />
 <h2 id="11-ridge-regression">11. 与 ridge regression 的对应关系</h2>
 <p>ridge 的粗略风险界通常具有形式</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \lambda\|\theta_*\|_2^2
 +
 \frac{\sigma^2}{n}
 \frac{\operatorname{tr}(\widehat\Sigma)}{\lambda}.
-\]</div>
+</script>
+</div>
 <p>PCR 的界是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac{\sigma^2k}{n}
 +
 \frac{\|\theta_*\|_2^2\operatorname{tr}(\widehat\Sigma)}{k}.
-\]</div>
+</script>
+</div>
 <p>令</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 k\sim\frac{\operatorname{tr}(\widehat\Sigma)}{\lambda},
 }
-\]</div>
+</script>
+</div>
 <p>则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac{\sigma^2k}{n}
 \sim
 \frac{\sigma^2}{n}
 \frac{\operatorname{tr}(\widehat\Sigma)}{\lambda},
-\]</div>
+</script>
+</div>
 <p>而</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac{\|\theta_*\|^2\operatorname{tr}(\widehat\Sigma)}{k}
 \sim
 \lambda\|\theta_*\|^2.
-\]</div>
+</script>
+</div>
 <p>因此两者的风险界具有相同结构。</p>
 <p>但它们的谱处理方式不同：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \text{PCR:}\qquad
 g_j=
 \begin{cases}
-1,&amp;j\le k,\\
-0,&amp;j&gt;k,
+1,&j\le k,\\
+0,&j>k,
 \end{cases}
-\]</div>
+</script>
+</div>
 <p>是**硬截断**；</p>
 <p>而 ridge 对第 <span class="arithmatex">\(j\)</span> 个特征方向的收缩因子大致为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \text{ridge:}\qquad
 g_j=\frac{\lambda_j}{\lambda_j+\lambda},
-\]</div>
+</script>
+</div>
 <p>是**软收缩**。</p>
 <hr />
 <h2 id="12">12. 这一结果的实质</h2>
 <p>PCR 的思想可以压缩成一句话：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \text{保留更多主成分}
 \Rightarrow
 \text{偏差下降，但方差上升。}
 }
-\]</div>
+</script>
+</div>
 <p>不过需要注意，PCA 只观察输入 <span class="arithmatex">\(\Phi\)</span>，不观察响应 <span class="arithmatex">\(y\)</span>。它认为“输入方差小的方向不重要”，但对预测而言未必成立：某个低方差方向可能恰好有很大的真实系数 <span class="arithmatex">\(a_j\)</span>。这种风险正体现在精确偏差</p>
-<div class="arithmatex">\[
-\sum_{j&gt;k}\lambda_j a_j^2
-\]</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\sum_{j>k}\lambda_j a_j^2
+</script>
+</div>
 <p>中。因此 PCR 是一种无监督的谱正则化方法，而不是必然最优的监督降维方法。</p>
 <h2 id="prompt_1">Prompt:</h2>
 <p>2026/7/14 18:56:59</p>
@@ -3902,25 +3918,35 @@ g_j=\frac{\lambda_j}{\lambda_j+\lambda},
 <p>2026/7/14 18:57:01</p>
 <p>对，这里首先是在对特征数据做降维处理。</p>
 <p>你原来有</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Phi\in\mathbb R^{n\times d},
-\]</div>
+</script>
+</div>
 <p>其中第 <span class="arithmatex">\(i\)</span> 行是第 <span class="arithmatex">\(i\)</span> 个样本的 <span class="arithmatex">\(d\)</span> 维特征：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \phi(x_i)^\top\in\mathbb R^{1\times d}.
-\]</div>
+</script>
+</div>
 <p>我们要找一个矩阵</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 V\in\mathbb R^{d\times k},
-\]</div>
+</script>
+</div>
 <p>把每个 <span class="arithmatex">\(d\)</span> 维样本映射成 <span class="arithmatex">\(k\)</span> 维：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 z_i=V^\top\phi(x_i)\in\mathbb R^k.
-\]</div>
+</script>
+</div>
 <p>把所有样本放在一起，就是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 Z=\Phi V\in\mathbb R^{n\times k}.
-\]</div>
+</script>
+</div>
 <p>关键问题确实是：<strong>这个 <span class="arithmatex">\(V\)</span> 怎样选？</strong></p>
 <hr />
 <h2 id="1-pca_1">1. PCA 希望保留什么</h2>
@@ -3929,101 +3955,134 @@ Z=\Phi V\in\mathbb R^{n\times k}.
 <p>在所有 <span class="arithmatex">\(k\)</span> 维线性子空间中，找到一个使投影后数据总方差最大的子空间。</p>
 </blockquote>
 <p>通常先把数据中心化：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 X=\Phi-\mathbf 1\bar\phi^\top,
 \qquad
 \bar\phi=\frac1n\sum_{i=1}^n\phi(x_i).
-\]</div>
+</script>
+</div>
 <p>然后定义经验协方差矩阵</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \widehat\Sigma
 =
 \frac1nX^\top X
 \in\mathbb R^{d\times d}.
-\]</div>
+</script>
+</div>
 <p>在教材的固定设计回归分析中，有时直接使用非中心化矩阵</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \widehat\Sigma=\frac1n\Phi^\top\Phi,
-\]</div>
+</script>
+</div>
 <p>但标准 PCA 通常先中心化。<code>lftp.pdf</code></p>
 <hr />
 <h2 id="2_1">2. 先找一个方向</h2>
 <p>假设先只想降到一维，即 <span class="arithmatex">\(k=1\)</span>。</p>
 <p>我们找一个单位向量</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 v\in\mathbb R^d,
 \qquad
 \|v\|_2=1.
-\]</div>
+</script>
+</div>
 <p>第 <span class="arithmatex">\(i\)</span> 个样本投影到该方向后得到</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 z_i=v^\top x_i.
-\]</div>
+</script>
+</div>
 <p>所有投影值的经验方差是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac1n\sum_{i=1}^n(v^\top x_i)^2.
-\]</div>
+</script>
+</div>
 <p>由于数据已经中心化，这等于</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \frac1n\sum_{i=1}^n(v^\top x_i)^2
-&amp;=
+&=
 \frac1n\sum_{i=1}^n
 v^\top x_ix_i^\top v\\
-&amp;=
+&=
 v^\top
 \left(
 \frac1n\sum_{i=1}^n x_ix_i^\top
 \right)v\\
-&amp;=
+&=
 v^\top\widehat\Sigma v.
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>因此 PCA 要解的是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \max_{\|v\|_2=1}
 v^\top\widehat\Sigma v.
-\]</div>
+</script>
+</div>
 <p>根据 Rayleigh 商的结论，最大值是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \lambda_1,
-\]</div>
+</script>
+</div>
 <p>最优方向 <span class="arithmatex">\(v\)</span> 是 <span class="arithmatex">\(\widehat\Sigma\)</span> 最大特征值对应的特征向量：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \widehat\Sigma v_1=\lambda_1v_1.
-\]</div>
+</script>
+</div>
 <p>所以，第一主成分方向就是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 v_1=\text{协方差矩阵最大特征值对应的特征向量}.
-\]</div>
+</script>
+</div>
 <hr />
 <h2 id="3-k">3. 找 <span class="arithmatex">\(k\)</span> 个方向</h2>
 <p>现在需要一个 <span class="arithmatex">\(d\times k\)</span> 矩阵</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 V=[v_1,\ldots,v_k].
-\]</div>
+</script>
+</div>
 <p>为了避免重复记录同一个方向的信息，要求这些方向标准正交：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 V^\top V=I_k.
-\]</div>
+</script>
+</div>
 <p>投影后的数据为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 Z=XV.
-\]</div>
+</script>
+</div>
 <p>它的经验协方差矩阵为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac1nZ^\top Z
 =
 \frac1nV^\top X^\top XV
 =
 V^\top\widehat\Sigma V.
-\]</div>
+</script>
+</div>
 <p>投影后所有 <span class="arithmatex">\(k\)</span> 个方向的总方差是该矩阵的迹：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \operatorname{tr}(V^\top\widehat\Sigma V).
-\]</div>
+</script>
+</div>
 <p>因此 PCA 求解</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \max_{V\in\mathbb R^{d\times k}}
 \operatorname{tr}(V^\top\widehat\Sigma V)
@@ -4031,21 +4090,27 @@ V^\top\widehat\Sigma V.
 \text{s.t.}\quad
 V^\top V=I_k.
 }
-\]</div>
+</script>
+</div>
 <p>该问题的解就是取协方差矩阵的前 <span class="arithmatex">\(k\)</span> 个特征向量：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 V=[v_1,\ldots,v_k],
 }
-\]</div>
+</script>
+</div>
 <p>其中</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \widehat\Sigma v_j=\lambda_jv_j,
 \qquad
 \lambda_1\ge\lambda_2\ge\cdots\ge\lambda_d.
-\]</div>
+</script>
+</div>
 <p>换言之，步骤是：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Phi
 \longrightarrow
 \widehat\Sigma=\frac1n\Phi^\top\Phi
@@ -4055,29 +4120,36 @@ V=[v_1,\ldots,v_k],
 V
 \longrightarrow
 \Phi V.
-\]</div>
+</script>
+</div>
 <hr />
 <h2 id="4">4. 为什么是协方差矩阵的特征向量</h2>
 <p>设完整特征值分解为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \widehat\Sigma
 =
 U
 \begin{pmatrix}
-\lambda_1&amp;&amp;\\
-&amp;\ddots&amp;\\
-&amp;&amp;\lambda_d
+\lambda_1&&\\
+&\ddots&\\
+&&\lambda_d
 \end{pmatrix}
 U^\top,
-\]</div>
+</script>
+</div>
 <p>其中</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 U=[v_1,\ldots,v_d].
-\]</div>
+</script>
+</div>
 <p>这意味着在坐标系 <span class="arithmatex">\(v_1,\ldots,v_d\)</span> 下，数据在不同方向上的方差分别是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \lambda_1,\lambda_2,\ldots,\lambda_d.
-\]</div>
+</script>
+</div>
 <p>因此：</p>
 <ul>
 <li><span class="arithmatex">\(v_1\)</span> 是数据变化最大的方向；</li>
@@ -4087,122 +4159,160 @@ U=[v_1,\ldots,v_d].
 </ul>
 <p>选取前 <span class="arithmatex">\(k\)</span> 个方向，就是保留方差最大的 <span class="arithmatex">\(k\)</span> 个方向。</p>
 <p>投影后的协方差矩阵变成</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 V^\top\widehat\Sigma V
 =
 \operatorname{Diag}(\lambda_1,\ldots,\lambda_k).
-\]</div>
+</script>
+</div>
 <p>这还说明 PCA 后的不同坐标彼此不相关。</p>
 <hr />
 <h2 id="5_1">5. “保留最大方差”等价于“重构误差最小”</h2>
 <p>PCA 还可以从另一个角度理解。</p>
 <p>投影后的低维坐标是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 Z=XV.
-\]</div>
+</script>
+</div>
 <p>把它映射回原空间，得到</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \widetilde X=ZV^\top=XV V^\top.
-\]</div>
+</script>
+</div>
 <p>其中 <span class="arithmatex">\(VV^\top\)</span> 是到所选 <span class="arithmatex">\(k\)</span> 维子空间的正交投影。</p>
 <p>我们希望重构数据尽可能接近原始数据：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \min_{V^\top V=I_k}
 \|X-XVV^\top\|_F^2.
-\]</div>
+</script>
+</div>
 <p>可以推导出</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \|X-XVV^\top\|_F^2
 =
 \|X\|_F^2
 -
 n\operatorname{tr}(V^\top\widehat\Sigma V).
-\]</div>
+</script>
+</div>
 <p>由于 <span class="arithmatex">\(\|X\|_F^2\)</span> 是常数，最小化重构误差等价于最大化保留方差：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \min\|X-XVV^\top\|_F^2
 \quad\Longleftrightarrow\quad
 \max\operatorname{tr}(V^\top\widehat\Sigma V).
 }
-\]</div>
+</script>
+</div>
 <p>最小重构误差为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 n\sum_{j=k+1}^d\lambda_j.
-\]</div>
+</script>
+</div>
 <p>也就是说，丢掉的总方差就是后面那些特征值之和。</p>
 <hr />
 <h2 id="6_1">6. 在回归问题中的完整流程</h2>
 <p>原模型是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 y=\Phi\theta_*+\varepsilon.
-\]</div>
+</script>
+</div>
 <p>PCA 首先把设计矩阵降维：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Phi\in\mathbb R^{n\times d}
 \quad\longrightarrow\quad
 \Phi V\in\mathbb R^{n\times k}.
-\]</div>
+</script>
+</div>
 <p>然后在新特征上做 OLS：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \widehat\eta
 =
 \arg\min_{\eta\in\mathbb R^k}
 \|y-\Phi V\eta\|_2^2.
-\]</div>
+</script>
+</div>
 <p>此时预测函数可以写成</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \widehat y=\Phi V\widehat\eta.
-\]</div>
+</script>
+</div>
 <p>如果想写回原来的 <span class="arithmatex">\(d\)</span> 维参数形式，可以令</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \widehat\theta_{\mathrm{PCR}}=V\widehat\eta.
-\]</div>
+</script>
+</div>
 <p>那么</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \widehat\theta_{\mathrm{PCR}}
 \in\operatorname{span}\{v_1,\ldots,v_k\}.
-\]</div>
+</script>
+</div>
 <p>所以 PCR 实际上限制参数只能位于前 <span class="arithmatex">\(k\)</span> 个主成分张成的子空间中。</p>
 <hr />
 <h2 id="7_1">7. 一个重要修正：最大方差不一定等于对预测最有用</h2>
 <p>PCA 选择 <span class="arithmatex">\(V\)</span> 时只使用 <span class="arithmatex">\(\Phi\)</span>，完全不看 <span class="arithmatex">\(y\)</span>。因此它保留的是：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \text{输入数据中变化最大的方向},
-\]</div>
+</script>
+</div>
 <p>而不一定是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \text{对预测 }y\text{ 最有用的方向}.
-\]</div>
+</script>
+</div>
 <p>例如二维数据中：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \lambda_1=100,\qquad \lambda_2=0.1.
-\]</div>
+</script>
+</div>
 <p>PCA 若降到一维，会选择第一个方向。但如果真实关系是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 y=20x_2+\varepsilon,
-\]</div>
+</script>
+</div>
 <p>而 <span class="arithmatex">\(y\)</span> 几乎不依赖 <span class="arithmatex">\(x_1\)</span>，那么低方差的第二个方向反而是预测的关键。PCA 可能会把它丢掉。</p>
 <p>因此更准确地说：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \text{PCA 保留的是最大输入方差，而不是必然保留最大预测信息。}
 }
-\]</div>
+</script>
+</div>
 <p>这也是 PCR 的局限：它是一种先无监督降维、再监督回归的方法。</p>
 <hr />
 <p>最终，寻找 <span class="arithmatex">\(V\)</span> 的方法可以概括为：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \begin{aligned}
-&amp;1.\ \text{中心化数据 }X;\\
-&amp;2.\ \text{计算 }\widehat\Sigma=\frac1nX^\top X;\\
-&amp;3.\ \text{对 }\widehat\Sigma\text{ 做特征值分解};\\
-&amp;4.\ \text{取最大 }k\text{ 个特征值对应的特征向量};\\
-&amp;5.\ V=[v_1,\ldots,v_k],\quad Z=XV.
+&1.\ \text{中心化数据 }X;\\
+&2.\ \text{计算 }\widehat\Sigma=\frac1nX^\top X;\\
+&3.\ \text{对 }\widehat\Sigma\text{ 做特征值分解};\\
+&4.\ \text{取最大 }k\text{ 个特征值对应的特征向量};\\
+&5.\ V=[v_1,\ldots,v_k],\quad Z=XV.
 \end{aligned}
 }
-\]</div>
+</script>
+</div>
 <p>这里的 <span class="arithmatex">\(V\)</span> 不是通过回归拟合得到的，而是通过设计矩阵自身的协方差结构计算出来的。</p>
 <h2 id="prompt_2">Prompt:</h2>
 <p>2026/7/14 19:30:38</p>
@@ -4221,108 +4331,139 @@ Loan, 1996). See exercise 3.9 for a simple alternating optimization algorithm.</
 <p>2026/7/14 19:30:53</p>
 <p>这段是在严格说明：<strong>PCA 的“最小重构误差”问题，最终等价于选择协方差矩阵最大的 <span class="arithmatex">\(k\)</span> 个特征值对应的特征向量。</strong> <code>lftp.pdf</code></p>
 <p>设</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Phi\in\mathbb R^{n\times d},\qquad
 V\in\mathbb R^{d\times k},\qquad
 V^\top V=I_k.
-\]</div>
+</script>
+</div>
 <p>其中 <span class="arithmatex">\(V\)</span> 的列张成一个 <span class="arithmatex">\(k\)</span> 维子空间。</p>
 <hr />
 <h2 id="1-phi-vvtop">1. <span class="arithmatex">\(\Phi VV^\top\)</span> 是什么</h2>
 <p>因为 <span class="arithmatex">\(V^\top V=I_k\)</span>，矩阵</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 P=VV^\top\in\mathbb R^{d\times d}
-\]</div>
+</script>
+</div>
 <p>是到子空间 <span class="arithmatex">\(\operatorname{span}(V)\)</span> 上的正交投影矩阵。</p>
 <p>对于第 <span class="arithmatex">\(i\)</span> 个样本行向量 <span class="arithmatex">\(\phi_i^\top\)</span>，它的低维坐标是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \phi_i^\top V\in\mathbb R^{1\times k},
-\]</div>
+</script>
+</div>
 <p>再映射回原来的 <span class="arithmatex">\(d\)</span> 维空间：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \phi_i^\top VV^\top.
-\]</div>
+</script>
+</div>
 <p>因此</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Phi VV^\top
-\]</div>
+</script>
+</div>
 <p>就是所有样本投影到这个 <span class="arithmatex">\(k\)</span> 维子空间之后的重构结果。</p>
 <p>所以</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \|\Phi-\Phi VV^\top\|_F^2
-\]</div>
+</script>
+</div>
 <p>衡量的是所有样本的总重构误差：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \|\Phi-\Phi VV^\top\|_F^2
 =
 \sum_{i=1}^n
 \|\phi_i-VV^\top\phi_i\|_2^2.
-\]</div>
+</script>
+</div>
 <p>PCA 希望选择一个 <span class="arithmatex">\(k\)</span> 维子空间，使这个误差最小。</p>
 <hr />
 <h2 id="2_2">2. 为什么最小化重构误差等价于最大化迹</h2>
 <p>令</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 A=\Phi^\top\Phi.
-\]</div>
+</script>
+</div>
 <p>由于 <span class="arithmatex">\(P=VV^\top\)</span> 满足</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 P^\top=P,\qquad P^2=P,
-\]</div>
+</script>
+</div>
 <p>有</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Phi-\Phi VV^\top=\Phi(I-P).
-\]</div>
+</script>
+</div>
 <p>于是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \|\Phi-\Phi VV^\top\|_F^2
-&amp;=
+&=
 \operatorname{tr}
 \left[
 (\Phi(I-P))^\top\Phi(I-P)
 \right]\\
-&amp;=
+&=
 \operatorname{tr}
 \left[
 (I-P)\Phi^\top\Phi(I-P)
 \right].
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>展开：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \|( \Phi-\Phi P)\|_F^2
-&amp;=
+&=
 \operatorname{tr}(A)
 -2\operatorname{tr}(AP)
 +\operatorname{tr}(PAP).
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>对于最后一项，利用迹的循环性质和 <span class="arithmatex">\(P^2=P\)</span>：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \operatorname{tr}(PAP)
 =
 \operatorname{tr}(APP)
 =
 \operatorname{tr}(AP).
-\]</div>
+</script>
+</div>
 <p>因此</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \|\Phi-\Phi VV^\top\|_F^2
 =
 \operatorname{tr}(A)-\operatorname{tr}(AP).
-\]</div>
+</script>
+</div>
 <p>而</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \operatorname{tr}(AP)
 =
 \operatorname{tr}(\Phi^\top\Phi VV^\top)
 =
 \operatorname{tr}(V^\top\Phi^\top\Phi V).
-\]</div>
+</script>
+</div>
 <p>所以</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \|\Phi-\Phi VV^\top\|_F^2
 =
@@ -4330,13 +4471,17 @@ P^\top=P,\qquad P^2=P,
 -
 \operatorname{tr}(V^\top\Phi^\top\Phi V).
 }
-\]</div>
+</script>
+</div>
 <p>第一项</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \operatorname{tr}(\Phi^\top\Phi)=\|\Phi\|_F^2
-\]</div>
+</script>
+</div>
 <p>与 <span class="arithmatex">\(V\)</span> 无关。因此</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \min_{V^\top V=I_k}
 \|\Phi-\Phi VV^\top\|_F^2
@@ -4344,7 +4489,8 @@ P^\top=P,\qquad P^2=P,
 \max_{V^\top V=I_k}
 \operatorname{tr}(V^\top\Phi^\top\Phi V).
 }
-\]</div>
+</script>
+</div>
 <p>含义是：</p>
 <blockquote>
 <p>最小化丢掉的能量，等价于最大化保留下来的能量。</p>
@@ -4352,80 +4498,101 @@ P^\top=P,\qquad P^2=P,
 <hr />
 <h2 id="3_1">3. 这个迹表示什么</h2>
 <p>设</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 V=[v_1,\ldots,v_k].
-\]</div>
+</script>
+</div>
 <p>那么</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \operatorname{tr}(V^\top\Phi^\top\Phi V)
-&amp;=
+&=
 \sum_{j=1}^k
 v_j^\top\Phi^\top\Phi v_j\\
-&amp;=
+&=
 \sum_{j=1}^k
 \|\Phi v_j\|_2^2.
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>除以 <span class="arithmatex">\(n\)</span> 后：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac1n
 \operatorname{tr}(V^\top\Phi^\top\Phi V)
 =
 \sum_{j=1}^k
 v_j^\top\widehat\Sigma v_j,
-\]</div>
+</script>
+</div>
 <p>其中</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \widehat\Sigma=\frac1n\Phi^\top\Phi.
-\]</div>
+</script>
+</div>
 <p>它表示数据在 <span class="arithmatex">\(v_1,\ldots,v_k\)</span> 这些方向上的总二阶能量。若数据已经中心化，就是总方差。</p>
 <hr />
 <h2 id="4-k">4. 为什么选择前 <span class="arithmatex">\(k\)</span> 个特征向量</h2>
 <p>对经验协方差矩阵作特征值分解：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \widehat\Sigma
 =
 U\operatorname{Diag}(\lambda_1,\ldots,\lambda_d)U^\top,
-\]</div>
+</script>
+</div>
 <p>其中</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \lambda_1\ge\lambda_2\ge\cdots\ge\lambda_d\ge0.
-\]</div>
+</script>
+</div>
 <p>记</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 U=[u_1,\ldots,u_d].
-\]</div>
+</script>
+</div>
 <p>令</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 W=U^\top V.
-\]</div>
+</script>
+</div>
 <p>由于 <span class="arithmatex">\(U\)</span> 是正交矩阵，且 <span class="arithmatex">\(V^\top V=I_k\)</span>，所以</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 W^\top W
 =
 V^\top UU^\top V
 =
 I_k.
-\]</div>
+</script>
+</div>
 <p>目标函数变成</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \operatorname{tr}(V^\top\widehat\Sigma V)
-&amp;=
+&=
 \operatorname{tr}
 \left(
 V^\top U\operatorname{Diag}(\lambda)U^\top V
 \right)\\
-&amp;=
+&=
 \operatorname{tr}
 \left(
 W^\top\operatorname{Diag}(\lambda)W
 \right).
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>把 <span class="arithmatex">\(W\)</span> 的第 <span class="arithmatex">\(i\)</span> 行记作 <span class="arithmatex">\(w_i^\top\)</span>，则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \operatorname{tr}
 \left(
 W^\top\operatorname{Diag}(\lambda)W
@@ -4433,146 +4600,195 @@ W^\top\operatorname{Diag}(\lambda)W
 =
 \sum_{i=1}^d
 \lambda_i\|w_i\|_2^2.
-\]</div>
+</script>
+</div>
 <p>定义</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \alpha_i=\|w_i\|_2^2.
-\]</div>
+</script>
+</div>
 <p>这些数满足</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 0\le\alpha_i\le1,
 \qquad
 \sum_{i=1}^d\alpha_i=k.
-\]</div>
+</script>
+</div>
 <p>于是问题变成：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \max
 \sum_{i=1}^d\lambda_i\alpha_i
-\]</div>
+</script>
+</div>
 <p>满足</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 0\le\alpha_i\le1,\qquad \sum_i\alpha_i=k.
-\]</div>
+</script>
+</div>
 <p>由于</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \lambda_1\ge\lambda_2\ge\cdots\ge\lambda_d,
-\]</div>
+</script>
+</div>
 <p>显然应当把全部“权重”放在最大的 <span class="arithmatex">\(k\)</span> 个特征值上：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \alpha_1=\cdots=\alpha_k=1,
 \qquad
 \alpha_{k+1}=\cdots=\alpha_d=0.
-\]</div>
+</script>
+</div>
 <p>因此最大值为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \lambda_1+\cdots+\lambda_k.
 }
-\]</div>
+</script>
+</div>
 <p>对应的一个最优解是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 V=[u_1,\ldots,u_k].
 }
-\]</div>
+</script>
+</div>
 <p>这就是前 <span class="arithmatex">\(k\)</span> 个主成分方向。</p>
 <p>这个结果也称为 <strong>Ky Fan 最大值原理</strong>：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \max_{V^\top V=I_k}
 \operatorname{tr}(V^\top\widehat\Sigma V)
 =
 \sum_{j=1}^k\lambda_j.
-\]</div>
+</script>
+</div>
 <hr />
 <h2 id="5_2">5. 最小重构误差是多少</h2>
 <p>总能量是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \operatorname{tr}(\Phi^\top\Phi)
 =
 n\sum_{j=1}^d\lambda_j.
-\]</div>
+</script>
+</div>
 <p>保留下来的最大能量是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 n\sum_{j=1}^k\lambda_j.
-\]</div>
+</script>
+</div>
 <p>因此最小重构误差为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \min_{V^\top V=I_k}
 \|\Phi-\Phi VV^\top\|_F^2
 =
 n\sum_{j=k+1}^d\lambda_j.
 }
-\]</div>
+</script>
+</div>
 <p>也就是说：</p>
 <ul>
 <li>前 <span class="arithmatex">\(k\)</span> 个特征值代表保留的信息量；</li>
 <li>后 <span class="arithmatex">\(d-k\)</span> 个特征值之和代表丢失的信息量。</li>
 </ul>
 <p>常见的解释方差比例是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac{\lambda_1+\cdots+\lambda_k}
 {\lambda_1+\cdots+\lambda_d}.
-\]</div>
+</script>
+</div>
 <p>例如该比例达到 <span class="arithmatex">\(95\%\)</span>，就表示前 <span class="arithmatex">\(k\)</span> 个主成分保留了约 <span class="arithmatex">\(95\%\)</span> 的总方差。</p>
 <hr />
 <h2 id="6-v">6. <span class="arithmatex">\(V\)</span> 是否唯一</h2>
 <p>严格来说，最优的是一个子空间，而不一定是唯一的基。</p>
 <p>若</p>
-<div class="arithmatex">\[
-\lambda_k&gt;\lambda_{k+1},
-\]</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\lambda_k>\lambda_{k+1},
+</script>
+</div>
 <p>则前 <span class="arithmatex">\(k\)</span> 维主子空间是唯一的，但它的正交基可以旋转。任何</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 V=U_kQ,
-\]</div>
+</script>
+</div>
 <p>其中</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 U_k=[u_1,\ldots,u_k],
 \qquad
 Q\in\mathbb R^{k\times k},\quad Q^\top Q=I_k,
-\]</div>
+</script>
+</div>
 <p>都会给出相同的投影：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 VV^\top
 =
 U_kQQ^\top U_k^\top
 =
 U_kU_k^\top.
-\]</div>
+</script>
+</div>
 <p>因此 PCA 真正确定的是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \operatorname{span}\{u_1,\ldots,u_k\},
-\]</div>
+</script>
+</div>
 <p>而不是某一组绝对唯一的坐标轴。</p>
 <hr />
 <h2 id="7_2">7. 非中心化协方差的含义</h2>
 <p>教材这里使用</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \widehat\Sigma=\frac1n\Phi^\top\Phi,
-\]</div>
+</script>
+</div>
 <p>称为非中心化经验协方差矩阵。</p>
 <p>这意味着数据被投影到一个**经过原点的线性子空间**上：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Phi\approx\Phi VV^\top.
-\]</div>
+</script>
+</div>
 <p>标准 PCA 通常先计算样本均值</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \bar\phi=\frac1n\sum_{i=1}^n\phi_i,
-\]</div>
+</script>
+</div>
 <p>再中心化：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 X=\Phi-\mathbf 1\bar\phi^\top,
-\]</div>
+</script>
+</div>
 <p>然后对</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \frac1nX^\top X
-\]</div>
+</script>
+</div>
 <p>做特征值分解。这相当于寻找一个不一定经过原点、而是经过样本均值的仿射子空间。</p>
 <p>在这里，教材为了与线性回归中的</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \widehat\Sigma=\frac1n\Phi^\top\Phi
-\]</div>
+</script>
+</div>
 <p>保持统一，因此使用非中心化版本。核心数学推导不变。</p>
 <h2 id="prompt_3">Prompt:</h2>
 <p>2026/7/14 19:35:20</p>
@@ -4592,159 +4808,209 @@ compute the corresponding updates.</p>
 <p>思考了 45s</p>
 </blockquote>
 <p>这道题的关键是把交替最小化识别成一个 <strong>block power method（子空间幂迭代）</strong>。虽然</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \min_{A,D}\|\Phi-AD\|_F^2
-\]</div>
+</script>
+</div>
 <p>对 <span class="arithmatex">\((A,D)\)</span> 联合来看是非凸的，但其子空间迭代会把 <span class="arithmatex">\(D\)</span> 的行空间推向 <span class="arithmatex">\(\Phi^\top\Phi\)</span> 的前 <span class="arithmatex">\(k\)</span> 个特征子空间。题目见教材 Exercise 3.9。<code>lftp.pdf</code></p>
 <p>设</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Phi\in\mathbb R^{n\times d},\qquad
 A\in\mathbb R^{n\times k},\qquad
 D\in\mathbb R^{k\times d},
-\]</div>
+</script>
+</div>
 <p>并假设 <span class="arithmatex">\(k\le \operatorname{rank}(\Phi)\)</span>。</p>
 <hr />
 <h1 id="1-pca_2">1. 为什么全局最优解就是 PCA</h1>
 <p>令</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 B=AD.
-\]</div>
+</script>
+</div>
 <p>由于 <span class="arithmatex">\(A\)</span> 有 <span class="arithmatex">\(k\)</span> 列、<span class="arithmatex">\(D\)</span> 有 <span class="arithmatex">\(k\)</span> 行，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \operatorname{rank}(AD)\le k.
-\]</div>
+</script>
+</div>
 <p>反过来，任意秩不超过 <span class="arithmatex">\(k\)</span> 的矩阵 <span class="arithmatex">\(B\in\mathbb R^{n\times d}\)</span>，都可以写成 <span class="arithmatex">\(B=AD\)</span>。因此</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \min_{A,D}\|\Phi-AD\|_F^2
 =
 \min_{\operatorname{rank}(B)\le k}\|\Phi-B\|_F^2.
-\]</div>
+</script>
+</div>
 <p>这就是最佳秩 <span class="arithmatex">\(k\)</span> 矩阵逼近问题。</p>
 <p>设 <span class="arithmatex">\(\Phi\)</span> 的奇异值分解为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Phi
 =
 U\Sigma W^\top
 =
 \sum_{j=1}^r\sigma_j u_jw_j^\top,
-\]</div>
+</script>
+</div>
 <p>其中</p>
-<div class="arithmatex">\[
-\sigma_1\ge\sigma_2\ge\cdots\ge\sigma_r&gt;0,
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\sigma_1\ge\sigma_2\ge\cdots\ge\sigma_r>0,
 \qquad r=\operatorname{rank}(\Phi).
-\]</div>
+</script>
+</div>
 <p>记</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 U_k=[u_1,\ldots,u_k],\qquad
 W_k=[w_1,\ldots,w_k],
-\]</div>
+</script>
+</div>
 <p>以及</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Sigma_k=\operatorname{Diag}(\sigma_1,\ldots,\sigma_k).
-\]</div>
+</script>
+</div>
 <p>根据 Eckart-Young 定理，最佳秩 <span class="arithmatex">\(k\)</span> 逼近为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \Phi_k=U_k\Sigma_kW_k^\top
 }
-\]</div>
+</script>
+</div>
 <p>且最小目标值为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \min_{A,D}\|\Phi-AD\|_F^2
 =
-\sum_{j&gt;k}\sigma_j^2.
+\sum_{j>k}\sigma_j^2.
 }
-\]</div>
+</script>
+</div>
 <p>另一方面，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Phi W_kW_k^\top
 =
 U\Sigma W^\top W_kW_k^\top
 =
 U_k\Sigma_kW_k^\top.
-\]</div>
+</script>
+</div>
 <p>所以</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \Phi_k=\Phi W_kW_k^\top.
 }
-\]</div>
+</script>
+</div>
 <p>而 <span class="arithmatex">\(W_k\)</span> 正是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Phi^\top\Phi
 =
 W\Sigma^\top\Sigma W^\top
-\]</div>
+</script>
+</div>
 <p>最大的 <span class="arithmatex">\(k\)</span> 个特征值对应的特征向量。因此 <span class="arithmatex">\(\Phi W_kW_k^\top\)</span> 就是 PCA 投影后再重构得到的数据矩阵。</p>
 <p>注意：</p>
 <ul>
 <li>PCA 的降维坐标是 <span class="arithmatex">\(\Phi W_k\in\mathbb R^{n\times k}\)</span>；</li>
 <li><span class="arithmatex">\(AD\in\mathbb R^{n\times d}\)</span> 对应的是重构矩阵
-  $$
-  (\Phi W_k)W_k^\top.
-  $$</li>
+  <div class="arithmatex">
+<script type="math/tex; mode=display">
+(\Phi W_k)W_k^\top.
+</script>
+</div></li>
 </ul>
 <p>一种全局最优分解是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 A_*=U_k\Sigma_k,\qquad D_*=W_k^\top.
-\]</div>
+</script>
+</div>
 <p>但 <span class="arithmatex">\(A,D\)</span> 本身并不唯一。对任意可逆矩阵 <span class="arithmatex">\(R\in\mathbb R^{k\times k}\)</span>，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 A_*D_*=(A_*R)(R^{-1}D_*).
-\]</div>
+</script>
+</div>
 <p>真正唯一或重要的是乘积 <span class="arithmatex">\(AD\)</span> 以及它对应的子空间。</p>
 <hr />
 <h1 id="2-d-a">2. 固定 <span class="arithmatex">\(D\)</span>，更新 <span class="arithmatex">\(A\)</span></h1>
 <p>定义</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 F(A,D)=\|\Phi-AD\|_F^2.
-\]</div>
+</script>
+</div>
 <p>固定 <span class="arithmatex">\(D\)</span>，对 <span class="arithmatex">\(A\)</span> 求导：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \nabla_A F
 =
 2(AD-\Phi)D^\top.
-\]</div>
+</script>
+</div>
 <p>令梯度为零：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 (AD-\Phi)D^\top=0,
-\]</div>
+</script>
+</div>
 <p>即</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 A(DD^\top)=\Phi D^\top.
-\]</div>
+</script>
+</div>
 <p>若 <span class="arithmatex">\(D\)</span> 满行秩，则 <span class="arithmatex">\(DD^\top\)</span> 可逆，所以</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 A^{(t+1)}
 =
 \Phi(D^{(t)})^\top
 \left[D^{(t)}(D^{(t)})^\top\right]^{-1}.
 }
-\]</div>
+</script>
+</div>
 <p>用伪逆可以统一写成</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 A^{(t+1)}=\Phi(D^{(t)})^\dagger.
-\]</div>
+</script>
+</div>
 <p>固定 <span class="arithmatex">\(D\)</span> 后，对应的乘积是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 A^{(t+1)}D^{(t)}
-&amp;=
+&=
 \Phi(D^{(t)})^\top
 \left[D^{(t)}(D^{(t)})^\top\right]^{-1}
 D^{(t)}\\
-&amp;=
+&=
 \Phi P_{\operatorname{row}(D^{(t)})},
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>其中</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 P_{\operatorname{row}(D)}
 =
 D^\top(DD^\top)^{-1}D
-\]</div>
+</script>
+</div>
 <p>是到 <span class="arithmatex">\(D\)</span> 的行空间的正交投影。</p>
 <p>所以 <span class="arithmatex">\(A\)</span>-更新的含义是：</p>
 <blockquote>
@@ -4753,85 +5019,110 @@ D^\top(DD^\top)^{-1}D
 <hr />
 <h1 id="3-a-d">3. 固定 <span class="arithmatex">\(A\)</span>，更新 <span class="arithmatex">\(D\)</span></h1>
 <p>固定 <span class="arithmatex">\(A\)</span>，对 <span class="arithmatex">\(D\)</span> 求导：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \nabla_D F
 =
 2A^\top(AD-\Phi).
-\]</div>
+</script>
+</div>
 <p>令其为零：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 A^\top A D=A^\top\Phi.
-\]</div>
+</script>
+</div>
 <p>若 <span class="arithmatex">\(A\)</span> 满列秩，则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 D^{(t+1)}
 =
 \left[(A^{(t+1)})^\top A^{(t+1)}\right]^{-1}
 (A^{(t+1)})^\top\Phi.
 }
-\]</div>
+</script>
+</div>
 <p>也可以写成</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 D^{(t+1)}=(A^{(t+1)})^\dagger\Phi.
-\]</div>
+</script>
+</div>
 <p>此时</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 A^{(t+1)}D^{(t+1)}
 =
 P_{\operatorname{col}(A^{(t+1)})}\Phi,
-\]</div>
+</script>
+</div>
 <p>即将 <span class="arithmatex">\(\Phi\)</span> 投影到 <span class="arithmatex">\(A^{(t+1)}\)</span> 的列空间。</p>
 <hr />
 <h1 id="4_1">4. 把两个更新合起来</h1>
 <p>令</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 M=\Phi^\top\Phi\in\mathbb R^{d\times d}.
-\]</div>
+</script>
+</div>
 <p>暂时省略迭代下标，记</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 G=DD^\top,\qquad H=DMD^\top.
-\]</div>
+</script>
+</div>
 <p>由 <span class="arithmatex">\(A\)</span>-更新，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 A=\Phi D^\top G^{-1}.
-\]</div>
+</script>
+</div>
 <p>因此</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 A^\top A
 =
 G^{-1}D\Phi^\top\Phi D^\top G^{-1}
 =
 G^{-1}HG^{-1}.
-\]</div>
+</script>
+</div>
 <p>于是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 (A^\top A)^{-1}
 =
 GH^{-1}G.
-\]</div>
+</script>
+</div>
 <p>同时</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 A^\top\Phi
 =
 G^{-1}D\Phi^\top\Phi
 =
 G^{-1}DM.
-\]</div>
+</script>
+</div>
 <p>代入 <span class="arithmatex">\(D\)</span>-更新：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 D_{\mathrm{new}}
-&amp;=
+&=
 (A^\top A)^{-1}A^\top\Phi\\
-&amp;=
+&=
 GH^{-1}G\,G^{-1}DM\\
-&amp;=
+&=
 GH^{-1}DM.
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>即</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 D^{(t+1)}
 =
@@ -4841,205 +5132,263 @@ D^{(t)}M(D^{(t)})^\top
 \right]^{-1}
 D^{(t)}M.
 }
-\]</div>
+</script>
+</div>
 <p>前面的矩阵</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 D^{(t)}(D^{(t)})^\top
 \left[
 D^{(t)}M(D^{(t)})^\top
 \right]^{-1}
-\]</div>
+</script>
+</div>
 <p>是可逆的 <span class="arithmatex">\(k\times k\)</span> 矩阵。左乘可逆矩阵不改变行空间，因此</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \operatorname{row}(D^{(t+1)})
 =
 \operatorname{row}(D^{(t)}M).
 }
-\]</div>
+</script>
+</div>
 <p>递推可得</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \operatorname{row}(D^{(t)})
 =
 \operatorname{row}\left(D^{(0)}M^t\right).
 }
-\]</div>
+</script>
+</div>
 <p>这正是对</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 M=\Phi^\top\Phi
-\]</div>
+</script>
+</div>
 <p>执行的子空间幂迭代。</p>
 <hr />
 <h1 id="5-svd-k">5. 利用 SVD 证明它收敛到前 <span class="arithmatex">\(k\)</span> 个主成分</h1>
 <p>由 SVD，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 M=\Phi^\top\Phi
 =
 W\Lambda W^\top,
-\]</div>
+</script>
+</div>
 <p>其中</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Lambda
 =
 \operatorname{Diag}(\sigma_1^2,\ldots,\sigma_d^2).
-\]</div>
+</script>
+</div>
 <p>将其分块：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 W=[W_1\;W_2],
-\]</div>
+</script>
+</div>
 <p>其中</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 W_1=W_k\in\mathbb R^{d\times k},
-\]</div>
+</script>
+</div>
 <p>并令</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Lambda=
 \begin{pmatrix}
-\Lambda_1&amp;0\\
-0&amp;\Lambda_2
+\Lambda_1&0\\
+0&\Lambda_2
 \end{pmatrix},
-\]</div>
+</script>
+</div>
 <p>其中</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Lambda_1
 =
 \operatorname{Diag}(\sigma_1^2,\ldots,\sigma_k^2).
-\]</div>
+</script>
+</div>
 <p>把初始化在奇异向量坐标系下写成</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 D^{(0)}W=[B_1\;B_2],
-\]</div>
+</script>
+</div>
 <p>其中</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 B_1=D^{(0)}W_1\in\mathbb R^{k\times k}.
-\]</div>
+</script>
+</div>
 <p>于是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 D^{(0)}M^t
-&amp;=
+&=
 D^{(0)}
 W
 \begin{pmatrix}
-\Lambda_1^t&amp;0\\
-0&amp;\Lambda_2^t
+\Lambda_1^t&0\\
+0&\Lambda_2^t
 \end{pmatrix}
 W^\top\\
-&amp;=
+&=
 [B_1\Lambda_1^t\;\;B_2\Lambda_2^t]W^\top.
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>若 <span class="arithmatex">\(B_1\)</span> 可逆，可以左乘可逆矩阵</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Lambda_1^{-t}B_1^{-1},
-\]</div>
+</script>
+</div>
 <p>而不改变行空间。因此该行空间等价于</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \left[
 I_k\;\;
 \Lambda_1^{-t}B_1^{-1}B_2\Lambda_2^t
 \right]W^\top.
-\]</div>
+</script>
+</div>
 <p>若在第 <span class="arithmatex">\(k\)</span> 个奇异值处存在谱隙</p>
-<div class="arithmatex">\[
-\sigma_k&gt;\sigma_{k+1},
-\]</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\sigma_k>\sigma_{k+1},
+</script>
+</div>
 <p>那么</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \left\|
 \Lambda_1^{-t}B_1^{-1}B_2\Lambda_2^t
 \right\|_{\mathrm{op}}
-&amp;\le
+&\le
 \|B_1^{-1}B_2\|_{\mathrm{op}}
 \frac{\sigma_{k+1}^{2t}}{\sigma_k^{2t}}\\
-&amp;=
+&=
 \|B_1^{-1}B_2\|_{\mathrm{op}}
 \left(
 \frac{\sigma_{k+1}}{\sigma_k}
 \right)^{2t}
 \longrightarrow0.
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>所以</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \operatorname{row}(D^{(t)})
 \longrightarrow
 \operatorname{span}\{w_1^\top,\ldots,w_k^\top\}.
-\]</div>
+</script>
+</div>
 <p>也就是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \operatorname{col}\big((D^{(t)})^\top\big)
 \longrightarrow
 \operatorname{span}\{w_1,\ldots,w_k\}.
 }
-\]</div>
+</script>
+</div>
 <p>这正是 PCA 的主子空间。</p>
 <p>收敛速度由谱隙控制，几何收敛因子约为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \left(\frac{\sigma_{k+1}}{\sigma_k}\right)^2.
 }
-\]</div>
+</script>
+</div>
 <p>谱隙越大，收敛越快。</p>
 <hr />
 <h1 id="6-almost-all-initializations">6. 为什么是“almost all initializations”</h1>
 <p>上面的条件是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 B_1=D^{(0)}W_1
-\]</div>
+</script>
+</div>
 <p>必须可逆，即初始化的行空间必须在前 <span class="arithmatex">\(k\)</span> 个右奇异方向上有完整的非零分量。</p>
 <p>不满足条件意味着</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \det(D^{(0)}W_1)=0.
-\]</div>
+</script>
+</div>
 <p>这是关于 <span class="arithmatex">\(D^{(0)}\)</span> 各元素的一个非零多项式方程，其解集是 Lebesgue 测度为零的集合。</p>
 <p>因此，如果 <span class="arithmatex">\(D^{(0)}\)</span> 来自任意连续随机分布，那么</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb P\bigl(\det(D^{(0)}W_1)=0\bigr)=0.
-\]</div>
+</script>
+</div>
 <p>这就是“对几乎所有初始化”的含义。</p>
 <p>例如 <span class="arithmatex">\(k=1\)</span> 时，它就是普通幂迭代：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 d^{(t+1)}
 \quad\text{的方向等于}\quad
 d^{(t)}\Phi^\top\Phi.
-\]</div>
+</script>
+</div>
 <p>只要初始向量不恰好与第一右奇异向量正交，就会收敛到第一主成分。</p>
 <hr />
 <h1 id="7-ad-pca">7. 乘积 <span class="arithmatex">\(AD\)</span> 收敛到 PCA 重构</h1>
 <p>在 <span class="arithmatex">\(A\)</span>-更新后，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 A^{(t+1)}D^{(t)}
 =
 \Phi P_{\operatorname{row}(D^{(t)})}.
-\]</div>
+</script>
+</div>
 <p>由于</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 P_{\operatorname{row}(D^{(t)})}
 \longrightarrow
 W_kW_k^\top,
-\]</div>
+</script>
+</div>
 <p>所以</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 A^{(t+1)}D^{(t)}
 \longrightarrow
 \Phi W_kW_k^\top
 =
 \Phi_k.
-\]</div>
+</script>
+</div>
 <p>同样，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \operatorname{col}(A^{(t+1)})
 =
 \operatorname{col}\left(\Phi(D^{(t)})^\top\right)
 \longrightarrow
 \operatorname{span}(U_k),
-\]</div>
+</script>
+</div>
 <p>因此完整一轮更新后，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 A^{(t+1)}D^{(t+1)}
 =
 P_{\operatorname{col}(A^{(t+1)})}\Phi
@@ -5047,9 +5396,11 @@ P_{\operatorname{col}(A^{(t+1)})}\Phi
 U_kU_k^\top\Phi
 =
 \Phi_k.
-\]</div>
+</script>
+</div>
 <p>最终</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 A^{(t)}D^{(t)}
 \longrightarrow
@@ -5057,19 +5408,24 @@ U_k\Sigma_kW_k^\top
 =
 \Phi W_kW_k^\top.
 }
-\]</div>
+</script>
+</div>
 <p>于是目标函数收敛到全局最小值</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \|\Phi-A^{(t)}D^{(t)}\|_F^2
 \longrightarrow
-\sum_{j&gt;k}\sigma_j^2.
+\sum_{j>k}\sigma_j^2.
 }
-\]</div>
+</script>
+</div>
 <p>严格来说，由于分解存在</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 (A,D)\mapsto(AR,R^{-1}D)
-\]</div>
+</script>
+</div>
 <p>的不唯一性，通常保证的是：</p>
 <ul>
 <li><span class="arithmatex">\(D^{(t)}\)</span> 的行空间收敛；</li>
@@ -5080,7 +5436,8 @@ U_k\Sigma_kW_k^\top
 <hr />
 <h2 id="_1">最终算法</h2>
 <p>从几乎任意满行秩 <span class="arithmatex">\(D^{(0)}\)</span> 开始，重复：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 A^{(t+1)}
 =
@@ -5089,9 +5446,11 @@ A^{(t+1)}
 D^{(t)}(D^{(t)})^\top
 \right]^{-1}
 }
-\]</div>
+</script>
+</div>
 <p>以及</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 D^{(t+1)}
 =
@@ -5100,13 +5459,16 @@ D^{(t+1)}
 \right]^{-1}
 (A^{(t+1)})^\top\Phi.
 }
-\]</div>
+</script>
+</div>
 <p>其本质不是普通的“碰巧有效的非凸优化”，而是隐藏地执行</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \operatorname{row}(D^{(t+1)})
 =
 \operatorname{row}\bigl(D^{(t)}\Phi^\top\Phi\bigr),
-\]</div>
+</script>
+</div>
 <p>即对经验协方差矩阵进行子空间幂迭代，因此会找到 PCA 的主子空间。</p>
 <h2 id="prompt_4">Prompt:</h2>
 <p>2026/7/14 19:41:09</p>
@@ -5120,36 +5482,48 @@ D^{(t+1)}
 <hr />
 <h2 id="_2">一、给定了什么，要求解什么</h2>
 <p>给定数据矩阵</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Phi\in\mathbb R^{n\times d},
-\]</div>
+</script>
+</div>
 <p>其中有 <span class="arithmatex">\(n\)</span> 个样本，每个样本是 <span class="arithmatex">\(d\)</span> 维。</p>
 <p>现在寻找两个矩阵</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 A\in\mathbb R^{n\times k},
 \qquad
 D\in\mathbb R^{k\times d},
-\]</div>
+</script>
+</div>
 <p>使得</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 AD\in\mathbb R^{n\times d}
-\]</div>
+</script>
+</div>
 <p>尽可能接近原数据矩阵 <span class="arithmatex">\(\Phi\)</span>：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \min_{A,D}\|\Phi-AD\|_F^2.
 }
-\]</div>
+</script>
+</div>
 <p>由于</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \operatorname{rank}(AD)\le k,
-\]</div>
+</script>
+</div>
 <p>这其实是在问：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \text{如何用一个秩不超过 }k\text{ 的矩阵，最好地逼近 }\Phi？
 }
-\]</div>
+</script>
+</div>
 <p>这里 <span class="arithmatex">\(A,D\)</span> 的意义可以理解为：</p>
 <ul>
 <li><span class="arithmatex">\(A\)</span>：每个样本的 <span class="arithmatex">\(k\)</span> 维低维表示；</li>
@@ -5157,62 +5531,82 @@ AD\in\mathbb R^{n\times d}
 <li><span class="arithmatex">\(AD\)</span>：降维后再重构的数据。</li>
 </ul>
 <p>对于第 <span class="arithmatex">\(i\)</span> 个样本，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \phi_i^\top\approx a_i^\top D,
-\]</div>
+</script>
+</div>
 <p>其中 <span class="arithmatex">\(a_i^\top\)</span> 是 <span class="arithmatex">\(A\)</span> 的第 <span class="arithmatex">\(i\)</span> 行，即样本的 <span class="arithmatex">\(k\)</span> 维编码。</p>
 <hr />
 <h2 id="_3">二、本题第一部分要求证明什么</h2>
 <p>题目先要求证明：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \min_{A,D}\|\Phi-AD\|_F^2
-\]</div>
+</script>
+</div>
 <p>的最优乘积 <span class="arithmatex">\(AD\)</span>，就是 PCA 对数据进行 <span class="arithmatex">\(k\)</span> 维投影后再重构得到的矩阵。</p>
 <p>设 <span class="arithmatex">\(\Phi\)</span> 的 SVD 为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Phi=U\Sigma V^\top.
-\]</div>
+</script>
+</div>
 <p>取前 <span class="arithmatex">\(k\)</span> 个奇异方向：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 U_k,\qquad \Sigma_k,\qquad V_k.
-\]</div>
+</script>
+</div>
 <p>则最佳秩 <span class="arithmatex">\(k\)</span> 逼近是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 AD=\Phi_k=U_k\Sigma_kV_k^\top.
 }
-\]</div>
+</script>
+</div>
 <p>同时</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Phi_k=\Phi V_kV_k^\top.
-\]</div>
+</script>
+</div>
 <p>这正是 PCA：</p>
 <ol>
 <li>
 <p>降维：
-   $$
-   A=\Phi V_k=U_k\Sigma_k\in\mathbb R^{n\times k};
-   $$</p>
+   <div class="arithmatex">
+<script type="math/tex; mode=display">
+A=\Phi V_k=U_k\Sigma_k\in\mathbb R^{n\times k};
+</script>
+</div></p>
 </li>
 <li>
 <p>重构：
-   $$
-   AD=(\Phi V_k)V_k^\top.
-   $$</p>
+   <div class="arithmatex">
+<script type="math/tex; mode=display">
+AD=(\Phi V_k)V_k^\top.
+</script>
+</div></p>
 </li>
 </ol>
 <p>所以可以取</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 A_*=\Phi V_k=U_k\Sigma_k,
 \qquad
 D_*=V_k^\top.
 }
-\]</div>
+</script>
+</div>
 <p>题目并不是说 <span class="arithmatex">\(A,D\)</span> 唯一。实际上对任意可逆矩阵 <span class="arithmatex">\(R\in\mathbb R^{k\times k}\)</span>，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 A_*D_*=(A_*R)(R^{-1}D_*).
-\]</div>
+</script>
+</div>
 <p>因此真正要求找到的是最优乘积 <span class="arithmatex">\(AD\)</span>，而不是唯一的两个因子。</p>
 <hr />
 <h2 id="_4">三、第二部分要求求出交替最小化更新</h2>
@@ -5224,132 +5618,169 @@ A_*D_*=(A_*R)(R^{-1}D_*).
 </ol>
 <p>你需要计算这两个子问题的闭式解。</p>
 <h3 id="d-a">固定 <span class="arithmatex">\(D\)</span>，求 <span class="arithmatex">\(A\)</span></h3>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 A_{t+1}
 =
 \arg\min_A\|\Phi-AD_t\|_F^2.
-\]</div>
+</script>
+</div>
 <p>正规方程为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 A_{t+1}D_tD_t^\top=\Phi D_t^\top,
-\]</div>
+</script>
+</div>
 <p>所以</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 A_{t+1}
 =
 \Phi D_t^\top(D_tD_t^\top)^{-1}.
 }
-\]</div>
+</script>
+</div>
 <h3 id="a_t1-d">固定 <span class="arithmatex">\(A_{t+1}\)</span>，求 <span class="arithmatex">\(D\)</span></h3>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 D_{t+1}
 =
 \arg\min_D\|\Phi-A_{t+1}D\|_F^2.
-\]</div>
+</script>
+</div>
 <p>正规方程为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 A_{t+1}^\top A_{t+1}D_{t+1}
 =
 A_{t+1}^\top\Phi,
-\]</div>
+</script>
+</div>
 <p>所以</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 D_{t+1}
 =
 (A_{t+1}^\top A_{t+1})^{-1}
 A_{t+1}^\top\Phi.
 }
-\]</div>
+</script>
+</div>
 <p>如果矩阵不满秩，可以将逆替换成 Moore-Penrose 伪逆。</p>
 <hr />
 <h2 id="pca_1">四、第三部分要求证明算法为什么收敛到 PCA</h2>
 <p>这是本题真正有难度的部分。</p>
 <p>要证明上述交替最小化并非只收敛到某个局部最优点，而是对于几乎所有初始化 <span class="arithmatex">\(D_0\)</span>，其乘积收敛到</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Phi_k=U_k\Sigma_kV_k^\top.
-\]</div>
+</script>
+</div>
 <p>核心是证明，完成一轮 <span class="arithmatex">\(A,D\)</span> 更新以后，<span class="arithmatex">\(D\)</span> 的行空间满足</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \operatorname{row}(D_{t+1})
 =
 \operatorname{row}(D_t\Phi^\top\Phi).
 }
-\]</div>
+</script>
+</div>
 <p>因此递推得到</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \operatorname{row}(D_t)
 =
 \operatorname{row}\bigl(D_0(\Phi^\top\Phi)^t\bigr).
-\]</div>
+</script>
+</div>
 <p>这就是对矩阵</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Phi^\top\Phi
-\]</div>
+</script>
+</div>
 <p>执行子空间幂迭代。</p>
 <p>而 <span class="arithmatex">\(\Phi^\top\Phi\)</span> 的特征向量正是 <span class="arithmatex">\(\Phi\)</span> 的右奇异向量：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Phi^\top\Phi
 =
 V\Sigma^2V^\top.
-\]</div>
+</script>
+</div>
 <p>因此，只要初始化 <span class="arithmatex">\(D_0\)</span> 在前 <span class="arithmatex">\(k\)</span> 个右奇异方向上不是恰好完全缺失，迭代就会把其行空间推向</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \operatorname{span}\{v_1,\ldots,v_k\}.
-\]</div>
+</script>
+</div>
 <p>最后</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 AD\longrightarrow
 \Phi V_kV_k^\top
 =
 U_k\Sigma_kV_k^\top.
-\]</div>
+</script>
+</div>
 <hr />
 <h2 id="almost-all-initializations">五、“almost all initializations”是什么意思</h2>
 <p>它不是说任何初始化都可以。</p>
 <p>例如 <span class="arithmatex">\(k=1\)</span>，假设初始化向量刚好与第一主成分 <span class="arithmatex">\(v_1\)</span> 正交，那么乘以 <span class="arithmatex">\(\Phi^\top\Phi\)</span> 后，它仍然可能没有 <span class="arithmatex">\(v_1\)</span> 分量，于是不会收敛到第一主成分。</p>
 <p>但这种“恰好正交”的初始化构成一个测度为零的集合。</p>
 <p>所以随机初始化时，概率为 <span class="arithmatex">\(1\)</span> 地满足收敛条件。这就是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \text{for almost all initializations of }D.
-\]</div>
+</script>
+</div>
 <hr />
 <h2 id="_5">六、本题可以压缩为三个任务</h2>
 <h3 id="1">任务 1：识别优化问题</h3>
 <p>证明</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \min_{A,D}\|\Phi-AD\|_F^2
 =
 \min_{\operatorname{rank}(B)\le k}\|\Phi-B\|_F^2.
-\]</div>
+</script>
+</div>
 <p>所以这是最佳秩 <span class="arithmatex">\(k\)</span> 逼近问题。</p>
 <h3 id="2_3">任务 2：求全局最优解</h3>
 <p>利用 SVD/Eckart-Young 定理证明</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 A_*D_*=U_k\Sigma_kV_k^\top
 =
 \Phi V_kV_k^\top,
 }
-\]</div>
+</script>
+</div>
 <p>即 PCA 重构。</p>
 <h3 id="3_2">任务 3：分析算法</h3>
 <p>计算交替更新</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 A_{t+1}
 =
 \Phi D_t^\top(D_tD_t^\top)^{-1},
-\]</div>
-<div class="arithmatex">\[
+</script>
+</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 D_{t+1}
 =
 (A_{t+1}^\top A_{t+1})^{-1}A_{t+1}^\top\Phi,
-\]</div>
+</script>
+</div>
 <p>并证明它在子空间层面等价于幂迭代，从而收敛到 PCA 主子空间。</p>
 <p>因此，本题的重点不是“如何直接计算 PCA”，而是展示一个重要现象：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \text{PCA}
 =
@@ -5357,7 +5788,8 @@ D_{t+1}
 =
 \text{交替最小二乘的全局极限}.
 }
-\]</div>
+</script>
+</div>
 <h2 id="prompt_5">Prompt:</h2>
 <p>2026/7/14 19:42:38</p>
 <p>先翻译题目？</p>
@@ -5405,62 +5837,81 @@ $$
 </blockquote>
 <p>然后再问：哪个 <span class="arithmatex">\(k\)</span> 维行空间最好？答案才是前 <span class="arithmatex">\(k\)</span> 个右奇异向量张成的空间。这就是 Eckart-Young 定理在这里的一种直接证明。<code>lftp.pdf</code></p>
 <p>为避免与题目中的 <span class="arithmatex">\(V\)</span> 淆乱，设</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Phi=U\Sigma W^\top
-\]</div>
+</script>
+</div>
 <p>是 SVD，右奇异向量记为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 W=[w_1,\ldots,w_d],
 \qquad
 \sigma_1\ge\cdots\ge\sigma_d\ge0.
-\]</div>
+</script>
+</div>
 <p>我们要证明</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \min_{\operatorname{rank}(B)\le k}\|\Phi-B\|_F^2
-\]</div>
+</script>
+</div>
 <p>的一个最优解是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 B_*=\Phi W_kW_k^\top,
 \qquad
 W_k=[w_1,\ldots,w_k].
-\]</div>
+</script>
+</div>
 <hr />
 <h1 id="1-operatornamerankble-k">1. 任取一个 <span class="arithmatex">\(\operatorname{rank}(B)\le k\)</span> 的矩阵</h1>
 <p>令</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathcal S=\operatorname{row}(B)\subseteq\mathbb R^d
-\]</div>
+</script>
+</div>
 <p>是 <span class="arithmatex">\(B\)</span> 的行空间，因此</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \dim\mathcal S=\operatorname{rank}(B)\le k.
-\]</div>
+</script>
+</div>
 <p>设 <span class="arithmatex">\(P_{\mathcal S}\)</span> 是到 <span class="arithmatex">\(\mathcal S\)</span> 的正交投影矩阵。</p>
 <p>因为 <span class="arithmatex">\(B\)</span> 的每一行都属于 <span class="arithmatex">\(\mathcal S\)</span>，所以将 <span class="arithmatex">\(B\)</span> 的每一行投影到 <span class="arithmatex">\(\mathcal S\)</span> 后不变：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 B=B P_{\mathcal S}.
-\]</div>
+</script>
+</div>
 <p>把误差分解为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Phi-B
 =
 \Phi(I-P_{\mathcal S})
 +
 \bigl(\Phi P_{\mathcal S}-B\bigr).
-\]</div>
+</script>
+</div>
 <p>这里：</p>
 <ul>
 <li><span class="arithmatex">\(\Phi(I-P_{\mathcal S})\)</span> 的每一行属于 <span class="arithmatex">\(\mathcal S^\perp\)</span>；</li>
 <li><span class="arithmatex">\(\Phi P_{\mathcal S}-B\)</span> 的每一行属于 <span class="arithmatex">\(\mathcal S\)</span>。</li>
 </ul>
 <p>因此两个矩阵在 Frobenius 内积下正交：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \left\langle
 \Phi(I-P_{\mathcal S}),
 \Phi P_{\mathcal S}-B
 \right\rangle_F=0.
-\]</div>
+</script>
+</div>
 <p>于是由勾股定理，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \|\Phi-B\|_F^2
 =
@@ -5468,135 +5919,175 @@ B=B P_{\mathcal S}.
 +
 \|\Phi P_{\mathcal S}-B\|_F^2.
 }
-\]</div>
+</script>
+</div>
 <p>所以必然有</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \|\Phi-B\|_F^2
 \ge
 \|\Phi-\Phi P_{\mathcal S}\|_F^2.
 }
-\]</div>
+</script>
+</div>
 <p>等号当且仅当</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 B=\Phi P_{\mathcal S}.
-\]</div>
+</script>
+</div>
 <p>这说明：一旦 <span class="arithmatex">\(B\)</span> 的行空间 <span class="arithmatex">\(\mathcal S\)</span> 已经确定，在所有行空间包含于 <span class="arithmatex">\(\mathcal S\)</span> 的矩阵中，最佳选择是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 B_{\mathcal S}=\Phi P_{\mathcal S}.
-\]</div>
+</script>
+</div>
 <p>因此我们不再需要对所有 <span class="arithmatex">\(B\)</span> 优化，而只需要在所有不超过 <span class="arithmatex">\(k\)</span> 维的子空间 <span class="arithmatex">\(\mathcal S\)</span> 中寻找最佳投影：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \min_{\operatorname{rank}(B)\le k}\|\Phi-B\|_F^2
 =
 \min_{\dim\mathcal S\le k}
 \|\Phi-\Phi P_{\mathcal S}\|_F^2.
-\]</div>
+</script>
+</div>
 <p>这就是关键桥梁。</p>
 <hr />
 <h1 id="2-v">2. 把子空间写成 <span class="arithmatex">\(V\)</span> 的列空间</h1>
 <p>若 <span class="arithmatex">\(\dim\mathcal S=k\)</span>，取 <span class="arithmatex">\(\mathcal S\)</span> 的一组标准正交基：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 V=[v_1,\ldots,v_k]\in\mathbb R^{d\times k},
 \qquad
 V^\top V=I_k.
-\]</div>
+</script>
+</div>
 <p>那么正交投影矩阵为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 P_{\mathcal S}=VV^\top.
-\]</div>
+</script>
+</div>
 <p>所以现在的问题变成</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \min_{V^\top V=I_k}
 \|\Phi-\Phi VV^\top\|_F^2.
-\]</div>
+</script>
+</div>
 <p>并且一旦最佳 <span class="arithmatex">\(V\)</span> 找到，最佳低秩矩阵就是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 B_*=\Phi VV^\top.
-\]</div>
+</script>
+</div>
 <p>注意：这里尚未说明 <span class="arithmatex">\(V\)</span> 是前 <span class="arithmatex">\(k\)</span> 个右奇异向量，只是把任意 <span class="arithmatex">\(k\)</span> 维子空间参数化了。</p>
 <hr />
 <h1 id="3_3">3. 最小重构误差等价于最大保留能量</h1>
 <p>由于 <span class="arithmatex">\(P=VV^\top\)</span> 满足</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 P^\top=P,\qquad P^2=P,
-\]</div>
+</script>
+</div>
 <p>有</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \|\Phi-\Phi VV^\top\|_F^2
-&amp;=
+&=
 \|\Phi(I-P)\|_F^2\\
-&amp;=
+&=
 \operatorname{tr}\bigl((I-P)\Phi^\top\Phi(I-P)\bigr)\\
-&amp;=
+&=
 \operatorname{tr}(\Phi^\top\Phi)
 -
 \operatorname{tr}(V^\top\Phi^\top\Phi V).
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>因此</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \min_{V^\top V=I_k}
 \|\Phi-\Phi VV^\top\|_F^2
-\]</div>
+</script>
+</div>
 <p>等价于</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \max_{V^\top V=I_k}
 \operatorname{tr}(V^\top\Phi^\top\Phi V).
 }
-\]</div>
+</script>
+</div>
 <p>第一项</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \operatorname{tr}(\Phi^\top\Phi)=\|\Phi\|_F^2
-\]</div>
+</script>
+</div>
 <p>是固定的。</p>
 <hr />
 <h1 id="4-k_1">4. 为什么最优子空间是前 <span class="arithmatex">\(k\)</span> 个右奇异向量</h1>
 <p>由 SVD，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Phi^\top\Phi
 =
 W\Sigma^\top\Sigma W^\top
 =
 W\operatorname{Diag}(\sigma_1^2,\ldots,\sigma_d^2)W^\top.
-\]</div>
+</script>
+</div>
 <p>令</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 Z=W^\top V.
-\]</div>
+</script>
+</div>
 <p>因为 <span class="arithmatex">\(W\)</span> 是正交矩阵，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 Z^\top Z
 =
 V^\top WW^\top V
 =
 I_k.
-\]</div>
+</script>
+</div>
 <p>于是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \operatorname{tr}(V^\top\Phi^\top\Phi V)
-&amp;=
+&=
 \operatorname{tr}
 \left(
 Z^\top\operatorname{Diag}(\sigma_1^2,\ldots,\sigma_d^2)Z
 \right).
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>记 <span class="arithmatex">\(Z\)</span> 的第 <span class="arithmatex">\(i\)</span> 行为 <span class="arithmatex">\(z_i^\top\)</span>，则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \operatorname{tr}(V^\top\Phi^\top\Phi V)
 =
 \sum_{i=1}^d\sigma_i^2\|z_i\|_2^2.
-\]</div>
+</script>
+</div>
 <p>令</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \alpha_i=\|z_i\|_2^2.
-\]</div>
+</script>
+</div>
 <p>因为 <span class="arithmatex">\(Z^\top Z=I_k\)</span>，所以</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 0\le\alpha_i\le1,
 \qquad
 \sum_{i=1}^d\alpha_i
@@ -5606,66 +6097,86 @@ Z^\top\operatorname{Diag}(\sigma_1^2,\ldots,\sigma_d^2)Z
 \operatorname{tr}(Z^\top Z)
 =
 k.
-\]</div>
+</script>
+</div>
 <p>现在问题变成</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \max
 \sum_{i=1}^d\sigma_i^2\alpha_i,
-\]</div>
+</script>
+</div>
 <p>满足</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 0\le\alpha_i\le1,
 \qquad
 \sum_i\alpha_i=k.
-\]</div>
+</script>
+</div>
 <p>由于</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \sigma_1^2\ge\sigma_2^2\ge\cdots\ge\sigma_d^2,
-\]</div>
+</script>
+</div>
 <p>显然最大值在</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \alpha_1=\cdots=\alpha_k=1,
 \qquad
 \alpha_{k+1}=\cdots=\alpha_d=0
-\]</div>
+</script>
+</div>
 <p>处取得。</p>
 <p>因此</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \max_{V^\top V=I_k}
 \operatorname{tr}(V^\top\Phi^\top\Phi V)
 =
 \sum_{i=1}^k\sigma_i^2.
-\]</div>
+</script>
+</div>
 <p>一个最优选择是</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 V=W_k=[w_1,\ldots,w_k].
 }
-\]</div>
+</script>
+</div>
 <hr />
 <h1 id="5-b">5. 因此最佳 <span class="arithmatex">\(B\)</span> 是什么</h1>
 <p>代回</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 B_*=\Phi VV^\top,
-\]</div>
+</script>
+</div>
 <p>得到</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 B_*=\Phi W_kW_k^\top.
 }
-\]</div>
+</script>
+</div>
 <p>由 SVD，</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \begin{aligned}
 \Phi W_kW_k^\top
-&amp;=
+&=
 U\Sigma W^\top W_kW_k^\top\\
-&amp;=
+&=
 U_k\Sigma_kW_k^\top.
 \end{aligned}
-\]</div>
+</script>
+</div>
 <p>所以</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 B_*
 =
@@ -5673,22 +6184,27 @@ U_k\Sigma_kW_k^\top
 =
 \sum_{i=1}^k\sigma_i u_iw_i^\top.
 }
-\]</div>
+</script>
+</div>
 <p>这就是截断 SVD，也就是 PCA 重构矩阵。</p>
 <p>最小误差为</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \|\Phi-B_*\|_F^2
 =
 \sum_{i=k+1}^d\sigma_i^2.
 }
-\]</div>
+</script>
+</div>
 <hr />
 <h1 id="6_2">6. 你的已有认识差在哪一步</h1>
 <p>你已经知道：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \Phi=U\Sigma W^\top
-\]</div>
+</script>
+</div>
 <p>以后，保留前 <span class="arithmatex">\(k\)</span> 个奇异方向会得到一个很小的误差。但仍需要排除一种可能：</p>
 <blockquote>
 <p>会不会存在某个右奇异向量并不与 <span class="arithmatex">\(\Phi\)</span> 对齐的、很奇怪的秩 <span class="arithmatex">\(k\)</span> 矩阵 <span class="arithmatex">\(B\)</span>，误差更小？</p>
@@ -5697,9 +6213,11 @@ U_k\Sigma_kW_k^\top
 <ol>
 <li>
 <p>对任意 <span class="arithmatex">\(B\)</span>，只保留它的行空间 <span class="arithmatex">\(\mathcal S\)</span>，并用
-   $$
-   \Phi P_{\mathcal S}
-   $$
+   <div class="arithmatex">
+<script type="math/tex; mode=display">
+\Phi P_{\mathcal S}
+</script>
+</div>
    代替 <span class="arithmatex">\(B\)</span>，误差只会更小；</p>
 </li>
 <li>
@@ -5707,7 +6225,8 @@ U_k\Sigma_kW_k^\top
 </li>
 </ol>
 <p>因此并不是先假定 <span class="arithmatex">\(B\)</span> 的奇异向量必须等于 <span class="arithmatex">\(\Phi\)</span> 的奇异向量，而是证明：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{
 \text{任意 }B
 \;\longrightarrow\;
@@ -5715,7 +6234,8 @@ U_k\Sigma_kW_k^\top
 \;\longrightarrow\;
 \text{前 }k\text{ 个右奇异子空间}.
 }
-\]</div>
+</script>
+</div>
 <p>这才完整证明了全局最优性。</p>
 <hr />
 <p>Powered by <a href="https://www.chatgptexporter.com">ChatGPT Exporter</a></p>

@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://huangblac.github.io/AI-Math-Docs/computation/lftp/learning-theory/">
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../ch5-4-sgd/">
       
       
         <link rel="next" href="../machine-learning/">
@@ -1684,118 +1684,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -2796,17 +2684,21 @@
 <p>学习理论里几乎所有泛化界，都建立在"经验均值偏离期望的幅度是 <span class="arithmatex">\(O(1/\sqrt n)\)</span>、且尾巴指数衰减"这一事实上。把这件事说精确的统一语言，就是 <strong>次高斯（sub-Gaussian）</strong>。</p>
 <h3 id="_4">次高斯随机变量</h3>
 <p>称零均值随机变量 <span class="arithmatex">\(X\)</span> 是**次高斯的**（参数 <span class="arithmatex">\(\sigma^2\)</span>），若其矩母函数被同方差高斯的矩母函数控制：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb{E}\,e^{\lambda(X-\mathbb{E}\,X)} \le e^{\lambda^2\sigma^2/2},\qquad \forall \lambda\in\mathbb{R}.
-\]</div>
+</script>
+</div>
 <p>直觉：<strong>尾巴不比高斯重</strong>。由此可直接导出双边指数尾 <span class="arithmatex">\(\mathbb{P}\,(|X-\mathbb{E}\,X|\ge t)\le 2e^{-t^2/(2\sigma^2)}\)</span>。</p>
 <h3 id="hoeffding">有界 ⟹ 次高斯（Hoeffding 引理）</h3>
 <blockquote>
 <p><strong>结论</strong>：任意有界随机变量都是次高斯的。若 <span class="arithmatex">\(a\le X\le b\)</span> 几乎必然，则中心化的 <span class="arithmatex">\(X-\mathbb{E}\,X\)</span> 次高斯，且</p>
 </blockquote>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb{E}\,e^{\lambda(X-\mathbb{E}\,X)} \le \exp\!\left(\frac{\lambda^2 (b-a)^2}{8}\right)\qquad(\text{Hoeffding 引理}).
-\]</div>
+</script>
+</div>
 <p>与定义 <span class="arithmatex">\(e^{\lambda^2\sigma^2/2}\)</span> 对比，可取次高斯参数 <span class="arithmatex">\(\sigma^2=\dfrac{(b-a)^2}{4}\)</span>。</p>
 <p><strong>为什么直觉上成立</strong>：有界变量根本跑不出 <span class="arithmatex">\([a,b]\)</span>，尾部比高斯还轻，中心化后自然次高斯。（特例 <span class="arithmatex">\(|X|\le M\)</span> 时可取 <span class="arithmatex">\(\sigma^2=M^2\)</span>。）</p>
 <div class="admonition warning">
@@ -2815,14 +2707,18 @@
 </div>
 <h3 id="log-mgf">证明心法：log-MGF + 指数倾斜</h3>
 <p>Hoeffding 引理的证法是研究 <strong>log-矩母函数</strong> <span class="arithmatex">\(\psi(s)=\log\mathbb{E}\,e^{sX}\)</span>，目标 <span class="arithmatex">\(\psi(s)\le \dfrac{s^2(b-a)^2}{8}\)</span>。取 log 后导数结构很好：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \psi'(s)=\frac{\mathbb{E}[Xe^{sX}]}{\mathbb{E}[e^{sX}]},\qquad
 \psi''(s)=\frac{\mathbb{E}[X^2e^{sX}]}{\mathbb{E}[e^{sX}]}-\left(\frac{\mathbb{E}[Xe^{sX}]}{\mathbb{E}[e^{sX}]}\right)^2 .
-\]</div>
+</script>
+</div>
 <p><strong>关键观察</strong>：<span class="arithmatex">\(\psi''(s)\)</span> 恰是某个新测度 <span class="arithmatex">\(Q\)</span> 下 <span class="arithmatex">\(X\)</span> 的方差。这个 <span class="arithmatex">\(Q\)</span> 由**指数倾斜（exponential tilting / Esscher 变换）**给出：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 dQ = \frac{e^{sX}}{\mathbb{E}[e^{sX}]}\,dP.
-\]</div>
+</script>
+</div>
 <p>它把原测度按权重 <span class="arithmatex">\(e^{sX}/\mathbb{E}[e^{sX}]\)</span>（总积分为 1）重新加权——<span class="arithmatex">\(s&gt;0\)</span> 时偏向 <span class="arithmatex">\(X\)</span> 大的地方，<span class="arithmatex">\(s&lt;0\)</span> 时偏向小的地方。<strong>不是改变随机变量本身，而是改变看待它的概率权重</strong>。于是在 <span class="arithmatex">\(Q\)</span> 下 <span class="arithmatex">\(\mathbb{E}_Q[f(X)]=\dfrac{\mathbb{E}[f(X)e^{sX}]}{\mathbb{E}[e^{sX}]}\)</span>，故 <span class="arithmatex">\(\psi''(s)=\mathrm{var}_Q(X)\)</span>。因为 <span class="arithmatex">\(X\in[a,b]\)</span>，任何测度下方差 <span class="arithmatex">\(\le \left(\dfrac{b-a}{2}\right)^2\)</span>，所以 <span class="arithmatex">\(\psi''(s)\le \dfrac{(b-a)^2}{4}\)</span>；配上 <span class="arithmatex">\(\psi(0)=\psi'(0)=0\)</span> 积分两次即得结论。</p>
 <h3 id="_5">在学习理论里的位置</h3>
 <p>次高斯 + Hoeffding 引理是上层一切集中不等式的地基：</p>
@@ -2840,36 +2736,48 @@ dQ = \frac{e^{sX}}{\mathbb{E}[e^{sX}]}\,dP.
 <p><a href="../ch4-erm/">LFTP Ch4</a> 用覆盖数把无限类的一致偏差控住，得到的是**慢速率** <span class="arithmatex">\(\sqrt{\log\mathcal{N}/n}\)</span>。但若损失再满足一个 <strong>Bernstein 条件（间隔条件）</strong>——方差被超额风险控制——速率能提升到 <span class="arithmatex">\(\log\mathcal{N}/n\)</span>（快一个平方）。</p>
 <p><strong>目标</strong>：控制统计误差 <span class="arithmatex">\(\mathcal{E}_{sta}=\mathbb{E}\big[\sup_{f\in\mathcal{F}}\tfrac1n\sum_i G(f,Z_i)\big]\)</span>，其中超额损失 <span class="arithmatex">\(g(f,z)=\ell(f,z)-\ell(f^*,z)\)</span>，并令 <span class="arithmatex">\(G(f,z)=\mathbb{E}[g(f,Z)]-2g(f,z)\)</span>。</p>
 <p><strong>① 覆盖数：无限类 → 有限网。</strong> 取 <span class="arithmatex">\(\|\cdot\|_\infty\)</span> 下的 <span class="arithmatex">\(\delta\)</span>-网 <span class="arithmatex">\(\mathcal{C}=\{\tilde f_1,\dots,\tilde f_{\mathcal{N}}\}\)</span>。损失 <span class="arithmatex">\(\lambda\)</span>-Lipschitz <span class="arithmatex">\(\Rightarrow |g(f,z)-g(\tilde f,z)|\le\lambda\delta\)</span>，从而 <span class="arithmatex">\(|G(f,z)-G(\tilde f,z)|\le 3\lambda\delta\)</span>，于是 sup 转嫁给最近代表，代价 <span class="arithmatex">\(3\lambda\delta\)</span>：</p>
-<div class="arithmatex">\[
-\mathbb{P}\big[\max_{f\in\mathcal{F}}\tfrac1n\textstyle\sum_i G(f,Z_i)&gt;t\big]\le \mathbb{P}\big[\max_{\tilde f\in\mathcal{C}}\tfrac1n\textstyle\sum_i G(\tilde f,Z_i)&gt;t-3\lambda\delta\big].
-\]</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb{P}\big[\max_{f\in\mathcal{F}}\tfrac1n\textstyle\sum_i G(f,Z_i)>t\big]\le \mathbb{P}\big[\max_{\tilde f\in\mathcal{C}}\tfrac1n\textstyle\sum_i G(\tilde f,Z_i)>t-3\lambda\delta\big].
+</script>
+</div>
 <p><strong>② 固定 <span class="arithmatex">\(\tilde f\)</span>，中心化。</strong> 由 <span class="arithmatex">\(G(\tilde f,Z_i)=\mathbb{E}[g]-2g_i\)</span> 整理，要控制的是零均值和 <span class="arithmatex">\(\tfrac1n\sum_i X_i\)</span>，其中 <span class="arithmatex">\(X_i=\mathbb{E}[g]-g_i\)</span>，阈值 <span class="arithmatex">\(u=\tfrac t2+\tfrac12\mathbb{E}[g]\)</span>。</p>
 <p><strong>③ Bernstein 条件（关键）。</strong> 有界性给 <span class="arithmatex">\(|X_i|\le b=4\lambda B\)</span>；间隔条件 <span class="arithmatex">\(c\|\tilde f-f^*\|^2\le\mathbb{E}[g]\)</span> 配 Lipschitz 给</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \sigma^2=\mathrm{Var}(g)\le \mathbb{E}[g^2]\le \lambda^2\,\mathbb{E}\|\tilde f-f^*\|^2\le \frac{\lambda^2}{c}\,\mathbb{E}[g].
-\]</div>
+</script>
+</div>
 <p><strong>方差被期望（超额风险）控制</strong> —— 这是快速率的全部秘密。</p>
 <p><strong>④ Bernstein 不等式。</strong> <span class="arithmatex">\(\displaystyle\mathbb{P}\big[\tfrac1n\sum_i X_i&gt;u\big]\le \exp\!\Big(-\frac{nu^2}{2(\sigma^2+bu)}\Big).\)</span></p>
 <p><strong>⑤ 二次指数 → 线性指数。</strong> 因 <span class="arithmatex">\(\sigma^2\lesssim \tfrac{\lambda^2}{c}u\)</span>，分母 <span class="arithmatex">\(2(\sigma^2+bu)\le Cu\)</span> 被线性化，于是 <span class="arithmatex">\(\tfrac{nu^2}{2(\sigma^2+bu)}\ge\tfrac{nu}{C}\)</span>，配 <span class="arithmatex">\(u\ge t/2\)</span>：</p>
-<div class="arithmatex">\[
-\mathbb{P}\big[\tfrac1n\textstyle\sum_i G(\tilde f,Z_i)&gt;t\big]\le \exp\!\Big(-\frac{nt}{16\lambda B+4\lambda^2/c}\Big),\qquad C:=16\lambda B+\tfrac{4\lambda^2}{c}.
-\]</div>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb{P}\big[\tfrac1n\textstyle\sum_i G(\tilde f,Z_i)>t\big]\le \exp\!\Big(-\frac{nt}{16\lambda B+4\lambda^2/c}\Big),\qquad C:=16\lambda B+\tfrac{4\lambda^2}{c}.
+</script>
+</div>
 <p><strong>指数从 <span class="arithmatex">\(e^{-nt^2}\)</span> 型变成 <span class="arithmatex">\(e^{-nt}\)</span> 型</strong> —— 这一步就是把 <span class="arithmatex">\(\sqrt{\ }\)</span> 速率换成线性速率。</p>
 <p><strong>⑥ Union bound + 尾积分。</strong> 对 <span class="arithmatex">\(\mathcal{C}\)</span> 并集得 <span class="arithmatex">\(\mathbb{P}[\cdot&gt;t]\le \mathcal{N}\exp(-n(t-3\lambda\delta)/C)\)</span>。用 <span class="arithmatex">\(\mathbb{E}[Z]\le a+\int_a^\infty\mathbb{P}[Z&gt;t]\,dt\)</span>，取 <span class="arithmatex">\(a=3\lambda\delta+\tfrac{C\log\mathcal{N}}{n}\)</span>、<span class="arithmatex">\(\delta=1/n\)</span>，积分项恰化为 <span class="arithmatex">\(C/n\)</span>，得</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \boxed{\ \mathcal{E}_{sta}\le \frac{(16\lambda B+4\lambda^2/c)(\log\mathcal{N}+1)+3\lambda}{n}\ }\qquad\Longrightarrow\qquad \mathcal{E}_{sta}\lesssim \frac{\log\mathcal{N}}{n}.
-\]</div>
+</script>
+</div>
 <p><strong>一句话</strong>：<span class="arithmatex">\(\text{统计误差}\approx\dfrac{\text{模型复杂度}\ (\log\mathcal{N})}{\text{样本量}\ n}\)</span>。能拿到 <span class="arithmatex">\(1/n\)</span>（而非 <span class="arithmatex">\(1/\sqrt n\)</span>）全靠 Bernstein 条件 <span class="arithmatex">\(\mathrm{Var}(g)\lesssim\mathbb{E}[g]\)</span> 把方差与超额风险绑定。</p>
 <hr />
 <h2 id="bayes-f">Bayes 最优预测器：理论最优 <span class="arithmatex">\(f^*\)</span> 长什么样</h2>
 <p>ERM 想逼近的理论最优是 <span class="arithmatex">\(f^*=\arg\min_f \mathcal{L}\,(f)\)</span>，<span class="arithmatex">\(\mathcal{L}\,(f)=\mathbb{E}_{(X,Y)\sim P}[\ell(f(X),Y)]\)</span>。<strong>关键技巧</strong>：总体风险按塔式法则拆成逐点条件风险</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathcal{L}\,(f)=\mathbb{E}_X\big[\,\mathbb{E}[\ell(f(x),Y)\mid X=x]\,\big],
-\]</div>
+</script>
+</div>
 <p>当 <span class="arithmatex">\(\mathcal{F}\)</span> 足够大（含所有可测函数）时，最小化整体积分 <span class="arithmatex">\(\iff\)</span> 对每个 <span class="arithmatex">\(x\)</span> 逐点最优化：</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 f^*(x)=\arg\min_{a}\ \mathbb{E}[\ell(a,Y)\mid X=x].
-\]</div>
+</script>
+</div>
 <p>最优预测随损失而变：</p>
 <table>
 <thead>
@@ -2898,9 +2806,11 @@ f^*(x)=\arg\min_{a}\ \mathbb{E}[\ell(a,Y)\mid X=x].
 </tbody>
 </table>
 <p><strong>平方损失的证明</strong>（配方）：令 <span class="arithmatex">\(m(x)=\mathbb{E}[Y\mid x]\)</span>，则</p>
-<div class="arithmatex">\[
+<div class="arithmatex">
+<script type="math/tex; mode=display">
 \mathbb{E}[(a-Y)^2\mid x]=(a-m(x))^2+\underbrace{\mathbb{E}[(Y-m(x))^2\mid x]}_{\text{与 }a\text{ 无关}},
-\]</div>
+</script>
+</div>
 <p>故 <span class="arithmatex">\(a=m(x)\)</span> 时最小。<strong>0-1 损失</strong>：预测 1 的风险是 <span class="arithmatex">\(1-\eta(x)\)</span>、预测 0 的风险是 <span class="arithmatex">\(\eta(x)\)</span>，比大小即得 Bayes 分类器。</p>
 <div class="admonition note">
 <p class="admonition-title"><span class="arithmatex">\(f^*\)</span> 不一定是"真实函数"</p>
