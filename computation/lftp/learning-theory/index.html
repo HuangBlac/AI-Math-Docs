@@ -12,31 +12,27 @@
         <meta name="author" content="huangblac">
       
       
-        <link rel="canonical" href="https://huangblac.github.io/AI-Math-Docs/math/probability/">
+        <link rel="canonical" href="https://huangblac.github.io/AI-Math-Docs/computation/lftp/learning-theory/">
       
       
-        <link rel="prev" href="../measure/">
-      
-      
-        <link rel="next" href="../ode-pde/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>概率论 - AI & Math</title>
+        <title>统计学习理论 - AI & Math</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,7 +51,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -94,7 +90,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../.." title="AI &amp; Math" class="md-header__button md-logo" aria-label="AI & Math" data-md-component="logo">
+    <a href="../../.." title="AI &amp; Math" class="md-header__button md-logo" aria-label="AI & Math" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -114,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              概率论
+              统计学习理论
             
           </span>
         </div>
@@ -213,7 +209,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -230,13 +226,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../../math/" class="md-tabs__link">
           
   
   
@@ -256,7 +250,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../computation/" class="md-tabs__link">
+        <a href="../../" class="md-tabs__link">
           
   
   
@@ -276,7 +270,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../algorithms/" class="md-tabs__link">
+        <a href="../../../algorithms/" class="md-tabs__link">
           
   
   
@@ -296,7 +290,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../ai4math/" class="md-tabs__link">
+        <a href="../../../ai4math/" class="md-tabs__link">
           
   
   
@@ -330,7 +324,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="AI &amp; Math" class="md-nav__button md-logo" aria-label="AI & Math" data-md-component="logo">
+    <a href="../../.." title="AI &amp; Math" class="md-nav__button md-logo" aria-label="AI & Math" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -348,7 +342,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -372,31 +366,28 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   
@@ -414,7 +405,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -432,7 +423,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../../math/" class="md-nav__link">
         
   
   
@@ -460,7 +451,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../analysis/" class="md-nav__link">
+      <a href="../../../math/analysis/" class="md-nav__link">
         
   
   
@@ -488,7 +479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../algebra/" class="md-nav__link">
+      <a href="../../../math/algebra/" class="md-nav__link">
         
   
   
@@ -516,7 +507,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../measure/" class="md-nav__link">
+      <a href="../../../math/measure/" class="md-nav__link">
         
   
   
@@ -541,37 +532,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    概率论
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../math/probability/" class="md-nav__link">
         
   
   
@@ -587,193 +551,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1 概率论独立性
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1 概率论独立性">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        随机变量独立性
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="随机变量独立性">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#11" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.1 随机变量独立性
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.1 随机变量独立性">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#111" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.1.1 独立的充分条件
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-system" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        独立的证明（若干 π - system 独立 ⇒ 其生成的 σ 域独立）
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#-efsnnm0nfmnpsnmm0nfmnmnpm1pnmfnp" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        - - E[f(S**n/n)]=m=0∑n**f(m/n)⋅P(S**n=m)=m=0∑n**f(m/n)(m**n)p**m(1−p)n−m=f**n(p)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2 强大数定律
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2 强大数定律">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#21" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.1 强大数定律的陈述
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-borel-cantelli" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.2 截断技巧与 Borel-Cantelli 引理
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#23" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.3 方差与积分的估计
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#24" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.4 子序列的几乎必然收敛
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#25" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.5 单调性与全序列的收敛
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#26" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.6 期望存在性的截断分析
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -786,7 +563,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ode-pde/" class="md-nav__link">
+      <a href="../../../math/ode-pde/" class="md-nav__link">
         
   
   
@@ -814,7 +591,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../functional/" class="md-nav__link">
+      <a href="../../../math/functional/" class="md-nav__link">
         
   
   
@@ -842,7 +619,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../statistics/" class="md-nav__link">
+      <a href="../../../math/statistics/" class="md-nav__link">
         
   
   
@@ -870,7 +647,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../multivariate/" class="md-nav__link">
+      <a href="../../../math/multivariate/" class="md-nav__link">
         
   
   
@@ -898,7 +675,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../causality/" class="md-nav__link">
+      <a href="../../../math/causality/" class="md-nav__link">
         
   
   
@@ -987,7 +764,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/" class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         
   
   
@@ -1015,7 +792,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/num-linalg/" class="md-nav__link">
+      <a href="../../num-linalg/" class="md-nav__link">
         
   
   
@@ -1043,7 +820,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/numerical-linear-algebra-lab/" class="md-nav__link">
+      <a href="../../numerical-linear-algebra-lab/" class="md-nav__link">
         
   
   
@@ -1071,7 +848,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/num-analysis/" class="md-nav__link">
+      <a href="../../num-analysis/" class="md-nav__link">
         
   
   
@@ -1099,7 +876,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/num-pde/" class="md-nav__link">
+      <a href="../../num-pde/" class="md-nav__link">
         
   
   
@@ -1127,7 +904,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/optimization/" class="md-nav__link">
+      <a href="../../optimization/" class="md-nav__link">
         
   
   
@@ -1155,7 +932,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/unconstrained-optimization/" class="md-nav__link">
+      <a href="../../unconstrained-optimization/" class="md-nav__link">
         
   
   
@@ -1183,7 +960,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/stat-computing/" class="md-nav__link">
+      <a href="../../stat-computing/" class="md-nav__link">
         
   
   
@@ -1211,7 +988,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/learning-theory.md" class="md-nav__link">
+      <a href="../../learning-theory.md" class="md-nav__link">
         
   
   
@@ -1293,7 +1070,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch1-concentration/" class="md-nav__link">
+      <a href="../ch1-concentration/" class="md-nav__link">
         
   
   
@@ -1321,7 +1098,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch1-2-optimization-raw/" class="md-nav__link">
+      <a href="../ch1-2-optimization-raw/" class="md-nav__link">
         
   
   
@@ -1349,7 +1126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch1-2-optimization/" class="md-nav__link">
+      <a href="../ch1-2-optimization/" class="md-nav__link">
         
   
   
@@ -1377,7 +1154,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch1-bernstein-maximum/" class="md-nav__link">
+      <a href="../ch1-bernstein-maximum/" class="md-nav__link">
         
   
   
@@ -1405,7 +1182,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch2-supervised-learning/" class="md-nav__link">
+      <a href="../ch2-supervised-learning/" class="md-nav__link">
         
   
   
@@ -1433,7 +1210,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch3-pca-regression/" class="md-nav__link">
+      <a href="../ch3-pca-regression/" class="md-nav__link">
         
   
   
@@ -1461,7 +1238,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch4-erm/" class="md-nav__link">
+      <a href="../ch4-erm/" class="md-nav__link">
         
   
   
@@ -1489,7 +1266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch4-rademacher/" class="md-nav__link">
+      <a href="../ch4-rademacher/" class="md-nav__link">
         
   
   
@@ -1517,7 +1294,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch4-4-massart/" class="md-nav__link">
+      <a href="../ch4-4-massart/" class="md-nav__link">
         
   
   
@@ -1545,7 +1322,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch5-optimization-intro/" class="md-nav__link">
+      <a href="../ch5-optimization-intro/" class="md-nav__link">
         
   
   
@@ -1573,7 +1350,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch5-4-sgd/" class="md-nav__link">
+      <a href="../ch5-4-sgd/" class="md-nav__link">
         
   
   
@@ -1601,7 +1378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/machine-learning/" class="md-nav__link">
+      <a href="../machine-learning/" class="md-nav__link">
         
   
   
@@ -1629,7 +1406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/sparse-feature-learning/" class="md-nav__link">
+      <a href="../sparse-feature-learning/" class="md-nav__link">
         
   
   
@@ -1726,7 +1503,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../algorithms/" class="md-nav__link">
+      <a href="../../../algorithms/" class="md-nav__link">
         
   
   
@@ -1754,7 +1531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../algorithms/neural-networks/" class="md-nav__link">
+      <a href="../../../algorithms/neural-networks/" class="md-nav__link">
         
   
   
@@ -1782,7 +1559,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../algorithms/decision-trees/" class="md-nav__link">
+      <a href="../../../algorithms/decision-trees/" class="md-nav__link">
         
   
   
@@ -1810,7 +1587,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../algorithms/bayesian/" class="md-nav__link">
+      <a href="../../../algorithms/bayesian/" class="md-nav__link">
         
   
   
@@ -1838,7 +1615,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../algorithms/deep-learning/" class="md-nav__link">
+      <a href="../../../algorithms/deep-learning/" class="md-nav__link">
         
   
   
@@ -1866,7 +1643,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../algorithms/compressed-sensing/" class="md-nav__link">
+      <a href="../../../algorithms/compressed-sensing/" class="md-nav__link">
         
   
   
@@ -1955,7 +1732,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/" class="md-nav__link">
+      <a href="../../../ai4math/" class="md-nav__link">
         
   
   
@@ -1983,7 +1760,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/papers/" class="md-nav__link">
+      <a href="../../../ai4math/papers/" class="md-nav__link">
         
   
   
@@ -2011,7 +1788,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/examples/" class="md-nav__link">
+      <a href="../../../ai4math/examples/" class="md-nav__link">
         
   
   
@@ -2039,7 +1816,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/improvements/" class="md-nav__link">
+      <a href="../../../ai4math/improvements/" class="md-nav__link">
         
   
   
@@ -2067,7 +1844,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/pinn-overview/" class="md-nav__link">
+      <a href="../../../ai4math/pinn-overview/" class="md-nav__link">
         
   
   
@@ -2095,7 +1872,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/pinn-seminar/" class="md-nav__link">
+      <a href="../../../ai4math/pinn-seminar/" class="md-nav__link">
         
   
   
@@ -2123,7 +1900,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/pinn-critique/" class="md-nav__link">
+      <a href="../../../ai4math/pinn-critique/" class="md-nav__link">
         
   
   
@@ -2178,46 +1955,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1 概率论独立性
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1 概率论独立性">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        随机变量独立性
+        内容规划（路线图）
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="随机变量独立性">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概率工具 · 次高斯与集中不等式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="概率工具 · 次高斯与集中不等式">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#11" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.1 随机变量独立性
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.1 随机变量独立性">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#111" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.1.1 独立的充分条件
+        次高斯随机变量
       
     </span>
   </a>
@@ -2225,23 +1989,35 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#-system" class="md-nav__link">
+  <a href="#hoeffding" class="md-nav__link">
     <span class="md-ellipsis">
       
-        独立的证明（若干 π - system 独立 ⇒ 其生成的 σ 域独立）
+        有界 ⟹ 次高斯（Hoeffding 引理）
       
     </span>
   </a>
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#log-mgf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        证明心法：log-MGF + 指数倾斜
+      
+    </span>
+  </a>
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        在学习理论里的位置
+      
+    </span>
+  </a>
   
 </li>
         
@@ -2251,10 +2027,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#-efsnnm0nfmnpsnmm0nfmnmnpm1pnmfnp" class="md-nav__link">
+  <a href="#bernstein" class="md-nav__link">
     <span class="md-ellipsis">
       
-        - - E[f(S**n/n)]=m=0∑n**f(m/n)⋅P(S**n=m)=m=0∑n**f(m/n)(m**n)p**m(1−p)n−m=f**n(p)
+        估计误差的快速率 · Bernstein 条件 + 覆盖数
       
     </span>
   </a>
@@ -2262,85 +2038,24 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
+  <a href="#bayes-f" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2 强大数定律
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2 强大数定律">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#21" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.1 强大数定律的陈述
+        Bayes 最优预测器：理论最优 \(f^*\) 长什么样
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#22-borel-cantelli" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#kl" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.2 截断技巧与 Borel-Cantelli 引理
+        分布间的差异：为何用 KL 散度而非范数
       
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#23" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.3 方差与积分的估计
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#24" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.4 子序列的几乎必然收敛
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#25" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.5 单调性与全序列的收敛
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#26" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.6 期望存在性的截断分析
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2361,236 +2076,156 @@
 
 
 
-<h1 id="_1">概率论笔记</h1>
-<h2 id="1">1 概率论独立性</h2>
-<ol>
-<li>
-<p><strong>独立性定义</strong></p>
-</li>
-<li>
-<p>事件独立性：若事件 A,B 满足 P(AB)=P(A)⋅P(B)，则 A,B 独立。</p>
-</li>
-<li>
-<p>随机变量独立性：若对 R 上的可测集 C,D，都有 P(X∈C,Y∈D)=P(X∈C)P(Y∈D)，则随机变量 X,Y 独立。</p>
-</li>
-<li>
-<p><strong>σ - field（σ 域）间的独立性</strong></p>
-</li>
-</ol>
-<p>若 ∀A∈F,B∈G，事件 A,B 独立，则称 σ 域 F,G 独立。</p>
-<ol>
-<li><strong>定理 1.1</strong></li>
-</ol>
-<p>若随机变量 X,Y 独立，则对 σ(X) 中任意集合 A（可表示为 A={X∈C},C 为 R 上可测集）、σ(Y) 中任意集合 B（可类似表示为 B={Y∈D},D 为 R 上可测集），有 P(AB)=P(X∈C,Y∈D)=P(X∈C)P(Y∈D)。</p>
-<p>若 F,G 为两个 σ 域，且 X 关于 F 可测（即 ∀C∈R,{X∈C}∈F）、Y 关于 G 可测，则 P(X∈C,Y∈D)=P(X∈C)P(Y∈D)。</p>
-<ol>
-<li>
-<p><strong>定理 1.2</strong></p>
-</li>
-<li>
-<p>(i) 若 A,B 独立，则 <span class="arithmatex">\(A^c\)</span>,B 独立；同理，<span class="arithmatex">\(A,B^c\)</span>、<span class="arithmatex">\(A^c,B^c\)</span>也独立。</p>
-<p>（测度性质验证：P(AcB)=P(B)−P(AB)=P(B)−P(A)P(B)=P(Ac)P(B)）</p>
-</li>
-<li>
-<p>(ii) 对 ∀C,D∈R，若 X∈C 的可能结果为 {ϕ,A,Ac,Ω}，Y∈D 的可能结果为 {ϕ,B,Bc,Ω}，则 σ(X),σ(Y) 一定独立；特别地，指示函数 X=IA,Y=IB 独立。</p>
-</li>
-<li>
-<p><strong>定理 1.3（多个随机变量独立）</strong></p>
-</li>
-</ol>
-<p>若多个事件 A1,A2,⋯,An 独立，则 <span class="arithmatex">\(P(⋂_{i=1}^nA_i)=\Pi_{i=1}^nP(A_i)\)</span>。</p>
-<ol>
-<li><strong>定理 1.4</strong></li>
-</ol>
-<p>Dynkin's π - λ 定理（待证明）。</p>
-<ol>
-<li><strong>定理 1.5（集族的独立性）</strong></li>
-</ol>
-<p>若集族 A1,A2,⋯,An 满足：对任意 I⊂{1,2,⋯,n} 及 Ai∈Ai，都有 P(⋂i∈IAi)=∏i∈IP(Ai)，则称集族独立。</p>
-<p>特别地，当每个 Ai 都包含全集 Ω 时，集族独立性等价于 P(⋂i=1nAi)=∏i=1nP(Ai)。</p>
-<h3 id="_2">随机变量独立性</h3>
-<h4 id="11">1.1 随机变量独立性</h4>
-<h5 id="111">1.1.1 独立的充分条件</h5>
-<p>涉及 <strong>π - system（π 系）</strong> 与 <strong>λ - system（λ 系）</strong>：</p>
+<h1 id="_1">统计学习理论</h1>
+<div class="admonition note">
+<p class="admonition-title">本页来源与说明</p>
+<p>本页内容正在从我自己的复习对话（与 ChatGPT/Claude，2026-05~06）中**逐主题蒸馏**而来，含 AI 生成成分，<strong>待我本人校对</strong>。配套精读见 <a href="lftp/ch4-erm.md">LFTP Ch4 经验风险最小化</a>。</p>
+</div>
+<h2 id="_2">内容规划（路线图）</h2>
 <ul>
-<li>
-<p>π - system：对 “交运算” 封闭（即若 A,B 属于该系，则 A∩B 也属于该系）。</p>
-</li>
-<li>
-<p>λ - system：满足以下三条：</p>
-</li>
+<li>[x] 概率工具：次高斯与集中不等式 ← 本页已开张</li>
+<li>[x] Bayes 最优预测器（条件均值 / Bayes 分类器 / 超额风险）</li>
+<li>[x] 分布间的差异：KL 散度 vs 范数</li>
+<li>[ ] 经验风险最小化与一致偏差（见 <a href="lftp/ch4-erm.md">LFTP Ch4</a>）</li>
+<li>[ ] Rademacher 复杂度与泛化误差界</li>
+<li>[ ] 偏差–方差分解</li>
+<li>[x] 覆盖数 + Bernstein 条件 → 快速率 <span class="arithmatex">\(\log\mathcal{N}/n\)</span> ← 本页已补</li>
+<li>[ ] Rademacher 复杂度 / 链式法</li>
+<li>[ ] 一致性理论；深度学习中的泛化之谜</li>
 </ul>
-<p>1）全集 </p>
-<p>Ω∈λ</p>
-<p>；</p>
-<p>2）对 “差运算” 封闭（即若 </p>
-<p>A⊂B</p>
-<p>且 </p>
-<p>A,B∈λ</p>
-<p>，则 </p>
-<p>B∖A∈λ</p>
-<p>）；</p>
-<p>3）对 “单调增收敛” 封闭（即若 </p>
-<p>An∈λ</p>
-<p>且 </p>
-<p>An↑A</p>
-<p>，则 </p>
-<p>A∈λ</p>
-<p>）。</p>
-<p>根据 <strong>π - λ 定理</strong>：若 λ 是 λ - system，且包含某个 π - system，则 该π系（即由该 π - 系生成的 σ 域含于 λ - 系）。</p>
-<h5 id="-system">独立的证明（若干 π - system 独立 ⇒ 其生成的 σ 域独立）</h5>
-<p>从 Ai（对应 π - system 中的集合）中选取 Ai（i=2,3,⋯,n），令 F=A2∩⋯∩An，定义集合类：</p>
-<p>L={A:P(A∩F)=P(A)P(F)}</p>
-<p>验证 L 是 λ - system：</p>
-<p>1）Ω∈L：因 P(Ω∩F)=P(F)=P(Ω)P(F)，故成立。</p>
-<p>2）对差运算封闭：若 A⊂B，则</p>
-<p>P((B∖A)∩F)=P(B∩F)−P(A∩F)=P(B)P(F)−P(A)P(F)=P(B∖A)P(F),</p>
-<p>故 B∖A∈L。</p>
-<p>3）对单调增收敛封闭：若 Bk∈L 且 Bk↑B，则</p>
-<p>P(B∩F)=limk→∞P(Bk∩F)=limk→∞P(Bk)P(F)=P(B)P(F),</p>
-<p>故 B∈L。</p>
-<p>由 π - λ 定理，若 A1 所在的 π - system 满足条件，则其生成的 σ(A1)⊂L。因此，对 A1∈σ(A1)，有 P(A1∩F)=P(A1)P(F)，即</p>
-<p>P(A1∩A2∩⋯∩An)=P(A1)P(A2)⋯P(An),</p>
-<p>从而证明由 π - system 生成的 σ 域（对应随机变量的 σ 域 σ(Ai)）独立。</p>
-<ol>
-<li><strong>从事件独立到 σ 域独立的推广</strong></li>
-</ol>
-<p>若 A1,A2,⋯,An 独立，则 σ(A1),A2,⋯,An 也满足独立关系；依此类推，可进一步得到 σ(A1),A2,⋯,Am 独立（通过对不同事件 /σ 域的轮换验证）。</p>
-<ol>
-<li><strong>随机变量独立的判定条件</strong></li>
-</ol>
-<p>对于随机变量 X1,X2,⋯,Xn，若对任意 x1,x2,⋯,xn∈R，满足</p>
-<p>P(X1≤x1,X2≤x2,⋯,Xn≤xn)=∏i=1nP(Xi≤xi),</p>
-<p>则 X1,X2,⋯,Xn 独立。</p>
-<p><strong>证明思路</strong>：考虑集合类 Ai={Xi≤x}（x∈R），易知 Ai 是 <strong>π - system</strong>（对交运算封闭）。若 A1,A2,⋯,An 独立，根据 “π - system 独立 ⇒ 其生成的 σ 域 σ(Ai) 独立”，可推出 Xi 对应的 σ 域 σ(Xi) 独立，即 Xi 独立。</p>
-<ol>
-<li><strong>更一般的独立情形（多指标随机变量）</strong></li>
-</ol>
-<p>设对任意 1≤i≤n、1≤j≤m(i)，随机变量 Xi,j 相互独立；构造：</p>
-<ul>
-<li>Ai={⋂j∈JFi,j}（J 是 {1,2,⋯,m(i)} 的子集），则 Ai 生成的 π - system 可用于构造 Gi=σ({Fi,j})，且 Gi 彼此独立；</li>
-<li>对可测函数 fi:Rm(i)→R，函数 fi(Xi,1,Xi,2,⋯,Xi,m(i)) 独立。</li>
-</ul>
-<p><strong>σ 域等价性验证</strong>：需证明 σ(fi(Xi,1,⋯,Xi,m(i))) 与由 σ(Xi,j) 生成的 σ 域等价。</p>
-<p>任取 Si={fi(Xi,1,⋯,Xi,m(i))≤c}（c∈R，可测集），存在 C1,C2,⋯,Cm(i)⊂R，使得 Xi,1∈C1,Xi,2∈C2,⋯,Xi,m(i)∈Cm(i) 这些事件都含于 σ(Ai)，从而建立两类 σ 域的包含关系，最终证明等价。</p>
-<ol>
-<li><strong>可测函数与 σ 域的关系</strong></li>
-</ol>
-<p>若函数 f(Xi1,Xi2,⋯,Xi,m(i)) 是可测函数（对 R 上的 Borel 可测集 C，f−1(C) 是可测集），则 f(Xi1,⋯,Xi,m(i))∈σ(⋃jFi,j)（即函数生成的可测集含于由 Fi,j 生成的 σ 域内）。</p>
-<ol>
-<li><strong>独立随机变量的联合分布（Theorem 2.1）</strong></li>
-</ol>
-<p>若 X1,X2,⋯,Xn 相互独立，且 Xi 服从分布 μi，则随机向量 (X1,X2,⋯,Xn) 具有**乘积分布**μ1×μ2×⋯×μn。</p>
-<p><strong>证明思路</strong>：</p>
-<p>选取 “矩形集合” A1×A2×⋯×An（这类矩形集合构成 <strong>π - system</strong>），则</p>
-<p>P((X1,⋯,Xn)∈A1×⋯×An)=i=1∏nP(Xi∈Ai)=i=1∏nμi(Ai)=(μ1×μ2×⋯×μn)(A1×⋯×An).</p>
-<p>再通过 <strong>π - λ 定理</strong>，可将此结论推广到由矩形集合生成的 σ 系统（即 Borel σ 域），从而证明联合分布为乘积分布。</p>
-<ol>
-<li><strong>二元函数的期望（2.1.12）</strong></li>
-</ol>
-<p>若 (X,Y) 的分布对应测度 μ(dx)ν(dy)，则对函数 h(x,y)，有</p>
-<p>E[h(X,Y)]=∬h(x,y)μ(dx)ν(dy).</p>
-<p>特别地，若 h(x,y)=f(x)⋅g(y)（即函数可分离为关于 x 和 y 的乘积），则</p>
-<p>E[f(X)g(Y)]=∬f(x)g(y)μ(dx)ν(dy)=∫g(y)(∫f(x)μ(dx))ν(dy)</p>
-<p>（体现了独立随机变量函数期望的 “分离性”，即乘积的期望等于期望的乘积）。</p>
-<ol>
-<li><strong>和的分布示例</strong></li>
-</ol>
-<p>涉及随机变量和的概率 P(X+Y≤z)（需结合联合分布进一步分析，如利用卷积公式等）。</p>
-<p>伯恩涅斯坦多项式：</p>
-<h2 id="-efsnnm0nfmnpsnmm0nfmnmnpm1pnmfnp">- - <em>E</em>[<em>f</em>(<em>S**n</em>/<em>n</em>)]=<em>m</em>=0∑<em>n**f</em>(<em>m</em>/<em>n</em>)⋅<em>P</em>(<em>S**n</em>=<em>m</em>)=<em>m</em>=0∑<em>n**f</em>(<em>m</em>/<em>n</em>)(<em>m**n</em>)<em>p**m</em>(1−<em>p</em>)<em>n</em>−<em>m</em>=<em>f**n</em>(<em>p</em>)</h2>
-<ol>
-<li>
-<p><strong>设置参数</strong>：</p>
-</li>
-<li>
-<p>令 M=sup⁡x∈[0,1]∣f(x)∣<em>M</em>=sup*x*∈[0,1]∣<em>f</em>(<em>x</em>)∣（有界性，因为闭区间上的连续函数必有界）。</p>
-</li>
-<li>任取 ϵ&gt;0*ϵ*&gt;0。</li>
-<li>
-<p>由于 f*f* 在闭区间上连续，所以它**一致连续**。这意味着我们可以找到一个 δ&gt;0*δ*&gt;0，使得当任意两点距离 ∣x−y∣&lt;δ∣<em>x</em>−<em>y</em>∣&lt;<em>δ</em> 时，函数值的差 ∣f(x)−f(y)∣&lt;ϵ∣<em>f</em>(<em>x</em>)−<em>f</em>(<em>y</em>)∣&lt;<em>ϵ</em>。</p>
-</li>
-<li>
-<p><strong>分解误差</strong>：</p>
-</li>
-</ol>
-<p>∣E[f(Sn/n)]−f(p)∣≤E∣f(Sn/n)−f(p)∣∣<em>E</em>[<em>f</em>(<em>S**n</em>/<em>n</em>)]−<em>f</em>(<em>p</em>)∣≤<em>E</em>∣<em>f</em>(<em>S**n</em>/<em>n</em>)−<em>f</em>(<em>p</em>)∣</p>
-<p>这里用到了 Jensen 不等式（定理 1.6.2），将期望移到绝对值外面会放大误差。</p>
-<ol>
-<li>
-<p><strong>分情况处理</strong>：
-   根据 Sn/n*S**n*​/<em>n</em> 是否在 p*p* 的 δ*δ* 邻域内，将期望分成两部分：</p>
-</li>
-<li>
-<p><strong>好情况</strong>：∣Sn/n−p∣&lt;δ∣<em>S**n</em>/<em>n</em>−<em>p</em>∣&lt;<em>δ</em>。
-     此时，由一致连续性，∣f(Sn/n)−f(p)∣&lt;ϵ∣<em>f</em>(<em>S**n</em>​/<em>n</em>)−<em>f</em>(<em>p</em>)∣&lt;<em>ϵ</em>。这部分贡献小于 ϵ⋅1=ϵ*ϵ*⋅1=<em>ϵ</em>。</p>
-</li>
-<li><strong>坏情况</strong>：∣Sn/n−p∣≥δ∣<em>S**n</em>/<em>n</em>−<em>p</em>∣≥<em>δ</em>。
-     此时，虽然函数差值可能很大，但最大不会超过 2M2*M*。这部分发生的概率由切比雪夫不等式控制。</li>
-</ol>
-<p>综合起来：</p>
-<p>E∣f(Sn/n)−f(p)∣≤ϵ⋅1+2M⋅P(∣Sn/n−p∣≥δ)<em>E</em>∣<em>f</em>(<em>S**n</em>/<em>n</em>)−<em>f</em>(<em>p</em>)∣≤<em>ϵ</em>⋅1+2*M*⋅<em>P</em>(∣<em>S**n</em>/<em>n</em>−<em>p</em>∣≥<em>δ</em>)</p>
-<ol>
-<li><strong>代入概率上界</strong>：
-   将第 2 步得到的概率上界代入：</li>
-</ol>
-<p>E∣f(Sn/n)−f(p)∣≤ϵ+2M⋅14nδ2*E*∣<em>f</em>(<em>S**n</em>/<em>n</em>)−<em>f</em>(<em>p</em>)∣≤<em>ϵ</em>+2*M*⋅4*n**δ*21</p>
-<ol>
-<li><strong>取极限</strong>：
-   当 n→∞<em>n</em>→∞ 时，第二项 2M4nδ2→04*n**δ*22*M*​→0。因此：</li>
-</ol>
-<p>lim sup⁡n→∞∣E[f(Sn/n)]−f(p)∣≤ϵ*n*→∞limsup∣<em>E</em>[<em>f</em>(<em>S**n</em>/<em>n</em>)]−<em>f</em>(<em>p</em>)∣≤<em>ϵ</em></p>
-<ol>
-<li><strong>最终结论</strong>：
-   由于 ϵ*ϵ* 是任意小的正数，这个上极限必须为 0，即：</li>
-</ol>
-<p>lim⁡n→∞∣E[f(Sn/n)]−f(p)∣=0*n*→∞lim∣<em>E</em>[<em>f</em>(<em>S**n</em>/<em>n</em>)]−<em>f</em>(<em>p</em>)∣=0</p>
-<p>而 E[f(Sn/n)]=fn(p)<em>E</em>[<em>f</em>(<em>S**n</em>/<em>n</em>)]=<em>f**n</em>(<em>p</em>)，所以 fn(p)→f(p)<em>f**n</em>(<em>p</em>)→<em>f</em>(<em>p</em>)。</p>
-<ol>
-<li><strong>从逐点收敛到一致收敛</strong>：
-   上述证明中，δ*δ* 的选取只依赖于 ϵ*ϵ* 和函数 f*f* 本身，与具体的 p*p* 值无关。切比雪夫不等式的上界 14nδ24*n**δ*21​ 也与 p*p* 无关。因此，收敛速度对所有 p∈[0,1]<em>p</em>∈[0,1] 是一致的。这就意味着：</li>
-</ol>
-<p>sup⁡x∈[0,1]∣fn(x)−f(x)∣→0*x*∈[0,1]sup∣<em>f**n</em>(<em>x</em>)−<em>f</em>(<em>x</em>)∣→0</p>
 <hr />
-<h2 id="2">2 强大数定律</h2>
+<h2 id="_3">概率工具 · 次高斯与集中不等式</h2>
+<p>学习理论里几乎所有泛化界，都建立在"经验均值偏离期望的幅度是 <span class="arithmatex">\(O(1/\sqrt n)\)</span>、且尾巴指数衰减"这一事实上。把这件事说精确的统一语言，就是 <strong>次高斯（sub-Gaussian）</strong>。</p>
+<h3 id="_4">次高斯随机变量</h3>
+<p>称零均值随机变量 <span class="arithmatex">\(X\)</span> 是**次高斯的**（参数 <span class="arithmatex">\(\sigma^2\)</span>），若其矩母函数被同方差高斯的矩母函数控制：</p>
+<div class="arithmatex">\[
+\mathbb{E}\,e^{\lambda(X-\mathbb{E}\,X)} \le e^{\lambda^2\sigma^2/2},\qquad \forall \lambda\in\mathbb{R}.
+\]</div>
+<p>直觉：<strong>尾巴不比高斯重</strong>。由此可直接导出双边指数尾 <span class="arithmatex">\(\mathbb{P}\,(|X-\mathbb{E}\,X|\ge t)\le 2e^{-t^2/(2\sigma^2)}\)</span>。</p>
+<h3 id="hoeffding">有界 ⟹ 次高斯（Hoeffding 引理）</h3>
 <blockquote>
-<p><strong>待补充内容：</strong>
-- [ ] Borel-Cantelli 引理的详细证明
-- [ ] 弱大数定律
-- [ ] 经典例子：彩票兑奖问题</p>
+<p><strong>结论</strong>：任意有界随机变量都是次高斯的。若 <span class="arithmatex">\(a\le X\le b\)</span> 几乎必然，则中心化的 <span class="arithmatex">\(X-\mathbb{E}\,X\)</span> 次高斯，且</p>
 </blockquote>
-<h3 id="21">2.1 强大数定律的陈述</h3>
-<p>若随机变量序列 <span class="arithmatex">\(X_1, X_2, \ldots\)</span> 独立同分布，且 <span class="arithmatex">\(E|X_1| &lt; \infty\)</span>，记 <span class="arithmatex">\(\mu = EX_1\)</span>，部分和 <span class="arithmatex">\(S_n = \sum_{i=1}^n X_i\)</span>，则：</p>
-<div class="arithmatex">\[\frac{S_n}{n} \to \mu \quad \text{几乎必然（a.s.）}\]</div>
-<h3 id="22-borel-cantelli">2.2 截断技巧与 Borel-Cantelli 引理</h3>
-<p>构造截断随机变量：</p>
-<div class="arithmatex">\[Y_k = X_k \cdot \mathbf{1}_{\{|X_k| \leq k\}}\]</div>
-<p>（即当 <span class="arithmatex">\(|X_k| \leq k\)</span> 时 <span class="arithmatex">\(Y_k = X_k\)</span>，否则 <span class="arithmatex">\(Y_k = 0\)</span>）。</p>
-<p>由期望的非负性与积分性质，对 <span class="arithmatex">\(P(|Y_k| &gt; k) = P(|X_k| &gt; k)\)</span>，有：</p>
-<div class="arithmatex">\[\sum_{k=1}^{\infty} P(|Y_k| &gt; k) = \sum_{k=1}^{\infty} P(|X_k| &gt; k) \leq E|X_1| &lt; \infty\]</div>
-<p>根据 <strong>Borel-Cantelli 引理</strong>，得 <span class="arithmatex">\(P(X_k \neq Y_k \text{ i.o.}) = 0\)</span>，即 "<span class="arithmatex">\(X_k\)</span> 与 <span class="arithmatex">\(Y_k\)</span> 几乎必然只有有限次不同"。</p>
-<h3 id="23">2.3 方差与积分的估计</h3>
-<p>对截断变量 <span class="arithmatex">\(Y_k\)</span>，计算方差：</p>
-<div class="arithmatex">\[\text{Var}(Y_k) \leq E(Y_k^2)\]</div>
-<p>进一步，通过积分变换（将求和转化为积分）估计 <span class="arithmatex">\(\sum_{k=1}^{\infty} \frac{E(Y_k^2)}{k^2}\)</span>：</p>
-<div class="arithmatex">\[\sum_{k=1}^{\infty} \frac{E(Y_k^2)}{k^2} \leq \int_0^{\infty} \sum_{k \geq y} \frac{1}{k^2} \cdot 2y P(X_1 &gt; y) dy\]</div>
-<p>利用级数和 <span class="arithmatex">\(\sum_{k \geq y} \frac{1}{k^2} \leq \int_{y-1}^{\infty} \frac{1}{t^2} dt \leq \frac{1}{y-1}\)</span>（<span class="arithmatex">\(y \geq 1\)</span>），可证上述积分小于 <span class="arithmatex">\(4E|X_1|\)</span>，即级数 <span class="arithmatex">\(\sum \frac{\text{Var}(Y_k)}{k^2}\)</span> 收敛。</p>
-<h3 id="24">2.4 子序列的几乎必然收敛</h3>
-<p>对指数增长的子序列 <span class="arithmatex">\(k_n = \lfloor \alpha^n \rfloor\)</span>（<span class="arithmatex">\(\alpha &gt; 1\)</span>），考虑部分和 <span class="arithmatex">\(T_{k_n} = X_1 + X_2 + \cdots + X_{k_n}\)</span>，利用切比雪夫不等式：</p>
-<div class="arithmatex">\[P\left(\left|\frac{T_{k_n}}{k_n} - \frac{ET_{k_n}}{k_n}\right| &gt; \varepsilon\right) \leq \frac{\text{Var}(T_{k_n})}{\varepsilon^2 k_n^2}\]</div>
-<p>若 <span class="arithmatex">\(\sum_{n=1}^{\infty} \frac{\text{Var}(T_{k_n})}{k_n^2} &lt; \infty\)</span>，由 Borel-Cantelli 引理得：</p>
-<div class="arithmatex">\[\frac{T_{k_n}}{k_n} - \frac{ET_{k_n}}{k_n} \to 0 \quad \text{几乎必然（a.s.）}\]</div>
-<h3 id="25">2.5 单调性与全序列的收敛</h3>
-<p>通过单调性将子序列的收敛推广到整个序列 <span class="arithmatex">\(\{n\}\)</span>：对任意 <span class="arithmatex">\(n\)</span>，存在 <span class="arithmatex">\(k_n, k_{n+1}\)</span> 使得 <span class="arithmatex">\(k_n \leq n &lt; k_{n+1}\)</span>，故</p>
-<div class="arithmatex">\[\frac{1}{\alpha} \cdot \frac{T_{k_n}}{k_{n+1}} \leq \frac{T_n}{n} \leq \frac{T_{k_{n+1}}}{k_n} \leq 2\alpha\mu\]</div>
-<p>令 <span class="arithmatex">\(\alpha \to 1\)</span>，结合子序列的收敛性，可推导 <span class="arithmatex">\(\frac{T_n}{n}\)</span> 的极限行为（需补充 <span class="arithmatex">\(ET_{k_n}/k_n \to \mu\)</span> 等条件）。</p>
-<h3 id="26">2.6 期望存在性的截断分析</h3>
-<p>当 <span class="arithmatex">\(EX_i^+ = \infty\)</span>（正部期望无穷）且 <span class="arithmatex">\(EX_i^- &lt; \infty\)</span>（负部期望有限）时，截断技巧（令 <span class="arithmatex">\(X_i^M = X_i \cdot \mathbf{1}_{\{|X_i| \leq M\}}\)</span>）面临困境：</p>
+<div class="arithmatex">\[
+\mathbb{E}\,e^{\lambda(X-\mathbb{E}\,X)} \le \exp\!\left(\frac{\lambda^2 (b-a)^2}{8}\right)\qquad(\text{Hoeffding 引理}).
+\]</div>
+<p>与定义 <span class="arithmatex">\(e^{\lambda^2\sigma^2/2}\)</span> 对比，可取次高斯参数 <span class="arithmatex">\(\sigma^2=\dfrac{(b-a)^2}{4}\)</span>。</p>
+<p><strong>为什么直觉上成立</strong>：有界变量根本跑不出 <span class="arithmatex">\([a,b]\)</span>，尾部比高斯还轻，中心化后自然次高斯。（特例 <span class="arithmatex">\(|X|\le M\)</span> 时可取 <span class="arithmatex">\(\sigma^2=M^2\)</span>。）</p>
+<div class="admonition warning">
+<p class="admonition-title">两种"次高斯"用法别混</p>
+<p>一种要求**中心化后** <span class="arithmatex">\(X-\mathbb{E}\,X\)</span> 满足条件；另一种直接写 <span class="arithmatex">\(\mathbb{E}\,e^{\lambda X}\le e^{C\lambda^2}\)</span>，默认 <span class="arithmatex">\(X\)</span> 已零均值。严谨说法：<strong>任意有界 <span class="arithmatex">\(X\)</span>，其中心化 <span class="arithmatex">\(X-\mathbb{E}\,X\)</span> 一定次高斯</strong>；若 <span class="arithmatex">\(X\)</span> 本就零均值，则 <span class="arithmatex">\(X\)</span> 自己次高斯。</p>
+</div>
+<h3 id="log-mgf">证明心法：log-MGF + 指数倾斜</h3>
+<p>Hoeffding 引理的证法是研究 <strong>log-矩母函数</strong> <span class="arithmatex">\(\psi(s)=\log\mathbb{E}\,e^{sX}\)</span>，目标 <span class="arithmatex">\(\psi(s)\le \dfrac{s^2(b-a)^2}{8}\)</span>。取 log 后导数结构很好：</p>
+<div class="arithmatex">\[
+\psi'(s)=\frac{\mathbb{E}[Xe^{sX}]}{\mathbb{E}[e^{sX}]},\qquad
+\psi''(s)=\frac{\mathbb{E}[X^2e^{sX}]}{\mathbb{E}[e^{sX}]}-\left(\frac{\mathbb{E}[Xe^{sX}]}{\mathbb{E}[e^{sX}]}\right)^2 .
+\]</div>
+<p><strong>关键观察</strong>：<span class="arithmatex">\(\psi''(s)\)</span> 恰是某个新测度 <span class="arithmatex">\(Q\)</span> 下 <span class="arithmatex">\(X\)</span> 的方差。这个 <span class="arithmatex">\(Q\)</span> 由**指数倾斜（exponential tilting / Esscher 变换）**给出：</p>
+<div class="arithmatex">\[
+dQ = \frac{e^{sX}}{\mathbb{E}[e^{sX}]}\,dP.
+\]</div>
+<p>它把原测度按权重 <span class="arithmatex">\(e^{sX}/\mathbb{E}[e^{sX}]\)</span>（总积分为 1）重新加权——<span class="arithmatex">\(s&gt;0\)</span> 时偏向 <span class="arithmatex">\(X\)</span> 大的地方，<span class="arithmatex">\(s&lt;0\)</span> 时偏向小的地方。<strong>不是改变随机变量本身，而是改变看待它的概率权重</strong>。于是在 <span class="arithmatex">\(Q\)</span> 下 <span class="arithmatex">\(\mathbb{E}_Q[f(X)]=\dfrac{\mathbb{E}[f(X)e^{sX}]}{\mathbb{E}[e^{sX}]}\)</span>，故 <span class="arithmatex">\(\psi''(s)=\mathrm{var}_Q(X)\)</span>。因为 <span class="arithmatex">\(X\in[a,b]\)</span>，任何测度下方差 <span class="arithmatex">\(\le \left(\dfrac{b-a}{2}\right)^2\)</span>，所以 <span class="arithmatex">\(\psi''(s)\le \dfrac{(b-a)^2}{4}\)</span>；配上 <span class="arithmatex">\(\psi(0)=\psi'(0)=0\)</span> 积分两次即得结论。</p>
+<h3 id="_5">在学习理论里的位置</h3>
+<p>次高斯 + Hoeffding 引理是上层一切集中不等式的地基：</p>
 <ul>
-<li>截断后 <span class="arithmatex">\(S_n^M/n \to EX_i^M\)</span>（强大数定律对截断变量成立）；</li>
-<li>但 <span class="arithmatex">\(\liminf_{n \to \infty} \frac{S_n}{n} \geq EX_i^M\)</span>，且当 <span class="arithmatex">\(M \to \infty\)</span> 时，<span class="arithmatex">\(E(X_i^M)^+ \to EX_i^+ = \infty\)</span>；</li>
-<li>故 <span class="arithmatex">\(\liminf_{n \to \infty} \frac{S_n}{n} = \infty\)</span>（正部主导导致和无界增长）。</li>
+<li><strong>Hoeffding 不等式</strong>（有界 i.i.d. 均值的指数尾）——把单变量的次高斯性对独立和相加；</li>
+<li><strong>McDiarmid 不等式</strong>（有界差分函数的集中）——见 <a href="lftp/ch4-erm.md">LFTP Ch4 的完整鞅证明</a>，它正是用条件版 Hoeffding 引理逐步剥矩母函数得到的；</li>
+<li><strong>Bernstein 不等式</strong>（再把方差用上、对小偏差更紧）——见下节的快速率应用。</li>
 </ul>
+<hr />
+<h2 id="bernstein">估计误差的快速率 · Bernstein 条件 + 覆盖数</h2>
+<div class="admonition note">
+<p class="admonition-title">来源</p>
+<p>整理自我对一页讲义放缩过程的复盘（原题为手写讲义图，已据推导复述）。承接 <a href="lftp/ch4-erm.md">LFTP Ch4</a> 的覆盖数一节。</p>
+</div>
+<p><a href="lftp/ch4-erm.md">LFTP Ch4</a> 用覆盖数把无限类的一致偏差控住，得到的是**慢速率** <span class="arithmatex">\(\sqrt{\log\mathcal{N}/n}\)</span>。但若损失再满足一个 <strong>Bernstein 条件（间隔条件）</strong>——方差被超额风险控制——速率能提升到 <span class="arithmatex">\(\log\mathcal{N}/n\)</span>（快一个平方）。</p>
+<p><strong>目标</strong>：控制统计误差 <span class="arithmatex">\(\mathcal{E}_{sta}=\mathbb{E}\big[\sup_{f\in\mathcal{F}}\tfrac1n\sum_i G(f,Z_i)\big]\)</span>，其中超额损失 <span class="arithmatex">\(g(f,z)=\ell(f,z)-\ell(f^*,z)\)</span>，并令 <span class="arithmatex">\(G(f,z)=\mathbb{E}[g(f,Z)]-2g(f,z)\)</span>。</p>
+<p><strong>① 覆盖数：无限类 → 有限网。</strong> 取 <span class="arithmatex">\(\|\cdot\|_\infty\)</span> 下的 <span class="arithmatex">\(\delta\)</span>-网 <span class="arithmatex">\(\mathcal{C}=\{\tilde f_1,\dots,\tilde f_{\mathcal{N}}\}\)</span>。损失 <span class="arithmatex">\(\lambda\)</span>-Lipschitz <span class="arithmatex">\(\Rightarrow |g(f,z)-g(\tilde f,z)|\le\lambda\delta\)</span>，从而 <span class="arithmatex">\(|G(f,z)-G(\tilde f,z)|\le 3\lambda\delta\)</span>，于是 sup 转嫁给最近代表，代价 <span class="arithmatex">\(3\lambda\delta\)</span>：</p>
+<div class="arithmatex">\[
+\mathbb{P}\big[\max_{f\in\mathcal{F}}\tfrac1n\textstyle\sum_i G(f,Z_i)&gt;t\big]\le \mathbb{P}\big[\max_{\tilde f\in\mathcal{C}}\tfrac1n\textstyle\sum_i G(\tilde f,Z_i)&gt;t-3\lambda\delta\big].
+\]</div>
+<p><strong>② 固定 <span class="arithmatex">\(\tilde f\)</span>，中心化。</strong> 由 <span class="arithmatex">\(G(\tilde f,Z_i)=\mathbb{E}[g]-2g_i\)</span> 整理，要控制的是零均值和 <span class="arithmatex">\(\tfrac1n\sum_i X_i\)</span>，其中 <span class="arithmatex">\(X_i=\mathbb{E}[g]-g_i\)</span>，阈值 <span class="arithmatex">\(u=\tfrac t2+\tfrac12\mathbb{E}[g]\)</span>。</p>
+<p><strong>③ Bernstein 条件（关键）。</strong> 有界性给 <span class="arithmatex">\(|X_i|\le b=4\lambda B\)</span>；间隔条件 <span class="arithmatex">\(c\|\tilde f-f^*\|^2\le\mathbb{E}[g]\)</span> 配 Lipschitz 给</p>
+<div class="arithmatex">\[
+\sigma^2=\mathrm{Var}(g)\le \mathbb{E}[g^2]\le \lambda^2\,\mathbb{E}\|\tilde f-f^*\|^2\le \frac{\lambda^2}{c}\,\mathbb{E}[g].
+\]</div>
+<p><strong>方差被期望（超额风险）控制</strong> —— 这是快速率的全部秘密。</p>
+<p><strong>④ Bernstein 不等式。</strong> <span class="arithmatex">\(\displaystyle\mathbb{P}\big[\tfrac1n\sum_i X_i&gt;u\big]\le \exp\!\Big(-\frac{nu^2}{2(\sigma^2+bu)}\Big).\)</span></p>
+<p><strong>⑤ 二次指数 → 线性指数。</strong> 因 <span class="arithmatex">\(\sigma^2\lesssim \tfrac{\lambda^2}{c}u\)</span>，分母 <span class="arithmatex">\(2(\sigma^2+bu)\le Cu\)</span> 被线性化，于是 <span class="arithmatex">\(\tfrac{nu^2}{2(\sigma^2+bu)}\ge\tfrac{nu}{C}\)</span>，配 <span class="arithmatex">\(u\ge t/2\)</span>：</p>
+<div class="arithmatex">\[
+\mathbb{P}\big[\tfrac1n\textstyle\sum_i G(\tilde f,Z_i)&gt;t\big]\le \exp\!\Big(-\frac{nt}{16\lambda B+4\lambda^2/c}\Big),\qquad C:=16\lambda B+\tfrac{4\lambda^2}{c}.
+\]</div>
+<p><strong>指数从 <span class="arithmatex">\(e^{-nt^2}\)</span> 型变成 <span class="arithmatex">\(e^{-nt}\)</span> 型</strong> —— 这一步就是把 <span class="arithmatex">\(\sqrt{\ }\)</span> 速率换成线性速率。</p>
+<p><strong>⑥ Union bound + 尾积分。</strong> 对 <span class="arithmatex">\(\mathcal{C}\)</span> 并集得 <span class="arithmatex">\(\mathbb{P}[\cdot&gt;t]\le \mathcal{N}\exp(-n(t-3\lambda\delta)/C)\)</span>。用 <span class="arithmatex">\(\mathbb{E}[Z]\le a+\int_a^\infty\mathbb{P}[Z&gt;t]\,dt\)</span>，取 <span class="arithmatex">\(a=3\lambda\delta+\tfrac{C\log\mathcal{N}}{n}\)</span>、<span class="arithmatex">\(\delta=1/n\)</span>，积分项恰化为 <span class="arithmatex">\(C/n\)</span>，得</p>
+<div class="arithmatex">\[
+\boxed{\ \mathcal{E}_{sta}\le \frac{(16\lambda B+4\lambda^2/c)(\log\mathcal{N}+1)+3\lambda}{n}\ }\qquad\Longrightarrow\qquad \mathcal{E}_{sta}\lesssim \frac{\log\mathcal{N}}{n}.
+\]</div>
+<p><strong>一句话</strong>：<span class="arithmatex">\(\text{统计误差}\approx\dfrac{\text{模型复杂度}\ (\log\mathcal{N})}{\text{样本量}\ n}\)</span>。能拿到 <span class="arithmatex">\(1/n\)</span>（而非 <span class="arithmatex">\(1/\sqrt n\)</span>）全靠 Bernstein 条件 <span class="arithmatex">\(\mathrm{Var}(g)\lesssim\mathbb{E}[g]\)</span> 把方差与超额风险绑定。</p>
+<hr />
+<h2 id="bayes-f">Bayes 最优预测器：理论最优 <span class="arithmatex">\(f^*\)</span> 长什么样</h2>
+<p>ERM 想逼近的理论最优是 <span class="arithmatex">\(f^*=\arg\min_f \mathcal{L}\,(f)\)</span>，<span class="arithmatex">\(\mathcal{L}\,(f)=\mathbb{E}_{(X,Y)\sim P}[\ell(f(X),Y)]\)</span>。<strong>关键技巧</strong>：总体风险按塔式法则拆成逐点条件风险</p>
+<div class="arithmatex">\[
+\mathcal{L}\,(f)=\mathbb{E}_X\big[\,\mathbb{E}[\ell(f(x),Y)\mid X=x]\,\big],
+\]</div>
+<p>当 <span class="arithmatex">\(\mathcal{F}\)</span> 足够大（含所有可测函数）时，最小化整体积分 <span class="arithmatex">\(\iff\)</span> 对每个 <span class="arithmatex">\(x\)</span> 逐点最优化：</p>
+<div class="arithmatex">\[
+f^*(x)=\arg\min_{a}\ \mathbb{E}[\ell(a,Y)\mid X=x].
+\]</div>
+<p>最优预测随损失而变：</p>
+<table>
+<thead>
+<tr>
+<th>损失 <span class="arithmatex">\(\ell(a,y)\)</span></th>
+<th>最优 <span class="arithmatex">\(f^*(x)\)</span></th>
+<th>名称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平方 <span class="arithmatex">\(\tfrac12(a-y)^2\)</span></td>
+<td><span class="arithmatex">\(\mathbb{E}[Y\mid X=x]\)</span></td>
+<td>条件均值</td>
+</tr>
+<tr>
+<td>绝对值 <span class="arithmatex">\(\lvert a-y\rvert\)</span></td>
+<td>条件中位数</td>
+<td></td>
+</tr>
+<tr>
+<td>0-1 <span class="arithmatex">\(\mathbf{1}_{a\neq y}\)</span></td>
+<td><span class="arithmatex">\(\mathbf{1}[\eta(x)\ge\tfrac12],\ \eta(x)=\mathbb{P}\,(Y{=}1\mid x)\)</span></td>
+<td>Bayes 分类器</td>
+</tr>
+</tbody>
+</table>
+<p><strong>平方损失的证明</strong>（配方）：令 <span class="arithmatex">\(m(x)=\mathbb{E}[Y\mid x]\)</span>，则</p>
+<div class="arithmatex">\[
+\mathbb{E}[(a-Y)^2\mid x]=(a-m(x))^2+\underbrace{\mathbb{E}[(Y-m(x))^2\mid x]}_{\text{与 }a\text{ 无关}},
+\]</div>
+<p>故 <span class="arithmatex">\(a=m(x)\)</span> 时最小。<strong>0-1 损失</strong>：预测 1 的风险是 <span class="arithmatex">\(1-\eta(x)\)</span>、预测 0 的风险是 <span class="arithmatex">\(\eta(x)\)</span>，比大小即得 Bayes 分类器。</p>
+<div class="admonition note">
+<p class="admonition-title"><span class="arithmatex">\(f^*\)</span> 不一定是"真实函数"</p>
+<p>仅当 <span class="arithmatex">\(Y=f_0(X)+\varepsilon\)</span> 且 <span class="arithmatex">\(\mathbb{E}[\varepsilon\mid X]=0\)</span> 时 <span class="arithmatex">\(f^*=f_0\)</span>；否则 <span class="arithmatex">\(f^*\)</span> 只是该损失下的最优预测。分类里更没有"真标签函数"——同一 <span class="arithmatex">\(x\)</span> 下 <span class="arithmatex">\(Y\)</span> 本就随机。衡量学到的 <span class="arithmatex">\(\hat f\)</span> 差多少，用**超额风险** <span class="arithmatex">\(\mathcal{E}\,(\hat f)=\mathcal{L}\,(\hat f)-\mathcal{L}\,(f^*)\)</span>。</p>
+</div>
+<h2 id="kl">分布间的差异：为何用 KL 散度而非范数</h2>
+<blockquote>
+<p><strong>一句话</strong>：范数把概率分布当**函数**比几何距离；KL 把它当**信息源**比编码/似然代价。</p>
+</blockquote>
+<p>可以对密度构造范数（<span class="arithmatex">\(\|p-q\|_1\)</span> 对应 total variation，<span class="arithmatex">\(\|p-q\|_2\)</span> 等），但：</p>
+<ul>
+<li><strong>概率分布集不是线性空间</strong>：<span class="arithmatex">\(p+q\)</span> 积分为 2、<span class="arithmatex">\(p-q\)</span> 可为负，都不再是密度。它更像凸集。</li>
+<li><strong>KL 来自"用错分布编码的额外代价"</strong>：<span class="arithmatex">\(D_{\mathrm{KL}}(P\|Q)=\int p\log\tfrac{p}{q}\)</span>。</li>
+<li><strong>最大似然 <span class="arithmatex">\(\equiv\)</span> 最小化 KL</strong>：<span class="arithmatex">\(D_{\mathrm{KL}}(P_{\mathrm{data}}\|Q_\theta)=\mathbb{E}[\log p_{\mathrm{data}}]-\mathbb{E}[\log q_\theta]\)</span>，首项与 <span class="arithmatex">\(\theta\)</span> 无关，故 <span class="arithmatex">\(\min_\theta \mathrm{KL}\iff \max_\theta \mathbb{E}_{P_{\mathrm{data}}}[\log q_\theta]\)</span>。这是范数没有的统计意义。</li>
+<li><strong>对致命错误敏感</strong>：<span class="arithmatex">\(p(x)&gt;0\)</span> 而 <span class="arithmatex">\(q(x)=0\)</span> 时 <span class="arithmatex">\(D_{\mathrm{KL}}=+\infty\)</span>；KL 关心比值 <span class="arithmatex">\(p/q\)</span> 而非绝对差 <span class="arithmatex">\(p-q\)</span>。</li>
+<li><strong>非对称是特性</strong>：<span class="arithmatex">\(D_{\mathrm{KL}}(P\|Q)\)</span>（forward，mode-covering）vs <span class="arithmatex">\(D_{\mathrm{KL}}(Q\|P)\)</span>（reverse，mode-seeking）——变分推断/生成模型常据此选向。</li>
+<li><span class="arithmatex">\(D_{\mathrm{KL}}(P\|Q)=0\iff P=Q\)</span>（密度意义下几乎处处相等）。</li>
+</ul>
+<p>其它分布距离各有所长：<strong>TV</strong>（与 <span class="arithmatex">\(L^1\)</span> 相关）、<strong>Wasserstein</strong>（最优传输）、<strong>Hellinger</strong>（更像几何距离）、<strong>MMD</strong>（核嵌入）。统计推断/最大似然天然对应 KL；几何比较、测度收敛则用范数/度量。</p>
+<blockquote>
+<p><strong>待续</strong>：Rademacher 复杂度、泛化误差界、偏差–方差分解，将从对应复习对话继续蒸馏补入。
+<strong>关联（凸优化，归 <a href="optimization.md">optimization</a>）</strong>：LASSO 次梯度、软阈值算子 <span class="arithmatex">\(S_\lambda\)</span>、proximal gradient/ISTA、<span class="arithmatex">\(\ell_\infty\)</span> 范数次梯度、下半连续/闭函数/下水平集——来自同批复习对话，待整合到优化页。</p>
+</blockquote>
 
 
 
@@ -2655,12 +2290,12 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="../../javascripts/mathjax.js"></script>
+        <script src="../../../javascripts/mathjax.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       

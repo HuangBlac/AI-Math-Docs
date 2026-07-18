@@ -12,31 +12,31 @@
         <meta name="author" content="huangblac">
       
       
-        <link rel="canonical" href="https://huangblac.github.io/AI-Math-Docs/math/statistics/">
+        <link rel="canonical" href="https://huangblac.github.io/AI-Math-Docs/computation/lftp/ch1-bernstein-maximum/">
       
       
-        <link rel="prev" href="../functional/">
+        <link rel="prev" href="../ch1-2-optimization/">
       
       
-        <link rel="next" href="../multivariate/">
+        <link rel="next" href="../ch2-supervised-learning/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>数理统计 - AI & Math</title>
+        <title>Ch1 Bernstein不等式与极大值期望 - AI & Math</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#lftp-chapter-1" class="md-skip">
           跳转至
         </a>
       
@@ -94,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../.." title="AI &amp; Math" class="md-header__button md-logo" aria-label="AI & Math" data-md-component="logo">
+    <a href="../../.." title="AI &amp; Math" class="md-header__button md-logo" aria-label="AI & Math" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              数理统计
+              Ch1 Bernstein不等式与极大值期望
             
           </span>
         </div>
@@ -213,7 +213,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -230,13 +230,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../../math/" class="md-tabs__link">
           
   
   
@@ -252,11 +250,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../computation/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
           
   
   
@@ -276,7 +276,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../algorithms/" class="md-tabs__link">
+        <a href="../../../algorithms/" class="md-tabs__link">
           
   
   
@@ -296,7 +296,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../ai4math/" class="md-tabs__link">
+        <a href="../../../ai4math/" class="md-tabs__link">
           
   
   
@@ -330,7 +330,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="AI &amp; Math" class="md-nav__button md-logo" aria-label="AI & Math" data-md-component="logo">
+    <a href="../../.." title="AI &amp; Math" class="md-nav__button md-logo" aria-label="AI & Math" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -348,7 +348,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -364,6 +364,347 @@
   
 
       </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础数学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    基础数学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础数学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数学分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高等代数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/measure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    测度论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/probability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概率论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/ode-pde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    微分方程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/functional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    泛函分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/statistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数理统计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/multivariate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多元统计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/causality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    因果推断
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -393,17 +734,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
   <span class="md-ellipsis">
     
   
-    基础数学
+    计算数学
   
 
     
@@ -414,12 +755,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
   
-    基础数学
+    计算数学
   
 
           </label>
@@ -432,14 +773,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    基础数学
+    计算数学
   
 
     
@@ -460,14 +801,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../analysis/" class="md-nav__link">
+      <a href="../../num-linalg/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    数学分析
+    数值线性代数
   
 
     
@@ -488,14 +829,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../algebra/" class="md-nav__link">
+      <a href="../../numerical-linear-algebra-lab/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    高等代数
+    数值线代上机实验
   
 
     
@@ -516,14 +857,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../measure/" class="md-nav__link">
+      <a href="../../num-analysis/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    测度论
+    数值分析
   
 
     
@@ -544,14 +885,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../probability/" class="md-nav__link">
+      <a href="../../num-pde/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    概率论
+    数值微分方程
   
 
     
@@ -572,14 +913,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../ode-pde/" class="md-nav__link">
+      <a href="../../optimization/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    微分方程
+    凸优化
   
 
     
@@ -600,14 +941,211 @@
   
   
     <li class="md-nav__item">
-      <a href="../functional/" class="md-nav__link">
+      <a href="../../unconstrained-optimization/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    泛函分析
+    无约束优化算法对比
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stat-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计计算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning-theory.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计学习理论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    学习笔记
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    学习笔记
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch1-concentration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch1 再论集中不等式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch1-2-optimization-raw/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch1-Ch2 优化基础 (手写转录)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch1-2-optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch1-Ch2 优化基础 (整理版)
   
 
     
@@ -644,7 +1182,7 @@
   <span class="md-ellipsis">
     
   
-    数理统计
+    Ch1 Bernstein不等式与极大值期望
   
 
     
@@ -662,7 +1200,7 @@
   <span class="md-ellipsis">
     
   
-    数理统计
+    Ch1 Bernstein不等式与极大值期望
   
 
     
@@ -688,10 +1226,171 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#123-bernstein" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2.3 Bernstein 不等式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2.3 Bernstein 不等式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        命题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        内容规划
+        第一步：单个随机变量的矩母函数界
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chernoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二步：Chernoff 方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        解释
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#124" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2.4 次高斯变量最大值的期望
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2.4 次高斯变量最大值的期望">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        命题：最大值
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        证明
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        绝对值最大值
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#union-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用尾界与 union bound 的另一种证明
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#125" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2.5 用求积公式估计期望
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2.5 用求积公式估计期望">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        单区间线性插值误差
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        梯形公式的全局误差
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        主要校订
       
     </span>
   </a>
@@ -714,542 +1413,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../multivariate/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    多元统计
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../causality/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    因果推断
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    计算数学
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    计算数学
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    计算数学
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/num-linalg/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    数值线性代数
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/numerical-linear-algebra-lab/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    数值线代上机实验
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/num-analysis/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    数值分析
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/num-pde/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    数值微分方程
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/optimization/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    凸优化
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/unconstrained-optimization/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    无约束优化算法对比
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/stat-computing/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    统计计算
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/learning-theory.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    统计学习理论
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_10" >
-        
-          
-          <label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    学习笔记
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_10">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    学习笔记
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/lftp/ch1-concentration/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch1 再论集中不等式
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/lftp/ch1-2-optimization-raw/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch1-Ch2 优化基础 (手写转录)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/lftp/ch1-2-optimization/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch1-Ch2 优化基础 (整理版)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/lftp/ch1-bernstein-maximum/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch1 Bernstein不等式与极大值期望
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/lftp/ch2-supervised-learning/" class="md-nav__link">
+      <a href="../ch2-supervised-learning/" class="md-nav__link">
         
   
   
@@ -1277,7 +1441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch3-pca-regression/" class="md-nav__link">
+      <a href="../ch3-pca-regression/" class="md-nav__link">
         
   
   
@@ -1305,7 +1469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch4-erm/" class="md-nav__link">
+      <a href="../ch4-erm/" class="md-nav__link">
         
   
   
@@ -1333,7 +1497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch4-rademacher/" class="md-nav__link">
+      <a href="../ch4-rademacher/" class="md-nav__link">
         
   
   
@@ -1361,7 +1525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch4-4-massart/" class="md-nav__link">
+      <a href="../ch4-4-massart/" class="md-nav__link">
         
   
   
@@ -1389,7 +1553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch5-optimization-intro/" class="md-nav__link">
+      <a href="../ch5-optimization-intro/" class="md-nav__link">
         
   
   
@@ -1417,7 +1581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch5-4-sgd/" class="md-nav__link">
+      <a href="../ch5-4-sgd/" class="md-nav__link">
         
   
   
@@ -1445,7 +1609,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/machine-learning/" class="md-nav__link">
+      <a href="../machine-learning/" class="md-nav__link">
         
   
   
@@ -1473,7 +1637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/sparse-feature-learning/" class="md-nav__link">
+      <a href="../sparse-feature-learning/" class="md-nav__link">
         
   
   
@@ -1570,7 +1734,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../algorithms/" class="md-nav__link">
+      <a href="../../../algorithms/" class="md-nav__link">
         
   
   
@@ -1598,7 +1762,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../algorithms/neural-networks/" class="md-nav__link">
+      <a href="../../../algorithms/neural-networks/" class="md-nav__link">
         
   
   
@@ -1626,7 +1790,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../algorithms/decision-trees/" class="md-nav__link">
+      <a href="../../../algorithms/decision-trees/" class="md-nav__link">
         
   
   
@@ -1654,7 +1818,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../algorithms/bayesian/" class="md-nav__link">
+      <a href="../../../algorithms/bayesian/" class="md-nav__link">
         
   
   
@@ -1682,7 +1846,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../algorithms/deep-learning/" class="md-nav__link">
+      <a href="../../../algorithms/deep-learning/" class="md-nav__link">
         
   
   
@@ -1710,7 +1874,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../algorithms/compressed-sensing/" class="md-nav__link">
+      <a href="../../../algorithms/compressed-sensing/" class="md-nav__link">
         
   
   
@@ -1799,7 +1963,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/" class="md-nav__link">
+      <a href="../../../ai4math/" class="md-nav__link">
         
   
   
@@ -1827,7 +1991,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/papers/" class="md-nav__link">
+      <a href="../../../ai4math/papers/" class="md-nav__link">
         
   
   
@@ -1855,7 +2019,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/examples/" class="md-nav__link">
+      <a href="../../../ai4math/examples/" class="md-nav__link">
         
   
   
@@ -1883,7 +2047,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/improvements/" class="md-nav__link">
+      <a href="../../../ai4math/improvements/" class="md-nav__link">
         
   
   
@@ -1911,7 +2075,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/pinn-overview/" class="md-nav__link">
+      <a href="../../../ai4math/pinn-overview/" class="md-nav__link">
         
   
   
@@ -1939,7 +2103,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/pinn-seminar/" class="md-nav__link">
+      <a href="../../../ai4math/pinn-seminar/" class="md-nav__link">
         
   
   
@@ -1967,7 +2131,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/pinn-critique/" class="md-nav__link">
+      <a href="../../../ai4math/pinn-critique/" class="md-nav__link">
         
   
   
@@ -2022,10 +2186,171 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#123-bernstein" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2.3 Bernstein 不等式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2.3 Bernstein 不等式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        命题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        内容规划
+        第一步：单个随机变量的矩母函数界
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chernoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二步：Chernoff 方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        解释
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#124" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2.4 次高斯变量最大值的期望
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2.4 次高斯变量最大值的期望">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        命题：最大值
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        证明
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        绝对值最大值
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#union-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用尾界与 union bound 的另一种证明
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#125" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2.5 用求积公式估计期望
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2.5 用求积公式估计期望">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        单区间线性插值误差
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        梯形公式的全局误差
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        主要校订
       
     </span>
   </a>
@@ -2049,18 +2374,286 @@
 
 
 
-<h1 id="_1">数理统计</h1>
+<h1 id="lftp-chapter-1">LFTP Chapter 1 笔记整理</h1>
 <blockquote>
-<p>状态：待补充</p>
+<p>对应 <em>Learning Theory from First Principles</em>：§1.2.3 Bernstein's Inequality、§1.2.4 Expectation of the Maximum、§1.2.5 Estimation of Expectations through Quadrature。</p>
+<p>本文由手写扫描稿整理，并统一了符号、补足了省略步骤、纠正了公式笔误。</p>
 </blockquote>
-<h2 id="_2">内容规划</h2>
+<hr />
+<h2 id="123-bernstein">1.2.3 Bernstein 不等式</h2>
+<h3 id="_1">命题</h3>
+<p>设随机变量 <span class="arithmatex">\(Z_1,\dots,Z_n\)</span> 相互独立，并满足</p>
+<div class="arithmatex">\[
+\mathbb E[Z_i]=0,\qquad |Z_i|\le c\quad\text{a.s.}
+\]</div>
+<p>记</p>
+<div class="arithmatex">\[
+\sigma^2=\frac1n\sum_{i=1}^n\operatorname{Var}(Z_i).
+\]</div>
+<p>则对任意 <span class="arithmatex">\(t&gt;0\)</span>，</p>
+<div class="arithmatex">\[
+\mathbb P\!\left(\left|\frac1n\sum_{i=1}^n Z_i\right|&gt;t\right)
+\le
+2\exp\!\left(-\frac{nt^2}{2\sigma^2+\frac{2ct}{3}}\right).
+\]</div>
+<p>等价地，对任意 <span class="arithmatex">\(\delta\in(0,1)\)</span>，以至少 <span class="arithmatex">\(1-\delta\)</span> 的概率，</p>
+<div class="arithmatex">\[
+\left|\frac1n\sum_{i=1}^n Z_i\right|
+\le
+\sqrt{\frac{2\sigma^2\log(2/\delta)}{n}}
++
+\frac{2c\log(2/\delta)}{3n}.
+\]</div>
+<h3 id="_2">第一步：单个随机变量的矩母函数界</h3>
+<p>设 <span class="arithmatex">\(Z\)</span> 满足 <span class="arithmatex">\(\mathbb E[Z]=0\)</span>、<span class="arithmatex">\(|Z|\le c\)</span> 且 <span class="arithmatex">\(\mathbb E[Z^2]=\sigma^2\)</span>。对任意 <span class="arithmatex">\(s&gt;0\)</span>，</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathbb E[e^{sZ}]
+&amp;=1+s\mathbb E[Z]+\sum_{k=2}^{\infty}\frac{s^k}{k!}\mathbb E[Z^k]\\
+&amp;\le 1+\sum_{k=2}^{\infty}\frac{s^k}{k!}\mathbb E[|Z|^k]\\
+&amp;\le 1+\sum_{k=2}^{\infty}\frac{s^k}{k!}c^{k-2}\mathbb E[Z^2]\\
+&amp;=1+\frac{\sigma^2}{c^2}\bigl(e^{sc}-1-sc\bigr)\\
+&amp;\le \exp\!\left[\frac{\sigma^2}{c^2}\bigl(e^{sc}-1-sc\bigr)\right].
+\end{aligned}
+\]</div>
+<p>最后一步使用了 <span class="arithmatex">\(1+x\le e^x\)</span>。</p>
+<h3 id="chernoff">第二步：Chernoff 方法</h3>
+<p>记 <span class="arithmatex">\(\sigma_i^2=\operatorname{Var}(Z_i)\)</span>。由独立性与上面的矩母函数界，</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathbb P\!\left(\frac1n\sum_{i=1}^n Z_i&gt;t\right)
+&amp;=\mathbb P\!\left(e^{s\sum_{i=1}^n Z_i}&gt;e^{nst}\right)\\
+&amp;\le e^{-nst}\prod_{i=1}^n\mathbb E[e^{sZ_i}]\\
+&amp;\le \exp\!\left[-nst+\frac{n\sigma^2}{c^2}\bigl(e^{sc}-1-sc\bigr)\right].
+\end{aligned}
+\]</div>
+<p>令</p>
+<div class="arithmatex">\[
+u=sc,\qquad \alpha=\frac{ct}{\sigma^2}.
+\]</div>
+<p>则指数可写为</p>
+<div class="arithmatex">\[
+\frac{n\sigma^2}{c^2}\bigl(e^u-1-u-\alpha u\bigr).
+\]</div>
+<p>对 <span class="arithmatex">\(0&lt;u&lt;3\)</span>，由级数展开</p>
+<div class="arithmatex">\[
+\begin{aligned}
+e^u-1-u
+&amp;=\sum_{k=0}^{\infty}\frac{u^{k+2}}{(k+2)!}\\
+&amp;\le \frac{u^2}{2}\sum_{k=0}^{\infty}\left(\frac u3\right)^k
+=\frac{u^2}{2(1-u/3)}.
+\end{aligned}
+\]</div>
+<p>取</p>
+<div class="arithmatex">\[
+u=\frac{\alpha}{1+\alpha/3},
+\]</div>
+<p>得到</p>
+<div class="arithmatex">\[
+e^u-1-u-\alpha u
+\le
+-\frac{\alpha^2}{2(1+\alpha/3)}.
+\]</div>
+<p>因此</p>
+<div class="arithmatex">\[
+\mathbb P\!\left(\frac1n\sum_{i=1}^n Z_i&gt;t\right)
+\le
+\exp\!\left(-\frac{nt^2}{2\sigma^2+\frac{2ct}{3}}\right).
+\]</div>
+<p>对 <span class="arithmatex">\(-Z_i\)</span> 应用同一结论，再使用 union bound，即得双边 Bernstein 不等式。</p>
+<h3 id="_3">解释</h3>
 <ul>
-<li>参数估计（点估计、区间估计）</li>
-<li>假设检验（Neyman-Pearson引理）</li>
-<li>极大似然估计与大样本理论</li>
-<li>贝叶斯推断基础</li>
-<li>信息论基础（熵、KL散度）</li>
+<li>当 <span class="arithmatex">\(t\)</span> 较小时，分母主要由 <span class="arithmatex">\(2\sigma^2\)</span> 控制，尾界具有近似高斯型衰减。</li>
+<li>当 <span class="arithmatex">\(t\)</span> 较大时，线性项 <span class="arithmatex">\(2ct/3\)</span> 开始占主导，尾部近似呈指数衰减。</li>
+<li>与只利用有界性的 Hoeffding 不等式相比，Bernstein 不等式进一步使用了方差信息。</li>
 </ul>
+<hr />
+<h2 id="124">1.2.4 次高斯变量最大值的期望</h2>
+<p>设 <span class="arithmatex">\(Z_1,\dots,Z_n\)</span> 均为零均值、次高斯参数为 <span class="arithmatex">\(\tau^2\)</span> 的随机变量，即</p>
+<div class="arithmatex">\[
+\mathbb E[e^{\lambda Z_i}]
+\le
+\exp\!\left(\frac{\tau^2\lambda^2}{2}\right),
+\qquad \lambda\in\mathbb R.
+\]</div>
+<p>这里不要求 <span class="arithmatex">\(Z_1,\dots,Z_n\)</span> 相互独立。</p>
+<h3 id="_4">命题：最大值</h3>
+<div class="arithmatex">\[
+\mathbb E\left[\max_{1\le i\le n}Z_i\right]
+\le
+\sqrt{2\tau^2\log n}.
+\]</div>
+<h3 id="_5">证明</h3>
+<p>对任意 <span class="arithmatex">\(\lambda&gt;0\)</span>，由 Jensen 不等式、<span class="arithmatex">\(\max_i a_i\le\sum_i a_i\)</span> 以及次高斯性，</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathbb E\left[\max_i Z_i\right]
+&amp;\le \frac1\lambda
+\log\mathbb E\left[e^{\lambda\max_i Z_i}\right]\\
+&amp;=\frac1\lambda
+\log\mathbb E\left[\max_i e^{\lambda Z_i}\right]\\
+&amp;\le\frac1\lambda
+\log\mathbb E\left[\sum_{i=1}^n e^{\lambda Z_i}\right]\\
+&amp;\le\frac1\lambda\log\left(ne^{\tau^2\lambda^2/2}\right)\\
+&amp;=\frac{\log n}{\lambda}+\frac{\tau^2\lambda}{2}.
+\end{aligned}
+\]</div>
+<p>右端在</p>
+<div class="arithmatex">\[
+\lambda=\frac{\sqrt{2\log n}}{\tau}
+\]</div>
+<p>处取得最小值，从而得到结论。</p>
+<h3 id="_6">绝对值最大值</h3>
+<p>把</p>
+<div class="arithmatex">\[
+|Z_i|=\max\{Z_i,-Z_i\}
+\]</div>
+<p>看成 <span class="arithmatex">\(2n\)</span> 个次高斯变量的最大值，可得</p>
+<div class="arithmatex">\[
+\boxed{
+\mathbb E\left[\max_{1\le i\le n}|Z_i|\right]
+\le
+\sqrt{2\tau^2\log(2n)}
+}.
+\]</div>
+<h3 id="union-bound">使用尾界与 union bound 的另一种证明</h3>
+<p>记</p>
+<div class="arithmatex">\[
+M=\max_{1\le i\le n}|Z_i|.
+\]</div>
+<p>由次高斯尾界和 union bound，</p>
+<div class="arithmatex">\[
+\mathbb P(M&gt;t)
+\le
+\sum_{i=1}^n\mathbb P(|Z_i|&gt;t)
+\le
+2n\exp\!\left(-\frac{t^2}{2\tau^2}\right).
+\]</div>
+<p>取</p>
+<div class="arithmatex">\[
+a=\tau\sqrt{2\log(2n)}.
+\]</div>
+<p>由尾积分公式 <span class="arithmatex">\(\mathbb E[M]=\int_0^\infty\mathbb P(M&gt;t)\,dt\)</span>，</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathbb E[M]
+&amp;\le a+
+2n\int_a^\infty
+\exp\!\left(-\frac{t^2}{2\tau^2}\right)dt\\
+&amp;\le a+
+2n\frac{\tau^2}{a}
+\exp\!\left(-\frac{a^2}{2\tau^2}\right)\\
+&amp;=a+\frac{\tau^2}{a}.
+\end{aligned}
+\]</div>
+<p>所以</p>
+<div class="arithmatex">\[
+\mathbb E[M]
+\le
+\tau\left(
+\sqrt{2\log(2n)}+rac1{\sqrt{2\log(2n)}}
+\right)
+\le
+2\tau\sqrt{2\log(2n)}.
+\]</div>
+<p>这与精确的 Laplace-transform 证明只相差一个普适常数。</p>
+<hr />
+<h2 id="125">1.2.5 用求积公式估计期望</h2>
+<p>设 <span class="arithmatex">\(X\sim\operatorname{Unif}[0,1]\)</span>，需要计算</p>
+<div class="arithmatex">\[
+I=\mathbb E[f(X)]=\int_0^1f(x)\,dx.
+\]</div>
+<p>取均匀网格</p>
+<div class="arithmatex">\[
+x_i=\frac in,\qquad i=0,1,\dots,n.
+\]</div>
+<p>梯形公式为</p>
+<div class="arithmatex">\[
+\widehat I
+=
+\frac1n\left[
+\frac12f(x_0)+\sum_{i=1}^{n-1}f(x_i)+\frac12f(x_n)
+\right]
+=
+\frac1{2n}\sum_{i=1}^n\bigl[f(x_{i-1})+f(x_i)\bigr].
+\]</div>
+<p>它等价于：在每个小区间 <span class="arithmatex">\([x_{i-1},x_i]\)</span> 上用端点确定的线性插值函数代替 <span class="arithmatex">\(f\)</span>，再对该插值函数积分。</p>
+<h3 id="_7">单区间线性插值误差</h3>
+<p>设 <span class="arithmatex">\(g:[0,1]\to\mathbb R\)</span>，端点线性插值为</p>
+<div class="arithmatex">\[
+\widetilde g(x)=(1-x)g(0)+xg(1).
+\]</div>
+<p>直接积分可得</p>
+<div class="arithmatex">\[
+\int_0^1\widetilde g(x)\,dx
+=
+\frac{g(0)+g(1)}2.
+\]</div>
+<p>若 <span class="arithmatex">\(g\)</span> 二阶可微，且</p>
+<div class="arithmatex">\[
+|g''(x)|\le L,
+\]</div>
+<p>则线性插值余项公式给出：对每个 <span class="arithmatex">\(x\in[0,1]\)</span>，存在 <span class="arithmatex">\(\xi_x\in(0,1)\)</span> 使得</p>
+<div class="arithmatex">\[
+g(x)-\widetilde g(x)
+=
+\frac{g''(\xi_x)}2x(x-1).
+\]</div>
+<p>因此</p>
+<div class="arithmatex">\[
+\boxed{
+|g(x)-\widetilde g(x)|
+\le
+\frac L2x(1-x)
+}.
+\]</div>
+<h3 id="_8">梯形公式的全局误差</h3>
+<p>在长度为</p>
+<div class="arithmatex">\[
+h=x_i-x_{i-1}=\frac1n
+\]</div>
+<p>的小区间上，缩放上述结论得到</p>
+<div class="arithmatex">\[
+|f(x)-\widetilde f_i(x)|
+\le
+\frac L2(x-x_{i-1})(x_i-x).
+\]</div>
+<p>于是局部积分误差满足</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\left|
+\int_{x_{i-1}}^{x_i}f(x)\,dx
+-
+\frac h2\bigl[f(x_{i-1})+f(x_i)\bigr]
+\right|
+&amp;\le
+\frac L2\int_{x_{i-1}}^{x_i}
+(x-x_{i-1})(x_i-x)\,dx\\
+&amp;=
+\frac{Lh^3}{12}.
+\end{aligned}
+\]</div>
+<p>将 <span class="arithmatex">\(n\)</span> 个区间相加，得到</p>
+<div class="arithmatex">\[
+\boxed{
+|I-\widehat I|
+\le
+\frac{L}{12n^2}
+}.
+\]</div>
+<p>因此，在二阶导数一致有界时，梯形公式的误差阶为</p>
+<div class="arithmatex">\[
+|I-\widehat I|=O(n^{-2}).
+\]</div>
+<p>若只假设一阶导数有界，一般只能得到 <span class="arithmatex">\(O(n^{-1})\)</span> 的误差。</p>
+<hr />
+<h2 id="_9">主要校订</h2>
+<ol>
+<li>Bernstein 不等式的分母应为 <span class="arithmatex">\(2\sigma^2+2ct/3\)</span>，不能把方差项或线性项的系数混写。</li>
+<li>次高斯最大值证明中的优化变量应取 <span class="arithmatex">\(\lambda=\sqrt{2\log n}/\tau\)</span>。</li>
+<li>对绝对值最大值，应把变量数从 <span class="arithmatex">\(n\)</span> 改为 <span class="arithmatex">\(2n\)</span>，故出现 <span class="arithmatex">\(\log(2n)\)</span>。</li>
+<li>梯形公式的二阶光滑误差为 <span class="arithmatex">\(L/(12n^2)\)</span>；单区间插值误差为 <span class="arithmatex">\(\frac L2x(1-x)\)</span>。</li>
+</ol>
 
 
 
@@ -2125,12 +2718,12 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="../../javascripts/mathjax.js"></script>
+        <script src="../../../javascripts/mathjax.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       

@@ -12,31 +12,31 @@
         <meta name="author" content="huangblac">
       
       
-        <link rel="canonical" href="https://huangblac.github.io/AI-Math-Docs/math/statistics/">
+        <link rel="canonical" href="https://huangblac.github.io/AI-Math-Docs/computation/lftp/ch1-concentration/">
       
       
-        <link rel="prev" href="../functional/">
+        <link rel="prev" href="../../stat-computing/">
       
       
-        <link rel="next" href="../multivariate/">
+        <link rel="next" href="../ch1-2-optimization-raw/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>数理统计 - AI & Math</title>
+        <title>Ch1 再论集中不等式 - AI & Math</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#ch1" class="md-skip">
           跳转至
         </a>
       
@@ -94,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../.." title="AI &amp; Math" class="md-header__button md-logo" aria-label="AI & Math" data-md-component="logo">
+    <a href="../../.." title="AI &amp; Math" class="md-header__button md-logo" aria-label="AI & Math" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              数理统计
+              Ch1 再论集中不等式
             
           </span>
         </div>
@@ -213,7 +213,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -230,13 +230,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../../math/" class="md-tabs__link">
           
   
   
@@ -252,11 +250,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../computation/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
           
   
   
@@ -276,7 +276,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../algorithms/" class="md-tabs__link">
+        <a href="../../../algorithms/" class="md-tabs__link">
           
   
   
@@ -296,7 +296,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../ai4math/" class="md-tabs__link">
+        <a href="../../../ai4math/" class="md-tabs__link">
           
   
   
@@ -330,7 +330,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="AI &amp; Math" class="md-nav__button md-logo" aria-label="AI & Math" data-md-component="logo">
+    <a href="../../.." title="AI &amp; Math" class="md-nav__button md-logo" aria-label="AI & Math" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -348,7 +348,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -372,31 +372,28 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   
@@ -414,7 +411,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -432,7 +429,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../../math/" class="md-nav__link">
         
   
   
@@ -460,7 +457,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../analysis/" class="md-nav__link">
+      <a href="../../../math/analysis/" class="md-nav__link">
         
   
   
@@ -488,7 +485,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../algebra/" class="md-nav__link">
+      <a href="../../../math/algebra/" class="md-nav__link">
         
   
   
@@ -516,7 +513,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../measure/" class="md-nav__link">
+      <a href="../../../math/measure/" class="md-nav__link">
         
   
   
@@ -544,7 +541,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../probability/" class="md-nav__link">
+      <a href="../../../math/probability/" class="md-nav__link">
         
   
   
@@ -572,7 +569,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ode-pde/" class="md-nav__link">
+      <a href="../../../math/ode-pde/" class="md-nav__link">
         
   
   
@@ -600,7 +597,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../functional/" class="md-nav__link">
+      <a href="../../../math/functional/" class="md-nav__link">
         
   
   
@@ -625,37 +622,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    数理统计
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../math/statistics/" class="md-nav__link">
         
   
   
@@ -671,37 +641,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        内容规划
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -714,7 +653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../multivariate/" class="md-nav__link">
+      <a href="../../../math/multivariate/" class="md-nav__link">
         
   
   
@@ -742,7 +681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../causality/" class="md-nav__link">
+      <a href="../../../math/causality/" class="md-nav__link">
         
   
   
@@ -774,28 +713,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -813,7 +755,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -831,7 +773,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/" class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         
   
   
@@ -859,7 +801,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/num-linalg/" class="md-nav__link">
+      <a href="../../num-linalg/" class="md-nav__link">
         
   
   
@@ -887,7 +829,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/numerical-linear-algebra-lab/" class="md-nav__link">
+      <a href="../../numerical-linear-algebra-lab/" class="md-nav__link">
         
   
   
@@ -915,7 +857,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/num-analysis/" class="md-nav__link">
+      <a href="../../num-analysis/" class="md-nav__link">
         
   
   
@@ -943,7 +885,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/num-pde/" class="md-nav__link">
+      <a href="../../num-pde/" class="md-nav__link">
         
   
   
@@ -971,7 +913,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/optimization/" class="md-nav__link">
+      <a href="../../optimization/" class="md-nav__link">
         
   
   
@@ -999,7 +941,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/unconstrained-optimization/" class="md-nav__link">
+      <a href="../../unconstrained-optimization/" class="md-nav__link">
         
   
   
@@ -1027,7 +969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/stat-computing/" class="md-nav__link">
+      <a href="../../stat-computing/" class="md-nav__link">
         
   
   
@@ -1055,7 +997,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/learning-theory.md" class="md-nav__link">
+      <a href="../../learning-theory.md" class="md-nav__link">
         
   
   
@@ -1080,28 +1022,31 @@
                 
   
   
+    
   
   
+  
     
     
     
     
       
       
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
         
           
+          
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_10" >
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" checked>
         
           
-          <label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="">
             
   
   
@@ -1119,7 +1064,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_10">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1134,10 +1079,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../computation/lftp/ch1-concentration/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch1 再论集中不等式
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1153,6 +1125,120 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 三个不等式放在一起
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 三个不等式放在一起">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hoeffding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hoeffding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcdiarmid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        McDiarmid
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bernstein" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bernstein
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-hoeffding-mcdiarmid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Hoeffding 是 McDiarmid 的特殊情况
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-mcdiarmid-hoeffding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. McDiarmid 比 Hoeffding 一般在哪里
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-mcdiarmid-bernstein" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. McDiarmid 和 Bernstein 谁更精确
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 一个极端例子
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1165,7 +1251,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch1-2-optimization-raw/" class="md-nav__link">
+      <a href="../ch1-2-optimization-raw/" class="md-nav__link">
         
   
   
@@ -1193,7 +1279,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch1-2-optimization/" class="md-nav__link">
+      <a href="../ch1-2-optimization/" class="md-nav__link">
         
   
   
@@ -1221,7 +1307,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch1-bernstein-maximum/" class="md-nav__link">
+      <a href="../ch1-bernstein-maximum/" class="md-nav__link">
         
   
   
@@ -1249,7 +1335,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch2-supervised-learning/" class="md-nav__link">
+      <a href="../ch2-supervised-learning/" class="md-nav__link">
         
   
   
@@ -1277,7 +1363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch3-pca-regression/" class="md-nav__link">
+      <a href="../ch3-pca-regression/" class="md-nav__link">
         
   
   
@@ -1305,7 +1391,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch4-erm/" class="md-nav__link">
+      <a href="../ch4-erm/" class="md-nav__link">
         
   
   
@@ -1333,7 +1419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch4-rademacher/" class="md-nav__link">
+      <a href="../ch4-rademacher/" class="md-nav__link">
         
   
   
@@ -1361,7 +1447,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch4-4-massart/" class="md-nav__link">
+      <a href="../ch4-4-massart/" class="md-nav__link">
         
   
   
@@ -1389,7 +1475,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch5-optimization-intro/" class="md-nav__link">
+      <a href="../ch5-optimization-intro/" class="md-nav__link">
         
   
   
@@ -1417,7 +1503,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/ch5-4-sgd/" class="md-nav__link">
+      <a href="../ch5-4-sgd/" class="md-nav__link">
         
   
   
@@ -1445,7 +1531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/machine-learning/" class="md-nav__link">
+      <a href="../machine-learning/" class="md-nav__link">
         
   
   
@@ -1473,7 +1559,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/lftp/sparse-feature-learning/" class="md-nav__link">
+      <a href="../sparse-feature-learning/" class="md-nav__link">
         
   
   
@@ -1570,7 +1656,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../algorithms/" class="md-nav__link">
+      <a href="../../../algorithms/" class="md-nav__link">
         
   
   
@@ -1598,7 +1684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../algorithms/neural-networks/" class="md-nav__link">
+      <a href="../../../algorithms/neural-networks/" class="md-nav__link">
         
   
   
@@ -1626,7 +1712,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../algorithms/decision-trees/" class="md-nav__link">
+      <a href="../../../algorithms/decision-trees/" class="md-nav__link">
         
   
   
@@ -1654,7 +1740,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../algorithms/bayesian/" class="md-nav__link">
+      <a href="../../../algorithms/bayesian/" class="md-nav__link">
         
   
   
@@ -1682,7 +1768,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../algorithms/deep-learning/" class="md-nav__link">
+      <a href="../../../algorithms/deep-learning/" class="md-nav__link">
         
   
   
@@ -1710,7 +1796,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../algorithms/compressed-sensing/" class="md-nav__link">
+      <a href="../../../algorithms/compressed-sensing/" class="md-nav__link">
         
   
   
@@ -1799,7 +1885,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/" class="md-nav__link">
+      <a href="../../../ai4math/" class="md-nav__link">
         
   
   
@@ -1827,7 +1913,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/papers/" class="md-nav__link">
+      <a href="../../../ai4math/papers/" class="md-nav__link">
         
   
   
@@ -1855,7 +1941,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/examples/" class="md-nav__link">
+      <a href="../../../ai4math/examples/" class="md-nav__link">
         
   
   
@@ -1883,7 +1969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/improvements/" class="md-nav__link">
+      <a href="../../../ai4math/improvements/" class="md-nav__link">
         
   
   
@@ -1911,7 +1997,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/pinn-overview/" class="md-nav__link">
+      <a href="../../../ai4math/pinn-overview/" class="md-nav__link">
         
   
   
@@ -1939,7 +2025,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/pinn-seminar/" class="md-nav__link">
+      <a href="../../../ai4math/pinn-seminar/" class="md-nav__link">
         
   
   
@@ -1967,7 +2053,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/pinn-critique/" class="md-nav__link">
+      <a href="../../../ai4math/pinn-critique/" class="md-nav__link">
         
   
   
@@ -2022,10 +2108,93 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        内容规划
+        1. 三个不等式放在一起
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 三个不等式放在一起">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hoeffding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hoeffding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcdiarmid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        McDiarmid
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bernstein" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bernstein
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-hoeffding-mcdiarmid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Hoeffding 是 McDiarmid 的特殊情况
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-mcdiarmid-hoeffding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. McDiarmid 比 Hoeffding 一般在哪里
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-mcdiarmid-bernstein" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. McDiarmid 和 Bernstein 谁更精确
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 一个极端例子
       
     </span>
   </a>
@@ -2049,17 +2218,233 @@
 
 
 
-<h1 id="_1">数理统计</h1>
+<h1 id="ch1">Ch1 再论集中不等式</h1>
+<h2 id="1">1. 三个不等式放在一起</h2>
+<h3 id="hoeffding">Hoeffding</h3>
+<p>设 <span class="arithmatex">\(Z_i\in[a_i,b_i]\)</span> 相互独立，则
+$$
+\mathbb P\left(
+\left|
+\sum_{i=1}^n(Z_i-\mathbb EZ_i)
+\right|&gt;t
+\right)
+\le
+2\exp\left(
+-\frac{2t^2}{\sum_{i=1}^n(b_i-a_i)^2}
+\right).
+$$
+它只利用每个随机变量的取值范围。</p>
+<p>证明方式：</p>
+<p>首先使用Markov不等式，将问题转化为对于<span class="arithmatex">\(E(e^{s(Z-EZ_i)})\)</span>的控制，然后构造对数</p>
+<p>使用对数矩母函数，求一次，二次导数，然后做概率测度的变换，将其转化为一个方差的控制。</p>
+<p>不失一般性，可以考虑随机变量处于[0,1]</p>
+<hr />
+<h3 id="mcdiarmid">McDiarmid</h3>
+<p>设
+$$
+F=f(Z_1,\dots,Z_n),
+$$
+且改变第 <span class="arithmatex">\(i\)</span> 个输入最多使函数值改变 <span class="arithmatex">\(c_i\)</span>：
+$$
+|f(z)-f(z^{(i)})|\le c_i.
+$$
+那么
+$$
+\mathbb P\left(
+|F-\mathbb EF|&gt;t
+\right)
+\le
+2\exp\left(
+-\frac{2t^2}{\sum_{i=1}^n c_i^2}
+\right).
+$$
+它不要求 <span class="arithmatex">\(f\)</span> 是求和，只要求每一个样本对最终结果的影响有限。</p>
+<p>其中Amuza不等式是其中的一个特殊情况，其核心在于构造Doob-鞅，一系列的随机变量，然后证明每个部分的指数期望都可以被控制住，进而再次使用Markov不等式。</p>
+<hr />
+<h3 id="bernstein">Bernstein</h3>
+<p>设
+$$
+\mathbb EZ_i=0,\qquad |Z_i|\le c,
+$$
+记
+$$
+V=\sum_{i=1}^n\operatorname{Var}(Z_i).
+$$
+则
+$$
+\mathbb P\left(
+\left|\sum_{i=1}^nZ_i\right|&gt;t
+\right)
+\le
+2\exp\left(
+-\frac{t^2}{2V+\frac{2ct}{3}}
+\right).
+$$
+它同时使用：
+$$
+\text{真实方差 }V
+\qquad\text{和}\qquad
+\text{绝对上界 }c.
+$$</p>
+<hr />
+<h2 id="2-hoeffding-mcdiarmid">2. Hoeffding 是 McDiarmid 的特殊情况</h2>
+<p>取
+$$
+f(Z_1,\dots,Z_n)=\sum_{i=1}^n Z_i.
+$$
+如果 <span class="arithmatex">\(Z_i\in[a_i,b_i]\)</span>，只替换第 <span class="arithmatex">\(i\)</span> 个变量，则
+$$
+\left|
+f(z)-f(z^{(i)})
+\right|
+=
+|z_i-z_i'|
+\le b_i-a_i.
+$$
+所以 McDiarmid 中
+$$
+c_i=b_i-a_i.
+$$
+代入后得到
+$$
+\mathbb P\left(
+\left|
+\sum_iZ_i-\mathbb E\sum_iZ_i
+\right|&gt;t
+\right)
+\le
+2\exp\left(
+-\frac{2t^2}{\sum_i(b_i-a_i)^2}
+\right),
+$$
+正好就是 Hoeffding。</p>
+<p>因此：
+$$
+\boxed{
+\text{对线性求和而言，McDiarmid 基本就是 Hoeffding。}
+}
+$$
+McDiarmid 的优势不是在这个情况下给出更小的界，而是允许研究非线性统计量。</p>
+<hr />
+<h2 id="3-mcdiarmid-hoeffding">3. McDiarmid 比 Hoeffding 一般在哪里</h2>
+<p>例如在学习理论中常研究
+$$
+F(S)
+=
+\sup_{h\in\mathcal H}
+\left|
+\widehat R_S(h)-R(h)
+\right|.
+$$
+这里
+$$
+\widehat R_S(h)
+=
+\frac1n\sum_{i=1}^n\ell(h,Z_i),
+$$
+但外面还有一个关于 <span class="arithmatex">\(h\)</span> 的上确界。因此 <span class="arithmatex">\(F(S)\)</span> 本身不是简单的随机变量平均。</p>
+<p>假设损失满足
+$$
+0\le \ell(h,z)\le 1.
+$$
+把样本 <span class="arithmatex">\(Z_i\)</span> 换成 <span class="arithmatex">\(Z_i'\)</span>，对于任意 <span class="arithmatex">\(h\)</span>，
+$$
+\left|
+\widehat R_S(h)-\widehat R_{S'}(h)
+\right|
+\le\frac1n.
+$$
+上确界的变化也不超过 <span class="arithmatex">\(1/n\)</span>，所以
+$$
+c_i=\frac1n.
+$$
+McDiarmid 给出
+$$
+\mathbb P\left(
+|F(S)-\mathbb EF(S)|&gt;t
+\right)
+\le
+2e^{-2nt^2}.
+$$
+Hoeffding 无法直接处理这个 <span class="arithmatex">\(F(S)\)</span>，因为它不是固定的独立随机变量之和。</p>
+<p>所以 McDiarmid 回答的是：</p>
 <blockquote>
-<p>状态：待补充</p>
+<p>一个复杂的样本统计量，只要对单个样本不敏感，是否仍然集中？</p>
 </blockquote>
-<h2 id="_2">内容规划</h2>
+<p>答案是肯定的。</p>
+<hr />
+<h2 id="4-mcdiarmid-bernstein">4. McDiarmid 和 Bernstein 谁更精确</h2>
+<p>在随机变量求和的情况下，McDiarmid 通常和 Hoeffding 一样，只利用最坏情况变化，而 Bernstein 还利用方差。因此如果方差很小，Bernstein 通常更精确。</p>
+<p>假设
+$$
+Z_i\in[-c,c],
+\qquad
+\sigma^2=\frac1n\sum_i\operatorname{Var}(Z_i).
+$$
+对于平均值
+$$
+\overline Z=\frac1n\sum_iZ_i,
+$$
+Hoeffding 或 McDiarmid 给出
+$$
+\mathbb P(|\overline Z-\mathbb E\overline Z|&gt;t)
+\le
+2\exp\left(-\frac{nt^2}{2c^2}\right).
+$$
+Bernstein 给出
+$$
+\mathbb P(|\overline Z-\mathbb E\overline Z|&gt;t)
+\le
+2\exp\left(
+-\frac{nt^2}{2\sigma^2+\frac{2ct}{3}}
+\right).
+$$
+当
+$$
+\sigma^2\ll c^2
+$$
+且 <span class="arithmatex">\(t\)</span> 不大时，Bernstein 的分母近似为
+$$
+2\sigma^2,
+$$
+远小于 Hoeffding 或 McDiarmid 的
+$$
+2c^2.
+$$
+因此 Bernstein 明显更强。</p>
+<hr />
+<h2 id="5">5. 一个极端例子</h2>
+<p>设
+$$
+X_i\sim\operatorname{Bernoulli}(p),
+\qquad
+Z_i=X_i-p.
+$$
+虽然 <span class="arithmatex">\(X_i\in[0,1]\)</span>，但
+$$
+\operatorname{Var}(X_i)=p(1-p).
+$$
+当 <span class="arithmatex">\(p=0.001\)</span> 时，
+$$
+p(1-p)\approx0.001.
+$$
+Hoeffding 和 McDiarmid 只知道区间长度是 <span class="arithmatex">\(1\)</span>，因此都给出
+$$
+2e^{-2nt^2}.
+$$
+Bernstein 对小 <span class="arithmatex">\(t\)</span> 近似给出
+$$
+2\exp\left(
+-\frac{nt^2}{2p(1-p)}
+\right)
+\approx
+2e^{-500nt^2}.
+$$
+差别巨大。</p>
+<p>原因是：</p>
 <ul>
-<li>参数估计（点估计、区间估计）</li>
-<li>假设检验（Neyman-Pearson引理）</li>
-<li>极大似然估计与大样本理论</li>
-<li>贝叶斯推断基础</li>
-<li>信息论基础（熵、KL散度）</li>
+<li>Hoeffding/McDiarmid 认为每个样本都可能在整个区间内剧烈波动；</li>
+<li>Bernstein 知道 <span class="arithmatex">\(X_i\)</span> 几乎总是 <span class="arithmatex">\(0\)</span>，实际方差很小。</li>
 </ul>
 
 
@@ -2125,12 +2510,12 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="../../javascripts/mathjax.js"></script>
+        <script src="../../../javascripts/mathjax.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       

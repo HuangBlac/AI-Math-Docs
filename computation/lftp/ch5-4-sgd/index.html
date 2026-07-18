@@ -12,13 +12,13 @@
         <meta name="author" content="huangblac">
       
       
-        <link rel="canonical" href="https://huangblac.github.io/AI-Math-Docs/computation/lftp/ch5-optimization-intro/">
+        <link rel="canonical" href="https://huangblac.github.io/AI-Math-Docs/computation/lftp/ch5-4-sgd/">
       
       
-        <link rel="prev" href="../ch4-4-massart/">
+        <link rel="prev" href="../ch5-optimization-intro/">
       
       
-        <link rel="next" href="../ch5-4-sgd/">
+        <link rel="next" href="../machine-learning/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Ch5 优化简单介绍 - AI & Math</title>
+        <title>Ch5.4 随机梯度下降 - AI & Math</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#lftp-chapter-5-54" class="md-skip">
           跳转至
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Ch5 优化简单介绍
+              Ch5.4 随机梯度下降
             
           </span>
         </div>
@@ -1331,6 +1331,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5-optimization-intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch5 优化简单介绍
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1350,7 +1378,7 @@
   <span class="md-ellipsis">
     
   
-    Ch5 优化简单介绍
+    Ch5.4 随机梯度下降
   
 
     
@@ -1368,7 +1396,7 @@
   <span class="md-ellipsis">
     
   
-    Ch5 优化简单介绍
+    Ch5.4 随机梯度下降
   
 
     
@@ -1394,22 +1422,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#1-sgd" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. 梯度下降
+        1. 为什么需要 SGD
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. 梯度下降">
+    <nav class="md-nav" aria-label="1. 为什么需要 SGD">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#11" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.1 算法定义
+        经验风险最小化
       
     </span>
   </a>
@@ -1417,10 +1445,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#12" class="md-nav__link">
+  <a href="#mini-batch" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.2 梯度范数的次线性收敛
+        Mini-batch
       
     </span>
   </a>
@@ -1428,10 +1456,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#13-mm" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.3 MM 算法视角
+        期望风险最小化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本假设
       
     </span>
   </a>
@@ -1444,22 +1483,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
+  <a href="#2-57-lipschitz-sgd" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. 不要求凸性时的函数值收敛
+        2. 命题 5.7：凸 Lipschitz 目标上的 SGD
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. 不要求凸性时的函数值收敛">
+    <nav class="md-nav" aria-label="2. 命题 5.7：凸 Lipschitz 目标上的 SGD">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#21" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.1 一个广义星凸条件
+        证明：基本递推
       
     </span>
   </a>
@@ -1467,10 +1506,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#22-pl" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.2 PL 条件与线性收敛
+        求和与平均
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        固定步长版本
       
     </span>
   </a>
@@ -1483,13 +1533,52 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
+  <a href="#3-526sgd" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. 不可微优化与近端梯度
+        3. 习题 5.26：SGD 的高概率界
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="3. 习题 5.26：SGD 的高概率界">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        鞅差性质
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一步不等式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azuma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用 Azuma 不等式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1497,19 +1586,30 @@
   <a href="#4-sgd" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 近似梯度与 SGD 的基本不等式
+        4. SGD 与完整梯度下降的计算量比较
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4. 近似梯度与 SGD 的基本不等式">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-527mini-batch-sgd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 习题 5.27：Mini-batch SGD
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 习题 5.27：Mini-batch SGD">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#41-key-step" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.1 Key step
+        无偏性
       
     </span>
   </a>
@@ -1517,10 +1617,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#42" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.2 平均迭代点的误差界
+        有界性
       
     </span>
   </a>
@@ -1533,22 +1633,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-sgd" class="md-nav__link">
+  <a href="#6-528-sgd" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. SGD 的鞅差误差项
+        6. 习题 5.28：光滑随机函数上的 SGD
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="5. SGD 的鞅差误差项">
+    <nav class="md-nav" aria-label="6. 习题 5.28：光滑随机函数上的 SGD">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#51" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5.1 高概率界
+        控制随机梯度的二阶矩
       
     </span>
   </a>
@@ -1556,10 +1656,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#52" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5.2 期望界
+        主递推
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        显式收敛率
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mini-batch_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mini-batch 的改进
       
     </span>
   </a>
@@ -1572,22 +1694,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-sgd" class="md-nav__link">
+  <a href="#7-529" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. SGD 在经验风险最小化中的形式
+        7. 习题 5.29：非均匀抽样
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="6. SGD 在经验风险最小化中的形式">
+    <nav class="md-nav" aria-label="7. 习题 5.29：非均匀抽样">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#61-erm" class="md-nav__link">
+  <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6.1 有限样本 ERM
+        基于几乎处处上界的收敛率
       
     </span>
   </a>
@@ -1595,10 +1717,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#62" class="md-nav__link">
+  <a href="#_15" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6.2 总体风险最小化
+        最优抽样分布
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二阶矩版本
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#svm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        应用于线性 SVM
       
     </span>
   </a>
@@ -1611,108 +1755,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-sgd" class="md-nav__link">
+  <a href="#_17" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. 强凸条件下的 SGD
+        主要校订
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="7. 强凸条件下的 SGD">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#71-gd-sgd" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7.1 GD 与 SGD 的计算复杂度比较
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#8-svrg" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8. 方差缩减：SVRG
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="8. 方差缩减：SVRG">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#81" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8.1 控制变量思想
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#82-svrg" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8.2 SVRG 算法
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#83" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8.3 线性收敛结论
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#9-svrg" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        9. SVRG 收敛证明梗概
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="9. SVRG 收敛证明梗概">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#91" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        9.1 方差界的标准推导
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1720,34 +1769,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ch5-4-sgd/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch5.4 随机梯度下降
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -2337,22 +2358,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#1-sgd" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. 梯度下降
+        1. 为什么需要 SGD
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. 梯度下降">
+    <nav class="md-nav" aria-label="1. 为什么需要 SGD">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#11" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.1 算法定义
+        经验风险最小化
       
     </span>
   </a>
@@ -2360,10 +2381,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#12" class="md-nav__link">
+  <a href="#mini-batch" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.2 梯度范数的次线性收敛
+        Mini-batch
       
     </span>
   </a>
@@ -2371,10 +2392,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#13-mm" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.3 MM 算法视角
+        期望风险最小化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本假设
       
     </span>
   </a>
@@ -2387,22 +2419,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
+  <a href="#2-57-lipschitz-sgd" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. 不要求凸性时的函数值收敛
+        2. 命题 5.7：凸 Lipschitz 目标上的 SGD
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. 不要求凸性时的函数值收敛">
+    <nav class="md-nav" aria-label="2. 命题 5.7：凸 Lipschitz 目标上的 SGD">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#21" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.1 一个广义星凸条件
+        证明：基本递推
       
     </span>
   </a>
@@ -2410,10 +2442,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#22-pl" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.2 PL 条件与线性收敛
+        求和与平均
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        固定步长版本
       
     </span>
   </a>
@@ -2426,13 +2469,52 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
+  <a href="#3-526sgd" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. 不可微优化与近端梯度
+        3. 习题 5.26：SGD 的高概率界
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="3. 习题 5.26：SGD 的高概率界">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        鞅差性质
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一步不等式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azuma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用 Azuma 不等式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2440,19 +2522,30 @@
   <a href="#4-sgd" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 近似梯度与 SGD 的基本不等式
+        4. SGD 与完整梯度下降的计算量比较
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4. 近似梯度与 SGD 的基本不等式">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-527mini-batch-sgd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 习题 5.27：Mini-batch SGD
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 习题 5.27：Mini-batch SGD">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#41-key-step" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.1 Key step
+        无偏性
       
     </span>
   </a>
@@ -2460,10 +2553,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#42" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.2 平均迭代点的误差界
+        有界性
       
     </span>
   </a>
@@ -2476,22 +2569,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-sgd" class="md-nav__link">
+  <a href="#6-528-sgd" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. SGD 的鞅差误差项
+        6. 习题 5.28：光滑随机函数上的 SGD
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="5. SGD 的鞅差误差项">
+    <nav class="md-nav" aria-label="6. 习题 5.28：光滑随机函数上的 SGD">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#51" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5.1 高概率界
+        控制随机梯度的二阶矩
       
     </span>
   </a>
@@ -2499,10 +2592,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#52" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5.2 期望界
+        主递推
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        显式收敛率
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mini-batch_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mini-batch 的改进
       
     </span>
   </a>
@@ -2515,22 +2630,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-sgd" class="md-nav__link">
+  <a href="#7-529" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. SGD 在经验风险最小化中的形式
+        7. 习题 5.29：非均匀抽样
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="6. SGD 在经验风险最小化中的形式">
+    <nav class="md-nav" aria-label="7. 习题 5.29：非均匀抽样">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#61-erm" class="md-nav__link">
+  <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6.1 有限样本 ERM
+        基于几乎处处上界的收敛率
       
     </span>
   </a>
@@ -2538,10 +2653,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#62" class="md-nav__link">
+  <a href="#_15" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6.2 总体风险最小化
+        最优抽样分布
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二阶矩版本
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#svm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        应用于线性 SVM
       
     </span>
   </a>
@@ -2554,108 +2691,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-sgd" class="md-nav__link">
+  <a href="#_17" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. 强凸条件下的 SGD
+        主要校订
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="7. 强凸条件下的 SGD">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#71-gd-sgd" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7.1 GD 与 SGD 的计算复杂度比较
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#8-svrg" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8. 方差缩减：SVRG
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="8. 方差缩减：SVRG">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#81" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8.1 控制变量思想
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#82-svrg" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8.2 SVRG 算法
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#83" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8.3 线性收敛结论
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#9-svrg" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        9. SVRG 收敛证明梗概
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="9. SVRG 收敛证明梗概">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#91" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        9.1 方差界的标准推导
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2676,1224 +2718,667 @@
 
 
 
-<h1 id="_1">数据科学优化：旧事重提</h1>
-<p>在这轮笔记中，我们试着回忆本学期《数据科学导论》PPT 中与优化有关的内容，主要包括：</p>
-<ul>
-<li>梯度下降（Gradient Descent, GD）的下降性质、收敛速度及其所需条件；</li>
-<li>随机梯度下降（Stochastic Gradient Descent, SGD）的基本不等式、期望界与高概率界；</li>
-<li>强凸条件下 SGD 的收敛；</li>
-<li>方差缩减方法 SVRG。</li>
-</ul>
-<p>实际深度学习中还经常使用 AdamW 与 Muon，不过本文暂不展开。</p>
+<h1 id="lftp-chapter-5-54">LFTP Chapter 5 §5.4：随机梯度下降</h1>
+<blockquote>
+<p>对应 <em>Learning Theory from First Principles</em> 第 5 章 §5.4 Stochastic Gradient Descent，以及习题 5.26--5.29。</p>
+<p>本文由手写扫描稿整理，并统一了符号、补足了推导、纠正了若干关键笔误。</p>
+</blockquote>
 <hr />
-<h2 id="1">1. 梯度下降</h2>
-<h3 id="11">1.1 算法定义</h3>
-<p>设目标函数为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\min_{x\in\mathbb R^d} f(x).
-</script>
-</div>
-<p>给定初始点 <span class="arithmatex">\(x_0\)</span>，梯度下降迭代为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-x_{k+1}=x_k-\alpha_k\nabla f(x_k),
-\qquad k=0,1,\ldots,
-</script>
-</div>
-<p>其中 <span class="arithmatex">\(\alpha_k&gt;0\)</span> 为步长。</p>
-<p>为什么选择负梯度方向作为下降方向？</p>
-<p>关键在于：如果 <span class="arithmatex">\(\nabla f\)</span> 是 <span class="arithmatex">\(L\)</span>-Lipschitz 连续的，即
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\|\nabla f(x)-\nabla f(y)\|_2\le L\|x-y\|_2,
-</script>
-</div></p>
-<p>注：对于二阶可微的情况下，这等价于Hesse阵的2范数小于等于L</p>
-<p>那么由下降引理（descent lemma），对任意 <span class="arithmatex">\(x,y\in\mathbb R^d\)</span>，都有
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-f(y)
-\le
-f(x)+\langle \nabla f(x),y-x\rangle
-+\frac L2\|y-x\|_2^2.
-</script>
-</div></p>
-<p>令</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-y=x-\alpha\nabla f(x),
-</script>
-</div>
-<p>则</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\begin{aligned}
-f(y)
-&\le
-f(x)-\alpha\|\nabla f(x)\|_2^2
-+\frac{L\alpha^2}{2}\|\nabla f(x)\|_2^2\\
-&=
-f(x)-\alpha\left(1-\frac{L\alpha}{2}\right)
-\|\nabla f(x)\|_2^2.
-\end{aligned}
-</script>
-</div>
-<p>因此，只要下降的步长足够小，在此处可以写为<span class="arithmatex">\(0&lt;\alpha_k&lt;\frac{2}{L}\)</span></p>
-<p>就有</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-f(x_{k+1})\le f(x_k).
-</script>
-</div>
-<h3 id="12">1.2 梯度范数的次线性收敛</h3>
-<p>将上面的下降不等式应用于梯度下降，并对 <span class="arithmatex">\(k&lt;t\)</span> 求和：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\begin{aligned}
-\sum_{k<t}
-\alpha_k\left(1-\frac{L\alpha_k}{2}\right)
-\|\nabla f(x_k)\|_2^2
-&\le
-\sum_{k<t}\bigl(f(x_k)-f(x_{k+1})\bigr)\\
-&=f(x_0)-f(x_t).
-\end{aligned}
-</script>
-</div>
-<p>若取常数步长</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\alpha_k=\alpha\in\left(0,\frac{2}{L}\right),
-</script>
-</div>
-<p>则</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\begin{aligned}
-\min_{k<t}\|\nabla f(x_k)\|_2^2
-&\le
-\frac1t\sum_{k<t}\|\nabla f(x_k)\|_2^2\\
-&\le
-\frac{2}{t\alpha(2-\alpha L)}
-\bigl(f(x_0)-f(x_t)\bigr)\\
-&\le
-\frac{2}{t\alpha(2-\alpha L)}
-\bigl(f(x_0)-f(x^*)\bigr).
-\end{aligned}
-</script>
-</div>
-<p>对 <span class="arithmatex">\(\alpha\)</span> 优化可得 <span class="arithmatex">\(\alpha=1/L\)</span>，于是</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\boxed{
-\min_{k<t}\|\nabla f(x_k)\|_2^2
-\le
-\frac{2L}{t}\bigl(f(x_0)-f(x^*)\bigr)
-}.
-</script>
-</div>
-<p>这里并没有使用凸性。因此，对一般光滑非凸函数，梯度下降至少可以保证在 <span class="arithmatex">\(O(1/t)\)</span> 的意义下找到近似驻点。</p>
-<h3 id="13-mm">1.3 MM 算法视角</h3>
-<p>梯度下降也可以放在 MM（Majorization-Minimization）框架中理解。构造代理函数</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-M(x,y)
+<h2 id="1-sgd">1. 为什么需要 SGD</h2>
+<p>机器学习中的经验目标通常写成</p>
+<div class="arithmatex">\[
+F(\theta)
 =
-f(x)+\langle\nabla f(x),y-x\rangle
-+\frac L2\|y-x\|_2^2.
-</script>
-</div>
-<p>由下降引理，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-M(x,y)\ge f(y),
-\qquad
-M(x,x)=f(x).
-</script>
-</div>
-<p>然后令</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-x_{k+1}\in\arg\min_y M(x_k,y).
-</script>
-</div>
-<p>对 <span class="arithmatex">\(M(x_k,y)\)</span> 关于 <span class="arithmatex">\(y\)</span> 求最小值，便得到</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-x_{k+1}=x_k-\frac1L\nabla f(x_k).
-</script>
-</div>
-<hr />
-<p>当然，我们关于梯度下降算法，例如牛顿法，拟牛顿法等部分放在了优化对应的部分，还附上了一些数值实验。</p>
-<h2 id="2">2. 不要求凸性时的函数值收敛</h2>
-<h3 id="21">2.1 一个广义星凸条件</h3>
-<p>假设存在 <span class="arithmatex">\(\gamma&gt;0\)</span>，使得</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\langle\nabla f(x),x-x^*\rangle
-\ge
-\gamma\bigl(f(x)-f(x^*)\bigr).
-\tag{1}
-</script>
-</div>
-<p>由 Cauchy--Schwarz 不等式，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\gamma\bigl(f(x)-f(x^*)\bigr)
-\le
-\langle\nabla f(x),x-x^*\rangle
-\le
-\|\nabla f(x)\|_2\|x-x^*\|_2.
-</script>
-</div>
-<p>采用步长 <span class="arithmatex">\(1/L\)</span>：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-x_{k+1}=x_k-\frac1L\nabla f(x_k).
-</script>
-</div>
-<p>记</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\varepsilon_k=f(x_k)-f(x^*),
-</script>
-</div>
-<p>并定义初始水平集半径</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-R=
-\max_{f(x)\le f(x_0)}\|x-x^*\|_2.
-</script>
-</div>
-<p>由于函数值单调下降，所有 <span class="arithmatex">\(x_k\)</span> 都位于该水平集内。因此，由条件 (1)，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\varepsilon_k
-\le
-\frac1\gamma\|x_k-x^*\|_2\|\nabla f(x_k)\|_2
-\le
-\frac R\gamma\|\nabla f(x_k)\|_2.
-</script>
-</div>
-<p>另一方面，由下降引理，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-f(x_{k+1})
-\le
-f(x_k)-\frac1{2L}\|\nabla f(x_k)\|_2^2.
-</script>
-</div>
-<p>于是</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\varepsilon_{k+1}
-\le
-\varepsilon_k-
-\frac1{2L}
-\left(\frac{\gamma\varepsilon_k}{R}\right)^2.
-</script>
-</div>
-<p>即</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\varepsilon_k-\varepsilon_{k+1}
-\ge
-\frac{\gamma^2}{2LR^2}\varepsilon_k^2.
-</script>
-</div>
-<p>由于 <span class="arithmatex">\(\varepsilon_{k+1}\le\varepsilon_k\)</span>，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\begin{aligned}
-\frac1{\varepsilon_{k+1}}-
-\frac1{\varepsilon_k}
-&=
-\frac{\varepsilon_k-\varepsilon_{k+1}}
-{\varepsilon_k\varepsilon_{k+1}}\\
-&\ge
-\frac{\varepsilon_k-\varepsilon_{k+1}}
-{\varepsilon_k^2}\\
-&\ge
-\frac{\gamma^2}{2LR^2}.
-\end{aligned}
-</script>
-</div>
-<p>若 <span class="arithmatex">\(x^*\)</span> 是可微函数的极小点，则 <span class="arithmatex">\(\nabla f(x^*)=0\)</span>。再由 <span class="arithmatex">\(L\)</span>-光滑性，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\varepsilon_0
-=f(x_0)-f(x^*)
-\le
-\frac L2\|x_0-x^*\|_2^2
-\le
-\frac{LR^2}{2}.
-</script>
-</div>
-<p>对 <span class="arithmatex">\(k=0,\ldots,t-1\)</span> 求和：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\begin{aligned}
-\frac1{\varepsilon_t}
-&\ge
-\frac1{\varepsilon_0}
-+\frac{t\gamma^2}{2LR^2}\\
-&\ge
-\frac{2}{LR^2}
-+\frac{t\gamma^2}{2LR^2}\\
-&=
-\frac{\gamma^2t+4}{2LR^2}.
-\end{aligned}
-</script>
-</div>
-<p>因此</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+\frac1n\sum_{i=1}^n\ell\bigl(y_i,f_\theta(x_i)\bigr)+\Omega(\theta).
+\]</div>
+<p>普通梯度下降每次需要计算完整梯度 <span class="arithmatex">\(F'(\theta_{t-1})\)</span>，因而要访问全部 <span class="arithmatex">\(n\)</span> 个样本。SGD 用计算成本更低的随机梯度估计</p>
+<div class="arithmatex">\[
+g_t(\theta_{t-1})
+\]</div>
+<p>代替完整梯度，并要求</p>
+<div class="arithmatex">\[
 \boxed{
-f(x_t)-f(x^*)
-\le
-\frac{2LR^2}{\gamma^2t+4}
-=O\left(\frac1t\right)
-}.
-</script>
-</div>
-<h3 id="22-pl">2.2 PL 条件与线性收敛</h3>
-<p>若希望函数值线性收敛，并不一定需要强凸性。一个常用条件是 Polyak--Łojasiewicz（PL）条件：存在 <span class="arithmatex">\(m&gt;0\)</span>，使得</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\|\nabla f(x)\|_2^2
-\ge
-2m\bigl(f(x)-f(x^*)\bigr),
-\qquad \forall x.
-</script>
-</div>
-<p>结合步长 <span class="arithmatex">\(1/L\)</span> 时的下降不等式，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-f(x_{k+1})
-\le
-f(x_k)-\frac1{2L}\|\nabla f(x_k)\|_2^2,
-</script>
-</div>
-<p>可得</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-f(x_{k+1})-f(x^*)
-\le
-\left(1-\frac mL\right)
-\bigl(f(x_k)-f(x^*)\bigr).
-</script>
-</div>
-<p>因此</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\boxed{
-f(x_k)-f(x^*)
-\le
-\left(1-\frac mL\right)^k
-\bigl(f(x_0)-f(x^*)\bigr)
-}.
-</script>
-</div>
-<p>PL 条件不蕴含凸性。例如，PPT 中给出的非凸例子是</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-f(x)=x^2+3\sin^2 x.
-</script>
-</div>
-<p>PL 条件对于分析过参数化深度学习中的 GD 与 SGD 很重要。</p>
-<hr />
-<h2 id="3">3. 不可微优化与近端梯度</h2>
-<p>对于不可微但凸的函数，可以用次梯度代替梯度。例如，ReLU 在 <span class="arithmatex">\(x=0\)</span> 处不可微，但存在次梯度。</p>
-<p>需要注意的是，即使每一层所使用的函数本身是凸函数，函数复合后也未必保持凸性。因此，神经网络的整体优化问题通常仍然是非凸的。</p>
-<p>考虑复合优化问题</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\min_{x\in\mathbb R^d} F(x)
-=
-\min_{x\in\mathbb R^d}\bigl(f(x)+h(x)\bigr),
-</script>
-</div>
-<p>其中 <span class="arithmatex">\(f\)</span> 光滑，<span class="arithmatex">\(h\)</span> 可以不可微。近端梯度下降为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\boxed{
-x_{k+1}
-=
-\operatorname{Prox}_{\alpha_k h}
-\bigl(x_k-\alpha_k\nabla f(x_k)\bigr)
-},
-</script>
-</div>
-<p>其中</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\operatorname{Prox}_{\alpha h}(v)
-:=
-\arg\min_x
-\left\{
- h(x)+\frac1{2\alpha}\|x-v\|_2^2
-\right\}.
-</script>
-</div>
-<hr />
-<h2 id="4-sgd">4. 近似梯度与 SGD 的基本不等式</h2>
-<p>考虑凸优化问题</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\min_{x\in\mathbb R^d}f(x),
-</script>
-</div>
-<p>并采用近似梯度迭代</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-x_{k+1}=x_k-\alpha_k g_k,
-</script>
-</div>
-<p>其中 <span class="arithmatex">\(g_k\)</span> 是 <span class="arithmatex">\(\nabla f(x_k)\)</span> 的近似。</p>
-<h3 id="41-key-step">4.1 Key step</h3>
-<p>取常数步长 <span class="arithmatex">\(\alpha_k=\alpha\)</span>。对任意比较点 <span class="arithmatex">\(z\)</span>，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\begin{aligned}
-\|x_{k+1}-z\|_2^2
-&=
-\|x_k-\alpha g_k-z\|_2^2\\
-&=
-\|x_k-z\|_2^2
--2\alpha\langle g_k,x_k-z\rangle
-+\alpha^2\|g_k\|_2^2\\
-&=
-\|x_k-z\|_2^2
-+2\alpha
-\langle g_k-\nabla f(x_k)+\nabla f(x_k),z-x_k\rangle
-+\alpha^2\|g_k\|_2^2.
-\end{aligned}
-</script>
-</div>
-<p>由凸性，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\langle\nabla f(x_k),z-x_k\rangle
-\le
-f(z)-f(x_k).
-</script>
-</div>
-<p>定义误差项</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\varepsilon_k
-:=
-\langle g_k-\nabla f(x_k),z-x_k\rangle.
-</script>
-</div>
-<p>于是</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\|x_{k+1}-z\|_2^2
-\le
-\|x_k-z\|_2^2
-+2\alpha\bigl(f(z)-f(x_k)+\varepsilon_k\bigr)
-+\alpha^2\|g_k\|_2^2.
-</script>
-</div>
-<p>整理得到基本不等式：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\boxed{
-f(x_k)
-\le
-f(z)
-+\frac{\|x_k-z\|_2^2}{2\alpha}
--\frac{\|x_{k+1}-z\|_2^2}{2\alpha}
-+\varepsilon_k
-+\frac\alpha2\|g_k\|_2^2
-}.
-</script>
-</div>
-<h3 id="42">4.2 平均迭代点的误差界</h3>
-<p>设</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-G=
-\max_k\max\bigl\{
-\|g_k\|_2,
-\|\nabla f(x_k)\|_2
-\bigr\},
-</script>
-</div>
-<p>并取</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\alpha=\frac c{\sqrt t}.
-</script>
-</div>
-<p>定义平均迭代点</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\bar x_t=\frac1t\sum_{k<t}x_k.
-</script>
-</div>
-<p>将基本不等式对 <span class="arithmatex">\(k&lt;t\)</span> 求和，再利用凸性，得到</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\begin{aligned}
-f(\bar x_t)
-&\le
-\frac1t\sum_{k<t}f(x_k)\\
-&\le
-f(z)
-+\frac{\|x_0-z\|_2^2}{2c\sqrt t}
-+\frac{cG^2}{2\sqrt t}
-+\frac1t\sum_{k<t}\varepsilon_k.
-\end{aligned}
-</script>
-</div>
-<hr />
-<h2 id="5-sgd">5. SGD 的鞅差误差项</h2>
-<p>SGD 中假设随机梯度满足无偏性：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\mathbb E\!\left[g_k\mid\mathcal F_{k-1}\right]
-=
-\nabla f(x_k),
-</script>
-</div>
-<p>其中 <span class="arithmatex">\(\mathcal F_{k-1}\)</span> 表示第 <span class="arithmatex">\(k\)</span> 次采样前的历史信息。</p>
-<p>由于 <span class="arithmatex">\(x_k\)</span> 对 <span class="arithmatex">\(\mathcal F_{k-1}\)</span> 可测，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\begin{aligned}
-\mathbb E\!\left[\varepsilon_k\mid\mathcal F_{k-1}\right]
-&=
-\mathbb E\!\left[
-\langle g_k-\nabla f(x_k),z-x_k\rangle
-\mid\mathcal F_{k-1}
-\right]\\
-&=
-\left\langle
-\mathbb E\!\left[g_k-\nabla f(x_k)
-\mid\mathcal F_{k-1}\right],
- z-x_k
-\right\rangle\\
-&=0.
-\end{aligned}
-</script>
-</div>
-<p>因此 <span class="arithmatex">\(\{\varepsilon_k\}\)</span> 是鞅差序列，并且</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\mathbb E[\varepsilon_k]=0.
-</script>
-</div>
-<p>若</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-D=\max_k\|x_k-z\|_2,
-</script>
-</div>
-<p>则</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\begin{aligned}
-|\varepsilon_k|
-&\le
-\|g_k-\nabla f(x_k)\|_2\|z-x_k\|_2\\
-&\le
-2GD
-=:B.
-\end{aligned}
-</script>
-</div>
-<h3 id="51">5.1 高概率界</h3>
-<p>由条件 Hoeffding 引理，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\mathbb E\!\left[e^{\lambda\varepsilon_k}
-\mid\mathcal F_{k-1}\right]
-\le
-\exp\left(\frac{\lambda^2B^2}{2}\right).
-</script>
-</div>
-<p>递推可得</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\mathbb E\exp\left(
-\lambda\sum_{k<t}\varepsilon_k
-\right)
-\le
-\exp\left(\frac{\lambda^2tB^2}{2}\right).
-</script>
-</div>
-<p>因此，对任意 <span class="arithmatex">\(s&gt;0\)</span>，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\begin{aligned}
-\mathbb P\left(
-\sum_{k<t}\varepsilon_k\ge s
-\right)
-&\le
-\exp\left(-\lambda s+
-\frac{\lambda^2tB^2}{2}\right)\\
-&\le
-\exp\left(-\frac{s^2}{2tB^2}\right),
-\end{aligned}
-</script>
-</div>
-<p>其中最后一步取</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\lambda=\frac{s}{tB^2}.
-</script>
-</div>
-<p>令右端等于 <span class="arithmatex">\(\delta\)</span>，则以至少 <span class="arithmatex">\(1-\delta\)</span> 的概率，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\sum_{k<t}\varepsilon_k
-\le
-B\sqrt{2t\log\frac1\delta}.
-</script>
-</div>
-<p>取 <span class="arithmatex">\(z=x^*\)</span>，可得</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\boxed{
-f(\bar x_t)-f^*
-\le
-\frac{\|x_0-x^*\|_2^2}{2c\sqrt t}
-+\frac{cG^2}{2\sqrt t}
-+B\sqrt{\frac{2\log(1/\delta)}{t}}
+\mathbb E\bigl[g_t(\theta_{t-1})\mid\mathcal F_{t-1}\bigr]
+=F'(\theta_{t-1})
 }
-</script>
-</div>
-<p>以至少 <span class="arithmatex">\(1-\delta\)</span> 的概率成立。</p>
-<h3 id="52">5.2 期望界</h3>
-<p>由塔式法则，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\mathbb E[\varepsilon_k]
-=
-\mathbb E\!\left[
-\mathbb E[\varepsilon_k\mid\mathcal F_{k-1}]
-\right]
-=0.
-</script>
-</div>
-<p>因此</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+\]</div>
+<p>其中 <span class="arithmatex">\(\mathcal F_{t-1}\)</span> 表示前 <span class="arithmatex">\(t-1\)</span> 次迭代产生的全部随机信息。</p>
+<p>SGD 递推为</p>
+<div class="arithmatex">\[
 \boxed{
-\mathbb E\bigl[f(\bar x_t)-f^*\bigr]
-\le
-\frac{\|x_0-x^*\|_2^2}{2c\sqrt t}
-+\frac{cG^2}{2\sqrt t}
+\theta_t=\theta_{t-1}-\gamma_tg_t(\theta_{t-1})
 }.
-</script>
-</div>
-<p>这给出了凸情形下 SGD 的典型 <span class="arithmatex">\(O(t^{-1/2})\)</span> 收敛率。</p>
-<hr />
-<h2 id="6-sgd">6. SGD 在经验风险最小化中的形式</h2>
-<h3 id="61-erm">6.1 有限样本 ERM</h3>
-<p>经验风险最小化可以写成</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\min_x f(x),
-\qquad
-f(x)=\sum_{i=1}^n f_i(x),
-</script>
-</div>
-<p>其中</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-f_i(x)
-=
-\frac1n\ell\bigl(Y_i,\phi_x(X_i)\bigr),
-</script>
-</div>
-<p>且 <span class="arithmatex">\((X_i,Y_i)\)</span> 是来自分布 <span class="arithmatex">\(P\)</span> 的 i.i.d. 样本。</p>
-<p>在第 <span class="arithmatex">\(k\)</span> 次迭代中，以概率</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\mathbb P(i_k=j)=p_j
-</script>
-</div>
-<p>抽取样本指标 <span class="arithmatex">\(i_k\)</span>，并令</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-g_k
-=
-\frac{\nabla f_{i_k}(x_k)}{p_{i_k}}.
-</script>
-</div>
-<p>则</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\mathbb E[g_k\mid x_k]
-=
-\sum_{j=1}^np_j
-\frac{\nabla f_j(x_k)}{p_j}
-=
-\nabla f(x_k).
-</script>
-</div>
-<h3 id="62">6.2 总体风险最小化</h3>
-<p>总体风险写为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\min_x f(x)
-=
-\mathbb E_{(X,Y)\sim P}
-\bigl[\ell(\phi_x(X),Y)\bigr].
-</script>
-</div>
-<p>第 <span class="arithmatex">\(k\)</span> 次迭代抽取</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-(X_k,Y_k)\sim P,
-</script>
-</div>
+\]</div>
+<h3 id="_1">经验风险最小化</h3>
+<p>若</p>
+<div class="arithmatex">\[
+F(\theta)=\frac1n\sum_{i=1}^n\ell_i(\theta),
+\]</div>
+<p>则在每次迭代中独立、均匀地抽取</p>
+<div class="arithmatex">\[
+i(t)\sim\operatorname{Unif}\{1,\dots,n\},
+\]</div>
 <p>并令</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-g_k
-=
-\nabla_x\ell\bigl(\phi_{x_k}(X_k),Y_k\bigr).
-</script>
-</div>
-<hr />
-<h2 id="7-sgd">7. 强凸条件下的 SGD</h2>
-<p>假设：</p>
-<ol>
-<li><span class="arithmatex">\(f\)</span> 是 <span class="arithmatex">\(m\)</span>-强凸函数；</li>
-<li><span class="arithmatex">\(\nabla f\)</span> 是 <span class="arithmatex">\(L\)</span>-Lipschitz 连续的；</li>
-<li>随机梯度满足</li>
-</ol>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\mathbb E\|g(x)\|_2^2
-\le
-G^2+M_f\|\nabla f(x)\|_2^2.
-</script>
-</div>
-<p>取常数步长 <span class="arithmatex">\(\alpha_k=\alpha\)</span>。有</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\begin{aligned}
-\|x_{k+1}-x^*\|_2^2
-&=
-\|x_k-\alpha g_k-x^*\|_2^2\\
-&=
-\|x_k-x^*\|_2^2
--2\alpha\langle g_k,x_k-x^*\rangle
-+\alpha^2\|g_k\|_2^2.
-\end{aligned}
-</script>
-</div>
-<p>对于 <span class="arithmatex">\(m\)</span>-强凸且 <span class="arithmatex">\(L\)</span>-光滑的函数，有强化余单调不等式</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\boxed{
-\langle\nabla f(x)-\nabla f(y),x-y\rangle
-\ge
-\frac{mL}{m+L}\|x-y\|_2^2
-+
-\frac1{m+L}
-\|\nabla f(x)-\nabla f(y)\|_2^2
-}.
-</script>
-</div>
-<p>令 <span class="arithmatex">\(y=x^*\)</span>，并使用 <span class="arithmatex">\(\nabla f(x^*)=0\)</span>，得到</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\langle\nabla f(x_k),x_k-x^*\rangle
-\ge
-\frac{mL}{m+L}\|x_k-x^*\|_2^2
-+
-\frac1{m+L}\|\nabla f(x_k)\|_2^2.
-</script>
-</div>
-<p>对递推式取期望：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\begin{aligned}
-\mathbb E\|x_{k+1}-x^*\|_2^2
-&\le
-\left(1-\frac{2mL\alpha}{m+L}\right)
-\mathbb E\|x_k-x^*\|_2^2\\
-&\quad
-+\alpha^2G^2\\
-&\quad
-+\left(
-\alpha^2M_f-
-\frac{2\alpha}{m+L}
-\right)
-\mathbb E\|\nabla f(x_k)\|_2^2.
-\end{aligned}
-</script>
-</div>
-<p>若选择</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-0<\alpha
-\le
-\frac{2}{(m+L)M_f},
-</script>
-</div>
-<p>则最后一项非正。又因为 <span class="arithmatex">\(L\ge m\)</span>，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\frac{2mL}{m+L}\ge m,
-</script>
-</div>
-<p>从而</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\mathbb E\|x_{k+1}-x^*\|_2^2
-\le
-(1-\alpha m)
-\mathbb E\|x_k-x^*\|_2^2
-+\alpha^2G^2.
-</script>
-</div>
-<p>递推得到</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\boxed{
-\mathbb E\|x_k-x^*\|_2^2
-\le
-(1-\alpha m)^k\|x_0-x^*\|_2^2
-+
-\frac{\alpha G^2}{m}
-}.
-</script>
-</div>
-<p>这说明：使用常数步长时，SGD 在初期呈线性收敛，但最终只能收敛到一个半径由 <span class="arithmatex">\(\alpha G^2/m\)</span> 控制的噪声邻域。若要继续提高精度，就需要减小步长或降低方差。</p>
-<h3 id="71-gd-sgd">7.1 GD 与 SGD 的计算复杂度比较</h3>
-<p>在强凸有限和问题中，令条件数</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\kappa=\frac Lm.
-</script>
-</div>
-<p>典型复杂度可概括为：</p>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th style="text-align: right;">迭代复杂度</th>
-<th style="text-align: right;">单次迭代成本</th>
-<th style="text-align: right;">总计算成本</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>GD</td>
-<td style="text-align: right;"><span class="arithmatex">\(O\!\left(\kappa\log\frac1\varepsilon\right)\)</span></td>
-<td style="text-align: right;"><span class="arithmatex">\(O(n)\)</span></td>
-<td style="text-align: right;"><span class="arithmatex">\(O\!\left(n\kappa\log\frac1\varepsilon\right)\)</span></td>
-</tr>
-<tr>
-<td>SGD</td>
-<td style="text-align: right;"><span class="arithmatex">\(O\!\left(\frac1\varepsilon\right)\)</span></td>
-<td style="text-align: right;"><span class="arithmatex">\(O(1)\)</span></td>
-<td style="text-align: right;"><span class="arithmatex">\(O\!\left(\frac1\varepsilon\right)\)</span></td>
-</tr>
-</tbody>
-</table>
-<p>因此，当样本量 <span class="arithmatex">\(n\)</span> 很大且只要求中等精度时，SGD 往往更有吸引力。粗略地说，当</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\frac1\varepsilon
-<
-n\kappa\log\frac1\varepsilon
-</script>
-</div>
-<p>时，SGD 的总计算量可能小于 GD。</p>
-<hr />
-<h2 id="8-svrg">8. 方差缩减：SVRG</h2>
-<h3 id="81">8.1 控制变量思想</h3>
-<p>设</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-Z_\theta
-=
-X-\theta\bigl(Y-\mathbb E[Y]\bigr).
-</script>
-</div>
-<p>则</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\operatorname{Var}(Z_\theta)
-=
-\operatorname{Var}(X)
-+\theta^2\operatorname{Var}(Y)
--2\theta\operatorname{Cov}(X,Y).
-</script>
-</div>
-<p>如果 <span class="arithmatex">\(Y\)</span> 与 <span class="arithmatex">\(X\)</span> 正相关，并且 <span class="arithmatex">\(\mathbb E[Y]\)</span> 容易计算，就可以通过适当选择 <span class="arithmatex">\(\theta\)</span> 降低方差。</p>
-<p>SVRG（Johnson--Zhang, 2013）使用</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-X=
-\frac{\nabla f_{i_k}(x_k)}{p_{i_k}},
-\qquad
-Y=
-\frac{\nabla f_{i_k}(\tilde x)}{p_{i_k}},
-\qquad
-\theta=1,
-</script>
-</div>
-<p>其中 <span class="arithmatex">\(\tilde x\)</span> 是外层循环中保存的快照点，并且</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\mathbb E[Y]=\nabla f(\tilde x).
-</script>
-</div>
-<h3 id="82-svrg">8.2 SVRG 算法</h3>
-<p>考虑</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\min_x F(x)
-=
-f(x)+h(x),
-\qquad
-f(x)=\sum_{i=1}^n f_i(x).
-</script>
-</div>
-<p>给定内层迭代次数 <span class="arithmatex">\(T\)</span>。在第 <span class="arithmatex">\(s\)</span> 个 epoch：</p>
-<ol>
-<li>从上一 epoch 的内层点中选取快照</li>
-</ol>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-   \tilde x_{s-1}=x_{s-1,j},
-   \qquad
-   j\sim\operatorname{Unif}\{0,\ldots,T-1\}.
-</script>
-</div>
-<ol>
-<li>计算全梯度</li>
-</ol>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-   \tilde g_s=\nabla f(\tilde x_{s-1}).
-</script>
-</div>
-<ol>
-<li>令</li>
-</ol>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-   x_{s,0}=\tilde x_{s-1}.
-</script>
-</div>
-<ol>
-<li>
-<p>对 <span class="arithmatex">\(k=0,\ldots,T-1\)</span>：</p>
-</li>
-<li>
-<p>以概率 <span class="arithmatex">\(\mathbb P(i_k=j)=p_j\)</span> 抽取 <span class="arithmatex">\(i_k\)</span>；</p>
-</li>
-<li>计算</li>
-</ol>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-     g_{s,k}
-     =
-     \frac{\nabla f_{i_k}(x_{s,k})}{p_{i_k}},
-     \qquad
-     \tilde g_{s,k}
-     =
-     \frac{\nabla f_{i_k}(\tilde x_{s-1})}{p_{i_k}};
-</script>
-</div>
-<ul>
-<li>更新</li>
-</ul>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-     \boxed{
-     x_{s,k+1}
-     =
-     \operatorname{Prox}_{\alpha h}
-     \left(
-     x_{s,k}
-     -\alpha
-     \bigl(g_{s,k}-\tilde g_{s,k}+\tilde g_s\bigr)
-     \right)
-     }.
-</script>
-</div>
-<p>每个 epoch 大约需要 <span class="arithmatex">\(n+2T\)</span> 次分量梯度计算。</p>
-<h3 id="83">8.3 线性收敛结论</h3>
-<p>假设：</p>
-<ul>
-<li>每个 <span class="arithmatex">\(f_i\)</span> 都是凸函数；</li>
-<li>每个 <span class="arithmatex">\(\nabla f_i\)</span> 都是 <span class="arithmatex">\(L\)</span>-Lipschitz 连续的；</li>
-<li><span class="arithmatex">\(f\)</span> 是 <span class="arithmatex">\(m\)</span>-强凸函数；</li>
-<li>暂取 <span class="arithmatex">\(h=0\)</span>。</li>
-</ul>
-<p>若 <span class="arithmatex">\(T\)</span> 足够大，并且</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\rho
-=
-\frac{1}{m\alpha(1-2L\alpha)T}
-+
-\frac{2L\alpha}{1-2L\alpha}
-<1,
-</script>
-</div>
-<p>则</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\boxed{
-\mathbb E\bigl[f(\tilde x_s)-f^*\bigr]
-\le
-\rho^s
-\bigl(f(\tilde x_0)-f^*\bigr)
-}.
-</script>
-</div>
-<p>例如，选择</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-T\ge\frac{9L}{m}=9\kappa,
-\qquad
-\alpha=\frac1{6L},
-</script>
-</div>
-<p>可得</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-0<\rho<\frac56.
-</script>
-</div>
-<p>因此达到精度 <span class="arithmatex">\(\varepsilon\)</span> 需要</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-O\left(\log\frac1\varepsilon\right)
-</script>
-</div>
-<p>个 epoch。若 <span class="arithmatex">\(T\asymp\max\{n,\kappa\}\)</span>，总计算成本为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\boxed{
-O\left(
-(n+\kappa)
-\log\frac1\varepsilon
-\right)
-}.
-</script>
-</div>
-<p>相比之下，GD 的复杂度为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-O\left(
-n\kappa\log\frac1\varepsilon
-\right).
-</script>
-</div>
-<hr />
-<h2 id="9-svrg">9. SVRG 收敛证明梗概</h2>
-<p>为简化记号，令</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-G_{s,k}
-=
-g_{s,k}-\tilde g_{s,k}+\tilde g_s,
-</script>
-</div>
-<p>则内层更新为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-x_{s,k+1}=x_{s,k}-\alpha G_{s,k}.
-</script>
-</div>
-<p>定义</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\varepsilon_{s,k}
-=
-\langle
-G_{s,k}-\nabla f(x_{s,k}),
- x^*-x_{s,k}
-\rangle.
-</script>
-</div>
-<p>由构造可知</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\mathbb E\!\left[G_{s,k}\mid\mathcal F_{s,k}\right]
-=
-\nabla f(x_{s,k}),
-\qquad
-\mathbb E[\varepsilon_{s,k}]=0.
-</script>
-</div>
-<p>由前面的 key step，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\begin{aligned}
-\mathbb E\|x_{s,k+1}-x^*\|_2^2
-&\le
-\mathbb E\|x_{s,k}-x^*\|_2^2
-+2\alpha
-\mathbb E\bigl[f(x^*)-f(x_{s,k})\bigr]\\
-&\quad
-+\alpha^2\mathbb E\|G_{s,k}\|_2^2.
-\end{aligned}
-</script>
-</div>
-<p>SVRG 的核心是证明方差界</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\boxed{
-\mathbb E\|G_{s,k}\|_2^2
-\le
-4L\,
-\mathbb E\left[
- f(x_{s,k})-f(x^*)
- +f(\tilde x_{s-1})-f(x^*)
-\right]
-}.
-</script>
-</div>
+<div class="arithmatex">\[
+g_t(\theta)=\ell_{i(t)}'(\theta).
+\]</div>
 <p>于是</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\begin{aligned}
-\mathbb E\|x_{s,k+1}-x^*\|_2^2
-&\le
-\mathbb E\|x_{s,k}-x^*\|_2^2\\
-&\quad
--2\alpha(1-2L\alpha)
-\mathbb E\bigl[f(x_{s,k})-f^*\bigr]\\
-&\quad
-+4L\alpha^2
-\mathbb E\bigl[f(\tilde x_{s-1})-f^*\bigr].
-\end{aligned}
-</script>
-</div>
-<p>对 <span class="arithmatex">\(k=0,\ldots,T-1\)</span> 求和，并使用</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-x_{s,0}=\tilde x_{s-1}
-</script>
-</div>
-<p>以及强凸性给出的</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\|\tilde x_{s-1}-x^*\|_2^2
-\le
-\frac2m
-\bigl(f(\tilde x_{s-1})-f^*\bigr),
-</script>
-</div>
-<p>可得</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\begin{aligned}
-2\alpha(1-2L\alpha)T\,
-\mathbb E\bigl[f(\tilde x_s)-f^*\bigr]
-&\le
-\left(
-\frac2m+4LT\alpha^2
-\right)
-\mathbb E\bigl[f(\tilde x_{s-1})-f^*\bigr].
-\end{aligned}
-</script>
-</div>
-<p>两边除以 <span class="arithmatex">\(2\alpha(1-2L\alpha)T\)</span>，便得到</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\mathbb E\bigl[f(\tilde x_s)-f^*\bigr]
-\le
-\rho\,
-\mathbb E\bigl[f(\tilde x_{s-1})-f^*\bigr],
-</script>
-</div>
-<p>其中</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\rho
+<div class="arithmatex">\[
+\mathbb E[g_t(\theta)]=\frac1n\sum_{i=1}^n\ell_i'(\theta)=F'(\theta).
+\]</div>
+<blockquote>
+<p><strong>校订：</strong> 不能把这里直接写成 <span class="arithmatex">\(i(t)=t\bmod n\)</span>。循环顺序访问不是“每一步使用新鲜独立随机性”的无偏抽样，需用随机重排等另一套分析。</p>
+</blockquote>
+<h3 id="mini-batch">Mini-batch</h3>
+<p>若每轮独立抽取 <span class="arithmatex">\(m\)</span> 个样本，则</p>
+<div class="arithmatex">\[
+\widetilde g_t(\theta)
 =
-\frac{1}{m\alpha(1-2L\alpha)T}
-+
-\frac{2L\alpha}{1-2L\alpha}.
-</script>
-</div>
-<p>只要 <span class="arithmatex">\(\rho&lt;1\)</span>，就得到按 epoch 计算的线性收敛。</p>
-<h3 id="91">9.1 方差界的标准推导</h3>
-<p>在均匀采样或适当归一化的记号下，可将 <span class="arithmatex">\(G_{s,k}\)</span> 写成</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+\frac1m\sum_{j=1}^m g_t^{(j)}(\theta).
+\]</div>
+<p>它仍然无偏，但每轮计算成本约增加为原来的 <span class="arithmatex">\(m\)</span> 倍。</p>
+<h3 id="_2">期望风险最小化</h3>
+<p>若</p>
+<div class="arithmatex">\[
+F(\theta)=\mathbb E_{(x,y)}\bigl[\ell(y,f_\theta(x))\bigr],
+\]</div>
+<p>则每次取一个新的独立样本 <span class="arithmatex">\((x_t,y_t)\)</span>，并令</p>
+<div class="arithmatex">\[
+g_t(\theta)=\nabla_\theta\ell(y_t,f_\theta(x_t)).
+\]</div>
+<p>在允许交换求导与期望的条件下，<span class="arithmatex">\(g_t\)</span> 是 <span class="arithmatex">\(F'\)</span> 的无偏估计。</p>
+<p>单次遍历数据时，该分析可以直接给出泛化误差界。实际训练常进行多轮遍历，此时通常需要显式正则化或 early stopping 来控制过拟合。</p>
+<h3 id="_3">基本假设</h3>
+<ul>
+<li><strong>(H-1) 无偏性</strong></li>
+</ul>
+<p>$$
+  \mathbb E[g_t(\theta_{t-1})\mid\mathcal F_{t-1}]
+  =F'(\theta_{t-1}).
+  $$</p>
+<ul>
+<li><strong>(H-2) 随机梯度有界</strong></li>
+</ul>
+<p>$$
+  |g_t(\theta_{t-1})|_2^2\le B^2
+  \qquad\text{a.s.}
+  $$</p>
+<p>SGD 一般不是逐步下降算法：<span class="arithmatex">\(F(\theta_t)\)</span> 可以上升，但适当平均后可获得期望收敛保证。</p>
+<hr />
+<h2 id="2-57-lipschitz-sgd">2. 命题 5.7：凸 Lipschitz 目标上的 SGD</h2>
+<p>设：</p>
+<ol>
+<li><span class="arithmatex">\(F\)</span> 为凸函数且是 <span class="arithmatex">\(B\)</span>-Lipschitz；</li>
+<li><span class="arithmatex">\(F\)</span> 存在极小点 <span class="arithmatex">\(\theta_*\)</span>；</li>
+<li><span class="arithmatex">\(\|\theta_0-\theta_*\|_2\le D\)</span>；</li>
+<li>随机梯度满足 (H-1)、(H-2)。</li>
+</ol>
+<p>取</p>
+<div class="arithmatex">\[
+\gamma_t=\frac{D}{B\sqrt t},
+\]</div>
+<p>并定义加权平均迭代点</p>
+<div class="arithmatex">\[
+\bar\theta_t
+=
+\frac{\sum_{s=1}^t\gamma_s\theta_{s-1}}
+{\sum_{s=1}^t\gamma_s}.
+\]</div>
+<p>则</p>
+<div class="arithmatex">\[
+\boxed{
+\mathbb E\bigl[F(\bar\theta_t)-F(\theta_*)\bigr]
+\le
+DB\frac{2+\log t}{2\sqrt t}
+}.
+\]</div>
+<h3 id="_4">证明：基本递推</h3>
+<p>展开平方：</p>
+<div class="arithmatex">\[
 \begin{aligned}
-G_{s,k}
-&=
-\bigl(\nabla f_{i_k}(x_{s,k})-
-\nabla f_{i_k}(x^*)\bigr)\\
-&\quad
--
-\bigl(\nabla f_{i_k}(\tilde x_{s-1})-
-\nabla f_{i_k}(x^*)\bigr)\\
-&\quad
-+\nabla f(\tilde x_{s-1}).
+\mathbb E\|\theta_t-\theta_*\|_2^2
+&amp;=
+\mathbb E\|\theta_{t-1}-\gamma_tg_t(\theta_{t-1})-\theta_*\|_2^2\\
+&amp;=
+\mathbb E\|\theta_{t-1}-\theta_*\|_2^2
+-2\gamma_t\mathbb E\bigl[g_t(\theta_{t-1})^\top(\theta_{t-1}-\theta_*)\bigr]\\
+&amp;\qquad+
+\gamma_t^2\mathbb E\|g_t(\theta_{t-1})\|_2^2.
 \end{aligned}
-</script>
-</div>
-<p>利用</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\|a+b\|_2^2\le2\|a\|_2^2+2\|b\|_2^2
-</script>
-</div>
-<p>以及</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\mathbb E\|Z-\mathbb E Z\|_2^2
-\le
-\mathbb E\|Z\|_2^2,
-</script>
-</div>
-<p>可得</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+\]</div>
+<p>利用条件无偏性，</p>
+<div class="arithmatex">\[
 \begin{aligned}
-\mathbb E\|G_{s,k}\|_2^2
-&\le
-2\mathbb E
-\|\nabla f_{i_k}(x_{s,k})-
-\nabla f_{i_k}(x^*)\|_2^2\\
-&\quad
-+2\mathbb E
-\|\nabla f_{i_k}(\tilde x_{s-1})-
-\nabla f_{i_k}(x^*)\|_2^2.
-\end{aligned}
-</script>
-</div>
-<p>对凸且 <span class="arithmatex">\(L\)</span>-光滑的 <span class="arithmatex">\(f_i\)</span>，有</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\|\nabla f_i(x)-\nabla f_i(x^*)\|_2^2
-\le
-2L\left(
- f_i(x)-f_i(x^*)
--\langle\nabla f_i(x^*),x-x^*\rangle
-\right).
-</script>
-</div>
-<p>对 <span class="arithmatex">\(i\)</span> 取期望并利用 <span class="arithmatex">\(\nabla f(x^*)=0\)</span>，最终得到</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\mathbb E\|G_{s,k}\|_2^2
-\le
-4L\,
+&amp;\mathbb E\bigl[g_t(\theta_{t-1})^\top(\theta_{t-1}-\theta_*)\bigr]\\
+&amp;\quad=
 \mathbb E\left[
- f(x_{s,k})-f(x^*)
- +f(\tilde x_{s-1})-f(x^*)
-\right].
-</script>
-</div>
+\mathbb E[g_t(\theta_{t-1})\mid\mathcal F_{t-1}]^\top
+(\theta_{t-1}-\theta_*)
+\right]\\
+&amp;\quad=
+\mathbb E\bigl[F'(\theta_{t-1})^\top(\theta_{t-1}-\theta_*)\bigr].
+\end{aligned}
+\]</div>
+<p>再由 (H-2)，</p>
+<div class="arithmatex">\[
+\mathbb E\|\theta_t-\theta_*\|_2^2
+\le
+\mathbb E\|\theta_{t-1}-\theta_*\|_2^2
+-2\gamma_t\mathbb E\bigl[F'(\theta_{t-1})^\top(\theta_{t-1}-\theta_*)\bigr]
++\gamma_t^2B^2.
+\]</div>
+<p>凸性给出</p>
+<div class="arithmatex">\[
+F(\theta_{t-1})-F(\theta_*)
+\le
+F'(\theta_{t-1})^\top(\theta_{t-1}-\theta_*),
+\]</div>
+<p>所以</p>
+<div class="arithmatex">\[
+\boxed{
+\gamma_t\mathbb E\bigl[F(\theta_{t-1})-F(\theta_*)\bigr]
+\le
+\frac12\left(
+\mathbb E\|\theta_{t-1}-\theta_*\|_2^2
+-
+\mathbb E\|\theta_t-\theta_*\|_2^2
+\right)
++
+\frac{\gamma_t^2B^2}{2}
+}.
+\]</div>
+<h3 id="_5">求和与平均</h3>
+<p>从 <span class="arithmatex">\(s=1\)</span> 到 <span class="arithmatex">\(t\)</span> 求和，距离项望远镜消去：</p>
+<div class="arithmatex">\[
+\sum_{s=1}^t\gamma_s
+\mathbb E\bigl[F(\theta_{s-1})-F(\theta_*)\bigr]
+\le
+\frac{D^2}{2}
++
+\frac{B^2}{2}\sum_{s=1}^t\gamma_s^2.
+\]</div>
+<p>由凸性，</p>
+<div class="arithmatex">\[
+F(\bar\theta_t)
+\le
+\frac{\sum_{s=1}^t\gamma_sF(\theta_{s-1})}
+{\sum_{s=1}^t\gamma_s},
+\]</div>
+<p>因此</p>
+<div class="arithmatex">\[
+\boxed{
+\mathbb E[F(\bar\theta_t)-F(\theta_*)]
+\le
+\frac{D^2+B^2\sum_{s=1}^t\gamma_s^2}
+{2\sum_{s=1}^t\gamma_s}
+}.
+\]</div>
+<p>对 <span class="arithmatex">\(\gamma_s=D/(B\sqrt s)\)</span>，利用</p>
+<div class="arithmatex">\[
+\sum_{s=1}^t\frac1s\le1+\log t,
+\qquad
+\sum_{s=1}^t\frac1{\sqrt s}\ge\sqrt t,
+\]</div>
+<p>得到命题中的结论。</p>
+<h3 id="_6">固定步长版本</h3>
+<p>若预先知道总迭代次数 <span class="arithmatex">\(T\)</span>，取固定步长</p>
+<div class="arithmatex">\[
+\gamma=\frac{D}{B\sqrt T},
+\]</div>
+<p>并使用均匀平均</p>
+<div class="arithmatex">\[
+\bar\theta_T=\frac1T\sum_{s=1}^T\theta_{s-1},
+\]</div>
+<p>则</p>
+<div class="arithmatex">\[
+\mathbb E[F(\bar\theta_T)-F(\theta_*)]
+\le
+\frac{D^2}{2\gamma T}+rac{\gamma B^2}{2}
+=
+\frac{DB}{\sqrt T}.
+\]</div>
+<hr />
+<h2 id="3-526sgd">3. 习题 5.26：SGD 的高概率界</h2>
+<p>考虑投影 SGD：</p>
+<div class="arithmatex">\[
+\theta_t
+=
+\Pi_D\bigl(\theta_{t-1}-\gamma_tg_t\bigr),
+\]</div>
+<p>其中 <span class="arithmatex">\(\Pi_D\)</span> 是到以原点为中心、半径为 <span class="arithmatex">\(D\)</span> 的 <span class="arithmatex">\(\ell_2\)</span> 球的正交投影，并假设 <span class="arithmatex">\(\theta_*\)</span> 也在该球中。</p>
+<p>定义</p>
+<div class="arithmatex">\[
+z_t
+=-\gamma_t(\theta_{t-1}-\theta_*)^\top
+\bigl[g_t-F'(\theta_{t-1})\bigr].
+\]</div>
+<h3 id="_7">鞅差性质</h3>
+<p>由条件无偏性，</p>
+<div class="arithmatex">\[
+\mathbb E[z_t\mid\mathcal F_{t-1}]=0.
+\]</div>
+<p>投影保证</p>
+<div class="arithmatex">\[
+\|\theta_{t-1}-\theta_*\|_2\le2D.
+\]</div>
+<p>同时</p>
+<div class="arithmatex">\[
+\|F'(\theta_{t-1})\|_2
+=
+\left\|\mathbb E[g_t\mid\mathcal F_{t-1}]\right\|_2
+\le B,
+\]</div>
+<p>因而</p>
+<div class="arithmatex">\[
+\|g_t-F'(\theta_{t-1})\|_2\le2B.
+\]</div>
+<p>所以</p>
+<div class="arithmatex">\[
+\boxed{|z_t|\le4\gamma_tBD}.
+\]</div>
+<h3 id="_8">一步不等式</h3>
+<p>由投影的非扩张性，</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\|\theta_t-\theta_*\|_2^2
+&amp;\le
+\|\theta_{t-1}-\gamma_tg_t-\theta_*\|_2^2\\
+&amp;\le
+\|\theta_{t-1}-\theta_*\|_2^2
+-2\gamma_tF'(\theta_{t-1})^\top(\theta_{t-1}-\theta_*)
++\gamma_t^2B^2+2z_t.
+\end{aligned}
+\]</div>
+<p>结合凸性，</p>
+<div class="arithmatex">\[
+\boxed{
+\gamma_t\bigl[F(\theta_{t-1})-F(\theta_*)\bigr]
+\le
+\frac12\left(
+\|\theta_{t-1}-\theta_*\|_2^2
+-
+\|\theta_t-\theta_*\|_2^2
+\right)
++
+\frac{\gamma_t^2B^2}{2}
++z_t
+}.
+\]</div>
+<blockquote>
+<p><strong>校订：</strong> 这里必须是逐路径的不等式，距离项外不应写期望；否则无法与随机的 <span class="arithmatex">\(z_t\)</span> 放在同一个一步递推中。</p>
+</blockquote>
+<h3 id="azuma">使用 Azuma 不等式</h3>
+<p>记</p>
+<div class="arithmatex">\[
+S_1=\sum_{s=1}^t\gamma_s,
+\qquad
+S_2=\sum_{s=1}^t\gamma_s^2.
+\]</div>
+<p>Azuma 不等式给出：以至少 <span class="arithmatex">\(1-\delta\)</span> 的概率，</p>
+<div class="arithmatex">\[
+\sum_{s=1}^t z_s
+\le
+4BD\sqrt{2S_2\log(1/\delta)}.
+\]</div>
+<p>因此</p>
+<div class="arithmatex">\[
+\boxed{
+F(\bar\theta_t)-F(\theta_*)
+\le
+\frac{2D^2}{S_1}
++
+\frac{B^2S_2}{2S_1}
++
+4BD\frac{\sqrt{S_2}}{S_1}
+\sqrt{2\log\frac1\delta}
+}.
+\]</div>
+<p>若 <span class="arithmatex">\(\gamma_t\equiv\gamma\)</span>，则</p>
+<div class="arithmatex">\[
+\boxed{
+F(\bar\theta_T)-F(\theta_*)
+\le
+\frac{2D^2}{\gamma T}
++
+\frac{\gamma B^2}{2}
++
+\frac{4DB}{\sqrt T}\sqrt{2\log\frac1\delta}
+}.
+\]</div>
+<hr />
+<h2 id="4-sgd">4. SGD 与完整梯度下降的计算量比较</h2>
+<p>对线性预测和 Lipschitz 损失，统计误差通常为</p>
+<div class="arithmatex">\[
+O\!\left(\frac{GRD}{\sqrt n}\right).
+\]</div>
+<p>若对经验风险使用完整梯度下降：</p>
+<ul>
+<li>每次完整梯度需要访问 <span class="arithmatex">\(n\)</span> 个样本；</li>
+<li>为使优化误差降到与统计误差相同的量级，通常取 <span class="arithmatex">\(t\asymp n\)</span>；</li>
+<li>总计约访问 <span class="arithmatex">\(n^2\)</span> 个单样本梯度。</li>
+</ul>
+<p>若使用 SGD：</p>
+<ul>
+<li>每次只访问一个单样本梯度；</li>
+<li>进行 <span class="arithmatex">\(t=n\)</span> 次更新即可达到同阶的 <span class="arithmatex">\(O(n^{-1/2})\)</span> 上界；</li>
+<li>总计只需约 <span class="arithmatex">\(n\)</span> 次单样本梯度访问。</li>
+</ul>
+<p>因此，在大样本、只需统计精度的情形下，SGD 通常更合适；若要求极高的优化精度，完整梯度法或方差缩减方法可能更有优势。</p>
+<hr />
+<h2 id="5-527mini-batch-sgd">5. 习题 5.27：Mini-batch SGD</h2>
+<p>令</p>
+<div class="arithmatex">\[
+\widetilde g_t
+=
+\frac1m\sum_{j=1}^m g_t^{(j)},
+\]</div>
+<p>其中条件于 <span class="arithmatex">\(\mathcal F_{t-1}\)</span>，<span class="arithmatex">\(g_t^{(1)},\dots,g_t^{(m)}\)</span> 是相互独立、同分布的随机梯度。</p>
+<h3 id="_9">无偏性</h3>
+<div class="arithmatex">\[
+\mathbb E[\widetilde g_t\mid\mathcal F_{t-1}]
+=
+\frac1m\sum_{j=1}^m
+\mathbb E[g_t^{(j)}\mid\mathcal F_{t-1}]
+=F'(\theta_{t-1}).
+\]</div>
+<h3 id="_10">有界性</h3>
+<p>由平方范数的凸性，</p>
+<div class="arithmatex">\[
+\left\|\frac1m\sum_{j=1}^m g_t^{(j)}\right\|_2^2
+\le
+\frac1m\sum_{j=1}^m\|g_t^{(j)}\|_2^2
+\le B^2.
+\]</div>
+<p>因此，在仅有 (H-1)、(H-2) 时，命题 5.7 原样成立，但最坏情形收敛界不会自动出现 <span class="arithmatex">\(m\)</span> 倍改进。</p>
+<p>若进一步假设条件方差有界，</p>
+<div class="arithmatex">\[
+\mathbb E\bigl[
+\|g_t-F'(\theta_{t-1})\|_2^2
+\mid\mathcal F_{t-1}
+\bigr]
+\le\sigma^2,
+\]</div>
+<p>则</p>
+<div class="arithmatex">\[
+\mathbb E\bigl[
+\|\widetilde g_t-F'(\theta_{t-1})\|_2^2
+\mid\mathcal F_{t-1}
+\bigr]
+\le\frac{\sigma^2}{m}.
+\]</div>
+<p>不过，在一般非光滑分析中，<span class="arithmatex">\(\|F'(\theta_{t-1})\|^2\)</span> 仍然存在，故仅有方差缩小还不足以保证整体上界按 <span class="arithmatex">\(1/m\)</span> 改进。光滑性可将这一确定性梯度项吸收到下降项中，这正是习题 5.28 中 mini-batch 能改进界的原因。</p>
+<hr />
+<h2 id="6-528-sgd">6. 习题 5.28：光滑随机函数上的 SGD</h2>
+<p>设 <span class="arithmatex">\(f_t:\mathbb R^d\to\mathbb R\)</span> 是独立同分布的凸 <span class="arithmatex">\(L\)</span>-smooth 随机函数，</p>
+<div class="arithmatex">\[
+F(\theta)=\mathbb E[f_t(\theta)],
+\]</div>
+<p>且 <span class="arithmatex">\(F\)</span> 存在极小点 <span class="arithmatex">\(\theta_*\)</span>。考虑</p>
+<div class="arithmatex">\[
+\theta_t=\theta_{t-1}-\gamma_tf_t'(\theta_{t-1}).
+\]</div>
+<p>记</p>
+<div class="arithmatex">\[
+\sigma_*^2=\mathbb E\|f_t'(\theta_*)\|_2^2.
+\]</div>
+<p>注意：一般并没有 <span class="arithmatex">\(f_t'(\theta_*)=0\)</span>；只有</p>
+<div class="arithmatex">\[
+\mathbb E[f_t'(\theta_*)]=F'(\theta_*)=0.
+\]</div>
+<h3 id="_11">控制随机梯度的二阶矩</h3>
+<p>由</p>
+<div class="arithmatex">\[
+\|a+b\|^2\le2\|a\|^2+2\|b\|^2
+\]</div>
+<p>和凸 <span class="arithmatex">\(L\)</span>-smooth 函数的 co-coercivity，</p>
+<div class="arithmatex">\[
+\|f_t'(x)-f_t'(y)\|_2^2
+\le
+L\bigl(f_t'(x)-f_t'(y)\bigr)^\top(x-y),
+\]</div>
+<p>得到</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\|f_t'(\theta_{t-1})\|_2^2
+&amp;\le
+2\|f_t'(\theta_{t-1})-f_t'(\theta_*)\|_2^2
++2\|f_t'(\theta_*)\|_2^2\\
+&amp;\le
+2L\bigl(f_t'(\theta_{t-1})-f_t'(\theta_*)\bigr)^\top
+(\theta_{t-1}-\theta_*)
++2\|f_t'(\theta_*)\|_2^2.
+\end{aligned}
+\]</div>
+<p>取期望，并使用 <span class="arithmatex">\(F'(\theta_*)=0\)</span>，可得</p>
+<div class="arithmatex">\[
+\mathbb E\|f_t'(\theta_{t-1})\|_2^2
+\le
+2L\mathbb E\bigl[F'(\theta_{t-1})^\top(\theta_{t-1}-\theta_*)\bigr]
++2\sigma_*^2.
+\]</div>
+<h3 id="_12">主递推</h3>
+<p>展开平方并代入上式：</p>
+<div class="arithmatex">\[
+\boxed{
+\begin{aligned}
+\mathbb E\|\theta_t-\theta_*\|_2^2
+&amp;\le
+\mathbb E\|\theta_{t-1}-\theta_*\|_2^2\\
+&amp;\quad-
+2\gamma_t(1-\gamma_tL)
+\mathbb E\bigl[F'(\theta_{t-1})^\top(\theta_{t-1}-\theta_*)\bigr]\\
+&amp;\quad+
+2\gamma_t^2\sigma_*^2.
+\end{aligned}
+}.
+\]</div>
+<h3 id="_13">显式收敛率</h3>
+<p>取固定步长 <span class="arithmatex">\(0&lt;\gamma\le1/(2L)\)</span>，并定义</p>
+<div class="arithmatex">\[
+\bar\theta_T=\frac1T\sum_{s=1}^T\theta_{s-1}.
+\]</div>
+<p>由凸性</p>
+<div class="arithmatex">\[
+F(\theta)-F(\theta_*)
+\le F'(\theta)^\top(\theta-\theta_*),
+\]</div>
+<p>对主递推求和可得</p>
+<div class="arithmatex">\[
+\mathbb E[F(\bar\theta_T)-F(\theta_*)]
+\le
+\frac{D^2}{2\gamma(1-\gamma L)T}
++
+\frac{\gamma\sigma_*^2}{1-\gamma L},
+\]</div>
+<p>其中 <span class="arithmatex">\(D=\|\theta_0-\theta_*\|_2\)</span>。由于 <span class="arithmatex">\(\gamma\le1/(2L)\)</span>，</p>
+<div class="arithmatex">\[
+\mathbb E[F(\bar\theta_T)-F(\theta_*)]
+\le
+\frac{D^2}{\gamma T}+2\gamma\sigma_*^2.
+\]</div>
+<p>取</p>
+<div class="arithmatex">\[
+\gamma
+=
+\frac{D}{2LD+\sigma_*\sqrt{2T}},
+\]</div>
+<p>则自动有 <span class="arithmatex">\(\gamma\le1/(2L)\)</span>，且</p>
+<div class="arithmatex">\[
+\boxed{
+\mathbb E[F(\bar\theta_T)-F(\theta_*)]
+\le
+\frac{2LD^2}{T}
++
+\frac{2\sqrt2D\sigma_*}{\sqrt T}
+}.
+\]</div>
+<p>因此收敛率为 <span class="arithmatex">\(O(T^{-1/2})\)</span>；当最优点处无随机噪声，即 <span class="arithmatex">\(\sigma_*=0\)</span> 时，可得到 <span class="arithmatex">\(O(T^{-1})\)</span>。</p>
+<h3 id="mini-batch_1">Mini-batch 的改进</h3>
+<p>若每轮使用 <span class="arithmatex">\(m\)</span> 个独立随机函数的平均</p>
+<div class="arithmatex">\[
+\widetilde f_t
+=
+\frac1m\sum_{j=1}^m f_{t,j},
+\]</div>
+<p>则</p>
+<div class="arithmatex">\[
+\mathbb E\|\widetilde f_t'(\theta_*)\|_2^2
+=
+\frac{\sigma_*^2}{m},
+\]</div>
+<p>因为 <span class="arithmatex">\(\mathbb E[f_{t,j}'(\theta_*)]=F'(\theta_*)=0\)</span> 且各项独立。因此</p>
+<div class="arithmatex">\[
+\boxed{
+\mathbb E[F(\bar\theta_T)-F(\theta_*)]
+\lesssim
+\frac{LD^2}{T}
++
+\frac{D\sigma_*}{\sqrt{mT}}
+}.
+\]</div>
+<p>这解释了为什么 mini-batch 在光滑情形中能够改进迭代次数意义下的收敛常数。</p>
+<hr />
+<h2 id="7-529">7. 习题 5.29：非均匀抽样</h2>
+<p>设 <span class="arithmatex">\(F(\theta,z)\)</span> 关于 <span class="arithmatex">\(\theta\)</span> 为凸函数，并存在次梯度 <span class="arithmatex">\(F'(\theta,z)\)</span> 满足</p>
+<div class="arithmatex">\[
+\|F'(\theta,z)\|_2\le B(z).
+\]</div>
+<p>目标是最小化</p>
+<div class="arithmatex">\[
+\Phi(\theta)=\mathbb E_{z\sim p}[F(\theta,z)].
+\]</div>
+<p>实际从分布 <span class="arithmatex">\(q\)</span> 中抽样。设</p>
+<div class="arithmatex">\[
+r(z)=\frac{dq}{dp}(z).
+\]</div>
+<p>定义重要性加权随机梯度</p>
+<div class="arithmatex">\[
+g_t
+=
+\frac1{r(z_t)}F'(\theta_{t-1},z_t),
+\qquad z_t\sim q.
+\]</div>
+<p>则</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathbb E_q[g_t\mid\theta_{t-1}]
+&amp;=
+\int\frac1{r(z)}F'(\theta_{t-1},z)\,dq(z)\\
+&amp;=
+\int F'(\theta_{t-1},z)\,dp(z)\\
+&amp;\in\partial\Phi(\theta_{t-1}),
+\end{aligned}
+\]</div>
+<p>因此该估计仍然无偏。</p>
+<h3 id="_14">基于几乎处处上界的收敛率</h3>
+<p>令</p>
+<div class="arithmatex">\[
+M(q)
+=
+\operatorname*{ess\,sup}_{z}
+\frac{B(z)}{r(z)}.
+\]</div>
+<p>则 <span class="arithmatex">\(\|g_t\|_2\le M(q)\)</span>。若 <span class="arithmatex">\(\|\theta_0-\theta_*\|\le D\)</span>，固定步长 SGD 满足</p>
+<div class="arithmatex">\[
+\mathbb E[\Phi(\bar\theta_T)-\Phi(\theta_*)]
+\le
+\frac{D^2}{2\gamma T}
++
+\frac{\gamma M(q)^2}{2}.
+\]</div>
+<p>取</p>
+<div class="arithmatex">\[
+\gamma=\frac{D}{M(q)\sqrt T},
+\]</div>
+<p>得到</p>
+<div class="arithmatex">\[
+\boxed{
+\mathbb E[\Phi(\bar\theta_T)-\Phi(\theta_*)]
+\le
+\frac{DM(q)}{\sqrt T}
+}.
+\]</div>
+<h3 id="_15">最优抽样分布</h3>
+<p>由于 <span class="arithmatex">\(B(z)\le M(q)r(z)\)</span>，积分后得到</p>
+<div class="arithmatex">\[
+\mathbb E_p[B(z)]\le M(q)\mathbb E_p[r(z)]=M(q).
+\]</div>
+<p>下界由</p>
+<div class="arithmatex">\[
+r_*(z)=\frac{B(z)}{\mathbb E_p[B(z)]}
+\]</div>
+<p>达到。此时</p>
+<div class="arithmatex">\[
+\frac{B(z)}{r_*(z)}=\mathbb E_p[B(z)]
+\]</div>
+<p>为常数，因此</p>
+<div class="arithmatex">\[
+\boxed{M(q_*)=\mathbb E_p[B(z)]}.
+\]</div>
+<p>相比之下，若 <span class="arithmatex">\(q=p\)</span>，则 <span class="arithmatex">\(r\equiv1\)</span>，</p>
+<div class="arithmatex">\[
+M(p)=\operatorname*{ess\,sup}_zB(z).
+\]</div>
+<p>当 <span class="arithmatex">\(B(z)\)</span> 很不均匀时，按 <span class="arithmatex">\(B(z)\)</span> 成比例抽样可把常数从最大值降为平均值。</p>
+<h3 id="_16">二阶矩版本</h3>
+<p>利用命题 5.7 中“几乎处处有界可替换为二阶矩有界”的备注，也可定义</p>
+<div class="arithmatex">\[
+C(q)^2
+=
+\mathbb E_p\left[\frac{B(z)^2}{r(z)}\right].
+\]</div>
+<p>由 Cauchy--Schwarz，</p>
+<div class="arithmatex">\[
+\bigl(\mathbb E_p[B]\bigr)^2
+\le
+\mathbb E_p\left[\frac{B^2}{r}\right]\mathbb E_p[r]
+=C(q)^2,
+\]</div>
+<p>同样由 <span class="arithmatex">\(r_*(z)\propto B(z)\)</span> 取得最小值。</p>
+<h3 id="svm">应用于线性 SVM</h3>
+<p>对经验 hinge loss，令 <span class="arithmatex">\(z=i\in\{1,\dots,n\}\)</span>，<span class="arithmatex">\(p_i=1/n\)</span>，</p>
+<div class="arithmatex">\[
+\ell_i(\theta)=\max\{0,1-y_i x_i^\top\theta\}.
+\]</div>
+<p>其次梯度满足</p>
+<div class="arithmatex">\[
+\|\ell_i'(\theta)\|_2\le\|x_i\|_2,
+\]</div>
+<p>所以可取</p>
+<div class="arithmatex">\[
+B_i=\|x_i\|_2.
+\]</div>
+<p>最优抽样概率为</p>
+<div class="arithmatex">\[
+\boxed{
+q_i
+=
+\frac{\|x_i\|_2}{\sum_{j=1}^n\|x_j\|_2}
+}.
+\]</div>
+<p>并对抽到的次梯度乘以重要性权重</p>
+<div class="arithmatex">\[
+\frac{p_i}{q_i}=rac{1/n}{q_i}.
+\]</div>
+<p>均匀抽样的最坏界常数为</p>
+<div class="arithmatex">\[
+\max_i\|x_i\|_2,
+\]</div>
+<p>而最优非均匀抽样将其降为</p>
+<div class="arithmatex">\[
+\frac1n\sum_{i=1}^n\|x_i\|_2.
+\]</div>
+<hr />
+<h2 id="_17">主要校订</h2>
+<ol>
+<li>扫描稿后半部分对应的是 <strong>Chapter 5 §5.4</strong>，不是 Chapter 4。</li>
+<li>经验风险 SGD 应使用均匀随机、有放回抽样；<span class="arithmatex">\(i(t)=t\bmod n\)</span> 不满足这里采用的无偏独立抽样假设。</li>
+<li>命题 5.7 的平均点是 <span class="arithmatex">\(\sum_s\gamma_s\theta_{s-1}/\sum_s\gamma_s\)</span>。</li>
+<li>习题 5.26 的一步高概率递推应为逐路径不等式，距离项不应带期望。</li>
+<li>习题 5.27 中，仅由随机梯度有界不能推出 mini-batch 自动改善最坏情形收敛率。</li>
+<li>习题 5.28 中一般只有 <span class="arithmatex">\(F'(\theta_*)=\mathbb E[f_t'(\theta_*)]=0\)</span>，不能写成每个 <span class="arithmatex">\(f_t'(\theta_*)=0\)</span>。</li>
+<li>非均匀抽样的梯度权重应为 <span class="arithmatex">\(1/(dq/dp)\)</span>，最优密度满足 <span class="arithmatex">\(dq/dp\propto B(z)\)</span>。</li>
+</ol>
 
 
 
