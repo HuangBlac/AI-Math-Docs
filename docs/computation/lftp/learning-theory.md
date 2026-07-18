@@ -1,14 +1,14 @@
 # 统计学习理论
 
 !!! note "本页来源与说明"
-    本页内容正在从我自己的复习对话（与 ChatGPT/Claude，2026-05~06）中**逐主题蒸馏**而来，含 AI 生成成分，**待我本人校对**。配套精读见 [LFTP Ch4 经验风险最小化](lftp/ch4-erm.md)。
+    本页内容正在从我自己的复习对话（与 ChatGPT/Claude，2026-05~06）中**逐主题蒸馏**而来，含 AI 生成成分，**待我本人校对**。配套精读见 [LFTP Ch4 经验风险最小化](ch4-erm.md)。
 
 ## 内容规划（路线图）
 
 - [x] 概率工具：次高斯与集中不等式 ← 本页已开张
 - [x] Bayes 最优预测器（条件均值 / Bayes 分类器 / 超额风险）
 - [x] 分布间的差异：KL 散度 vs 范数
-- [ ] 经验风险最小化与一致偏差（见 [LFTP Ch4](lftp/ch4-erm.md)）
+- [ ] 经验风险最小化与一致偏差（见 [LFTP Ch4](ch4-erm.md)）
 - [ ] Rademacher 复杂度与泛化误差界
 - [ ] 偏差–方差分解
 - [x] 覆盖数 + Bernstein 条件 → 快速率 $\log\mathcal{N}/n$ ← 本页已补
@@ -68,7 +68,7 @@ $$
 次高斯 + Hoeffding 引理是上层一切集中不等式的地基：
 
 - **Hoeffding 不等式**（有界 i.i.d. 均值的指数尾）——把单变量的次高斯性对独立和相加；
-- **McDiarmid 不等式**（有界差分函数的集中）——见 [LFTP Ch4 的完整鞅证明](lftp/ch4-erm.md)，它正是用条件版 Hoeffding 引理逐步剥矩母函数得到的；
+- **McDiarmid 不等式**（有界差分函数的集中）——见 [LFTP Ch4 的完整鞅证明](ch4-erm.md)，它正是用条件版 Hoeffding 引理逐步剥矩母函数得到的；
 - **Bernstein 不等式**（再把方差用上、对小偏差更紧）——见下节的快速率应用。
 
 ---
@@ -76,9 +76,9 @@ $$
 ## 估计误差的快速率 · Bernstein 条件 + 覆盖数
 
 !!! note "来源"
-    整理自我对一页讲义放缩过程的复盘（原题为手写讲义图，已据推导复述）。承接 [LFTP Ch4](lftp/ch4-erm.md) 的覆盖数一节。
+    整理自我对一页讲义放缩过程的复盘（原题为手写讲义图，已据推导复述）。承接 [LFTP Ch4](ch4-erm.md) 的覆盖数一节。
 
-[LFTP Ch4](lftp/ch4-erm.md) 用覆盖数把无限类的一致偏差控住，得到的是**慢速率** $\sqrt{\log\mathcal{N}/n}$。但若损失再满足一个 **Bernstein 条件（间隔条件）**——方差被超额风险控制——速率能提升到 $\log\mathcal{N}/n$（快一个平方）。
+[LFTP Ch4](ch4-erm.md) 用覆盖数把无限类的一致偏差控住，得到的是**慢速率** $\sqrt{\log\mathcal{N}/n}$。但若损失再满足一个 **Bernstein 条件（间隔条件）**——方差被超额风险控制——速率能提升到 $\log\mathcal{N}/n$（快一个平方）。
 
 **目标**：控制统计误差 $\mathcal{E}_{sta}=\mathbb{E}\big[\sup_{f\in\mathcal{F}}\tfrac1n\sum_i G(f,Z_i)\big]$，其中超额损失 $g(f,z)=\ell(f,z)-\ell(f^*,z)$，并令 $G(f,z)=\mathbb{E}[g(f,Z)]-2g(f,z)$。
 

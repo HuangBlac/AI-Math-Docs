@@ -96,8 +96,9 @@ nav:
     - 凸优化: computation/optimization.md
     - 无约束优化算法对比: computation/unconstrained-optimization.md
     - 统计计算: computation/stat-computing.md
-    - 统计学习理论: computation/learning-theory.md
+    - 统计学习理论: computation/lftp/learning-theory.md
     - "学习笔记":
+      - 总览: computation/lftp/index.md
       - Ch1 再论集中不等式: computation/lftp/ch1-concentration.md
       - Ch1-Ch2 优化基础 (手写转录): computation/lftp/ch1-2-optimization-raw.md
       - Ch1-Ch2 优化基础 (整理版): computation/lftp/ch1-2-optimization.md
@@ -111,6 +112,7 @@ nav:
       - Ch5.4 随机梯度下降: computation/lftp/ch5-4-sgd.md
       - 机器学习基础: computation/lftp/machine-learning.md
       - 稀疏学习与特征学习: computation/lftp/sparse-feature-learning.md
+      - 统计计算总复习: computation/lftp/stat-computing-review.md
   - 算法介绍:
     - algorithms/index.md
     - 神经网络: algorithms/neural-networks.md
