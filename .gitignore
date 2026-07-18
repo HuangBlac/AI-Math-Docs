@@ -6,3 +6,4 @@ __pycache__/
 
 # 本地工作追踪器（含本地路径/私人对话标题），不发布
 _ingest/
+CLAUDE.md

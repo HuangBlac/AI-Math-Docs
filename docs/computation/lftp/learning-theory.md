@@ -167,4 +167,4 @@ $$
 其它分布距离各有所长：**TV**（与 $L^1$ 相关）、**Wasserstein**（最优传输）、**Hellinger**（更像几何距离）、**MMD**（核嵌入）。统计推断/最大似然天然对应 KL；几何比较、测度收敛则用范数/度量。
 
 > **待续**：Rademacher 复杂度、泛化误差界、偏差–方差分解，将从对应复习对话继续蒸馏补入。
-> **关联（凸优化，归 [optimization](optimization.md)）**：LASSO 次梯度、软阈值算子 $S_\lambda$、proximal gradient/ISTA、$\ell_\infty$ 范数次梯度、下半连续/闭函数/下水平集——来自同批复习对话，待整合到优化页。
+> **关联（凸优化，归 [optimization](../optimization.md)）**：LASSO 次梯度、软阈值算子 $S_\lambda$、proximal gradient/ISTA、$\ell_\infty$ 范数次梯度、下半连续/闭函数/下水平集——来自同批复习对话，待整合到优化页。
