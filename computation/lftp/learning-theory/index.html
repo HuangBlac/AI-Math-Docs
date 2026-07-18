@@ -15,6 +15,10 @@
         <link rel="canonical" href="https://huangblac.github.io/AI-Math-Docs/computation/lftp/learning-theory/">
       
       
+        <link rel="prev" href="../../stat-computing/">
+      
+      
+        <link rel="next" href="../">
       
       
         
@@ -246,10 +250,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../../" class="md-tabs__link">
           
   
@@ -707,28 +713,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -746,7 +755,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -985,10 +994,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../learning-theory.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计学习理论
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1004,6 +1040,131 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内容规划（路线图）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概率工具 · 次高斯与集中不等式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="概率工具 · 次高斯与集中不等式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        次高斯随机变量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hoeffding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        有界 ⟹ 次高斯（Hoeffding 引理）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-mgf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        证明心法：log-MGF + 指数倾斜
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        在学习理论里的位置
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bernstein" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        估计误差的快速率 · Bernstein 条件 + 覆盖数
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bayes-f" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bayes 最优预测器：理论最优 \(f^*\) 长什么样
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分布间的差异：为何用 KL 散度而非范数
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1022,10 +1183,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -1034,7 +1198,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_10" >
         
           
-          <label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="">
             
   
   
@@ -1062,6 +1226,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1414,6 +1606,34 @@
     
   
     稀疏学习与特征学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stat-computing-review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计计算总复习
   
 
     
@@ -2079,14 +2299,14 @@
 <h1 id="_1">统计学习理论</h1>
 <div class="admonition note">
 <p class="admonition-title">本页来源与说明</p>
-<p>本页内容正在从我自己的复习对话（与 ChatGPT/Claude，2026-05~06）中**逐主题蒸馏**而来，含 AI 生成成分，<strong>待我本人校对</strong>。配套精读见 <a href="lftp/ch4-erm.md">LFTP Ch4 经验风险最小化</a>。</p>
+<p>本页内容正在从我自己的复习对话（与 ChatGPT/Claude，2026-05~06）中**逐主题蒸馏**而来，含 AI 生成成分，<strong>待我本人校对</strong>。配套精读见 <a href="../ch4-erm/">LFTP Ch4 经验风险最小化</a>。</p>
 </div>
 <h2 id="_2">内容规划（路线图）</h2>
 <ul>
 <li>[x] 概率工具：次高斯与集中不等式 ← 本页已开张</li>
 <li>[x] Bayes 最优预测器（条件均值 / Bayes 分类器 / 超额风险）</li>
 <li>[x] 分布间的差异：KL 散度 vs 范数</li>
-<li>[ ] 经验风险最小化与一致偏差（见 <a href="lftp/ch4-erm.md">LFTP Ch4</a>）</li>
+<li>[ ] 经验风险最小化与一致偏差（见 <a href="../ch4-erm/">LFTP Ch4</a>）</li>
 <li>[ ] Rademacher 复杂度与泛化误差界</li>
 <li>[ ] 偏差–方差分解</li>
 <li>[x] 覆盖数 + Bernstein 条件 → 快速率 <span class="arithmatex">\(\log\mathcal{N}/n\)</span> ← 本页已补</li>
@@ -2130,16 +2350,16 @@ dQ = \frac{e^{sX}}{\mathbb{E}[e^{sX}]}\,dP.
 <p>次高斯 + Hoeffding 引理是上层一切集中不等式的地基：</p>
 <ul>
 <li><strong>Hoeffding 不等式</strong>（有界 i.i.d. 均值的指数尾）——把单变量的次高斯性对独立和相加；</li>
-<li><strong>McDiarmid 不等式</strong>（有界差分函数的集中）——见 <a href="lftp/ch4-erm.md">LFTP Ch4 的完整鞅证明</a>，它正是用条件版 Hoeffding 引理逐步剥矩母函数得到的；</li>
+<li><strong>McDiarmid 不等式</strong>（有界差分函数的集中）——见 <a href="../ch4-erm/">LFTP Ch4 的完整鞅证明</a>，它正是用条件版 Hoeffding 引理逐步剥矩母函数得到的；</li>
 <li><strong>Bernstein 不等式</strong>（再把方差用上、对小偏差更紧）——见下节的快速率应用。</li>
 </ul>
 <hr />
 <h2 id="bernstein">估计误差的快速率 · Bernstein 条件 + 覆盖数</h2>
 <div class="admonition note">
 <p class="admonition-title">来源</p>
-<p>整理自我对一页讲义放缩过程的复盘（原题为手写讲义图，已据推导复述）。承接 <a href="lftp/ch4-erm.md">LFTP Ch4</a> 的覆盖数一节。</p>
+<p>整理自我对一页讲义放缩过程的复盘（原题为手写讲义图，已据推导复述）。承接 <a href="../ch4-erm/">LFTP Ch4</a> 的覆盖数一节。</p>
 </div>
-<p><a href="lftp/ch4-erm.md">LFTP Ch4</a> 用覆盖数把无限类的一致偏差控住，得到的是**慢速率** <span class="arithmatex">\(\sqrt{\log\mathcal{N}/n}\)</span>。但若损失再满足一个 <strong>Bernstein 条件（间隔条件）</strong>——方差被超额风险控制——速率能提升到 <span class="arithmatex">\(\log\mathcal{N}/n\)</span>（快一个平方）。</p>
+<p><a href="../ch4-erm/">LFTP Ch4</a> 用覆盖数把无限类的一致偏差控住，得到的是**慢速率** <span class="arithmatex">\(\sqrt{\log\mathcal{N}/n}\)</span>。但若损失再满足一个 <strong>Bernstein 条件（间隔条件）</strong>——方差被超额风险控制——速率能提升到 <span class="arithmatex">\(\log\mathcal{N}/n\)</span>（快一个平方）。</p>
 <p><strong>目标</strong>：控制统计误差 <span class="arithmatex">\(\mathcal{E}_{sta}=\mathbb{E}\big[\sup_{f\in\mathcal{F}}\tfrac1n\sum_i G(f,Z_i)\big]\)</span>，其中超额损失 <span class="arithmatex">\(g(f,z)=\ell(f,z)-\ell(f^*,z)\)</span>，并令 <span class="arithmatex">\(G(f,z)=\mathbb{E}[g(f,Z)]-2g(f,z)\)</span>。</p>
 <p><strong>① 覆盖数：无限类 → 有限网。</strong> 取 <span class="arithmatex">\(\|\cdot\|_\infty\)</span> 下的 <span class="arithmatex">\(\delta\)</span>-网 <span class="arithmatex">\(\mathcal{C}=\{\tilde f_1,\dots,\tilde f_{\mathcal{N}}\}\)</span>。损失 <span class="arithmatex">\(\lambda\)</span>-Lipschitz <span class="arithmatex">\(\Rightarrow |g(f,z)-g(\tilde f,z)|\le\lambda\delta\)</span>，从而 <span class="arithmatex">\(|G(f,z)-G(\tilde f,z)|\le 3\lambda\delta\)</span>，于是 sup 转嫁给最近代表，代价 <span class="arithmatex">\(3\lambda\delta\)</span>：</p>
 <div class="arithmatex">\[
