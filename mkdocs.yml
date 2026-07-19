@@ -100,29 +100,26 @@ nav:
     - 统计计算: computation/stat-computing.md
     - 统计计算总复习: computation/stat-computing-review.md
   - 统计学习理论 (LFTP):
-    - 总览: computation/lftp/index.md
-    - "Part I — 基础 (Ch1–Ch3)":
+      - 总览: computation/lftp/index.md
       - Ch1 再论集中不等式: computation/lftp/ch1-concentration.md
-      - Ch1 Bernstein 不等式与极大值期望: computation/lftp/ch1-bernstein-maximum.md
-      - Ch1–Ch2 优化基础 (整理版): computation/lftp/ch1-2-optimization.md
-      - Ch1–Ch2 优化基础 (手写转录): computation/lftp/ch1-2-optimization-raw.md
+      - Ch1-Ch2 优化基础 (手写转录): computation/lftp/ch1-2-optimization-raw.md
+      - Ch1-Ch2 优化基础 (整理版): computation/lftp/ch1-2-optimization.md
+      - Ch1 Bernstein不等式与极大值期望: computation/lftp/ch1-bernstein-maximum.md
       - Ch2 监督学习导论: computation/lftp/ch2-supervised-learning.md
-      - Ch3 PCA 与主成分回归: computation/lftp/ch3-pca-regression.md
-    - "Part II — 核心理论 (Ch4–Ch9)":
+      - Ch3 PCA与主成分回归: computation/lftp/ch3-pca-regression.md
       - Ch4 经验风险最小化: computation/lftp/ch4-erm.md
-      - Ch4 Rademacher 复杂度: computation/lftp/ch4-rademacher.md
-      - Ch4.4 Massart 引理与 Dudley 积分: computation/lftp/ch4-4-massart.md
-      - Ch5 优化简介: computation/lftp/ch5-optimization-intro.md
+      - Ch4 Rademacher复杂度: computation/lftp/ch4-rademacher.md
+      - Ch4.4 Massart引理与Dudley积分: computation/lftp/ch4-4-massart.md
+      - Ch5 优化简单介绍: computation/lftp/ch5-optimization-intro.md
+      - Ch5.3 非光滑梯度方法: computation/lftp/ch5-3-nonsmooth.md
+      - Ch5.3 Exercises 5.22–5.25: computation/lftp/ch5-3-exercises.md
       - Ch5.4 随机梯度下降: computation/lftp/ch5-4-sgd.md
-      - Ch6 局部平均方法 (待补): computation/lftp/index.md
-      - Ch7 核方法 (待补): computation/lftp/index.md
-      - Ch8 稀疏方法 (待补): computation/lftp/index.md
-      - Ch9 神经网络 (待补): computation/lftp/index.md
-    - "背景补充":
-      - 统计学习理论 (概念地图): computation/lftp/learning-theory.md
+      - Ch5.4 Exercises 5.29–5.30: computation/lftp/ch5-4-exercises.md
       - 机器学习基础: computation/lftp/machine-learning.md
       - 稀疏学习与特征学习: computation/lftp/sparse-feature-learning.md
+      - 统计学习理论 (概念地图): computation/lftp/learning-theory.md
       - 数据科学导论: computation/lftp/data-science-intro.md
+      - 统计计算总复习: computation/stat-computing-review.md
   - 算法介绍:
     - algorithms/index.md
     - 神经网络: algorithms/neural-networks.md

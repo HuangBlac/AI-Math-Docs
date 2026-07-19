@@ -24,7 +24,10 @@
 | Ch4 经验风险最小化 | [Rademacher 复杂度](ch4-rademacher.md) | ✅ |
 | Ch4.4 经验风险最小化 | [Massart 引理与 Dudley 积分](ch4-4-massart.md) | ✅ |
 | Ch5 机器学习优化 | [优化简介](ch5-optimization-intro.md) | ✅ |
+| Ch5.3 机器学习优化 | [非光滑梯度方法](ch5-3-nonsmooth.md) | ✅ |
+| Ch5.3 机器学习优化 | [Exercises 5.22–5.25](ch5-3-exercises.md) | ✅ |
 | Ch5.4 机器学习优化 | [随机梯度下降](ch5-4-sgd.md) | ✅ |
+| Ch5.4 机器学习优化 | [Exercises 5.29–5.30](ch5-4-exercises.md) | ✅ |
 | Ch6 局部平均方法 | — | ❌ 待补 |
 | Ch7 核方法 | — | ❌ 待补 |
 | Ch8 稀疏方法 | — | ❌ 待补 |
