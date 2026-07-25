@@ -12,25 +12,27 @@
         <meta name="author" content="huangblac">
       
       
+        <link rel="canonical" href="https://huangblac.github.io/AI-Math-Docs/computation/lftp/ch5-3-nonsmooth/">
+      
       
       
       
         
       
       
-      <link rel="icon" href="/AI-Math-Docs/assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>AI & Math</title>
+        <title>LFTP 第 5.3 节：非光滑问题上的梯度方法 - AI & Math</title>
       
     
     
-      <link rel="stylesheet" href="/AI-Math-Docs/assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="/AI-Math-Docs/assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -49,7 +51,7 @@
       
     
     
-    <script>__md_scope=new URL("/AI-Math-Docs/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -73,6 +75,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#lftp-53" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -83,7 +90,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="/AI-Math-Docs/." title="AI &amp; Math" class="md-header__button md-logo" aria-label="AI & Math" data-md-component="logo">
+    <a href="../../.." title="AI &amp; Math" class="md-header__button md-logo" aria-label="AI & Math" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -103,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              LFTP 第 5.3 节：非光滑问题上的梯度方法
             
           </span>
         </div>
@@ -202,7 +209,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/AI-Math-Docs/." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -221,7 +228,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/AI-Math-Docs/about/backstage/" class="md-tabs__link">
+      <a href="../../../about/backstage/" class="md-tabs__link">
         
   
   
@@ -242,7 +249,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/AI-Math-Docs/math/" class="md-tabs__link">
+        <a href="../../../math/" class="md-tabs__link">
           
   
   
@@ -262,7 +269,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/AI-Math-Docs/computation/" class="md-tabs__link">
+        <a href="../../" class="md-tabs__link">
           
   
   
@@ -282,7 +289,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/AI-Math-Docs/computation/stat-computing/" class="md-tabs__link">
+        <a href="../../stat-computing/" class="md-tabs__link">
           
   
   
@@ -302,7 +309,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/AI-Math-Docs/computation/lftp/" class="md-tabs__link">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -322,7 +329,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/AI-Math-Docs/algorithms/" class="md-tabs__link">
+        <a href="../../../algorithms/" class="md-tabs__link">
           
   
   
@@ -342,7 +349,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/AI-Math-Docs/ai4math/" class="md-tabs__link">
+        <a href="../../../ai4math/" class="md-tabs__link">
           
   
   
@@ -376,7 +383,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/AI-Math-Docs/." title="AI &amp; Math" class="md-nav__button md-logo" aria-label="AI & Math" data-md-component="logo">
+    <a href="../../.." title="AI &amp; Math" class="md-nav__button md-logo" aria-label="AI & Math" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -394,7 +401,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -421,7 +428,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/about/backstage/" class="md-nav__link">
+      <a href="../../../about/backstage/" class="md-nav__link">
         
   
   
@@ -502,7 +509,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/math/" class="md-nav__link">
+      <a href="../../../math/" class="md-nav__link">
         
   
   
@@ -530,7 +537,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/math/analysis/" class="md-nav__link">
+      <a href="../../../math/analysis/" class="md-nav__link">
         
   
   
@@ -558,7 +565,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/math/algebra/" class="md-nav__link">
+      <a href="../../../math/algebra/" class="md-nav__link">
         
   
   
@@ -586,7 +593,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/math/measure/" class="md-nav__link">
+      <a href="../../../math/measure/" class="md-nav__link">
         
   
   
@@ -614,7 +621,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/math/probability/" class="md-nav__link">
+      <a href="../../../math/probability/" class="md-nav__link">
         
   
   
@@ -642,7 +649,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/math/ode-pde/" class="md-nav__link">
+      <a href="../../../math/ode-pde/" class="md-nav__link">
         
   
   
@@ -670,7 +677,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/math/functional/" class="md-nav__link">
+      <a href="../../../math/functional/" class="md-nav__link">
         
   
   
@@ -698,7 +705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/math/statistics/" class="md-nav__link">
+      <a href="../../../math/statistics/" class="md-nav__link">
         
   
   
@@ -726,7 +733,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/math/multivariate/" class="md-nav__link">
+      <a href="../../../math/multivariate/" class="md-nav__link">
         
   
   
@@ -754,7 +761,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/math/causality/" class="md-nav__link">
+      <a href="../../../math/causality/" class="md-nav__link">
         
   
   
@@ -843,7 +850,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/computation/" class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         
   
   
@@ -871,7 +878,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/computation/num-linalg/" class="md-nav__link">
+      <a href="../../num-linalg/" class="md-nav__link">
         
   
   
@@ -899,7 +906,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/computation/numerical-linear-algebra-lab/" class="md-nav__link">
+      <a href="../../numerical-linear-algebra-lab/" class="md-nav__link">
         
   
   
@@ -927,7 +934,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/computation/num-analysis/" class="md-nav__link">
+      <a href="../../num-analysis/" class="md-nav__link">
         
   
   
@@ -955,7 +962,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/computation/num-pde/" class="md-nav__link">
+      <a href="../../num-pde/" class="md-nav__link">
         
   
   
@@ -983,7 +990,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/computation/optimization/" class="md-nav__link">
+      <a href="../../optimization/" class="md-nav__link">
         
   
   
@@ -1011,7 +1018,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/computation/unconstrained-optimization/" class="md-nav__link">
+      <a href="../../unconstrained-optimization/" class="md-nav__link">
         
   
   
@@ -1100,7 +1107,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/computation/stat-computing/" class="md-nav__link">
+      <a href="../../stat-computing/" class="md-nav__link">
         
   
   
@@ -1128,7 +1135,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/computation/stat-computing-review/" class="md-nav__link">
+      <a href="../../stat-computing-review/" class="md-nav__link">
         
   
   
@@ -1217,7 +1224,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/computation/lftp/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -1245,7 +1252,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/computation/lftp/ch1-concentration/" class="md-nav__link">
+      <a href="../ch1-concentration/" class="md-nav__link">
         
   
   
@@ -1273,7 +1280,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/computation/lftp/ch1-2-optimization-raw/" class="md-nav__link">
+      <a href="../ch1-2-optimization-raw/" class="md-nav__link">
         
   
   
@@ -1301,7 +1308,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/computation/lftp/ch1-2-optimization/" class="md-nav__link">
+      <a href="../ch1-2-optimization/" class="md-nav__link">
         
   
   
@@ -1329,7 +1336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/computation/lftp/ch1-bernstein-maximum/" class="md-nav__link">
+      <a href="../ch1-bernstein-maximum/" class="md-nav__link">
         
   
   
@@ -1357,7 +1364,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/computation/lftp/ch2-supervised-learning/" class="md-nav__link">
+      <a href="../ch2-supervised-learning/" class="md-nav__link">
         
   
   
@@ -1385,7 +1392,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/computation/lftp/ch3-pca-regression/" class="md-nav__link">
+      <a href="../ch3-pca-regression/" class="md-nav__link">
         
   
   
@@ -1413,7 +1420,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/computation/lftp/ch4-erm/" class="md-nav__link">
+      <a href="../ch4-erm/" class="md-nav__link">
         
   
   
@@ -1441,7 +1448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/computation/lftp/ch4-rademacher/" class="md-nav__link">
+      <a href="../ch4-rademacher/" class="md-nav__link">
         
   
   
@@ -1469,7 +1476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/computation/lftp/ch4-4-massart/" class="md-nav__link">
+      <a href="../ch4-4-massart/" class="md-nav__link">
         
   
   
@@ -1497,7 +1504,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/computation/lftp/ch5-optimization-intro/" class="md-nav__link">
+      <a href="../ch5-optimization-intro/" class="md-nav__link">
         
   
   
@@ -1525,7 +1532,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/computation/lftp/ch5-4-sgd/" class="md-nav__link">
+      <a href="../ch5-4-sgd/" class="md-nav__link">
         
   
   
@@ -1553,7 +1560,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/computation/lftp/machine-learning/" class="md-nav__link">
+      <a href="../machine-learning/" class="md-nav__link">
         
   
   
@@ -1581,7 +1588,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/computation/lftp/sparse-feature-learning/" class="md-nav__link">
+      <a href="../sparse-feature-learning/" class="md-nav__link">
         
   
   
@@ -1609,7 +1616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/computation/lftp/stat-computing-review.md" class="md-nav__link">
+      <a href="../stat-computing-review.md" class="md-nav__link">
         
   
   
@@ -1698,7 +1705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/algorithms/" class="md-nav__link">
+      <a href="../../../algorithms/" class="md-nav__link">
         
   
   
@@ -1726,7 +1733,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/algorithms/neural-networks/" class="md-nav__link">
+      <a href="../../../algorithms/neural-networks/" class="md-nav__link">
         
   
   
@@ -1754,7 +1761,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/algorithms/decision-trees/" class="md-nav__link">
+      <a href="../../../algorithms/decision-trees/" class="md-nav__link">
         
   
   
@@ -1782,7 +1789,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/algorithms/bayesian/" class="md-nav__link">
+      <a href="../../../algorithms/bayesian/" class="md-nav__link">
         
   
   
@@ -1810,7 +1817,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/algorithms/deep-learning/" class="md-nav__link">
+      <a href="../../../algorithms/deep-learning/" class="md-nav__link">
         
   
   
@@ -1838,7 +1845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/algorithms/compressed-sensing/" class="md-nav__link">
+      <a href="../../../algorithms/compressed-sensing/" class="md-nav__link">
         
   
   
@@ -1927,7 +1934,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/ai4math/" class="md-nav__link">
+      <a href="../../../ai4math/" class="md-nav__link">
         
   
   
@@ -1955,7 +1962,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/ai4math/papers/" class="md-nav__link">
+      <a href="../../../ai4math/papers/" class="md-nav__link">
         
   
   
@@ -1983,7 +1990,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/ai4math/examples/" class="md-nav__link">
+      <a href="../../../ai4math/examples/" class="md-nav__link">
         
   
   
@@ -2011,7 +2018,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/ai4math/improvements/" class="md-nav__link">
+      <a href="../../../ai4math/improvements/" class="md-nav__link">
         
   
   
@@ -2039,7 +2046,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/ai4math/pinn-overview/" class="md-nav__link">
+      <a href="../../../ai4math/pinn-overview/" class="md-nav__link">
         
   
   
@@ -2067,7 +2074,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/ai4math/pinn-seminar/" class="md-nav__link">
+      <a href="../../../ai4math/pinn-seminar/" class="md-nav__link">
         
   
   
@@ -2095,7 +2102,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/AI-Math-Docs/ai4math/pinn-critique/" class="md-nav__link">
+      <a href="../../../ai4math/pinn-critique/" class="md-nav__link">
         
   
   
@@ -2140,6 +2147,272 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-lipschitz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Lipschitz 连续函数
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Lipschitz 连续函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition-54" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition 5.4
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-exercise-518lipschitz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Exercise 5.18：Lipschitz 连续与梯度有界等价
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Exercise 5.18：Lipschitz 连续与梯度有界等价">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-lipschitz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 梯度有界推出 Lipschitz 连续
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-lipschitz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Lipschitz 连续推出梯度有界
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 从梯度到次梯度
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 从梯度到次梯度">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 次微分与次梯度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 可微凸函数的次微分是单点集
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-exercise-519" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Exercise 5.19：两个典型函数的次微分
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Exercise 5.19：两个典型函数的次微分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 绝对值函数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-hinge-loss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Hinge loss
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-proposition-56" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Proposition 5.6：次梯度法的收敛速度
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Proposition 5.6：次梯度法的收敛速度">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 基本递推式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 求和
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-exercise-520-b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Exercise 5.20：不需要预先知道 \(B\) 的归一化次梯度法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-exercise-521" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Exercise 5.21：投影次梯度法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Exercise 5.21：投影次梯度法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 投影的最优性条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 投影是压缩映射
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 投影次梯度法的收敛性
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 关键结论
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -2152,8 +2425,393 @@
               
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+
+<h1 id="lftp-53">LFTP 第 5.3 节：非光滑问题上的梯度方法</h1>
+<blockquote>
+<p>对应教材：<em>Learning Theory from First Principles</em>，§5.3，Definition 5.4、Proposition 5.6、Exercises 5.18–5.21。<br />
+本文根据手写笔记重新排版，并依据原教材统一记号、补全证明与修正笔误。</p>
+</blockquote>
+<h2 id="1-lipschitz">1. Lipschitz 连续函数</h2>
+<h3 id="definition-54">Definition 5.4</h3>
+<p>函数 <span class="arithmatex">\(F:\mathbb{R}^d\to\mathbb{R}\)</span> 称为关于 <span class="arithmatex">\(\ell_2\)</span> 范数的 <span class="arithmatex">\(B\)</span>-Lipschitz 连续函数，如果</p>
+<div class="arithmatex">\[
+|F(\eta)-F(\theta)|\le B\|\eta-\theta\|_2,
+\qquad \forall \theta,\eta\in\mathbb{R}^d.
+\]</div>
+<p>在本节中，目标函数只要求**凸**且 <strong>Lipschitz 连续</strong>，不再要求光滑，因此相应问题通常称为非光滑优化。</p>
+<hr />
+<h2 id="2-exercise-518lipschitz">2. Exercise 5.18：Lipschitz 连续与梯度有界等价</h2>
+<p>设 <span class="arithmatex">\(F\)</span> 可微。证明：</p>
+<div class="arithmatex">\[
+F\text{ 是 }B\text{-Lipschitz}
+\quad\Longleftrightarrow\quad
+\|F'(\theta)\|_2\le B,
+\qquad \forall \theta\in\mathbb{R}^d.
+\]</div>
+<h3 id="21-lipschitz">2.1 梯度有界推出 Lipschitz 连续</h3>
+<p>令</p>
+<div class="arithmatex">\[
+\gamma(t)=\theta+t(\eta-\theta),\qquad t\in[0,1].
+\]</div>
+<p>由微积分基本定理，</p>
+<div class="arithmatex">\[
+F(\eta)-F(\theta)
+=
+\int_0^1 F'(\gamma(t))^\top(\eta-\theta)\,dt.
+\]</div>
+<p>因此</p>
+<div class="arithmatex">\[
+\begin{aligned}
+|F(\eta)-F(\theta)|
+&amp;\le
+\int_0^1
+\|F'(\gamma(t))\|_2\,\|\eta-\theta\|_2\,dt\\
+&amp;\le B\|\eta-\theta\|_2.
+\end{aligned}
+\]</div>
+<h3 id="22-lipschitz">2.2 Lipschitz 连续推出梯度有界</h3>
+<p>固定 <span class="arithmatex">\(\theta\)</span> 和单位向量 <span class="arithmatex">\(v\)</span>。由 Lipschitz 连续性，</p>
+<div class="arithmatex">\[
+\left|
+\frac{F(\theta+tv)-F(\theta)}{t}
+\right|
+\le B,
+\qquad t\ne 0.
+\]</div>
+<p>令 <span class="arithmatex">\(t\to0\)</span>，得到</p>
+<div class="arithmatex">\[
+|F'(\theta)^\top v|\le B.
+\]</div>
+<p>对所有 <span class="arithmatex">\(\|v\|_2=1\)</span> 取上确界：</p>
+<div class="arithmatex">\[
+\|F'(\theta)\|_2
+=
+\sup_{\|v\|_2=1}|F'(\theta)^\top v|
+\le B.
+\]</div>
+<hr />
+<h2 id="3">3. 从梯度到次梯度</h2>
+<h3 id="31">3.1 次微分与次梯度</h3>
+<p>对凸函数 <span class="arithmatex">\(F:\mathbb{R}^d\to\mathbb{R}\)</span>，点 <span class="arithmatex">\(\theta\)</span> 处的次微分定义为</p>
+<div class="arithmatex">\[
+\partial F(\theta)
+=
+\left\{
+ z\in\mathbb{R}^d:
+ F(\eta)\ge F(\theta)+z^\top(\eta-\theta),
+ \quad \forall\eta\in\mathbb{R}^d
+\right\}.
+\]</div>
+<p>任意 <span class="arithmatex">\(z\in\partial F(\theta)\)</span> 称为 <span class="arithmatex">\(F\)</span> 在 <span class="arithmatex">\(\theta\)</span> 处的次梯度。</p>
+<p>次梯度定义了一条位于函数图像下方的仿射支撑面。非光滑情形下，原来的梯度下降迭代改写为</p>
+<div class="arithmatex">\[
+\theta_t=\theta_{t-1}-\gamma_t g_{t-1},
+\qquad g_{t-1}\in\partial F(\theta_{t-1}).
+\]</div>
+<p>该算法称为**次梯度法**。它一般不是逐步下降法，即 <span class="arithmatex">\(F(\theta_t)\)</span> 可能暂时增大。</p>
+<h3 id="32">3.2 可微凸函数的次微分是单点集</h3>
+<p>若 <span class="arithmatex">\(F\)</span> 凸且在 <span class="arithmatex">\(\theta\)</span> 可微，则凸函数的一阶条件给出</p>
+<div class="arithmatex">\[
+F(\eta)\ge F(\theta)+F'(\theta)^\top(\eta-\theta),
+\]</div>
+<p>所以 <span class="arithmatex">\(F'(\theta)\in\partial F(\theta)\)</span>。</p>
+<p>反过来，若 <span class="arithmatex">\(g\in\partial F(\theta)\)</span>，则对任意方向 <span class="arithmatex">\(v\)</span> 和 <span class="arithmatex">\(t&gt;0\)</span>，</p>
+<div class="arithmatex">\[
+F(\theta+tv)-F(\theta)\ge t\,g^\top v.
+\]</div>
+<p>除以 <span class="arithmatex">\(t\)</span> 并令 <span class="arithmatex">\(t\downarrow0\)</span>：</p>
+<div class="arithmatex">\[
+F'(\theta)^\top v\ge g^\top v.
+\]</div>
+<p>将 <span class="arithmatex">\(v\)</span> 替换为 <span class="arithmatex">\(-v\)</span>，得到相反方向的不等式，因此</p>
+<div class="arithmatex">\[
+F'(\theta)^\top v=g^\top v,
+\qquad \forall v.
+\]</div>
+<p>故 <span class="arithmatex">\(g=F'(\theta)\)</span>，即</p>
+<div class="arithmatex">\[
+\partial F(\theta)=\{F'(\theta)\}.
+\]</div>
+<hr />
+<h2 id="4-exercise-519">4. Exercise 5.19：两个典型函数的次微分</h2>
+<h3 id="41">4.1 绝对值函数</h3>
+<p>令 <span class="arithmatex">\(f(\theta)=|\theta|\)</span>。则</p>
+<div class="arithmatex">\[
+\partial |\theta|
+=
+\begin{cases}
+\{1\}, &amp; \theta&gt;0,\\[2mm]
+[-1,1], &amp; \theta=0,\\[2mm]
+\{-1\}, &amp; \theta&lt;0.
+\end{cases}
+\]</div>
+<p>特别地，在不可微点 <span class="arithmatex">\(0\)</span>，左右导数分别为 <span class="arithmatex">\(-1\)</span> 与 <span class="arithmatex">\(1\)</span>，次微分是二者的凸包。</p>
+<h3 id="42-hinge-loss">4.2 Hinge loss</h3>
+<p>令</p>
+<div class="arithmatex">\[
+f(\theta)=(1-y\theta^\top x)_+,
+\qquad y\in\{-1,1\},\quad x\in\mathbb{R}^d.
+\]</div>
+<p>记 <span class="arithmatex">\(u(\theta)=1-y\theta^\top x\)</span>。函数 <span class="arithmatex">\(h(u)=u_+=\max\{0,u\}\)</span> 的次微分为</p>
+<div class="arithmatex">\[
+\partial h(u)
+=
+\begin{cases}
+\{1\}, &amp; u&gt;0,\\
+[0,1], &amp; u=0,\\
+\{0\}, &amp; u&lt;0.
+\end{cases}
+\]</div>
+<p>利用仿射复合的次梯度链式法则，得到</p>
+<div class="arithmatex">\[
+\partial f(\theta)
+=
+\begin{cases}
+\{-yx\}, &amp; y\theta^\top x&lt;1,\\[1mm]
+\{-\alpha yx:\alpha\in[0,1]\}, &amp; y\theta^\top x=1,\\[1mm]
+\{0\}, &amp; y\theta^\top x&gt;1.
+\end{cases}
+\]</div>
+<hr />
+<h2 id="5-proposition-56">5. Proposition 5.6：次梯度法的收敛速度</h2>
+<p>假设：</p>
+<ul>
+<li><span class="arithmatex">\(F\)</span> 为凸函数；</li>
+<li><span class="arithmatex">\(F\)</span> 是 <span class="arithmatex">\(B\)</span>-Lipschitz 连续的，因此可取 <span class="arithmatex">\(\|g_t\|_2\le B\)</span>；</li>
+<li><span class="arithmatex">\(\eta^*\)</span> 是全局最小点；</li>
+<li><span class="arithmatex">\(\|\eta^*-\theta_0\|_2\le D\)</span>。</li>
+</ul>
+<p>使用步长</p>
+<div class="arithmatex">\[
+\gamma_t=\frac{D}{B\sqrt t},
+\]</div>
+<p>则次梯度迭代满足</p>
+<div class="arithmatex">\[
+\min_{0\le s\le t-1}
+\bigl(F(\theta_s)-F(\eta^*)\bigr)
+\le
+DB\frac{2+\log t}{2\sqrt t}.
+\]</div>
+<h3 id="51">5.1 基本递推式</h3>
+<p>令 <span class="arithmatex">\(g_{t-1}\in\partial F(\theta_{t-1})\)</span>。由</p>
+<div class="arithmatex">\[
+\theta_t=\theta_{t-1}-\gamma_tg_{t-1},
+\]</div>
+<p>可得</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\|\theta_t-\eta^*\|_2^2
+&amp;=
+\|\theta_{t-1}-\eta^*\|_2^2
+-2\gamma_tg_{t-1}^\top(\theta_{t-1}-\eta^*)
++\gamma_t^2\|g_{t-1}\|_2^2.
+\end{aligned}
+\]</div>
+<p>次梯度不等式给出</p>
+<div class="arithmatex">\[
+F(\theta_{t-1})-F(\eta^*)
+\le
+ g_{t-1}^\top(\theta_{t-1}-\eta^*).
+\]</div>
+<p>因此</p>
+<div class="arithmatex">\[
+2\gamma_t\bigl(F(\theta_{t-1})-F(\eta^*)\bigr)
+\le
+\|\theta_{t-1}-\eta^*\|_2^2
+-
+\|\theta_t-\eta^*\|_2^2
++
+\gamma_t^2B^2.
+\]</div>
+<h3 id="52">5.2 求和</h3>
+<p>对 <span class="arithmatex">\(s=1,\dots,t\)</span> 求和，得到</p>
+<div class="arithmatex">\[
+2\sum_{s=1}^t
+\gamma_s\bigl(F(\theta_{s-1})-F(\eta^*)\bigr)
+\le
+D^2+B^2\sum_{s=1}^t\gamma_s^2.
+\]</div>
+<p>于是</p>
+<div class="arithmatex">\[
+\min_{0\le s\le t-1}
+\bigl(F(\theta_s)-F(\eta^*)\bigr)
+\le
+\frac{D^2+B^2\sum_{s=1}^t\gamma_s^2}
+{2\sum_{s=1}^t\gamma_s}.
+\]</div>
+<p>代入 <span class="arithmatex">\(\gamma_s=D/(B\sqrt s)\)</span>，并使用</p>
+<div class="arithmatex">\[
+\sum_{s=1}^t\frac1{\sqrt s}\ge\sqrt t,
+\qquad
+\sum_{s=1}^t\frac1s\le1+\log t,
+\]</div>
+<p>得到</p>
+<div class="arithmatex">\[
+\min_{0\le s\le t-1}
+\bigl(F(\theta_s)-F(\eta^*)\bigr)
+\le
+DB\frac{2+\log t}{2\sqrt t}.
+\]</div>
+<p>相同上界也适用于加权平均迭代</p>
+<div class="arithmatex">\[
+\bar\theta_t
+=
+\frac{\sum_{s=1}^t\gamma_s\theta_{s-1}}
+{\sum_{s=1}^t\gamma_s},
+\]</div>
+<p>因为由 Jensen 不等式，</p>
+<div class="arithmatex">\[
+F(\bar\theta_t)
+\le
+\frac{\sum_{s=1}^t\gamma_sF(\theta_{s-1})}
+{\sum_{s=1}^t\gamma_s}.
+\]</div>
+<hr />
+<h2 id="6-exercise-520-b">6. Exercise 5.20：不需要预先知道 <span class="arithmatex">\(B\)</span> 的归一化次梯度法</h2>
+<p>考虑迭代</p>
+<div class="arithmatex">\[
+\theta_t
+=
+\theta_{t-1}
+-
+\frac{\gamma_t'}{\|g_{t-1}\|_2}g_{t-1},
+\qquad
+\gamma_t'=\frac{D}{\sqrt t},
+\]</div>
+<p>其中 <span class="arithmatex">\(g_{t-1}\in\partial F(\theta_{t-1})\)</span>。若 <span class="arithmatex">\(g_{t-1}=0\)</span>，则 <span class="arithmatex">\(\theta_{t-1}\)</span> 已经是凸函数的全局最小点，可直接停止。</p>
+<p>距离递推式为</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\|\theta_t-\eta^*\|_2^2
+&amp;=
+\|\theta_{t-1}-\eta^*\|_2^2
+-
+2\frac{\gamma_t'}{\|g_{t-1}\|_2}
+ g_{t-1}^\top(\theta_{t-1}-\eta^*)
++
+(\gamma_t')^2.
+\end{aligned}
+\]</div>
+<p>由次梯度不等式以及 <span class="arithmatex">\(\|g_{t-1}\|_2\le B\)</span>，</p>
+<div class="arithmatex">\[
+2\frac{\gamma_t'}{B}
+\bigl(F(\theta_{t-1})-F(\eta^*)\bigr)
+\le
+\|\theta_{t-1}-\eta^*\|_2^2
+-
+\|\theta_t-\eta^*\|_2^2
++
+(\gamma_t')^2.
+\]</div>
+<p>求和后得到</p>
+<div class="arithmatex">\[
+\min_{0\le s\le t-1}
+\bigl(F(\theta_s)-F(\eta^*)\bigr)
+\le
+DB\frac{2+\log t}{2\sqrt t}.
+\]</div>
+<p>算法的步长不含 <span class="arithmatex">\(B\)</span>，但理论上界仍然自然地依赖目标函数的 Lipschitz 常数 <span class="arithmatex">\(B\)</span>。</p>
+<hr />
+<h2 id="7-exercise-521">7. Exercise 5.21：投影次梯度法</h2>
+<p>设 <span class="arithmatex">\(K\subset\mathbb{R}^d\)</span> 是非空闭凸集，定义正交投影</p>
+<div class="arithmatex">\[
+\Pi_K(x)=\arg\min_{z\in K}\|z-x\|_2^2.
+\]</div>
+<h3 id="71">7.1 投影的最优性条件</h3>
+<p>令 <span class="arithmatex">\(p=\Pi_K(x)\)</span>。对任意 <span class="arithmatex">\(z\in K\)</span>，线段 <span class="arithmatex">\(p+t(z-p)\)</span> 仍在 <span class="arithmatex">\(K\)</span> 中。函数</p>
+<div class="arithmatex">\[
+\phi(t)=\|p+t(z-p)-x\|_2^2
+\]</div>
+<p>在 <span class="arithmatex">\(t=0\)</span> 处取最小值，因此</p>
+<div class="arithmatex">\[
+\phi'(0)=2(p-x)^\top(z-p)\ge0.
+\]</div>
+<p>等价地，</p>
+<div class="arithmatex">\[
+(x-p)^\top(z-p)\le0,
+\qquad \forall z\in K.
+\]</div>
+<h3 id="72">7.2 投影是压缩映射</h3>
+<p>令</p>
+<div class="arithmatex">\[
+p=\Pi_K(x),\qquad q=\Pi_K(y).
+\]</div>
+<p>在上面的最优性条件中分别取 <span class="arithmatex">\(z=q\)</span> 与 <span class="arithmatex">\(z=p\)</span>，得到</p>
+<div class="arithmatex">\[
+(x-p)^\top(q-p)\le0,
+\]</div>
+<div class="arithmatex">\[
+(y-q)^\top(p-q)\le0.
+\]</div>
+<p>两式合并可得</p>
+<div class="arithmatex">\[
+\|p-q\|_2^2
+\le
+(x-y)^\top(p-q)
+\le
+\|x-y\|_2\|p-q\|_2.
+\]</div>
+<p>因此</p>
+<div class="arithmatex">\[
+\boxed{
+\|\Pi_K(x)-\Pi_K(y)\|_2
+\le
+\|x-y\|_2
+}.
+\]</div>
+<h3 id="73">7.3 投影次梯度法的收敛性</h3>
+<p>考虑</p>
+<div class="arithmatex">\[
+\theta_t
+=
+\Pi_K\bigl(\theta_{t-1}-\gamma_tg_{t-1}\bigr),
+\qquad
+ g_{t-1}\in\partial F(\theta_{t-1}).
+\]</div>
+<p>设 <span class="arithmatex">\(\eta^*\)</span> 是 <span class="arithmatex">\(F\)</span> 在 <span class="arithmatex">\(K\)</span> 上的最小点。由于 <span class="arithmatex">\(\eta^*\in K\)</span>，有 <span class="arithmatex">\(\Pi_K(\eta^*)=\eta^*\)</span>。由投影压缩性，</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\|\theta_t-\eta^*\|_2
+&amp;\le
+\|\theta_{t-1}-\gamma_tg_{t-1}-\eta^*\|_2.
+\end{aligned}
+\]</div>
+<p>平方并展开后，得到与无约束情形完全相同的基本递推式。因此 Proposition 5.6 的收敛保证仍然成立：</p>
+<div class="arithmatex">\[
+\min_{0\le s\le t-1}
+\bigl(F(\theta_s)-F(\eta^*)\bigr)
+\le
+DB\frac{2+\log t}{2\sqrt t}.
+\]</div>
+<hr />
+<h2 id="8">8. 关键结论</h2>
+<ol>
+<li>非光滑凸优化中，梯度由次梯度替代。</li>
+<li>次梯度法的函数值不必单调下降。</li>
+<li>一般凸 Lipschitz 问题的典型收敛速度为</li>
+</ol>
+<p>$$
+   O!\left(\frac{BD}{\sqrt t}\right),
+   $$</p>
+<p>使用简单递减步长时会多出 <span class="arithmatex">\(\log t\)</span> 因子。
+4. 投影步骤允许处理凸约束，且不改变基本证明结构。
+5. 归一化次梯度可以消除算法对未知 Lipschitz 常数 <span class="arithmatex">\(B\)</span> 的显式依赖。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -2205,12 +2863,12 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "/AI-Math-Docs/", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "/AI-Math-Docs/assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="/AI-Math-Docs/assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="/AI-Math-Docs/javascripts/mathjax.js"></script>
+        <script src="../../../javascripts/mathjax.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       

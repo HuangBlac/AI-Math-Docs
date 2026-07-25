@@ -12,13 +12,9 @@
         <meta name="author" content="huangblac">
       
       
-        <link rel="canonical" href="https://huangblac.github.io/AI-Math-Docs/computation/lftp/ch1-bernstein-maximum/">
+        <link rel="canonical" href="https://huangblac.github.io/AI-Math-Docs/computation/lftp/ch3-linear-algorithms/">
       
       
-        <link rel="prev" href="../ch1-2-optimization/">
-      
-      
-        <link rel="next" href="../ch2-supervised-learning/">
       
       
         
@@ -29,7 +25,7 @@
     
     
       
-        <title>Ch1 Bernstein不等式与极大值期望 - AI & Math</title>
+        <title>你真的了解线性算法了吗？ - AI & Math</title>
       
     
     
@@ -80,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lftp-chapter-1" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -114,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Ch1 Bernstein不等式与极大值期望
+              你真的了解线性算法了吗？
             
           </span>
         </div>
@@ -309,12 +305,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../" class="md-tabs__link">
           
   
@@ -1173,31 +1167,28 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
             
   
   
@@ -1215,7 +1206,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1342,37 +1333,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch1 Bernstein不等式与极大值期望
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../ch1-bernstein-maximum/" class="md-nav__link">
         
   
   
@@ -1388,198 +1352,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#123-bernstein" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.2.3 Bernstein 不等式
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.2.3 Bernstein 不等式">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        命题
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        第一步：单个随机变量的矩母函数界
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#chernoff" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        第二步：Chernoff 方法
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        解释
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#124" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.2.4 次高斯变量最大值的期望
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.2.4 次高斯变量最大值的期望">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        命题：最大值
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        证明
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        绝对值最大值
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#union-bound" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        使用尾界与 union bound 的另一种证明
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#125" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.2.5 用求积公式估计期望
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.2.5 用求积公式估计期望">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        单区间线性插值误差
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        梯形公式的全局误差
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        主要校订
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2385,171 +2157,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#123-bernstein" class="md-nav__link">
+  <a href="#intro" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.2.3 Bernstein 不等式
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.2.3 Bernstein 不等式">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        命题
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        第一步：单个随机变量的矩母函数界
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#chernoff" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        第二步：Chernoff 方法
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        解释
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#124" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.2.4 次高斯变量最大值的期望
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.2.4 次高斯变量最大值的期望">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        命题：最大值
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        证明
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        绝对值最大值
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#union-bound" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        使用尾界与 union bound 的另一种证明
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#125" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.2.5 用求积公式估计期望
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.2.5 用求积公式估计期望">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        单区间线性插值误差
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        梯形公式的全局误差
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        主要校订
+        Intro：总介绍
       
     </span>
   </a>
@@ -2573,358 +2184,484 @@
 
 
 
-<h1 id="lftp-chapter-1">LFTP Chapter 1 笔记整理</h1>
-<blockquote>
-<p>对应 <em>Learning Theory from First Principles</em>：§1.2.3 Bernstein's Inequality、§1.2.4 Expectation of the Maximum、§1.2.5 Estimation of Expectations through Quadrature。</p>
-<p>本文由手写扫描稿整理，并统一了符号、补足了省略步骤、纠正了公式笔误。</p>
-</blockquote>
-<hr />
-<h2 id="123-bernstein">1.2.3 Bernstein 不等式</h2>
-<h3 id="_1">命题</h3>
-<p>设随机变量 <span class="arithmatex">\(Z_1,\dots,Z_n\)</span> 相互独立，并满足</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\mathbb E[Z_i]=0,\qquad |Z_i|\le c\quad\text{a.s.}
-</script>
-</div>
-<p>记</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\sigma^2=\frac1n\sum_{i=1}^n\operatorname{Var}(Z_i).
-</script>
-</div>
-<p>则对任意 <span class="arithmatex">\(t&gt;0\)</span>，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\mathbb P\!\left(\left|\frac1n\sum_{i=1}^n Z_i\right|>t\right)
-\le
-2\exp\!\left(-\frac{nt^2}{2\sigma^2+\frac{2ct}{3}}\right).
-</script>
-</div>
-<p>等价地，对任意 <span class="arithmatex">\(\delta\in(0,1)\)</span>，以至少 <span class="arithmatex">\(1-\delta\)</span> 的概率，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\left|\frac1n\sum_{i=1}^n Z_i\right|
-\le
-\sqrt{\frac{2\sigma^2\log(2/\delta)}{n}}
-+
-\frac{2c\log(2/\delta)}{3n}.
-</script>
-</div>
-<h3 id="_2">第一步：单个随机变量的矩母函数界</h3>
-<p>设 <span class="arithmatex">\(Z\)</span> 满足 <span class="arithmatex">\(\mathbb E[Z]=0\)</span>、<span class="arithmatex">\(|Z|\le c\)</span> 且 <span class="arithmatex">\(\mathbb E[Z^2]=\sigma^2\)</span>。对任意 <span class="arithmatex">\(s&gt;0\)</span>，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\begin{aligned}
-\mathbb E[e^{sZ}]
-&=1+s\mathbb E[Z]+\sum_{k=2}^{\infty}\frac{s^k}{k!}\mathbb E[Z^k]\\
-&\le 1+\sum_{k=2}^{\infty}\frac{s^k}{k!}\mathbb E[|Z|^k]\\
-&\le 1+\sum_{k=2}^{\infty}\frac{s^k}{k!}c^{k-2}\mathbb E[Z^2]\\
-&=1+\frac{\sigma^2}{c^2}\bigl(e^{sc}-1-sc\bigr)\\
-&\le \exp\!\left[\frac{\sigma^2}{c^2}\bigl(e^{sc}-1-sc\bigr)\right].
-\end{aligned}
-</script>
-</div>
-<p>最后一步使用了 <span class="arithmatex">\(1+x\le e^x\)</span>。</p>
-<h3 id="chernoff">第二步：Chernoff 方法</h3>
-<p>记 <span class="arithmatex">\(\sigma_i^2=\operatorname{Var}(Z_i)\)</span>。由独立性与上面的矩母函数界，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\begin{aligned}
-\mathbb P\!\left(\frac1n\sum_{i=1}^n Z_i>t\right)
-&=\mathbb P\!\left(e^{s\sum_{i=1}^n Z_i}>e^{nst}\right)\\
-&\le e^{-nst}\prod_{i=1}^n\mathbb E[e^{sZ_i}]\\
-&\le \exp\!\left[-nst+\frac{n\sigma^2}{c^2}\bigl(e^{sc}-1-sc\bigr)\right].
-\end{aligned}
-</script>
-</div>
-<p>令</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-u=sc,\qquad \alpha=\frac{ct}{\sigma^2}.
-</script>
-</div>
-<p>则指数可写为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\frac{n\sigma^2}{c^2}\bigl(e^u-1-u-\alpha u\bigr).
-</script>
-</div>
-<p>对 <span class="arithmatex">\(0&lt;u&lt;3\)</span>，由级数展开</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\begin{aligned}
-e^u-1-u
-&=\sum_{k=0}^{\infty}\frac{u^{k+2}}{(k+2)!}\\
-&\le \frac{u^2}{2}\sum_{k=0}^{\infty}\left(\frac u3\right)^k
-=\frac{u^2}{2(1-u/3)}.
-\end{aligned}
-</script>
-</div>
-<p>取</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-u=\frac{\alpha}{1+\alpha/3},
-</script>
-</div>
-<p>得到</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-e^u-1-u-\alpha u
-\le
--\frac{\alpha^2}{2(1+\alpha/3)}.
-</script>
-</div>
-<p>因此</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\mathbb P\!\left(\frac1n\sum_{i=1}^n Z_i>t\right)
-\le
-\exp\!\left(-\frac{nt^2}{2\sigma^2+\frac{2ct}{3}}\right).
-</script>
-</div>
-<p>对 <span class="arithmatex">\(-Z_i\)</span> 应用同一结论，再使用 union bound，即得双边 Bernstein 不等式。</p>
-<h3 id="_3">解释</h3>
-<ul>
-<li>当 <span class="arithmatex">\(t\)</span> 较小时，分母主要由 <span class="arithmatex">\(2\sigma^2\)</span> 控制，尾界具有近似高斯型衰减。</li>
-<li>当 <span class="arithmatex">\(t\)</span> 较大时，线性项 <span class="arithmatex">\(2ct/3\)</span> 开始占主导，尾部近似呈指数衰减。</li>
-<li>与只利用有界性的 Hoeffding 不等式相比，Bernstein 不等式进一步使用了方差信息。</li>
-</ul>
-<hr />
-<h2 id="124">1.2.4 次高斯变量最大值的期望</h2>
-<p>设 <span class="arithmatex">\(Z_1,\dots,Z_n\)</span> 均为零均值、次高斯参数为 <span class="arithmatex">\(\tau^2\)</span> 的随机变量，即</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\mathbb E[e^{\lambda Z_i}]
-\le
-\exp\!\left(\frac{\tau^2\lambda^2}{2}\right),
-\qquad \lambda\in\mathbb R.
-</script>
-</div>
-<p>这里不要求 <span class="arithmatex">\(Z_1,\dots,Z_n\)</span> 相互独立。</p>
-<h3 id="_4">命题：最大值</h3>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\mathbb E\left[\max_{1\le i\le n}Z_i\right]
-\le
-\sqrt{2\tau^2\log n}.
-</script>
-</div>
-<h3 id="_5">证明</h3>
-<p>对任意 <span class="arithmatex">\(\lambda&gt;0\)</span>，由 Jensen 不等式、<span class="arithmatex">\(\max_i a_i\le\sum_i a_i\)</span> 以及次高斯性，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\begin{aligned}
-\mathbb E\left[\max_i Z_i\right]
-&\le \frac1\lambda
-\log\mathbb E\left[e^{\lambda\max_i Z_i}\right]\\
-&=\frac1\lambda
-\log\mathbb E\left[\max_i e^{\lambda Z_i}\right]\\
-&\le\frac1\lambda
-\log\mathbb E\left[\sum_{i=1}^n e^{\lambda Z_i}\right]\\
-&\le\frac1\lambda\log\left(ne^{\tau^2\lambda^2/2}\right)\\
-&=\frac{\log n}{\lambda}+\frac{\tau^2\lambda}{2}.
-\end{aligned}
-</script>
-</div>
-<p>右端在</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\lambda=\frac{\sqrt{2\log n}}{\tau}
-</script>
-</div>
-<p>处取得最小值，从而得到结论。</p>
-<h3 id="_6">绝对值最大值</h3>
-<p>把</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-|Z_i|=\max\{Z_i,-Z_i\}
-</script>
-</div>
-<p>看成 <span class="arithmatex">\(2n\)</span> 个次高斯变量的最大值，可得</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\boxed{
-\mathbb E\left[\max_{1\le i\le n}|Z_i|\right]
-\le
-\sqrt{2\tau^2\log(2n)}
-}.
-</script>
-</div>
-<h3 id="union-bound">使用尾界与 union bound 的另一种证明</h3>
-<p>记</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-M=\max_{1\le i\le n}|Z_i|.
-</script>
-</div>
-<p>由次高斯尾界和 union bound，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\mathbb P(M>t)
-\le
-\sum_{i=1}^n\mathbb P(|Z_i|>t)
-\le
-2n\exp\!\left(-\frac{t^2}{2\tau^2}\right).
-</script>
-</div>
-<p>取</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-a=\tau\sqrt{2\log(2n)}.
-</script>
-</div>
-<p>由尾积分公式 <span class="arithmatex">\(\mathbb E[M]=\int_0^\infty\mathbb P(M&gt;t)\,dt\)</span>，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\begin{aligned}
-\mathbb E[M]
-&\le a+
-2n\int_a^\infty
-\exp\!\left(-\frac{t^2}{2\tau^2}\right)dt\\
-&\le a+
-2n\frac{\tau^2}{a}
-\exp\!\left(-\frac{a^2}{2\tau^2}\right)\\
-&=a+\frac{\tau^2}{a}.
-\end{aligned}
-</script>
-</div>
-<p>所以</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\mathbb E[M]
-\le
-\tau\left(
-\sqrt{2\log(2n)}+rac1{\sqrt{2\log(2n)}}
-\right)
-\le
-2\tau\sqrt{2\log(2n)}.
-</script>
-</div>
-<p>这与精确的 Laplace-transform 证明只相差一个普适常数。</p>
-<hr />
-<h2 id="125">1.2.5 用求积公式估计期望</h2>
-<p>设 <span class="arithmatex">\(X\sim\operatorname{Unif}[0,1]\)</span>，需要计算</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-I=\mathbb E[f(X)]=\int_0^1f(x)\,dx.
-</script>
-</div>
-<p>取均匀网格</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-x_i=\frac in,\qquad i=0,1,\dots,n.
-</script>
-</div>
-<p>梯形公式为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\widehat I
-=
-\frac1n\left[
-\frac12f(x_0)+\sum_{i=1}^{n-1}f(x_i)+\frac12f(x_n)
-\right]
-=
-\frac1{2n}\sum_{i=1}^n\bigl[f(x_{i-1})+f(x_i)\bigr].
-</script>
-</div>
-<p>它等价于：在每个小区间 <span class="arithmatex">\([x_{i-1},x_i]\)</span> 上用端点确定的线性插值函数代替 <span class="arithmatex">\(f\)</span>，再对该插值函数积分。</p>
-<h3 id="_7">单区间线性插值误差</h3>
-<p>设 <span class="arithmatex">\(g:[0,1]\to\mathbb R\)</span>，端点线性插值为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\widetilde g(x)=(1-x)g(0)+xg(1).
-</script>
-</div>
-<p>直接积分可得</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\int_0^1\widetilde g(x)\,dx
-=
-\frac{g(0)+g(1)}2.
-</script>
-</div>
-<p>若 <span class="arithmatex">\(g\)</span> 二阶可微，且</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-|g''(x)|\le L,
-</script>
-</div>
-<p>则线性插值余项公式给出：对每个 <span class="arithmatex">\(x\in[0,1]\)</span>，存在 <span class="arithmatex">\(\xi_x\in(0,1)\)</span> 使得</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-g(x)-\widetilde g(x)
-=
-\frac{g''(\xi_x)}2x(x-1).
-</script>
-</div>
-<p>因此</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\boxed{
-|g(x)-\widetilde g(x)|
-\le
-\frac L2x(1-x)
-}.
-</script>
-</div>
-<h3 id="_8">梯形公式的全局误差</h3>
-<p>在长度为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-h=x_i-x_{i-1}=\frac1n
-</script>
-</div>
-<p>的小区间上，缩放上述结论得到</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-|f(x)-\widetilde f_i(x)|
-\le
-\frac L2(x-x_{i-1})(x_i-x).
-</script>
-</div>
-<p>于是局部积分误差满足</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\begin{aligned}
-\left|
-\int_{x_{i-1}}^{x_i}f(x)\,dx
--
-\frac h2\bigl[f(x_{i-1})+f(x_i)\bigr]
-\right|
-&\le
-\frac L2\int_{x_{i-1}}^{x_i}
-(x-x_{i-1})(x_i-x)\,dx\\
-&=
-\frac{Lh^3}{12}.
-\end{aligned}
-</script>
-</div>
-<p>将 <span class="arithmatex">\(n\)</span> 个区间相加，得到</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-\boxed{
-|I-\widehat I|
-\le
-\frac{L}{12n^2}
-}.
-</script>
-</div>
-<p>因此，在二阶导数一致有界时，梯形公式的误差阶为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
-|I-\widehat I|=O(n^{-2}).
-</script>
-</div>
-<p>若只假设一阶导数有界，一般只能得到 <span class="arithmatex">\(O(n^{-1})\)</span> 的误差。</p>
-<hr />
-<h2 id="_9">主要校订</h2>
+<h1 id="_1">你真的了解线性算法了吗？</h1>
+<h2 id="intro">Intro：总介绍</h2>
+<p>为什么称这是一个线性算法</p>
+<p>原本的目标是极小化一个期望风险，<span class="arithmatex">\(\mathcal R (f) = \mathbb E[\ell(f(x),y)]\)</span></p>
+<p>其中x,y符合联合分布<span class="arithmatex">\(p = p(x,y)\)</span>,损失函数一般选用恒正，凸且光滑可微的<span class="arithmatex">\(\ell (a,y)=(a-y)^2\)</span></p>
+<p>理论上将风险极小化的目标函数<span class="arithmatex">\(f^*(x) = \mathbb E(y|x)\)</span>，这样的f确实是让期望风险极小化的方法。</p>
+<p>但是有两个问题，就是我们并不知道联合分布是什么，所以我们并不能找不到的；其次这个f到底在哪，我们应该如何去表示这个东西也是不知道的。</p>
+<p>所以这里我们要做两个处理：</p>
+<p>首先，我们需要假设函数是由若干个隐特征线性组合而成的，也就是假设所有的函数都属于这样一个函数类，这就是所谓算法“线性性质”的由来，是因为这个函数类关于参数<span class="arithmatex">\(\theta\)</span>是线性的，但是关于特征X并不是线性的。</p>
+<p><span class="arithmatex">\(\mathcal F = \{\varphi(x)^T\theta|\theta\in R^d,\varphi:\mathcal X\rightarrow R^d\}\)</span></p>
+<p>虽然我们并不知道什么是比较好的<span class="arithmatex">\(\varphi\)</span>，或许是平方，三次方，或者指数；也不知道这个d要取多少，但总归经过了这样一个参数化的过程，我们可以明确的挑一个<span class="arithmatex">\(\theta\)</span>出来</p>
+<p>然而，我们原本是想好好的求一个好的参数<span class="arithmatex">\(\mathcal R(f_{\theta^*})= argmin_{f\in\mathcal F_{\theta}}\mathcal R(f)\)</span>但是我们不知道联合分布是什么，就是期望求不出来。</p>
+<p>我们需要换成经验风险，所谓经验风险，就是根据已有的n组数据<span class="arithmatex">\(\{(x_i,y_i)\}\)</span>来的统计量来代替对期望的估计：</p>
+<p><span class="arithmatex">\(\hat{\mathcal{R}}(f) =\frac{1}{n} \sum_{i=1}^n\ell(f(x_i),y_i)\)</span></p>
+<p>极小化这个目标函数<span class="arithmatex">\(\hat f = argmin_{f\in \mathcal F_{\theta}}\hat {\mathcal{R}}(f)\)</span></p>
+<p>这样其实就转化为了一个最小二乘问题<span class="arithmatex">\(min_{\theta\in R^d}||A\theta-y||_2^2\)</span></p>
+<p>其中<span class="arithmatex">\(A = (\phi(x_1),\phi(x_2),\cdots,\phi(x_n))^T,\theta\in R^d,y = (y_1,y_2,\cdots,y_n)^T\)</span></p>
+<p>这就是所谓线性回归算法问题的由来，基本就是来自于二次损失函数的第一性原理，以及出于一些实际算法求解的考虑的一些降级处理。搞清楚了哪些是最初的假设，哪些是“我们实际不知道”而向现实做出的妥协。</p>
+<p>但是，以下问题是我们仍然需要知道的：</p>
 <ol>
-<li>Bernstein 不等式的分母应为 <span class="arithmatex">\(2\sigma^2+2ct/3\)</span>，不能把方差项或线性项的系数混写。</li>
-<li>次高斯最大值证明中的优化变量应取 <span class="arithmatex">\(\lambda=\sqrt{2\log n}/\tau\)</span>。</li>
-<li>对绝对值最大值，应把变量数从 <span class="arithmatex">\(n\)</span> 改为 <span class="arithmatex">\(2n\)</span>，故出现 <span class="arithmatex">\(\log(2n)\)</span>。</li>
-<li>梯形公式的二阶光滑误差为 <span class="arithmatex">\(L/(12n^2)\)</span>；单区间插值误差为 <span class="arithmatex">\(\frac L2x(1-x)\)</span>。</li>
+<li>最小二乘问题数学上能不能求解，计算上怎么求解：</li>
 </ol>
+<p>首先，非常幸运的是，这个最小二乘问题<span class="arithmatex">\(argmin_{\theta\in R^d}||\Phi \theta-y||_2^2\)</span>在<span class="arithmatex">\(\Phi\)</span>是列满秩的时候才行，观测的样本量一定要比特征数目要更少</p>
+<p>实际上有解析解，可以写成：
+$$
+\hat \theta = (\Phi^T\Phi)^{-1}\Phi y
+$$
+至于如何验证这一点，则是可以将其看成一个优化的问题，将原本的问题转化为一个二次型极小化：</p>
+<p><span class="arithmatex">\(\varphi(\theta) = ||\Phi \theta-y||_2^2\)</span></p>
+<p>对于<span class="arithmatex">\(\varphi(x)\)</span>进行求导，<span class="arithmatex">\(\varphi'(\theta) = \Phi^T(\Phi\theta - y),\varphi''(\theta) = \Phi^T\Phi\)</span></p>
+<p>最优性条件要求一阶导数为零，而且列满秩的条件将会对应<span class="arithmatex">\(\Phi^T\Phi\)</span>可逆，因此<span class="arithmatex">\(\Phi^T\Phi\theta = \Phi y\)</span>,<span class="arithmatex">\(\hat\theta = (\Phi^T\Phi)^{-1}\Phi y\)</span></p>
+<p>而由于此时Hesse阵是正定矩阵，满足二阶最优性条件，准确来说此时这是一个凸函数，极小点就是最小值</p>
+<p>注：严格来讲，<span class="arithmatex">\(\theta\)</span>是一个向量所以不能这么写，应该写成一个梯度<span class="arithmatex">\(\nabla\)</span>和Hesse阵<span class="arithmatex">\(\nabla^2\)</span>。但由于一阶，二阶的情况可以简单拓展，就直接使用一次二次导数</p>
+<p>当然，这实际上还有一个更鲜明的解释：所谓的求的预测向量就是真实分布空间</p>
+<p>Proposition 3.2 预测向量 <span class="arithmatex">\(\hat y =Φ\hat θ = Φ(Φ^⊤Φ)^{−1}\Phi^⊤y\)</span> 这样得到，这实际上可以写成<span class="arithmatex">\(y\in R^n\)</span>  到像空间<span class="arithmatex">\(Im(\Phi)⊂ R^n\)</span> 的一个正交投影，即不改变长度。</p>
+<p>听上去很符合直觉，毕竟预测就是根据已知去找到了一个预测空间，找到了一双发现真相的眼睛；预测的结果实际上就是用这个方法去“看”真相，那就是有一个畸变，相当于就是把真相投影到了现实之中。而一个好的投影就应该还原，一根一米长的棍子不会就变成1cm,一个正方形不会变成一个长方形甚至是三角形。</p>
+<p>论证部分：</p>
+<p>其实就是要证明矩阵<span class="arithmatex">\(\Pi = Φ(Φ^⊤Φ)^{−1}Φ^⊤ \in R^{n×n}\)</span>是一个在像空间<span class="arithmatex">\(Im(\Phi)\)</span>正交矩阵.</p>
+<p>对于任意的<span class="arithmatex">\(x \in Im(\Phi)=\{\Phi a|a\in R^d\}\)</span>只需证明<span class="arithmatex">\(\Pi x = x\)</span>即可，要证明这是一个正交投影矩阵就是满足：</p>
+<p><span class="arithmatex">\(Φ\hat{θ} = argmin_{z∈im\Phi} ||y − z||_2^2\)</span></p>
+<p>首先我们可以证明如下两点</p>
+<p><span class="arithmatex">\((1)\forall u \in Im(\Phi),\Pi u = u\)</span>(投影矩阵)</p>
+<p><span class="arithmatex">\((2)u′ \in Im(Φ)^⊥, Φ^⊤u′ = 0\)</span></p>
+<p>对于(1)考虑<span class="arithmatex">\(u = \Phi a\)</span>，<span class="arithmatex">\(\Pi \Phi a=\Phi(Φ^⊤Φ)^{−1}Φ^⊤\Phi a=\Phi a=u\)</span>由此</p>
+<p>而(2)的证明过程就是</p>
+<p>考虑<span class="arithmatex">\(\Pi u′ = Φ(Φ^⊤Φ)^{−1}(Φ^⊤u′) = 0\)</span></p>
+<p>再此基础上,考虑辅助的变量<span class="arithmatex">\(\forall z\in Im\Phi,\|y-\Pi y\|^2_2 = (y-\Pi y,y -z +z - \Pi y) =  (y-\Pi y,y-z)+(y-\Pi y,z-\Pi y) = (y-\Pi y,y-z)\le \|y-\Pi y\| \cdot\|y-z\|\)</span></p>
+<p>因此<span class="arithmatex">\(\forall z \in Im(\Phi),\|y-\Pi y\| \le \|y-z\|\)</span>,也就是 <span class="arithmatex">\(Φ\hat{θ} = argmin_{z∈im\Phi} ||y − z||_2^2\)</span></p>
+<p>这实际上就是意味着选取像空间之中距离y最接近的一个向量。</p>
+<p>所以最小二乘问题居然作为算法界最高的山，应该如何去将其求解。</p>
+<p>这基本上对应两种求解思路：</p>
+<p>利用矩阵性质去求解：QR方法</p>
+<p>首先将<span class="arithmatex">\(\Phi\)</span> 分解为<span class="arithmatex">\(\Phi=QR\)</span>其中<span class="arithmatex">\(Q \in R^{n×d}\)</span>的列向量正交，满足<span class="arithmatex">\(Q^⊤Q = I\)</span>而且<span class="arithmatex">\(R ∈ R^{d×d}\)</span> 是上三角矩阵，下三角为零，这相比于矩阵求逆速度要更快，虽然实际上都是<span class="arithmatex">\(O(n^3)\)</span>的数量级，但系数变小了。</p>
+<p>而且这样的话，<span class="arithmatex">\(Φ⊤Φ = R^⊤Q^⊤QR = R^⊤R\)</span> , 就自发的形成了一个以R为因子的Cholesky分解，关于已有的半正定矩阵<span class="arithmatex">\(Φ^⊤Φ \in R^d\)</span>. One then has, since R is
+invertible,
+(Φ⊤Φ)ˆθ = Φ⊤y ⇔ R⊤Q⊤QRˆθ = R⊤Q⊤y ⇔ R⊤Rˆθ = R⊤Q⊤y ⇔ Rˆθ = Q⊤y.
+It only remains to solve a triangular linear system, which is easy. The overall running
+time complexity remains O(d3). The conjugate gradient algorithm can also be used (see
+Golub and Loan, 1996, for details).</p>
+<p>直接将其看作一个函数极小化问题然后去求解：梯度下降算法</p>
+<p>We can bypass the need for matrix inversion or factorization using
+gradient descent (GD). It consists in approximately minimizing bR by taking an initial
+point θ0 ∈ Rd and iteratively going toward the minimizer by following the opposite of the
+gradient:
+θt = θt−1 − γbR′(θt−1) for t &gt; 1,
+where γ &gt; 0 is the step size. When these iterates converge, they do toward the OLS
+estimator since a fixed-point θ satisfies bR′(θ) = 0. We will study such algorithms in
+chapter 5, with running-time complexities going down to linear in d, e.g., O(nd).</p>
+<p>Fixed design：输入点固定，只有输出有噪声</p>
+<p>固定设计中，把
+$$
+x_1,\ldots,x_n
+$$
+看成提前给定的确定性点。</p>
+<p>例如，在一维区间上人为选定均匀网格：
+$$
+x_i=\frac{i}{n}.
+$$
+然后输出按照某个随机机制生成，例如
+$$
+y_i=f^*(x_i)+\varepsilon_i,
+$$
+其中噪声 <span class="arithmatex">\(\varepsilon_i\)</span> 是随机的。</p>
+<p>因此：</p>
+<ul>
+<li><span class="arithmatex">\(x_i\)</span> 不随机；</li>
+<li><span class="arithmatex">\(y_i\)</span> 随机；</li>
+<li>估计量 <span class="arithmatex">\(\hat\theta\)</span> 因为依赖于 <span class="arithmatex">\(y_i\)</span>，所以仍然是随机的。</li>
+</ul>
+<p>我们只评价模型在原来的这些输入点上的预测效果。例如定义
+$$
+R_{\mathrm{fix}}(\theta)
+=
+\frac1n\sum_{i=1}^n
+\mathbb E\left[
+\bigl(y_i^{\mathrm{new}}-\phi(x_i)^\top\theta\bigr)^2
+\right],
+$$
+其中 <span class="arithmatex">\(y_i^{\mathrm{new}}\)</span> 表示在同一个输入 <span class="arithmatex">\(x_i\)</span> 上重新产生的一个独立输出。</p>
+<p>关键在于：测试时输入仍然是
+$$
+x_1,\ldots,x_n,
+$$
+只是输出噪声重新抽样。</p>
+<p>因此固定设计研究的是 <strong>within-sample prediction</strong>，而不是对新输入点的推广。</p>
+<p>固定输入点可以对应一个离散概率分布：
+$$
+\widehat p_X
+=
+\frac1n\sum_{i=1}^n\delta_{x_i},
+$$
+其中 <span class="arithmatex">\(\delta_{x_i}\)</span> 是集中在 <span class="arithmatex">\(x_i\)</span> 上的点质量。</p>
+<p>从这个分布中抽取输入，相当于：
+$$
+P(x=x_i)=\frac1n.
+$$
+于是，对任意函数 <span class="arithmatex">\(g\)</span>，
+$$
+\mathbb E_{x\sim\widehat p_X}[g(x)]
+=
+\frac1n\sum_{i=1}^n g(x_i).
+$$
+所以固定设计下的平均预测误差
+$$
+\frac1n\sum_{i=1}^n
+\bigl(f(x_i)-f^<em>(x_i)\bigr)^2
+$$
+也可以写成
+$$
+\mathbb E_{x\sim\widehat p_X}
+\left[
+\bigl(f(x)-f^</em>(x)\bigr)^2
+\right].
+$$
+Proposition 3.3 (风险的分解对于固定最小二乘法的设计) Under the linear
+model and fixed design assumptions made in this section, for any θ ∈ Rd, we have R∗ = σ2
+and</p>
+<p><span class="arithmatex">\(\mathcal R(θ) − \mathcal R^∗ = \|θ − θ^∗\|_{\hat \Sigma}^2\)</span>其中<span class="arithmatex">\(\hat Σ = \frac 1
+nΦ^⊤Φ\)</span>数据矩阵的归一化的协方差<span class="arithmatex">\(\|θ\|^2_{\hat \Sigma}= θ^⊤\hatΣθ\)</span>. 如果<span class="arithmatex">\(\hat \theta\)</span>是一个随机变量 </p>
+<p>整理后的公式是
+$$
+\mathbb E!\left[R(\widehat{\theta})\right]-R^*
+=
+\underbrace{
+\left|\mathbb E[\widehat{\theta}]-\theta^<em>\right|<em _text_Bias：偏差平方="\text{Bias：偏差平方">2^2
+}</em>
++
+\underbrace{
+\mathbb E!\left[
+\left|\widehat{\theta}-\mathbb E[\widehat{\theta}]\right|}<em _text_Variance：方差="\text{Variance：方差">2^2
+\right]
+}</em>.
+$$
+它是参数估计误差的 **偏差—方差分解*}</em>。</p>
+<p>3.6 正则化的线性最小二乘法</p>
+<p>对于正则化参数 <span class="arithmatex">\(\lambda&gt;0\)</span>，我们将岭最小二乘估计量 <span class="arithmatex">\(\hat{\theta}_\lambda\)</span> 定义为以下优化问题的极小化解：
+$$
+\hat{\theta}<em _theta_in_mathbb_R="\theta\in\mathbb{R">\lambda \in argmin</em>|y-\Phi\theta|_2^2
+ +
+ \lambda|\theta|_2^2 }.
+$$
+岭回归估计量可以通过闭式公式求出。需要注意的是，此时我们不再要求矩阵 }^d}{ \frac{1}{n<span class="arithmatex">\(\Phi^\top\Phi\)</span> 可逆。</p>
+<p>Proposition 3.6我们回忆<span class="arithmatex">\(\hat Σ = \frac{1}{n}Φ^⊤Φ ∈ R^{d×d}.\)</span>我们可有<span class="arithmatex">\(\hatθ_λ =\frac{1}{n}(\hat Σ + λI)^{−1}Φ^⊤y.\)</span>
+证明过程，我们可以参考命题3.1的证明过程，只需要让<span class="arithmatex">\(f_{\lambda}(\theta) = \frac{1}{n}\|y-\Phi\theta\|_2^2 +\lambda\|\theta\|_2^2\)</span></p>
+<p>满足<span class="arithmatex">\(f'(\hat\theta_{\lambda}) = -\Phi^T(y-\Phi\theta)+\lambda\theta=(\hat\Sigma+\lambda I)\theta-\frac{1}{n}\Phi^T y\)</span></p>
+<p>而且有二阶导数<span class="arithmatex">\(\frac{1}{n}\Phi^T\Phi +\lambda I\)</span></p>
+<p>只要二阶导数矩阵正定，就可以满足凸性，而且此时这个矩阵是可逆的。实际上就是要让<span class="arithmatex">\(\lambda\)</span>足够大就好，不需要数据生成的协方差矩阵非得满足什么非得具有很好的性质，即“分得很开”。</p>
+<p>Exercise 3.5 使用矩阵可逆引理，说明论述3.6给出的Ridge Regression岭回归的估计也可以被写成，<span class="arithmatex">\(\hat θ_λ = (Φ^⊤Φ+nλI)^{−1}Φ^⊤y = Φ^⊤(ΦΦ^⊤ + nλI)^{−1}y.\)</span>这样在计算上有什么优势：</p>
+<p>求解过程：</p>
+<p>已知：</p>
+<p>关键是下面这种矩阵恒等式：
+$$
+\left(\Phi^\top\Phi+aI_d\right)^{-1}\Phi^\top
+=
+\Phi^\top\left(\Phi\Phi^\top+aI_n\right)^{-1},
+$$
+其中 <span class="arithmatex">\(a&gt;0\)</span>。本题只需要令
+$$
+(\Phi^{\top}\Phi+aI_d)\Phi^{\top}(\Phi\Phi^{\top}+aI_n)^{-1}=\Phi^\top(\Phi\Phi^\top+aI_n)(\Phi\Phi^{\top}+aI_n)^{-1}=\Phi^\top
+$$
+因此：
+$$
+\Phi^{\top}(\Phi\Phi^{\top}+aI_n)^{-1}=(\Phi^{\top}\Phi+aI_d)^{-1}\Phi^\top
+$$
+当然，也可以用矩阵求逆公式：</p>
+<p><span class="arithmatex">\((A+UCV)^{-1} = A^{-1}-A^{-1}U(C^{-1}+VA^{-1}U)^{-1}VA^{-1}\)</span></p>
+<p>首先考虑一种特定的结构<span class="arithmatex">\(A=I\)</span>时，证明，<span class="arithmatex">\((I+UCV)^{-1} = I - U(C^{-1}+VU)^{-1}V\)</span></p>
+<p>由于<span class="arithmatex">\((I+UCV)^{-1}=I-UMV,O = UCV -(I+UCV)UMV=U(C-(I+CVU)M)V,M = (C^{-1}+VU)^{-1}\)</span></p>
+<p>然后我们将原本的改为：</p>
+<p><span class="arithmatex">\((A+UCV)^{-1} = A^{-1}(I+UCVA^{-1})^{-1}=A^{-1}(I-U(C^{-1}+VA^{-1}U)^{-1}VA^{-1})=A^{-1}-A^{-1}U(C^{-1}+VA^{-1}U)VA^{-1}\)</span></p>
+<p>当然在这里是比较简单的情景：</p>
+<p><span class="arithmatex">\((aI+\Phi^{T}\Phi)^{-1}\Phi^\top = \frac{1}{a}I- \frac{1}{a}\Phi^\top(aI+\Phi\Phi^\top)^{-1}\Phi=a^{-1}\Phi^\top(I-(aI+\Phi\Phi^\top)^{-1}\Phi\Phi^\top)=a^{-1}\Phi^\top(aI+\Phi\Phi^\top)^{-1}((aI+\Phi\Phi^\top)-\Phi\Phi^\top)=a^{-1}\Phi^\top(aI+\Phi\Phi^\top)^{-1}aI=\Phi^\top(aI+\Phi\Phi^\top)^{-1}\)</span></p>
+<p>由于维数从原本的d维（数据的维数）变成了n维（样本的维数）</p>
+<p>在矩阵求逆方面，这个三次方的操作就会少很多，计算量显著减少</p>
+<p>Proposition 3.7:对于如下的线性模型假设（和固定模型假设）岭回归最小二乘法估计 <span class="arithmatex">\(\hatθ_λ = \frac1
+n(\hat Σ + λI)^{−1}Φ^⊤y\)</span>有如下的经验估计
+$$
+E \mathcal R(\hat θ_λ) − \mathcal R^∗ = λ^2θ_*^{T} (\hat Σ + λI)^{−2}\hatΣθ_∗ +
+\frac {σ^2}n tr[\hatΣ^2(\hatΣ + λI)^{−2}].
+$$
+证明过程：</p>
+<p>实际上就是进行一个误差分解，分解为bias偏差，记作B；方差var，记作V，参考Proposition3.3
+$$
+B = \left|\mathbb E[\widehat{\theta}]-\theta^<em>\right|_{\hat \Sigma}^2 = |\mathbb E[\frac1
+n(\hat Σ + λI)^{−1}Φ^⊤(\Phi \theta^</em>+\varepsilon)]-\theta^<em>|_{\hat \Sigma}^2 = |\mathbb E[\frac1
+n(\hat Σ + λI)^{−1}Φ^⊤\Phi \theta^</em>]-\theta^<em>|_2^2=|\mathbb E[(\hat Σ + λI)^{−1}\lambda \theta^</em>]|<em>{\hat \Sigma}^2=|(\hat Σ + λI)^{−1}\lambda \theta^<em>|<em>{\hat \Sigma}^2=λ^2θ</em></em>^{T} (\hat Σ + λI)^{−2}\hatΣθ</em>∗
+$$</p>
+<div class="arithmatex">\[
+V = \mathbb E
+\left\|\widehat{\theta}-\mathbb E[\widehat{\theta}]\right\|_{\hat \Sigma}^2=\mathbb E
+\left\|\frac1
+n(\hat Σ + λI)^{−1}Φ^⊤(\Phi \theta^*+\varepsilon)-\mathbb E[\frac1
+n(\hat Σ + λI)^{−1}Φ^⊤(\Phi \theta^*+\varepsilon)]\right\|_{\hat \Sigma}^2=\mathbb E
+\|\frac1 n(\hat Σ + λI)^{−1}Φ^⊤\varepsilon \|_{\hat \Sigma}^2=tr[\frac1 n(\hat Σ + λI)^{−2}Φ^⊤\Phi\hat \Sigma \mathbb E \varepsilon^\top\varepsilon]=\frac{\sigma^2}{n}tr[(\hat Σ + λI)^{−2}\hat Σ^2]
+\]</div>
+<div class="arithmatex">\[
+B+V = \frac1 n(\hatΣ+λI)^{−1}Φ^⊤Φθ^∗ \le λ^2θ_*^{T} (\hat Σ + λI)^{−2}\hatΣθ_∗ +
+\frac {σ^2}n tr[\hatΣ^2(\hatΣ + λI)^{−2}]
+\]</div>
+<h1 id="proposition-38-choice-of-regularization-parameter-widehatsigmafrac1nphitopphilambda">Proposition 3.8 (Choice of regularization parameter) 设经验协方差矩阵为<span class="arithmatex">\(\widehat{\Sigma}=\frac1n\Phi^\top\Phi.\)</span>取正则化参数$\lambda^*</h1>
+<p>\frac{
+\sigma\sqrt{\operatorname{tr}(\widehat{\Sigma})}
+}{
+|\theta^<em>|<em>2\sqrt n
+}<span class="arithmatex">\(则有\)</span>\mathbb E\left[R(\widehat{\theta}</em>{\lambda^</em>})\right]-R^*
+\leq
+\frac{
+\sigma\sqrt{\operatorname{tr}(\widehat{\Sigma})}\,
+|\theta^*|_2
+}{
+\sqrt n
+}.$</p>
+<p>我们已经利用如下事实得到了前面的结论：矩阵<span class="arithmatex">\((\widehat{\Sigma}+\lambda I)^{-2}\lambda\widehat{\Sigma}\)</span>的所有特征值都不超过 <span class="arithmatex">\(\frac12\)</span>。</p>
+<p>事实上，设 <span class="arithmatex">\(\mu\)</span> 是 <span class="arithmatex">\(\widehat{\Sigma}\)</span> 的任意一个特征值，则上述矩阵对应的特征值为<span class="arithmatex">\(\frac{\lambda\mu}{(\mu+\lambda)^2}.\)</span></p>
+<p>而<span class="arithmatex">\(\frac{\lambda\mu}{(\mu+\lambda)^2}
+\leq \frac12\)</span>等价于<span class="arithmatex">\((\mu+\lambda)^2\geq 2\lambda\mu.\)</span>对于 <span class="arithmatex">\(\widehat{\Sigma}\)</span> 的所有特征值 <span class="arithmatex">\(\mu\geq 0\)</span>，上述不等式都成立。</p>
+<p>偏差项满足</p>
+<div class="arithmatex">\[
+\begin{aligned}
+B
+&amp;=
+\lambda^2 {\theta^*}^{\top}
+(\widehat{\Sigma}+\lambda I)^{-2}
+\widehat{\Sigma}\theta^* \
+&amp;=
+\lambda {\theta^*}^{\top}
+(\widehat{\Sigma}+\lambda I)^{-2}
+\lambda\widehat{\Sigma}\theta^* \
+&amp;\leq
+\frac{\lambda}{2}|\theta^*|_2^2.
+\end{aligned}
+\]</div>
+<p>类似地，对于方差项，有
+$$
+\begin{aligned}
+V
+&amp;=
+\frac{\sigma^2}{n}
+\operatorname{tr}
+\left[
+\widehat{\Sigma}^2
+(\widehat{\Sigma}+\lambda I)^{-2}
+\right] \
+&amp;=
+\frac{\sigma^2}{\lambda n}
+\operatorname{tr}
+\left[
+\widehat{\Sigma}
+\lambda\widehat{\Sigma}
+(\widehat{\Sigma}+\lambda I)^{-2}
+\right] \
+&amp;\leq
+\frac{\sigma^2\operatorname{tr}(\widehat{\Sigma})}
+{2\lambda n}.
+\end{aligned}
+$$
+因此，
+$$
+\mathbb E\left[R(\widehat{\theta}_{\lambda})\right]-R^*
+\leq
+\frac{\lambda}{2}|\theta^<em>|_2^2
++
+\frac{\sigma^2\operatorname{tr}(\widehat{\Sigma})}
+{2\lambda n}
+\le
+\sigma|\theta^</em>|_2\sqrt{\frac{tr(\hat \Sigma)}{n}}
+$$
+Exercise 3.6 计算经验风险，若使用<span class="arithmatex">\(θ^⊤Λθ\)</span>替换原本的正则项<span class="arithmatex">\(λ\|θ\|_2^2\)</span>其中<span class="arithmatex">\(Λ\in R^{d×d}\)</span>是一个正定矩阵</p>
+<p>Exercise 3.7 () Consider the “leave-one-out” estimator θ−i
+λ ∈ Rd obtained, for each
+i ∈ {1, . . . , n}, by minimizing 1
+n
+P
+j6=i(yj − θ⊤ϕ(xj ))2 + λkθk22
+. Given the matrix H =
+Φ(Φ⊤Φ + nλI)−1Φ⊤ ∈ Rn×n, and its diagonal h = diag(H) ∈ Rn, show that
+1
+n
+Xn
+i=1
+(yi − ϕ(xi)⊤θ−i
+λ )2 =
+1
+nk(I − Diag(h))−1(I − H)yk22
+,
+where Diag(h) denotes the diagonal matrix with h as its diagonal. Hint: use Woodbury
+matrix identities from section 1.1.3.</p>
+<p>3.7.下界估计</p>
+<p>在固定设计、线性模型正确设定、噪声为高斯噪声时，不论使用什么估计方法，最坏情况下的期望超额风险都不可能小于<span class="arithmatex">\(\frac{d\sigma^2}{n}\)</span></p>
+<p>固定设计模型为
+$$
+y=\Phi\theta^*+\varepsilon,
+\qquad
+\varepsilon\sim\mathcal N(0,\sigma^2I_n),
+$$
+其中：</p>
+<ul>
+<li><span class="arithmatex">\(\Phi\in\mathbb R^{n\times d}\)</span> 是给定的设计矩阵；</li>
+<li><span class="arithmatex">\(\theta^*\in\mathbb R^d\)</span> 是未知参数；</li>
+<li><span class="arithmatex">\(y\in\mathbb R^n\)</span> 是观测数据。</li>
+</ul>
+<p>定义经验协方差矩阵
+$$
+\widehat\Sigma=\frac1n\Phi^\top\Phi.
+$$
+在模型正确设定时，任意参数估计值 <span class="arithmatex">\(\theta\)</span> 的超额风险是
+$$
+R_{\theta^<em>}(\theta)-R^</em>
+=
+|\theta-\theta^<em>|<em>{\widehat\Sigma}^2.
+$$
+现在不再只考虑 OLS 或 Ridge，而是考虑**任何估计器**
+$$
+A:\mathbb R^n\to\mathbb R^d,
+\qquad
+\widehat\theta=A(y).
+$$
+它可以是线性的、非线性的、有偏的，都没有关系。教材研究的是
+$$
+\inf_A\sup</em>{\theta^</em>\in\mathbb R^d}
+\mathbb E_\varepsilon
+\left[
+R_{\theta^<em>}\bigl(A(\Phi\theta^</em>+\varepsilon)\bigr)-R^*
+\right].
+$$
+这里：</p>
+<ul>
+<li><span class="arithmatex">\(\sup_{\theta^*}\)</span>：对估计器来说最不利的真实参数；</li>
+<li><span class="arithmatex">\(\inf_A\)</span>：在所有可能的估计算法中选择最好的一个。</li>
+</ul>
+<p>这就是该问题的 <strong>minimax risk</strong>。</p>
+<p>接下来我们逐步梳理证明：</p>
+<p>首先，我们将选择<span class="arithmatex">\(\theta^*\sim \mathcal N\left(0,\frac{\sigma^2}{\lambda n}I_d\right),\lambda&gt;0\)</span>的一个先验分布来选取，选取参数使得最大化风险大小的会大于等于在这个先验正态分布下的风险大小
+$$
+\sup_{\theta^<em>\in\mathbb R^d}
+\mathbb E_\varepsilon
+\left[
+R_{\theta^</em>}\bigl(A(\Phi\theta^<em>+\varepsilon)\bigr)
+\right]
+\ge
+\mathbb E_{\theta^</em>\sim
+\mathcal N(0,\frac{\sigma^2}{\lambda n}I)}
+\mathbb E_\varepsilon
+\left[
+R_{\theta^<em>}\bigl(A(\Phi\theta^</em>+\varepsilon)\bigr)
+\right].
+$$
+记
+$$
+\widehat\Sigma=\frac1n\Phi^\top\Phi,
+\qquad
+|u|_{\widehat\Sigma}^2=u^\top\widehat\Sigma u,
+$$
+并取先验
+$$
+\theta^*\sim\mathcal N\left(0,\frac{\sigma^2}{\lambda n}I_d\right),
+\qquad
+\varepsilon\sim\mathcal N(0,\sigma^2I_n),
+$$
+二者相互独立。教材先证明平方损失下最优的 Bayes 估计器是后验均值；由于后验为高斯分布，后验均值等于后验众数，而后验众数恰好给出 Ridge 估计器；然后证明这个估计器对应的误差就是<span class="arithmatex">\(\frac{d\sigma^2}{n}\)</span></p>
+<p>记minimax 超额风险
+$$
+\mathcal M
+:=
+\inf_A
+\sup_{\theta^<em>\in\mathbb R^d}
+\mathbb E_{\varepsilon}
+\left[
+R_{\theta^</em>}\bigl(A(\Phi\theta^<em>+\varepsilon)\bigr)
+\right]
+-R^</em>.
+$$
+因此有不等式
+$$
+\mathcal M
+\ge
+\inf_A
+\mathbb E_{\theta^<em>\sim
+\mathcal N(0,\frac{\sigma^2}{\lambda n}I)}
+\mathbb E_\varepsilon
+\left[
+R_{\theta^</em>}\bigl(A(\Phi\theta^<em>+\varepsilon)\bigr)
+\right]-R^</em>.
+$$
+然后我们可以得到经验风险的衡量，这是一个与<span class="arithmatex">\(R_{\theta^*}(\theta)= \mathbb E\|\Phi(\theta^*-\theta)+\widetilde\varepsilon\|_2^2=\mathbb E\|\Phi(\theta^*-\theta)\|_2^2+\mathbb E\|\widetilde\varepsilon\|_2^2\)</span></p>
+<p>这样拆分是因为交叉项均值为零，所以我们真实打包进入风险的<span class="arithmatex">\(\hat\theta=A(y)=A(\Phi\theta^*+\varepsilon)\)</span></p>
+<p>由平方损失极小化的要求，实际上就是要让<span class="arithmatex">\(min\mathbb E_{\theta}\|\Phi(\theta^*-\theta)\|_2^2\)</span></p>
+<p><span class="arithmatex">\(\hat \theta_{A} = \mathbb E(\theta^*|y)\)</span>条件期望就是在平方意义下的最佳逼近</p>
+<p>所以就转化为了:
+$$
+\inf_A
+\mathbb E_{\theta^<em>\sim
+\mathcal N(0,\frac{\sigma^2}{\lambda n}I)}
+\mathbb E_\varepsilon
+\left[
+R_{\theta^</em>}\bigl(A(\Phi\theta^<em>+\varepsilon)\bigr)
+\right]=\mathbb E_{\theta^</em>\sim
+\mathcal N(0,\frac{\sigma^2}{\lambda n}I)}
+\mathbb E_\varepsilon
+\left[
+R_{\theta^<em>}\bigl(A^</em>(\Phi\theta^<em>+\varepsilon)\bigr)
+\right] 
+$$
+进而就进一步得到了:
+$$
+\mathbb E_{\theta^</em>\sim
+\mathcal N(0,\frac{\sigma^2}{\lambda n}I)}
+\mathbb E_\varepsilon
+\left[
+R_{\theta^<em>}\bigl(A^</em>(\Phi\theta^<em>+\varepsilon)\bigr)
+\right]-R^</em>
+=
+\mathbb E_{\theta^<em>\sim
+\mathcal N(0,\frac{\sigma^2}{\lambda n}I)}
+\mathbb E_\varepsilon
+\left|
+A^</em>(\Phi\theta^<em>+\varepsilon)-\theta^</em>
+\right|_{\widehat\Sigma}^2.
+$$
+其中这一步实际上还需要再仔细推理一下：</p>
+<p>首先<span class="arithmatex">\(R^*= E\|\widetilde\varepsilon\|_2^2\)</span>就可以直接打包进前面的风险，消掉一个常数</p>
+<p>问题就转化为<span class="arithmatex">\(R_{\theta……*}\)</span></p>
+<ol>
+<li>
+<p>应该如何选取这个<span class="arithmatex">\(\phi(x)\)</span>，我们应该如何把这个代码写出来</p>
+</li>
+<li>
+<p>我们刚才的那一顿牺牲不可行性操作到底“牺牲”了多少，误差分析。有什么东西是我们无论如何也决定不了的，那就是随机性的问题，在噪声作用下</p>
+</li>
+<li>
+<p>由于我们的笨蛋计算机和笨蛋数据我们不得不再次做一些取舍：加入正则性条件，生成稀疏性</p>
+</li>
+<li>
+<p>有没有已经写好的库，应该如何实现代码，并且再一个看上去更像回事的数据集上进行处理</p>
+</li>
+<li>
+<p>如果我们处理的不是回归问题，我们要求输出分类问题。我们在看上去更像一个问题的数据集上运行我们的数据，我们再装腔作势分析一波。</p>
+</li>
+<li>
+<p>当我们优化的时候到底发生了什么？就纯粹的梯度下降</p>
+</li>
+<li>
+<p>深度线性神经网络的优化：虽然看上去与单层等价，但是优化的效果上不等价；虽然这样做</p>
+</li>
+</ol>
+<p>假设真实的问题<span class="arithmatex">\(y_i = \varphi(x_i)^⊤θ^∗ + ε_i\)</span>.</p>
+<p>线性回归的闭式解，最小二乘问题</p>
+<p>加入正则项的分析，稀疏学习（参考）</p>
+<p>误差分析的CRLB下界，为什么这是一个最佳估计？</p>
+<p>线性回归问题：算法实现，Softmax</p>
+<p>逻辑回归，使用软阈值分类：</p>
+<p>最小二乘算法更详细的分析：</p>
+<p>PCA主成分分析：</p>
+<h2 id="_2">附录与参考资料</h2>
+<p>李沐：动手学深度学习，第三四章</p>
+<p>ai-engineering-from-scratch</p>
+<p>LTFP：从第一性原理出发的学习理论</p>
+<p>Learning Mechanics：There Will Be a Scientific Theory of Deep Learning</p>
 
 
 
