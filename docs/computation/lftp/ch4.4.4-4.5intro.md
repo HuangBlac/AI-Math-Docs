@@ -1,4 +1,4 @@
-第 4 章 · 经验风险最小化与统计学习理论
+Ch4.4.4Beyond Finitely Many Models through Covering Numbers
 
 Chaining链式法，主要用于经验误差估计之中对于Rademacher复杂度，也就是用来估计
 ```math
@@ -7,9 +7,35 @@ R_n(\mathcal H) =\mathbb E_\varepsilon\left[
 \frac1n\sum_{i=1}^n \varepsilon_i h(z_i)
 \right]
 ```
-如果对于有限的函数类，那么$R_n(\mathcal H)$可以被这么估计
+如果对于有限的函数类，那么$R_n(\mathcal H)$可以有限组合的情况来组合？
 
-Bach 书里 4.4.4 正是这样引入 covering number：用有限个函数 $f_1,\dots,f_m$ 近似整个函数类；如果每个 $f$ 都能被某个 $f_i$ 以误差 $\varepsilon$ 近似，那么 $m(\varepsilon)$ 就是 covering number。
+但是对于一个无限的函数类怎么估计呢？
+
+对于简化的情形，我们假设损失函数是正则的，也就是“好”的。例如，损失函数关于第二边缘是G-Lipshcisz-continuous，因此我们section 4.3可以推出的就是对于$f, f′ ∈ F$,满足如下不等式
+$$
+\mathcal R(f) − \mathcal R(f′)
+
+\le G · \mathbb E
+
+|f(x) − f′(x)|
+
+= G · Δ(f, f′). (4.11)
+$$
+书里 4.4.4 正是这样引入 covering number：用有限个函数 $f_1,\dots,f_m$ 近似整个函数类；如果每个 $f$ 都能被某个 $f_i$ 以误差 $\varepsilon$ 近似，那么 $m(\varepsilon)$ 就是 covering number。
+
+Exercise 4.8 Let m(ε) be the covering number of a unit ball of Rd by balls of radius ε for
+an arbitrary norm. Using comparisons of volumes, show that
+􀀀 1
+ε
+d
+6 m(ε) 6
+􀀀
+1 + 2
+ε
+d
+.
+For some sets (e.g., all Lipschitz-continuous functions with bounded Lipschitz-constant
+in d dimensions), logm(ε) grows faster, such as ε−d. See, for instance,Wainwright (2019).
 
 单层 $\varepsilon$-net 会得到类似：
 ```math
@@ -20,6 +46,80 @@ Bach 书里 4.4.4 正是这样引入 covering number：用有限个函数 $f_1,\
 \sqrt{\frac{\log N(\varepsilon,\mathcal H)}{n}}.
 ```
 问题是：这个 bound 往往不够精细。书里也指出，单纯的 covering number argument 可能不够，需要更精细的 covering number 计算或者更高级工具，例如 chaining。
+
+ε-net argument. Given a cover of F, for all f ∈ F, and with (fi)i∈{1,...,m(ε)} being
+the associated cover elements, using that both bR and R are G-Lipschitz-continuous with
+respect to the distance Δ, we have, for any i ∈ {1, . . . ,m(ε)},
+
+bR(f) −
+R(f)
+
+6
+
+bR(f) −
+bR(fi)
+
++
+
+bR(fi) −
+R(fi)
+
++
+
+R(fi) − R(f)
+
+6 2G · Δ(f, fi) +
+bR(fi) −
+R(fi)
+
+6 2G · Δ(f, fi) + sup
+j∈{1,...,m(ε)}
+
+bR(fj) −
+R(fj)
+
+.
+Taking the minimum with respect to i, and using the cover property, we get
+
+bR(f) −
+R(f)
+
+6 2Gε + sup
+j∈{1,...,m(ε)}
+
+bR(fj) −
+R(fj)
+
+This implies, using section 4.4.3 that with probability greater than 1 − δ,
+sup
+f∈F
+
+bR(f) −
+R(f)
+
+6 2Gε + ℓ∞
+r
+log(2m(ε)))
+2n
++
+ℓ √∞2n
+r
+log
+1
+δ
+.
+Therefore, if m(ε) ∼ ε−d, ignoring constants, we need to upper-bound the quantity
+ε +
+p
+d log(1/ε)/n. The choice ε ∝ 1/√n leads to a rate proportional to
+p
+(d/n) log(n),
+which shows that the dependence in n is also close to 1/√n. Unfortunately, unless refined
+computations of covering numbers or more advanced tools (such as “chaining”) ar
+
+
+
+Ch4.5 intro
 
 Massart lemma:
 

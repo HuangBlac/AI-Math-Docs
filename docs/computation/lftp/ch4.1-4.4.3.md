@@ -453,35 +453,3 @@ C=\sum_{i=1}^n c_i^2.
 \mathbb{E}\Big[\sup_{f\in\mathcal{F}}\big(\hat R(f) - R(f)\big)\Big] \;\leq\; \ell_\infty\sqrt{\frac{\log(2|\mathcal{F}|)}{2n}}
 ```
 结论很干净:**当 $\log|\mathcal{F}| \ll n$ 时学习就可行**。函数类的"大小"只通过 $\log|\mathcal{F}|$ 进来。这是对一致偏差的第一个通用控制。
-
-
-
-**4.4.4 无限类 → 覆盖数(♦):** 
-
-无限的 $\mathcal{F}$ 用有限的 **ε-网** 近似——在伪距离 $\Delta(f,f')=\mathbb{E}|f-f'|$ 下,用 $m(\varepsilon)$ 个 ε-球盖住 $\mathcal{F} $,$m(\varepsilon) $ 就是覆盖数。
-
-有了覆盖,就能把任意 $f $ 的偏差转嫁给离它最近的代表 $f_i $。用 $\hat R $ 和 $R $ 都对 $\Delta $ 是 $G $-Lipschitz 这一点,做一个"三段跳":
-```math
-\hat R(f) - R(f) = \underbrace{\hat R(f)-\hat R(f_i)}_{\leq\, G\Delta(f,f_i)} + \big(\hat R(f_i)-R(f_i)\big) + \underbrace{R(f_i)-R(f)}_{\leq\, G\Delta(f,f_i)} \;\leq\; 2G\,\Delta(f,f_i) + \big(\hat R(f_i)-R(f_i)\big)
-```
-取离 $f $ 最近的代表($\Delta(f,f_i)\leq\varepsilon $),再对所有 $f $ 取 sup:
-```math
-\sup_{f\in\mathcal{F}}\big(\hat R(f)-R(f)\big) \;\leq\; 2G\varepsilon + \underbrace{\sup_{j\in\{1,\dots,m(\varepsilon)\}}\big(\hat R(f_j)-R(f_j)\big)}_{\text{这是有限类,套 4.4.3}}
-```
-右边第二项里只剩 $m(\varepsilon) $ 个代表——**有限了**,直接套 4.4.3 的并集界,把 $|\mathcal{F}| $ 换成 $m(\varepsilon) $。于是以概率 $\geq 1-\delta $:
-```math
-\sup_{f\in\mathcal{F}}\big(\hat R(f)-R(f)\big) \;\leq\; 2G\varepsilon + \ell_\infty\sqrt{\frac{\log(2m(\varepsilon))}{2n}} + \frac{\ell_\infty}{\sqrt{2n}}\sqrt{\log\frac1\delta}
-```
-这里出现了一个**张力**,全在那两项的反向变化上:$\varepsilon $ 调小 → 第一项 $2G\varepsilon$ 变小,但覆盖数 $m(\varepsilon)\sim\varepsilon^{-d} $ 变大,第二项的 $\log m(\varepsilon)\sim d\log(1/\varepsilon) $ 变大。要权衡的量大致是
-```math
-\varepsilon + \sqrt{\frac{d\log(1/\varepsilon)}{n}}
-```
-取 $\varepsilon\propto 1/\sqrt n $,得到速率约
-```math
-\sqrt{\frac{d}{n}\log n}
-```
-$d$ 维时通常 $m(\varepsilon)\sim\varepsilon^{-d}$,故 $\log m(\varepsilon)\sim d\log(1/\varepsilon)$。
-
-ε-网论证给出 $\hat R(f)-R(f)\leq 2G\varepsilon + (\text{有限网上的 sup})$,再对 $\varepsilon\propto 1/\sqrt n$ 优化,得到约 $\sqrt{(d/n)\log n}$ 的速率——接近 $1/\sqrt n$,但**多了个 $\log$ 因子**。
-
-这正是它属于菱形可跳过内容的原因:不用链式法(chaining)等更精的工具就会损失这个 log,而 4.5 的 Rademacher 复杂度能做得更干净。

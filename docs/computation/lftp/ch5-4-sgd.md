@@ -10,62 +10,62 @@
 
 机器学习中的经验目标通常写成
 
-$$
+```math
 F(\theta)
 =
 \frac1n\sum_{i=1}^n\ell\bigl(y_i,f_\theta(x_i)\bigr)+\Omega(\theta).
-$$
+```
 
 普通梯度下降每次需要计算完整梯度 $F'(\theta_{t-1})$，因而要访问全部 $n$ 个样本。SGD 用计算成本更低的随机梯度估计
 
-$$
+```math
 g_t(\theta_{t-1})
-$$
+```
 
 代替完整梯度，并要求
 
-$$
+```math
 \boxed{
 \mathbb E\bigl[g_t(\theta_{t-1})\mid\mathcal F_{t-1}\bigr]
 =F'(\theta_{t-1})
 }
-$$
+```
 
 其中 $\mathcal F_{t-1}$ 表示前 $t-1$ 次迭代产生的全部随机信息。
 
 SGD 递推为
 
-$$
+```math
 \boxed{
 \theta_t=\theta_{t-1}-\gamma_tg_t(\theta_{t-1})
 }.
-$$
+```
 
 ### 经验风险最小化
 
 若
 
-$$
+```math
 F(\theta)=\frac1n\sum_{i=1}^n\ell_i(\theta),
-$$
+```
 
 则在每次迭代中独立、均匀地抽取
 
-$$
+```math
 i(t)\sim\operatorname{Unif}\{1,\dots,n\},
-$$
+```
 
 并令
 
-$$
+```math
 g_t(\theta)=\ell_{i(t)}'(\theta).
-$$
+```
 
 于是
 
-$$
+```math
 \mathbb E[g_t(\theta)]=\frac1n\sum_{i=1}^n\ell_i'(\theta)=F'(\theta).
-$$
+```
 
 > **校订：** 不能把这里直接写成 $i(t)=t\bmod n$。循环顺序访问不是“每一步使用新鲜独立随机性”的无偏抽样，需用随机重排等另一套分析。
 
@@ -73,11 +73,11 @@ $$
 
 若每轮独立抽取 $m$ 个样本，则
 
-$$
+```math
 \widetilde g_t(\theta)
 =
 \frac1m\sum_{j=1}^m g_t^{(j)}(\theta).
-$$
+```
 
 它仍然无偏，但每轮计算成本约增加为原来的 $m$ 倍。
 
@@ -85,15 +85,15 @@ $$
 
 若
 
-$$
+```math
 F(\theta)=\mathbb E_{(x,y)}\bigl[\ell(y,f_\theta(x))\bigr],
-$$
+```
 
 则每次取一个新的独立样本 $(x_t,y_t)$，并令
 
-$$
+```math
 g_t(\theta)=\nabla_\theta\ell(y_t,f_\theta(x_t)).
-$$
+```
 
 在允许交换求导与期望的条件下，$g_t$ 是 $F'$ 的无偏估计。
 
@@ -103,17 +103,17 @@ $$
 
 - **(H-1) 无偏性**
 
-  $$
+  ```math
   \mathbb E[g_t(\theta_{t-1})\mid\mathcal F_{t-1}]
   =F'(\theta_{t-1}).
-  $$
+  ```
 
 - **(H-2) 随机梯度有界**
 
-  $$
+  ```math
   \|g_t(\theta_{t-1})\|_2^2\le B^2
   \qquad\text{a.s.}
-  $$
+  ```
 
 SGD 一般不是逐步下降算法：$F(\theta_t)$ 可以上升，但适当平均后可获得期望收敛保证。
 
@@ -130,34 +130,34 @@ SGD 一般不是逐步下降算法：$F(\theta_t)$ 可以上升，但适当平�
 
 取
 
-$$
+```math
 \gamma_t=\frac{D}{B\sqrt t},
-$$
+```
 
 并定义加权平均迭代点
 
-$$
+```math
 \bar\theta_t
 =
 \frac{\sum_{s=1}^t\gamma_s\theta_{s-1}}
 {\sum_{s=1}^t\gamma_s}.
-$$
+```
 
 则
 
-$$
+```math
 \boxed{
 \mathbb E\bigl[F(\bar\theta_t)-F(\theta_*)\bigr]
 \le
 DB\frac{2+\log t}{2\sqrt t}
 }.
-$$
+```
 
 ### 证明：基本递推
 
 展开平方：
 
-$$
+```math
 \begin{aligned}
 \mathbb E\|\theta_t-\theta_*\|_2^2
 &=
@@ -168,11 +168,11 @@ $$
 &\qquad+
 \gamma_t^2\mathbb E\|g_t(\theta_{t-1})\|_2^2.
 \end{aligned}
-$$
+```
 
 利用条件无偏性，
 
-$$
+```math
 \begin{aligned}
 &\mathbb E\bigl[g_t(\theta_{t-1})^\top(\theta_{t-1}-\theta_*)\bigr]\\
 &\quad=
@@ -183,29 +183,29 @@ $$
 &\quad=
 \mathbb E\bigl[F'(\theta_{t-1})^\top(\theta_{t-1}-\theta_*)\bigr].
 \end{aligned}
-$$
+```
 
 再由 (H-2)，
 
-$$
+```math
 \mathbb E\|\theta_t-\theta_*\|_2^2
 \le
 \mathbb E\|\theta_{t-1}-\theta_*\|_2^2
 -2\gamma_t\mathbb E\bigl[F'(\theta_{t-1})^\top(\theta_{t-1}-\theta_*)\bigr]
 +\gamma_t^2B^2.
-$$
+```
 
 凸性给出
 
-$$
+```math
 F(\theta_{t-1})-F(\theta_*)
 \le
 F'(\theta_{t-1})^\top(\theta_{t-1}-\theta_*),
-$$
+```
 
 所以
 
-$$
+```math
 \boxed{
 \gamma_t\mathbb E\bigl[F(\theta_{t-1})-F(\theta_*)\bigr]
 \le
@@ -217,48 +217,48 @@ $$
 +
 \frac{\gamma_t^2B^2}{2}
 }.
-$$
+```
 
 ### 求和与平均
 
 从 $s=1$ 到 $t$ 求和，距离项望远镜消去：
 
-$$
+```math
 \sum_{s=1}^t\gamma_s
 \mathbb E\bigl[F(\theta_{s-1})-F(\theta_*)\bigr]
 \le
 \frac{D^2}{2}
 +
 \frac{B^2}{2}\sum_{s=1}^t\gamma_s^2.
-$$
+```
 
 由凸性，
 
-$$
+```math
 F(\bar\theta_t)
 \le
 \frac{\sum_{s=1}^t\gamma_sF(\theta_{s-1})}
 {\sum_{s=1}^t\gamma_s},
-$$
+```
 
 因此
 
-$$
+```math
 \boxed{
 \mathbb E[F(\bar\theta_t)-F(\theta_*)]
 \le
 \frac{D^2+B^2\sum_{s=1}^t\gamma_s^2}
 {2\sum_{s=1}^t\gamma_s}
 }.
-$$
+```
 
 对 $\gamma_s=D/(B\sqrt s)$，利用
 
-$$
+```math
 \sum_{s=1}^t\frac1s\le1+\log t,
 \qquad
 \sum_{s=1}^t\frac1{\sqrt s}\ge\sqrt t,
-$$
+```
 
 得到命题中的结论。
 
@@ -266,25 +266,25 @@ $$
 
 若预先知道总迭代次数 $T$，取固定步长
 
-$$
+```math
 \gamma=\frac{D}{B\sqrt T},
-$$
+```
 
 并使用均匀平均
 
-$$
+```math
 \bar\theta_T=\frac1T\sum_{s=1}^T\theta_{s-1},
-$$
+```
 
 则
 
-$$
+```math
 \mathbb E[F(\bar\theta_T)-F(\theta_*)]
 \le
 \frac{D^2}{2\gamma T}+rac{\gamma B^2}{2}
 =
 \frac{DB}{\sqrt T}.
-$$
+```
 
 ---
 
@@ -292,62 +292,62 @@ $$
 
 考虑投影 SGD：
 
-$$
+```math
 \theta_t
 =
 \Pi_D\bigl(\theta_{t-1}-\gamma_tg_t\bigr),
-$$
+```
 
 其中 $\Pi_D$ 是到以原点为中心、半径为 $D$ 的 $\ell_2$ 球的正交投影，并假设 $\theta_*$ 也在该球中。
 
 定义
 
-$$
+```math
 z_t
 =-\gamma_t(\theta_{t-1}-\theta_*)^\top
 \bigl[g_t-F'(\theta_{t-1})\bigr].
-$$
+```
 
 ### 鞅差性质
 
 由条件无偏性，
 
-$$
+```math
 \mathbb E[z_t\mid\mathcal F_{t-1}]=0.
-$$
+```
 
 投影保证
 
-$$
+```math
 \|\theta_{t-1}-\theta_*\|_2\le2D.
-$$
+```
 
 同时
 
-$$
+```math
 \|F'(\theta_{t-1})\|_2
 =
 \left\|\mathbb E[g_t\mid\mathcal F_{t-1}]\right\|_2
 \le B,
-$$
+```
 
 因而
 
-$$
+```math
 \|g_t-F'(\theta_{t-1})\|_2\le2B.
-$$
+```
 
 所以
 
-$$
+```math
 \boxed{|z_t|\le4\gamma_tBD}.
-$$
+```
 
 ### 一步不等式
 
 由投影的非扩张性，
 
-$$
+```math
 \begin{aligned}
 \|\theta_t-\theta_*\|_2^2
 &\le
@@ -357,11 +357,11 @@ $$
 -2\gamma_tF'(\theta_{t-1})^\top(\theta_{t-1}-\theta_*)
 +\gamma_t^2B^2+2z_t.
 \end{aligned}
-$$
+```
 
 结合凸性，
 
-$$
+```math
 \boxed{
 \gamma_t\bigl[F(\theta_{t-1})-F(\theta_*)\bigr]
 \le
@@ -374,7 +374,7 @@ $$
 \frac{\gamma_t^2B^2}{2}
 +z_t
 }.
-$$
+```
 
 > **校订：** 这里必须是逐路径的不等式，距离项外不应写期望；否则无法与随机的 $z_t$ 放在同一个一步递推中。
 
@@ -382,23 +382,23 @@ $$
 
 记
 
-$$
+```math
 S_1=\sum_{s=1}^t\gamma_s,
 \qquad
 S_2=\sum_{s=1}^t\gamma_s^2.
-$$
+```
 
 Azuma 不等式给出：以至少 $1-\delta$ 的概率，
 
-$$
+```math
 \sum_{s=1}^t z_s
 \le
 4BD\sqrt{2S_2\log(1/\delta)}.
-$$
+```
 
 因此
 
-$$
+```math
 \boxed{
 F(\bar\theta_t)-F(\theta_*)
 \le
@@ -409,11 +409,11 @@ F(\bar\theta_t)-F(\theta_*)
 4BD\frac{\sqrt{S_2}}{S_1}
 \sqrt{2\log\frac1\delta}
 }.
-$$
+```
 
 若 $\gamma_t\equiv\gamma$，则
 
-$$
+```math
 \boxed{
 F(\bar\theta_T)-F(\theta_*)
 \le
@@ -423,7 +423,7 @@ F(\bar\theta_T)-F(\theta_*)
 +
 \frac{4DB}{\sqrt T}\sqrt{2\log\frac1\delta}
 }.
-$$
+```
 
 ---
 
@@ -431,9 +431,9 @@ $$
 
 对线性预测和 Lipschitz 损失，统计误差通常为
 
-$$
+```math
 O\!\left(\frac{GRD}{\sqrt n}\right).
-$$
+```
 
 若对经验风险使用完整梯度下降：
 
@@ -455,56 +455,56 @@ $$
 
 令
 
-$$
+```math
 \widetilde g_t
 =
 \frac1m\sum_{j=1}^m g_t^{(j)},
-$$
+```
 
 其中条件于 $\mathcal F_{t-1}$，$g_t^{(1)},\dots,g_t^{(m)}$ 是相互独立、同分布的随机梯度。
 
 ### 无偏性
 
-$$
+```math
 \mathbb E[\widetilde g_t\mid\mathcal F_{t-1}]
 =
 \frac1m\sum_{j=1}^m
 \mathbb E[g_t^{(j)}\mid\mathcal F_{t-1}]
 =F'(\theta_{t-1}).
-$$
+```
 
 ### 有界性
 
 由平方范数的凸性，
 
-$$
+```math
 \left\|\frac1m\sum_{j=1}^m g_t^{(j)}\right\|_2^2
 \le
 \frac1m\sum_{j=1}^m\|g_t^{(j)}\|_2^2
 \le B^2.
-$$
+```
 
 因此，在仅有 (H-1)、(H-2) 时，命题 5.7 原样成立，但最坏情形收敛界不会自动出现 $m$ 倍改进。
 
 若进一步假设条件方差有界，
 
-$$
+```math
 \mathbb E\bigl[
 \|g_t-F'(\theta_{t-1})\|_2^2
 \mid\mathcal F_{t-1}
 \bigr]
 \le\sigma^2,
-$$
+```
 
 则
 
-$$
+```math
 \mathbb E\bigl[
 \|\widetilde g_t-F'(\theta_{t-1})\|_2^2
 \mid\mathcal F_{t-1}
 \bigr]
 \le\frac{\sigma^2}{m}.
-$$
+```
 
 不过，在一般非光滑分析中，$\|F'(\theta_{t-1})\|^2$ 仍然存在，故仅有方差缩小还不足以保证整体上界按 $1/m$ 改进。光滑性可将这一确定性梯度项吸收到下降项中，这正是习题 5.28 中 mini-batch 能改进界的原因。
 
@@ -514,47 +514,47 @@ $$
 
 设 $f_t:\mathbb R^d\to\mathbb R$ 是独立同分布的凸 $L$-smooth 随机函数，
 
-$$
+```math
 F(\theta)=\mathbb E[f_t(\theta)],
-$$
+```
 
 且 $F$ 存在极小点 $\theta_*$。考虑
 
-$$
+```math
 \theta_t=\theta_{t-1}-\gamma_tf_t'(\theta_{t-1}).
-$$
+```
 
 记
 
-$$
+```math
 \sigma_*^2=\mathbb E\|f_t'(\theta_*)\|_2^2.
-$$
+```
 
 注意：一般并没有 $f_t'(\theta_*)=0$；只有
 
-$$
+```math
 \mathbb E[f_t'(\theta_*)]=F'(\theta_*)=0.
-$$
+```
 
 ### 控制随机梯度的二阶矩
 
 由
 
-$$
+```math
 \|a+b\|^2\le2\|a\|^2+2\|b\|^2
-$$
+```
 
 和凸 $L$-smooth 函数的 co-coercivity，
 
-$$
+```math
 \|f_t'(x)-f_t'(y)\|_2^2
 \le
 L\bigl(f_t'(x)-f_t'(y)\bigr)^\top(x-y),
-$$
+```
 
 得到
 
-$$
+```math
 \begin{aligned}
 \|f_t'(\theta_{t-1})\|_2^2
 &\le
@@ -565,22 +565,22 @@ $$
 (\theta_{t-1}-\theta_*)
 +2\|f_t'(\theta_*)\|_2^2.
 \end{aligned}
-$$
+```
 
 取期望，并使用 $F'(\theta_*)=0$，可得
 
-$$
+```math
 \mathbb E\|f_t'(\theta_{t-1})\|_2^2
 \le
 2L\mathbb E\bigl[F'(\theta_{t-1})^\top(\theta_{t-1}-\theta_*)\bigr]
 +2\sigma_*^2.
-$$
+```
 
 ### 主递推
 
 展开平方并代入上式：
 
-$$
+```math
 \boxed{
 \begin{aligned}
 \mathbb E\|\theta_t-\theta_*\|_2^2
@@ -593,52 +593,52 @@ $$
 2\gamma_t^2\sigma_*^2.
 \end{aligned}
 }.
-$$
+```
 
 ### 显式收敛率
 
 取固定步长 $0<\gamma\le1/(2L)$，并定义
 
-$$
+```math
 \bar\theta_T=\frac1T\sum_{s=1}^T\theta_{s-1}.
-$$
+```
 
 由凸性
 
-$$
+```math
 F(\theta)-F(\theta_*)
 \le F'(\theta)^\top(\theta-\theta_*),
-$$
+```
 
 对主递推求和可得
 
-$$
+```math
 \mathbb E[F(\bar\theta_T)-F(\theta_*)]
 \le
 \frac{D^2}{2\gamma(1-\gamma L)T}
 +
 \frac{\gamma\sigma_*^2}{1-\gamma L},
-$$
+```
 
 其中 $D=\|\theta_0-\theta_*\|_2$。由于 $\gamma\le1/(2L)$，
 
-$$
+```math
 \mathbb E[F(\bar\theta_T)-F(\theta_*)]
 \le
 \frac{D^2}{\gamma T}+2\gamma\sigma_*^2.
-$$
+```
 
 取
 
-$$
+```math
 \gamma
 =
 \frac{D}{2LD+\sigma_*\sqrt{2T}},
-$$
+```
 
 则自动有 $\gamma\le1/(2L)$，且
 
-$$
+```math
 \boxed{
 \mathbb E[F(\bar\theta_T)-F(\theta_*)]
 \le
@@ -646,7 +646,7 @@ $$
 +
 \frac{2\sqrt2D\sigma_*}{\sqrt T}
 }.
-$$
+```
 
 因此收敛率为 $O(T^{-1/2})$；当最优点处无随机噪声，即 $\sigma_*=0$ 时，可得到 $O(T^{-1})$。
 
@@ -654,23 +654,23 @@ $$
 
 若每轮使用 $m$ 个独立随机函数的平均
 
-$$
+```math
 \widetilde f_t
 =
 \frac1m\sum_{j=1}^m f_{t,j},
-$$
+```
 
 则
 
-$$
+```math
 \mathbb E\|\widetilde f_t'(\theta_*)\|_2^2
 =
 \frac{\sigma_*^2}{m},
-$$
+```
 
 因为 $\mathbb E[f_{t,j}'(\theta_*)]=F'(\theta_*)=0$ 且各项独立。因此
 
-$$
+```math
 \boxed{
 \mathbb E[F(\bar\theta_T)-F(\theta_*)]
 \lesssim
@@ -678,7 +678,7 @@ $$
 +
 \frac{D\sigma_*}{\sqrt{mT}}
 }.
-$$
+```
 
 这解释了为什么 mini-batch 在光滑情形中能够改进迭代次数意义下的收敛常数。
 
@@ -688,34 +688,34 @@ $$
 
 设 $F(\theta,z)$ 关于 $\theta$ 为凸函数，并存在次梯度 $F'(\theta,z)$ 满足
 
-$$
+```math
 \|F'(\theta,z)\|_2\le B(z).
-$$
+```
 
 目标是最小化
 
-$$
+```math
 \Phi(\theta)=\mathbb E_{z\sim p}[F(\theta,z)].
-$$
+```
 
 实际从分布 $q$ 中抽样。设
 
-$$
+```math
 r(z)=\frac{dq}{dp}(z).
-$$
+```
 
 定义重要性加权随机梯度
 
-$$
+```math
 g_t
 =
 \frac1{r(z_t)}F'(\theta_{t-1},z_t),
 \qquad z_t\sim q.
-$$
+```
 
 则
 
-$$
+```math
 \begin{aligned}
 \mathbb E_q[g_t\mid\theta_{t-1}]
 &=
@@ -724,7 +724,7 @@ $$
 \int F'(\theta_{t-1},z)\,dp(z)\\
 &\in\partial\Phi(\theta_{t-1}),
 \end{aligned}
-$$
+```
 
 因此该估计仍然无偏。
 
@@ -732,70 +732,70 @@ $$
 
 令
 
-$$
+```math
 M(q)
 =
 \operatorname*{ess\,sup}_{z}
 \frac{B(z)}{r(z)}.
-$$
+```
 
 则 $\|g_t\|_2\le M(q)$。若 $\|\theta_0-\theta_*\|\le D$，固定步长 SGD 满足
 
-$$
+```math
 \mathbb E[\Phi(\bar\theta_T)-\Phi(\theta_*)]
 \le
 \frac{D^2}{2\gamma T}
 +
 \frac{\gamma M(q)^2}{2}.
-$$
+```
 
 取
 
-$$
+```math
 \gamma=\frac{D}{M(q)\sqrt T},
-$$
+```
 
 得到
 
-$$
+```math
 \boxed{
 \mathbb E[\Phi(\bar\theta_T)-\Phi(\theta_*)]
 \le
 \frac{DM(q)}{\sqrt T}
 }.
-$$
+```
 
 ### 最优抽样分布
 
 由于 $B(z)\le M(q)r(z)$，积分后得到
 
-$$
+```math
 \mathbb E_p[B(z)]\le M(q)\mathbb E_p[r(z)]=M(q).
-$$
+```
 
 下界由
 
-$$
+```math
 r_*(z)=\frac{B(z)}{\mathbb E_p[B(z)]}
-$$
+```
 
 达到。此时
 
-$$
+```math
 \frac{B(z)}{r_*(z)}=\mathbb E_p[B(z)]
-$$
+```
 
 为常数，因此
 
-$$
+```math
 \boxed{M(q_*)=\mathbb E_p[B(z)]}.
-$$
+```
 
 相比之下，若 $q=p$，则 $r\equiv1$，
 
-$$
+```math
 M(p)=\operatorname*{ess\,sup}_zB(z).
-$$
+```
 
 当 $B(z)$ 很不均匀时，按 $B(z)$ 成比例抽样可把常数从最大值降为平均值。
 
@@ -803,20 +803,20 @@ $$
 
 利用命题 5.7 中“几乎处处有界可替换为二阶矩有界”的备注，也可定义
 
-$$
+```math
 C(q)^2
 =
 \mathbb E_p\left[\frac{B(z)^2}{r(z)}\right].
-$$
+```
 
 由 Cauchy--Schwarz，
 
-$$
+```math
 \bigl(\mathbb E_p[B]\bigr)^2
 \le
 \mathbb E_p\left[\frac{B^2}{r}\right]\mathbb E_p[r]
 =C(q)^2,
-$$
+```
 
 同样由 $r_*(z)\propto B(z)$ 取得最小值。
 
@@ -824,49 +824,49 @@ $$
 
 对经验 hinge loss，令 $z=i\in\{1,\dots,n\}$，$p_i=1/n$，
 
-$$
+```math
 \ell_i(\theta)=\max\{0,1-y_i x_i^\top\theta\}.
-$$
+```
 
 其次梯度满足
 
-$$
+```math
 \|\ell_i'(\theta)\|_2\le\|x_i\|_2,
-$$
+```
 
 所以可取
 
-$$
+```math
 B_i=\|x_i\|_2.
-$$
+```
 
 最优抽样概率为
 
-$$
+```math
 \boxed{
 q_i
 =
 \frac{\|x_i\|_2}{\sum_{j=1}^n\|x_j\|_2}
 }.
-$$
+```
 
 并对抽到的次梯度乘以重要性权重
 
-$$
+```math
 \frac{p_i}{q_i}=rac{1/n}{q_i}.
-$$
+```
 
 均匀抽样的最坏界常数为
 
-$$
+```math
 \max_i\|x_i\|_2,
-$$
+```
 
 而最优非均匀抽样将其降为
 
-$$
+```math
 \frac1n\sum_{i=1}^n\|x_i\|_2.
-$$
+```
 
 ---
 
@@ -879,3 +879,4 @@ $$
 5. 习题 5.27 中，仅由随机梯度有界不能推出 mini-batch 自动改善最坏情形收敛率。
 6. 习题 5.28 中一般只有 $F'(\theta_*)=\mathbb E[f_t'(\theta_*)]=0$，不能写成每个 $f_t'(\theta_*)=0$。
 7. 非均匀抽样的梯度权重应为 $1/(dq/dp)$，最优密度满足 $dq/dp\propto B(z)$。
+

@@ -34,8 +34,8 @@
 
 2. 对 $D$ 进行变换，得到内积矩阵 $B$，$B$ 需满足列和、行和、$\text{tr}(B)$ 均为零：
 
-$$b_{ij} = -\frac{1}{2}\left(\text{dist}_{ij}^2 - \text{dist}_{i\cdot}^2 - \text{dist}_{\cdot j}^2 + \text{dist}_{\cdot\cdot}^2\right)$$
-
+```math
+    b_{ij} = -\frac{1}{2}\left(\text{dist}_{ij}^2 - \text{dist}_{i\cdot}^2 - \text{dist}_{\cdot j}^2 + \text{dist}_{\cdot\cdot}^2\right)
 其中：
 - $\text{dist}_{i\cdot}^2 = \frac{1}{m}\sum_{j=1}^m \text{dist}_{ij}^2$
 - $\text{dist}_{\cdot j}^2 = \frac{1}{m}\sum_{i=1}^m \text{dist}_{ij}^2$
@@ -65,14 +65,16 @@ PCA 是降维界"最高的山"。核心思想：找一个超平面，使得所�
 
 设 $W = [w_1, w_2, \ldots, w_{d'}]$，$z = [z_1, z_2, \ldots, z_{d'}]^T$
 
-$$\|Wz - x\|_2^2 = z^T W^T W z - 2x_i^T W z + \|x_i\|^2$$
+```math
+\|Wz - x\|_2^2 = z^T W^T W z - 2x_i^T W z + \|x_i\|^2
+```
 
 去掉常数，即最小化：$\sum_{i=1}^n z_i^T z_i - 2\sum_{i=1}^n x_i^T W z_i$
 
 由 $z_i = W x_i$，原式化为：
 
-$$\min -\text{tr}(W^T X X^T W)$$
-
+```math
+    \min -\text{tr}(W^T X X^T W)
 其中 $X = [x_1, x_2, \ldots, x_n]$，且 $W^T W = I$（正交约束）。
 
 **结论**：选取 $X X^T$ 的最大特征值，$w$ 依次选取特征向量。
@@ -86,7 +88,9 @@ $$\min -\text{tr}(W^T X X^T W)$$
 
 采用非线性映射 $\phi$，将非线性分布的数据投影到超平面上：
 
-$$\min -\text{tr}(W^T X X^T W), \quad X = [\phi(x_1), \phi(x_2), \ldots, \phi(x_n)]$$
+```math
+\min -\text{tr}(W^T X X^T W), \quad X = [\phi(x_1), \phi(x_2), \ldots, \phi(x_n)]
+```
 
 ### 1.4 流形学习
 
@@ -109,13 +113,15 @@ $$\min -\text{tr}(W^T X X^T W), \quad X = [\phi(x_1), \phi(x_2), \ldots, \phi(x_
 
 假设数据被前 $k$ 个数据线性表示，即需要得到一组权重：
 
-$$\min_w \sum_{i=1}^n \left\|x_i - \sum_{j=1}^n w_{ij} x_j\right\|$$
-
+```math
+    \min_w \sum_{i=1}^n \left\|x_i - \sum_{j=1}^n w_{ij} x_j\right\|
 其中 $w_{ij}$ 满足稀疏性条件，仅在离 $x_i$ 最近的 $k$ 个点处赋值，且 $\sum_{j \in Q_i} w_{ij} = 1$。
 
 降维后依然能被线性表示：
 
-$$\min_z \sum_{i=1}^n \left\|z_i - \sum_{j=1}^n w_{ij} z_j\right\|, \quad Z^T Z = I$$
+```math
+\min_z \sum_{i=1}^n \left\|z_i - \sum_{j=1}^n w_{ij} z_j\right\|, \quad Z^T Z = I
+```
 
 转化为：$\min \text{tr}(Z^T M Z)$，其中 $M = (I - W^T)(I - W)$。
 
@@ -135,11 +141,13 @@ $$\min_z \sum_{i=1}^n \left\|z_i - \sum_{j=1}^n w_{ij} z_j\right\|, \quad Z^T Z 
 
 兼听则明，不均等听取少数人的建议：
 
-$$p_{ij} = \frac{\exp(-\|x_i - x_j\|_M)}{\sum_{l=1}^m \exp(-\|x_i - x_l\|_M)}$$
-
+```math
+    p_{ij} = \frac{\exp(-\|x_i - x_j\|_M)}{\sum_{l=1}^m \exp(-\|x_i - x_l\|_M)}
 第 $i$ 个样本分类正确的概率：
 
-$$p_i = \sum_{j \in \Omega_i} p_{ij}$$
+```math
+p_i = \sum_{j \in \Omega_i} p_{ij}
+```
 
 目标：$\arg\min_M 1 - \sum_{i=1}^n \sum_{j \in \Omega_i} p_{ij}$
 
@@ -157,8 +165,8 @@ $$p_i = \sum_{j \in \Omega_i} p_{ij}$$
 
 **信息增益**：
 
-$$\text{Gain}(D, a) = \text{Ent}(D) - \sum_{v} \frac{|D^v|}{|D|} \text{Ent}(D^v)$$
-
+```math
+    \text{Gain}(D, a) = \text{Ent}(D) - \sum_{v} \frac{|D^v|}{|D|} \text{Ent}(D^v)
 ### 2.1 特征筛选策略
 
 | 策略 | 说明 |
@@ -173,7 +181,9 @@ $$\text{Gain}(D, a) = \text{Ent}(D) - \sum_{v} \frac{|D^v|}{|D|} \text{Ent}(D^v)
 
 对于线性回归问题：
 
-$$\min \|y_i - w x_i\|_2^2 + \lambda \|w\|_1$$
+```math
+\min \|y_i - w x_i\|_2^2 + \lambda \|w\|_1
+```
 
 几乎任何问题都可以塞入一个 $L_1$ 正则项，但问题会变得难解很多。
 
@@ -183,8 +193,8 @@ $$\min \|y_i - w x_i\|_2^2 + \lambda \|w\|_1$$
 
 2. 在 $w$ 的领域内选取极小化：
 
-$$w_{t+1} = \arg\min_w \frac{1}{2\eta} \|w - z_t\|_2^2 + \lambda \|w\|_1$$
-
+```math
+    w_{t+1} = \arg\min_w \frac{1}{2\eta} \|w - z_t\|_2^2 + \lambda \|w\|_1
 转化为一个一维的问题，每个 $w$ 的分量都是独立的。
 
 ### 2.3 稀疏表示与字典学习
@@ -193,7 +203,9 @@ $$w_{t+1} = \arg\min_w \frac{1}{2\eta} \|w - z_t\|_2^2 + \lambda \|w\|_1$$
 
 **模型**：
 
-$$\min_{B, \alpha} \|x_i - B \alpha_i\|_2^2 + \lambda_i \|\alpha_i\|_1$$
+```math
+\min_{B, \alpha} \|x_i - B \alpha_i\|_2^2 + \lambda_i \|\alpha_i\|_1
+```
 
 其中：
 - $B \in \mathbb{R}^{d \times k}$ 是字典矩阵
@@ -226,3 +238,4 @@ $$\min_{B, \alpha} \|x_i - B \alpha_i\|_2^2 + \lambda_i \|\alpha_i\|_1$$
 *归档时间：2026-03-09*  
 *来源：知乎文章*  
 *分类：数据科学 / 机器学习 / 降维与特征选择*
+

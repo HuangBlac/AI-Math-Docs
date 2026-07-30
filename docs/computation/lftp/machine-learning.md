@@ -116,13 +116,15 @@ ERM 是找函数 $ \hat{f} \in \mathcal{F} $（假设空间）最小化经验风
 
 **次高斯分布**（sub-Gaussian）的核心是**矩生成函数（MGF）的指数上界**：若随机变量 X 满足存在 σ² > 0，使得对所有 s ∈ ℝ，
 
-$$\mathbb{E}(e^{sX}) \leq \exp\left(\frac{\sigma^2 s^2}{2}\right)$$
-
+```math
+    \mathbb{E}(e^{sX}) \leq \exp\left(\frac{\sigma^2 s^2}{2}\right)
 则称 X 服从参数为 σ² 的次高斯分布，记为 X ~ sub-G(σ²)。
 
 **尾部估计**：由 Markov 不等式（P(X > t) ≤ P(e^{sX} > e^{st}) ≤ e^{-st} E(e^{sX})），结合 MGF 的上界，取最优 s 可得：
 
-$$P(X > t) \leq \exp\left(-\frac{t^2}{2\sigma^2}\right)$$
+```math
+P(X > t) \leq \exp\left(-\frac{t^2}{2\sigma^2}\right)
+```
 
 同理对双侧尾部 P(|X| > t)，可得 P(|X| > t) ≤ 2exp(-t²/(2σ²))，体现 "次高斯分布尾部指数衰减" 的性质。
 
@@ -130,8 +132,8 @@ $$P(X > t) \leq \exp\left(-\frac{t^2}{2\sigma^2}\right)$$
 
 若 X ~ sub-G(σ²)，则对任意向量 u，线性组合 u^T X 仍服从次高斯分布：
 
-$$u^T X \sim \text{sub-G}(\sigma^2 \|u\|_2^2)$$
-
+```math
+    u^T X \sim \text{sub-G}(\sigma^2 \|u\|_2^2)
 （体现次高斯性在 "线性变换下保持" 的特点，是高维概率中处理随机向量的关键性质）。
 
 ### 3. Hoeffding 引理：有界随机变量的次高斯性
@@ -142,12 +144,14 @@ $$u^T X \sim \text{sub-G}(\sigma^2 \|u\|_2^2)$$
 
 - 二阶导数：ψ''(s) = Var_α(X)（倾斜测度下的方差），且由 X 有界 [a, b]，得方差上界：
 
-$$\text{Var}_\alpha(X) \leq \frac{(b-a)^2}{4}$$
+```math
+\text{Var}_\alpha(X) \leq \frac{(b-a)^2}{4}
+```
 
 - 因此，ψ(s) 作为凸函数，满足**上界估计**：
 
-$$\psi(s) \leq \frac{(b-a)^2 s^2}{4}$$
-
+```math
+    \psi(s) \leq \frac{(b-a)^2 s^2}{4}
   即 E(e^{sX}) ≤ exp((b-a)²s²/4)，故有界随机变量是次高斯分布（参数 σ² = (b-a)²/4）。
 
 ---
@@ -165,25 +169,31 @@ $$\psi(s) \leq \frac{(b-a)^2 s^2}{4}$$
 
 由 Jensen 不等式和 MGF（矩生成函数），
 
-$$\mathbb{E}[Z] = \frac{1}{s} \mathbb{E}[\log e^{sZ}] \leq \frac{1}{s} \log \mathbb{E}[e^{sZ}]$$
+```math
+\mathbb{E}[Z] = \frac{1}{s} \mathbb{E}[\log e^{sZ}] \leq \frac{1}{s} \log \mathbb{E}[e^{sZ}]
+```
 
 再由 "最大值的 MGF ≤ 各变量 MGF 之和"（E[e^{sZ}] = E[max_i e^{sX_i}] ≤ ∑_i E[e^{sX_i}]），结合次高斯 MGF 的上界，得：
 
-$$\mathbb{E}[Z] \leq \frac{1}{s} \log N + \frac{1}{2s} \sum \sigma_i^2 s$$
-
+```math
+    \mathbb{E}[Z] \leq \frac{1}{s} \log N + \frac{1}{2s} \sum \sigma_i^2 s
 取最优 s = √(2 log N) / σ（假设 σ_i = σ），化简得**期望上界**：
 
-$$\mathbb{E}[Z] \leq \sigma\sqrt{2\log N}$$
+```math
+\mathbb{E}[Z] \leq \sigma\sqrt{2\log N}
+```
 
 #### 大偏差界
 
 由 Union 界（联合界），
 
-$$P(Z > t) = P(\max_i X_i > t) \leq \sum_i P(X_i > t)$$
-
+```math
+    P(Z > t) = P(\max_i X_i > t) \leq \sum_i P(X_i > t)
 再由次高斯变量的尾部界 P(X_i > t) ≤ exp(-t²/(2σ²))，得：
 
-$$P(Z > t) \leq N \exp\left(-\frac{t^2}{2\sigma^2}\right)$$
+```math
+P(Z > t) \leq N \exp\left(-\frac{t^2}{2\sigma^2}\right)
+```
 
 ### 2. 有限覆盖定理：将 "无限" 转化为 "有限"
 
@@ -193,15 +203,17 @@ $$P(Z > t) \leq N \exp\left(-\frac{t^2}{2\sigma^2}\right)$$
 
 存在有限点集 N ⊂ B_2，使得对任意 θ ∈ B_2，存在 z ∈ N 满足 ‖θ - z‖_2 ≤ ε。覆盖数满足上界：
 
-$$N(B_2, \|\cdot\|_2, \varepsilon) \leq \left(\frac{3}{\varepsilon}\right)^d$$
-
+```math
+    N(B_2, \|\cdot\|_2, \varepsilon) \leq \left(\frac{3}{\varepsilon}\right)^d
 （d 是空间维度，体现 "高维空间中用有限点覆盖单位球" 的可能性）。
 
 #### 最大值的期望估计（覆盖后）
 
 由覆盖的近似性，max_{θ∈B_2} θ^T X ≤ max_{z∈N} z^T X + ε‖X‖_2。结合次高斯性（若 X 是次高斯向量，‖X‖_2 的期望可控），最终可得：
 
-$$\mathbb{E}\left[\max_{\theta \in B_2} \theta^T X\right] \leq \sigma\sqrt{2\log N}$$
+```math
+\mathbb{E}\left[\max_{\theta \in B_2} \theta^T X\right] \leq \sigma\sqrt{2\log N}
+```
 
 （将 "无限方向的最大值" 转化为 "有限覆盖点的最大值"，实现高维问题的有限化处理）。
 
@@ -218,8 +230,8 @@ $$\mathbb{E}\left[\max_{\theta \in B_2} \theta^T X\right] \leq \sigma\sqrt{2\log
 
 - **二次型上界**：利用柯西不等式或凸性，有
 
-$$\|X(\hat{\theta}_{t+s} - \theta^*)\|_2^2 \leq 2\varepsilon^T X(\hat{\theta}_{t+s} - \theta^*)$$
-
+```math
+    \|X(\hat{\theta}_{t+s} - \theta^*)\|_2^2 \leq 2\varepsilon^T X(\hat{\theta}_{t+s} - \theta^*)
   （将范数平方转化为线性型，便于结合期望或概率分析）；
 
 - **残差平方和**：观测值与拟合值的残差平方和为 ‖Y - Xθ‖_2²，是衡量拟合优度的核心指标。
@@ -228,7 +240,9 @@ $$\|X(\hat{\theta}_{t+s} - \theta^*)\|_2^2 \leq 2\varepsilon^T X(\hat{\theta}_{t
 
 在概率 1-δ 下，估计量 θ̂_k 与真实参数 θ* 的偏差满足上界：
 
-$$\|\hat{\theta}_k - \theta^*\| \leq \frac{\sigma^2 k}{n} \log\left(\frac{2ke}{d}\right) + \frac{\sigma^2 k}{n} \log\left(\frac{1}{\delta}\right) + \frac{\sigma^2}{n} \log\left(\frac{16}{\delta}\right)$$
+```math
+\|\hat{\theta}_k - \theta^*\| \leq \frac{\sigma^2 k}{n} \log\left(\frac{2ke}{d}\right) + \frac{\sigma^2 k}{n} \log\left(\frac{1}{\delta}\right) + \frac{\sigma^2}{n} \log\left(\frac{16}{\delta}\right)
+```
 
 （其中 σ² 是噪声方差，d 是参数维度，k 是迭代或模型复杂度相关指标。该界体现 "偏差随样本量 n 增大而减小，随稀疏度 s、维度 d 增大而增大" 的规律）。
 
@@ -236,8 +250,8 @@ $$\|\hat{\theta}_k - \theta^*\| \leq \frac{\sigma^2 k}{n} \log\left(\frac{2ke}{d
 
 定义估计量 θ̂ 的**风险**（均方误差）为：
 
-$$\mathcal{E}(\hat{\theta}) = \mathbb{E}_{X,Y}\left[\|\hat{\theta} - \theta^*\|_{\tilde{E}[Z]}^2\right] = \mathbb{E}_Y\left[\|\hat{\theta} - \theta^*\|_{\tilde{E}}^2\right]$$
-
+```math
+    \mathcal{E}(\hat{\theta}) = \mathbb{E}_{X,Y}\left[\|\hat{\theta} - \theta^*\|_{\tilde{E}[Z]}^2\right] = \mathbb{E}_Y\left[\|\hat{\theta} - \theta^*\|_{\tilde{E}}^2\right]
 （对数据 X, Y 取期望，衡量 "估计量与真实参数的平均偏差"，是统计学习中评估模型性能的核心指标。当样本量足够大时，风险的阶为 O(sσ²/n)，体现 "稀疏性加速收敛" 的特点）。
 
 ---
@@ -258,19 +272,23 @@ $$\mathcal{E}(\hat{\theta}) = \mathbb{E}_{X,Y}\left[\|\hat{\theta} - \theta^*\|_
 
 对次高斯分布的随机变量，利用**集中不等式**控制 "线性变换后的噪声上界"：
 
-$$P\left(-\frac{s}{a}\tilde{\varepsilon}^T u > nt\right) \leq 2d\exp\left(-\frac{2nt^2}{\sigma^2}\right)$$
+```math
+P\left(-\frac{s}{a}\tilde{\varepsilon}^T u > nt\right) \leq 2d\exp\left(-\frac{2nt^2}{\sigma^2}\right)
+```
 
 （d 为特征维度，σ 是次高斯参数，通过指数尾部衰减控制概率）。
 
 令该概率上界为 δ，解指数不等式得**阈值 t**：
 
-$$t = \sigma\sqrt{\frac{1}{2n}\log\frac{2d}{\delta}}$$
-
+```math
+    t = \sigma\sqrt{\frac{1}{2n}\log\frac{2d}{\delta}}
 ### 3. 参数估计的误差界
 
 结合残差与集中不等式，推导**估计误差的 ℓ2 范数界**：
 
-$$\|\hat{\theta}_k - \theta^*\|_2^2 \leq \frac{\sigma^2}{n}\log d$$
+```math
+\|\hat{\theta}_k - \theta^*\|_2^2 \leq \frac{\sigma^2}{n}\log d
+```
 
 在**概率 1−δ** 下，进一步得到 "归一化误差" 的上界，最终误差界可简化为与 (log(d/δ))/n 同阶（体现 "高维下误差随对数维度和样本量的衰减"）。
 
@@ -278,22 +296,24 @@ $$\|\hat{\theta}_k - \theta^*\|_2^2 \leq \frac{\sigma^2}{n}\log d$$
 
 设 Δ=θ̂−θ*，A* 为 θ* 的**真实支撑集**（非零元的索引集）。通过正则化的稀疏诱导性，可得**支撑集补集的误差约束**：
 
-$$\|\Delta_{A^c}\|_2 \leq 3\|\Delta_A\|_2$$
-
+```math
+    \|\Delta_{A^c}\|_2 \leq 3\|\Delta_A\|_2
 （即 "非支撑集上的误差被支撑集上的误差控制"，体现稀疏估计的 "集中性"）。
 
 ### 5. 正则化参数的选择
 
 为保证高维下的概率集中性，正则化参数 λ 需满足：
 
-$$\lambda = 2\sigma\sqrt{\frac{2\ln(2d/\delta)}{n}}$$
+```math
+\lambda = 2\sigma\sqrt{\frac{2\ln(2d/\delta)}{n}}
+```
 
 ### 6. Lasso 误差界
 
 结合支撑集约束与 Lasso 目标函数的最优性，最终推导**估计误差的上界**：
 
-$$\|\hat{\theta} - \theta^*\|_2 \lesssim \frac{\sigma\sqrt{|A^*| \cdot 2\ln(2d/\delta)}}{\gamma\sqrt{n}}$$
-
+```math
+    \|\hat{\theta} - \theta^*\|_2 \lesssim \frac{\sigma\sqrt{|A^*| \cdot 2\ln(2d/\delta)}}{\gamma\sqrt{n}}
 （γ>0 为与特征矩阵 X 相关的 "强制性常数"，|A*| 是真实支撑集的大小，体现 "误差随样本量 n 增大而衰减，随稀疏度 |A*|、对数维度 ln(2d/δ) 增大而增大"）
 
 ---
@@ -306,7 +326,9 @@ $$\|\hat{\theta} - \theta^*\|_2 \lesssim \frac{\sigma\sqrt{|A^*| \cdot 2\ln(2d/\
 ### 1. VC 维与打散数的定义
 
 - **打散数 $\Pi_{\mathcal{H}}(m)$**：假设类 $\mathcal{H}$ 对 $m$ 个样本能实现的"不同标签划分的数量"。
-$$\Pi_{\mathcal{H}}(m) = |\{(h(x_1), h(x_2), \cdots, h(x_m)) \mid x_i \in \mathcal{X}, h \in \mathcal{H}\}|$$
+```math
+\Pi_{\mathcal{H}}(m) = |\{(h(x_1), h(x_2), \cdots, h(x_m)) \mid x_i \in \mathcal{X}, h \in \mathcal{H}\}|
+```
 
 - **VC 维 $\text{VC}(\mathcal{H})$**：最大的 $m$ 使得 $\Pi_{\mathcal{H}}(m) = 2^m$（即能"完全打散" $m$ 个样本的所有 $2^m$ 种标签组合）。
 
@@ -505,3 +527,4 @@ x^{(k+1)} = \text{prox}_{\lambda r} \left( x^{(k)} - \eta \nabla f(x^{(k)}) \rig
 其中 $\text{prox}_{\lambda r}(x) = \arg\min_y \left( r(y) + \frac{1}{2\lambda} \|y - x\|^2 \right)$
 ---
 *添加时间: 2026-04-15*
+

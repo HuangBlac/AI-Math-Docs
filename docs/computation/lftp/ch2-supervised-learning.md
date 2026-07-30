@@ -50,8 +50,8 @@ We ignore measurability issues on purpose.
 
 对于一个预测的函数， f : X → Y,一个损失函数ℓ : Y × Y → R, 和一个概率分布p on X × Y, f的期望风险被定义为
 
-$$R(f) = \mathbb{E}ℓ(y, f(x))=\int_{X×Y}ℓ(y, f(x))dp(x, y)$$
-
+```math
+    R(f) = \mathbb{E}ℓ(y, f(x))=\int_{X×Y}ℓ(y, f(x))dp(x, y)
 Be careful with the randomness, or lack thereof, of f: when performing learning
 from data, f will depend on the random training data, not on the testing
 data, and thus R(f) is typically random because of the dependence on the
@@ -500,3 +500,4 @@ r_{x_1},\dots,r_{x_n}.
 \frac12\left(1-\frac1k\right)^n.
 ```
 令 $k$ 足够大，就能让这个量任意接近 $1/2$。因此对任意算法，都存在坏分布让它的 excess risk 接近随机猜测水平。书中的证明正是用这种“在 $k$ 个点上构造任意标签表”的方法。
+
