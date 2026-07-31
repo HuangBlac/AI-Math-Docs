@@ -27,7 +27,7 @@ _Locked via grill - by Codex + 黄南樵; revised after adversarial review round
 
 4. **建立分层、不可变、可重放的 corpus**
    - 使用 Python 3.12、SQLite FTS5 trigram（不可用时采用通过 golden recall 的确定性中文分词）、JSONL manifest 和稳定哈希；不得继续使用无法匹配普通中文子串的裸 `unicode61`。
-   - 核心库只 allowlist 锁定 PDF、`docs/computation/lftp` 和 `wiki/raw/lftp` 的 LFTP 笔记。先修库只 allowlist 相关线代、概率、分析、优化材料；默认出题判分不得用先修库单独支撑结论。
+   - 核心库只 allowlist 锁定 PDF、`docs/computation/ltfp` 和 `wiki/raw/lftp` 的 LFTP 笔记。先修库只 allowlist 相关线代、概率、分析、优化材料；默认出题判分不得用先修库单独支撑结论。
    - 数据库分别持久化 `corpus_tier`、`authority`、`verification_state`、`evidence_type`、`formula_uncertain`，不得合并这些维度。权威顺序为锁定 PDF > 经原页确认的派生内容 > 用户笔记/AI 内容；冲突进入 review queue。
    - 内容去重与 provenance 分离：规范化内容只存一份，通过多对多 source-facet/locator 表保存每个路径、层级、权威、核验状态和哈希；选代表文本不得删除其他来源事实或降低权威。
    - 摄取先固定输入快照与哈希，在临时 generation 目录完成 SQLite、JSONL、manifest 后验证，再持有跨进程锁原子切换单一 `CURRENT` 指针。失败 generation 不可见，旧 generation 可回滚；输入在哈希后变化则拒绝整次构建。

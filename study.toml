@@ -1,7 +1,7 @@
 [project]
 root = "."
 study_dir = ".study"
-pdf = "wiki/raw/lftp.pdf"
+pdf = "C:/Users/黄南樵/Desktop/统计学习理论/ltfp.pdf"
 expected_pdf_sha256 = "DDEBA8166E4DC2AEDC0B863E67AF9891178A5E13F3316FD672D49CD59E486DEA"
 chapters = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 

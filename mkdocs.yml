@@ -100,24 +100,31 @@ nav:
     - 统计计算: computation/stat-computing.md
     - 统计计算总复习: computation/stat-computing-review.md
   - 统计学习理论 (LTFP):
-      - 总览: computation/lftp/index.md
-      - Ch1 再论集中不等式: computation/lftp/ch1-concentration.md
-      - Ch1-Ch2 优化基础 (手写转录): computation/lftp/ch1-2-optimization-raw.md
-      - Ch1-Ch2 优化基础 (整理版): computation/lftp/ch1-2-optimization.md
-      - Ch1 Bernstein不等式与极大值期望: computation/lftp/ch1-bernstein-maximum.md
-      - Ch2 监督学习导论: computation/lftp/ch2-supervised-learning.md
-      - Ch3.1-3.4 线性算法基础: computation/lftp/ch3.1-3.4-linear-basics.md
-      - Ch3 PCA与主成分回归: computation/lftp/ch3-pca-regression.md
-      - Ch3.5-3.9 岭回归与极小极大下界: computation/lftp/ch3.5-3.9-ridge-minimax.md
-      - Ch4 经验风险最小化: computation/lftp/ch4-erm.md
-      - Ch4 Rademacher复杂度: computation/lftp/ch4-rademacher.md
-      - Ch4.4 Massart引理与Dudley积分: computation/lftp/ch4-4-massart.md
-      - Ch5 优化简单介绍: computation/lftp/ch5-optimization-intro.md
-      - Ch5.4 随机梯度下降: computation/lftp/ch5-4-sgd.md
-      - Ch5.4.1 强凸SGD: computation/lftp/ch5.4.1-strong-convex-sgd.md
-      - 机器学习基础: computation/lftp/machine-learning.md
-      - 稀疏学习与特征学习: computation/lftp/sparse-feature-learning.md
-      - 统计计算总复习: computation/lftp/stat-computing-review.md
+      - 总览: computation/ltfp/index.md
+      - Ch1 再论集中不等式: computation/ltfp/ch1.2.2-1.2.3-concentration.md
+      - Ch1-Ch5 跨章基础与优化: computation/ltfp/ch1.1-1.2.0-optimization.md
+      - Ch1 Bernstein不等式与极大值期望: computation/ltfp/ch1.2.1-bernstein-maximum.md
+      - Ch2 监督学习导论 (§2.1–2.5): computation/ltfp/ch2.1-2.5-supervised-learning.md
+      - Ch2 监督学习导论（原始导出）: computation/ltfp/ch2-supervised-learning.md
+      - Ch3.1-3.4 线性算法基础: computation/ltfp/ch3.1-3.4-linear-basics.md
+      - Ch3 PCA与主成分回归 (§3.9): computation/ltfp/ch3.9-pca-regression.md
+      - Ch3 PCA与主成分回归（原始导出）: computation/ltfp/ch3-pca-regression.md
+      - Ch3.5-3.9 岭回归与极小极大下界: computation/ltfp/ch3.5-3.9-ridge-minimax.md
+      - Ch4.1-4.4.3 风险凸化与误差分解: computation/ltfp/ch4.1-4.4.3.md
+      - Ch4.4.4-4.5 覆盖数与Rademacher导入: computation/ltfp/ch4.4.4-4.5.0.md
+      - Ch4.5.1-4.5.3 Rademacher复杂度: computation/ltfp/ch4.5.1-4.5.3.md
+      - Ch5 优化简单介绍 (§5.1–5.2): computation/ltfp/ch5.1-5.2-optimization.md
+      - Ch5 优化简单介绍（原始导出）: computation/ltfp/ch5-optimization-intro.md
+      - Ch5.3 非光滑优化: computation/ltfp/ch5.3-nonsmooth.md
+      - Ch5.4 随机梯度下降 (§5.4): computation/ltfp/ch5.4.0-sgd.md
+      - Ch5.4 随机梯度下降（原始导出）: computation/ltfp/ch5-4-sgd.md
+      - Ch5.4.1 强凸SGD: computation/ltfp/ch5.4.1-strong-convex-sgd.md
+      - 习题与 Proposition 映射: computation/ltfp/study-map.md
+      - 机器学习基础: computation/ltfp/machine-learning.md
+      - 稀疏学习与特征学习: computation/ltfp/sparse-feature-learning.md
+      - 学习理论概念地图: computation/ltfp/learning-theory.md
+      - 数据科学导论: computation/ltfp/data-science-intro.md
+      - 统计计算总复习: computation/stat-computing-review.md
   - 算法介绍:
     - algorithms/index.md
     - 神经网络: algorithms/neural-networks.md

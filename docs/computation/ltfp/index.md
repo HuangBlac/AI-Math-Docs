@@ -9,29 +9,31 @@
 
 | 章节 | 笔记 | 状态 |
 |------|------|------|
-| Ch1 数学基础 | [再论集中不等式](ch1-concentration.md) | ✅ |
-| Ch1 数学基础 | [Bernstein 不等式与极大值期望](ch1-bernstein-maximum.md) | ✅ |
-| Ch1–Ch2 数学基础 | [优化基础 (整理版)](ch1-2-optimization.md) | ✅ |
-| Ch1–Ch2 数学基础 | [优化基础 (手写转录)](ch1-2-optimization-raw.md) | ✅ |
-| Ch2 监督学习导论 | [监督学习导论](ch2-supervised-learning.md) | ✅ |
-| Ch3 线性最小二乘回归 | [PCA 与主成分回归](ch3-pca-regression.md) | ✅ |
+| Ch1 数学基础 | [再论集中不等式](ch1.2.2-1.2.3-concentration.md) | ✅ |
+| Ch1 数学基础 | [Bernstein 不等式与极大值期望](ch1.2.1-bernstein-maximum.md) | ✅ |
+| Ch1–Ch5 跨章基础 | [风险分解、优化与数学预备](ch1.1-1.2.0-optimization.md) | ⚠️ 跨章 |
+| Ch2 监督学习导论 | [监督学习导论（Ch2.1–2.5）](ch2.1-2.5-supervised-learning.md) | ✅ |
+| Ch3 线性最小二乘回归 | [PCA 与主成分回归（§3.9）](ch3.9-pca-regression.md) | ✅ |
 
 ## Part II — 核心理论 (Ch4–Ch9)
 
 | 章节 | 笔记 | 状态 |
 |------|------|------|
-| Ch4 经验风险最小化 | [经验风险最小化](ch4-erm.md) | ✅ |
-| Ch4 经验风险最小化 | [Rademacher 复杂度](ch4-rademacher.md) | ✅ |
-| Ch4.4 经验风险最小化 | [Massart 引理与 Dudley 积分](ch4-4-massart.md) | ✅ |
-| Ch5 机器学习优化 | [优化简介](ch5-optimization-intro.md) | ✅ |
-| Ch5.3 机器学习优化 | [非光滑梯度方法](ch5-3-nonsmooth.md) | ✅ |
-| Ch5.3 机器学习优化 | [Exercises 5.22–5.25](ch5-3-exercises.md) | ✅ |
-| Ch5.4 机器学习优化 | [随机梯度下降](ch5-4-sgd.md) | ✅ |
-| Ch5.4 机器学习优化 | [Exercises 5.29–5.30](ch5-4-exercises.md) | ✅ |
+| Ch4.1–4.4.3 经验风险最小化 | [风险凸化与误差分解](ch4.1-4.4.3.md) | ⚠️ 4.1.4 缺失 |
+| Ch4.4.4–4.5 经验风险最小化 | [覆盖数与 Rademacher 导入](ch4.4.4-4.5.0.md) | ⚠️ 习题稀缺 |
+| Ch4.5.1–4.5.3 经验风险最小化 | [Rademacher 复杂度](ch4.5.1-4.5.3.md) | ⚠️ 标题待补 |
+| Ch5 机器学习优化 | [优化简介（§5.1–5.2）](ch5.1-5.2-optimization.md) | ✅ |
+| Ch5.3 机器学习优化 | [非光滑梯度方法](ch5.3-nonsmooth.md) | ✅ |
+| Ch5.4 机器学习优化 | [随机梯度下降（§5.4）](ch5.4.0-sgd.md) | ✅ |
+| Ch5.4.1 机器学习优化 | [强凸 SGD](ch5.4.1-strong-convex-sgd.md) | ✅ |
 | Ch6 局部平均方法 | — | ❌ 待补 |
 | Ch7 核方法 | — | ❌ 待补 |
 | Ch8 稀疏方法 | — | ❌ 待补 |
 | Ch9 神经网络 | — | ❌ 待补 |
+
+## 习题与 Proposition 映射
+
+章节、习题和 Proposition 的覆盖状态见 [LTFP 阅读映射与覆盖筛查](study-map.md)。该页区分教材原题、笔记中的明确编号、隐含结论和已验证掌握，不能把文件存在直接当作学习完成。
 
 ## Part III — 进阶 (Ch10–Ch15)
 
