@@ -1,0 +1,14 @@
+openai<3,>=2.16
+pydantic<3,>=2.12
+jsonschema<5,>=4.25
+typer<1,>=0.21
+rich<15,>=14
+PyMuPDF<2,>=1.27
+
+[dev]
+pytest<10,>=9
+pytest-asyncio<2,>=1
+hypothesis<7,>=6
+ruff<1,>=0.14
+mypy<2,>=1.19
+types-jsonschema<5,>=4.25

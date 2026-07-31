@@ -1,0 +1,10 @@
+[
+  {"week": 1, "chapters": [1, 2], "focus": "全九章诊断，压缩完成 Ch1–2", "deliverable": "Ch1–2 诊断与章节地图"},
+  {"week": 2, "chapters": [3], "focus": "线性最小二乘", "deliverable": "Ch3 mastery report"},
+  {"week": 3, "chapters": [4], "focus": "经验风险最小化", "deliverable": "Ch4 mastery report"},
+  {"week": 4, "chapters": [5], "focus": "机器学习优化", "deliverable": "Ch5 mastery report"},
+  {"week": 5, "chapters": [6], "focus": "局部平均方法", "deliverable": "Ch6 mastery report"},
+  {"week": 6, "chapters": [7], "focus": "核方法", "deliverable": "Ch7 mastery report"},
+  {"week": 7, "chapters": [8], "focus": "稀疏方法", "deliverable": "Ch8 mastery report"},
+  {"week": 8, "chapters": [9], "focus": "神经网络与跨章总结", "deliverable": "Ch9 mastery report 与 final-capstone.md"}
+]

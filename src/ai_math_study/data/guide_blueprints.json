@@ -1,0 +1,126 @@
+{
+  "1": {
+    "terms": ["quadratic form", "Schur complement", "Woodbury identity", "SVD", "log-MGF", "sub-Gaussian", "Hoeffding", "McDiarmid", "Bernstein"],
+    "proof_chain": [
+      "二次型完成平方 -> 正规方程 -> 奇异情形检查值域条件",
+      "指数 Markov 不等式 -> MGF 上界 -> 优化 lambda -> Hoeffding 尾界",
+      "Doob 鞅/逐坐标替换 -> 条件 Hoeffding 引理 -> McDiarmid",
+      "方差敏感的 MGF 控制 -> Bernstein；有限类并集界 -> 最大值期望"
+    ],
+    "examples": ["用一维有界变量检查 Hoeffding 常数", "构造完全相关样本说明独立性不可删除", "用奇异 PSD 矩阵检查二次型是否有有限下界"],
+    "exercise_focus": ["Prop. 1.1-1.8", "Exercises 1.1-1.29 中的矩阵恒等式与集中证明"],
+    "formula_checks": ["所有 MGF 是否明确中心化", "指数尾界中的 1/2、1/8 常数", "矩阵范数与标量范数的记号是否混淆"],
+    "advanced": ["1.2.5 求积估计", "1.2.6 随机矩阵集中"]
+  },
+  "2": {
+    "terms": ["loss", "population risk", "empirical risk", "Bayes risk", "Bayes predictor", "excess risk", "consistency", "no free lunch", "adaptivity"],
+    "proof_chain": [
+      "总体风险 -> 条件于 X 的逐点风险 -> Bayes 预测器",
+      "平方损失配方 -> 条件均值；绝对损失左右导数 -> 条件中位数",
+      "随机标签表 -> 未见测试点 -> 固定样本量 no-free-lunch",
+      "明确算法、问题类与概率量词 -> 一致性陈述"
+    ],
+    "examples": ["非对称分类成本对应的阈值", "零训练误差但测试风险很高", "条件中位数不唯一"],
+    "exercise_focus": ["Prop. 2.1-2.3", "Exercises 2.1-2.7"],
+    "formula_checks": ["经验平均与分布期望符号", "sup、expectation、probability 的量词顺序", "excess risk 的基准函数属于哪个函数类"],
+    "advanced": ["2.5 no-free-lunch 的第二种序列形式"]
+  },
+  "3": {
+    "terms": ["ordinary least squares", "normal equations", "orthogonal projection", "fixed design", "ridge regression", "bias-variance", "random design", "PCA"],
+    "proof_chain": [
+      "平方损失求梯度 -> 正规方程 -> 满列秩闭式解",
+      "预测向量 = 列空间正交投影 -> 几何最优性",
+      "噪声协方差 -> 投影矩阵的迹 -> 固定设计方差",
+      "SVD 坐标 -> ridge shrinkage -> 偏差项与方差项",
+      "固定设计结论 -> 检查随机设计与模型设定假设"
+    ],
+    "examples": ["秩亏时参数不唯一但投影可能唯一", "d >= n 的插值不推出泛化", "lambda 增大时偏差上升、方差下降"],
+    "exercise_focus": ["Prop. 3.1-3.12", "Exercises 3.1-3.10"],
+    "formula_checks": ["设计矩阵的 n 与 d 方向", "损失是否含 1/n", "ridge 正则项和闭式解中的 lambda 缩放", "trace(P)=rank(P) 的适用条件"],
+    "advanced": ["3.7 下界", "3.8.2 一般随机设计", "3.9 PCA"]
+  },
+  "4": {
+    "terms": ["convex surrogate", "classification calibration", "approximation error", "estimation error", "covering number", "symmetrization", "Rademacher complexity", "contraction"],
+    "proof_chain": [
+      "加减经验风险 -> ERM 超额风险不超过二倍一致偏差",
+      "McDiarmid -> 有界差分下的一致偏差集中",
+      "ghost sample -> Rademacher 符号 -> 对称化",
+      "Lipschitz contraction -> 损失类复杂度退回预测类",
+      "对偶范数 -> l2/l1 线性类 Rademacher 界"
+    ],
+    "examples": ["点态 LLN 不推出 uniform LLN", "任意随机标记函数类复杂度不衰减", "无界损失不能直接套 Hoeffding"],
+    "exercise_focus": ["Prop. 4.1-4.7", "Exercise 4.10 Massart lemma", "Exercises 4.1-4.16"],
+    "formula_checks": ["Rademacher 定义中的 1/n", "经验与期望 Rademacher 复杂度", "对称化常数 2", "对偶范数的维数依赖"],
+    "advanced": ["4.1.2-4.1.4 calibration", "4.6 模型选择", "4.7 渐近统计"]
+  },
+  "5": {
+    "terms": ["smoothness", "strong convexity", "descent lemma", "gradient descent", "subgradient", "stochastic gradient descent", "step size", "variance reduction"],
+    "proof_chain": [
+      "L-smooth descent lemma -> 单步下降",
+      "强凸/PL 型下界 -> 梯度下降线性收敛",
+      "凸性 + 平方距离递推 -> 一般凸与非光滑速率",
+      "条件无偏随机梯度 -> 期望递推 -> 步长选择",
+      "有限和结构 -> 控制梯度噪声 -> 方差缩减"
+    ],
+    "examples": ["步长大于 2/L 的一维二次函数发散", "凸但非强凸时没有统一指数率", "非凸稳定点不是全局最优点"],
+    "exercise_focus": ["Prop. 5.1-5.9 与 Lemma 5.1", "Exercises 5.1-5.36 中的递推与步长题"],
+    "formula_checks": ["光滑与强凸不等式方向", "步长允许范围", "SGD 梯度的条件无偏性", "最后迭代点与平均迭代点的区别"],
+    "advanced": ["5.2.4-5.2.6", "5.4.1-5.4.4"]
+  },
+  "6": {
+    "terms": ["linear smoother", "partition estimator", "k-nearest neighbor", "Nadaraya-Watson", "bandwidth", "universal consistency", "adaptivity", "curse of dimensionality"],
+    "proof_chain": [
+      "非负且和为一的局部权重 -> 统一估计量形式",
+      "条件 MSE -> 偏差与方差",
+      "邻域尺度缩小 -> 偏差消失；有效样本数增大 -> 方差消失",
+      "h^2 + 1/(n h^d) -> 优化 h -> 维数依赖速率",
+      "k -> infinity 且 k/n -> 0 -> kNN 一致性骨架"
+    ],
+    "examples": ["k 固定导致方差不消失", "k=n 或 h 过大导致偏差不消失", "高维下距离集中"],
+    "exercise_focus": ["Prop. 6.1-6.3 与 Lemma 6.1-6.2", "Exercises 6.1-6.6"],
+    "formula_checks": ["权重是否非负且归一化", "邻域体积的 h^d", "方差项的有效样本数", "一致性极限中 k、n、h 的联合条件"],
+    "advanced": ["6.4 普适一致性", "6.5 适应性"]
+  },
+  "7": {
+    "terms": ["positive definite kernel", "RKHS", "representer theorem", "feature map", "kernel trick", "translation-invariant kernel", "Fourier feature", "random feature", "Nyström", "column sampling", "kernel ridge regression", "integral operator", "covariance operator", "eigendecay"],
+    "proof_chain": [
+      "线性组合 + 正则化泛函 -> 表示定理 -> 有限维优化",
+      "正定性 + 对称性 -> 特征值与 Mercer 定理 -> RKHS 构造",
+      "平移不变核 -> Fourier 变换特征 -> 随机 Fourier 特征逼近",
+      "凸替代损失 + Lipschitz + Rademacher -> 核方法泛化界",
+      "经验/总体协方差算子特征系统 -> 偏差-方差在谱坐标分解"
+    ],
+    "examples": ["线性核退化为标准 LS", "多项式核的维数爆炸", "高斯核 bandwidth 趋向 0 时的对角线现象", "随机特征数量不足时的逼近误差"],
+    "exercise_focus": ["Prop. 7.1-7.8", "Exercises 7.1-7.23"],
+    "formula_checks": ["核矩阵的半正定性", "表示定理中系数是否含 1/n", "偏差方差分解中的算子 vs 标量", "随机特征逼近的收敛率中维度 d 的位置"],
+    "advanced": ["7.3.4 非向量输入", "7.4.4 对偶算法", "7.6.2-7.6.6 谱分析细部"]
+  },
+  "8": {
+    "terms": ["l0 penalty", "l1 regularization", "Lasso", "basis pursuit", "restricted eigenvalue", "compatibility constant", "sparsistency", "slow rate", "fast rate", "oracle inequality", "greedy algorithm", "OMP"],
+    "proof_chain": [
+      "Hard-thresholding -> l0 约束 + 已知 k -> 变量一致性",
+      "l1 凸松弛 -> KKT 最优性条件 -> 支撑恢复引理",
+      "凸损失 + l1 惩罚 -> 经验过程上界 -> 慢速率 O(sqrt(log d / n))",
+      "Restricted eigenvalue / compatibility -> l2 误差快速率",
+      "Zoo of conditions: RE < compatibility < restricted strong convexity"
+    ],
+    "examples": ["高度相关设计下 Lasso 选出错误的变量", "l0 已知 k 界 vs l1 自适应界的光滑性 vs 代价", "不可表示条件破坏时 l1 解与 l0 解不同"],
+    "exercise_focus": ["Prop. 8.1-8.6", "Exercises 8.1-8.17"],
+    "formula_checks": ["l1 正则参数 lambda 的量级", "RE/compatibility 常数的维数依赖", "软阈值 vs 硬阈值", "慢速率中的 log d 与快速率中的 s 的维度贡献"],
+    "advanced": ["8.2.2 未知 k 自适应", "8.3.4-8.3.6 快速率细部", "8.5 扩展（elastic net, group Lasso）"]
+  },
+  "9": {
+    "terms": ["single hidden layer", "ReLU", "homogeneity", "variation norm", "universal approximation", "Barron space", "Rademacher complexity", "implicit regularization", "neural tangent kernel", "mean-field"],
+    "proof_chain": [
+      "单隐层 f(x) = sum a_j sigma(w_j^T x) -> 梯度结构 -> 齐次性 a_j grad w_j",
+      "无穷宽极限 -> 积分表示 integral a(w) sigma(w^T x) dw -> variation norm",
+      "Variation norm 控制 -> 逼近误差界 -> Barron 构造",
+      "单隐层 Rademacher 复杂度 -> Lipschitz + 范数约束 -> 泛化界",
+      "Variation norm 与核 RKHS 范数的关系 -> Banach-Hilbert 桥接"
+    ],
+    "examples": ["ReLU 初始化全零时的梯度消失", "宽度固定时 variation norm 不能逼近任意光滑函数", "过参数化下权重范数小但 variation norm 大"],
+    "exercise_focus": ["Prop. 9.1-9.3", "Exercises 9.1-9.10"],
+    "formula_checks": ["齐次性次数（ReLU=1）", "Variation norm 与有限神经元界的 1/sqrt(m)", "Rademacher 复杂度中的宽度 m 与范数", "F1 Banach 与 F2 Hilbert 的包含关系与常数"],
+    "advanced": ["9.3.6 有限神经元逼近", "9.5 核方法关系全章", "9.7 扩展（卷积网络、残差网络）"]
+  }
+}

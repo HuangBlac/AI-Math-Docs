@@ -1,0 +1,1 @@
+Grade the quoted student answer against the frozen rubric. Select rubric level IDs; do not generate a score. Explain deductions with answer location, correction, and whitelisted evidence IDs. Do not expose chain-of-thought.

@@ -1,7 +1,5 @@
 # Empirical Risk Minimization——经验风险极小化
 
-总起：
-
 算法的意义在于三点：
 
 1我们不知道真正的函数，只是管中窥豹
@@ -48,8 +46,16 @@ In this chapter, we will consider methods based on empirical risk minimization, 
 focus on statistical analysis (i.e., generalization to unseen data);
 
 optimization algorithms to efficiently find approximate minimizers will be studied in chapter 5. Before looking at the necessary probabilistic tools, we will show how problems where the output space is
-not a vector space, such as binary classification with Y = {.1, 1}, can be reformulated
+not a vector space, such as binary classification with Y = {-1, 1}, can be reformulated
 as real-valued outputs, with so-called convex surrogates of loss functions.
+
+在这个部分，我们将会考虑基于经验风险最小化的方法，并聚焦于统计的分析方法。
+
+关于如何使用优化算法来高效获得这些近似极小化的主要集中在chapeter 5。在此之间看看必要的概率工具，我们将会展示当目标不是一个向量空间，例如二分类对应的 Y = {-1, 1}时将会出现哪些问题，以及它们实际上可以被重塑为一个实数输出的问题，通过使用所谓的凸化损失函数。
+
+# Ch 4.1 Convexification of the Risk凸化风险
+
+在这个部分，我们将会考虑基于经验风险最小的方法，使用统计分析的方法，例如从未知数据之中进行泛化
 
 那么，对于这个二分类问题的时候，对应的损失函数应该是什么？
 
@@ -77,13 +83,15 @@ $E[Φ_{0-1}(yg(x))]$,
 ```
 因此原函数依然转化为了选取g使得期望极小化的问题
 
+### Ch4.1.1Convex Surrogates
+
 但是，那个问题没有消失，$Φ_{0-1}$是不连续的，所以我们可以采用集中不同的近似方式，对应不同的模型。
 
 **平方损失** 
 
 $\Phi(u)=(u-1)^2$。因为 $y^2=1$,所以 $\Phi(yg(x))=(y-g(x))^2$,这就退回到了最小二乘回归,预测时取 $g(x)$ 的符号。注意它是图里唯一在 $u>1$ 后又往上翘的——对"分得太对"也会惩罚,这是它和其它(单调不增的)损失的区别。
 
-**Logistic 损失** $\Phi(u)=\log(1+e^{-u})=-\log\sigma(u)$其中$\sigma$ 是 sigmoid，对应逻辑回归,也就是常说的交叉熵;从概率角度看,令 $\mathbb{P}(y=1\mid x)=\sigma(g(x)) $,这个风险就是负的条件对数似然(第 14 章细讲)。
+**Logistic 损失** $\Phi(u)=\log(1+e^{-u})=-\log\sigma(u)$其中$\sigma$ 是 sigmoid，对应逻辑回归,也就是常说的交叉熵;从概率角度看,令 $\mathbb{P}(y=1\mid x)=\sigma(g(x))$,这个风险就是负的条件对数似然(第 14 章细讲)。
 
 **Hinge 损失** $\Phi(u)=\max(1-u,0)$。配上线性预测器就是 SVM,这里的 $yg(x)$ 就是"间隔"一词的出处(几何解释在带菱形的 4.1.2)。
 
@@ -91,9 +99,61 @@ $\Phi(u)=(u-1)^2$。因为 $y^2=1$,所以 $\Phi(yg(x))=(y-g(x))^2$,这就退回�
 
 **指数损失** $\Phi(u)=e^{-u}$,boosting / Adaboost 里用的
 
-事实上，Hinge损失对应的实际上就是SVM支持向量机
+### Ch4.1.2 Geometric Interpretation of the Support Vector Machine
+
+事实上，Hinge损失对应的实际上就是SVM支持向量机,我们可以考虑支持向量机的几何解释。
+
+支持向量机需要找到一个分离的平面，让正例尽可能在上面而反例尽可能在下面。
+
+距离实际上可以用$\frac{wx_i+b}{\|w\|_2}$表示，其中正号表示与这个超平面法向量$w$方向相同，而负号表示不同。我们希望给定的超平面恰好能够将其分离开来，正例对应正号而反例对应负号。
+
+在分准的基础上，如果实际上就是要让$\frac{y_i(wx_i+b)}{\|w\|_2}$都尽可能大，也就是所有的点都离它尽可能远，那就说明分好了
+
+更具体来说，实际上就是要考虑距离超平面最近的训练样本，它将决定整个分类器的几何间隔：
+$$
+\gamma(w,b)
+=
+\min_{1\le i\le n}
+\frac{y_i(w^\top x_i+b)}{\|w\|_2}
+.
+$$
+SVM 希望最大化它：
+$$
+\max_{w,b}
+\min_i
+\frac{y_i(w^\top x_i+b)}{\|w\|_2}.
+$$
+然后我们很自然的就可以将其转化为固定分子大于等于1而极小化分母的情况，也就是:
+$$
+\min_w\frac{1}{2}\|w\|^2_2,s.t,\forall i\in\{1,2,\cdots,n\} y_i(w^\top x_i+b)\ge1
+$$
+对于这类不等式约束的问题，依然想办法约束条件打包进待优化的目标函数，也就是
+$$
+\min_w\frac{1}{2}\|w\|^2_2+C\sum_{i=1}^n\xi_i,s.t,\forall i\in\{1,2,\cdots,n\} y_i(w^\top x_i+b)\ge1-\xi_i,\xi\ge0
+$$
+对于达到边界的样本增加$\xi_i$来约束
+
+然后，我们就可以倒反天罡，将$\xi_i$视作待优化的目标，而那个$\frac{1}{2}\|w\|_2^2$视作正则化参数
+$$
+\min_w\frac{\lambda}{2}\|w\|^2_2+\frac{1}{n}\sum_{i=1}^n(1-y_i(w^{\top}x_i+b))_{+}
+$$
+呃呃，然后我们怎么去求解这个问题呢？
+
+拉格朗日对偶：对于要想求解(5)对应的问题，实际上可以构造拉格朗日对偶函数，也就是选取：
+
+实际上就是通过引入$\alpha$对偶项来让不等式变成等式
+
+也就是$\alpha(1-y_i(w^\top x_i+b))=0$,当$\alpha>0$时对应达到支持向量的部分，而$\alpha=0$则是没有达到。
+
+而我们回忆4.1.1所得到的部分，这个hinge损失函数实际上就是对于原始的分类函数的一个“凸化”
+
+我们也就此将不同的分类算法统一起来，例如Logistic，支持向量机。
 
 
+
+### 4.1.3 Conditional -risk and Classification Calibration
+
+## Ch4.2误差分解
 
 但我们并不是从真实分布来求取$f^*$这个理论最佳函数，也不是在所有可能的函数空间内
 
@@ -111,7 +171,7 @@ $\Phi(u)=(u-1)^2$。因为 $y^2=1$,所以 $\Phi(yg(x))=(y-g(x))^2$,这就退回�
 
 后者则是由于$\mathcal{F}$这个函数类不够大导致的，也被称之为逼近误差
 
-
+Ch4.3 Approximation
 
 我们先来分析一下逼近误差这个成分：
 
@@ -169,7 +229,7 @@ R(\hat f) - \inf_{f\in\mathcal{F}} R(f) = R(\hat f) - R(g_{\mathcal F}) = \under
 
 对于第二项，由于$\hat R(\hat f) \le \hat R(g_{\mathcal F})$,$\hat{f}$是$\hat{R}$的极小化结果
 
-
+4.4 Estimation Error
 
 记 $H(z_1,\dots,z_n) = \sup_{f\in\mathcal{F}}\big(R(f) - \hat R(f)\big)$。损失有界在 $[0,\ell_\infty]$ 时,**改动单个样本 $z_i$,$H$ 至多变化 $\ell_\infty/n$**(有界差分性质)。于是 McDiarmid 不等式给出集中:以概率 $\geq 1-\delta$,
 ```math
@@ -205,7 +265,7 @@ D_i=M_i-M_{i-1}.
 \sum_{i=1}^n D_i.
 ```
 
-# 3. 关键：证明每一步的波动被 $c_i$ 控制
+3. 关键：证明每一步的波动被 $c_i$ 控制
 
 固定前面的变量
 ```math
@@ -402,11 +462,14 @@ C=\sum_{i=1}^n c_i^2.
 ```
 这就是 McDiarmid 不等式。
 
-把"高概率界定 $H$"**化简成"只需界定它的期望 $\mathbb{E}[H]=\mathbb{E}[\sup_f(R-\hat R)]$"**,再加一个 $\frac{\ell_\infty}{\sqrt{2n}}\sqrt{\log(2/\delta)}$ 的尾项就够了。整章剩下的内容,本质都是在用越来越精的工具界定这一个期望。
+我们让这个概率变成$\delta$,就可以得到$t = \frac{\ell_\infty}{\sqrt{2n}}\sqrt{\log(2/\delta)}$
 
+把"高概率界定 $H$"**化简成"只需界定它的期望 $\mathbb{E}[H]=\mathbb{E}[\sup_f(R-\hat R)]$"**,再加一个 $\frac{\ell_\infty}{\sqrt{2n}}\sqrt{\log(2/\delta)}$ 的尾项就够了。
 
+最终我们可以
 
 **4.4.2 二次损失(暖身一):** 取平方损失 $\ell=(y-\theta^\top\varphi(x))^2$ 加 $\|\theta\|_2\leq D$ 的约束。
+
 ```math
 \hat R(f)-R(f) = \theta^\top\Big(\underbrace{\tfrac1n\textstyle\sum_i \varphi(x_i)\varphi(x_i)^\top - \mathbb{E}[\varphi(x)\varphi(x)^\top]}_{\text{矩阵偏差 } \Delta_2}\Big)\theta \;-\;2\theta^\top\underbrace{\Big(\tfrac1n\textstyle\sum_i y_i\varphi(x_i)-\mathbb{E}[y\varphi(x)]\Big)}_{\text{向量偏差 }\Delta_1} \;+\;\underbrace{\Big(\tfrac1n\textstyle\sum_i y_i^2-\mathbb{E}[y^2]\Big)}_{\text{标量偏差 }\Delta_0}
 ```

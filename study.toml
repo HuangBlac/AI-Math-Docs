@@ -1,0 +1,82 @@
+[project]
+root = "."
+study_dir = ".study"
+pdf = "wiki/raw/lftp.pdf"
+expected_pdf_sha256 = "DDEBA8166E4DC2AEDC0B863E67AF9891178A5E13F3316FD672D49CD59E486DEA"
+chapters = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+[sources]
+markdown_roots = ["docs", "wiki"]
+exclude = ["site", ".git", ".study", "tmp", "wiki/.obsidian"]
+
+[models]
+guide = "deepseek-v4-flash"
+generator = "deepseek-v4-flash"
+grader = "deepseek-v4-pro"
+critic = "deepseek-v4-pro"
+note_planner = "deepseek-v4-flash"
+note_worker = "deepseek-v4-flash"
+
+[model_profiles.guide]
+provider = "deepseek"
+model = "deepseek-v4-flash"
+thinking = false
+
+[model_profiles.generator]
+provider = "deepseek"
+model = "deepseek-v4-flash"
+thinking = false
+
+[model_profiles.proof_generator]
+provider = "deepseek"
+model = "deepseek-v4-pro"
+thinking = true
+reasoning_effort = "high"
+
+[model_profiles.counterexample_generator]
+provider = "deepseek"
+model = "deepseek-v4-pro"
+thinking = true
+reasoning_effort = "high"
+
+[model_profiles.grader]
+provider = "deepseek"
+model = "deepseek-v4-pro"
+thinking = true
+reasoning_effort = "high"
+
+[model_profiles.critic]
+provider = "deepseek"
+model = "deepseek-v4-pro"
+thinking = true
+reasoning_effort = "high"
+
+[model_profiles.note_planner]
+provider = "deepseek"
+model = "deepseek-v4-flash"
+thinking = false
+
+[model_profiles.note_worker]
+provider = "deepseek"
+model = "deepseek-v4-flash"
+thinking = false
+
+[deepseek]
+store = false
+deadline_seconds = 180
+attempt_timeout_seconds = 55
+max_retries = 2
+max_calls = 3
+max_output_tokens = 4096
+
+[subagents]
+mode = "managed"
+max_concurrency = 3
+native_responses_beta = false
+
+[mastery]
+pass_score = 80
+proof_weight = 45
+counterexample_weight = 25
+fill_hole_weight = 20
+source_navigation_weight = 10

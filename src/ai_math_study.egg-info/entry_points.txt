@@ -1,0 +1,2 @@
+[console_scripts]
+aimath-study = ai_math_study.cli:app

@@ -1,0 +1,1189 @@
+            Learning Theory from First Principles
+
+                                      May 26, 2025
+
+
+
+
+                                      Francis Bach
+                               francis.bach@inria.fr
+
+
+
+
+Copyright   in   this   Work    has   been   licensed   exclusively   to   The   MIT   Press,
+http://mitpress.mit.edu, which will be releasing the ﬁnal version to the public in
+2024. All inquiries regarding rights should be addressed to The MIT Press, Rights and
+Permissions Department.
+Contents
+
+Preface                                                                                    xi
+
+
+I   Preliminaries                                                                          1
+
+1 Mathematical Preliminaries                                                                3
+  1.1 Linear Algebra and Diﬀerentiable Calculus . . . . . . . . . . . . . . . . .           3
+      1.1.1 Minimization of Quadratic Forms . . . . . . . . . . . . . . . . . . .           3
+      1.1.2 Inverting a 2 × 2 Matrix . . . . . . . . . . . . . . . . . . . . . . . .        4
+      1.1.3 Inverting Matrices Deﬁned by Blocks, Matrix Inversion Lemma . .                 4
+      1.1.4 Eigenvalue and Singular Value Decomposition . . . . . . . . . . . .             6
+      1.1.5 Diﬀerential Calculus . . . . . . . . . . . . . . . . . . . . . . . . . .        7
+  1.2 Concentration Inequalities . . . . . . . . . . . . . . . . . . . . . . . . . . .      7
+      1.2.1 Hoeﬀding’s Inequality . . . . . . . . . . . . . . . . . . . . . . . . .        10
+      1.2.2 McDiarmid’s Inequality . . . . . . . . . . . . . . . . . . . . . . . .         13
+      1.2.3 Bernstein’s Inequality () . . . . . . . . . . . . . . . . . . . . . .         14
+      1.2.4 Expectation of the Maximum . . . . . . . . . . . . . . . . . . . . .           16
+      1.2.5 Estimation of Expectations through Quadrature () . . . . . . .               18
+      1.2.6 Concentration Inequalities for Random Matrices () . . . . . . .              19
+
+2 Introduction to Supervised Learning                                                      21
+  2.1 From Training Data to Predictions . . . . . . . . . . . . . . . . . . . . . .        22
+  2.2 Decision Theory . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      25
+       2.2.1 Supervised Learning Problems and Loss Functions . . . . . . . . .             25
+       2.2.2 Risks . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   27
+       2.2.3 Bayes Risk and Bayes Predictor . . . . . . . . . . . . . . . . . . . .        28
+  2.3 Learning from Data . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       30
+       2.3.1 Local Averaging . . . . . . . . . . . . . . . . . . . . . . . . . . . .       31
+       2.3.2 Empirical Risk Minimization . . . . . . . . . . . . . . . . . . . . .         32
+  2.4 Statistical Learning Theory . . . . . . . . . . . . . . . . . . . . . . . . . .      36
+                                             iii
+iv                                                                                CONTENTS
+
+
+           2.4.1 Measures of Performance . . . . . . . . . . . . . . . . . . . . . . .        36
+           2.4.2 Notions of Consistency over Classes of Problems . . . . . . . . . .          36
+     2.5   “No Free Lunch” Theorems () . . . . . . . . . . . . . . . . . . . . . . . .       38
+     2.6   Quest for Adaptivity . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   39
+     2.7   Beyond Supervised Learning . . . . . . . . . . . . . . . . . . . . . . . . . .     40
+     2.8   Summary–Book Outline . . . . . . . . . . . . . . . . . . . . . . . . . . . .       41
+
+3 Linear Least-Squares Regression                                                             45
+  3.1 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      45
+  3.2 Least-Squares Framework . . . . . . . . . . . . . . . . . . . . . . . . . . .           46
+  3.3 Ordinary Least-Squares Estimator . . . . . . . . . . . . . . . . . . . . . .            47
+       3.3.1 Closed-Form Solution . . . . . . . . . . . . . . . . . . . . . . . . .           47
+       3.3.2 Geometric Interpretation . . . . . . . . . . . . . . . . . . . . . . .           48
+       3.3.3 Numerical Resolution . . . . . . . . . . . . . . . . . . . . . . . . .           49
+  3.4 Statistical Analysis of Ordinary Least-Squares . . . . . . . . . . . . . . . .          49
+  3.5 Fixed Design Setting . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        50
+       3.5.1 Statistical Properties of the OLS Estimator . . . . . . . . . . . . .            52
+       3.5.2 Experiments . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .          54
+  3.6 Ridge Least-Squares Regression . . . . . . . . . . . . . . . . . . . . . . . .          56
+  3.7 Lower Bound () . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .         60
+  3.8 Random Design Analysis . . . . . . . . . . . . . . . . . . . . . . . . . . . .          63
+       3.8.1 Gaussian Designs . . . . . . . . . . . . . . . . . . . . . . . . . . . .         64
+       3.8.2 General Designs () . . . . . . . . . . . . . . . . . . . . . . . . .           65
+  3.9 Principal Component Analysis () . . . . . . . . . . . . . . . . . . . . . .            66
+  3.10 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       68
+
+
+II     Generalization Bounds for Learning Algorithms                                          69
+
+4 Empirical Risk Minimization                                                                 71
+  4.1 Convexiﬁcation of the Risk . . . . . . . . . . . . . . . . . . . . . . . . . .          72
+      4.1.1 Convex Surrogates . . . . . . . . . . . . . . . . . . . . . . . . . . .           73
+      4.1.2 Geometric Interpretation of the Support Vector Machine () . . .                  74
+      4.1.3 Conditional Φ-risk and Classiﬁcation Calibration () . . . . . . . .              76
+      4.1.4 Relation between Risk and Φ-risk () . . . . . . . . . . . . . . .               79
+  4.2 Risk Minimization Decomposition . . . . . . . . . . . . . . . . . . . . . .             84
+  4.3 Approximation Error . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .         84
+  4.4 Estimation Error . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        85
+      4.4.1 Application of McDiarmid’s Inequality . . . . . . . . . . . . . . . .             86
+      4.4.2 Easy Case I: Quadratic Functions . . . . . . . . . . . . . . . . . . .            87
+      4.4.3 Easy Case II: Finite Number of Models . . . . . . . . . . . . . . .               88
+      4.4.4 Beyond Finitely Many Models through Covering Numbers () . .                      89
+  4.5 Rademacher Complexity . . . . . . . . . . . . . . . . . . . . . . . . . . . .           91
+      4.5.1 Symmetrization . . . . . . . . . . . . . . . . . . . . . . . . . . . . .          92
+CONTENTS                                                                                    v
+
+
+         4.5.2 Lipschitz-Continuous Losses . . . . . . . . . . . . . . . . . . . . . .      94
+         4.5.3 Ball-Constrained Linear Predictions . . . . . . . . . . . . . . . . .        96
+         4.5.4 Putting Things Together (Linear Predictions) . . . . . . . . . . . .         97
+         4.5.5 From Constrained to Regularized Estimation () . . . . . . . . .             98
+         4.5.6 Extensions and Improvements . . . . . . . . . . . . . . . . . . . . .       102
+   4.6   Model Selection () . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   103
+         4.6.1 Structural Risk Minimization () . . . . . . . . . . . . . . . . . . .      104
+         4.6.2 Selection Based on Validation Set () . . . . . . . . . . . . . . . .       104
+   4.7   Relation with Asymptotic Statistics () . . . . . . . . . . . . . . . . . . .     105
+   4.8   Summary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   107
+
+5 Optimization for Machine Learning                                                    109
+  5.1 Optimization in Machine Learning . . . . . . . . . . . . . . . . . . . . . . 109
+  5.2 Gradient Descent . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 111
+      5.2.1 Simplest Analysis: Ordinary Least-Squares . . . . . . . . . . . . . 112
+      5.2.2 Convex Functions and Their Properties . . . . . . . . . . . . . . . 116
+      5.2.3 Analysis of Gradient Descent for Strongly Convex and Smooth
+             Functions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 119
+      5.2.4 Analysis of Gradient Descent for Convex and Smooth Functions () 124
+      5.2.5 Beyond Gradient Descent () . . . . . . . . . . . . . . . . . . . . 126
+      5.2.6 Nonconvex Objective Functions () . . . . . . . . . . . . . . . . . 129
+  5.3 Gradient Methods on Nonsmooth Problems . . . . . . . . . . . . . . . . . 130
+  5.4 Stochastic Gradient Descent . . . . . . . . . . . . . . . . . . . . . . . . . . 134
+      5.4.1 Strongly Convex Problems () . . . . . . . . . . . . . . . . . . . . 139
+      5.4.2 Adaptive Methods () . . . . . . . . . . . . . . . . . . . . . . . . . 141
+      5.4.3 Bias-Variance Trade-oﬀs for Least-Squares () . . . . . . . . . . . 143
+      5.4.4 Variance Reduction () . . . . . . . . . . . . . . . . . . . . . . . . 146
+  5.5 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 151
+
+6 Local Averaging Methods                                                                155
+  6.1 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 155
+  6.2 Local Averaging Methods . . . . . . . . . . . . . . . . . . . . . . . . . . . 157
+      6.2.1 Linear Estimators . . . . . . . . . . . . . . . . . . . . . . . . . . . 157
+      6.2.2 Partition Estimators . . . . . . . . . . . . . . . . . . . . . . . . . . 158
+      6.2.3 Nearest-Neighbors . . . . . . . . . . . . . . . . . . . . . . . . . . . 160
+      6.2.4 Nadaraya-Watson Estimator (aka Kernel Regression) () . . . . . 162
+  6.3 Generic Simplest Consistency Analysis . . . . . . . . . . . . . . . . . . . . 163
+      6.3.1 Fixed Partition . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 165
+      6.3.2 k-nearest Neighbor . . . . . . . . . . . . . . . . . . . . . . . . . . . 168
+      6.3.3 Kernel Regression (Nadaraya-Watson) () . . . . . . . . . . . . . 170
+  6.4 Universal Consistency () . . . . . . . . . . . . . . . . . . . . . . . . . . . 174
+  6.5 Adaptivity () . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 177
+  6.6 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 178
+vi                                                                            CONTENTS
+
+
+7 Kernel Methods                                                                         179
+  7.1 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 180
+  7.2 Representer Theorem . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 181
+  7.3 Kernels . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 183
+      7.3.1 Linear and Polynomial Kernels . . . . . . . . . . . . . . . . . . . . 186
+      7.3.2 Translation-Invariant Kernels on [0, 1] . . . . . . . . . . . . . . . . 187
+      7.3.3 Translation-Invariant Kernels on Rd . . . . . . . . . . . . . . . . . 191
+      7.3.4 Beyond Vectorial Input Spaces () . . . . . . . . . . . . . . . . . . 194
+  7.4 Algorithms . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 196
+      7.4.1 Representer Theorem . . . . . . . . . . . . . . . . . . . . . . . . . 196
+      7.4.2 Column Sampling . . . . . . . . . . . . . . . . . . . . . . . . . . . 197
+      7.4.3 Random Features . . . . . . . . . . . . . . . . . . . . . . . . . . . . 198
+      7.4.4 Dual Algorithms () . . . . . . . . . . . . . . . . . . . . . . . . . . 199
+      7.4.5 Stochastic Gradient Descent () . . . . . . . . . . . . . . . . . . . 200
+      7.4.6 Kernelization of Linear Algorithms . . . . . . . . . . . . . . . . . . 201
+  7.5 Generalization Guarantees–Lipschitz-continuous Losses . . . . . . . . . . . 202
+      7.5.1 Risk Decomposition . . . . . . . . . . . . . . . . . . . . . . . . . . 203
+      7.5.2 Approximation Error for Translation-Invariant Kernels on Rd . . . 205
+  7.6 Theoretical Analysis of Ridge Regression () . . . . . . . . . . . . . . . . 208
+      7.6.1 Kernel Ridge Regression as a Linear Estimator . . . . . . . . . . . 208
+      7.6.2 Bias and Variance Decomposition () . . . . . . . . . . . . . . . . 209
+      7.6.3 Relating Empirical and Population Covariance Operators . . . . . 212
+      7.6.4 Analysis for Well-Speciﬁed Problems () . . . . . . . . . . . . . . . 214
+      7.6.5 Analysis beyond Well-Speciﬁed Problems () . . . . . . . . . . . . 216
+      7.6.6 Balancing Bias and Variance () . . . . . . . . . . . . . . . . . . . 217
+  7.7 Experiments . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 218
+  7.8 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 220
+
+8 Sparse Methods                                                                         221
+  8.1 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 221
+      8.1.1 Dedicated Proof Technique for Constrained Least-Squares . . . . . 223
+      8.1.2 Probabilistic and Combinatorial Lemmas . . . . . . . . . . . . . . 224
+  8.2 Variable Selection by the ℓ0 -penalty . . . . . . . . . . . . . . . . . . . . . 226
+      8.2.1 Assuming That k Is Known . . . . . . . . . . . . . . . . . . . . . . 226
+      8.2.2 Sparsity-Adaptive Estimation (Unknown k) () . . . . . . . . . . . 228
+  8.3 Variable Selection by ℓ1 -regularization . . . . . . . . . . . . . . . . . . . . 231
+      8.3.1 Intuition and Algorithms . . . . . . . . . . . . . . . . . . . . . . . 231
+      8.3.2 Slow Rates–Random Design . . . . . . . . . . . . . . . . . . . . . . 234
+      8.3.3 Slow Rates–Fixed Design (Square Loss) . . . . . . . . . . . . . . . 236
+      8.3.4 Fast Rates–Fixed Design () . . . . . . . . . . . . . . . . . . . . . 238
+      8.3.5 Zoo of Conditions () . . . . . . . . . . . . . . . . . . . . . . . . 239
+      8.3.6 Fast Rates–Random Design () . . . . . . . . . . . . . . . . . . . . 241
+  8.4 Experiments . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 243
+  8.5 Extensions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 243
+CONTENTS                                                                                   vii
+
+
+   8.6    Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 245
+
+9 Neural Networks                                                                        247
+  9.1 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 247
+  9.2 Single Hidden-Layer Neural Network . . . . . . . . . . . . . . . . . . . . . 249
+      9.2.1 Optimization . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 251
+      9.2.2 Rectiﬁed Linear Units and Homogeneity . . . . . . . . . . . . . . . 253
+      9.2.3 Estimation Error . . . . . . . . . . . . . . . . . . . . . . . . . . . . 253
+  9.3 Approximation Properties . . . . . . . . . . . . . . . . . . . . . . . . . . . 256
+      9.3.1 Universal Approximation Property in One Dimension . . . . . . . 256
+      9.3.2 Inﬁnitely Many Neurons and the Variation Norm . . . . . . . . . . 257
+      9.3.3 Variation Norm in One Dimension . . . . . . . . . . . . . . . . . . 260
+      9.3.4 Variation Norm in an Arbitrary Dimension . . . . . . . . . . . . . 263
+      9.3.5 Precise Approximation Properties . . . . . . . . . . . . . . . . . . 265
+      9.3.6 From the Variation Norm to a Finite Number of Neurons () . . . 266
+  9.4 Generalization Performance for Neural Networks . . . . . . . . . . . . . . 269
+  9.5 Relationship with Kernel Methods () . . . . . . . . . . . . . . . . . . . . 271
+      9.5.1 From a Banach Space F1 to a Hilbert Space F2 () . . . . . . . . . 271
+      9.5.2 Kernel Function () . . . . . . . . . . . . . . . . . . . . . . . . . 273
+      9.5.3 Upper Bound on RKHS Norm () . . . . . . . . . . . . . . . . . 275
+  9.6 Experiments . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 277
+  9.7 Extensions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 278
+  9.8 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 279
+
+
+III      Special Topics                                                                  281
+
+10 Ensemble Learning                                                                       283
+   10.1 Averaging/Bagging . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 284
+        10.1.1 Independent Datasets . . . . . . . . . . . . . . . . . . . . . . . . . 284
+        10.1.2 Bagging . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 286
+   10.2 Random Projections and Averaging . . . . . . . . . . . . . . . . . . . . . 288
+        10.2.1 Gaussian Sketching . . . . . . . . . . . . . . . . . . . . . . . . . . . 290
+        10.2.2 Random Projections . . . . . . . . . . . . . . . . . . . . . . . . . . 292
+   10.3 Boosting . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 298
+        10.3.1 Problem Setup . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 298
+        10.3.2 Incremental Learning . . . . . . . . . . . . . . . . . . . . . . . . . 301
+        10.3.3 Matching Pursuit . . . . . . . . . . . . . . . . . . . . . . . . . . . . 302
+        10.3.4 Adaboost . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 303
+        10.3.5 Greedy Algorithm Based on Gradient Boosting . . . . . . . . . . . 304
+        10.3.6 Convergence of Expected Risk . . . . . . . . . . . . . . . . . . . . 308
+        10.3.7 Experiments . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 310
+   10.4 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 311
+viii                                                                          CONTENTS
+
+
+11 From Online Learning to Bandits                                                       313
+   11.1 First-Order Online Convex Optimization . . . . . . . . . . . . . . . . . . . 315
+        11.1.1 Convex Case . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 316
+        11.1.2 Strongly Convex Case () . . . . . . . . . . . . . . . . . . . . . . 318
+        11.1.3 Online Mirror Descent () . . . . . . . . . . . . . . . . . . . . . . . 319
+        11.1.4 Lower Bounds () . . . . . . . . . . . . . . . . . . . . . . . . . . 321
+   11.2 Zeroth-Order Convex Optimization . . . . . . . . . . . . . . . . . . . . . . 323
+        11.2.1 Smooth Stochastic Gradient Descent . . . . . . . . . . . . . . . . . 325
+        11.2.2 Stochastic Smoothing () . . . . . . . . . . . . . . . . . . . . . . . 328
+        11.2.3 Extensions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 331
+   11.3 Multiarmed Bandits . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 331
+        11.3.1 Need for an Exploration-Exploitation Trade-oﬀ . . . . . . . . . . . 333
+        11.3.2 “Explore-Then-Commit” . . . . . . . . . . . . . . . . . . . . . . . . 333
+        11.3.3 Optimism in the Face of Uncertainty () . . . . . . . . . . . . . . 336
+        11.3.4 Adversarial Bandits () . . . . . . . . . . . . . . . . . . . . . . . . 339
+   11.4 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 341
+
+12 Overparameterized Models                                                              343
+   12.1 Implicit Bias of Gradient Descent . . . . . . . . . . . . . . . . . . . . . . . 344
+        12.1.1 Least-Squares Regression . . . . . . . . . . . . . . . . . . . . . . . 344
+        12.1.2 Separable Classiﬁcation . . . . . . . . . . . . . . . . . . . . . . . . 346
+        12.1.3 Beyond Convex Problems () . . . . . . . . . . . . . . . . . . . . . 351
+        12.1.4 Remarks on Implicit Bias . . . . . . . . . . . . . . . . . . . . . . . 354
+   12.2 Double Descent . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 355
+        12.2.1 The Double Descent Phenomenon . . . . . . . . . . . . . . . . . . 355
+        12.2.2 Empirical Evidence . . . . . . . . . . . . . . . . . . . . . . . . . . . 356
+        12.2.3 Linear Regression with Gaussian Inputs . . . . . . . . . . . . . . . 358
+        12.2.4 Linear Regression with Gaussian Projections () . . . . . . . . . 360
+   12.3 Global Convergence of Gradient Descent . . . . . . . . . . . . . . . . . . . 365
+        12.3.1 Mean Field Limits . . . . . . . . . . . . . . . . . . . . . . . . . . . 365
+        12.3.2 From Linear Networks to Positive-Deﬁnite Matrices . . . . . . . . 370
+        12.3.3 Global Convergence for Positive-Deﬁnite Matrices . . . . . . . . . 370
+        12.3.4 Special Cases . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 374
+   12.4 Lazy Regime and Neural Tangent Kernels () . . . . . . . . . . . . . . . . 375
+   12.5 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 377
+
+13 Structured Prediction                                                                379
+   13.1 Multicategory Classiﬁcation . . . . . . . . . . . . . . . . . . . . . . . . . . 380
+        13.1.1 Extension of Classical Convex Surrogates . . . . . . . . . . . . . . 380
+        13.1.2 Generalization Bound I: Stochastic Gradient Descent . . . . . . . . 383
+        13.1.3 Generalization Bound II: Rademacher Complexities () . . . . . . 384
+   13.2 General Setup and Examples . . . . . . . . . . . . . . . . . . . . . . . . . 387
+        13.2.1 Examples . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 387
+        13.2.2 Structure Encoding Loss Functions . . . . . . . . . . . . . . . . . . 390
+CONTENTS                                                                                     ix
+
+
+   13.3 Surrogate Methods . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     391
+        13.3.1 Score Functions and Decoding Step . . . . . . . . . . . . . . . . . .        392
+        13.3.2 Fisher Consistency and Calibration Functions . . . . . . . . . . . .         392
+        13.3.3 Main Surrogate Frameworks . . . . . . . . . . . . . . . . . . . . . .        393
+   13.4 Smooth/Quadratic Surrogates . . . . . . . . . . . . . . . . . . . . . . . . .       393
+        13.4.1 Quadratic Surrogate . . . . . . . . . . . . . . . . . . . . . . . . . .      393
+        13.4.2 Theoretical Guarantees . . . . . . . . . . . . . . . . . . . . . . . .       394
+        13.4.3 Linear Estimators and Decoding Steps . . . . . . . . . . . . . . . .         395
+        13.4.4 Smooth Surrogates () . . . . . . . . . . . . . . . . . . . . . . . . .      396
+   13.5 Max-Margin Formulations . . . . . . . . . . . . . . . . . . . . . . . . . . .       398
+        13.5.1 Structured Support Vector Machines . . . . . . . . . . . . . . . . .         399
+        13.5.2 Max-Min Formulations () . . . . . . . . . . . . . . . . . . . . .          399
+   13.6 Generalization Bounds () . . . . . . . . . . . . . . . . . . . . . . . . . . .     402
+   13.7 Experiments . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   404
+        13.7.1 Robust Regression . . . . . . . . . . . . . . . . . . . . . . . . . . .      404
+        13.7.2 Ranking . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    404
+   13.8 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    407
+
+14 Probabilistic Methods                                                                  409
+   14.1 From Empirical Risks to Log-Likelihoods . . . . . . . . . . . . . . . . . . 409
+        14.1.1 Conditional Likelihoods . . . . . . . . . . . . . . . . . . . . . . . . 411
+        14.1.2 Classical Priors . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 411
+        14.1.3 Sparse Priors . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 412
+        14.1.4 On the Relationship between MAP and MMSE () . . . . . . . . . 413
+   14.2 Discriminative versus Generative Models . . . . . . . . . . . . . . . . . . . 417
+        14.2.1 Linear Discriminant Analysis and Softmax Regression . . . . . . . 417
+        14.2.2 Naive Bayes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 418
+        14.2.3 Maximum Likelihood Estimations . . . . . . . . . . . . . . . . . . 419
+   14.3 Bayesian Inference . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 420
+        14.3.1 Computational Handling of Posterior Distributions . . . . . . . . . 421
+        14.3.2 Model Selection through Marginal Likelihood . . . . . . . . . . . . 422
+   14.4 PAC-Bayesian Analysis . . . . . . . . . . . . . . . . . . . . . . . . . . . . 423
+        14.4.1 Setup . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 423
+        14.4.2 Uniformly Bounded Loss Functions . . . . . . . . . . . . . . . . . . 424
+   14.5 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 426
+
+15 Lower Bounds                                                                          427
+   15.1 Statistical Lower Bounds . . . . . . . . . . . . . . . . . . . . . . . . . . . . 428
+        15.1.1 Minimax Lower Bounds . . . . . . . . . . . . . . . . . . . . . . . . 428
+        15.1.2 Reduction to a Hypothesis Test . . . . . . . . . . . . . . . . . . . . 429
+        15.1.3 Review of Information Theory . . . . . . . . . . . . . . . . . . . . 431
+        15.1.4 Lower Bound on Hypothesis Testing Based on Information Theory 434
+        15.1.5 Examples . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 436
+        15.1.6 Minimax Lower Bounds through Bayesian Analysis . . . . . . . . . 438
+x                                                                               CONTENTS
+
+
+    15.2 Optimization Lower Bounds . . . . . . . . . . . . . . . . . . . . . . . . . .      441
+         15.2.1 Convex Optimization . . . . . . . . . . . . . . . . . . . . . . . . .       441
+         15.2.2 Nonconvex Optimization () . . . . . . . . . . . . . . . . . . . . .        443
+    15.3 Lower Bounds for Stochastic Gradient Descent () . . . . . . . . . . . . .         447
+    15.4 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   449
+
+Conclusion                                                                                  451
+
+References                                                                                  453
+Preface
+
+Why study learning theory? Data have become ubiquitous in science, engineering,
+industry, and personal life, leading to the need for automated processing. Machine learn-
+ing is concerned with making predictions from training examples and is used in all of
+these areas, in small and large problems, with a variety of learning models, ranging from
+simple linear models to deep neural networks. It has now become an important part of
+the algorithmic toolbox.
+    How can we make sense of these practical successes? Can we extract a few principles
+to understand current learning methods and guide the design of new techniques for new
+applications or to adapt to new computational environments? This is precisely the goal of
+learning theory. Beyond being already mathematically rich and interesting (as it imports
+from many mathematical ﬁelds), most behaviors seen in practice can, in principle, be un-
+derstood with suﬃcient eﬀort and idealizations. In return, once understood, appropriate
+modiﬁcations can be made to obtain even greater success.
+
+
+
+Why read this book? The goal of this textbook is to present old and recent results
+in learning theory for the most widely used learning architectures. Doing so, a few prin-
+ciples are laid out to understand the overﬁtting and underﬁtting phenomena, as well
+as a systematic exposition of the three types of components in their analysis, estima-
+tion, approximation, and optimization errors. Moreover, the goal is not only to show
+that learning methods can learn given suﬃcient amounts of data but also to understand
+how quickly (or slowly) they learn, with a particular eye toward adaptivity to speciﬁc
+structures that make learning faster (such as smoothness of the prediction functions or
+dependence on low-dimensional subspaces).
+    This book is geared toward theory-oriented students, as well as students who want
+to acquire a basic mathematical understanding of algorithms used throughout machine
+learning and associated ﬁelds that are signiﬁcant users of learning methods (such as
+computer vision and natural language processing). Moreover, it is well suited to students
+and researchers coming from other areas of applied mathematics or computer science
+who want to learn about the theory behind machine learning. Finally, since many simple
+proofs have been put together, it can serve as a reference for researchers in theoretical
+machine learning.
+                                           xi
+xii                                                                              PREFACE
+
+
+    A particular eﬀort will be made to prove many results from ﬁrst principles while
+keeping the exposition as simple as possible. This will naturally lead to a choice of key re-
+sults showcasing the essential concepts in learning theory in simple but relevant instances.
+A few general results will also be presented without proof. Of course, the concept of ﬁrst
+principles is subjective, and I will assume the readers have a good knowledge of linear
+algebra, probability theory, and diﬀerential calculus.
+   Moreover, I will focus on the part of learning theory that deals with algorithms that
+can be run in practice, and thus, all algorithmic frameworks described in this book
+are routinely used. Since many modern learning methods are based on optimization,
+chapter 5 is dedicated to that topic. For most learning methods, some simple illustrative
+experiments are presented, with accompanying code (MATLAB and Python for the
+moment, and Julia in the future) so students can see for themselves that the algorithms are
+simple and eﬀective in synthetic experiments. Exercises currently come without solutions
+and are meant to help students understand the related material.
+    Finally, the third part of the book provides an in-depth discussion of modern special
+topics such as online learning, ensemble learning, structured prediction, and overparam-
+eterized models.
+   Note that this is not an introductory textbook on machine learning. There are al-
+ready several good ones in several languages (see, e.g., Alpaydin, 2020; Lindholm et al.,
+2022; Azencott, 2019; Alpaydin, 2022). This textbook focuses on learning theory–that is,
+deriving mathematical guarantees for the most widely used learning algorithms and char-
+acterizing what makes a particular algorithmic framework successful. In particular, given
+that many modern methods are based on optimization algorithms, we put a signiﬁcant
+emphasis on gradient-based methods and their relation with machine learning.
+   A key goal of the book is to look at the simplest results to make them easier to
+understand, rather than focusing on material that is more advanced but potentially too
+hard at ﬁrst and that provides only marginally better understanding. Throughout the
+book, we propose references to more modern work that goes deeper.
+
+
+Book organization. The book comprises three main parts: an introduction, a core
+part, and special topics. Readers are encouraged to read the ﬁrst two parts to understand
+the main concepts fully and can pick and choose among the special topic chapters in a
+second reading or if used in a two-semester class.
+   All chapters start with a summary of the main concepts and results that will be cov-
+ered. All the simulation experiments are available at https://www.di.ens.fr/~ fbach/ltfp/
+as MATLAB and Python code. Many exercises are proposed and are embedded in the
+text with dedicated paragraphs, with a few mentioned within the text (e.g., as “proof left
+as an exercise”). These exercises are meant to deepen the understanding of the nearby
+material, by proposing extensions or applications.
+    Sections or more advanced exercises are denoted by , , or , with the number
+of diamonds denoting the level of complexity. Comments or suggestions are most welcome
+and should be sent to francis.bach@inria.fr.
+PREFACE                                                                                 xiii
+
+
+   Many topics are not covered at all, and many others are not covered in depth. There
+are many good textbooks on learning theory that go deeper or wider (e.g., Christmann
+and Steinwart, 2008; Koltchinskii, 2011; Mohri et al., 2018; Shalev-Shwartz and Ben-
+David, 2014). See also the nice notes from Alexander Rakhlin and Karthik Sridharan,1
+as well as from Michael Wolf.2
+    In particular, the book focuses primarily on real-valued prediction functions, as it
+has become the de facto standard for modern machine learning techniques, even when
+predicting discrete-valued outputs. Thus, although its historical importance and inﬂu-
+ence are crucial, I choose not to present the Vapnik-Chervonenkis dimension (see, e.g.,
+Vapnik and Chervonenkis, 2015), and instead base my generic bounds on Rademacher
+complexities. This focus on real-valued prediction functions makes least-squares regres-
+sion a central part of the theory, which is well appreciated by students. Moreover, this
+allows for drawing links with the related statistical literature.
+    Some areas, such as online learning or probabilistic methods, are described in a single
+chapter to draw links with the classical theory and encourage readers to learn more about
+them through dedicated books. I have also included chapter 12 on overparameterized
+models and chapter 13 on structured prediction, which present modern topics in machine
+learning. More generally, the goal in the third part of the book (special topics) was, for
+each chapter, to introduce new concepts, while remaining a few steps away from the core
+material and using uniﬁed notations.
+    A book is always a work in progress. In particular, there are still typos and almost
+surely places where more details are needed; readers are most welcome to report them to
+me (and then get credit for it). I am convinced that more straightforward mathematical
+arguments are possible in many places in the book. Please let me know if you have any
+elegant and simple ideas I have overlooked.
+
+Mathematical notations. Throughout the textbook, I provide uniﬁed notations:
+   • Random variables: given a set X, we will use the lowercase notation for a random
+     variable with values in X, as well as for its observations.
+                                                             R    Probability distributions
+     will be denoted µ or p and expectations as E[f (x)] = X f (x)dp(x). This is slightly
+     ambiguous but will not cause major problems (and is standard in research papers).
+     In this book, following most of the learning theory literature, we will gloss over mea-
+     surability issues to avoid overformalizations. For a detailed treatment, see Devroye
+     et al. (1996) and Christmann and Steinwart (2008).
+   • Norms on Rd : we will consider the usual ℓp -norms on Rd , deﬁned through kxkpp =
+     Pd         p
+       i=1 |xi | for p ∈ [1, ∞), with kxk∞ = maxi∈{1,...,d} |xi |.
+   • For a symmetric matrix A ∈ Rn×n , A < 0 means that A is positive semideﬁnite (i.e.,
+     all of its eigenvalues are nonnegative), and for two symmetric matrices A and B,
+     A < B means that A − B < 0. For a vector λ ∈ Rn , Diag(λ) is the diagonal matrix
+     with diagonal vector λ.
+  1 http://www.mit.edu/
+                      ~ rakhlin/notes.html.
+  2 https://mediatum.ub.tum.de/doc/1723378/1723378.pdf.
+xiv                                                                             PREFACE
+
+
+      • For a diﬀerentiable function f : Rd → R, its gradient at x is denoted f ′ (x) ∈ Rd ,
+        and if it is twice diﬀerentiable, its Hessian is denoted as f ′′ (x) ∈ Rd×d .
+
+How to use this book? The ﬁrst nine chapters (in sequence, without the diamond
+parts) are adapted for a one-semester upper-undergraduate or graduate class, if possible,
+after an introductory course on machine learning. The following six chapters can be read
+mostly in any order and are here to deepen the understanding of some special topics; they
+can be read as homework assignments (using the exercises) or taught within a longer (e.g.,
+two-semester) class. The book is intended to be adapted to self-study, with the ﬁrst nine
+chapters being read in sequence and the last six in random order. In all situations,
+chapter 1, on mathematical preliminaries, can be read quickly and studied in more detail
+when relevant notions are needed in subsequent chapters.
+
+Acknowledgments. This textbook is extracted from lecture notes from a class that I
+have taught (unfortunately online, but this gave me an opportunity to write more detailed
+notes) during the Fall 2020 semester, with extra passes during the classes I taught in the
+Spring 2021, Fall 2021, Fall 2022, and Fall 2023 semesters.
+    These class notes have been adapted from the notes of many colleagues I had the
+pleasure to work with, in particular Lénaı̈c Chizat, Pierre Gaillard, Alessandro Rudi,
+and Simon Lacoste-Julien. Special thanks to Lénaı̈c Chizat for his help with chapter 9
+on neural networks and for proofreading many of the chapters, to Jaouad Mourtada
+for his help on lower bounds and random design analysis for least-squares regression, to
+Alex Nowak-Vila for his help on calibration functions, to Vivien Cabannes for the help on
+consistency proofs for local averaging techniques, to Alessandro Rudi for his help on kernel
+methods, to Adrien Taylor for his help on chapter 5 on optimization, to Marc Lelarge for
+his help on overparameterized models, Olivier Cappé for his help on multiarmed bandits,
+and Lawrence Stewart for his help on neural network architectures. The notes from
+Philippe Rigollet have been a very precious help for chapter 8 on model selection. The
+careful readings of large portions of the text by Bertille Follain and Gabriel Stoltz have
+been very helpful. Feedback from the anonymous reviewers has also been useful.
+   Former and current collaborators also helped in the ﬁnal stages by reading carefully,
+annotating, and commenting a chapter: Eloı̈se Berthier, Raphaël Berthier, Vivien Ca-
+bannes, Aymeric Dieuleveut, Nicolas Flammarion, Pierre Gaillard, Hadrien Hendrickx,
+David Holzmüller, Dmitrii Ostrovskii, Loucas Pillaud-Vivien, Alessandro Rudi, Kevin
+Scaman, and Adrien Taylor. This was greatly appreciated.
+   Typos and suggestions have been highlighted by Ritobrata Ghosh, Thanh Nguyen-
+Tang, Ishaan Gulrajani, Johannes Oswald, Seijin Kobayashi, Mathieu Dagreou, Dimitri
+Meunier, Antoine Moulin, Laurent Condat, Quentin Duchemin, Quentin Berthet, Math-
+ieu Bloch, Fabien Pesquerel, Guillaume Bied, Uladzimir Yahorau, Pierre Dognin, Vi-
+hari Piratla, Tim Tsz-Kit Lau, Samy Clementz, Mohammad Alkousa, Eloı̈se Berthier,
+Pierre Marion, Vincent Liu, Atsushi Nitanda, Cheik Traoré, Ruiyuan Huang, Naoyuki
+Terashita, Jiangrui Kang, Moritz Haas, Mastane Achab, Berné Nortier, Cassidy Laidlaw,
+Jing Wang, Motonobu Kanagawa, Shane Hoeberichts, Dishank Jain, Aymeric Dieuleveut,
+PREFACE                                                                         xv
+
+
+Steﬀen Grünewälder, Claire Boyer, Bernhard Schölkopf, Piyushi Manupriya, Qingyue
+Zhao, Thomas Pock, Eliot Beyler, Yves Leconte, Jean Pichon, Brieuc Antoine Dit Ur-
+ban, Théo Voldoire, Guénolé Joubioux, Adéchola Kouande, Zhu Wang, Leon Rofagha,
+John Zarka, Liviu Aolaritei, Gaétan Marceau Caron, Ivan Barrientos, Thomas Boudou,
+Sebastian Gruber, Julien Stoehr, Jingxin Zhang, Sacha Braun, Noâm Boussouf, Abder-
+rahmane Kasmi, Jacques Sun, Sebastiano Scardera, Mariem Aalabou, Pierre Cornilleau,
+Eric Moulines, Alexandre Olech, Nabil Kahalé, Aaron Mishkin, Patrik Wolf, Jan Quan
+(△! Add your name to the list by sending me typos and comments!).
+
+   I am grateful to Elizabeth Swayze, Matthew Valades, Susan McClung, Roger Wood,
+Emma Donovan, Jitendra Kumar, and everyone at MIT Press for their assistance in
+preparing and publishing this book.
+    Part I
+
+Preliminaries
+
+
+
+
+      1
+Chapter 1
+
+Mathematical Preliminaries
+
+ Chapter Summary
+  • Linear algebra: A bag of tricks to avoid lengthy and faulty computations.
+  • Concentration inequalities: For n independent random variables, the√ deviation
+    between the empirical average and the expectation is of the order O(1/ n). What
+    is in the big O, and how does it depend explicitly on problem parameters?
+
+
+
+    The mathematical analysis and design of machine learning algorithms require spe-
+cialized tools beyond classic linear algebra, diﬀerential calculus, and probability. In this
+chapter, I will review these nonelementary mathematical tools used throughout the book:
+ﬁrst, linear algebra tricks, and then concentration inequalities. The chapter can be safely
+skipped for readers familiar with linear algebra and concentration inequalities since the
+relevant results will be referenced when needed.
+
+
+1.1     Linear Algebra and Differentiable Calculus
+This section reviews basic linear algebra and diﬀerential calculus results that will be
+used throughout the book. Using these usually greatly simpliﬁes computations. Matrix
+notations will be used as much as possible.
+
+
+1.1.1    Minimization of Quadratic Forms
+Given a positive-deﬁnite (and hence invertible) symmetric matrix A ∈ Rn×n and vector
+b ∈ Rn , the minimization of quadratic forms with linear terms can be done in closed form:
+
+                                  1 ⊤              1
+                            inf     x Ax − b⊤ x = − b⊤ A−1 b,
+                           x∈Rn   2                2
+                                            3
+4                                       CHAPTER 1. MATHEMATICAL PRELIMINARIES
+
+
+with the minimizer x∗ = A−1 b obtained by zeroing the gradient f ′ (x) = Ax − b of the
+function f (x) = 12 x⊤ Ax − b⊤ x. Moreover, we have
+
+                      1 ⊤            1                       1
+                        x Ax − b⊤ x = (x − x∗ )⊤ A(x − x∗ ) − b⊤ A−1 b.
+                      2              2                       2
+If A were not invertible (simply positive semideﬁnite) and b were not in the column space
+of A, then the inﬁmum would be −∞.
+    Note that this result is often used in various forms, such as
+                        1 ⊤ −1   1
+               b⊤ x ⩽     b A b + x⊤ Ax with equality if and only if b = Ax.
+                        2        2
+This form is exactly the Fenchel-Young inequality1 for quadratic forms (see chapter 5),
+                                                                 2
+                                                         a2
+and it is often used in one dimension in the form ab ⩽ 2η   + ηb2 for any η ⩾ 0 (and
+equality if and only if η = a/b).
+
+1.1.2      Inverting a 2 × 2 Matrix
+Solving small systems happens frequently, as well as inverting small matrices. This can
+                                               
+be easily done in two dimensions. Let M = ac db be a 2 × 2 matrix. If ad − bc 6= 0, then
+we may invert it as follows:
+                                                 −1                       
+                               −1           a b              1          d −b
+                           M        =                   =                     .
+                                            c d           ad − bc       −c a
+
+This can be checked by multiplying the two matrices or using Cramer’s rule,2 and it can
+be generalized to matrices deﬁned by blocks, as we discuss next.
+
+1.1.3      Inverting Matrices Defined by Blocks, Matrix Inversion
+           Lemma
+                                                                                           A B
+                                                                                                 
+The example given above may be generalized to matrices of the form M =                     C D
+                                                                                                  , with
+blocks of consistent sizes (note that A and D have to be square matrices). The inverse
+of M may be obtained by applying directly Gaussian elimination3 in block form. Given
+                          A B
+                                            
+the two matrices M = C      D
+                                and N = I0 I0 , we may linearly combine rows (with the
+same coeﬃcients for the two matrices). Once M has been transformed into the identity
+matrix, N has been transformed to the inverse of M .
+   We make the simplifying assumption that A is invertible; we use the notation M/A =
+D −CA−1 B for the Schur complement of block A and also assume that M/A is invertible.
+    1 For a discussion of this term, see https://en.wikipedia.org/wiki/Convex_conjugate.
+    2 See https://en.wikipedia.org/wiki/Cramer’s_rule.
+    3 See https://en.wikipedia.org/wiki/Gaussian_elimination.
+1.1. LINEAR ALGEBRA AND DIFFERENTIABLE CALCULUS                                          5
+
+
+We thus get by Gaussian elimination, referring to Li , i = 1, 2 as the two lines of blocks,
+                                 
+so for the ﬁrst matrix M = L L2
+                               1
+                                   :
+                                           
+                           A B           I 0
+   Original matrices:
+                           C D           0 I
+                                                  
+                  −1       A B               I     0
+  L2 ← L2 − CA L1 :
+                            0 M/A        −CA−1 I
+                                                                     
+                −1         A B                   I                0
+  L2 ← (M/A) L2 :
+                            0 I          −(M/A)−1 CA−1 (M/A)−1
+                                                                             
+                           A 0           I + B(M/A)−1 CA−1 −B(M/A)−1
+  L1 ← L1 − BL2 :
+                            0 I            −(M/A)−1 CA−1            (M/A)−1
+                                 −1                                                 
+          −1              I 0         A +A−1 B(M/A)−1 CA−1 −A−1 B(M/A)−1
+  L1 ← A L1 :                                                                           .
+                           0 I            −(M/A)−1 CA−1                 (M/A)−1
+This shows that
+                 −1  −1                                
+       −1     A B      A +A−1 B(M/A)−1 CA−1 −A−1 B(M/A)−1
+     M =             =                                     .                          (1.1)
+              C D          −(M/A)−1 CA−1      (M/A)−1
+Moreover, by doing the same operations but by ﬁrst setting the upper-right block to zero,
+and assuming that D and M/D = A − BD−1 C are invertible, we obtain
+                  −1                                                      
+      −1      A B              (M/D)−1               −(M/D)−1 BD−1
+    M =                 =                                                      .    (1.2)
+              C D           −D−1 C(M/D)−1 D−1 +D−1 C(M/D)−1 BD−1
+By identifying the upper-left and lower-right blocks in equations (1.1) and (1.2), we
+obtain the following identities (sometimes referred to as Woodbury matrix identities, or
+the matrix inversion lemma):
+                            −1
+               A − BD−1 C         = A−1 + A−1 B(D − CA−1 B)−1 CA−1
+                             −1
+               D − CA−1 B         = D−1 + D−1 C(A − BD−1 C)−1 BD−1 .
+Another classical formulation is
+                                   −1
+                    A − BD−1 C           B   = A−1 B(D − CA−1 B)−1 D.
+These are particularly interesting when the blocks A and D have very diﬀerent sizes, as
+the inverse of a large matrix may be obtained from the inverse of a small matrix.
+   The lemma is often applied when C = B ⊤ , A = I, and D = −I, which leads to
+                        (I + BB ⊤ )−1 = I − B(I + B ⊤ B)−1 B ⊤ ,                      (1.3)
+and, once right-multiplied by B, this leads to the following compact formula (which is
+easier to rederive and remember than equation (1.3)):
+                           (I + BB ⊤ )−1 B = B(I + B ⊤ B)−1 .
+These equalities are commonly used for both theoretical and algorithmic purposes.
+6                                          CHAPTER 1. MATHEMATICAL PRELIMINARIES
+
+
+Exercise 1.1 For α ∈ R such that α 6= −1/n and 1n ∈ Rn the vector of all 1s, show that
+                               α
+we have (I + α1n 1⊤
+                  n)
+                    −1
+                       = I − 1+nα 1n 1⊤
+                                      n.
+
+
+Exercise 1.2 () Show that we can block-diagonalize the matrices M and M −1 as
+                                                          
+                 A B              I     0    A 0         I A−1 B
+          M=              =
+                 C D            CA−1 I       0 M/A       0   I
+                   −1                                              
+               A B              I −A−1 B      A−1       0          I    0
+      M −1 =              =                                                .
+               C D              0     I        0 (M/A)−1         −CA−1 I
+
+                                         A B
+                                               
+Exercise 1.3 Show that det               C D
+                                                    = det(M/A) det(A) = det(M/D) det(D).
+
+Conditional covariance matrices for Gaussian vectors (). The identities shown
+above can be used to compute conditional mean vectors and covariance matrices for Gaus-
+sian vectors (in this book, we will favor the denomination “Gaussian” over “normal”). If
+                               
+we have a Gaussian vector xy with x ∈ Rm and y ∈ Rn , with the mean vector deﬁned
+                                                               
+by block as µ = µµxy , and the covariance matrix Σ = Σ  Σxx Σxy
+                                                         yx Σyy
+                                                                  < 0 (deﬁned with blocks
+of appropriate sizes), then the joint density p(x, y) of (x, y) is proportional to
+                                                  ⊤              −1             
+                                 1       x − µx            Σxx Σxy           x − µx
+                   exp       −                                                          .
+                                 2       y − µy            Σyx Σyy           y − µy
+
+By writing it as the product of a function of x and a function of (x, y), we can get that x
+is Gaussian with mean µx and covariance matrix Σx , and that given x = x′ , y is Gaussian
+with mean µy|x′ = µy + Σyx Σ−1      ′                            ′
+                              xx (x − µx ) (which depends on x ) and covariance matrix
+                    −1                                   ′
+Σy|x = Σyy − Σyx Σxx Σxy (which does not depend on x ).
+
+Exercise 1.4 () Prove the identities µy|x′ = µy + Σyx Σ−1   ′
+                                                        xx (x − µx ) and covariance
+                         −1
+matrix Σy|x = Σyy − Σyx Σxx Σxy .
+
+1.1.4     Eigenvalue and Singular Value Decomposition
+In this book, we will often use eigenvalue decompositions of symmetric matrices. If
+A ∈ Rn×n is a symmetric matrix, there are an orthogonal matrix U ∈ Rn×n (i.e., such
+that U ⊤ U = U U ⊤ = I) and a vector λ ∈ Rn of eigenvalues,Psuch that A = U Diag(λ)U ⊤ .
+If ui ∈ Rn denotes the ith column of U , then we have A = ni=1 λi ui u⊤
+                                                                      i , and Aui = λi ui .
+A symmetric matrix is said to be positive semideﬁnite if and only if all its eigenvalues
+are nonnegative.
+    Given a rectangular matrix X ∈ Rn×d , such that n ⩾ d, there are an orthogonal matrix
+V ∈ Rd×d (i.e., such that V ⊤ V = V V ⊤ = I), a matrix U ∈ Rn×d with orthonormal
+columns (i.e., such that U ⊤ U = I, but U U ⊤ 6= I if n > d), and a vector s ∈ Rd+ of
+singular values, such that X = U Diag(s)V ⊤ ; this is often called the “economy-size”
+1.2. CONCENTRATION INEQUALITIES                                                               7
+
+
+singular value decomposition (SVD) of the matrix X. If ui ∈ Rn and vi ∈ Rd denote the
+                                           P
+ith columns of U and V , then we have X = di=1 si ui vi⊤ , and Xvi = si ui , X ⊤ ui = si vi .
+    There are several ways of relating eigenvalues and singular values. For example, if si
+is a singular value of X, then s2i is an eigenvalue of XX ⊤ and X ⊤ X. Moreover, the
+                                 
+eigenvalues of the matrix X0⊤ X0 are zero, the singular values of X, and their opposites.
+For further properties of eigenvalues and singular values, see Golub and Loan (1996),
+Stewart and Sun (1990) and Bhatia (2013).
+
+Exercise 1.5 Express the eigenvectors of XX ⊤ and X ⊤ X using the singular vectors
+of X.
+
+                                                0 X
+                                                      
+Exercise 1.6 Express the eigenvectors of       X⊤ 0
+                                                          using the singular vectors of X.
+
+
+1.1.5     Differential Calculus
+Throughout this book, we will compute gradients and Hessians of functions in almost all
+cases in matrix notations. Here are some classic examples:
+   • Quadratic forms: assuming A = A⊤ , with F (θ) = 21 θ⊤ Aθ − b⊤ θ, F ′ (θ) = Aθ − b,
+     F ′′ (θ) = A. If A is not symmetric, then we have F ′ (θ) = 21 (A + A⊤ )θ − b and
+     F ′′ (θ) = 12 (A + A⊤ ).
+                                                       1
+   • Least-squares with X ∈ Rn×d and y ∈ Rn : F (θ) = 2n ky − Xθk22 . Then F ′ (θ) =
+     1  ⊤                ′′    1  ⊤
+     n X (Xθ − y) and F (θ) = n X X.
+
+Exercise   1.7 Show that for the logistic regression objective function defined as F (θ) =
+1 Pn
+n   i=1 log(1 + exp(−yi (Xθ)i )), with X ∈ Rn×d and y ∈ {−1, 1}n, then F ′ (θ) = n1 X ⊤ g,
+              n
+where g ∈ R is defined as gi = −yi σ(−yi (Xθ)i ), with σ(u) = (1 + e−u )−1 the sig-
+moid function. Show that the Hessian is n1 X ⊤ Diag(h)X, with h ∈ Rn defined as
+hi = σ(yi (Xθ)i )σ(−yi (Xθ)i ).
+Exercise 1.8 (Functions on matrices) Let A be a symmetric matrix. Show that the
+gradient of the function M 7→ tr(AM −1 ), defined on invertible symmetric matrices, is
+equal to M 7→ −M −1 AM −1 . Show that the gradient of M 7→ log det(M ) is M 7→ M −1 .
+
+
+1.2      Concentration Inequalities
+All the results presented in this textbook rely on the simple probabilistic assumption that
+data are independently and identically distributed (i.i.d.). The primary goal, then, is to
+relate empirical averages to expectations.
+    The key (very classical) insight behind probabilistic inequalities used in machine
+learning is that when you have n independent
+                                      √         zero-mean random variables, the natu-
+ral “magnitude” of their average is 1/ n times smaller than their average magnitude.
+The simplest instance of this phenomenon is that if Z1 , . . . , Zn ∈ R are i.i.d. with variance
+8                                   CHAPTER 1. MATHEMATICAL PRELIMINARIES
+
+                  
+σ 2 = E (Z − E[Z])2 , then the variance of the sum is the sum of the variances, and
+                                   n        n
+                                 1X         1 X             σ2
+                             var       Zi = 2    var[Zi ] =    .
+                                 n i=1     n i=1            n
+
+
+           Be careful with error measures     or magnitudes: some are squared, but some
+
+    △
+    !
+                                        √
+           are not. Therefore, the 1/ n becomes 1/n after taking the square (this is a
+           trivial point, but it typically leads to confusion).
+
+    The equality shown above can be interpreted as
+                                  X n           2 
+                                   1                     σ2
+                                E        Zi − E[Z]     =    ,                            (1.4)
+                                   n i=1                 n
+
+which provides the simplest proof of the law of large numbers when variancesPexist and
+                                                                              n
+also highlights the convergence in the squared mean of the random variable n1 i=1 Zi to
+the constant E[Z].
+
+From moments to deviation bounds. Given an inequality on the moments of a
+random variable, deviation bounds can be derived. Markov’s inequality (see the proof in
+exercise 1.9 below) states that
+                                                     1
+                                      P(Y ⩾ ε) ⩽       E[Y ],                            (1.5)
+                                                     ε
+for all nonnegative random variables Y with ﬁnite expectation and any scalar ε > 0.
+Chebyshev’s inequality is obtained by applying Markov’s inequality to the random vari-
+able Y = (X − E[X])2 for the random variable X with ﬁnite mean E[X] and variance
+var[X], leading to
+                                                                  1
+                     P(|X − E[X]| ⩾ ε) = P(|X − E[X]|2 ⩾ ε2 ) ⩽      var[X].
+                                                                  ε2
+                                                      2                           Pn
+Thus, from the mean E[Z] and the variance σn of the random variable n1              i=1 Zi , as
+computed in equation (1.4), we obtain the deviation bounds
+                      n                           X n            2 
+                     1X                          1   1                     σ2
+             P             Zi − E[Z] ⩾ ε       ⩽ 2E        Zi − E[Z]      = 2,
+                     n i=1                      ε    n i=1                 nε
+
+which implies convergence in probability.4
+
+                                   Pn ﬁnely, there are two classical tools: the central
+   To characterize the deviations more
+limit theorem, which states that n1 i=1 Zi is approximately Gaussian with mean E[Z]
+   4 See https://en.wikipedia.org/wiki/Convergence_of_random_variables for a discussion on con-
+
+vergence of random variables.
+1.2. CONCENTRATION INEQUALITIES                                                          9
+
+                                                                √      Pn
+and variance σ 2 /n. This is an asymptotic statement: formally, n( n1 i=1 Zi − E[Z])
+converges in distribution to a Gaussian distribution with mean zero and variance σ 2 .
+Although it gives the correct scaling in n, in this textbook, we will look primarily at
+nonasymptotic results that quantify the deviation for any n.
+
+
+  △ !
+          In what follows, we will always provide versions of inequalities for averages of
+          random variables (even though some authors equivalently consider sums).
+
+   Before describing various concentration inequalities, let us recall the classical union
+bound : given events indexed by f ∈ F (which can have a countably inﬁnite number of
+elements), we have                [      X
+                               P      Af ⩽       P(Af ).
+                                    f ∈F          f ∈F
+
+It has (among many other uses in machine learning) a direct application in upper-
+bounding the tail probability of the supremum of random variables:
+                                    [            X
+                 P sup Zf > t = P          {Zf > t} ⩽     P(Zf > t).
+                     f ∈F                  f ∈F               f ∈F
+
+
+   We will only cover the most useful inequalities for machine learning. For more ad-
+vanced inequalities, see other sources, such as Boucheron et al. (2013) and Vershynin
+(2018).
+
+Homogeneity. △       ! Random variables or vectors typically have a unit, and it is always
+helpful to perform some basic dimensional analysis5 to spot mistakes. For example, when
+performing linear predictions of the form y = x⊤ θ, the unit of y is the one of x times
+that of θ. Typically, these units are encapsulated in the constants describing the problem
+(such as the noise standard deviation for y or bounds for x and θ).
+
+Exercise 1.9 Let Y be a nonnegative random variable with finite expectation, and ε > 0.
+Show that ε1Y ⩾ε ⩽ Y almost surely and prove Markov’s inequality in equation (1.5).
+
+Exercise 1.10 (Chernoﬀ bound) Let X be a random variable. Show that for any
+t ∈ R and s > 0, we have P(X ⩾ t) ⩽ e−st E[esX ].
+
+            R ∞ Let Y be a nonnegative random variable with finite expectation. Show
+Exercise 1.11
+that E[Y ] = 0 P(Y ⩾ t)dt.
+
+Jensen’s inequality. Beyond the union bound, another key tool in probabilistic mod-
+eling is Jensen’s inequality, which allows to obtain bounds for the expectation of convex
+functions of random variables (see extension to functions deﬁned on Rd in section 5.2.2).
+
+  5 See https://en.wikipedia.org/wiki/Dimensional_analysis.
+10                               CHAPTER 1. MATHEMATICAL PRELIMINARIES
+
+
+Proposition 1.1 (Jensen’s inequality on R) If F : R → R is convex and X is a
+real-valued random variable, then
+                                                
+                                  F E[X] ⩽ E F (X) .                   (1.6)
+Stated in words: “The image of the average is smaller than the average of the images.”
+△
+! When using Jensen’s inequality, be extra careful about the direction of the inequality.
+
+
+
+1.2.1    Hoeffding’s Inequality
+The simplest concentration inequality considers bounded real-valued random variables.
+Proposition 1.2 (Hoeﬀding’s inequality) If Z1 , . . . , Zn are independent random vari-
+ables such that Zi ∈ [0, 1] almost surely, then, for any t ⩾ 0,
+                         X   n          n            
+                          1          1X
+                      P         Zi −        E[Zi ] ⩾ t ⩽ exp(−2nt2 ).            (1.7)
+                          n i=1      n i=1
+
+Proof The usual proof uses standard convexity arguments and is divided into two parts.
+                                                               
+ (1) Lemma: If Z ∈ [0, 1] almost surely, then E exp(s(Z − E[Z])) ⩽ exp(s2 /8) for any
+     s ⩾ 0.
+     Proof: We can compute the ﬁrst two derivatives of the function ϕ deﬁned as ϕ(s) =
+     log(E exp(s(Z − E[Z])) ), which is a “log-sum-exp” function, often referred to as
+     the “cumulant generating function.” We can compute the derivatives of ϕ as
+                                              
+               ′       E (Z − E[Z])es(Z−E[Z])
+             ϕ (s) =                     
+                             E es(Z−E[Z])
+                                                                         
+              ′′       E (Z − E[Z])2 es(Z−E[Z])       E (Z − E[Z])es(Z−E[Z]) 2
+             ϕ (s) =                            −                            .
+                              E es(Z−E[Z])                  E es(Z−E[Z])
+     We thus get ϕ(0) = ϕ′ (0) = 0, and ϕ′′ (s) is the variance of  some random
+                                                                                  variable
+     Z̃ ∈ [0, 1], with distribution with density z 7→ es(z−E[Z]) /E es(Z−E[Z]) with respect
+     to the distribution of Z. We recall that the variance of Z̃ is the minimum squared
+     deviation to a constant and can thus bound this variance as
+                                                                 1               1
+               var(Z̃) = inf E[(Z̃ − ν)2 ] ⩽ E[(Z̃ − 1/2)2 ] = E[(2Z̃ − 1)2 ] ⩽ ,
+                         ν∈[0,1]                                 4               4
+
+     since 2Z̃ − 1 ∈ [−1, 1] almost surely. Thus, for all s ⩾ 0, ϕ′′ (s) ⩽ 1/4, and by
+                                                     2    2
+     Taylor’s formula, ϕ(s) ⩽ ϕ(0) + ϕ′ (0)s + 14 · s2 = s8 .
+                                         Pn
+ (2) For any t ⩾ 0, and denoting Z̄ = n1 i=1 Zi , we get:
+                              
+             P Z̄ − E[Z̄] ⩾ t
+                                            
+         = P exp(s(Z̄ − E[Z̄])) ⩾ exp(st) by monotonicity of the exponential,
+                                         
+         ⩽ exp(−st)E exp(s(Z̄ − E[Z̄])) using Markov’s inequality (equation (1.5)).
+1.2. CONCENTRATION INEQUALITIES                                                                11
+
+
+     Then, using independence, we get
+
+                                                  Yn   h      s               i
+              P Z̄ − E[Z̄] ⩾ t          ⩽ exp(−st)     E exp       (Zi − E[Zi ])
+                                                   i=1
+                                                                 n
+                                                   Yn        s 
+                                                               2                    s2 
+                                        ⩽ exp(−st)     exp          =  exp   −  st +     ,
+                                                   i=1
+                                                             8n2                     8n
+
+     using the lemma at the beginning of the proof. This last bound is minimized for
+     s = 4nt. We then get the result.
+
+Note the diﬀerence with the central limit theorem, which states that when n goes to
+inﬁnity, the probability in equation (1.7) is asymptotically equivalent to
+              Z ∞       nz 2                                         nt2 
+     1
+  p                 exp − 2 dz, which can be shown to be less than exp − 2 ,
+   2πσ 2 /n   t          2σ                                             2σ
+                        Pn
+where σ 2 = limn→+∞ n1 i=1 var(Zi ) (see exercise 1.12). The central limit theorem is
+more precise (as it involves the variance of Zi and not an almost sure bound) but is
+asymptotic. Bernstein’s inequalities (see section 1.2.3) will be between the central limit
+theorem and Hoeﬀding’s inequality, as they use both the variance and an almost sure
+bound.
+
+Exercise 1.12 () For X a Gaussian random variable with mean 0 and variance 1,
+show that for t ⩾ 0, 14 exp(−t2 ) ⩽ P(X ⩾ t) ⩽ exp(−t2 /2).
+
+Extensions. We get the following corollary by just applying the inequality to Zi ’s and
+1 − Zi ’s and using the union bound.
+Corollary 1.1 (Two-sided Hoeﬀding’s inequality) If Z1 , . . . , Zn are independent
+random variables such that Zi ∈ [0, 1] almost surely, then, for any t ⩾ 0,
+                                  n          n            
+                                1X         1X
+                        P             Zi −       E[Zi ] ⩾ t ⩽ 2 exp(−2nt2 ).                 (1.8)
+                                n i=1      n i=1
+
+   We can make the following observations:
+   • Hoeﬀding’s inequality can be extended to the assumption that Zi ∈ [a, b] almost
+     surely, leading to
+                              n          n            
+                            1X         1X
+                    P             Zi −       E[Zi ] ⩾ t ⩽ 2 exp(−2nt2 /(a − b)2 ).
+                            n i=1      n i=1
+
+   • Such an inequality is often used “in the other direction,” starting from the proba-
+     bility and deriving t from it as follows: For any δ ∈ (0, 1), with probability greater
+12                                       CHAPTER 1. MATHEMATICAL PRELIMINARIES
+
+
+        than 1 − δ, we have
+                                 n          n                           r        2
+                              1X         1X             |a − b|
+                                    Zi −       E[Zi ] < √                  log      .
+                              n i=1      n i=1             2n                     δ
+                                      √
+        Note the dependence in n is 1/ n while the dependence in δ is logarithmic (corre-
+        sponding to the exponential tail bound in t).
+
+        Exercise 1.13 Show the one-sided  qinequality: with probability greater than 1 − δ,
+        1
+          Pn        1
+                      Pn            |a−b|       1
+                                                  
+           i=1 Zi − n  i=1 E[Zi ] <        log δ .
+                                     √
+        n                             2n
+
+                                                                                  Pnthe probabil-
+     • When Zi ∈ [ai , bi ] almost surely, with potentially diﬀerent ai ’s and bi ’s,
+       ity upper bound can be replaced by 2 exp(−2nt2 /c2 ), where c2 = n1 i=1 (bi − ai )2 .
+     • The result extends to martingales with essentially the same proof, leading to Azuma’s
+       inequality (see exercise 1.14).
+
+        Exercise 1.14 (Azuma’s inequality ()) Assume that the sequence of random
+        variables (Zi )i⩾0 , satisfies E(Zi |Fi−1 ) = 0 for an increasing sequence of increasing
+        “σ-fields” (Fi )i⩾0 ,6 and |Zi | ⩽ ci almost surely, for i ⩾ 1. Then
+                                    n                                            
+                               1X                                   −n2 t2
+                             P       Zi ⩾ t       ⩽ exp                              .
+                               n i=1                          2(c21 + · · · + c2n )
+
+     • Hoeﬀding’s inequality is often extended to so-called “sub-Gaussian” random vari-
+       ables; that is, random variables X for which there exists τ ∈ R+ such that the
+       following bound on the Laplace transform7 of X holds:
+                                                            τ 2 s2 
+                            ∀s ∈ R, E exp(s(X − E[X])) ⩽ exp            ,
+                                                                 2
+        which is exactly what we used in the proof of proposition 1.2. In other words, a
+        random variable with values in [a, b] is sub-Gaussian with constant τ 2 = (b − a)2 /4.
+        For these sub-Gaussian variables, we have similar concentration inequalities. For
+        example, we have the usual two versions of the tail bound (see also exercise 1.16):
+                                                       t2 
+                 ∀t ⩾ 0, P(|Z − E[Z]| ⩾ t) ⩽ 2 exp − 2                                     (1.9)
+                                            r          2τ
+                                                   2
+               ⇔ ∀δ ∈ (0, 1], |Z − E[Z]| ⩽ τ 2 log     with probability 1 − δ.            (1.10)
+                                                    δ
+
+
+        Exercise 1.15 Show that a Gaussian random variable with variance σ 2 is sub-
+        Gaussian with constant σ 2 .
+     6 See more details in https://en.wikipedia.org/wiki/Azuma’s_inequality.
+     7 See https://en.wikipedia.org/wiki/Laplace_transform.
+1.2. CONCENTRATION INEQUALITIES                                                                                        13
+
+
+       Exercise 1.16 If Z1 , . . . , Zn are independent random variables which are sub-Gaus-
+                                                 Pn          Pn                        nt2
+       sian with constant τ 2 , show that P n1 i=1 Zi − n1 i=1 E[Zi ] ⩾ t ⩽ 2 exp(− 2τ    2)
+
+       for any t ⩾ 0.
+    • Sub-Gaussian random variables can be deﬁned in several other ways, equivalent (up
+      to constants) to the bound on the Laplace transform. See exercises 1.17 and 1.18.
+
+       Exercise 1.17 () Let Z be a random variable that is sub-Gaussian with con-
+                                                                                  2
+       stant τ 2 . Then, by using the tail bound P(|Z − E[Z]| ⩾ t) ⩽ 2 exp(− 2τt 2 ) in equa-
+       tion (1.9), show that for any positive integer q, E[(Z − E[Z])2q ] ⩽ 2 · q!(2τ 2 )q .
+
+       Exercise 1.18 () Let Z be a random variable such that for any positive inte-
+       ger q, E[(Z − E[Z])2q ] ⩽ (2q)q!(2τ 2 )q . Then show that Z is sub-Gaussian with
+       parameter 24τ 2 .
+
+Exercise 1.19 Assume that the random variable Z has almost surely nonnegative values
+                                                                                
+and finite second-order moment. Show that for any s ⩾ 0, we have log E[e−sZ ] ⩽
+           2
+−sE[Z] + s2 E[Z 2 ].
+
+1.2.2      McDiarmid’s Inequality
+Given n independent random variables, it may be useful to concentrate other quantities
+than their average. What is needed is that the function of these random variables has
+“bounded variation.”
+Proposition 1.3 (McDiarmid’s inequality) Let Z1 , . . . , Zn be independent random
+variables (in any measurable space Z), and f : Zn → R a function of “bounded variation”;
+that is, such that for all i ∈ {1, . . . , n}, and all z1 , . . . , zn , zi′ ∈ Z, we have
+
+           |f (z1 , . . . , zi−1 , zi , zi+1 , . . . , zn ) − f (z1 , . . . , zi−1 , zi′ , zi+1 , . . . , zn )| ⩽ c.
+
+Then                                                              
+              P f (Z1 , . . . , Zn ) − E[f (Z1 , . . . , Zn )] ⩾ t ⩽ 2 exp(−2t2 /(nc2 )).
+
+Proof () The proof generalizes the formulation     Pn            of Hoeﬀding’s inequality in equa-
+tion (1.8), which corresponds to f (z) = n1 i=1 zi and c = n1 . We will only consider the
+one-sided inequality:
+                                                                  
+              P f (Z1 , . . . , Zn ) − E[f (Z1 , . . . , Zn )] ⩾ t ⩽ exp(−2t2 /(nc2 )),
+
+which is suﬃcient to get the two-sided inequality using the union bound.
+    We introduce the random variables, for i ∈ {1, . . . , n}:
+
+             Vi = E[f (Z1 , . . . , Zn )|Z1 , . . . , Zi ] − E[f (Z1 , . . . , Zn )|Z1 , . . . , Zi−1 ],
+
+with V1 = E[f (Z1 , . . . , Zn )|Z1 ] − E[f (Z1 , . . . , Zn )]. We have E[Vi |Z1 , . . . , Zi−1 ] = 0.
+Moreover, given Z1 , . . . , Zi−1 , the maximal value of Vi minus the minimal value of Vi
+14                                         CHAPTER 1. MATHEMATICAL PRELIMINARIES
+
+
+is almost surely less than c as a consequence of the bounded variation assumption,
+since it is the diﬀerence of two terms that are conditional expectations of values of f
+taken at arguments that only diﬀer in the ith variable.      Pn Moreover, through a telescoping
+sum, we have f (Z1 , . . . , Zn ) − E[f (Z1 , . . . , Zn )] = i=1 Vi . Using the same argument
+as in part (1) of the proof of Hoeﬀding’s inequality (page 10), we get for any s > 0,
+                               2 2
+E esVi |Z1 , . . . , Zi−1 ] ⩽ es c /8 , and we can obtain a proof with the same steps as part (2)
+of the same proof (page 10) by being careful with conditioning, for any s ⩾ 0:
+    X
+     n                                   Xn    
+P          Vi ⩾ t       ⩽ exp(−st) · E exp s   Vi    using Markov’s inequality,
+     i=1                                                i=1
+                                            X  
+                                           n−1                                   
+                                                                                
+                        = exp(−st) · E exp s    Vi E exp(sVn ) Z1 , . . . , Zn−1 ,
+                                                        i=1
+                          since V1 , . . . , Vn−1 are in the σ-algebra generated by Z1 , . . . , Zn−1 ,
+                                                             X 
+                                                             n−1
+                                             2 2
+                        ⩽ exp(−st + s c /8) · E exp s             Vi ,
+                                                               i=1
+                      
+using the bound on E esVn |Z1 , . . . , Zn−1 ] given above. Applying the same reasoning n
+times, we get a probability that is less than exp(−st + ns2 c2 /8) and the desired result by
+minimizing with respect to s (leading to s = 4t/(nc2 )).
+
+
+    This inequality will be used to provide high-probability bounds on the estimation
+error in empirical risk minimization in section 4.4.1.
+
+Exercise 1.20 () Use McDiarmid’s inequality to prove a Hoeffding-type bound for vec-
+tors: If Z1 , . . . , Zn ∈ Rd are independent centered vectors such that kZi k2 ⩽ c almost
+surely, then with probability greater than 1 − δ, we have
+                                   n                 r        
+                                1X            c              1
+                                      Zi ⩽ √ 1 + 2 log          .
+                                n i=1   2      n             δ
+
+
+1.2.3       Bernstein’s Inequality ()
+As mentioned earlier, Hoeﬀding’s inequality only uses an almost sure bound, but not
+explicitly the variance, as the central limit theorem uses (but only with an asymptotic
+result). Bernstein’s inequality allows the use of variance to get a ﬁner nonasymptotic
+result.
+Proposition 1.4 (Bernstein’s inequality) Let Z1 , . . . , Zn be n independent random
+variables such that |Zi | ⩽ c almost surely and E[Zi ] = 0. Then, for t ⩾ 0,
+                                     n                                       
+                                    1X                                  nt2
+                            P             Zi ⩾ t       ⩽ 2 exp −                  ,              (1.11)
+                                    n i=1                          2σ 2 + 2ct/3
+

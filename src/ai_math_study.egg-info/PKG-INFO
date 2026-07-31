@@ -1,0 +1,18 @@
+Metadata-Version: 2.4
+Name: ai-math-study
+Version: 0.1.0
+Summary: Evidence-grounded local study tools for AI-Math-Docs and LFTP
+Requires-Python: >=3.12
+Requires-Dist: openai<3,>=2.16
+Requires-Dist: pydantic<3,>=2.12
+Requires-Dist: jsonschema<5,>=4.25
+Requires-Dist: typer<1,>=0.21
+Requires-Dist: rich<15,>=14
+Requires-Dist: PyMuPDF<2,>=1.27
+Provides-Extra: dev
+Requires-Dist: pytest<10,>=9; extra == "dev"
+Requires-Dist: pytest-asyncio<2,>=1; extra == "dev"
+Requires-Dist: hypothesis<7,>=6; extra == "dev"
+Requires-Dist: ruff<1,>=0.14; extra == "dev"
+Requires-Dist: mypy<2,>=1.19; extra == "dev"
+Requires-Dist: types-jsonschema<5,>=4.25; extra == "dev"
