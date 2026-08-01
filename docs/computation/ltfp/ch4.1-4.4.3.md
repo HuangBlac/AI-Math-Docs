@@ -438,15 +438,148 @@ $\Phi'(0_+)=\lim_{h\to0_+}\frac{\Phi(h)-\Phi(0)}{h},\Phi'(0_-)=\lim_{h\to0_-}=\f
 $$
 \forall u\in \mathbb R,G[C_\xi(u)-\inf_{u'}C_\xi(u')]\le C_\xi^\Phi(u)-\inf_{u'}C_\xi^\Phi(u')
 $$
-其中G是一个凸函数，满足
+其中G是一个凸函数
 
 如果我们已经有（15），那么就可以
 $$
-G[\mathcal R(g)-\mathcal R_*]\le G[C_\xi(u)-\inf_{u'}C_\xi(u')]\le\mathbb E C_\xi^\Phi(u)-\inf_{u'}C_\xi^\Phi(u')=\mathcal R^\Phi(g)-\mathcal R^{\Phi}_*
+G[\mathcal R(g)-\mathcal R_*]\le G\mathbb E[C_\xi(u)-\inf_{u'}C_\xi(u')]\le \mathbb E G[C_\xi(u)-\inf_{u'}C_\xi(u')]\le\mathbb EG[C_\xi^\Phi(u)-\inf_{u'}C_\xi^\Phi(u')]\le\mathbb EG[C_\xi^\Phi(u)-\inf_{u'}C_\xi^\Phi(u')] =\mathcal R^\Phi(g)-\mathcal R^{\Phi}_*
 $$
 
+要想计算最终目标，可以先计算\[ \Delta_{01}(\xi,u) = C_\xi(u)-\inf_{u'\in\mathbb R}C_\xi(u'), \]
 
-Ex4.1-4.4
+即固定正类概率 \(\xi\) 后，当前分数 \(u\) 比最优分类多付出了多少 \(0\text{-}1\) 风险。
+
+## 1. 先写出 \(C_\xi(u)\)
+
+条件 \(0\text{-}1\) 风险为\[ C_\xi(u) = \xi\Phi_{0-1}(u) + (1-\xi)\Phi_{0-1}(-u). \]
+
+由于
+
+\[ \Phi_{0-1}(u)= \begin{cases} 1,&u<0,\\ \frac12,&u=0,\\ 0,&u>0, \end{cases} \]
+
+所以
+
+\[ \boxed{ C_\xi(u)= \begin{cases} \xi,&u<0,\\[1mm] \frac12,&u=0,\\[1mm] 1-\xi,&u>0. \end{cases} } \]
+
+## 2. 当 \(\xi=1/2\)
+
+此时
+
+\[ C_{1/2}(u)=\frac12,\qquad\forall u. \]
+
+因此
+
+\[ \inf_{u'}C_{1/2}(u')=\frac12 \]
+
+并且
+
+\[ \boxed{ C_{1/2}(u)-\inf_{u'}C_{1/2}(u')=0. } \]
+
+这是因为正负标签概率相同，任何预测都一样好。
+
+## 3. 当 \(\xi>1/2\)
+
+此时正类更可能出现，所以应当选择 \(u>0\)，预测 \(+1\)。
+
+对于 \(u>0\)：
+
+\[ C_\xi(u)=1-\xi. \]
+
+因此最小条件风险为
+
+\[ \boxed{ \inf_{u'}C_\xi(u')=1-\xi, } \]
+
+并且在整个正半轴 \(\mathbb R_+^*\) 上取得。
+
+分别计算超额风险。
+
+### 当 \(u>0\)
+
+预测方向正确：
+
+\[ \Delta_{01}(\xi,u) = (1-\xi)-(1-\xi)=0. \]
+
+### 当 \(u<0\)
+
+预测方向错误：
+
+\[ \Delta_{01}(\xi,u) = \xi-(1-\xi) = 2\xi-1. \]
+
+### 当 \(u=0\)
+
+随机预测：
+
+\[ \Delta_{01}(\xi,0) = \frac12-(1-\xi) = \xi-\frac12. \]
+
+所以
+
+\[ \boxed{ \Delta_{01}(\xi,u)= \begin{cases} 2\xi-1,&u<0,\\[1mm] \xi-\frac12,&u=0,\\[1mm] 0,&u>0. \end{cases} } \]
+
+这正好可以写成
+
+\[ \boxed{ \Delta_{01}(\xi,u) = (2\xi-1)\Phi_{0-1}(u). } \]
+
+因为 \(\Phi_{0-1}(u)\) 在负、零、正三种情况下分别为 \(1,\frac12,0\)。
+
+进一步，
+
+\[ \Phi_{0-1}(u)\le\mathbf1_{\{u\le0\}}, \]
+
+因此
+
+\[ \boxed{ \Delta_{01}(\xi,u) \le (2\xi-1)\mathbf1_{\{u\le0\}}. } \]
+
+在 \(u=0\) 时，左边只有 \((2\xi-1)/2\)，右边是 \(2\xi-1\)，所以是上界而非等式。
+
+## 4. 当 \(\xi<1/2\)
+
+此时负类更可能出现，正确方向是 \(u<0\)。
+
+最小条件风险为
+
+\[ \inf_{u'}C_\xi(u')=\xi. \]
+
+同理可得
+
+\[ \Delta_{01}(\xi,u) = (1-2\xi)\Phi_{0-1}(-u). \]
+
+即
+
+\[ \Delta_{01}(\xi,u)= \begin{cases} 0,&u<0,\\[1mm] \frac12-\xi,&u=0,\\[1mm] 1-2\xi,&u>0. \end{cases} \]
+
+并且
+
+\[ \Delta_{01}(\xi,u) \le (1-2\xi)\mathbf1_{\{-u\le0\}} = (1-2\xi)\mathbf1_{\{u\ge0\}}. \]
+
+## 5. 把两种情况统一起来
+
+令
+
+\[ \alpha=2\xi-1. \]
+
+那么：
+
+- \(\alpha>0\)：Bayes 方向为正；
+- \(\alpha<0\)：Bayes 方向为负；
+- \(\alpha=0\)：两类概率相同。
+
+当前分数 \(u\) 与 Bayes 方向不一致，等价于
+
+\[ \alpha u\le0. \]
+
+因此两种情况可以统一写成
+
+\[ \boxed{ \Delta_{01}(\xi,u) = |2\xi-1|\, \Phi_{0-1}\bigl((2\xi-1)u\bigr). } \]
+
+进一步得到
+
+\[ \boxed{ \Delta_{01}(\xi,u) \le |2\xi-1|\, \mathbf1_{\{(2\xi-1)u\le0\}}. } \]
+
+然后我们就去考虑，使用$\Phi$来代替之后的误差变成什么样了呢？
+
+首先我们来看简单的
+
+Ex4.1在本节已有假设的基础上，进一步假设 \(a(0)=0\)。证明：如果 \(a^*\) 是 \(a\) 的 Fenchel 共轭函数，那么对于任意函数 \(g:\mathcal X\to\mathbb R\)，都有\[  a^*\bigl(\mathcal R(g)-\mathcal R^*\bigr) \le \mathcal R_\Phi(g)-\mathcal R_\Phi^*.  \]
 
 
 
