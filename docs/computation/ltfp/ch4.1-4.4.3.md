@@ -142,6 +142,19 @@ $$
 拉格朗日对偶：对于要想求解(5)对应的问题，实际上可以构造拉格朗日对偶函数，也就是选取：
 
 实际上就是通过引入$\alpha$对偶项来让不等式变成等式
+$$
+\min_w\frac{1}{2}\|w\|^2_2+C\sum_{i=1}^n\xi_i-\sum_{i=1}^n\alpha_i(y_i(w^\top x_i+b)-1+\xi_i)-\sum_{i=1}^n \beta_i\xi_i
+$$
+然后我们将目标转化为优化$w,b,\xi_i$关于这些变量求偏导要为0得到极小值
+
+$C=\alpha_i+\beta_i,w=\sum_{i=1}^n \alpha_iy_ix_i,\sum_{i=1}^n\alpha_iy_i=0$
+
+重新带入原始式子，得到：
+$$
+\max_{\alpha_i}\sum_{i=1}^n\alpha_i-\sum_{i=1}^n\sum_{j=1}^n\alpha_i\alpha_jy_iy_jx_i^\top x_j\\
+\sum_{i=1}^n\alpha_iy_i=0
+$$
+
 
 也就是$\alpha(1-y_i(w^\top x_i+b))=0$,当$\alpha>0$时对应达到支持向量的部分，而$\alpha=0$则是没有达到。
 
@@ -151,7 +164,291 @@ $$
 
 
 
-### 4.1.3 Conditional -risk and Classification Calibration
+### 4.1.3 Conditional $\Phi$-risk and Classification Calibration
+
+\(\text{二分类} \rightarrow 0\text{-}1\text{ 风险} \rightarrow \text{Bayes 分类器} \rightarrow \text{替代损失} \rightarrow \text{条件替代风险} \rightarrow \text{分类校准}.\)
+
+对于二分类，实际上就是已知X=x,预测$Y\in\{-1,1\}$
+
+通常先学习一个实值评分函数
+
+\[ g:\mathcal X\to\mathbb R, \]
+
+再根据符号进行分类：
+
+\[ f_g(x)=\operatorname{sign}(g(x)). \]
+
+这里：
+
+- \(g(x)>0\)：预测 \(+1\)；
+- \(g(x)<0\)：预测 \(-1\)；
+- \(|g(x)|\) 可以理解为预测的确信程度或分类间隔。
+
+注意：真正用于分类的是 \(\operatorname{sign}(g(x))\)，而不是 \(g(x)\) 的精确数值。
+
+分类正确等价于$Yg(X)>0$
+
+因为：
+
+- 若 \(Y=+1\)，正确分类要求 \(g(X)>0\)；
+- 若 \(Y=-1\)，正确分类要求 \(g(X)<0\)。
+
+所以可以将 \(Yg(X)\) 称为“带符号间隔”：
+
+\[ \text{margin}=Yg(X). \]
+
+可以选取一个风险衡量:\(\mathcal R(g) = \mathbb E\big[\Phi_{0-1}(Yg(X))\big].\)
+
+其中
+
+\[ \Phi_{0-1}(u)= \begin{cases} 1,&u<0,\\[2mm] \frac12,&u=0,\\[2mm] 0,&u>0. \end{cases} \]
+
+若我们选取$η(x) = P(y = 1|x) \in [0, 1]$, 我们有期望计算$E[y|x] = 2η(x)−1$,
+
+我们固定一个x，对于不同的分类器，就可以得到一个分数g(x)，记作u
+
+### 如果 \(u>0\)
+
+我们预测 \(+1\)。只有 \(Y=-1\) 时出错，所以条件错误率为
+
+\[ 1-\eta(x). \]
+
+### 如果 \(u<0\)
+
+我们预测 \(-1\)。只有 \(Y=+1\) 时出错，所以条件错误率为
+
+\[ \eta(x). \]
+
+### 如果 \(u=0\)
+
+随机选择正负标签，错误率为
+
+\[ \frac12. \]
+
+因此，固定 \(x\) 后的条件 \(0\text{-}1\) 风险是
+
+\[ C_{\eta(x)}(u)= \begin{cases} 1-\eta(x),&u>0,\\[1mm] \frac12,&u=0,\\[1mm] \eta(x),&u<0. \end{cases} \]
+
+正如2.2.3部分计算的贝叶斯风险（最佳风险)等于
+$$
+\mathcal R^∗ = E[min(η(x), 1 − η(x))] = E[\frac1
+2 − \frac1
+2 |E[y|x]|]
+
+,
+$$
+
+$$
+f_∗(x) = sign(2η(x) − 1) = sign(E[y|x])
+$$
+
+往往采取逼近$g(x)=E(y|x)$
+
+在实际算法之中，往往使用$\Phi(u)$代替$\Phi_{0-1}(u)$
+
+其中\[ u=Yg(X) \]是分类间隔。
+
+理想情况下，我们真正想最小化的是 \(0\text{-}1\) 风险：\[ \mathcal R(g) = \mathbb E\big[\Phi_{0-1}(Yg(X))\big]. \]
+
+但是这是一个间断函数，非光滑而且非凸，几乎处处导数为零。使得我们想要梯度下降优化g会使得g的变化速度被$\Phi_{0-1}(u)$的导数被直接吃掉，于是我们就只能做一些替代。
+
+
+
+平方损失
+
+在讨论一般的函数 $\Phi$ 之前，我们先考察平方损失，因为在这种情况下，论证较为简单。
+
+事实上，正如第 2 章中所看到的，此时使期望 $\Phi$-风险最小的函数为
+$$
+g(x)=\mathbb E[Y\mid X=x]=2\eta(x)-1.
+$$
+对 $g(x)$ 取符号，就能得到最优的分类预测。
+
+因此，在二分类问题中使用平方损失，可以在总体分布层面得到最优预测。
+
+一般损失
+
+为了研究平方损失以外的一般 $\Phi$-风险所产生的影响，我们首先固定一个给定的 $x$，考察该点处的条件风险。
+
+与 $0\text{-}1$ 损失的情形相同，使 $\Phi$-风险最小的函数 $g$，可以通过对每个 $x$ 分别进行最小化来确定。
+
+此时，只要知道条件概率
+$$
+\eta(x)=\mathbb P(Y=1\mid X=x),
+$$
+就足以刻画该点 $x$​ 处的最优预测，以及由此产生的超额风险。固定 \(X=x\) 后，标签只有两种可能，因此使用替代损失 \(\Phi(Yu)\) 的条件期望是
+
+
+
+
+
+Def 4.1:条件$\Phi-Risk$
+
+\[ C_\xi^\Phi(u) = \xi\Phi(u)+(1-\xi)\Phi(-u), \]
+
+以及
+
+\[ C_\xi(u) = \xi\Phi_{0-1}(u)+(1-\xi)\Phi_{0-1}(-u). \]
+
+由条件期望公式，
+
+\[ \mathcal R_\Phi(g) =\mathbb E[\Phi(Yg(X))] =\mathbb E_X\!\left[C_{\eta(X)}^\Phi(g(X))\right]. \]
+
+所以在不限制函数类的总体情形下，最小化 \(R_\Phi(g)\) 可以逐个 \(x\) 地研究：
+
+\[ g^*(x)\in\arg\min_{u\in\mathbb R}C_{\eta(x)}^\Phi(u). \]
+
+这正是定义条件替代风险的核心用途。
+
+定义解释：
+
+\(\xi=\eta(x)=P(Y=1\mid X=x).\)表示条件概率
+
+为什么有时是u,有时是-u？因为u其实代入的是x的分数g(x)，而在$\Phi_{0-1}$里面代入的其实是$Yg(X)$，是一个大于零输出0，小于零输出1的函数，并且希望让这个东西极小，$\xi$是输出的量表示预测的错误率。
+
+但是我们如果要优化0-1函数就做不到这一点，虽然它是最符合原始二分类意义的方法，但是它间断；导数处处为 0无法是使用基于梯度的优化算法来操作，使用bp会导致梯度消失；而且非凸，不能使用凸优化的性质，所以要使用$C_{\xi}^{\Phi}$来代替。
+
+所以，什么情况选取的这个$\Phi$可以实现分类呢？这也就是下面这个命题所证明的
+
+Proposition 4.1：设 \(\Phi:\mathbb R\to\mathbb R\) 是一个凸函数。替代损失函数 \(\Phi\) 是分类校准的，当且仅当 \(\Phi\) 在 \(0\) 点可微，并且
+
+\[ \Phi'(0)<0. \]
+
+必要性证明：\(\Phi\text{ 分类校准} \Longrightarrow \Phi\text{ 在 }0\text{ 处可微且 }\Phi'(0)<0.\)
+
+首先证明在0点可微$\Phi'(0_+)=\Phi'(0_-)$
+
+先证明Φ是凸函数时 \(C_\xi^\Phi\) 也是凸函数，因为$C(u)$其实是$\Phi(u)$与$\Phi(-u)$的凸组合，而这两个函数实际上都是凸函数，因此$C_{\xi}^\Phi(u)$也是凸函数
+
+$\Phi'(0_+)=\lim_{h\to0_+}\frac{\Phi(h)-\Phi(0)}{h},\Phi'(0_-)=\lim_{h\to0_-}=\frac{\Phi(h)-\Phi(0)}{h}$
+
+对于凸函数，实际上右导数大于等于左导数，
+
+那么$\Phi'(0_+)-\Phi'(0_-)\ge0，C_\xi^{\Phi '}(0_+)\ge C_\xi^{\Phi '}(0_-)$
+
+接下来，根据分类校正方法：$\Phi$
+
+现在假设 \(\Phi\) 已经分类校准。
+
+当\[ \xi>\frac12 \]
+
+时，Bayes 最优预测为 \(+1\)。分类校准要求
+
+\[ \arg\min_u C_\xi^\Phi(u)\subset\mathbb R_+^*. \]
+
+根据条件 (a)：
+
+\[ (C_\xi^\Phi)'(0+)<0. \]
+
+也就是
+
+\[ \xi\Phi'(0+) - (1-\xi)\Phi'(0-) <0. \]
+
+现在令
+
+\[ \xi\downarrow\frac12. \]
+
+因为原来是不等式严格小于零，取极限后只能得到小于等于零：
+
+\[ \frac12\Phi'(0+) - \frac12\Phi'(0-) \le0. \]
+
+即
+
+\[ \boxed{ \Phi'(0+)-\Phi'(0-)\le0. } \]
+
+最终可以推出在0点可微
+
+既然左右导数相等，统一记为
+
+\[ \Phi'(0). \]
+
+于是条件风险在零点的导数变成
+
+\[ \begin{aligned} (C_\xi^\Phi)'(0) &= \xi\Phi'(0)-(1-\xi)\Phi'(0)\\ &= (2\xi-1)\Phi'(0). \end{aligned} \]
+
+当 \(\xi>1/2\) 时，分类校准要求
+
+\[ (C_\xi^\Phi)'(0)<0. \]
+
+所以
+
+\[ (2\xi-1)\Phi'(0)<0. \]
+
+由于
+
+\[ 2\xi-1>0, \]
+
+只能得到
+
+\[ \boxed{\Phi'(0)<0.} \]
+
+因此我们证明了必要性：
+
+\[ \Phi\text{ 分类校准} \Longrightarrow \Phi\text{ 在 }0\text{ 处可微且 }\Phi'(0)<0. \]
+
+充分性现在反过来假设：\[ \Phi\text{ 在 }0\text{ 处可微},\Phi'(0)<0. \]
+
+那么\[ (C_\xi^\Phi)'(0) = (2\xi-1)\Phi'(0). \]
+
+当 \(\xi>1/2\) 时：
+
+\[ (C_\xi^\Phi)'(0)<0. \]
+
+根据 (a)，条件风险的极小点严格位于正半轴，因此预测 \(+1\)。
+
+当 \(\xi<1/2\) 时：
+
+\[ (C_\xi^\Phi)'(0)>0. \]
+
+根据 (b)，极小点严格位于负半轴，因此预测 \(-1\)。
+
+两种情况都与 Bayes 分类器一致，所以 \(\Phi\) 分类校准。
+
+### 4.1.4 Relation between Risk and $\Phi$-risk
+
+在这一部分之中主要研究使用$\Phi$-risk来代替会有什么影响，经过了这么一番替代之后有什么好处？
+
+上一节我们已经证明了：
+
+\[ \mathcal R_\Phi(g)=\mathcal R_\Phi^* \quad\Longrightarrow\quad \mathcal R(g)=\mathcal R^*. \]
+
+或者从条件风险来看：
+
+\[ u\in\arg\min C_\xi^\Phi \quad\Longrightarrow\quad u\in\arg\min C_\xi. \]
+
+实中我们几乎不可能精确达到
+
+\[ \mathcal R_\Phi(g)=\mathcal R_\Phi^*. \]
+
+由于有限样本、模型限制和优化误差，我们通常只能得到
+
+\[ \mathcal R_\Phi(g)-\mathcal R_\Phi^* \le \varepsilon. \]
+
+这时需要回答：
+
+> 替代风险距离最优值还有 \(\varepsilon\)，真正的分类风险距离 Bayes 风险还有多远？
+
+4.1.4 首先要证明的是,
+
+\[ \boxed{ \mathcal R(g)-\mathcal R^* \le H\!\left( \mathcal R_\Phi(g)-\mathcal R_\Phi^* \right). } \]
+
+它回答的是“两个优化问题距离终点的关系”。
+
+当然，已知$\mathcal R^{\Phi}$实际上就是关于$C_{\xi}^{\Phi}$求期望，只需证明：
+$$
+\forall u\in \mathbb R,G[C_\xi(u)-\inf_{u'}C_\xi(u')]\le C_\xi^\Phi(u)-\inf_{u'}C_\xi^\Phi(u')
+$$
+其中G是一个凸函数，满足
+
+如果我们已经有（15），那么就可以
+$$
+G[\mathcal R(g)-\mathcal R_*]\le G[C_\xi(u)-\inf_{u'}C_\xi(u')]\le\mathbb E C_\xi^\Phi(u)-\inf_{u'}C_\xi^\Phi(u')=\mathcal R^\Phi(g)-\mathcal R^{\Phi}_*
+$$
+
+
+Ex4.1-4.4
+
+
 
 ## Ch4.2误差分解
 
