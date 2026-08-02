@@ -577,11 +577,424 @@ $$
 
 然后我们就去考虑，使用$\Phi$来代替之后的误差变成什么样了呢？
 
-首先我们来看简单的
+首先我们来看简单的平方损失的情况：
 
-Ex4.1在本节已有假设的基础上，进一步假设 \(a(0)=0\)。证明：如果 \(a^*\) 是 \(a\) 的 Fenchel 共轭函数，那么对于任意函数 \(g:\mathcal X\to\mathbb R\)，都有\[  a^*\bigl(\mathcal R(g)-\mathcal R^*\bigr) \le \mathcal R_\Phi(g)-\mathcal R_\Phi^*.  \]
+$C^{\Phi}_{\xi}(u)=\xi(1-u)^2+(1-\xi)(1+u)^2=u^2-2(2\xi-1)u+1$
+$$
+C^{\Phi}_{\xi}(u)-\inf_{u'}C_\xi^\Phi(u')=(u-2\xi+1)^2\ge(|2\xi-1|\,  \mathbf1_{\{(2\xi-1)u\le0\}})^2
+$$
+因此，有如下的控制
+$$
+\mathcal R(g)-\mathcal R^*\le(\mathcal R_\Phi(g)-\mathcal R_\Phi^*)^{1/2}
+$$
+而对于一般的光滑替代函数 Smooth Surrogates，$\Phi(u)=a(u)-u$
+
+其中$a$要是一个偶函数，凸函数，而且满足$a''(u)\le\beta$
+
+令
+
+\[ f_\alpha(u)=a(u)-\alpha u. \]
+
+它仍然是 \(\beta\)-smooth，并且
+
+\[ f_\alpha'(u)=a'(u)-\alpha. \]
+
+对任意凸的 \(\beta\)-smooth 函数，都有
+
+\[ f_\alpha(u)-\inf_{u'}f_\alpha(u') \ge \frac{1}{2\beta}|f_\alpha'(u)|^2. \]
+
+代入 \(f_\alpha\)，得到原文的式 (4.9)：
+
+\[ a(u)-\alpha u -\inf_{u'}\{a(u')-\alpha u'\} \ge \frac{1}{2\beta}|\alpha-a'(u)|^2. \]
+
+直观上，它表示：如果当前位置的梯度还很大，那么该点与最优值的差距不可能很小。
+
+### Ex 4.1
+
+在本节已有假设的基础上，进一步假设 \(a(0)=0\)。证明：如果 \(a^*\) 是 \(a\) 的 Fenchel 共轭函数，那么对于任意函数 \(g:\mathcal X\to\mathbb R\)，都有
+
+\[
+a^*\bigl(\mathcal R(g)-\mathcal R^*\bigr)
+\le
+\mathcal R_\Phi(g)-\mathcal R_\Phi^*.
+\]
+
+Fenchel 共轭的定义为
+
+\[
+a^*(\alpha)=\sup_{u\in\mathbb R}\{\alpha u-a(u)\}.
+\]
+
+由于 \(a\) 是凸偶函数且 \(a(0)=0\)，所以 \(a(u)\ge 0\)。相应地，\(a^*\) 也是凸偶函数，满足 \(a^*(0)=0\)，并在 \([0,+\infty)\) 上单调不减。
+
+固定 \(x\)，令
+
+\[
+\alpha=2\xi-1,\qquad \xi=\mathbb P(Y=1\mid X=x).
+\]
+
+条件代理风险为
+
+\[
+C_\xi^\Phi(u)=a(u)-\alpha u.
+\]
+
+由 Fenchel 共轭的定义，
+
+\[
+\inf_v\{a(v)-\alpha v\}
+=-\sup_v\{\alpha v-a(v)\}
+=-a^*(\alpha).
+\]
+
+所以条件代理超额风险为
+
+\[
+\Delta_\Phi(\xi,u)
+=C_\xi^\Phi(u)-\inf_vC_\xi^\Phi(v)
+=a(u)-\alpha u+a^*(\alpha).
+\]
+
+如果预测方向错误，即 \(\alpha u\le0\)，那么 \(a(u)-\alpha u\ge0\)，于是
+
+\[
+\Delta_\Phi(\xi,u)\ge a^*(\alpha)=a^*(|\alpha|).
+\]
+
+同时，条件 \(0\!-\!1\) 超额风险满足
+
+\[
+0\le\Delta_{01}(\xi,u)
+\le |\alpha|\mathbf 1_{\{\alpha u\le0\}}.
+\]
+
+利用 \(a^*\) 在非负半轴上的单调性可得
+
+\[
+a^*\bigl(\Delta_{01}(\xi,u)\bigr)
+\le \Delta_\Phi(\xi,u).
+\]
+
+预测方向正确时 \(\Delta_{01}=0\)，该不等式同样成立。最后利用 Jensen 不等式，
+
+\[
+\begin{aligned}
+a^*\bigl(\mathcal R(g)-\mathcal R^*\bigr)
+&=a^*\bigl(\mathbb E[\Delta_{01}]\bigr)\\
+&\le\mathbb E\bigl[a^*(\Delta_{01})\bigr]\\
+&\le\mathbb E[\Delta_\Phi]\\
+&=\mathcal R_\Phi(g)-\mathcal R_\Phi^*.
+\end{aligned}
+\]
 
 
+
+### Ex 4.2
+
+设
+
+\[ \Phi:\mathbb R\to\mathbb R \]
+
+是一个凸函数，并且在 \(0\) 点可微，满足
+
+\[ \Phi'(0)<0. \]
+
+定义函数
+
+\[ G(z) = \Phi(0) - \inf_{u\in\mathbb R} \left\{ \frac{1+z}{2}\Phi(u) + \frac{1-z}{2}\Phi(-u) \right\}. \]
+
+证明：
+
+1. \(G\) 是凸函数；
+2. \(G(0)=0\)；
+3. 对任意函数 \(g:\mathcal X\to\mathbb R\)，都有\[ \boxed{ G\!\left(\mathcal R(g)-\mathcal R^*\right) \le \mathcal R_\Phi(g)-\mathcal R_\Phi^*. } \]
+
+其中：
+
+- \(\mathcal R(g)\) 是分类器 \(g\) 的 \(0\!-\!1\) 风险；
+- \(\mathcal R^*\) 是最优的 \(0\!-\!1\) 风险，即 Bayes 风险；
+- \(\mathcal R_\Phi(g)\) 是由替代损失 \(\Phi\) 定义的风险；
+- \(\mathcal R_\Phi^*\) 是最优替代风险。
+
+最后，求指数损失
+
+\[ \Phi(u)=e^{-u} \]
+
+所对应的函数 \(G\)。
+
+
+
+一、为什么这样定义 \(G\)？
+
+令
+
+\[ \xi=P(Y=1\mid X=x), \qquad z=2\xi-1. \]
+
+那么
+
+\[ \xi=\frac{1+z}{2}, \qquad 1-\xi=\frac{1-z}{2}. \]
+
+所以条件代理风险可以写成
+
+\[ C_\xi^\Phi(u) = \frac{1+z}{2}\Phi(u) + \frac{1-z}{2}\Phi(-u). \]
+
+因此
+
+\[ \inf_u C_\xi^\Phi(u) = \inf_u \left\{ \frac{1+z}{2}\Phi(u) + \frac{1-z}{2}\Phi(-u) \right\}. \]
+
+于是
+
+\[ \boxed{ G(z)=\Phi(0)-\inf_u C_\xi^\Phi(u). } \]
+
+它衡量的是：
+
+> 使用没有分类方向的分数 \(u=0\)，相比最优条件分数，多付出了多少代理风险。
+
+而 \(z=|2\xi-1|\) 越大，分类越确定，使用错误方向的代价应该越大。
+
+------
+
+## 二、证明 \(G\) 是凸函数
+
+记
+
+\[ F_u(z) = \frac{1+z}{2}\Phi(u) + \frac{1-z}{2}\Phi(-u). \]
+
+展开：
+
+\[ F_u(z) = \frac{\Phi(u)+\Phi(-u)}2 + \frac z2\bigl[\Phi(u)-\Phi(-u)\bigr]. \]
+
+对于固定的 \(u\)，这是关于 \(z\) 的仿射函数。
+
+令
+
+\[ M(z)=\inf_uF_u(z). \]
+
+仿射函数族的下确界是凹函数。具体地，对 \(0\le\lambda\le1\)，
+
+\[ \begin{aligned} M(\lambda z_1+(1-\lambda)z_2) &=\inf_u \left[ \lambda F_u(z_1)+(1-\lambda)F_u(z_2) \right]\\ &\ge \lambda\inf_uF_u(z_1) +(1-\lambda)\inf_uF_u(z_2)\\ &=\lambda M(z_1)+(1-\lambda)M(z_2). \end{aligned} \]
+
+所以 \(M\) 是凹函数，进而
+
+\[ \boxed{G(z)=\Phi(0)-M(z)} \]
+
+是凸函数。
+
+此外，换元 \(u\mapsto -u\) 可得
+
+\[ M(-z)=M(z), \]
+
+所以 \(G\) 还是偶函数。
+
+------
+
+## 三、证明 \(G(0)=0\)
+
+当 \(z=0\) 时，
+
+\[ M(0) = \inf_u\frac{\Phi(u)+\Phi(-u)}2. \]
+
+由 \(\Phi\) 的凸性，
+
+\[ \frac{\Phi(u)+\Phi(-u)}2 \ge \Phi\left(\frac{u+(-u)}2\right) =\Phi(0). \]
+
+而在 \(u=0\) 时取等号，所以
+
+\[ M(0)=\Phi(0). \]
+
+因此
+
+\[ \boxed{G(0)=0}. \]
+
+又因为 \(G\) 凸且为偶函数，所以 \(0\) 是其最小点，且 \(G\) 在 \([0,1]\) 上单调不减。
+
+------
+
+## 四、证明逐点的校准不等式
+
+要证明
+
+\[ G\bigl(\Delta_{01}(\xi,u)\bigr) \le \Delta_\Phi(\xi,u), \]
+
+其中
+
+\[ \Delta_\Phi(\xi,u) = C_\xi^\Phi(u)-\inf_vC_\xi^\Phi(v). \]
+
+仍令
+
+\[ z=2\xi-1. \]
+
+### 情况一：分类方向正确
+
+如果
+
+\[ zu>0, \]
+
+则预测符号与 Bayes 分类方向一致，因此
+
+\[ \Delta_{01}(\xi,u)=0. \]
+
+于是
+
+\[ G(\Delta_{01})=G(0)=0 \le \Delta_\Phi. \]
+
+### 情况二：分类方向错误
+
+如果
+
+\[ zu\le0, \]
+
+由 \(\Phi\) 的凸性，
+
+\[ \begin{aligned} C_\xi^\Phi(u) &= \frac{1+z}{2}\Phi(u) + \frac{1-z}{2}\Phi(-u)\\ &\ge \Phi\left( \frac{1+z}{2}u + \frac{1-z}{2}(-u) \right)\\ &=\Phi(zu). \end{aligned} \]
+
+由于题设
+
+\[ \Phi'(0)<0, \]
+
+凸函数在 \(0\) 点的支撑线给出
+
+\[ \Phi(zu) \ge \Phi(0)+\Phi'(0)zu. \]
+
+而 \(zu\le0\)、\(\Phi'(0)<0\)，所以
+
+\[ \Phi'(0)zu\ge0. \]
+
+因此
+
+\[ C_\xi^\Phi(u)\ge\Phi(zu)\ge\Phi(0). \]
+
+所以
+
+\[ \begin{aligned} \Delta_\Phi(\xi,u) &=C_\xi^\Phi(u)-M(z)\\ &\ge\Phi(0)-M(z)\\ &=G(z)=G(|z|). \end{aligned} \]
+
+同时条件 \(0\!-\!1\) 超额风险满足
+
+\[ 0\le\Delta_{01}(\xi,u)\le|z|. \]
+
+由于 \(G\) 在非负半轴单调不减，
+
+\[ G(\Delta_{01}(\xi,u)) \le G(|z|) \le\Delta_\Phi(\xi,u). \]
+
+所以两种情况合起来，
+
+\[ \boxed{ G(\Delta_{01}(\xi,u)) \le \Delta_\Phi(\xi,u). } \]
+
+------
+
+## 五、提升到总体风险
+
+我们有
+
+\[ \mathcal R(g)-\mathcal R^* = \mathbb E[\Delta_{01}] \]
+
+以及
+
+\[ \mathcal R_\Phi(g)-\mathcal R_\Phi^* = \mathbb E[\Delta_\Phi]. \]
+
+利用 \(G\) 的凸性和 Jensen 不等式，
+
+\[ \begin{aligned} G[\mathcal R(g)-\mathcal R^*] &=G(\mathbb E[\Delta_{01}])\\ &\le\mathbb E[G(\Delta_{01})]\\ &\le\mathbb E[\Delta_\Phi]\\ &=\mathcal R_\Phi(g)-\mathcal R_\Phi^*. \end{aligned} \]
+
+最终得到
+
+\[ \boxed{ G[\mathcal R(g)-\mathcal R^*] \le \mathcal R_\Phi(g)-\mathcal R_\Phi^*. } \]
+
+这道题的证明链条就是
+
+\[ \boxed{ \Phi\text{ 凸} \Rightarrow G\text{ 凸} \Rightarrow G(\text{条件 }0\!-\!1\text{ 超额风险}) \le \text{条件代理超额风险} \Rightarrow \text{总体风险界}. } \]
+
+题目的最后一步是对 exponential loss \(\Phi(u)=e^{-u}\) 显式计算 \(G\)，结果是
+
+\[ \boxed{G(z)=1-\sqrt{1-z^2}}. \]
+
+### Ex 4.3
+
+假设存在 \(\varepsilon\in(0,1)\)，使得几乎处处都有
+
+\[
+|2\eta(x)-1|\ge\varepsilon.
+\]
+
+设 \(\Phi:\mathbb R\to\mathbb R\) 是本节所考虑的光滑、凸且具有分类校准性的替代损失，并且
+
+\[
+\Phi(v)=a(v)-v.
+\]
+
+证明：对于任意函数 \(g:\mathcal X\to\mathbb R\)，都有
+
+\[
+\boxed{
+\mathcal R(g)-\mathcal R(g_*)
+\le
+\frac{\varepsilon}{a^*(\varepsilon)}
+\left[\mathcal R_\Phi(g)-\mathcal R_\Phi^*\right].
+}
+\]
+
+这里仍将 \(a\) 归一化为 \(a(0)=0\)，这不改变超额风险。固定 \(x\)，记
+
+\[
+z=2\eta(x)-1,\qquad u=g(x).
+\]
+
+由 Ex 4.1 的计算，条件代理超额风险为
+
+\[
+\Delta_\Phi(x)=a(u)-zu+a^*(z).
+\]
+
+若预测方向错误，即 \(zu\le0\)，则 \(a(u)\ge0\)、\(-zu\ge0\)，并且 \(a^*\) 是偶函数，所以
+
+\[
+\Delta_\Phi(x)\ge a^*(|z|).
+\]
+
+因为 \(a^*\) 凸且 \(a^*(0)=0\)，对任意 \(t\ge\varepsilon\)，令 \(\lambda=\varepsilon/t\)，有
+
+\[
+\begin{aligned}
+a^*(\varepsilon)
+&=a^*\bigl(\lambda t+(1-\lambda)0\bigr)\\
+&\le\lambda a^*(t)+(1-\lambda)a^*(0)
+=\frac{\varepsilon}{t}a^*(t).
+\end{aligned}
+\]
+
+因此
+
+\[
+a^*(t)\ge\frac{a^*(\varepsilon)}{\varepsilon}t,
+\qquad t\ge\varepsilon.
+\]
+
+题设保证 \(|z|\ge\varepsilon\)，而条件 \(0\!-\!1\) 超额风险满足
+
+\[
+\Delta_{01}(x)
+\le |z|\mathbf 1_{\{zu\le0\}}.
+\]
+
+所以在预测错误时，
+
+\[
+\Delta_\Phi(x)
+\ge a^*(|z|)
+\ge\frac{a^*(\varepsilon)}{\varepsilon}|z|
+\ge\frac{a^*(\varepsilon)}{\varepsilon}\Delta_{01}(x).
+\]
+
+预测正确时 \(\Delta_{01}(x)=0\)，同一不等式仍成立。对 \(X\) 取期望，得到
+
+\[
+\mathcal R_\Phi(g)-\mathcal R_\Phi^*
+\ge
+\frac{a^*(\varepsilon)}{\varepsilon}
+\bigl[\mathcal R(g)-\mathcal R(g_*)\bigr].
+\]
+
+整理即得题目结论。这里的间隔条件排除了 \(\eta(x)\) 接近 \(1/2\) 的困难样本，因此将一般的非线性校准界加强成了线性风险界。
 
 ## Ch4.2误差分解
 
