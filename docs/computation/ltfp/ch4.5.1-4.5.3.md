@@ -2,22 +2,26 @@ LTFP: Ch 4.5.1Rademacher复杂度
 
 所以我们折腾半天引出这样一个量是为了说明什么呢？
 
-接下来，我们可以证明：
+接下来，我们可以证明
+
+Propostion4.2
 
 ```math
-E\{sup_{h\in\mathcal H} \{|E(h(z))-\frac{1}{n}\sum_{i=1}^n h(z_i)|\}\}\le2R_n(\mathcal H)
+E\{\sup_{h\in\mathcal H} \{|E(h(z))-\frac{1}{n}\sum_{i=1}^n h(z_i)|\}\}\le2R_n(\mathcal H)
 ```
+这其实就是说明Estimation error统计误差可以被Rademacher复杂度给控制住。
+
 我们分别证明：
 
-$E\{sup_{h\in\mathcal H} \{E(h(z))-\frac{1}{n}\sum_{i=1}^n h(z_i)\}\}\le2R_n(\mathcal H)$,$E\{sup_{h\in\mathcal H} \{\frac{1}{n}\sum_{i=1}^n h(z_i)-E[h(z)]\}\}\le2R_n(\mathcal H)$
+$E\{\sup_{h\in\mathcal H} \{E(h(z))-\frac{1}{n}\sum_{i=1}^n h(z_i)\}\}\le2R_n(\mathcal H)$,$E\{sup_{h\in\mathcal H} \{\frac{1}{n}\sum_{i=1}^n h(z_i)-E[h(z)]\}\}\le2R_n(\mathcal H)$
 
 考虑一组同分布的数据$\mathcal D'=\{z'_1,z_2'\cdots,z_n'\}$
 
-因此，我们可以将期望转化为需样本的条件期望
+因此，我们可以将期望转化为虚样本的条件期望
 ```math
-E\{sup_{h\in\mathcal H} \{E(h(z))-\frac{1}{n}\sum_{i=1}^n h(z_i)\}\}=E\{sup_{h\in\mathcal H} \{E[\frac{1}{n}\sum_{i=1}^n h(z'_i)|\mathcal D]-\frac{1}{n}\sum_{i=1}^n h(z_i)\}\}\\
-\le E[sup_{h\in\mathcal H}E[\frac{1}{n}\sum_{i=1}^nh(z'_i)-h(z_i)|\mathcal D]]\\
-\le E[E[sup_{h\in\mathcal H}\frac{1}{n}\sum_{i=1}^nh(z'_i)-h(z_i)|\mathcal D]]\\
+E\{\sup_{h\in\mathcal H} \{E(h(z))-\frac{1}{n}\sum_{i=1}^n h(z_i)\}\}=E\{\sup_{h\in\mathcal H} \{E[\frac{1}{n}\sum_{i=1}^n h(z'_i)|\mathcal D]-\frac{1}{n}\sum_{i=1}^n h(z_i)\}\}\\
+\le E[\sup_{h\in\mathcal H}E[\frac{1}{n}\sum_{i=1}^nh(z'_i)-h(z_i)|\mathcal D]]\\
+\le E[E[\sup_{h\in\mathcal H}\frac{1}{n}\sum_{i=1}^nh(z'_i)-h(z_i)|\mathcal D]]\\
 \le E[sup_{h\in \mathcal H}\sum_{i=1}^n\{h(z'_i)-h(z_i)\}]
 ```
 而同理可得，
@@ -32,6 +36,41 @@ E[sup_{h\in \mathcal H}\frac{1}{n}\sum_{i=1}^n\{h(z'_i)-h(z_i)\}]\\
 \le E[sup_{h\in \mathcal H}\frac{1}{n}\sum_{i=1}^n\varepsilon_ih(z'_i)]+E[sup_{h\in \mathcal H}\frac{1}{n}\sum_{i=1}^n-\varepsilon_ih(z_i)] \\
 \le 2R_n(\mathcal{H})
 ```
+不过，Radamacher复杂度是衡量函数类对于随机变量的逼近能力，那么能否使用别的随机变量呢？
+
+答案是可以的，下面我们介绍$G_n(\mathcal H)$，这也便是Ex4.11
+
+Exercise4.11:
+
+考虑\(g_i\sim N(0,1)\)是彼此独立的标准 Gaussian 随机变量。
+
+\(G_n(\mathcal H) = \mathbb E_{D,g} \left[ \sup_{h\in\mathcal H} \frac1n\sum_{i=1}^ng_i h(z_i) \right].\)
+
+目标是证明
+
+\[ \boxed{ R_n(\mathcal H) \leq \sqrt{\frac{\pi}{2}}G_n(\mathcal H) } \]
+
+\[ \boxed{ G_n(\mathcal H) \leq \sqrt{2\log(2n)}R_n(\mathcal H). } \]
+
+经验Radamacher复杂度：
+
+E[h(z)] 6
+1
+n
+Xn
+i=1
+h(zi) + 2ˆRn(H) + 3
+ℓ∞ √2n
+r
+log
+2
+δ
+, (4.14)
+
+
+
+Proposition 4.3 (Contraction principle–Lipschitz-continuous functions) .
+
 众所周知，期望可以按照概率被处理，使用集中不等式使用最大值+$\delta$小量可以让不等式按照$1-\delta$概率成立
 
 若
@@ -283,7 +322,7 @@ R_n(\mathcal F)
 \quad\Longrightarrow\quad
 R_n(\mathcal F)
 \le
-\frac{D}{n}\mathbb E[\|\Phi^T\varepsilon\|_{\infty}]=max_j\{\sum_{i=1}^n\varphi_j(x_i)\varepsilon_i\}
+\frac{D}{n}\mathbb E[\|\Phi^T\varepsilon\|_{\infty}]=\max_j\{\sum_{i=1}^n\varphi_j(x_i)\varepsilon_i\}
 ```
 
 在固定数据 $x_1,\dots,x_n$ 后，这是一个 Rademacher 加权和。由于
