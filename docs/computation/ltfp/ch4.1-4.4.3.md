@@ -996,6 +996,276 @@ a^*(t)\ge\frac{a^*(\varepsilon)}{\varepsilon}t,
 
 整理即得题目结论。这里的间隔条件排除了 \(\eta(x)\) 接近 \(1/2\) 的困难样本，因此将一般的非线性校准界加强成了线性风险界。
 
+我们之前已经在4.1.3部分论证了使用替代函数来选取得到的解依然是最终的解，那么不同的替代损失的选择是否会产生影响？
+
+结论是，因为要使 \(\Phi\)-风险达到最小值，对于经验风险最小化所使用的函数类，需要作出不同的假设。
+
+具体来说：
+
+- 对于 hinge 损失，函数
+
+  \[ \operatorname{sign}(2\eta(x)-1) \]
+
+  必须属于我们选取的函数类；
+
+- 对于平方损失，函数
+
+  \[ 2\eta(x)-1 \]
+
+  必须属于该函数类；
+
+- 对于 logistic 损失，函数
+
+  \[ 2\operatorname{atanh}(2\eta(x)-1) \]
+
+  必须属于该函数类。
+
+如果这些函数不属于所选的模型类，那么模型类至少需要能够很好地逼近它们。对于 hinge 损失而言，这种逼近可能更加困难，因为\[ \operatorname{sign}(2\eta(x)-1) \]的正则性可能比较弱，或者说，它可能没有下面两个函数那么平滑：
+
+\[ 2\eta(x)-1 \]或\[ 2\operatorname{atanh}(2\eta(x)-1). \]
+
+Ex 4.4 对于 logistic 损失，假设数据由以下类别条件分布生成：
+
+\[ X\mid Y=1 \quad\text{和}\quad X\mid Y=-1, \]
+
+并且这两个条件分布都是具有相同协方差矩阵的高斯分布。
+
+证明：使期望 logistic 损失达到最小值的函数 \(g(x)\) 是关于 \(x\) 的仿射函数，即可以写成
+
+\[ g(x)=w^\top x+b. \]
+
+这种模型通常称为**线性判别分析**（linear discriminant analysis，LDA）。
+
+进一步，将该结论推广到多类别情形。
+
+## 1. Logistic 损失的最优分数
+
+固定 \(X=x\)，记
+
+\[ \eta(x)=P(Y=1\mid X=x). \]
+
+取 logistic 损失
+
+\[ \Phi(u)=\log(1+e^{-u}). \]
+
+条件 logistic 风险为
+
+\[ C_{\eta(x)}^\Phi(u) = \eta(x)\log(1+e^{-u}) + (1-\eta(x))\log(1+e^u). \]
+
+对 \(u\) 求导：
+
+\[ \frac{d}{du}C_{\eta(x)}^\Phi(u) = \frac{(1-\eta(x))e^u-\eta(x)}{1+e^u}. \]
+
+令导数等于零：
+
+\[ (1-\eta(x))e^u=\eta(x). \]
+
+因此
+
+\[ e^u=\frac{\eta(x)}{1-\eta(x)}, \]
+
+所以最优分数为
+
+\[ \boxed{ g^*(x) = \log\frac{\eta(x)}{1-\eta(x)}. } \]
+
+这就是后验概率的 log-odds。
+
+它也等于教材中的
+
+\[ 2\operatorname{atanh}(2\eta(x)-1), \]
+
+因为
+
+\[ 2\operatorname{atanh}(z) = \log\frac{1+z}{1-z}. \]
+
+令 \(z=2\eta-1\)，就得到
+
+\[ 2\operatorname{atanh}(2\eta-1) = \log\frac{\eta}{1-\eta}. \]
+
+## 2. 使用 Bayes 公式
+
+设类别先验概率为
+
+\[ \pi_+=P(Y=1),\qquad \pi_-=P(Y=-1). \]
+
+由 Bayes 公式，
+
+\[ \eta(x) = \frac{\pi_+p(x\mid Y=1)} {\pi_+p(x\mid Y=1)+\pi_-p(x\mid Y=-1)}. \]
+
+因此
+
+\[ \frac{\eta(x)}{1-\eta(x)} = \frac{\pi_+p(x\mid Y=1)} {\pi_-p(x\mid Y=-1)}. \]
+
+取对数：
+
+\[ g^*(x) = \log\frac{\pi_+}{\pi_-} + \log\frac{p(x\mid Y=1)}{p(x\mid Y=-1)}. \]
+
+所以问题转化为计算两个高斯密度的对数比。
+
+## 3. 代入共同协方差的高斯分布
+
+假设
+
+\[ X\mid Y=1\sim\mathcal N(\mu_+,\Sigma), \]\[ X\mid Y=-1\sim\mathcal N(\mu_-,\Sigma). \]
+
+它们拥有相同的协方差矩阵 \(\Sigma\)。
+
+高斯密度的对数为
+
+\[ \log p(x\mid Y=k) = \text{常数} -\frac12(x-\mu_k)^\top \Sigma^{-1}(x-\mu_k). \]
+
+所以
+
+\[ \begin{aligned} \log\frac{p(x\mid Y=1)}{p(x\mid Y=-1)} ={}& -\frac12(x-\mu_+)^\top\Sigma^{-1}(x-\mu_+)\\ &+\frac12(x-\mu_-)^\top\Sigma^{-1}(x-\mu_-). \end{aligned} \]
+
+展开两个二次型：
+
+\[ (x-\mu)^\top\Sigma^{-1}(x-\mu) = x^\top\Sigma^{-1}x -2x^\top\Sigma^{-1}\mu +\mu^\top\Sigma^{-1}\mu. \]
+
+因为两个类别使用同一个 \(\Sigma\)，它们共同包含的二次项
+
+\[ x^\top\Sigma^{-1}x \]
+
+恰好抵消。
+
+剩下
+
+\[ \begin{aligned} \log\frac{p(x\mid Y=1)}{p(x\mid Y=-1)} ={}& x^\top\Sigma^{-1}(\mu_+-\mu_-)\\ &-\frac12 \left( \mu_+^\top\Sigma^{-1}\mu_+ - \mu_-^\top\Sigma^{-1}\mu_- \right). \end{aligned} \]
+
+因此
+
+\[ g^*(x)=w^\top x+b, \]
+
+其中
+
+\[ \boxed{ w=\Sigma^{-1}(\mu_+-\mu_-) } \]
+
+以及
+
+\[ \boxed{ b= \log\frac{\pi_+}{\pi_-} -\frac12 \left( \mu_+^\top\Sigma^{-1}\mu_+ - \mu_-^\top\Sigma^{-1}\mu_- \right). } \]
+
+所以总体最优 logistic 分数是 \(x\) 的仿射函数。
+
+拓展到多分类的情景：
+
+## 1. 从一个分数变成 \(K\) 个分数
+
+二分类时只需要一个实数：
+
+\[ g(x)\in\mathbb R. \]
+
+然后比较它与零：
+
+\[ g(x)>0\Rightarrow Y=1, \qquad g(x)<0\Rightarrow Y=-1. \]
+
+多分类时令
+
+\[ Y\in\{1,\ldots,K\}, \]
+
+为每个类别构造一个评分函数：
+
+\[ g(x)= \begin{pmatrix} g_1(x)\\ \vdots\\ g_K(x) \end{pmatrix} \in\mathbb R^K. \]
+
+最终选择分数最大的类别：
+
+\[ \boxed{ f_g(x)=\arg\max_{k\in\{1,\ldots,K\}}g_k(x). } \]
+
+## 2. 多分类 logistic 损失
+
+定义 softmax 概率：
+
+\[ q_k(g) = \frac{e^{g_k}} {\sum_{j=1}^K e^{g_j}}. \]
+
+如果真实标签是 \(Y=k\)，负对数似然，也就是多分类 logistic 损失，为
+
+\[ \ell(k,g) = -\log q_k(g). \]
+
+展开：
+
+\[ \boxed{ \ell(k,g) = -g_k+\log\sum_{j=1}^K e^{g_j}. } \]
+
+这就是通常所说的 softmax cross-entropy。
+
+## 3. 条件风险的最优分数
+
+固定 \(X=x\)，记真实后验概率为
+
+\[ \eta_k(x)=P(Y=k\mid X=x), \qquad \sum_{k=1}^K\eta_k(x)=1. \]
+
+条件 cross-entropy 风险为
+
+\[ \begin{aligned} C_{\eta}(g) &= \sum_{k=1}^K \eta_k(x)\ell(k,g)\\ &= -\sum_{k=1}^K\eta_k(x)g_k + \log\sum_{j=1}^K e^{g_j}. \end{aligned} \]
+
+对 \(g_k\) 求偏导：
+
+\[ \frac{\partial C_\eta(g)}{\partial g_k} = -\eta_k(x) + \frac{e^{g_k}}{\sum_j e^{g_j}}. \]
+
+令偏导为零：
+
+\[ \frac{e^{g_k}}{\sum_j e^{g_j}} = \eta_k(x). \]
+
+也就是
+
+\[ \operatorname{softmax}(g(x)) = \eta(x). \]
+
+因此最优分数满足
+
+\[ \boxed{ g_k^*(x)=\log\eta_k(x)+c(x), } \]
+
+其中 \(c(x)\) 是对所有类别都相同的任意函数。
+
+之所以允许增加 \(c(x)\)，是因为 softmax 对共同平移不变：
+
+\[ \operatorname{softmax}(g+c\mathbf1) = \operatorname{softmax}(g). \]
+
+分类也不受影响：
+
+\[ \arg\max_k[g_k(x)+c(x)] = \arg\max_k g_k(x). \]
+
+## 4. 代入共同协方差高斯模型
+
+假设
+
+\[ X\mid Y=k \sim \mathcal N(\mu_k,\Sigma), \qquad P(Y=k)=\pi_k, \]
+
+并且所有类别使用相同的协方差矩阵 \(\Sigma\)。
+
+由 Bayes 公式，
+
+\[ P(Y=k\mid X=x) = \frac{\pi_k p(x\mid Y=k)} {\sum_{j=1}^K\pi_jp(x\mid Y=j)}. \]
+
+高斯密度满足
+
+\[ p(x\mid Y=k) \propto \exp\left( -\frac12(x-\mu_k)^\top \Sigma^{-1}(x-\mu_k) \right). \]
+
+所以后验概率的未归一化对数分数为
+
+\[ \log\pi_k -\frac12(x-\mu_k)^\top \Sigma^{-1}(x-\mu_k). \]
+
+展开二次型：
+
+\[ \begin{aligned} -\frac12(x-\mu_k)^\top\Sigma^{-1}(x-\mu_k) ={}& -\frac12x^\top\Sigma^{-1}x\\ &+x^\top\Sigma^{-1}\mu_k\\ &-\frac12\mu_k^\top\Sigma^{-1}\mu_k. \end{aligned} \]
+
+其中
+
+\[ -\frac12x^\top\Sigma^{-1}x \]
+
+对所有类别 \(k\) 都一样。它相当于前面的共同平移 \(c(x)\)，在 softmax 和 \(\arg\max\) 中都会抵消。
+
+因此可以定义
+
+\[ \boxed{ g_k(x) = x^\top\Sigma^{-1}\mu_k -\frac12\mu_k^\top\Sigma^{-1}\mu_k +\log\pi_k. } \]
+
+每个 \(g_k(x)\) 都是关于 \(x\) 的仿射函数。
+
+后验概率就是
+
+\[ \boxed{ P(Y=k\mid X=x) = \frac{\exp(g_k(x))} {\sum_{j=1}^K\exp(g_j(x))}. } \]
+
+最终分类器为
+
+\[ \boxed{ f^*(x)=\arg\max_k g_k(x). } \]
+
 ## Ch4.2误差分解
 
 但我们并不是从真实分布来求取$f^*$这个理论最佳函数，也不是在所有可能的函数空间内
@@ -1135,10 +1405,8 @@ H(z_1,\dots,z_{i-1},z_i,Z_{i+1},\dots,Z_n)
 ```
 所以 $\phi_i(Z_i)$ 的取值范围长度不超过 $c_i$。
 
-而
-```math
-M_i=\phi_i(Z_i),
-```
+而$M_i=\phi_i(Z_i),$
+
 因此
 ```math
 D_i
