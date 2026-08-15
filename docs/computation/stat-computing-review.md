@@ -1,5 +1,7 @@
 # 统计计算总复习
 
+> 本页的完整课程代码和配套数据见 [统计计算 R 脚本索引](code/stat-computing/index.md)。章节对应关系为：R 基础 Ch1、随机变量生成 Ch2、Monte Carlo Ch3-Ch4、Bootstrap/Jackknife Ch5、数值方法 Ch6、MCMC Ch7。
+
 > 目标：先把整门课压缩成一套“看到题目就知道该套哪个模板”的复习工具。本文优先服务期末复习，暂不追求教材式完整。
 
 ## 使用方式

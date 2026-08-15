@@ -97,8 +97,9 @@ nav:
     - 凸优化: computation/optimization.md
     - 无约束优化算法对比: computation/unconstrained-optimization.md
   - 统计计算:
-    - 统计计算: computation/stat-computing.md
+    - 专题总览: computation/stat-computing.md
     - 统计计算总复习: computation/stat-computing-review.md
+    - R 脚本索引: computation/code/stat-computing/index.md
   - 统计学习理论 (LTFP):
       - 总览: computation/ltfp/index.md
       - Ch1 再论集中不等式: computation/ltfp/ch1.2.2-1.2.3-concentration.md
