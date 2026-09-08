@@ -13,7 +13,7 @@
 | `missing` | 目前没有可定位的笔记内容 |
 | `attempted` / `mastered` | 有作答或评分证据；不能由笔记文件名推断 |
 
-当前语料库中，LTFP 笔记贡献390个原子，全部仍为 `unverified`；学习状态账本没有作答事件。因此本页的覆盖状态不是 mastery 结论。
+此前覆盖筛查记录了390个 LTFP 笔记原子，均为 `unverified`，当时学习状态账本没有作答事件。2026-09-08 本次导入只更新文档与映射，未重建语料库、未重查或写入学习账本；该旧计数不包含本次新页面。本页的覆盖状态不是 mastery 结论。
 
 ## 章节总览
 
@@ -26,10 +26,10 @@
 | Ch3 | 线性最小二乘回归（Linear Least-Squares Regression） | 3.1–3.9，存在文件范围重叠 | 明确出现3.5–3.10；3.1–3.4未标注 | 明确出现 P3.2、P3.3、P3.6–P3.12 |
 | Ch4 | 经验风险最小化（Empirical Risk Minimization） | 4.1.1–4.1.3、4.2–4.5.3；4.1.4缺失 | 仅明确记录 Exercise 4.8 | 仅明确记录 P4.4 |
 | Ch5 | 机器学习优化（Optimization for Machine Learning） | 5.1–5.4.1，含 SGD/SVRG 重叠 | 明确出现5.18–5.21、5.26–5.29、5.31–5.34 | 明确出现 P5.6、P5.7、P5.8 |
-| Ch6 | 局部平均方法（Local Averaging Methods） | 无逐章笔记 | 6道题均为 `source_only` | P6.1–P6.3 为 `source_only` |
-| Ch7 | 核方法（Kernel Methods） | 无逐章笔记 | 23道题均为 `source_only` | P7.1–P7.8 为 `source_only` |
+| Ch6 | 局部平均方法（Local Averaging Methods） | [§6.1–6.3](ch6.1-6.3-local-averaging.md)、[§6.4–6.5](ch6.4-6.5-universal-consistency.md) 已整理，均为 `note_unverified` | 6.2/6.3/6.5 有简写；6.4 仅题号；6.6 构造未写；6.1 为 `source_only` | P6.1、P6.3 明确记录；P6.2 有 k 近邻界但原稿未标编号 |
+| Ch7 | 核方法（Kernel Methods） | §7.3.1/7.3.3、§7.4.1–7.4.3、§7.5 与 §7.6.1 已整理 | 7.8 有草算；7.10/7.21 仅标题或题意；其余 `source_only` | P7.4 明确记录；P7.1–P7.3 为 `source_only`；P7.5–P7.8 为 `source_only` |
 | Ch8 | 稀疏方法（Sparse Methods） | 无逐章笔记；背景稀疏学习笔记未绑定 Ch8 | 17道题均为 `source_only` | P8.1–P8.6 为 `source_only` |
-| Ch9 | 神经网络（Neural Networks） | 无逐章笔记 | 10道题均为 `source_only` | P9.1–P9.3 为 `source_only` |
+| Ch9 | 神经网络（Neural Networks） | 原有 Ch9.1–9.2，加 [§9.2–9.3 部分笔记](ch9.2-9.3-variation-norm.md)，均未签认 | 9.2 有部分推导，未收尾；其余为 `source_only`（另有未编号的相关草算） | P9.2 明确记录、验证未完成；P9.1/P9.3 仍无正式编号记录 |
 
 ## Ch4 细分映射
 
@@ -53,6 +53,22 @@
 | Proposition 4.5 | 4.5.4 Linear Predictions | 未明确记录 |
 | Proposition 4.6 | 4.5.5 Regularized Objectives | 未明确记录 |
 | Proposition 4.7 | 4.5.5–4.5.6 Norm-Penalized Estimation | 未明确记录 |
+
+## 2026-09-08 手写材料与习题状态
+
+详细来源与九道已标号习题见[本次导入记录](handwritten-import-20260908.md)。其中“仅题号/题意”只表示原稿提到了题目，不表示有答案；“部分推导”也不升级为 `mastered`。
+
+| 对象 | 可定位内容 | 完成程度 |
+|---|---|---|
+| P6.1 | [固定分割界](ch6.1-6.3-local-averaging.md) | 有结论与证明框架，部分概率界未展开 |
+| Lemma 6.1 / 6.2 | [近邻距离界](ch6.1-6.3-local-averaging.md) | 前者有几何证明草稿，后者仅结论 |
+| P6.3 | [核回归误差界](ch6.1-6.3-local-averaging.md) | 有 Bernstein 与偏差—方差计算，已注明系数整理 |
+| P7.4 | [Bochner 定理](ch7.3-7.4-kernels-algorithms.md) | 只展开一个方向 |
+| P9.2 | [变差范数](ch9.2-9.3-variation-norm.md) | 有范数性质与部分验证，完备性未写 |
+| Ex 6.4 / 7.10 / 7.21 | 原题号或简短题意 | 无独立解答 |
+| Ex 6.6 | 一阶偏差消去的设想 | 构造与证明未写 |
+| Ex 9.2 | 基类界与一层收缩 | 最终递推未完成 |
+| 其他断点 | 非齐次维数归纳、延拓 g、Fourier/Sobolev 联系等 | 保留原稿停止位置 |
 
 ## 文件范围的特别说明
 
