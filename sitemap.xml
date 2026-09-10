@@ -2,222 +2,306 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/about/backstage/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/ai4math/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/ai4math/examples/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/ai4math/improvements/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/ai4math/papers/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/ai4math/pinn-critique/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/ai4math/pinn-overview/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/ai4math/pinn-seminar/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/algorithms/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/algorithms/bayesian/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/algorithms/compressed-sensing/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/algorithms/decision-trees/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/algorithms/deep-learning/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/algorithms/neural-networks/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/computation/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/computation/num-analysis/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/computation/num-linalg/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/computation/num-pde/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/computation/numerical-linear-algebra-lab/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/computation/optimization/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/computation/stat-computing-review/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/computation/stat-computing/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/computation/unconstrained-optimization/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
-         <loc>https://huangblac.github.io/AI-Math-Docs/computation/lftp/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/code/stat-computing/</loc>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
-         <loc>https://huangblac.github.io/AI-Math-Docs/computation/lftp/ch1-2-optimization-raw/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/industrial-computing/</loc>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
-         <loc>https://huangblac.github.io/AI-Math-Docs/computation/lftp/ch1-2-optimization/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/industrial-computing/cad-cae-pipeline/</loc>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
-         <loc>https://huangblac.github.io/AI-Math-Docs/computation/lftp/ch1-bernstein-maximum/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/industrial-computing/finite-element-method/</loc>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
-         <loc>https://huangblac.github.io/AI-Math-Docs/computation/lftp/ch1-concentration/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/industrial-computing/inverse-high-dimensional/</loc>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
-         <loc>https://huangblac.github.io/AI-Math-Docs/computation/lftp/ch2-supervised-learning/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/industrial-computing/parallel-computing/</loc>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
-         <loc>https://huangblac.github.io/AI-Math-Docs/computation/lftp/ch3-linear-algorithms/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/</loc>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
-         <loc>https://huangblac.github.io/AI-Math-Docs/computation/lftp/ch3-pca-regression/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch1.1-1.2.0-optimization/</loc>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
-         <loc>https://huangblac.github.io/AI-Math-Docs/computation/lftp/ch4-4-massart/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch1.2.1-bernstein-maximum/</loc>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
-         <loc>https://huangblac.github.io/AI-Math-Docs/computation/lftp/ch4-erm/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch1.2.2-1.2.3-concentration/</loc>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
-         <loc>https://huangblac.github.io/AI-Math-Docs/computation/lftp/ch4-rademacher/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch2-supervised-learning/</loc>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
-         <loc>https://huangblac.github.io/AI-Math-Docs/computation/lftp/ch5-3-exercises/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch2.1-2.5-supervised-learning/</loc>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
-         <loc>https://huangblac.github.io/AI-Math-Docs/computation/lftp/ch5-3-nonsmooth/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch3-pca-regression/</loc>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
-         <loc>https://huangblac.github.io/AI-Math-Docs/computation/lftp/ch5-4-exercises/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch3.1-3.4-linear-basics/</loc>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
-         <loc>https://huangblac.github.io/AI-Math-Docs/computation/lftp/ch5-4-sgd/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch3.5-3.9-ridge-minimax/</loc>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
-         <loc>https://huangblac.github.io/AI-Math-Docs/computation/lftp/ch5-optimization-intro/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch3.9-pca-regression/</loc>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
-         <loc>https://huangblac.github.io/AI-Math-Docs/computation/lftp/ch5-optimization/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch4.1-4.4.3/</loc>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
-         <loc>https://huangblac.github.io/AI-Math-Docs/computation/lftp/data-science-intro/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch4.4.4-4.5.0/</loc>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
-         <loc>https://huangblac.github.io/AI-Math-Docs/computation/lftp/learning-theory/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch4.5.1-4.5.3/</loc>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
-         <loc>https://huangblac.github.io/AI-Math-Docs/computation/lftp/machine-learning/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch4.5.4-4.5.6/</loc>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
-         <loc>https://huangblac.github.io/AI-Math-Docs/computation/lftp/sparse-feature-learning/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch4.6-4.7%20model%20selection/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch5-4-sgd/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch5-optimization-intro/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch5.1-5.2-optimization/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch5.3-nonsmooth/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch5.4.0-sgd/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch5.4.1-strong-convex-sgd/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch6.1-6.3-local-averaging/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch6.4-6.5-universal-consistency/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch7.2-representer-kernel-foundations/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch7.3-7.4-kernels-algorithms/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch7.5-generalization/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch7.6-ridge-theory/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch9.1-9.2-neural-networks/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch9.2-9.3-variation-norm/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/data-science-intro/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/handwritten-import-20260908/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/handwritten-import-20260910/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/learning-theory/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/machine-learning/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/sparse-feature-learning/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://huangblac.github.io/AI-Math-Docs/computation/ltfp/study-map/</loc>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/math/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/math/algebra/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/math/analysis/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/math/causality/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/math/functional/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/math/measure/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/math/multivariate/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/math/ode-pde/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/math/probability/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
     <url>
          <loc>https://huangblac.github.io/AI-Math-Docs/math/statistics/</loc>
-         <lastmod>2026-07-25</lastmod>
+         <lastmod>2026-09-10</lastmod>
     </url>
 </urlset>

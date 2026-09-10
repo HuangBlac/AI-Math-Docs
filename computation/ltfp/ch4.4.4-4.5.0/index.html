@@ -1,0 +1,3420 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="从基础数学到AI4Math前沿的知识库">
+      
+      
+        <meta name="author" content="huangblac">
+      
+      
+        <link rel="canonical" href="https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch4.4.4-4.5.0/">
+      
+      
+        <link rel="prev" href="../ch4.1-4.4.3/">
+      
+      
+        <link rel="next" href="../ch4.5.1-4.5.3/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Ch4.4.4-4.5 覆盖数与Rademacher导入 - AI & Math</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="AI &amp; Math" class="md-header__button md-logo" aria-label="AI & Math" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI & Math
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ch4.4.4-4.5 覆盖数与Rademacher导入
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到暗色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到暗色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到亮色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到亮色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  序言与总览
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/backstage/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../math/" class="md-tabs__link">
+          
+  
+  
+  基础数学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+  计算数学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../stat-computing/" class="md-tabs__link">
+          
+  
+  
+  统计计算
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  统计学习理论 (LTFP)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../algorithms/" class="md-tabs__link">
+          
+  
+  
+  算法介绍
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ai4math/" class="md-tabs__link">
+          
+  
+  
+  AI4MATH 前沿
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AI &amp; Math" class="md-nav__button md-logo" aria-label="AI & Math" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI & Math
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    序言与总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/backstage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础数学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    基础数学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础数学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数学分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高等代数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/measure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    测度论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/probability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概率论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/ode-pde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    微分方程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/functional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    泛函分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/statistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数理统计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/multivariate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多元统计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/causality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    因果推断
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算数学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    计算数学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算数学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../num-linalg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值线性代数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../numerical-linear-algebra-lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值线代上机实验
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../num-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../num-pde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值微分方程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    凸优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unconstrained-optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    无约束优化算法对比
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工业计算
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    工业计算
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../industrial-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    专题总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../industrial-computing/cad-cae-pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CAD、CAE 与工业软件计算链
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../industrial-computing/finite-element-method/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    有限元方法：从插值到装配
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../industrial-computing/parallel-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    并行计算基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../industrial-computing/inverse-high-dimensional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    逆问题与高维计算札记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计计算
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    统计计算
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stat-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    专题总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stat-computing-review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计计算总复习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/stat-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    R 脚本索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计学习理论 (LTFP)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    统计学习理论 (LTFP)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch1.2.2-1.2.3-concentration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch1 再论集中不等式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch1.1-1.2.0-optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch1-Ch5 跨章基础与优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch1.2.1-bernstein-maximum/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch1 Bernstein不等式与极大值期望
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch2.1-2.5-supervised-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch2 监督学习导论 (§2.1–2.5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch2-supervised-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch2 监督学习导论（原始导出）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch3.1-3.4-linear-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch3.1-3.4 线性算法基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch3.9-pca-regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch3 PCA与主成分回归 (§3.9)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch3-pca-regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch3 PCA与主成分回归（原始导出）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch3.5-3.9-ridge-minimax/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch3.5-3.9 岭回归与极小极大下界
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch4.1-4.4.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch4.1-4.4.3 风险凸化与误差分解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch4.4.4-4.5 覆盖数与Rademacher导入
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch4.4.4-4.5 覆盖数与Rademacher导入
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        覆盖数
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 单调性
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-minkowski" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Minkowski 和的可加性
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 绝对齐次性
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 加上一个固定函数不改变复杂度
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 取凸包不改变复杂度
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch4.5.1-4.5.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch4.5.1-4.5.3 Rademacher复杂度
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5.1-5.2-optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch5 优化简单介绍 (§5.1–5.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5-optimization-intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch5 优化简单介绍（原始导出）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5.3-nonsmooth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch5.3 非光滑优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5.4.0-sgd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch5.4 随机梯度下降 (§5.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5-4-sgd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch5.4 随机梯度下降（原始导出）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5.4.1-strong-convex-sgd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch5.4.1 强凸SGD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch6.1-6.3-local-averaging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch6.1-6.3 局部平均与一致性
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch6.4-6.5-universal-consistency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch6.4-6.5 普遍一致性与光滑性
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch7.2-representer-kernel-foundations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch7.2-7.3 表示定理与核基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch7.3-7.4-kernels-algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch7.3-7.4 核表示与近似算法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch7.5-generalization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch7.5 泛化保证与逼近误差
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch7.6-ridge-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch7.6 岭回归的理论分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch9.1-9.2-neural-networks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch9.1-9.2 神经网络理论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch9.2-9.3-variation-norm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch9.2-9.3 复杂度与变差范数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../handwritten-import-20260908/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    手写材料导入与未完成项
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../handwritten-import-20260910/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch7.2-7.3 新笔记导入记录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../study-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    习题与 Proposition 映射
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../machine-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    机器学习基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sparse-feature-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    稀疏学习与特征学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../learning-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    学习理论概念地图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-science-intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据科学导论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stat-computing-review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计计算总复习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法介绍
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    算法介绍
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    机器学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithms/neural-networks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    神经网络
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithms/decision-trees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    决策树与集成学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithms/bayesian/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    贝叶斯学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithms/deep-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    深度学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithms/compressed-sensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    压缩感知
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI4MATH 前沿
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI4MATH 前沿
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ai4math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI4MATH前沿
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ai4math/papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    经典论文
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ai4math/examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法实例与训练体会
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ai4math/improvements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    改良与实验
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ai4math/pinn-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN 概览与拷打
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ai4math/pinn-seminar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN 讨论班讲义
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ai4math/pinn-critique/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN 训练体会
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        覆盖数
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 单调性
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-minkowski" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Minkowski 和的可加性
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 绝对齐次性
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 加上一个固定函数不改变复杂度
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 取凸包不改变复杂度
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Ch4.4.4-4.5 覆盖数与Rademacher导入</h1>
+
+<p>Ch4.4.4Beyond Finitely Many Models through Covering Numbers</p>
+<p>我们来回到4.4开始，我们实际上考虑的Estimation error在已经给定一个函数类<span class="arithmatex">\(\mathcal F\)</span>，希望证明在这个有界的函数类之内证明<span class="arithmatex">\(\mathcal{\hat R}\)</span>之中搜索到的<span class="arithmatex">\(\hat f\)</span>代入风险期望损失仍然不大</p>
+<p><span class="arithmatex">\(\mathcal R(\hat f)-\inf_{f\in\mathcal F}\mathcal R(f)\)</span></p>
+<p>如果对于有限的函数类，那么<span class="arithmatex">\(R_n(\mathcal H)\)</span>可以有限组合的情况来组合？</p>
+<p>但是对于一个无限的函数类怎么估计呢？</p>
+<p>对于简化的情形，我们假设损失函数是正则的，也就是“好”的。例如，损失函数关于第二边缘是G-Lipshcisz-continuous，因此我们section 4.3可以推出的就是对于<span class="arithmatex">\(f, f′ ∈ F\)</span>,满足如下不等式
+$$
+\mathcal R(f) − \mathcal R(f′)</p>
+<p>\le G · \mathbb E</p>
+<p>|f(x) − f′(x)|</p>
+<p>= G · Δ(f, f′). (4.11)
+$$
+书里 4.4.4 正是这样引入 covering number：用有限个函数 <span class="arithmatex">\(f_1,\dots,f_m\)</span> 近似整个函数类；如果每个 <span class="arithmatex">\(f\)</span> 都能被某个 <span class="arithmatex">\(f_i\)</span> 以误差 <span class="arithmatex">\(\varepsilon\)</span> 近似，那么 <span class="arithmatex">\(m(\varepsilon)\)</span> 就是 covering number。</p>
+<h3 id="_1">覆盖数</h3>
+<p>我们假设存在 <span class="arithmatex">\(m=m(\varepsilon)\)</span> 个函数[ f_1,\ldots,f_m, ]使得对于任意 <span class="arithmatex">\(f\in\mathcal F\)</span>，都存在某个</p>
+<p>[ i\in{1,\ldots,m}, ]满足[ \Delta(f,f_i)\le\varepsilon, ]其中距离 <span class="arithmatex">\(\Delta\)</span> 由公式 (4.11) 定义。</p>
+<p>满足上述覆盖条件所需的最小数量 <span class="arithmatex">\(m(\varepsilon)\)</span>，称为函数类 <span class="arithmatex">\(\mathcal F\)</span> 在精度 <span class="arithmatex">\(\varepsilon\)</span> 下的**覆盖数**。</p>
+<p>教材随后给出了一个二维例子，展示如何用欧几里得球覆盖一个集合。</p>
+<p>覆盖数 <span class="arithmatex">\(m(\varepsilon)\)</span> 是关于 <span class="arithmatex">\(\varepsilon\)</span> 的单调不增函数。通常，当[ \varepsilon\to0 ]时，<span class="arithmatex">\(m(\varepsilon)\)</span> 会按照[ \varepsilon^{-d} ]的幂次增长，其中 <span class="arithmatex">\(d\)</span> 是底层空间的维数。</p>
+<p>具体来说，对于 <span class="arithmatex">\(\ell_\infty\)</span> 度量，如果在某种参数化下，函数类 <span class="arithmatex">\(\mathcal F\)</span> 被包含在一个 <span class="arithmatex">\(d\)</span> 维、半径为 <span class="arithmatex">\(c\)</span> 的 <span class="arithmatex">\(\ell_\infty\)</span> 球内，那么当 <span class="arithmatex">\(c\ge\varepsilon\)</span> 时，可以很容易地用</p>
+<p>[ \left(\frac{c}{\varepsilon}\right)^d ]个边长为 <span class="arithmatex">\(2\varepsilon\)</span> 的立方体将它覆盖，如图所示。图中的整体区域边长为 <span class="arithmatex">\(2c\)</span>，每个小立方体的边长为 <span class="arithmatex">\(2\varepsilon\)</span>。</p>
+<p>由于在有限维空间 <span class="arithmatex">\(\mathbb R^d\)</span> 中所有范数都是等价的，对于有限维向量空间的任意有界子集，在其他范数下，覆盖数 <span class="arithmatex">\(m(\varepsilon)\)</span> 也具有同样的 <span class="arithmatex">\(\varepsilon^{-d}\)</span> 阶依赖关系。</p>
+<p>因此，当 <span class="arithmatex">\(\varepsilon\to0\)</span> 时，</p>
+<div class="arithmatex">\[ \log m(\varepsilon) \]</div>
+<p>按照</p>
+<div class="arithmatex">\[ d\log\frac1\varepsilon \]</div>
+<p>的速度增长。这种对维数 <span class="arithmatex">\(d\)</span> 的依赖关系可以推广到所有范数；参见练习 4.8。</p>
+<p>Exercise 4.8 Let m(ε) be the covering number of a unit ball of Rd by balls of radius ε for
+an arbitrary norm. Using comparisons of volumes, show that
+$$
+(\frac {1}{\varepsilon})^d\le m(\varepsilon)\le(1+\frac{2}{\varepsilon})^d
+$$
+首先证明下界：</p>
+<p>因为这个m个球的体积和肯定大于覆盖的集合，因此对于单位体积的任何元素，总能给出<span class="arithmatex">\(m(\varepsilon)^d\ge1\)</span></p>
+<p>其次考虑上界，对于covering number的情况，这m个点，每个点两两之间的距离大于<span class="arithmatex">\(\varepsilon\)</span>，那么每个球选取<span class="arithmatex">\(\frac \varepsilon 2\)</span>的小球，两两之间不相交。而这些小球实际上都处在半径为<span class="arithmatex">\(1+\varepsilon/2\)</span>的大球之内：</p>
+<p>因此<span class="arithmatex">\(m(\frac{\varepsilon}{2})^d\le(1+\frac \varepsilon 2)^d\)</span>,进而有<span class="arithmatex">\(m\le(1+\frac 2 \varepsilon)^d\)</span></p>
+<p>For some sets (e.g., all Lipschitz-continuous functions with bounded Lipschitz-constant
+in d dimensions), logm(ε) grows faster, such as ε−d. See, for instance,Wainwright (2019).</p>
+<p>ε-net argument. Given a cover of F, for all f ∈ F, and with (fi)i∈{1,...,m(ε)} being
+the associated cover elements, using that both bR and R are G-Lipschitz-continuous with
+respect to the distance Δ, we have, for any i ∈ {1, . . . ,m(ε)},
+$$
+| \mathcal{\hat R}(f)-\mathcal R(f) |\le|\mathcal{\hat R}(f)-\mathcal{\hat R}(f_i)|+|\mathcal{\hat R}(f_i)-\mathcal R(f_i)|+|\mathcal{R}(f)-\mathcal{R}(f_i)|\
+\le 2G\Delta (f,f_i)+|\mathcal{\hat R}(f_i)-\mathcal R(f_i)|\
+\le 2G\varepsilon+\sup_{j\in{1,\cdots,m(\varepsilon)}}|\mathcal{\hat R}(f_j)-\mathcal R(f_j)|
+$$
+我们对于右边项第二项，使用有限函数类的已有结论，可以得到有1 − δ以上概率满足,
+$$
+\sup_{f∈F}|\mathcal{\hat{R}}(f) −\mathcal R(f)|
+\le 2G\varepsilon + ℓ_∞
+\sqrt {\frac
+{log(2m(ε)))}
+{2n}}
++\frac {ℓ_∞}{2n}\sqrt{log \frac 1\delta}
+.
+$$
+而由Ex4.8的结论覆盖数<span class="arithmatex">\(m(\varepsilon)\sim\varepsilon^{-d}\)</span>忽略常数系数，我们可以得到一个上界：<span class="arithmatex">\(ε +\sqrt{\frac{d log(1/ε)}{n}}\)</span>而只要选取<span class="arithmatex">\(\varepsilon\sim\frac{1}{\sqrt n}\)</span>就可以实现一个误差上界：<span class="arithmatex">\(\sqrt{dlog (n)/n}\)</span></p>
+<p>问题是：这个 bound 往往不够精细。书里也指出，单纯的 covering number argument 可能不够，需要更精细的 covering number 计算或者更高级工具，例如 chaining。</p>
+<p>Ch4.5 intro</p>
+<p>已知样本<span class="arithmatex">\(z_i=(x_i,y_i)\)</span>,<span class="arithmatex">\(z_1,z_2,\cdots,z_n\)</span>为独立同分布抽取的n个样本，<span class="arithmatex">\(\mathcal H\)</span>是函数类<span class="arithmatex">\(h:\mathcal Z\to \mathbb R\)</span>的子集，在本文之中，函数类来自于学习问题：<span class="arithmatex">\(\mathcal H =\{(x,y)\to\ell (f(x),y),f\in\mathcal F\}\)</span></p>
+<p>我们的目标是找到一个上界：<span class="arithmatex">\(\sup_{f\in\mathcal F}|\mathcal {\hat R}(f)-\mathcal R(f) |\)</span></p>
+<p>等价于:
+$$
+\sup_{h\in\mathcal H}|\mathbb Eh(z)-\frac{1}{n}\sum_{i=1}^n h(z_i)|
+$$
+引入独立随机符号</p>
+<div class="arithmatex">\[ \varepsilon_1,\ldots,\varepsilon_n, \qquad \mathbb P(\varepsilon_i=1) = \mathbb P(\varepsilon_i=-1) = \frac12, \]</div>
+<p>并且这些随机符号与数据 <span class="arithmatex">\(D=\{z_1,\ldots,z_n\}\)</span> 相互独立。</p>
+<p>定义</p>
+<div class="arithmatex">\[ \boxed{ R_n(\mathcal H) = \mathbb E_{D,\varepsilon} \left[ \sup_{h\in\mathcal H} \frac1n \sum_{i=1}^n \varepsilon_i h(z_i) \right]. } \]</div>
+<p>对固定的 <span class="arithmatex">\(h\)</span>，由于 <span class="arithmatex">\(\mathbb E[\varepsilon_i]=0\)</span>，</p>
+<div class="arithmatex">\[ \mathbb E_\varepsilon \left[ \frac1n\sum_{i=1}^n \varepsilon_i h(z_i) \right] =0. \]</div>
+<p>但定义中是先选择能使随机和最大的 <span class="arithmatex">\(h\)</span>，再对随机符号取期望：</p>
+<div class="arithmatex">\[ \mathbb E_\varepsilon \left[ \sup_{h\in\mathcal H}(\cdots) \right]. \]</div>
+<p>因此它一般不等于零。这里</p>
+<div class="arithmatex">\[ \mathbb E\sup_h(\cdots) \neq \sup_h\mathbb E(\cdots). \]</div>
+<p>两者顺序的差别正是 Rademacher complexity 能够测量函数类容量的原因。</p>
+<p>所以这么一通操作是为了说明什么？首先我们来看引入这个函数类的泛函<span class="arithmatex">\(R_n\)</span>是干什么：</p>
+<p>在固定数据 <span class="arithmatex">\(z_1,\ldots,z_n\)</span>，每个函数 <span class="arithmatex">\(h\)</span> 在样本上的取值可以写成向量</p>
+<div class="arithmatex">\[ v_h = \bigl(h(z_1),\ldots,h(z_n)\bigr). \]</div>
+<p>随机符号也构成向量</p>
+<div class="arithmatex">\[ \varepsilon = (\varepsilon_1,\ldots,\varepsilon_n). \]</div>
+<p>于是</p>
+<div class="arithmatex">\[ \frac1n\sum_{i=1}^n \varepsilon_i h(z_i) = \frac1n\langle \varepsilon,v_h\rangle. \]</div>
+<p>Rademacher complexity 考察的是</p>
+<div class="arithmatex">\[ \sup_{h\in\mathcal H} \frac1n\langle\varepsilon,v_h\rangle, \]</div>
+<p>在观察到一组完全随机的正负标签之后，函数类能从中挑出一个函数，使其函数值与这些随机标签尽可能一致吗？</p>
+<p>如果 <span class="arithmatex">\(\mathcal H\)</span> 很丰富，它可能找到一个函数满足大致</p>
+<p>[ h(z_i)&gt;0\quad\text{当 }\varepsilon_i=1, ][ h(z_i)&lt;0\quad\text{当 }\varepsilon_i=-1. ]</p>
+<p>此时内积很大，说明这个函数类连纯噪声都能迎合，因此容量很大，过拟合风险也更高。</p>
+<p>反过来，如果所有函数都很受限制，就无法配合随机正负号，随机内积会大量抵消，因此 <span class="arithmatex">\(R_n(\mathcal H)\)</span> 较小。</p>
+<p>Ex4.9介绍了Rademachester复杂度的一些性质。</p>
+<h3 id="1">1. 单调性</h3>
+<p>如果</p>
+<div class="arithmatex">\[ \mathcal H\subseteq\mathcal H', \]</div>
+<p>证明</p>
+<div class="arithmatex">\[ R_n(\mathcal H)\le R_n(\mathcal H'). \]</div>
+<p>固定 <span class="arithmatex">\(D,\varepsilon\)</span>，因为取 supremum 的集合变大了，</p>
+<div class="arithmatex">\[ \sup_{h\in\mathcal H}L(h) \le \sup_{h\in\mathcal H'}L(h). \]</div>
+<p>两边再对 <span class="arithmatex">\(D,\varepsilon\)</span> 取期望：</p>
+<div class="arithmatex">\[ \boxed{ R_n(\mathcal H)\le R_n(\mathcal H'). } \]</div>
+<p>这说明：候选函数越多，拟合随机符号的能力不会下降。</p>
+<hr />
+<h3 id="2-minkowski">2. Minkowski 和的可加性</h3>
+<p>定义</p>
+<div class="arithmatex">\[ \mathcal H+\mathcal H' = \{h+h':h\in\mathcal H,\ h'\in\mathcal H'\}. \]</div>
+<p>证明</p>
+<div class="arithmatex">\[ R_n(\mathcal H+\mathcal H') = R_n(\mathcal H)+R_n(\mathcal H'). \]</div>
+<p>利用 <span class="arithmatex">\(L\)</span> 的线性性：</p>
+<div class="arithmatex">\[ L(h+h')=L(h)+L(h'). \]</div>
+<p>因此</p>
+<div class="arithmatex">\[ \begin{aligned} \sup_{g\in\mathcal H+\mathcal H'}L(g) &amp;= \sup_{\substack{h\in\mathcal H\\h'\in\mathcal H'}} \{L(h)+L(h')\}\\ &amp;= \sup_{h\in\mathcal H}L(h) + \sup_{h'\in\mathcal H'}L(h'). \end{aligned} \]</div>
+<p>两个函数可以独立选择，所以 supremum 可以拆开。取期望后得到</p>
+<div class="arithmatex">\[ \boxed{ R_n(\mathcal H+\mathcal H') = R_n(\mathcal H)+R_n(\mathcal H'). } \]</div>
+<hr />
+<h3 id="3">3. 绝对齐次性</h3>
+<p>定义</p>
+<div class="arithmatex">\[ \alpha\mathcal H = \{\alpha h:h\in\mathcal H\}. \]</div>
+<p>证明</p>
+<div class="arithmatex">\[ R_n(\alpha\mathcal H) = |\alpha|R_n(\mathcal H). \]</div>
+<p>当 <span class="arithmatex">\(\alpha\geq 0\)</span> 时，</p>
+<div class="arithmatex">\[ \sup_{h\in\mathcal H}L(\alpha h) = \alpha\sup_{h\in\mathcal H}L(h), \]</div>
+<p>所以结论直接成立。</p>
+<p>当 <span class="arithmatex">\(\alpha&lt;0\)</span> 时，</p>
+<div class="arithmatex">\[ \begin{aligned} R_n(\alpha\mathcal H) &amp;= \mathbb E_{D,\varepsilon} \sup_{h\in\mathcal H} \frac{\alpha}{n} \sum_i\varepsilon_i h(z_i)\\ &amp;= |\alpha| \mathbb E_{D,\varepsilon} \sup_{h\in\mathcal H} \frac1n \sum_i(-\varepsilon_i)h(z_i). \end{aligned} \]</div>
+<p>由于</p>
+<div class="arithmatex">\[ (-\varepsilon_1,\ldots,-\varepsilon_n) \overset{d}{=} (\varepsilon_1,\ldots,\varepsilon_n), \]</div>
+<p>所以</p>
+<div class="arithmatex">\[ \boxed{ R_n(\alpha\mathcal H) = |\alpha|R_n(\mathcal H). } \]</div>
+<p>注意这里不能在固定 <span class="arithmatex">\(\varepsilon\)</span> 后直接把负数移出 supremum；关键是 Rademacher 符号具有对称分布。</p>
+<hr />
+<h3 id="4">4. 加上一个固定函数不改变复杂度</h3>
+<p>若 <span class="arithmatex">\(h_0:\mathcal Z\to\mathbb R\)</span>，证明</p>
+<div class="arithmatex">\[ R_n(\mathcal H+\{h_0\})=R_n(\mathcal H). \]</div>
+<p>固定 <span class="arithmatex">\(D,\varepsilon\)</span>：</p>
+<div class="arithmatex">\[ \begin{aligned} \sup_{h\in\mathcal H}L(h+h_0) &amp;= \sup_{h\in\mathcal H} \{L(h)+L(h_0)\}\\ &amp;= \sup_{h\in\mathcal H}L(h)+L(h_0). \end{aligned} \]</div>
+<p>取期望：</p>
+<div class="arithmatex">\[ R_n(\mathcal H+\{h_0\}) = R_n(\mathcal H) + \mathbb E_{D,\varepsilon}L(h_0). \]</div>
+<p>而</p>
+<div class="arithmatex">\[ \begin{aligned} \mathbb E_\varepsilon L(h_0) &amp;= \frac1n\sum_{i=1}^n h_0(z_i)\mathbb E[\varepsilon_i]\\ &amp;=0. \end{aligned} \]</div>
+<p>所以</p>
+<div class="arithmatex">\[ \boxed{ R_n(\mathcal H+\{h_0\}) = R_n(\mathcal H). } \]</div>
+<p>直觉是：给整个函数类统一加上同一个“基线函数”，不会改变函数之间的相对灵活性。</p>
+<p>也可以证明单函数的一维扩展空间的Rademachester复杂度为0，因为只能选取一个固定的h。</p>
+<hr />
+<h3 id="5">5. 取凸包不改变复杂度</h3>
+<p>证明</p>
+<div class="arithmatex">\[ R_n(\operatorname{conv}(\mathcal H)) = R_n(\mathcal H). \]</div>
+<p>任取</p>
+<div class="arithmatex">\[ g\in\operatorname{conv}(\mathcal H), \]</div>
+<p>则存在 <span class="arithmatex">\(h_1,\ldots,h_k\in\mathcal H\)</span> 和</p>
+<div class="arithmatex">\[ \lambda_j\geq0,\qquad \sum_{j=1}^k\lambda_j=1, \]</div>
+<p>使得</p>
+<div class="arithmatex">\[ g=\sum_{j=1}^k\lambda_jh_j. \]</div>
+<p>因为 <span class="arithmatex">\(L\)</span> 是线性的，</p>
+<div class="arithmatex">\[ \begin{aligned} L(g) &amp;= \sum_{j=1}^k\lambda_jL(h_j)\\ &amp;\leq \sum_{j=1}^k \lambda_j \sup_{h\in\mathcal H}L(h)\\ &amp;= \sup_{h\in\mathcal H}L(h). \end{aligned} \]</div>
+<p>因此</p>
+<div class="arithmatex">\[ \sup_{g\in\operatorname{conv}(\mathcal H)}L(g) \leq \sup_{h\in\mathcal H}L(h). \]</div>
+<p>另一方面，</p>
+<div class="arithmatex">\[ \mathcal H\subseteq\operatorname{conv}(\mathcal H), \]</div>
+<p>所以反向不等式也成立。于是</p>
+<div class="arithmatex">\[ \boxed{ R_n(\operatorname{conv}(\mathcal H)) = R_n(\mathcal H). } \]</div>
+<p>本质原因是：</p>
+<blockquote>
+<p>线性函数在凸包上的最大值，一定可以在原集合的极端点上达到或逼近。</p>
+</blockquote>
+<p>这条性质以后分析 boosting、混合模型和两层神经网络时非常重要。</p>
+<p>Massart lemma:</p>
+<p>设有限函数类</p>
+<div class="arithmatex">\[ \mathcal H=\{h_1,\ldots,h_m\}, \]</div>
+<p>并且几乎处处满足</p>
+<div class="arithmatex">\[ \frac1n\sum_{i=1}^n h_j(z_i)^2\leq R^2, \qquad j=1,\ldots,m. \]</div>
+<p>证明</p>
+<div class="arithmatex">\[ \boxed{ R_n(\mathcal H) \leq R\sqrt{\frac{2\log m}{n}}. } \]</div>
+<p>定义</p>
+<div class="arithmatex">\[ X_j = \frac1n\sum_{i=1}^n \varepsilon_i h_j(z_i). \]</div>
+<p>固定 <span class="arithmatex">\(D\)</span> 后，</p>
+<div class="arithmatex">\[ \widehat R_D(\mathcal H) = \mathbb E_\varepsilon \max_{1\leq j\leq m}X_j. \]</div>
+<p>我们需要控制 <span class="arithmatex">\(m\)</span> 个随机变量的最大值。</p>
+<p>首先使用经典的log-exp-sum技巧
+$$
+\max_{1\leq j\leq m}X_j\le \frac 1 \lambda log(\sum_{j=1}^m e^{\lambda X_j})
+$$
+然后求期望，使用Jensen不等式把期望算子给挪到里面：
+$$
+\mathbb E\max_{1\leq j\leq m}X_j\le \frac 1 \lambda \mathbb Elog(\sum_{j=1}^m e^{\lambda X_j})\le\frac 1 \lambda log(\mathbb E \sum_{j=1}^m e^{\lambda X_j})
+$$
+关于指数期望，还是比较好算的 ，因为<span class="arithmatex">\(\varepsilon_i h_j(z_i)\)</span>是彼此独立的</p>
+<div class="arithmatex">\[ \begin{aligned} \mathbb E_\varepsilon e^{\lambda X_j} &amp;= \prod_{i=1}^n \mathbb E_{\varepsilon_i} \exp\left( \frac{\lambda}{n} \varepsilon_i h_j(z_i) \right)\\ &amp;= \prod_{i=1}^n \cosh\left( \frac{\lambda h_j(z_i)}n \right). \end{aligned} \]</div>
+<p>利用</p>
+<div class="arithmatex">\[ \cosh(u)\leq e^{u^2/2}, \]</div>
+<p>得到</p>
+<div class="arithmatex">\[ \begin{aligned} \mathbb E_\varepsilon e^{\lambda X_j} &amp;\leq \exp\left( \frac{\lambda^2}{2n^2} \sum_{i=1}^n h_j(z_i)^2 \right)\\ &amp;\leq \exp\left( \frac{\lambda^2R^2}{2n} \right). \end{aligned} \]</div>
+<p><span class="arithmatex">\(\frac 1 \lambda \log(\mathbb E \sum_{j=1}^m e^{\lambda X_j})\le \frac 1 \lambda \log(m e^{\frac{\lambda^2R^2}{2n}})=\frac 1 \lambda \log(m)+\frac{\lambda R^2}{2n}\)</span></p>
+<p>通过选取<span class="arithmatex">\(\lambda\)</span>让基本不等式成立，得到上界<span class="arithmatex">\(R\sqrt{\frac{\log m}{n}}\)</span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 huangblac
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/HuangBlac" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

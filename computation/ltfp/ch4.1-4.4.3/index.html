@@ -1,0 +1,4180 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="从基础数学到AI4Math前沿的知识库">
+      
+      
+        <meta name="author" content="huangblac">
+      
+      
+        <link rel="canonical" href="https://huangblac.github.io/AI-Math-Docs/computation/ltfp/ch4.1-4.4.3/">
+      
+      
+        <link rel="prev" href="../ch3.5-3.9-ridge-minimax/">
+      
+      
+        <link rel="next" href="../ch4.4.4-4.5.0/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Ch4.1-4.4.3 风险凸化与误差分解 - AI & Math</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#empirical-risk-minimization" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="AI &amp; Math" class="md-header__button md-logo" aria-label="AI & Math" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI & Math
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ch4.1-4.4.3 风险凸化与误差分解
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到暗色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到暗色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到亮色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到亮色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  序言与总览
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/backstage/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../math/" class="md-tabs__link">
+          
+  
+  
+  基础数学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+  计算数学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../stat-computing/" class="md-tabs__link">
+          
+  
+  
+  统计计算
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  统计学习理论 (LTFP)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../algorithms/" class="md-tabs__link">
+          
+  
+  
+  算法介绍
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ai4math/" class="md-tabs__link">
+          
+  
+  
+  AI4MATH 前沿
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AI &amp; Math" class="md-nav__button md-logo" aria-label="AI & Math" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI & Math
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    序言与总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/backstage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础数学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    基础数学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础数学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数学分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高等代数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/measure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    测度论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/probability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概率论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/ode-pde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    微分方程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/functional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    泛函分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/statistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数理统计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/multivariate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多元统计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/causality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    因果推断
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算数学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    计算数学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算数学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../num-linalg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值线性代数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../numerical-linear-algebra-lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值线代上机实验
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../num-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../num-pde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值微分方程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    凸优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unconstrained-optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    无约束优化算法对比
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工业计算
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    工业计算
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../industrial-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    专题总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../industrial-computing/cad-cae-pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CAD、CAE 与工业软件计算链
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../industrial-computing/finite-element-method/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    有限元方法：从插值到装配
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../industrial-computing/parallel-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    并行计算基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../industrial-computing/inverse-high-dimensional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    逆问题与高维计算札记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计计算
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    统计计算
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stat-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    专题总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stat-computing-review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计计算总复习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/stat-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    R 脚本索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计学习理论 (LTFP)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    统计学习理论 (LTFP)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch1.2.2-1.2.3-concentration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch1 再论集中不等式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch1.1-1.2.0-optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch1-Ch5 跨章基础与优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch1.2.1-bernstein-maximum/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch1 Bernstein不等式与极大值期望
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch2.1-2.5-supervised-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch2 监督学习导论 (§2.1–2.5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch2-supervised-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch2 监督学习导论（原始导出）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch3.1-3.4-linear-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch3.1-3.4 线性算法基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch3.9-pca-regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch3 PCA与主成分回归 (§3.9)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch3-pca-regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch3 PCA与主成分回归（原始导出）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch3.5-3.9-ridge-minimax/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch3.5-3.9 岭回归与极小极大下界
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch4.1-4.4.3 风险凸化与误差分解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch4.4.4-4.5.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch4.4.4-4.5 覆盖数与Rademacher导入
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch4.5.1-4.5.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch4.5.1-4.5.3 Rademacher复杂度
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5.1-5.2-optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch5 优化简单介绍 (§5.1–5.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5-optimization-intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch5 优化简单介绍（原始导出）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5.3-nonsmooth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch5.3 非光滑优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5.4.0-sgd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch5.4 随机梯度下降 (§5.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5-4-sgd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch5.4 随机梯度下降（原始导出）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5.4.1-strong-convex-sgd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch5.4.1 强凸SGD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch6.1-6.3-local-averaging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch6.1-6.3 局部平均与一致性
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch6.4-6.5-universal-consistency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch6.4-6.5 普遍一致性与光滑性
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch7.2-representer-kernel-foundations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch7.2-7.3 表示定理与核基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch7.3-7.4-kernels-algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch7.3-7.4 核表示与近似算法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch7.5-generalization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch7.5 泛化保证与逼近误差
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch7.6-ridge-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch7.6 岭回归的理论分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch9.1-9.2-neural-networks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch9.1-9.2 神经网络理论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch9.2-9.3-variation-norm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch9.2-9.3 复杂度与变差范数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../handwritten-import-20260908/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    手写材料导入与未完成项
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../handwritten-import-20260910/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch7.2-7.3 新笔记导入记录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../study-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    习题与 Proposition 映射
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../machine-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    机器学习基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sparse-feature-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    稀疏学习与特征学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../learning-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    学习理论概念地图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-science-intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据科学导论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stat-computing-review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计计算总复习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法介绍
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    算法介绍
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    机器学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithms/neural-networks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    神经网络
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithms/decision-trees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    决策树与集成学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithms/bayesian/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    贝叶斯学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithms/deep-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    深度学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithms/compressed-sensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    压缩感知
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI4MATH 前沿
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI4MATH 前沿
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ai4math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI4MATH前沿
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ai4math/papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    经典论文
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ai4math/examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法实例与训练体会
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ai4math/improvements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    改良与实验
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ai4math/pinn-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN 概览与拷打
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ai4math/pinn-seminar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN 讨论班讲义
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ai4math/pinn-critique/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PINN 训练体会
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="empirical-risk-minimization">Empirical Risk Minimization——经验风险极小化</h1>
+<p>算法的意义在于三点：</p>
+<p>1我们不知道真正的函数，只是管中窥豹</p>
+<p>2实数集真的很大，我们不可能搜索每一个可测函数</p>
+<p>3我们没有无限的时间去逐点搜索</p>
+<p>Convexification of the risk: For binary classification, optimal predictions can be
+achieved with convex surrogates.</p>
+<p>对于二分类问题，优化预测可以转化为凸优化问题，convexification凸化</p>
+<p>Risk decomposition: The risk can be decomposed into the sum of the approximation
+error (which characterizes the modeling assumptions made by the chosen class of
+functions) and the estimation error (which characterizes the effect of having a finite
+number of observations).</p>
+<p>风险分解，风险可以被分解为：</p>
+<p>逼近误差（建模的假设所选取的函数类的逼近效率，主要由逼近理论）</p>
+<p>估计误差（由于样本的观测有限，主要由高维概率公式）</p>
+<p>Rademacher complexity: To study estimation errors and compute expected uniform
+deviations of real-valued outputs, Rademacher complexities, also referred to as
+Rademacher averages, are a very flexible and powerful tool that allows obtaining
+uniform deviation bounds. This leads to dimension-independent upper bounds on
+estimation errors for constrained or penalized linear predictors.</p>
+<p>Rademacher复杂度，为了研究估计误差，并计算从实际结果出发的期望均匀偏差</p>
+<p>也被称之为一Ramacher averages,是一个获得一致偏差有界的方法，这会导出一个与维度无关的上界。对于有界的线性预测结果。</p>
+<p>对于分类问题以及一系列的机器学习问题，实际上就是需要找到一个满足泛函极小化的问题：</p>
+<p><span class="arithmatex">\(f^* = argmin_f \mathcal{L}(f)=\mathbb{E}_{(X,Y)\sim \mathbb P } l(f(X),Y)\)</span></p>
+<p>但是，我们并不知道真实的数据分布，所以实际采用的使用平均值来代替：</p>
+<p>In this chapter, we will consider methods based on empirical risk minimization, with a
+focus on statistical analysis (i.e., generalization to unseen data);</p>
+<p>optimization algorithms to efficiently find approximate minimizers will be studied in chapter 5. Before looking at the necessary probabilistic tools, we will show how problems where the output space is
+not a vector space, such as binary classification with Y = {-1, 1}, can be reformulated
+as real-valued outputs, with so-called convex surrogates of loss functions.</p>
+<p>在这个部分，我们将会考虑基于经验风险最小化的方法，并聚焦于统计的分析方法。</p>
+<p>关于如何使用优化算法来高效获得这些近似极小化的主要集中在chapeter 5。在此之间看看必要的概率工具，我们将会展示当目标不是一个向量空间，例如二分类对应的 Y = {-1, 1}时将会出现哪些问题，以及它们实际上可以被重塑为一个实数输出的问题，通过使用所谓的凸化损失函数。</p>
+<h1 id="ch-41-convexification-of-the-risk">Ch 4.1 Convexification of the Risk凸化风险</h1>
+<p>在这个部分，我们将会考虑基于经验风险最小的方法，使用统计分析的方法，例如从未知数据之中进行泛化</p>
+<p>那么，对于这个二分类问题的时候，对应的损失函数应该是什么？</p>
+<p>实际上就是<span class="arithmatex">\(l(f(X),Y) =1_{f(X)\neq Y}\)</span>只要两者不相等，那么就令其为1</p>
+<p>对于二分类问题之中Y只有<span class="arithmatex">\(\{+1,-1\}\)</span>两种，对于这种离散值域的问题，显然就不好做。所以我们需要考虑进行一个操作：凸化。</p>
+<p>首先f可以被表示为f(x) = sign(g(x)) ,g(x)为一个可微函数</p>
+<p>sign(a) =1 if a &gt; 0 −1 if a &lt; 0.</p>
+<p>但是这个sign不太好，它是不连续的，而且实际上也不能这么直接套进去，因为此时在零点没有定义</p>
+<p>所以将原问题转化为选取一个g</p>
+<p><span class="arithmatex">\(\mathcal{L}(g) = argmin_{(X,Y)\sim \mathbb P}P(f(X)\neq Y) = argmin_{(X,Y)\sim \mathbb P}P(sign(g(X))\neq Y) = argmin_{(X,Y)\sim \mathbb P}P(Yg(X)&lt;0)\)</span></p>
+<p>实际上就是要找一个Yg(X)异号的概率尽可能小，或者同号的概率尽可能大。</p>
+<p>我们重新写成期望的形式：</p>
+<p><span class="arithmatex">\(E[Φ_{0-1}(yg(x))]\)</span>,
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+Φ_{0-1}(u)= 1 (u<0),1/2(u = 0),0 (u>0)
+</script>
+</div>
+因此原函数依然转化为了选取g使得期望极小化的问题</p>
+<h3 id="ch411convex-surrogates">Ch4.1.1Convex Surrogates</h3>
+<p>但是，那个问题没有消失，<span class="arithmatex">\(Φ_{0-1}\)</span>是不连续的，所以我们可以采用集中不同的近似方式，对应不同的模型。</p>
+<p><strong>平方损失</strong> </p>
+<p><span class="arithmatex">\(\Phi(u)=(u-1)^2\)</span>。因为 <span class="arithmatex">\(y^2=1\)</span>,所以 <span class="arithmatex">\(\Phi(yg(x))=(y-g(x))^2\)</span>,这就退回到了最小二乘回归,预测时取 <span class="arithmatex">\(g(x)\)</span> 的符号。注意它是图里唯一在 <span class="arithmatex">\(u&gt;1\)</span> 后又往上翘的——对"分得太对"也会惩罚,这是它和其它(单调不增的)损失的区别。</p>
+<p><strong>Logistic 损失</strong> <span class="arithmatex">\(\Phi(u)=\log(1+e^{-u})=-\log\sigma(u)\)</span>其中<span class="arithmatex">\(\sigma\)</span> 是 sigmoid，对应逻辑回归,也就是常说的交叉熵;从概率角度看,令 <span class="arithmatex">\(\mathbb{P}(y=1\mid x)=\sigma(g(x))\)</span>,这个风险就是负的条件对数似然(第 14 章细讲)。</p>
+<p><strong>Hinge 损失</strong> <span class="arithmatex">\(\Phi(u)=\max(1-u,0)\)</span>。配上线性预测器就是 SVM,这里的 <span class="arithmatex">\(yg(x)\)</span> 就是"间隔"一词的出处(几何解释在带菱形的 4.1.2)。</p>
+<p><strong>平方 hinge</strong> <span class="arithmatex">\(\max(1-u,0)^2\)</span>,hinge 的光滑版。</p>
+<p><strong>指数损失</strong> <span class="arithmatex">\(\Phi(u)=e^{-u}\)</span>,boosting / Adaboost 里用的</p>
+<h3 id="ch412-geometric-interpretation-of-the-support-vector-machine">Ch4.1.2 Geometric Interpretation of the Support Vector Machine</h3>
+<p>事实上，Hinge损失对应的实际上就是SVM支持向量机,我们可以考虑支持向量机的几何解释。</p>
+<p>支持向量机需要找到一个分离的平面，让正例尽可能在上面而反例尽可能在下面。</p>
+<p>距离实际上可以用<span class="arithmatex">\(\frac{wx_i+b}{\|w\|_2}\)</span>表示，其中正号表示与这个超平面法向量<span class="arithmatex">\(w\)</span>方向相同，而负号表示不同。我们希望给定的超平面恰好能够将其分离开来，正例对应正号而反例对应负号。</p>
+<p>在分准的基础上，如果实际上就是要让<span class="arithmatex">\(\frac{y_i(wx_i+b)}{\|w\|_2}\)</span>都尽可能大，也就是所有的点都离它尽可能远，那就说明分好了</p>
+<p>更具体来说，实际上就是要考虑距离超平面最近的训练样本，它将决定整个分类器的几何间隔：
+$$
+\gamma(w,b)
+=
+\min_{1\le i\le n}
+\frac{y_i(w^\top x_i+b)}{|w|<em w_b="w,b">2}
+.
+$$
+SVM 希望最大化它：
+$$
+\max</em>
+\min_i
+\frac{y_i(w^\top x_i+b)}{|w|<em i="1">2}.
+$$
+然后我们很自然的就可以将其转化为固定分子大于等于1而极小化分母的情况，也就是:
+$$
+\min_w\frac{1}{2}|w|^2_2,s.t,\forall i\in{1,2,\cdots,n} y_i(w^\top x_i+b)\ge1
+$$
+对于这类不等式约束的问题，依然想办法约束条件打包进待优化的目标函数，也就是
+$$
+\min_w\frac{1}{2}|w|^2_2+C\sum</em>^n\xi_i,s.t,\forall i\in{1,2,\cdots,n} y_i(w^\top x_i+b)\ge1-\xi_i,\xi\ge0
+$$
+对于达到边界的样本增加<span class="arithmatex">\(\xi_i\)</span>来约束</p>
+<p>然后，我们就可以倒反天罡，将<span class="arithmatex">\(\xi_i\)</span>视作待优化的目标，而那个<span class="arithmatex">\(\frac{1}{2}\|w\|_2^2\)</span>视作正则化参数
+$$
+\min_w\frac{\lambda}{2}|w|^2_2+\frac{1}{n}\sum_{i=1}^n(1-y_i(w^{\top}x_i+b))_{+}
+$$
+呃呃，然后我们怎么去求解这个问题呢？</p>
+<p>拉格朗日对偶：对于要想求解(5)对应的问题，实际上可以构造拉格朗日对偶函数，也就是选取：</p>
+<p>实际上就是通过引入<span class="arithmatex">\(\alpha\)</span>对偶项来让不等式变成等式
+$$
+\min_w\frac{1}{2}|w|^2_2+C\sum_{i=1}^n\xi_i-\sum_{i=1}^n\alpha_i(y_i(w^\top x_i+b)-1+\xi_i)-\sum_{i=1}^n \beta_i\xi_i
+$$
+然后我们将目标转化为优化<span class="arithmatex">\(w,b,\xi_i\)</span>关于这些变量求偏导要为0得到极小值</p>
+<p><span class="arithmatex">\(C=\alpha_i+\beta_i,w=\sum_{i=1}^n \alpha_iy_ix_i,\sum_{i=1}^n\alpha_iy_i=0\)</span></p>
+<p>重新带入原始式子，得到：
+$$
+\max_{\alpha_i}\sum_{i=1}^n\alpha_i-\sum_{i=1}^n\sum_{j=1}^n\alpha_i\alpha_jy_iy_jx_i^\top x_j\
+\sum_{i=1}^n\alpha_iy_i=0
+$$</p>
+<p>也就是<span class="arithmatex">\(\alpha(1-y_i(w^\top x_i+b))=0\)</span>,当<span class="arithmatex">\(\alpha&gt;0\)</span>时对应达到支持向量的部分，而<span class="arithmatex">\(\alpha=0\)</span>则是没有达到。</p>
+<p>而我们回忆4.1.1所得到的部分，这个hinge损失函数实际上就是对于原始的分类函数的一个“凸化”</p>
+<p>我们也就此将不同的分类算法统一起来，例如Logistic，支持向量机。</p>
+<h3 id="413-conditional-phi-risk-and-classification-calibration">4.1.3 Conditional <span class="arithmatex">\(\Phi\)</span>-risk and Classification Calibration</h3>
+<p><span class="arithmatex">\(\text{二分类} \rightarrow 0\text{-}1\text{ 风险} \rightarrow \text{Bayes 分类器} \rightarrow \text{替代损失} \rightarrow \text{条件替代风险} \rightarrow \text{分类校准}.\)</span></p>
+<p>对于二分类，实际上就是已知X=x,预测<span class="arithmatex">\(Y\in\{-1,1\}\)</span></p>
+<p>通常先学习一个实值评分函数</p>
+<div class="arithmatex">\[ g:\mathcal X\to\mathbb R, \]</div>
+<p>再根据符号进行分类：</p>
+<div class="arithmatex">\[ f_g(x)=\operatorname{sign}(g(x)). \]</div>
+<p>这里：</p>
+<ul>
+<li><span class="arithmatex">\(g(x)&gt;0\)</span>：预测 <span class="arithmatex">\(+1\)</span>；</li>
+<li><span class="arithmatex">\(g(x)&lt;0\)</span>：预测 <span class="arithmatex">\(-1\)</span>；</li>
+<li><span class="arithmatex">\(|g(x)|\)</span> 可以理解为预测的确信程度或分类间隔。</li>
+</ul>
+<p>注意：真正用于分类的是 <span class="arithmatex">\(\operatorname{sign}(g(x))\)</span>，而不是 <span class="arithmatex">\(g(x)\)</span> 的精确数值。</p>
+<p>分类正确等价于<span class="arithmatex">\(Yg(X)&gt;0\)</span></p>
+<p>因为：</p>
+<ul>
+<li>若 <span class="arithmatex">\(Y=+1\)</span>，正确分类要求 <span class="arithmatex">\(g(X)&gt;0\)</span>；</li>
+<li>若 <span class="arithmatex">\(Y=-1\)</span>，正确分类要求 <span class="arithmatex">\(g(X)&lt;0\)</span>。</li>
+</ul>
+<p>所以可以将 <span class="arithmatex">\(Yg(X)\)</span> 称为“带符号间隔”：</p>
+<div class="arithmatex">\[ \text{margin}=Yg(X). \]</div>
+<p>可以选取一个风险衡量:<span class="arithmatex">\(\mathcal R(g) = \mathbb E\big[\Phi_{0-1}(Yg(X))\big].\)</span></p>
+<p>其中</p>
+<div class="arithmatex">\[ \Phi_{0-1}(u)= \begin{cases} 1,&amp;u&lt;0,\\[2mm] \frac12,&amp;u=0,\\[2mm] 0,&amp;u&gt;0. \end{cases} \]</div>
+<p>若我们选取<span class="arithmatex">\(η(x) = P(y = 1|x) \in [0, 1]\)</span>, 我们有期望计算<span class="arithmatex">\(E[y|x] = 2η(x)−1\)</span>,</p>
+<p>我们固定一个x，对于不同的分类器，就可以得到一个分数g(x)，记作u</p>
+<h3 id="u0">如果 <span class="arithmatex">\(u&gt;0\)</span></h3>
+<p>我们预测 <span class="arithmatex">\(+1\)</span>。只有 <span class="arithmatex">\(Y=-1\)</span> 时出错，所以条件错误率为</p>
+<div class="arithmatex">\[ 1-\eta(x). \]</div>
+<h3 id="u0_1">如果 <span class="arithmatex">\(u&lt;0\)</span></h3>
+<p>我们预测 <span class="arithmatex">\(-1\)</span>。只有 <span class="arithmatex">\(Y=+1\)</span> 时出错，所以条件错误率为</p>
+<div class="arithmatex">\[ \eta(x). \]</div>
+<h3 id="u0_2">如果 <span class="arithmatex">\(u=0\)</span></h3>
+<p>随机选择正负标签，错误率为</p>
+<div class="arithmatex">\[ \frac12. \]</div>
+<p>因此，固定 <span class="arithmatex">\(x\)</span> 后的条件 <span class="arithmatex">\(0\text{-}1\)</span> 风险是</p>
+<div class="arithmatex">\[ C_{\eta(x)}(u)= \begin{cases} 1-\eta(x),&amp;u&gt;0,\\[1mm] \frac12,&amp;u=0,\\[1mm] \eta(x),&amp;u&lt;0. \end{cases} \]</div>
+<p>正如2.2.3部分计算的贝叶斯风险（最佳风险)等于
+$$
+\mathcal R^∗ = E[min(η(x), 1 − η(x))] = E[\frac1
+2 − \frac1
+2 |E[y|x]|]</p>
+<p>,
+$$</p>
+<div class="arithmatex">\[
+f_∗(x) = sign(2η(x) − 1) = sign(E[y|x])
+\]</div>
+<p>往往采取逼近<span class="arithmatex">\(g(x)=E(y|x)\)</span></p>
+<p>在实际算法之中，往往使用<span class="arithmatex">\(\Phi(u)\)</span>代替<span class="arithmatex">\(\Phi_{0-1}(u)\)</span></p>
+<p>其中[ u=Yg(X) ]是分类间隔。</p>
+<p>理想情况下，我们真正想最小化的是 <span class="arithmatex">\(0\text{-}1\)</span> 风险：[ \mathcal R(g) = \mathbb E\big[\Phi_{0-1}(Yg(X))\big]. ]</p>
+<p>但是这是一个间断函数，非光滑而且非凸，几乎处处导数为零。使得我们想要梯度下降优化g会使得g的变化速度被<span class="arithmatex">\(\Phi_{0-1}(u)\)</span>的导数被直接吃掉，于是我们就只能做一些替代。</p>
+<p>平方损失</p>
+<p>在讨论一般的函数 <span class="arithmatex">\(\Phi\)</span> 之前，我们先考察平方损失，因为在这种情况下，论证较为简单。</p>
+<p>事实上，正如第 2 章中所看到的，此时使期望 <span class="arithmatex">\(\Phi\)</span>-风险最小的函数为
+$$
+g(x)=\mathbb E[Y\mid X=x]=2\eta(x)-1.
+$$
+对 <span class="arithmatex">\(g(x)\)</span> 取符号，就能得到最优的分类预测。</p>
+<p>因此，在二分类问题中使用平方损失，可以在总体分布层面得到最优预测。</p>
+<p>一般损失</p>
+<p>为了研究平方损失以外的一般 <span class="arithmatex">\(\Phi\)</span>-风险所产生的影响，我们首先固定一个给定的 <span class="arithmatex">\(x\)</span>，考察该点处的条件风险。</p>
+<p>与 <span class="arithmatex">\(0\text{-}1\)</span> 损失的情形相同，使 <span class="arithmatex">\(\Phi\)</span>-风险最小的函数 <span class="arithmatex">\(g\)</span>，可以通过对每个 <span class="arithmatex">\(x\)</span> 分别进行最小化来确定。</p>
+<p>此时，只要知道条件概率
+$$
+\eta(x)=\mathbb P(Y=1\mid X=x),
+$$
+就足以刻画该点 <span class="arithmatex">\(x\)</span>​ 处的最优预测，以及由此产生的超额风险。固定 <span class="arithmatex">\(X=x\)</span> 后，标签只有两种可能，因此使用替代损失 <span class="arithmatex">\(\Phi(Yu)\)</span> 的条件期望是</p>
+<p>Def 4.1:条件<span class="arithmatex">\(\Phi-Risk\)</span></p>
+<div class="arithmatex">\[ C_\xi^\Phi(u) = \xi\Phi(u)+(1-\xi)\Phi(-u), \]</div>
+<p>以及</p>
+<div class="arithmatex">\[ C_\xi(u) = \xi\Phi_{0-1}(u)+(1-\xi)\Phi_{0-1}(-u). \]</div>
+<p>由条件期望公式，</p>
+<div class="arithmatex">\[ \mathcal R_\Phi(g) =\mathbb E[\Phi(Yg(X))] =\mathbb E_X\!\left[C_{\eta(X)}^\Phi(g(X))\right]. \]</div>
+<p>所以在不限制函数类的总体情形下，最小化 <span class="arithmatex">\(R_\Phi(g)\)</span> 可以逐个 <span class="arithmatex">\(x\)</span> 地研究：</p>
+<div class="arithmatex">\[ g^*(x)\in\arg\min_{u\in\mathbb R}C_{\eta(x)}^\Phi(u). \]</div>
+<p>这正是定义条件替代风险的核心用途。</p>
+<p>定义解释：</p>
+<p><span class="arithmatex">\(\xi=\eta(x)=P(Y=1\mid X=x).\)</span>表示条件概率</p>
+<p>为什么有时是u,有时是-u？因为u其实代入的是x的分数g(x)，而在<span class="arithmatex">\(\Phi_{0-1}\)</span>里面代入的其实是<span class="arithmatex">\(Yg(X)\)</span>，是一个大于零输出0，小于零输出1的函数，并且希望让这个东西极小，<span class="arithmatex">\(\xi\)</span>是输出的量表示预测的错误率。</p>
+<p>但是我们如果要优化0-1函数就做不到这一点，虽然它是最符合原始二分类意义的方法，但是它间断；导数处处为 0无法是使用基于梯度的优化算法来操作，使用bp会导致梯度消失；而且非凸，不能使用凸优化的性质，所以要使用<span class="arithmatex">\(C_{\xi}^{\Phi}\)</span>来代替。</p>
+<p>所以，什么情况选取的这个<span class="arithmatex">\(\Phi\)</span>可以实现分类呢？这也就是下面这个命题所证明的</p>
+<p>Proposition 4.1：设 <span class="arithmatex">\(\Phi:\mathbb R\to\mathbb R\)</span> 是一个凸函数。替代损失函数 <span class="arithmatex">\(\Phi\)</span> 是分类校准的，当且仅当 <span class="arithmatex">\(\Phi\)</span> 在 <span class="arithmatex">\(0\)</span> 点可微，并且</p>
+<div class="arithmatex">\[ \Phi'(0)&lt;0. \]</div>
+<p>必要性证明：<span class="arithmatex">\(\Phi\text{ 分类校准} \Longrightarrow \Phi\text{ 在 }0\text{ 处可微且 }\Phi'(0)&lt;0.\)</span></p>
+<p>首先证明在0点可微<span class="arithmatex">\(\Phi'(0_+)=\Phi'(0_-)\)</span></p>
+<p>先证明Φ是凸函数时 <span class="arithmatex">\(C_\xi^\Phi\)</span> 也是凸函数，因为<span class="arithmatex">\(C(u)\)</span>其实是<span class="arithmatex">\(\Phi(u)\)</span>与<span class="arithmatex">\(\Phi(-u)\)</span>的凸组合，而这两个函数实际上都是凸函数，因此<span class="arithmatex">\(C_{\xi}^\Phi(u)\)</span>也是凸函数</p>
+<p><span class="arithmatex">\(\Phi'(0_+)=\lim_{h\to0_+}\frac{\Phi(h)-\Phi(0)}{h},\Phi'(0_-)=\lim_{h\to0_-}=\frac{\Phi(h)-\Phi(0)}{h}\)</span></p>
+<p>对于凸函数，实际上右导数大于等于左导数，</p>
+<p>那么<span class="arithmatex">\(\Phi'(0_+)-\Phi'(0_-)\ge0，C_\xi^{\Phi '}(0_+)\ge C_\xi^{\Phi '}(0_-)\)</span></p>
+<p>接下来，根据分类校正方法：<span class="arithmatex">\(\Phi\)</span></p>
+<p>现在假设 <span class="arithmatex">\(\Phi\)</span> 已经分类校准。</p>
+<p>当[ \xi&gt;\frac12 ]</p>
+<p>时，Bayes 最优预测为 <span class="arithmatex">\(+1\)</span>。分类校准要求</p>
+<div class="arithmatex">\[ \arg\min_u C_\xi^\Phi(u)\subset\mathbb R_+^*. \]</div>
+<p>根据条件 (a)：</p>
+<div class="arithmatex">\[ (C_\xi^\Phi)'(0+)&lt;0. \]</div>
+<p>也就是</p>
+<div class="arithmatex">\[ \xi\Phi'(0+) - (1-\xi)\Phi'(0-) &lt;0. \]</div>
+<p>现在令</p>
+<div class="arithmatex">\[ \xi\downarrow\frac12. \]</div>
+<p>因为原来是不等式严格小于零，取极限后只能得到小于等于零：</p>
+<div class="arithmatex">\[ \frac12\Phi'(0+) - \frac12\Phi'(0-) \le0. \]</div>
+<p>即</p>
+<div class="arithmatex">\[ \boxed{ \Phi'(0+)-\Phi'(0-)\le0. } \]</div>
+<p>最终可以推出在0点可微</p>
+<p>既然左右导数相等，统一记为</p>
+<div class="arithmatex">\[ \Phi'(0). \]</div>
+<p>于是条件风险在零点的导数变成</p>
+<div class="arithmatex">\[ \begin{aligned} (C_\xi^\Phi)'(0) &amp;= \xi\Phi'(0)-(1-\xi)\Phi'(0)\\ &amp;= (2\xi-1)\Phi'(0). \end{aligned} \]</div>
+<p>当 <span class="arithmatex">\(\xi&gt;1/2\)</span> 时，分类校准要求</p>
+<div class="arithmatex">\[ (C_\xi^\Phi)'(0)&lt;0. \]</div>
+<p>所以</p>
+<div class="arithmatex">\[ (2\xi-1)\Phi'(0)&lt;0. \]</div>
+<p>由于</p>
+<div class="arithmatex">\[ 2\xi-1&gt;0, \]</div>
+<p>只能得到</p>
+<div class="arithmatex">\[ \boxed{\Phi'(0)&lt;0.} \]</div>
+<p>因此我们证明了必要性：</p>
+<div class="arithmatex">\[ \Phi\text{ 分类校准} \Longrightarrow \Phi\text{ 在 }0\text{ 处可微且 }\Phi'(0)&lt;0. \]</div>
+<p>充分性现在反过来假设：[ \Phi\text{ 在 }0\text{ 处可微},\Phi'(0)&lt;0. ]</p>
+<p>那么[ (C_\xi^\Phi)'(0) = (2\xi-1)\Phi'(0). ]</p>
+<p>当 <span class="arithmatex">\(\xi&gt;1/2\)</span> 时：</p>
+<div class="arithmatex">\[ (C_\xi^\Phi)'(0)&lt;0. \]</div>
+<p>根据 (a)，条件风险的极小点严格位于正半轴，因此预测 <span class="arithmatex">\(+1\)</span>。</p>
+<p>当 <span class="arithmatex">\(\xi&lt;1/2\)</span> 时：</p>
+<div class="arithmatex">\[ (C_\xi^\Phi)'(0)&gt;0. \]</div>
+<p>根据 (b)，极小点严格位于负半轴，因此预测 <span class="arithmatex">\(-1\)</span>。</p>
+<p>两种情况都与 Bayes 分类器一致，所以 <span class="arithmatex">\(\Phi\)</span> 分类校准。</p>
+<h3 id="414-relation-between-risk-and-phi-risk">4.1.4 Relation between Risk and <span class="arithmatex">\(\Phi\)</span>-risk</h3>
+<p>在这一部分之中主要研究使用<span class="arithmatex">\(\Phi\)</span>-risk来代替会有什么影响，经过了这么一番替代之后有什么好处？</p>
+<p>上一节我们已经证明了：</p>
+<div class="arithmatex">\[ \mathcal R_\Phi(g)=\mathcal R_\Phi^* \quad\Longrightarrow\quad \mathcal R(g)=\mathcal R^*. \]</div>
+<p>或者从条件风险来看：</p>
+<div class="arithmatex">\[ u\in\arg\min C_\xi^\Phi \quad\Longrightarrow\quad u\in\arg\min C_\xi. \]</div>
+<p>实中我们几乎不可能精确达到</p>
+<div class="arithmatex">\[ \mathcal R_\Phi(g)=\mathcal R_\Phi^*. \]</div>
+<p>由于有限样本、模型限制和优化误差，我们通常只能得到</p>
+<div class="arithmatex">\[ \mathcal R_\Phi(g)-\mathcal R_\Phi^* \le \varepsilon. \]</div>
+<p>这时需要回答：</p>
+<blockquote>
+<p>替代风险距离最优值还有 <span class="arithmatex">\(\varepsilon\)</span>，真正的分类风险距离 Bayes 风险还有多远？</p>
+</blockquote>
+<p>4.1.4 首先要证明的是,</p>
+<div class="arithmatex">\[ \boxed{ \mathcal R(g)-\mathcal R^* \le H\!\left( \mathcal R_\Phi(g)-\mathcal R_\Phi^* \right). } \]</div>
+<p>它回答的是“两个优化问题距离终点的关系”。</p>
+<p>当然，已知<span class="arithmatex">\(\mathcal R^{\Phi}\)</span>实际上就是关于<span class="arithmatex">\(C_{\xi}^{\Phi}\)</span>求期望，只需证明：
+$$
+\forall u\in \mathbb R,G[C_\xi(u)-\inf_{u'}C_\xi(u')]\le C_\xi^\Phi(u)-\inf_{u'}C_\xi^\Phi(u')
+$$
+其中G是一个凸函数</p>
+<p>如果我们已经有（15），那么就可以
+$$
+G[\mathcal R(g)-\mathcal R_<em>]\le G\mathbb E[C_\xi(u)-\inf_{u'}C_\xi(u')]\le \mathbb E G[C_\xi(u)-\inf_{u'}C_\xi(u')]\le\mathbb EG[C_\xi^\Phi(u)-\inf_{u'}C_\xi^\Phi(u')]\le\mathbb EG[C_\xi^\Phi(u)-\inf_{u'}C_\xi^\Phi(u')] =\mathcal R^\Phi(g)-\mathcal R^{\Phi}_</em>
+$$</p>
+<p>要想计算最终目标，可以先计算[ \Delta_{01}(\xi,u) = C_\xi(u)-\inf_{u'\in\mathbb R}C_\xi(u'), ]</p>
+<p>即固定正类概率 <span class="arithmatex">\(\xi\)</span> 后，当前分数 <span class="arithmatex">\(u\)</span> 比最优分类多付出了多少 <span class="arithmatex">\(0\text{-}1\)</span> 风险。</p>
+<h2 id="1-c_xiu">1. 先写出 <span class="arithmatex">\(C_\xi(u)\)</span></h2>
+<p>条件 <span class="arithmatex">\(0\text{-}1\)</span> 风险为[ C_\xi(u) = \xi\Phi_{0-1}(u) + (1-\xi)\Phi_{0-1}(-u). ]</p>
+<p>由于</p>
+<div class="arithmatex">\[ \Phi_{0-1}(u)= \begin{cases} 1,&amp;u&lt;0,\\ \frac12,&amp;u=0,\\ 0,&amp;u&gt;0, \end{cases} \]</div>
+<p>所以</p>
+<div class="arithmatex">\[ \boxed{ C_\xi(u)= \begin{cases} \xi,&amp;u&lt;0,\\[1mm] \frac12,&amp;u=0,\\[1mm] 1-\xi,&amp;u&gt;0. \end{cases} } \]</div>
+<h2 id="2-xi12">2. 当 <span class="arithmatex">\(\xi=1/2\)</span></h2>
+<p>此时</p>
+<div class="arithmatex">\[ C_{1/2}(u)=\frac12,\qquad\forall u. \]</div>
+<p>因此</p>
+<div class="arithmatex">\[ \inf_{u'}C_{1/2}(u')=\frac12 \]</div>
+<p>并且</p>
+<div class="arithmatex">\[ \boxed{ C_{1/2}(u)-\inf_{u'}C_{1/2}(u')=0. } \]</div>
+<p>这是因为正负标签概率相同，任何预测都一样好。</p>
+<h2 id="3-xi12">3. 当 <span class="arithmatex">\(\xi&gt;1/2\)</span></h2>
+<p>此时正类更可能出现，所以应当选择 <span class="arithmatex">\(u&gt;0\)</span>，预测 <span class="arithmatex">\(+1\)</span>。</p>
+<p>对于 <span class="arithmatex">\(u&gt;0\)</span>：</p>
+<div class="arithmatex">\[ C_\xi(u)=1-\xi. \]</div>
+<p>因此最小条件风险为</p>
+<div class="arithmatex">\[ \boxed{ \inf_{u'}C_\xi(u')=1-\xi, } \]</div>
+<p>并且在整个正半轴 <span class="arithmatex">\(\mathbb R_+^*\)</span> 上取得。</p>
+<p>分别计算超额风险。</p>
+<h3 id="u0_3">当 <span class="arithmatex">\(u&gt;0\)</span></h3>
+<p>预测方向正确：</p>
+<div class="arithmatex">\[ \Delta_{01}(\xi,u) = (1-\xi)-(1-\xi)=0. \]</div>
+<h3 id="u0_4">当 <span class="arithmatex">\(u&lt;0\)</span></h3>
+<p>预测方向错误：</p>
+<div class="arithmatex">\[ \Delta_{01}(\xi,u) = \xi-(1-\xi) = 2\xi-1. \]</div>
+<h3 id="u0_5">当 <span class="arithmatex">\(u=0\)</span></h3>
+<p>随机预测：</p>
+<div class="arithmatex">\[ \Delta_{01}(\xi,0) = \frac12-(1-\xi) = \xi-\frac12. \]</div>
+<p>所以</p>
+<div class="arithmatex">\[ \boxed{ \Delta_{01}(\xi,u)= \begin{cases} 2\xi-1,&amp;u&lt;0,\\[1mm] \xi-\frac12,&amp;u=0,\\[1mm] 0,&amp;u&gt;0. \end{cases} } \]</div>
+<p>这正好可以写成</p>
+<div class="arithmatex">\[ \boxed{ \Delta_{01}(\xi,u) = (2\xi-1)\Phi_{0-1}(u). } \]</div>
+<p>因为 <span class="arithmatex">\(\Phi_{0-1}(u)\)</span> 在负、零、正三种情况下分别为 <span class="arithmatex">\(1,\frac12,0\)</span>。</p>
+<p>进一步，</p>
+<div class="arithmatex">\[ \Phi_{0-1}(u)\le\mathbf1_{\{u\le0\}}, \]</div>
+<p>因此</p>
+<div class="arithmatex">\[ \boxed{ \Delta_{01}(\xi,u) \le (2\xi-1)\mathbf1_{\{u\le0\}}. } \]</div>
+<p>在 <span class="arithmatex">\(u=0\)</span> 时，左边只有 <span class="arithmatex">\((2\xi-1)/2\)</span>，右边是 <span class="arithmatex">\(2\xi-1\)</span>，所以是上界而非等式。</p>
+<h2 id="4-xi12">4. 当 <span class="arithmatex">\(\xi&lt;1/2\)</span></h2>
+<p>此时负类更可能出现，正确方向是 <span class="arithmatex">\(u&lt;0\)</span>。</p>
+<p>最小条件风险为</p>
+<div class="arithmatex">\[ \inf_{u'}C_\xi(u')=\xi. \]</div>
+<p>同理可得</p>
+<div class="arithmatex">\[ \Delta_{01}(\xi,u) = (1-2\xi)\Phi_{0-1}(-u). \]</div>
+<p>即</p>
+<div class="arithmatex">\[ \Delta_{01}(\xi,u)= \begin{cases} 0,&amp;u&lt;0,\\[1mm] \frac12-\xi,&amp;u=0,\\[1mm] 1-2\xi,&amp;u&gt;0. \end{cases} \]</div>
+<p>并且</p>
+<div class="arithmatex">\[ \Delta_{01}(\xi,u) \le (1-2\xi)\mathbf1_{\{-u\le0\}} = (1-2\xi)\mathbf1_{\{u\ge0\}}. \]</div>
+<h2 id="5">5. 把两种情况统一起来</h2>
+<p>令</p>
+<div class="arithmatex">\[ \alpha=2\xi-1. \]</div>
+<p>那么：</p>
+<ul>
+<li><span class="arithmatex">\(\alpha&gt;0\)</span>：Bayes 方向为正；</li>
+<li><span class="arithmatex">\(\alpha&lt;0\)</span>：Bayes 方向为负；</li>
+<li><span class="arithmatex">\(\alpha=0\)</span>：两类概率相同。</li>
+</ul>
+<p>当前分数 <span class="arithmatex">\(u\)</span> 与 Bayes 方向不一致，等价于</p>
+<div class="arithmatex">\[ \alpha u\le0. \]</div>
+<p>因此两种情况可以统一写成</p>
+<div class="arithmatex">\[ \boxed{ \Delta_{01}(\xi,u) = |2\xi-1|\, \Phi_{0-1}\bigl((2\xi-1)u\bigr). } \]</div>
+<p>进一步得到</p>
+<div class="arithmatex">\[ \boxed{ \Delta_{01}(\xi,u) \le |2\xi-1|\, \mathbf1_{\{(2\xi-1)u\le0\}}. } \]</div>
+<p>然后我们就去考虑，使用<span class="arithmatex">\(\Phi\)</span>来代替之后的误差变成什么样了呢？</p>
+<p>首先我们来看简单的平方损失的情况：</p>
+<p><span class="arithmatex">\(C^{\Phi}_{\xi}(u)=\xi(1-u)^2+(1-\xi)(1+u)^2=u^2-2(2\xi-1)u+1\)</span>
+$$
+C^{\Phi}<em u_="u'">{\xi}(u)-\inf</em>)^2
+$$
+因此，有如下的控制
+$$
+\mathcal R(g)-\mathcal R^}C_\xi^\Phi(u')=(u-2\xi+1)^2\ge(|2\xi-1|\,  \mathbf1_{{(2\xi-1)u\le0}<em>\le(\mathcal R_\Phi(g)-\mathcal R_\Phi^</em>)^{1/2}
+$$
+而对于一般的光滑替代函数 Smooth Surrogates，<span class="arithmatex">\(\Phi(u)=a(u)-u\)</span></p>
+<p>其中<span class="arithmatex">\(a\)</span>要是一个偶函数，凸函数，而且满足<span class="arithmatex">\(a''(u)\le\beta\)</span></p>
+<p>令</p>
+<div class="arithmatex">\[ f_\alpha(u)=a(u)-\alpha u. \]</div>
+<p>它仍然是 <span class="arithmatex">\(\beta\)</span>-smooth，并且</p>
+<div class="arithmatex">\[ f_\alpha'(u)=a'(u)-\alpha. \]</div>
+<p>对任意凸的 <span class="arithmatex">\(\beta\)</span>-smooth 函数，都有</p>
+<div class="arithmatex">\[ f_\alpha(u)-\inf_{u'}f_\alpha(u') \ge \frac{1}{2\beta}|f_\alpha'(u)|^2. \]</div>
+<p>代入 <span class="arithmatex">\(f_\alpha\)</span>，得到原文的式 (4.9)：</p>
+<div class="arithmatex">\[ a(u)-\alpha u -\inf_{u'}\{a(u')-\alpha u'\} \ge \frac{1}{2\beta}|\alpha-a'(u)|^2. \]</div>
+<p>直观上，它表示：如果当前位置的梯度还很大，那么该点与最优值的差距不可能很小。</p>
+<h3 id="ex-41">Ex 4.1</h3>
+<p>在本节已有假设的基础上，进一步假设 <span class="arithmatex">\(a(0)=0\)</span>。证明：如果 <span class="arithmatex">\(a^*\)</span> 是 <span class="arithmatex">\(a\)</span> 的 Fenchel 共轭函数，那么对于任意函数 <span class="arithmatex">\(g:\mathcal X\to\mathbb R\)</span>，都有</p>
+<div class="arithmatex">\[
+a^*\bigl(\mathcal R(g)-\mathcal R^*\bigr)
+\le
+\mathcal R_\Phi(g)-\mathcal R_\Phi^*.
+\]</div>
+<p>Fenchel 共轭的定义为</p>
+<div class="arithmatex">\[
+a^*(\alpha)=\sup_{u\in\mathbb R}\{\alpha u-a(u)\}.
+\]</div>
+<p>由于 <span class="arithmatex">\(a\)</span> 是凸偶函数且 <span class="arithmatex">\(a(0)=0\)</span>，所以 <span class="arithmatex">\(a(u)\ge 0\)</span>。相应地，<span class="arithmatex">\(a^*\)</span> 也是凸偶函数，满足 <span class="arithmatex">\(a^*(0)=0\)</span>，并在 <span class="arithmatex">\([0,+\infty)\)</span> 上单调不减。</p>
+<p>固定 <span class="arithmatex">\(x\)</span>，令</p>
+<div class="arithmatex">\[
+\alpha=2\xi-1,\qquad \xi=\mathbb P(Y=1\mid X=x).
+\]</div>
+<p>条件代理风险为</p>
+<div class="arithmatex">\[
+C_\xi^\Phi(u)=a(u)-\alpha u.
+\]</div>
+<p>由 Fenchel 共轭的定义，</p>
+<div class="arithmatex">\[
+\inf_v\{a(v)-\alpha v\}
+=-\sup_v\{\alpha v-a(v)\}
+=-a^*(\alpha).
+\]</div>
+<p>所以条件代理超额风险为</p>
+<div class="arithmatex">\[
+\Delta_\Phi(\xi,u)
+=C_\xi^\Phi(u)-\inf_vC_\xi^\Phi(v)
+=a(u)-\alpha u+a^*(\alpha).
+\]</div>
+<p>如果预测方向错误，即 <span class="arithmatex">\(\alpha u\le0\)</span>，那么 <span class="arithmatex">\(a(u)-\alpha u\ge0\)</span>，于是</p>
+<div class="arithmatex">\[
+\Delta_\Phi(\xi,u)\ge a^*(\alpha)=a^*(|\alpha|).
+\]</div>
+<p>同时，条件 <span class="arithmatex">\(0\!-\!1\)</span> 超额风险满足</p>
+<div class="arithmatex">\[
+0\le\Delta_{01}(\xi,u)
+\le |\alpha|\mathbf 1_{\{\alpha u\le0\}}.
+\]</div>
+<p>利用 <span class="arithmatex">\(a^*\)</span> 在非负半轴上的单调性可得</p>
+<div class="arithmatex">\[
+a^*\bigl(\Delta_{01}(\xi,u)\bigr)
+\le \Delta_\Phi(\xi,u).
+\]</div>
+<p>预测方向正确时 <span class="arithmatex">\(\Delta_{01}=0\)</span>，该不等式同样成立。最后利用 Jensen 不等式，</p>
+<div class="arithmatex">\[
+\begin{aligned}
+a^*\bigl(\mathcal R(g)-\mathcal R^*\bigr)
+&amp;=a^*\bigl(\mathbb E[\Delta_{01}]\bigr)\\
+&amp;\le\mathbb E\bigl[a^*(\Delta_{01})\bigr]\\
+&amp;\le\mathbb E[\Delta_\Phi]\\
+&amp;=\mathcal R_\Phi(g)-\mathcal R_\Phi^*.
+\end{aligned}
+\]</div>
+<h3 id="ex-42">Ex 4.2</h3>
+<p>设</p>
+<div class="arithmatex">\[ \Phi:\mathbb R\to\mathbb R \]</div>
+<p>是一个凸函数，并且在 <span class="arithmatex">\(0\)</span> 点可微，满足</p>
+<div class="arithmatex">\[ \Phi'(0)&lt;0. \]</div>
+<p>定义函数</p>
+<div class="arithmatex">\[ G(z) = \Phi(0) - \inf_{u\in\mathbb R} \left\{ \frac{1+z}{2}\Phi(u) + \frac{1-z}{2}\Phi(-u) \right\}. \]</div>
+<p>证明：</p>
+<ol>
+<li><span class="arithmatex">\(G\)</span> 是凸函数；</li>
+<li><span class="arithmatex">\(G(0)=0\)</span>；</li>
+<li>对任意函数 <span class="arithmatex">\(g:\mathcal X\to\mathbb R\)</span>，都有[ \boxed{ G!\left(\mathcal R(g)-\mathcal R^<em>\right) \le \mathcal R_\Phi(g)-\mathcal R_\Phi^</em>. } ]</li>
+</ol>
+<p>其中：</p>
+<ul>
+<li><span class="arithmatex">\(\mathcal R(g)\)</span> 是分类器 <span class="arithmatex">\(g\)</span> 的 <span class="arithmatex">\(0\!-\!1\)</span> 风险；</li>
+<li><span class="arithmatex">\(\mathcal R^*\)</span> 是最优的 <span class="arithmatex">\(0\!-\!1\)</span> 风险，即 Bayes 风险；</li>
+<li><span class="arithmatex">\(\mathcal R_\Phi(g)\)</span> 是由替代损失 <span class="arithmatex">\(\Phi\)</span> 定义的风险；</li>
+<li><span class="arithmatex">\(\mathcal R_\Phi^*\)</span> 是最优替代风险。</li>
+</ul>
+<p>最后，求指数损失</p>
+<div class="arithmatex">\[ \Phi(u)=e^{-u} \]</div>
+<p>所对应的函数 <span class="arithmatex">\(G\)</span>。</p>
+<p>一、为什么这样定义 <span class="arithmatex">\(G\)</span>？</p>
+<p>令</p>
+<div class="arithmatex">\[ \xi=P(Y=1\mid X=x), \qquad z=2\xi-1. \]</div>
+<p>那么</p>
+<div class="arithmatex">\[ \xi=\frac{1+z}{2}, \qquad 1-\xi=\frac{1-z}{2}. \]</div>
+<p>所以条件代理风险可以写成</p>
+<div class="arithmatex">\[ C_\xi^\Phi(u) = \frac{1+z}{2}\Phi(u) + \frac{1-z}{2}\Phi(-u). \]</div>
+<p>因此</p>
+<div class="arithmatex">\[ \inf_u C_\xi^\Phi(u) = \inf_u \left\{ \frac{1+z}{2}\Phi(u) + \frac{1-z}{2}\Phi(-u) \right\}. \]</div>
+<p>于是</p>
+<div class="arithmatex">\[ \boxed{ G(z)=\Phi(0)-\inf_u C_\xi^\Phi(u). } \]</div>
+<p>它衡量的是：</p>
+<blockquote>
+<p>使用没有分类方向的分数 <span class="arithmatex">\(u=0\)</span>，相比最优条件分数，多付出了多少代理风险。</p>
+</blockquote>
+<p>而 <span class="arithmatex">\(z=|2\xi-1|\)</span> 越大，分类越确定，使用错误方向的代价应该越大。</p>
+<hr />
+<h2 id="g">二、证明 <span class="arithmatex">\(G\)</span> 是凸函数</h2>
+<p>记</p>
+<div class="arithmatex">\[ F_u(z) = \frac{1+z}{2}\Phi(u) + \frac{1-z}{2}\Phi(-u). \]</div>
+<p>展开：</p>
+<div class="arithmatex">\[ F_u(z) = \frac{\Phi(u)+\Phi(-u)}2 + \frac z2\bigl[\Phi(u)-\Phi(-u)\bigr]. \]</div>
+<p>对于固定的 <span class="arithmatex">\(u\)</span>，这是关于 <span class="arithmatex">\(z\)</span> 的仿射函数。</p>
+<p>令</p>
+<div class="arithmatex">\[ M(z)=\inf_uF_u(z). \]</div>
+<p>仿射函数族的下确界是凹函数。具体地，对 <span class="arithmatex">\(0\le\lambda\le1\)</span>，</p>
+<div class="arithmatex">\[ \begin{aligned} M(\lambda z_1+(1-\lambda)z_2) &amp;=\inf_u \left[ \lambda F_u(z_1)+(1-\lambda)F_u(z_2) \right]\\ &amp;\ge \lambda\inf_uF_u(z_1) +(1-\lambda)\inf_uF_u(z_2)\\ &amp;=\lambda M(z_1)+(1-\lambda)M(z_2). \end{aligned} \]</div>
+<p>所以 <span class="arithmatex">\(M\)</span> 是凹函数，进而</p>
+<div class="arithmatex">\[ \boxed{G(z)=\Phi(0)-M(z)} \]</div>
+<p>是凸函数。</p>
+<p>此外，换元 <span class="arithmatex">\(u\mapsto -u\)</span> 可得</p>
+<div class="arithmatex">\[ M(-z)=M(z), \]</div>
+<p>所以 <span class="arithmatex">\(G\)</span> 还是偶函数。</p>
+<hr />
+<h2 id="g00">三、证明 <span class="arithmatex">\(G(0)=0\)</span></h2>
+<p>当 <span class="arithmatex">\(z=0\)</span> 时，</p>
+<div class="arithmatex">\[ M(0) = \inf_u\frac{\Phi(u)+\Phi(-u)}2. \]</div>
+<p>由 <span class="arithmatex">\(\Phi\)</span> 的凸性，</p>
+<div class="arithmatex">\[ \frac{\Phi(u)+\Phi(-u)}2 \ge \Phi\left(\frac{u+(-u)}2\right) =\Phi(0). \]</div>
+<p>而在 <span class="arithmatex">\(u=0\)</span> 时取等号，所以</p>
+<div class="arithmatex">\[ M(0)=\Phi(0). \]</div>
+<p>因此</p>
+<div class="arithmatex">\[ \boxed{G(0)=0}. \]</div>
+<p>又因为 <span class="arithmatex">\(G\)</span> 凸且为偶函数，所以 <span class="arithmatex">\(0\)</span> 是其最小点，且 <span class="arithmatex">\(G\)</span> 在 <span class="arithmatex">\([0,1]\)</span> 上单调不减。</p>
+<hr />
+<h2 id="_1">四、证明逐点的校准不等式</h2>
+<p>要证明</p>
+<div class="arithmatex">\[ G\bigl(\Delta_{01}(\xi,u)\bigr) \le \Delta_\Phi(\xi,u), \]</div>
+<p>其中</p>
+<div class="arithmatex">\[ \Delta_\Phi(\xi,u) = C_\xi^\Phi(u)-\inf_vC_\xi^\Phi(v). \]</div>
+<p>仍令</p>
+<div class="arithmatex">\[ z=2\xi-1. \]</div>
+<h3 id="_2">情况一：分类方向正确</h3>
+<p>如果</p>
+<div class="arithmatex">\[ zu&gt;0, \]</div>
+<p>则预测符号与 Bayes 分类方向一致，因此</p>
+<div class="arithmatex">\[ \Delta_{01}(\xi,u)=0. \]</div>
+<p>于是</p>
+<div class="arithmatex">\[ G(\Delta_{01})=G(0)=0 \le \Delta_\Phi. \]</div>
+<h3 id="_3">情况二：分类方向错误</h3>
+<p>如果</p>
+<div class="arithmatex">\[ zu\le0, \]</div>
+<p>由 <span class="arithmatex">\(\Phi\)</span> 的凸性，</p>
+<div class="arithmatex">\[ \begin{aligned} C_\xi^\Phi(u) &amp;= \frac{1+z}{2}\Phi(u) + \frac{1-z}{2}\Phi(-u)\\ &amp;\ge \Phi\left( \frac{1+z}{2}u + \frac{1-z}{2}(-u) \right)\\ &amp;=\Phi(zu). \end{aligned} \]</div>
+<p>由于题设</p>
+<div class="arithmatex">\[ \Phi'(0)&lt;0, \]</div>
+<p>凸函数在 <span class="arithmatex">\(0\)</span> 点的支撑线给出</p>
+<div class="arithmatex">\[ \Phi(zu) \ge \Phi(0)+\Phi'(0)zu. \]</div>
+<p>而 <span class="arithmatex">\(zu\le0\)</span>、<span class="arithmatex">\(\Phi'(0)&lt;0\)</span>，所以</p>
+<div class="arithmatex">\[ \Phi'(0)zu\ge0. \]</div>
+<p>因此</p>
+<div class="arithmatex">\[ C_\xi^\Phi(u)\ge\Phi(zu)\ge\Phi(0). \]</div>
+<p>所以</p>
+<div class="arithmatex">\[ \begin{aligned} \Delta_\Phi(\xi,u) &amp;=C_\xi^\Phi(u)-M(z)\\ &amp;\ge\Phi(0)-M(z)\\ &amp;=G(z)=G(|z|). \end{aligned} \]</div>
+<p>同时条件 <span class="arithmatex">\(0\!-\!1\)</span> 超额风险满足</p>
+<div class="arithmatex">\[ 0\le\Delta_{01}(\xi,u)\le|z|. \]</div>
+<p>由于 <span class="arithmatex">\(G\)</span> 在非负半轴单调不减，</p>
+<div class="arithmatex">\[ G(\Delta_{01}(\xi,u)) \le G(|z|) \le\Delta_\Phi(\xi,u). \]</div>
+<p>所以两种情况合起来，</p>
+<div class="arithmatex">\[ \boxed{ G(\Delta_{01}(\xi,u)) \le \Delta_\Phi(\xi,u). } \]</div>
+<hr />
+<h2 id="_4">五、提升到总体风险</h2>
+<p>我们有</p>
+<div class="arithmatex">\[ \mathcal R(g)-\mathcal R^* = \mathbb E[\Delta_{01}] \]</div>
+<p>以及</p>
+<div class="arithmatex">\[ \mathcal R_\Phi(g)-\mathcal R_\Phi^* = \mathbb E[\Delta_\Phi]. \]</div>
+<p>利用 <span class="arithmatex">\(G\)</span> 的凸性和 Jensen 不等式，</p>
+<div class="arithmatex">\[ \begin{aligned} G[\mathcal R(g)-\mathcal R^*] &amp;=G(\mathbb E[\Delta_{01}])\\ &amp;\le\mathbb E[G(\Delta_{01})]\\ &amp;\le\mathbb E[\Delta_\Phi]\\ &amp;=\mathcal R_\Phi(g)-\mathcal R_\Phi^*. \end{aligned} \]</div>
+<p>最终得到</p>
+<div class="arithmatex">\[ \boxed{ G[\mathcal R(g)-\mathcal R^*] \le \mathcal R_\Phi(g)-\mathcal R_\Phi^*. } \]</div>
+<p>这道题的证明链条就是</p>
+<div class="arithmatex">\[ \boxed{ \Phi\text{ 凸} \Rightarrow G\text{ 凸} \Rightarrow G(\text{条件 }0\!-\!1\text{ 超额风险}) \le \text{条件代理超额风险} \Rightarrow \text{总体风险界}. } \]</div>
+<p>题目的最后一步是对 exponential loss <span class="arithmatex">\(\Phi(u)=e^{-u}\)</span> 显式计算 <span class="arithmatex">\(G\)</span>，结果是</p>
+<div class="arithmatex">\[ \boxed{G(z)=1-\sqrt{1-z^2}}. \]</div>
+<h3 id="ex-43">Ex 4.3</h3>
+<p>假设存在 <span class="arithmatex">\(\varepsilon\in(0,1)\)</span>，使得几乎处处都有</p>
+<div class="arithmatex">\[
+|2\eta(x)-1|\ge\varepsilon.
+\]</div>
+<p>设 <span class="arithmatex">\(\Phi:\mathbb R\to\mathbb R\)</span> 是本节所考虑的光滑、凸且具有分类校准性的替代损失，并且</p>
+<div class="arithmatex">\[
+\Phi(v)=a(v)-v.
+\]</div>
+<p>证明：对于任意函数 <span class="arithmatex">\(g:\mathcal X\to\mathbb R\)</span>，都有</p>
+<div class="arithmatex">\[
+\boxed{
+\mathcal R(g)-\mathcal R(g_*)
+\le
+\frac{\varepsilon}{a^*(\varepsilon)}
+\left[\mathcal R_\Phi(g)-\mathcal R_\Phi^*\right].
+}
+\]</div>
+<p>这里仍将 <span class="arithmatex">\(a\)</span> 归一化为 <span class="arithmatex">\(a(0)=0\)</span>，这不改变超额风险。固定 <span class="arithmatex">\(x\)</span>，记</p>
+<div class="arithmatex">\[
+z=2\eta(x)-1,\qquad u=g(x).
+\]</div>
+<p>由 Ex 4.1 的计算，条件代理超额风险为</p>
+<div class="arithmatex">\[
+\Delta_\Phi(x)=a(u)-zu+a^*(z).
+\]</div>
+<p>若预测方向错误，即 <span class="arithmatex">\(zu\le0\)</span>，则 <span class="arithmatex">\(a(u)\ge0\)</span>、<span class="arithmatex">\(-zu\ge0\)</span>，并且 <span class="arithmatex">\(a^*\)</span> 是偶函数，所以</p>
+<div class="arithmatex">\[
+\Delta_\Phi(x)\ge a^*(|z|).
+\]</div>
+<p>因为 <span class="arithmatex">\(a^*\)</span> 凸且 <span class="arithmatex">\(a^*(0)=0\)</span>，对任意 <span class="arithmatex">\(t\ge\varepsilon\)</span>，令 <span class="arithmatex">\(\lambda=\varepsilon/t\)</span>，有</p>
+<div class="arithmatex">\[
+\begin{aligned}
+a^*(\varepsilon)
+&amp;=a^*\bigl(\lambda t+(1-\lambda)0\bigr)\\
+&amp;\le\lambda a^*(t)+(1-\lambda)a^*(0)
+=\frac{\varepsilon}{t}a^*(t).
+\end{aligned}
+\]</div>
+<p>因此</p>
+<div class="arithmatex">\[
+a^*(t)\ge\frac{a^*(\varepsilon)}{\varepsilon}t,
+\qquad t\ge\varepsilon.
+\]</div>
+<p>题设保证 <span class="arithmatex">\(|z|\ge\varepsilon\)</span>，而条件 <span class="arithmatex">\(0\!-\!1\)</span> 超额风险满足</p>
+<div class="arithmatex">\[
+\Delta_{01}(x)
+\le |z|\mathbf 1_{\{zu\le0\}}.
+\]</div>
+<p>所以在预测错误时，</p>
+<div class="arithmatex">\[
+\Delta_\Phi(x)
+\ge a^*(|z|)
+\ge\frac{a^*(\varepsilon)}{\varepsilon}|z|
+\ge\frac{a^*(\varepsilon)}{\varepsilon}\Delta_{01}(x).
+\]</div>
+<p>预测正确时 <span class="arithmatex">\(\Delta_{01}(x)=0\)</span>，同一不等式仍成立。对 <span class="arithmatex">\(X\)</span> 取期望，得到</p>
+<div class="arithmatex">\[
+\mathcal R_\Phi(g)-\mathcal R_\Phi^*
+\ge
+\frac{a^*(\varepsilon)}{\varepsilon}
+\bigl[\mathcal R(g)-\mathcal R(g_*)\bigr].
+\]</div>
+<p>整理即得题目结论。这里的间隔条件排除了 <span class="arithmatex">\(\eta(x)\)</span> 接近 <span class="arithmatex">\(1/2\)</span> 的困难样本，因此将一般的非线性校准界加强成了线性风险界。</p>
+<p>我们之前已经在4.1.3部分论证了使用替代函数来选取得到的解依然是最终的解，那么不同的替代损失的选择是否会产生影响？</p>
+<p>结论是，因为要使 <span class="arithmatex">\(\Phi\)</span>-风险达到最小值，对于经验风险最小化所使用的函数类，需要作出不同的假设。</p>
+<p>具体来说：</p>
+<ul>
+<li>对于 hinge 损失，函数</li>
+</ul>
+<p>[ \operatorname{sign}(2\eta(x)-1) ]</p>
+<p>必须属于我们选取的函数类；</p>
+<ul>
+<li>对于平方损失，函数</li>
+</ul>
+<p>[ 2\eta(x)-1 ]</p>
+<p>必须属于该函数类；</p>
+<ul>
+<li>对于 logistic 损失，函数</li>
+</ul>
+<p>[ 2\operatorname{atanh}(2\eta(x)-1) ]</p>
+<p>必须属于该函数类。</p>
+<p>如果这些函数不属于所选的模型类，那么模型类至少需要能够很好地逼近它们。对于 hinge 损失而言，这种逼近可能更加困难，因为[ \operatorname{sign}(2\eta(x)-1) ]的正则性可能比较弱，或者说，它可能没有下面两个函数那么平滑：</p>
+<p>[ 2\eta(x)-1 ]或[ 2\operatorname{atanh}(2\eta(x)-1). ]</p>
+<p>Ex 4.4 对于 logistic 损失，假设数据由以下类别条件分布生成：</p>
+<div class="arithmatex">\[ X\mid Y=1 \quad\text{和}\quad X\mid Y=-1, \]</div>
+<p>并且这两个条件分布都是具有相同协方差矩阵的高斯分布。</p>
+<p>证明：使期望 logistic 损失达到最小值的函数 <span class="arithmatex">\(g(x)\)</span> 是关于 <span class="arithmatex">\(x\)</span> 的仿射函数，即可以写成</p>
+<div class="arithmatex">\[ g(x)=w^\top x+b. \]</div>
+<p>这种模型通常称为**线性判别分析**（linear discriminant analysis，LDA）。</p>
+<p>进一步，将该结论推广到多类别情形。</p>
+<h2 id="1-logistic">1. Logistic 损失的最优分数</h2>
+<p>固定 <span class="arithmatex">\(X=x\)</span>，记</p>
+<div class="arithmatex">\[ \eta(x)=P(Y=1\mid X=x). \]</div>
+<p>取 logistic 损失</p>
+<div class="arithmatex">\[ \Phi(u)=\log(1+e^{-u}). \]</div>
+<p>条件 logistic 风险为</p>
+<div class="arithmatex">\[ C_{\eta(x)}^\Phi(u) = \eta(x)\log(1+e^{-u}) + (1-\eta(x))\log(1+e^u). \]</div>
+<p>对 <span class="arithmatex">\(u\)</span> 求导：</p>
+<div class="arithmatex">\[ \frac{d}{du}C_{\eta(x)}^\Phi(u) = \frac{(1-\eta(x))e^u-\eta(x)}{1+e^u}. \]</div>
+<p>令导数等于零：</p>
+<div class="arithmatex">\[ (1-\eta(x))e^u=\eta(x). \]</div>
+<p>因此</p>
+<div class="arithmatex">\[ e^u=\frac{\eta(x)}{1-\eta(x)}, \]</div>
+<p>所以最优分数为</p>
+<div class="arithmatex">\[ \boxed{ g^*(x) = \log\frac{\eta(x)}{1-\eta(x)}. } \]</div>
+<p>这就是后验概率的 log-odds。</p>
+<p>它也等于教材中的</p>
+<div class="arithmatex">\[ 2\operatorname{atanh}(2\eta(x)-1), \]</div>
+<p>因为</p>
+<div class="arithmatex">\[ 2\operatorname{atanh}(z) = \log\frac{1+z}{1-z}. \]</div>
+<p>令 <span class="arithmatex">\(z=2\eta-1\)</span>，就得到</p>
+<div class="arithmatex">\[ 2\operatorname{atanh}(2\eta-1) = \log\frac{\eta}{1-\eta}. \]</div>
+<h2 id="2-bayes">2. 使用 Bayes 公式</h2>
+<p>设类别先验概率为</p>
+<div class="arithmatex">\[ \pi_+=P(Y=1),\qquad \pi_-=P(Y=-1). \]</div>
+<p>由 Bayes 公式，</p>
+<div class="arithmatex">\[ \eta(x) = \frac{\pi_+p(x\mid Y=1)} {\pi_+p(x\mid Y=1)+\pi_-p(x\mid Y=-1)}. \]</div>
+<p>因此</p>
+<div class="arithmatex">\[ \frac{\eta(x)}{1-\eta(x)} = \frac{\pi_+p(x\mid Y=1)} {\pi_-p(x\mid Y=-1)}. \]</div>
+<p>取对数：</p>
+<div class="arithmatex">\[ g^*(x) = \log\frac{\pi_+}{\pi_-} + \log\frac{p(x\mid Y=1)}{p(x\mid Y=-1)}. \]</div>
+<p>所以问题转化为计算两个高斯密度的对数比。</p>
+<h2 id="3">3. 代入共同协方差的高斯分布</h2>
+<p>假设</p>
+<p>[ X\mid Y=1\sim\mathcal N(\mu_+,\Sigma), ][ X\mid Y=-1\sim\mathcal N(\mu_-,\Sigma). ]</p>
+<p>它们拥有相同的协方差矩阵 <span class="arithmatex">\(\Sigma\)</span>。</p>
+<p>高斯密度的对数为</p>
+<div class="arithmatex">\[ \log p(x\mid Y=k) = \text{常数} -\frac12(x-\mu_k)^\top \Sigma^{-1}(x-\mu_k). \]</div>
+<p>所以</p>
+<div class="arithmatex">\[ \begin{aligned} \log\frac{p(x\mid Y=1)}{p(x\mid Y=-1)} ={}&amp; -\frac12(x-\mu_+)^\top\Sigma^{-1}(x-\mu_+)\\ &amp;+\frac12(x-\mu_-)^\top\Sigma^{-1}(x-\mu_-). \end{aligned} \]</div>
+<p>展开两个二次型：</p>
+<div class="arithmatex">\[ (x-\mu)^\top\Sigma^{-1}(x-\mu) = x^\top\Sigma^{-1}x -2x^\top\Sigma^{-1}\mu +\mu^\top\Sigma^{-1}\mu. \]</div>
+<p>因为两个类别使用同一个 <span class="arithmatex">\(\Sigma\)</span>，它们共同包含的二次项</p>
+<div class="arithmatex">\[ x^\top\Sigma^{-1}x \]</div>
+<p>恰好抵消。</p>
+<p>剩下</p>
+<div class="arithmatex">\[ \begin{aligned} \log\frac{p(x\mid Y=1)}{p(x\mid Y=-1)} ={}&amp; x^\top\Sigma^{-1}(\mu_+-\mu_-)\\ &amp;-\frac12 \left( \mu_+^\top\Sigma^{-1}\mu_+ - \mu_-^\top\Sigma^{-1}\mu_- \right). \end{aligned} \]</div>
+<p>因此</p>
+<div class="arithmatex">\[ g^*(x)=w^\top x+b, \]</div>
+<p>其中</p>
+<div class="arithmatex">\[ \boxed{ w=\Sigma^{-1}(\mu_+-\mu_-) } \]</div>
+<p>以及</p>
+<div class="arithmatex">\[ \boxed{ b= \log\frac{\pi_+}{\pi_-} -\frac12 \left( \mu_+^\top\Sigma^{-1}\mu_+ - \mu_-^\top\Sigma^{-1}\mu_- \right). } \]</div>
+<p>所以总体最优 logistic 分数是 <span class="arithmatex">\(x\)</span> 的仿射函数。</p>
+<p>拓展到多分类的情景：</p>
+<h2 id="1-k">1. 从一个分数变成 <span class="arithmatex">\(K\)</span> 个分数</h2>
+<p>二分类时只需要一个实数：</p>
+<div class="arithmatex">\[ g(x)\in\mathbb R. \]</div>
+<p>然后比较它与零：</p>
+<div class="arithmatex">\[ g(x)&gt;0\Rightarrow Y=1, \qquad g(x)&lt;0\Rightarrow Y=-1. \]</div>
+<p>多分类时令</p>
+<div class="arithmatex">\[ Y\in\{1,\ldots,K\}, \]</div>
+<p>为每个类别构造一个评分函数：</p>
+<div class="arithmatex">\[ g(x)= \begin{pmatrix} g_1(x)\\ \vdots\\ g_K(x) \end{pmatrix} \in\mathbb R^K. \]</div>
+<p>最终选择分数最大的类别：</p>
+<div class="arithmatex">\[ \boxed{ f_g(x)=\arg\max_{k\in\{1,\ldots,K\}}g_k(x). } \]</div>
+<h2 id="2-logistic">2. 多分类 logistic 损失</h2>
+<p>定义 softmax 概率：</p>
+<div class="arithmatex">\[ q_k(g) = \frac{e^{g_k}} {\sum_{j=1}^K e^{g_j}}. \]</div>
+<p>如果真实标签是 <span class="arithmatex">\(Y=k\)</span>，负对数似然，也就是多分类 logistic 损失，为</p>
+<div class="arithmatex">\[ \ell(k,g) = -\log q_k(g). \]</div>
+<p>展开：</p>
+<div class="arithmatex">\[ \boxed{ \ell(k,g) = -g_k+\log\sum_{j=1}^K e^{g_j}. } \]</div>
+<p>这就是通常所说的 softmax cross-entropy。</p>
+<h2 id="3_1">3. 条件风险的最优分数</h2>
+<p>固定 <span class="arithmatex">\(X=x\)</span>，记真实后验概率为</p>
+<div class="arithmatex">\[ \eta_k(x)=P(Y=k\mid X=x), \qquad \sum_{k=1}^K\eta_k(x)=1. \]</div>
+<p>条件 cross-entropy 风险为</p>
+<div class="arithmatex">\[ \begin{aligned} C_{\eta}(g) &amp;= \sum_{k=1}^K \eta_k(x)\ell(k,g)\\ &amp;= -\sum_{k=1}^K\eta_k(x)g_k + \log\sum_{j=1}^K e^{g_j}. \end{aligned} \]</div>
+<p>对 <span class="arithmatex">\(g_k\)</span> 求偏导：</p>
+<div class="arithmatex">\[ \frac{\partial C_\eta(g)}{\partial g_k} = -\eta_k(x) + \frac{e^{g_k}}{\sum_j e^{g_j}}. \]</div>
+<p>令偏导为零：</p>
+<div class="arithmatex">\[ \frac{e^{g_k}}{\sum_j e^{g_j}} = \eta_k(x). \]</div>
+<p>也就是</p>
+<div class="arithmatex">\[ \operatorname{softmax}(g(x)) = \eta(x). \]</div>
+<p>因此最优分数满足</p>
+<div class="arithmatex">\[ \boxed{ g_k^*(x)=\log\eta_k(x)+c(x), } \]</div>
+<p>其中 <span class="arithmatex">\(c(x)\)</span> 是对所有类别都相同的任意函数。</p>
+<p>之所以允许增加 <span class="arithmatex">\(c(x)\)</span>，是因为 softmax 对共同平移不变：</p>
+<div class="arithmatex">\[ \operatorname{softmax}(g+c\mathbf1) = \operatorname{softmax}(g). \]</div>
+<p>分类也不受影响：</p>
+<div class="arithmatex">\[ \arg\max_k[g_k(x)+c(x)] = \arg\max_k g_k(x). \]</div>
+<h2 id="4">4. 代入共同协方差高斯模型</h2>
+<p>假设</p>
+<div class="arithmatex">\[ X\mid Y=k \sim \mathcal N(\mu_k,\Sigma), \qquad P(Y=k)=\pi_k, \]</div>
+<p>并且所有类别使用相同的协方差矩阵 <span class="arithmatex">\(\Sigma\)</span>。</p>
+<p>由 Bayes 公式，</p>
+<div class="arithmatex">\[ P(Y=k\mid X=x) = \frac{\pi_k p(x\mid Y=k)} {\sum_{j=1}^K\pi_jp(x\mid Y=j)}. \]</div>
+<p>高斯密度满足</p>
+<div class="arithmatex">\[ p(x\mid Y=k) \propto \exp\left( -\frac12(x-\mu_k)^\top \Sigma^{-1}(x-\mu_k) \right). \]</div>
+<p>所以后验概率的未归一化对数分数为</p>
+<div class="arithmatex">\[ \log\pi_k -\frac12(x-\mu_k)^\top \Sigma^{-1}(x-\mu_k). \]</div>
+<p>展开二次型：</p>
+<div class="arithmatex">\[ \begin{aligned} -\frac12(x-\mu_k)^\top\Sigma^{-1}(x-\mu_k) ={}&amp; -\frac12x^\top\Sigma^{-1}x\\ &amp;+x^\top\Sigma^{-1}\mu_k\\ &amp;-\frac12\mu_k^\top\Sigma^{-1}\mu_k. \end{aligned} \]</div>
+<p>其中</p>
+<div class="arithmatex">\[ -\frac12x^\top\Sigma^{-1}x \]</div>
+<p>对所有类别 <span class="arithmatex">\(k\)</span> 都一样。它相当于前面的共同平移 <span class="arithmatex">\(c(x)\)</span>，在 softmax 和 <span class="arithmatex">\(\arg\max\)</span> 中都会抵消。</p>
+<p>因此可以定义</p>
+<div class="arithmatex">\[ \boxed{ g_k(x) = x^\top\Sigma^{-1}\mu_k -\frac12\mu_k^\top\Sigma^{-1}\mu_k +\log\pi_k. } \]</div>
+<p>每个 <span class="arithmatex">\(g_k(x)\)</span> 都是关于 <span class="arithmatex">\(x\)</span> 的仿射函数。</p>
+<p>后验概率就是</p>
+<div class="arithmatex">\[ \boxed{ P(Y=k\mid X=x) = \frac{\exp(g_k(x))} {\sum_{j=1}^K\exp(g_j(x))}. } \]</div>
+<p>最终分类器为</p>
+<div class="arithmatex">\[ \boxed{ f^*(x)=\arg\max_k g_k(x). } \]</div>
+<h2 id="ch42">Ch4.2误差分解</h2>
+<p>但我们并不是从真实分布来求取<span class="arithmatex">\(f^*\)</span>这个理论最佳函数，也不是在所有可能的函数空间内</p>
+<p>以这个分布问题为例，我们实际上是</p>
+<p>我们这里有n个样本<span class="arithmatex">\(\{(X_i,Y_i)\}\)</span>其中，每一个样本都是独立同分布的。
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\hat f = argmin_{f\in \mathcal{F}} \frac{1}{n}\sum_{i=1}^n l(f(X_i),Y_i)
+</script>
+</div>
+大数定理告诉我们，频率趋近于概率。但是这毕竟还是有差别，更具体来说，我们可以将其拆成两个部分
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathcal{L}(\hat f) - \mathcal L({f^*}) = \mathcal{L}(\hat f)  - inf_{f\in \mathcal F} \mathcal L(f)  +  inf_{f\in \mathcal F} \mathcal L(f) - \mathcal L({f^*})
+</script>
+</div>
+前者是由样本所导致的，被称之为估计误差estimation error</p>
+<p>后者则是由于<span class="arithmatex">\(\mathcal{F}\)</span>这个函数类不够大导致的，也被称之为逼近误差</p>
+<p>Ch4.3 Approximation</p>
+<p>我们先来分析一下逼近误差这个成分：</p>
+<p>我们对于函数类往往考虑这样的情形，这也符合实际算法的构建：<span class="arithmatex">\(\mathcal{F} = \{f_{\theta} |\theta\in\Theta\}\)</span></p>
+<p>举个例子，神经网络函数空间<span class="arithmatex">\(\mathcal{NN}(2,100,\theta)，L\le2,W\le 100,|B|\le 10\)</span></p>
+<p>表示一个两层，宽度100，神经元绝对值参数小于等于10的网络对应的一个函数空间。而且严格来说，<span class="arithmatex">\(\Theta\)</span>在计算机之中只能取离散的值，例如double,float。</p>
+<p>考虑这一点，我们可以将逼近误差进一步的分解：
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+inf_{\theta \in \Theta} \mathcal L(f) - \mathcal L({f^*}) =inf_{\theta \in \Theta}\mathcal L(f_\theta) - inf_{\theta \in R^n} \mathcal L(f_\theta) + inf_{\theta \in R^n}\mathcal L(f_\theta)- \mathcal L({f^*})
+</script>
+</div>
+事实上，第二个部分是我们单纯依靠提高精度什么的无法解决的，除非我们改变算法本身的结构，也被称之为不可压缩项。</p>
+<p>而且，对于固定的模型例如神经网络，或者SVM实际上往往可以被压缩到很小，因为万能逼近定理等操作，但我们的重点先是分析第一块。</p>
+<p>我们考虑一个具体的回归情景：</p>
+<p><span class="arithmatex">\(f_{\theta}(x) = \theta^T\varphi(x)\)</span></p>
+<p>因此第一部分的误差可以根据损失函数关于第二边缘G-Lipicisz写成如下的形式
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathcal L(f_θ)−\mathcal L(f_{θ′})=E[ℓ(y,f_θ(x))−ℓ(y,f_{θ′}(x))]≤GE[∣f_θ(x)−f_{θ′}(x)∣]
+</script>
+</div>
+其次，我们假设<span class="arithmatex">\(||\theta||_2\le D\)</span></p>
+<p>在经典范例 <span class="arithmatex">\(f_\theta(x) = \theta^\top \varphi(x)\)</span>下</p>
+<p>预测差表示为 <span class="arithmatex">\(|f_\theta(x) - f_{\theta'}(x)| = |(\theta-\theta')^\top \varphi(x)| \leq \|\theta-\theta'\|_2\,\|\varphi(x)\|_2\)</span>。代回去,约束代价就被压成
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\inf_{\theta\in\Theta} R(f_\theta) - \inf_{\theta'\in\mathbb{R}^d} R(f_{\theta'}) \;\leq\; G\,\mathbb{E}\big[\|\varphi(x)\|_2\big]\cdot \inf_{\|\theta\|_2\leq D}\|\theta - \theta_\ast\|_2
+</script>
+</div>
+而对于练习当中认为<span class="arithmatex">\(||\theta||_1\le D\)</span>，依然可以使用Holder不等式
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\inf_{\theta\in\Theta} R(f_\theta) - \inf_{\theta'\in\mathbb{R}^d} R(f_{\theta'}) \;\leq\; G\,\mathbb{E}\big[\|\varphi(x)\|_{\infty}\big]\cdot \inf_{\|\theta\|_1\leq D}\|\theta - \theta_\ast\|_1
+</script>
+</div></p>
+<p>当然，分析完逼近误差之后，我们需要考虑估计误差</p>
+<p>估计误差 <span class="arithmatex">\(R(\hat f) - \inf_{f\in\mathcal{F}} R(f)\)</span> 没法逐点控制,根子在于 <span class="arithmatex">\(\hat f\)</span> 是从数据里选出来的.</p>
+<p>书上的做法就是将其转化为一个一致偏差</p>
+<p><strong>一致偏差</strong>:
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+R(\hat f) - \inf_{f\in\mathcal{F}} R(f) \;\leq\; 2\sup_{f\in\mathcal{F}} \big|\hat R(f) - R(f)\big|
+</script>
+</div>
+推导过程：
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+R(\hat f) - \inf_{f\in\mathcal{F}} R(f) = R(\hat f) - R(g_{\mathcal F}) = \underbrace{\{R(\hat f) - \hat R(\hat f)\}}_{\text{①}} + \underbrace{\{\hat R(\hat f) - \hat R(g_{\mathcal F})\}}_{\text{②}} + \underbrace{\{\hat R(g_{\mathcal F}) - R(g_{\mathcal F})\}}_{\text{③}}
+</script>
+</div>
+对于第一项，第三项，都可以被<span class="arithmatex">\(\sup_{f\in\mathcal{F}}\big(R(f) - \hat R(f)\big)\)</span>控制</p>
+<p>对于第二项，由于<span class="arithmatex">\(\hat R(\hat f) \le \hat R(g_{\mathcal F})\)</span>,<span class="arithmatex">\(\hat{f}\)</span>是<span class="arithmatex">\(\hat{R}\)</span>的极小化结果</p>
+<p>4.4 Estimation Error</p>
+<p>记 <span class="arithmatex">\(H(z_1,\dots,z_n) = \sup_{f\in\mathcal{F}}\big(R(f) - \hat R(f)\big)\)</span>。损失有界在 <span class="arithmatex">\([0,\ell_\infty]\)</span> 时,<strong>改动单个样本 <span class="arithmatex">\(z_i\)</span>,<span class="arithmatex">\(H\)</span> 至多变化 <span class="arithmatex">\(\ell_\infty/n\)</span></strong>(有界差分性质)。于是 McDiarmid 不等式给出集中:以概率 <span class="arithmatex">\(\geq 1-\delta\)</span>,
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+H - \mathbb{E}[H] \;\leq\; \frac{\ell_\infty}{\sqrt{2n}}\sqrt{\log\tfrac{1}{\delta}}
+</script>
+</div>
+我们接下来需要证明这个不等式，是通过**Doob martingale + Hoeffding 引理 + Chernoff bound** 推出来。</p>
+<p>定义 filtration：
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathcal F_i=\sigma(Z_1,\dots,Z_i),
+</script>
+</div>
+表示“已经看到前 <span class="arithmatex">\(i\)</span> 个样本”。</p>
+<p>定义
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+M_i=\mathbb E[H\mid Z_1,\dots,Z_i].
+</script>
+</div></p>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+H-\mathbb EH
+=
+M_n-M_0
+=
+\sum_{i=1}^n (M_i-M_{i-1}).
+</script>
+</div>
+<p>记 martingale difference 为
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+D_i=M_i-M_{i-1}.
+</script>
+</div>
+因此问题变成控制
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\sum_{i=1}^n D_i.
+</script>
+</div></p>
+<ol>
+<li>关键：证明每一步的波动被 <span class="arithmatex">\(c_i\)</span> 控制</li>
+</ol>
+<p>固定前面的变量
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+Z_1=z_1,\dots,Z_{i-1}=z_{i-1}.
+</script>
+</div>
+考虑函数
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\phi_i(z_i)
+=
+\mathbb E_{Z_{i+1},\dots,Z_n}
+\left[
+H(z_1,\dots,z_{i-1},z_i,Z_{i+1},\dots,Z_n)
+\right].
+</script>
+</div>
+也就是说，<span class="arithmatex">\(\phi_i(z_i)\)</span> 是在前 <span class="arithmatex">\(i-1\)</span> 个变量固定、第 <span class="arithmatex">\(i\)</span> 个变量取值为 <span class="arithmatex">\(z_i\)</span> 时，对后面的变量取期望。</p>
+<p>因为 <span class="arithmatex">\(H\)</span> 满足 bounded difference 条件，所以只改变第 <span class="arithmatex">\(i\)</span> 个变量时，
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+|H(\dots,z_i,\dots)-H(\dots,z_i',\dots)|\le c_i.
+</script>
+</div>
+对后面的随机变量取期望后，这个差距仍然不超过 <span class="arithmatex">\(c_i\)</span>，因此
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+|\phi_i(z_i)-\phi_i(z_i')|\le c_i.
+</script>
+</div>
+所以 <span class="arithmatex">\(\phi_i(Z_i)\)</span> 的取值范围长度不超过 <span class="arithmatex">\(c_i\)</span>。</p>
+<p>而<span class="arithmatex">\(M_i=\phi_i(Z_i),\)</span></p>
+<p>因此
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+D_i
+=
+M_i-M_{i-1}
+=
+\phi_i(Z_i)-\mathbb E[\phi_i(Z_i)\mid \mathcal F_{i-1}].
+</script>
+</div>
+它是一个条件均值为零的随机变量，并且它的条件取值范围长度不超过 <span class="arithmatex">\(c_i\)</span>。</p>
+<p>也就是说：
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb E[D_i\mid \mathcal F_{i-1}]=0,
+</script>
+</div>
+且在给定 <span class="arithmatex">\(\mathcal F_{i-1}\)</span> 后，
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+D_i \in [a_i,b_i],
+\qquad b_i-a_i\le c_i.
+</script>
+</div>
+使用 Hoeffding 引理</p>
+<p>Hoeffding 引理说：</p>
+<p>如果随机变量 <span class="arithmatex">\(X\)</span> 满足
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb E X=0,
+\qquad X\in[a,b],
+</script>
+</div>
+Hoeffding引理：</p>
+<p>那么对任意 <span class="arithmatex">\(\lambda&gt;0\)</span>，
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb E e^{\lambda X}
+\le
+\exp\left(\frac{\lambda^2(b-a)^2}{8}\right).
+</script>
+</div>
+这里对 <span class="arithmatex">\(D_i\)</span> 使用条件版 Hoeffding 引理：
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb E\left[
+e^{\lambda D_i}
+\mid
+\mathcal F_{i-1}
+\right]
+\le
+\exp\left(
+\frac{\lambda^2c_i^2}{8}
+\right).
+</script>
+</div>
+控制整体矩母函数</p>
+<p>因为
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+H-\mathbb EH
+=
+\sum_{i=1}^n D_i,
+</script>
+</div>
+所以
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb E e^{\lambda(H-\mathbb EH)}
+=
+\mathbb E e^{\lambda\sum_{i=1}^n D_i}.
+</script>
+</div>
+用条件期望一层一层剥掉：
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb E e^{\lambda\sum_{i=1}^n D_i}
+=
+\mathbb E\left[
+e^{\lambda\sum_{i=1}^{n-1}D_i}
+\mathbb E(e^{\lambda D_n}\mid \mathcal F_{n-1})
+\right].
+</script>
+</div>
+由 Hoeffding 引理，
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb E(e^{\lambda D_n}\mid \mathcal F_{n-1})
+\le
+\exp\left(
+\frac{\lambda^2c_n^2}{8}
+\right).
+</script>
+</div>
+于是
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb E e^{\lambda\sum_{i=1}^nD_i}
+\le
+\exp\left(
+\frac{\lambda^2c_n^2}{8}
+\right)
+\mathbb E e^{\lambda\sum_{i=1}^{n-1}D_i}.
+</script>
+</div>
+不断递推，得到
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb E e^{\lambda(H-\mathbb EH)}
+\le
+\exp\left(
+\frac{\lambda^2}{8}
+\sum_{i=1}^n c_i^2
+\right).
+</script>
+</div>
+用 Chernoff bound 得到尾界</p>
+<p>对任意 <span class="arithmatex">\(\lambda&gt;0\)</span>，
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb P(H-\mathbb EH>t)
+=
+\mathbb P(e^{\lambda(H-\mathbb EH)}>e^{\lambda t}).
+</script>
+</div>
+由 Markov 不等式，
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb P(H-\mathbb EH>t)
+\le
+e^{-\lambda t}
+\mathbb E e^{\lambda(H-\mathbb EH)}.
+</script>
+</div>
+代入上面的矩母函数界：
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb P(H-\mathbb EH>t)
+\le
+\exp\left(
+-\lambda t
++
+\frac{\lambda^2}{8}\sum_{i=1}^n c_i^2
+\right).
+</script>
+</div>
+现在对 <span class="arithmatex">\(\lambda\)</span> 优化。</p>
+<p>令
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+C=\sum_{i=1}^n c_i^2.
+</script>
+</div>
+需要最小化
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+-\lambda t+\frac{\lambda^2C}{8}.
+</script>
+</div>
+求导：
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+-t+\frac{\lambda C}{4}=0.
+</script>
+</div>
+所以
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\lambda=\frac{4t}{C}.
+</script>
+</div>
+代回去：
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+-\lambda t+\frac{\lambda^2C}{8}
+=
+-\frac{4t^2}{C}
++
+\frac{16t^2}{C^2}\frac{C}{8}
+=
+-\frac{4t^2}{C}
++
+\frac{2t^2}{C}
+=
+-\frac{2t^2}{C}.
+</script>
+</div>
+因此
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\boxed{
+\mathbb P(H-\mathbb EH>t)
+\le
+\exp\left(
+-\frac{2t^2}{\sum_{i=1}^n c_i^2}
+\right)
+}
+</script>
+</div>
+这就是 McDiarmid 不等式。</p>
+<p>我们让这个概率变成<span class="arithmatex">\(\delta\)</span>,就可以得到<span class="arithmatex">\(t = \frac{\ell_\infty}{\sqrt{2n}}\sqrt{\log(2/\delta)}\)</span></p>
+<p>把"高概率界定 <span class="arithmatex">\(H\)</span>"<strong>化简成"只需界定它的期望 <span class="arithmatex">\(\mathbb{E}[H]=\mathbb{E}[\sup_f(R-\hat R)]\)</span>"</strong>,再加一个 <span class="arithmatex">\(\frac{\ell_\infty}{\sqrt{2n}}\sqrt{\log(2/\delta)}\)</span> 的尾项就够了。</p>
+<p>最终我们可以</p>
+<p><strong>4.4.2 二次损失(暖身一):</strong> 取平方损失 <span class="arithmatex">\(\ell=(y-\theta^\top\varphi(x))^2\)</span> 加 <span class="arithmatex">\(\|\theta\|_2\leq D\)</span> 的约束。</p>
+<p><div class="arithmatex">
+<script type="math/tex; mode=display">
+\hat R(f)-R(f) = \theta^\top\Big(\underbrace{\tfrac1n\textstyle\sum_i \varphi(x_i)\varphi(x_i)^\top - \mathbb{E}[\varphi(x)\varphi(x)^\top]}_{\text{矩阵偏差 } \Delta_2}\Big)\theta \;-\;2\theta^\top\underbrace{\Big(\tfrac1n\textstyle\sum_i y_i\varphi(x_i)-\mathbb{E}[y\varphi(x)]\Big)}_{\text{向量偏差 }\Delta_1} \;+\;\underbrace{\Big(\tfrac1n\textstyle\sum_i y_i^2-\mathbb{E}[y^2]\Big)}_{\text{标量偏差 }\Delta_0}
+</script>
+</div>
+要点在于:<strong>它关于 <span class="arithmatex">\(\theta\)</span> 是个二次型</strong>(二次项 + 线性项 + 常数)。</p>
+<p>偏差展开成三项</p>
+<ul>
+<li>二次项:<span class="arithmatex">\(|\theta^\top\Delta_2\,\theta|\leq \|\Delta_2\|_{\text{op}}\|\theta\|_2^2 \leq D^2\|\Delta_2\|_{\text{op}}\)</span>(用算子范数,<span class="arithmatex">\(\|\Delta_2\|_{\text{op}}=\sup_{\|u\|_2=1}\|\Delta_2 u\|_2\)</span>);</li>
+<li>线性项:<span class="arithmatex">\(|2\theta^\top\Delta_1|\leq 2\|\theta\|_2\|\Delta_1\|_2 \leq 2D\|\Delta_1\|_2\)</span>(Cauchy–Schwarz);</li>
+<li>常数项:就是 <span class="arithmatex">\(|\Delta_0|\)</span>。</li>
+</ul>
+<p>合起来:
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\sup_{\|\theta\|_2\leq D}\big|R(f)-\hat R(f)\big| \;\leq\; D^2\,\big\|\Delta_2\big\|_{\text{op}} \;+\; 2D\,\big\|\Delta_1\big\|_2 \;+\; \big|\Delta_0\big|
+</script>
+</div>
+<strong><span class="arithmatex">\(\theta\)</span> 和 sup 在这一步就被彻底消掉了。</strong></p>
+<p>由于关于 <span class="arithmatex">\(\theta\)</span> 是二次的,在球上的 sup 能**闭式**算出来(用算子范数),于是只剩三个**非一致**的偏差,每个都是 <span class="arithmatex">\(O(1/\sqrt n)\)</span>,直接拼出 <span class="arithmatex">\(O(1/\sqrt n)\)</span> 的一致界。</p>
+<p>教训:平方损失靠闭式很轻松,但别的损失没有闭式,所以**必须引入新工具**。</p>
+<p>(书还提醒:从这节起不再要求损失是凸的)</p>
+<p><strong>4.4.3 有限模型类(暖身二):</strong> <span class="arithmatex">\(\mathcal{F}\)</span> 有限时,用并集界把 sup 拆开,对每个 <span class="arithmatex">\(f\)</span> 套 Hoeffding,得到</p>
+<p><strong>第一步,并集界把 sup 拆成逐个。</strong> "存在某个 $f $ 偏差 $\geq t $"这件事,无非是"各个 $f $ 偏差 $\geq t $"这些事件的并,于是概率可加:
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb{P}\Big(\sup_{f\in\mathcal{F}}\big(\hat R(f)-R(f)\big)\geq t\Big) \;\leq\; \sum_{f\in\mathcal{F}}\mathbb{P}\big(\hat R(f)-R(f)\geq t\big)
+</script>
+</div>
+这一步的好处是右边每一项都是**固定的** $f $,sup 的纠缠没了。</p>
+<p><strong>第二步,对每个固定 <span class="arithmatex">\(f\)</span> 套 Hoeffding。</strong> <span class="arithmatex">\(\hat R(f)\)</span> 是 <span class="arithmatex">\(n\)</span> 个有界独立量的平均,期望为 <span class="arithmatex">\(R(f)\)</span>,所以 <span class="arithmatex">\(\mathbb{P}\big(\hat R(f)-R(f)\geq t\big)\leq \exp(-2nt^2/\ell_\infty^2)\)</span>。代回去,<span class="arithmatex">\(|\mathcal{F}|\)</span> 项一加(连同两侧的因子 2):
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb{P}\Big(\sup_{f\in\mathcal{F}}\big(\hat R(f)-R(f)\big)\geq t\Big) \;\leq\; 2|\mathcal{F}|\exp\!\Big(\frac{-2nt^2}{\ell_\infty^2}\Big)
+</script>
+</div>
+<strong>第三步,令右边 $=\delta $ 反解 $t $。</strong> 得到:以概率 $\geq 1-\delta $,
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\sup_{f\in\mathcal{F}}\big(\hat R(f)-R(f)\big) \;\leq\; \frac{\ell_\infty}{\sqrt{2n}}\sqrt{\log\frac{2|\mathcal{F}|}{\delta}} \;\leq\; \ell_\infty\sqrt{\frac{\log(2|\mathcal{F}|)}{2n}} \;+\; \frac{\ell_\infty}{\sqrt{2n}}\sqrt{\log\frac{1}{\delta}}
+</script>
+</div></p>
+<p><div class="arithmatex">
+<script type="math/tex; mode=display">
+\mathbb{E}\Big[\sup_{f\in\mathcal{F}}\big(\hat R(f) - R(f)\big)\Big] \;\leq\; \ell_\infty\sqrt{\frac{\log(2|\mathcal{F}|)}{2n}}
+</script>
+</div>
+结论很干净:<strong>当 <span class="arithmatex">\(\log|\mathcal{F}| \ll n\)</span> 时学习就可行</strong>。函数类的"大小"只通过 <span class="arithmatex">\(\log|\mathcal{F}|\)</span> 进来。这是对一致偏差的第一个通用控制。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 huangblac
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/HuangBlac" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
