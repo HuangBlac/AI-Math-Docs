@@ -1,6 +1,6 @@
 # Ch7.3–7.4 核的表示、列采样与随机特征
 
-> 状态：`note_unverified`。由《ch7.3.pdf》3 页及《7.4.3 Random Feature.pdf》第 1、8 页整理。对应 §7.3.1、§7.3.3、§7.4.1–7.4.3，并保留原稿 §7.6.1 的线性估计器视角。来源见[导入记录](handwritten-import-20260908.md)。
+> 状态：`note_unverified`。由《ch7.3.pdf》3 页、《7.4.3 Random Feature.pdf》第 1、8 页，以及 2026-09-09《Ch7.2-7.3.pdf》的第 6–7 页整理。对应 §7.3.1–§7.3.3、§7.4.1–§7.4.3，并保留原稿 §7.6.1 的线性估计器视角。来源见 [2026-09-08 导入记录](handwritten-import-20260908.md)与 [2026-09-10 导入记录](handwritten-import-20260910.md)。
 
 本篇只覆盖上述小节，不表示 §7.3–7.4 全部已有笔记。 表示定理的证明、核构造与新增 Mercer 习题笔记见 [Ch7.2 核基础](ch7.2-representer-kernel-foundations.md)。
 

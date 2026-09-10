@@ -28,7 +28,7 @@
 | Ch5.4.1 机器学习优化 | [强凸 SGD](ch5.4.1-strong-convex-sgd.md) | ✅ |
 | Ch6.1–6.3 局部平均方法 | [估计器与一致性分析](ch6.1-6.3-local-averaging.md) | 🔶 手写稿整理；习题保留原状 |
 | Ch6.4–6.5 局部平均方法 | [普遍一致性与高阶光滑性](ch6.4-6.5-universal-consistency.md) | 🔶 手写稿整理；构造未补完 |
-| Ch7.2–7.3 核方法 | [表示定理、核构造与 Mercer 特征](ch7.2-7.3-representer-kernel-foundations.md) | 🔶 新手写稿；P7.3 反向未完、Ex 7.2 有误 |
+| Ch7.2–7.3 核方法 | [表示定理、核构造与 Mercer 特征](ch7.2-representer-kernel-foundations.md) | 🔶 新手写稿；P7.3 反向未完、Ex 7.2 有误 |
 | Ch7.3–7.4 核方法 | [核表示、列采样与随机特征](ch7.3-7.4-kernels-algorithms.md) | 🔶 部分小节；含 §7.6.1 草稿 |
 | Ch7.5 核方法 | [泛化保证与逼近误差](ch7.5-generalization.md) | 🔶 手写稿整理；延拓未完成 |
 | Ch7.6 核方法 | [岭回归的理论分析](ch7.6-ridge-theory.md) | 🔶 待人工签认 |
@@ -45,10 +45,6 @@
 ## Part III — 进阶 (Ch10–Ch15)
 
 按当前锁定教材，第三部分为 Ch10 集成学习、Ch11 在线学习与多臂赌博机、Ch12 过参数化模型、Ch13 结构化预测、Ch14 概率方法、Ch15 下界。当前未建立对应的逐章专题笔记。
-
-## 笔记导入
-
-原始材料、整理稿与完成状态的处理方式见[学习笔记导入流程](note-import.md)。
 
 ---
 

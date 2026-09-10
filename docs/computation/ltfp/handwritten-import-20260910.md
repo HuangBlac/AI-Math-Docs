@@ -6,7 +6,7 @@
 
 - 原文件：`Ch7.2-7.3.pdf`，共 7 页，全部为无文字层的扫描页。
 - SHA-256：`ae642bcd843a3ec3d1c95e658044811ace32c23b94f5fe9761821647202ca949`。
-- 整理稿：[Ch7.2–7.3 表示定理、核构造与 Mercer 特征](ch7.2-7.3-representer-kernel-foundations.md)。
+- 整理稿：[Ch7.2–7.3 表示定理、核构造与 Mercer 特征](ch7.2-representer-kernel-foundations.md)。
 - 校对教材：锁定版 *Learning Theory from First Principles*，SHA-256 `ddeba8166e4dc2aedc0b863e67af9891178a5e13f3316fd672d49cd59e486dea`；主要核对印刷页 181–190。
 
 全部内容保持 `note_unverified`。这次逐页查看了原稿，并对部分记号和定理表述进行针对性核对，没有将整篇标为已验证或已掌握。

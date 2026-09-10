@@ -128,9 +128,10 @@ nav:
       - Ch5.4.1 强凸SGD: computation/ltfp/ch5.4.1-strong-convex-sgd.md
       - Ch6.1-6.3 局部平均与一致性: computation/ltfp/ch6.1-6.3-local-averaging.md
       - Ch6.4-6.5 普遍一致性与光滑性: computation/ltfp/ch6.4-6.5-universal-consistency.md
-      - Ch7.2-7.3 表示定理与核基础: computation/ltfp/ch7.2-7.3-representer-kernel-foundations.md
+      - Ch7.2-7.3 表示定理与核基础: computation/ltfp/ch7.2-representer-kernel-foundations.md
       - Ch7.3-7.4 核表示与近似算法: computation/ltfp/ch7.3-7.4-kernels-algorithms.md
       - Ch7.5 泛化保证与逼近误差: computation/ltfp/ch7.5-generalization.md
+      - Ch7.6 岭回归的理论分析: computation/ltfp/ch7.6-ridge-theory.md
       - Ch9.1-9.2 神经网络理论: computation/ltfp/ch9.1-9.2-neural-networks.md
       - Ch9.2-9.3 复杂度与变差范数: computation/ltfp/ch9.2-9.3-variation-norm.md
       - 手写材料导入与未完成项: computation/ltfp/handwritten-import-20260908.md
