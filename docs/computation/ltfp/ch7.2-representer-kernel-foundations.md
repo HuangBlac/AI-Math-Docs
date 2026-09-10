@@ -210,61 +210,9 @@ f(x)=L_x(f)=\langle f,g_x\rangle_{\mathcal H}.
 
 **原始状态：已有作答尝试，关键一步不成立。** 问号处是整理时标出的断点：$\alpha_i\alpha_j$ 可能为负，不能由逐点不等式直接得到加权总和的不等式。保留已有尝试，不补写正确证明。
 
-## 8. §7.3.2 周期 Fourier 特征的起步
 
-来源：原稿第 6 页；教材印刷页 187–188。
 
-在 $\mathcal X=[0,1]$ 上讨论 $k(x,x')=q(x-x')$，其中 q 作 1 周期延拓。原稿从 Fourier 系数的加权惩罚出发：
-
-```math
-f(x)=\sum_{m\in\mathbb Z}\widehat f_m e^{2\pi imx},
-\qquad\|f\|_c^2=\sum_{m\in\mathbb Z}c_m|\widehat f_m|^2,\quad c_m>0.
-```
-
-采用双线性配对的记法，可令
-
-```math
-\theta_m=\sqrt{c_m}\widehat f_m,
-\qquad\psi_m(x)=\frac1{\sqrt{c_m}}e^{2\pi imx},
-\qquad f(x)=\sum_m\theta_m\psi_m(x),
-\qquad\|\theta\|_{\ell^2}^2=\|f\|_c^2.
-```
-
-> **记号整理：** 原稿 θ 式出现 $|\widehat f_m|$，会丢失符号或相位，这里恢复系数本身。上式直接采用原稿的配对和式；若改写为复 Hilbert 内积，须随内积的共轭约定调整分量，不能将两种配对混写。
-
-**原始状态：只写到特征分量。** 周期核的最终求和式、特征逐点平方可和条件和具体核例子没有继续写。这里保留停止位置。
-
-## 9. Exercise 7.6：Mercer 核与 ℓ² 特征 {#ex-7-6}
-
-来源：原稿第 7 页；教材印刷页 190。
-
-给定概率分布 P、$L^2(P)$ 的可数标准正交基 $(\phi_i)_{i\in I}$ 及可和的正序列 $(\lambda_i)$。原稿考虑
-
-```math
-k(x,x')=\sum_{i\in I}\lambda_i\phi_i(x)\phi_i(x').
-```
-
-已有的正定性计算整理为
-
-```math
-\begin{aligned}
-\alpha^\top K\alpha
-&=\sum_{j,k=1}^n\alpha_j\alpha_k\sum_{i\in I}\lambda_i\phi_i(x_j)\phi_i(x_k)\\
-&=\sum_{i\in I}\lambda_i\left(\sum_{j=1}^n\alpha_j\phi_i(x_j)\right)^2\ge0.
-\end{aligned}
-```
-
-并有对称性 $k(x,x')=k(x',x)$。原稿明确选择了序列空间及特征分量：
-
-```math
-\mathcal H=\ell^2(I),\qquad
-\Phi(x)=(\sqrt{\lambda_i}\phi_i(x))_{i\in I},\qquad
-k(x,x')=\langle\Phi(x),\Phi(x')\rangle_{\ell^2(I)}.
-```
-
-**原始状态：正定性推导和特征表示已写，条件待核对。** 原稿末行误将特征序列排成求和，已按前文恢复为序列。上述表示需在所讨论点满足 $\sum_i\lambda_i|\phi_i(x)|^2<\infty$；原稿没有讨论该逐点条件、基函数代表元或交换求和的适用范围。这里只标出尚未展开处，不追加证明。
-
-## 10. 本次进展与仍保留的空白
+## 仍保留的空白
 
 | 对象 | 本次笔记实际写到的程度 |
 |---|---|
@@ -273,7 +221,5 @@ k(x,x')=\langle\Phi(x),\Phi(x')\rangle_{\ell^2(I)}.
 | P7.3 | 正向写出；反向停在候选内积、再生关系及完备性问题 |
 | Ex 7.1 | 有 Riesz 表示与再生关系的简短作答 |
 | Ex 7.2 | 有尝试，但加权不等式一步错误，未改写成正确答案 |
-| §7.3.2 | 新增 Fourier 加权范数与特征分量，后续未写 |
-| Ex 7.6 | 有平方和论证与 ℓ² 特征表示，分析条件未展开 |
 
 因此，这批材料把此前 Ch7.2 与 Mercer 特征的笔记缺口向前推进了一步；它不自动意味着整个 Ch7.3 已覆盖，也不改变人工签认或掌握状态。

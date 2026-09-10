@@ -167,7 +167,7 @@ Wasserstein 距离度量的是把一份概率质量搬运成另一份所需的�
 对 $G$-Lipschitz 损失，收缩不等式把损失类的复杂度控制为预测函数类复杂度的常数倍。经验风险最小化的期望统计误差典型地满足
 
 ```math
-\mathbb E\!left[R(\widehat f)-\inf_{f\in\mathcal F}R(f)\right]
+\mathbb E\!\left[R(\widehat f)-\inf_{f\in\mathcal F}R(f)\right]
 \lesssim
 4G\,\mathfrak R_n(\mathcal F),
 ```

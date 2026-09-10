@@ -2,15 +2,13 @@
 
 > 状态：`note_unverified`。由《ch7.3.pdf》3 页及《7.4.3 Random Feature.pdf》第 1、8 页整理。对应 §7.3.1、§7.3.3、§7.4.1–7.4.3，并保留原稿 §7.6.1 的线性估计器视角。来源见[导入记录](handwritten-import-20260908.md)。
 
-本篇只覆盖上述小节，不表示 §7.3–7.4 全部已有笔记。 表示定理的证明、核构造与新增 Mercer 习题笔记见 [Ch7.2–7.3 核基础](ch7.2-7.3-representer-kernel-foundations.md)。
+本篇只覆盖上述小节，不表示 §7.3–7.4 全部已有笔记。 表示定理的证明、核构造与新增 Mercer 习题笔记见 [Ch7.2 核基础](ch7.2-representer-kernel-foundations.md)。
 
-## 1. 多项式核与特征维数
+### Ch7.3.1 多项式核与特征维数
 
 来源：《ch7.3.pdf》第 2 页；教材印刷页 186–187。
 
-### 1.1 齐次核
-
-对正整数 $s$，
+下面考虑多项式核，对正整数 $s$，
 
 ```math
 k(x,x')=(x^\top x')^s
@@ -19,30 +17,37 @@ k(x,x')=(x^\top x')^s
 \prod_{j=1}^d(x_jx_j')^{\alpha_j}.
 ```
 
-每个多重指标 $\alpha\in\mathbb N^d$ 对应一个单项式特征，系数可拆到两边的平方根中。这些特征张成 $s$ 次齐次多项式空间；原稿记录的维数为
+每个多重指标 $\alpha\in\mathbb N^d$ 对应一个单项式特征，系数可拆到两边的平方根中。这些特征张成 $s$ 次齐次多项式空间；
+
+并且可以用二项式定理^4 显式展开如下：
 
 ```math
-\binom{d+s-1}{s}.
+\binom{s}{\alpha_1, \dots, \alpha_d} \underbrace{(x_1^{\alpha_1} \cdots x_d^{\alpha_d})((x'_1)^{\alpha_1} \cdots (x'_d)^{\alpha_d})}_{},
 ```
 
-原稿以“把 $s$ 分成 $d$ 份”解释计数，并尝试归纳。$d=1$ 时只有一个单项式，原稿难辨的“0/1”据此整理为 1；中间组合数求和没有写成完整证明，不在这里补写。
+我们有显式特征映射：$\phi(x) = \left( \binom{s}{\alpha_1, \dots, \alpha_d}^{1/2} x_1^{\alpha_1} \cdots x_d^{\alpha_d} \right)_{\alpha_1 + \cdots + \alpha_d = s}$，而函数集是 $\mathbb{R}^d$ 上 $s$ 次齐次^5 多项式的集合，其维数为 $\binom{d + s - 1}{s}$。
 
-### 1.2 非齐次核：归纳未完成
+**Ex7.3**，考虑非齐次核核 $k(x, x') = (1 + x^\top x')^s$ 对应所有满足 $\alpha_1 + \cdots + \alpha_d \leqslant s$ 的单项式 $x_1^{\alpha_1} \cdots x_d^{\alpha_d}$ 的集合。并证明特征空间的维数为 $\binom{d + s}{s}$。
 
-已有展开为
+已有展开为$k(x,x')=(1+x^\top x')^s=\sum_{k=0}^s\binom sk(x^\top x')^k.$对应多重指标条件 $\sum_i\alpha_i\le s$。
 
-```math
-k(x,x')=(1+x^\top x')^s
-=\sum_{k=0}^s\binom sk(x^\top x')^k.
-```
+记录 $d=1$ 时共有 $s+1$ 个特征，使用归纳法证明后续部分：
 
-对应多重指标条件 $\sum_i\alpha_i\le s$。原稿记录 $d=1$ 时共有 $s+1$ 个特征，然后写“归纳法证明”“d=k”“d=k+1”，在此停止。
+已知$d\le k$时，已有特征空间的维数为$\binom{d+s}{s}$
 
-> **原始完成状态：未完成。** 不新增最终组合数公式或归纳步骤；保留原稿尚未收尾的计数讨论。
+考虑d=k+1时，对应的是满足$\alpha_1+\alpha_2+\cdots+\alpha_k+\alpha_{k+1}\le s$
 
-## 2. 平移不变核与 Fourier 变换
+可以选取$\alpha_{k+1}=0,1,\cdots,s$分别对应$\sum_{j=0}^s\binom{k+j}{j}$的求和结果，根据归纳法，可知求和结果确实是
+
+$\binom{k+1+s}{s}=\binom{k+1+s}{k+1}$
+
+
+
+### 7.3.2平移不变核与 Fourier 变换
 
 来源：《ch7.3.pdf》第 1 页；教材 §7.3.3，印刷页 191–192。
+
+#### Fouier变换记号
 
 全文统一采用
 
@@ -61,7 +66,67 @@ f(x)=\frac1{(2\pi)^d}\int_{\mathbb R^d}\widehat f(\omega)e^{i\omega^\top x}\,d\o
 
 平移不变核写作 $k(x,x')=g(x-x')$。这里用 $g$ 表示核剖面，避免与 [Ch6](ch6.1-6.3-local-averaging.md) 的平滑密度 $q$ 混淆。
 
-### Proposition 7.4：Bochner 定理
+#### 周期 Fourier 特征的起步
+
+来源：原稿第 6 页；教材印刷页 187–188。
+
+在 $\mathcal X=[0,1]$ 上讨论 $k(x,x')=q(x-x')$，其中 q 作 1 周期延拓。原稿从 Fourier 系数的加权惩罚出发：
+
+```math
+f(x)=\sum_{m\in\mathbb Z}\widehat f_m e^{2\pi imx},
+\qquad\|f\|_c^2=\sum_{m\in\mathbb Z}c_m|\widehat f_m|^2,\quad c_m>0.
+```
+
+采用双线性配对的记法，可令
+
+```math
+\theta_m=\sqrt{c_m}\widehat f_m,
+\qquad\psi_m(x)=\frac1{\sqrt{c_m}}e^{2\pi imx},
+\qquad f(x)=\sum_m\theta_m\psi_m(x),
+\qquad\|\theta\|_{\ell^2}^2=\|f\|_c^2.
+```
+
+> **记号整理：** 原稿 θ 式出现 $|\widehat f_m|$，会丢失符号或相位，这里恢复系数本身。上式直接采用原稿的配对和式；若改写为复 Hilbert 内积，须随内积的共轭约定调整分量，不能将两种配对混写。
+
+**原始状态：只写到特征分量。** 周期核的最终求和式、特征逐点平方可和条件和具体核例子没有继续写。这里保留停止位置。
+
+所以这和平移不变核有什么关系呢？
+
+
+
+**Exercise 7.6**：Mercer 核与 ℓ² 特征 
+
+来源：pdf 7.2-7.3第 7 页；教材印刷页 190。
+
+给定概率分布 P、$L^2(P)$ 的可数标准正交基 $(\phi_i)_{i\in I}$ 及可和的正序列 $(\lambda_i)$。原稿考虑
+
+```math
+k(x,x')=\sum_{i\in I}\lambda_i\phi_i(x)\phi_i(x').
+```
+
+已有的正定性计算整理为
+
+```math
+\begin{aligned}
+\alpha^\top K\alpha
+&=\sum_{j,k=1}^n\alpha_j\alpha_k\sum_{i\in I}\lambda_i\phi_i(x_j)\phi_i(x_k)\\
+&=\sum_{i\in I}\lambda_i\left(\sum_{j=1}^n\alpha_j\phi_i(x_j)\right)^2\ge0.
+\end{aligned}
+```
+
+并有对称性 $k(x,x')=k(x',x)$。原稿明确选择了序列空间及特征分量：
+
+```math
+\mathcal H=\ell^2(I),\qquad
+\Phi(x)=(\sqrt{\lambda_i}\phi_i(x))_{i\in I},\qquad
+k(x,x')=\langle\Phi(x),\Phi(x')\rangle_{\ell^2(I)}.
+```
+
+**原始状态：正定性推导和特征表示已写，条件待核对。** 原稿末行误将特征序列排成求和，已按前文恢复为序列。上述表示需在所讨论点满足 $\sum_i\lambda_i|\phi_i(x)|^2<\infty$；原稿没有讨论该逐点条件、基函数代表元或交换求和的适用范围。这里只标出尚未展开处，不追加证明。
+
+### Ch 7.3.3.$\mathbb R^d$上的平移不变核
+
+**Proposition 7.4**：Bochner 定理
 
 在通常的连续性条件下，连续平移不变核正定，当且仅当其剖面是非负有限 Borel 测度的逆 Fourier 变换。按上面的归一化写作
 
@@ -82,12 +147,18 @@ e^{i\omega^\top x_j}\overline{e^{i\omega^\top x_k}}\,d\mu(\omega)\\
 \end{aligned}
 ```
 
-反方向原稿只记“正定函数 → 正定分布 → Fourier 变换是正测度”的路线，未展开证明，仍保留为简写。
+反方向目前只考虑“正定函数 → 正定分布 → Fourier 变换是正测度”的路线，未展开证明，保留为简写。
 
-当 $g,\widehat g$ 均可积时，原稿记录的判据为 $\widehat g(\omega)\ge0$。
 
-## 3. Fourier 特征与 RKHS 范数
 
+其中，当 $g,\widehat g$ 均可积时，判据为 $\forall \omega\in\mathbb R^d,\widehat g(\omega)\ge0$。
+
+所以为什么这样就可以推出是正定核呢？我们根据Prop 7.3，试着把$k(x,x')=g(x-x')$写成内积的形式
+
+我们先考虑一个傅里叶变换的形式：
+$$
+k(x,x')=g(x-x')\\=\frac1{(2\pi)^d}\int_{\mathbb R^d}\widehat{g}(\omega)e^{i\omega^\top(x-x')}d\omega \\=\frac1{(2\pi)^d}\int_{\mathbb R^d}\sqrt{\widehat{g}(\omega)}e^{i\omega^\top x}(\sqrt{\widehat{g}(\omega)}e^{i\omega^\top x'})^*d\omega\\=\langle\phi_{\omega}(x),\phi_{\omega}(x')\rangle_{\mathcal{H}}
+$$
 由非负谱密度得到复值特征
 
 ```math
@@ -96,18 +167,36 @@ e^{i\omega^\top x_j}\overline{e^{i\omega^\top x_k}}\,d\mu(\omega)\\
 k(x,x')=\int\phi_\omega(x)\overline{\phi_\omega(x')}\,d\omega.
 ```
 
-若按原稿的积分配对写 $f(x)=\int\phi_\omega(x)\theta_\omega\,d\omega$，则形式上
+所以指标$\omega$不可数怎么办？这里应理解为 $L^2$ 型函数空间，而非有限维特征数组；不能仅凭形式积分就宣称完成了再生性质的证明。
+
+如果给定一个$\mathcal{H}$上的一个元素$f=f(x)=\int\phi_\omega(x)\theta_\omega\,d\omega$，这是$\omega$可数对应的求和进行的拓展
+
+则形式上：
 
 ```math
 \theta_\omega=(2\pi)^{-d/2}\frac{\widehat f(\omega)}{\sqrt{\widehat g(\omega)}},
 \qquad
-\|f\|_{\mathcal H}^2
+\|f\|_{\mathcal H}^2:=\|\theta\|_{L_2(\omega)}
 =\frac1{(2\pi)^d}\int\frac{|\widehat f(\omega)|^2}{\widehat g(\omega)}\,d\omega.
 ```
 
-原稿的“指标 $\omega$ 不可数”意在提醒，这里应理解为 $L^2$ 型函数空间，而非有限维特征数组；不能仅凭形式积分就宣称完成了再生性质的证明。涉及 $\widehat g=0$ 的地方应限制在谱支撑上并满足有限范数条件；原稿没有展开这些分析细节。
+但是我们还需要验证这样的定义范数操作，可以保证这还是一个RKHS，
 
-## 4. 表示定理与核岭回归计算
+保持再生核性质$\langle f,k(\cdot,x)\rangle_{\mathcal{H}}=f(x)$
+
+固定 \(x\)，令 \(k_x(t)=k(t,x)=q(t-x)\)。对变量 \(t\) 做 Fourier 变换：
+
+\[ \widehat{k_x}(\omega) =e^{-i\omega^\top x}\widehat q(\omega). \]
+
+于是
+
+\[ \begin{aligned} \langle f,k_x\rangle_{\mathcal H} &=\frac1{(2\pi)^d} \int \frac{\widehat f(\omega) \overline{e^{-i\omega^\top x}\widehat q(\omega)}} {\widehat q(\omega)}\,d\omega\\ &=\frac1{(2\pi)^d} \int\widehat f(\omega)e^{i\omega^\top x}\,d\omega\\ &=f(x). \end{aligned} \]
+
+**分母中的 \(\widehat q\) 正好抵消核带来的 \(\widehat q\)，剩下 Fourier 反演，取出了 \(f(x)\)。** 这就是这套范数与核相匹配的关键。
+
+
+
+## Ch7.4.1 表示定理与核岭回归计算
 
 来源：《ch7.3.pdf》第 3 页；教材 §7.4.1。
 

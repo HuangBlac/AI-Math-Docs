@@ -27,7 +27,7 @@
 | Ch4 | 经验风险最小化（Empirical Risk Minimization） | 4.1.1–4.1.3、4.2–4.5.3；4.1.4缺失 | 仅明确记录 Exercise 4.8 | 仅明确记录 P4.4 |
 | Ch5 | 机器学习优化（Optimization for Machine Learning） | 5.1–5.4.1，含 SGD/SVRG 重叠 | 明确出现5.18–5.21、5.26–5.29、5.31–5.34 | 明确出现 P5.6、P5.7、P5.8 |
 | Ch6 | 局部平均方法（Local Averaging Methods） | [§6.1–6.3](ch6.1-6.3-local-averaging.md)、[§6.4–6.5](ch6.4-6.5-universal-consistency.md) 已整理，均为 `note_unverified` | 6.2/6.3/6.5 有简写；6.4 仅题号；6.6 构造未写；6.1 为 `source_only` | P6.1、P6.3 明确记录；P6.2 有 k 近邻界但原稿未标编号 |
-| Ch7 | 核方法（Kernel Methods） | §7.2、§7.3 核基础/7.3.1/7.3.2（部分）/7.3.3、§7.4.1–7.4.3、§7.5 与 §7.6.1 已整理 | 7.1 有简写、7.2 有错误尝试、7.6 有推导；7.8 有草算；7.10/7.21 仅题意；7.3 有未编号对应草稿，其余 `source_only` | P7.1–P7.4 明确记录（P7.3 反向未完成）；P7.5–P7.8 为 `source_only` |
+| Ch7 | 核方法（Kernel Methods） | §7.2、§7.3 核基础/7.3.1/7.3.2（部分）/7.3.3、§7.4.1–7.4.3、§7.5 与 §7.6.1 已整理；原有 §7.6 理论笔记保留待签认 | 7.1 有简写、7.2 有错误尝试、7.6 有推导；7.8 有草算；7.10/7.21 仅题意；7.3 有未编号对应草稿，其余 `source_only` | P7.1–P7.4 明确记录（P7.3 反向未完成）；P7.5–P7.8 已记录但未核验 |
 | Ch8 | 稀疏方法（Sparse Methods） | 无逐章笔记；背景稀疏学习笔记未绑定 Ch8 | 17道题均为 `source_only` | P8.1–P8.6 为 `source_only` |
 | Ch9 | 神经网络（Neural Networks） | 原有 Ch9.1–9.2，加 [§9.2–9.3 部分笔记](ch9.2-9.3-variation-norm.md)，均未签认 | 9.2 有部分推导，未收尾；其余为 `source_only`（另有未编号的相关草算） | P9.2 明确记录、验证未完成；P9.1/P9.3 仍无正式编号记录 |
 
@@ -53,6 +53,20 @@
 | Proposition 4.5 | 4.5.4 Linear Predictions | 未明确记录 |
 | Proposition 4.6 | 4.5.5 Regularized Objectives | 未明确记录 |
 | Proposition 4.7 | 4.5.5–4.5.6 Norm-Penalized Estimation | 未明确记录 |
+
+## Ch7.6 细分映射
+
+`ch7.6-ridge-theory.md` 已覆盖核岭回归的算法形式、总体风险的偏差—方差分解、经验算子与总体算子的比较，以及有效维数和逼近误差。该文件仍是待人工签认的精读笔记，因此下表只记录“可定位”，不把它提升为已验证或已掌握。
+
+| 对象 | 教材小节 | 当前状态 |
+|---|---|---|
+| Proposition 7.5 | 7.6.2 Bias-Variance Decomposition | `proposition_explicit`；待教材逐条核验 |
+| Lemma 7.1 | 7.6.3 Relating Empirical and Population Operators | 已明确记录；待教材逐条核验 |
+| Proposition 7.6 | 7.6.4 Well-Specified Case | `proposition_explicit`；待教材逐条核验 |
+| Proposition 7.7 | 7.6.4 Well-Specified Case | `proposition_explicit`；待教材逐条核验 |
+| Lemma 7.2 | 7.6.5 Beyond the Well-Specified Case | 已明确记录；待教材逐条核验 |
+| Proposition 7.8 | 7.6.5 Beyond the Well-Specified Case | `proposition_explicit`；待教材逐条核验 |
+| Exercise 7.1–7.23 | Ch7 各节 | 当前 7.1 有简写、7.2 有错误尝试、7.6 有推导、7.8 有草算，7.10/7.21 仅题意；7.3 有未编号对应草稿，其余 `source_only`，§7.6 理论笔记不等同于习题作答 |
 
 ## 2026-09-10 新增 Ch7.2–7.3 原稿
 
