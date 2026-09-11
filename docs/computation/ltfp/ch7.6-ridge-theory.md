@@ -36,6 +36,25 @@ R(f)-R(f^\star)=\|f-f^\star\|_{L^2(p)}^2.
 
 这一章同时出现两个 Hilbert 空间。$\mathcal H$ 控制函数的复杂度，$L^2(p)$ 衡量预测误差。两种范数不能混写。
 
+## 与局部平均方法的联系（原稿 §7.6.1）
+
+来源：《7.4.3 Random Feature.pdf》第 8 页。
+
+令 $k_x=(k(x,x_1),\ldots,k(x,x_n))^\top$，核岭回归可写成
+
+```math
+\widehat f_\lambda(x)=k_x^\top(K+n\lambda I)^{-1}y
+=\sum_i\widehat w_i(x)y_i,
+\qquad
+\widehat w(x)=(K+n\lambda I)^{-1}k_x.
+```
+
+训练点上的拟合矩阵为 $H_\lambda=K(K+n\lambda I)^{-1}$。这里始终保留 $n\lambda$，原稿在同页混用的 $\lambda$ 不再作为另一套未声明的尺度。
+
+核岭回归也对标签线性，但其权重可以为负，且不一定和为 1。这使它与 Ch6 的非负局部平均不同。
+
+原稿讨论无正则项可能带来的问题，最后停在“exp”，没有写出例子；这里保留为“例子未写”，不补一个反例。
+
 ## 7.6.1 核岭回归作为线性估计量
 
 表示定理给出

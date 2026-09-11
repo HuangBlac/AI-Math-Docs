@@ -8,3 +8,6 @@ __pycache__/
 _ingest/
 .study/
 CLAUDE.md
+
+# 本地转录、学习计划与技能分发包
+output/

@@ -1,4 +1,6 @@
 # Plan: LFTP 前九章可验证学习系统修复与落地
+
+> 状态说明（2026-09-10）：这是学习工具的历史设计与验收计划，保留原目标、期限和评审上下文，不作为当前个人阅读排程。用户已于 2026-09-09 改为优先建立 Ch7 整体认知，当前工作区计划见 `output/ltfp-ch7-mainline-20260909.md`（本地文件，未分发时以最新用户指示为准）。本文件的旧截止日及 96 题目标不应自动变为当前任务；教材实际路径和哈希以 `study.toml` 为准。
 _Locked via grill - by Codex + 黄南樵; revised after adversarial review round 1_
 
 ## Goal

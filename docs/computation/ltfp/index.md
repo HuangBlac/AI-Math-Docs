@@ -29,7 +29,7 @@
 | Ch6.1–6.3 局部平均方法 | [估计器与一致性分析](ch6.1-6.3-local-averaging.md) | 🔶 手写稿整理；习题保留原状 |
 | Ch6.4–6.5 局部平均方法 | [普遍一致性与高阶光滑性](ch6.4-6.5-universal-consistency.md) | 🔶 手写稿整理；构造未补完 |
 | Ch7.2–7.3 核方法 | [表示定理、核构造与 Mercer 特征](ch7.2-representer-kernel-foundations.md) | 🔶 新手写稿；P7.3 反向未完、Ex 7.2 有误 |
-| Ch7.3–7.4 核方法 | [核表示、列采样与随机特征](ch7.3-7.4-kernels-algorithms.md) | 🔶 部分小节；含 §7.6.1 草稿 |
+| Ch7.3–7.4 核方法 | [核表示、列采样与随机特征](ch7.3-7.4-kernels-algorithms.md) | 🔶 已接续 Sobolev、随机特征与对偶补充；Ex7.11 未完成 |
 | Ch7.5 核方法 | [泛化保证与逼近误差](ch7.5-generalization.md) | 🔶 手写稿整理；延拓未完成 |
 | Ch7.6 核方法 | [岭回归的理论分析](ch7.6-ridge-theory.md) | 🔶 待人工签认 |
 | Ch8 稀疏方法 | — | ❌ 待补 |
@@ -41,6 +41,8 @@
 章节、习题和 Proposition 的覆盖状态见 [LTFP 阅读映射与覆盖筛查](study-map.md)。该页区分教材原题、笔记中的明确编号、隐含结论和已验证掌握，不能把文件存在直接当作学习完成。
 
 本次手写材料的页码来源、符号校对与未完成题目见 [2026-09-08 导入记录](handwritten-import-20260908.md)。 新增 Ch7.2–7.3 笔记见 [2026-09-10 导入记录](handwritten-import-20260910.md)。
+
+2026-09-11 的 4 页补充实际属于 Ch7，原文件名含 Ch4。见[导入记录](handwritten-import-20260911.md)；新稿状态为 `note_unverified`。
 
 ## Part III — 进阶 (Ch10–Ch15)
 

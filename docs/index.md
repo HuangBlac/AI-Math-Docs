@@ -106,11 +106,12 @@
 
 如果已经在做具体课题，可以直接从 [AI4Math 论文](ai4math/papers.md)、[算法实例](ai4math/examples.md) 或 [PINN 讨论班讲义](ai4math/pinn-seminar.md) 开始，再沿页面链接回补基础。
 
-## 最近值得读的专题
+## 专题入口
 
 | 专题 | 你会得到什么 |
 |---|---|
 | [工业计算：从几何建模到并行求解](computation/industrial-computing/index.md) | 把 CAD、有限元、稀疏矩阵和并行硬件串成一条完整计算链 |
+| [Ch7.2–7.3 表示定理与核基础](computation/ltfp/ch7.2-representer-kernel-foundations.md) | 从正交分解理解有限维表示，保留核构造与习题的实际完成程度 |
 | [Ch9.1-9.2 神经网络理论](computation/ltfp/ch9.1-9.2-neural-networks.md) | 从优化误差、统计误差与逼近误差理解宽度极限和 Rademacher 界 |
 | [学习理论概念地图](computation/ltfp/learning-theory.md) | 在逐章推导之外，理解概率工具、复杂度与泛化界之间的关系 |
 | [PINN 概览与拷打](ai4math/pinn-overview.md) | 同时看到 PINN 的基本方法、适用场景和常见失败原因 |
@@ -140,4 +141,4 @@
 
 ---
 
-*持续建设中 · 最后更新：2026 年 8 月* · [关于本站](about/backstage.md)
+*持续建设中 · 最后更新：2026-09-12* · [关于本站](about/backstage.md)

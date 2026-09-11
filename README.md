@@ -20,6 +20,7 @@
   - Ch1-Ch5：数学基础、监督学习、线性方法、ERM 与优化
   - Ch6：局部平均方法、一致性与高阶光滑性（手写稿整理）
   - Ch7.2–7.5：表示定理、核构造、随机特征与泛化保证（手写稿整理）
+  - Ch7.6：核岭回归的算法形式、偏差—方差分解与学习率（待人工签认）
   - Ch9：神经网络的优化、统计误差、宽度极限与变差范数（含未完成习题）
 - [算法介绍](docs/algorithms/index.md)
   - 神经网络、决策树、贝叶斯学习、深度学习与压缩感知
@@ -36,11 +37,17 @@
 ## 本地预览
 
 ```bash
-uv sync --frozen
-uv run mkdocs serve
+python -m pip install mkdocs-material pymdown-extensions
+python -m mkdocs serve
 ```
 
-浏览器访问 <http://127.0.0.1:8000/>。
+浏览器访问 <http://127.0.0.1:8000/>。在同一解释器中运行 `python -m mkdocs build --strict` 做构建检查。
+
+`pyproject.toml` 和 `uv.lock` 当前管理的是学习工具依赖，未包含 MkDocs；仅运行 `uv sync --frozen` 不会安装站点依赖。已安装上述包时无需重复安装。
+
+## 导入学习笔记
+
+提供 PDF 后可使用个人技能 `$ltfp-note-import` 完成逐页转录、保留未完成项、导入和本地提交。未配置该技能时，也可按[笔记导入流程](docs/computation/ltfp/note-import.md)操作。源码与来源记录进入相应章节，本地扫描转录及学习计划保存在被 Git 忽略的 `output/`。
 
 ## 参与建设
 
