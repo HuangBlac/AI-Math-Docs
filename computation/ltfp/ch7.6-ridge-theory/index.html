@@ -2209,6 +2209,17 @@
   <a href="#761" class="md-nav__link">
     <span class="md-ellipsis">
       
+        与局部平均方法的联系（原稿 §7.6.1）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#761_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
         7.6.1 核岭回归作为线性估计量
       
     </span>
@@ -2454,6 +2465,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../note-import/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    学习笔记导入流程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../handwritten-import-20260908/" class="md-nav__link">
         
   
@@ -2490,6 +2529,34 @@
     
   
     Ch7.2-7.3 新笔记导入记录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../handwritten-import-20260911/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch7 核与对偶补充导入记录
   
 
     
@@ -3205,6 +3272,17 @@
   <a href="#761" class="md-nav__link">
     <span class="md-ellipsis">
       
+        与局部平均方法的联系（原稿 §7.6.1）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#761_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
         7.6.1 核岭回归作为线性估计量
       
     </span>
@@ -3430,7 +3508,21 @@ R(f)-R(f^\star)=\|f-f^\star\|_{L^2(p)}^2.
 </script>
 </div>
 <p>这一章同时出现两个 Hilbert 空间。<span class="arithmatex">\(\mathcal H\)</span> 控制函数的复杂度，<span class="arithmatex">\(L^2(p)\)</span> 衡量预测误差。两种范数不能混写。</p>
-<h2 id="761">7.6.1 核岭回归作为线性估计量</h2>
+<h2 id="761">与局部平均方法的联系（原稿 §7.6.1）</h2>
+<p>来源：《7.4.3 Random Feature.pdf》第 8 页。</p>
+<p>令 <span class="arithmatex">\(k_x=(k(x,x_1),\ldots,k(x,x_n))^\top\)</span>，核岭回归可写成</p>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+\widehat f_\lambda(x)=k_x^\top(K+n\lambda I)^{-1}y
+=\sum_i\widehat w_i(x)y_i,
+\qquad
+\widehat w(x)=(K+n\lambda I)^{-1}k_x.
+</script>
+</div>
+<p>训练点上的拟合矩阵为 <span class="arithmatex">\(H_\lambda=K(K+n\lambda I)^{-1}\)</span>。这里始终保留 <span class="arithmatex">\(n\lambda\)</span>，原稿在同页混用的 <span class="arithmatex">\(\lambda\)</span> 不再作为另一套未声明的尺度。</p>
+<p>核岭回归也对标签线性，但其权重可以为负，且不一定和为 1。这使它与 Ch6 的非负局部平均不同。</p>
+<p>原稿讨论无正则项可能带来的问题，最后停在“exp”，没有写出例子；这里保留为“例子未写”，不补一个反例。</p>
+<h2 id="761_1">7.6.1 核岭回归作为线性估计量</h2>
 <p>表示定理给出</p>
 <div class="arithmatex">
 <script type="math/tex; mode=display">

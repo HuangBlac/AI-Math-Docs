@@ -12,31 +12,31 @@
         <meta name="author" content="huangblac">
       
       
-        <link rel="canonical" href="https://huangblac.github.io/AI-Math-Docs/algorithms/neural-networks/">
+        <link rel="canonical" href="https://huangblac.github.io/AI-Math-Docs/computation/ltfp/handwritten-import-20260911/">
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../handwritten-import-20260910/">
       
       
-        <link rel="next" href="../decision-trees/">
+        <link rel="next" href="../study-map/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>神经网络 - AI & Math</title>
+        <title>Ch7 核与对偶补充导入记录 - AI & Math</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#2026-09-11" class="md-skip">
           跳转至
         </a>
       
@@ -94,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../.." title="AI &amp; Math" class="md-header__button md-logo" aria-label="AI & Math" data-md-component="logo">
+    <a href="../../.." title="AI &amp; Math" class="md-header__button md-logo" aria-label="AI & Math" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              神经网络
+              Ch7 核与对偶补充导入记录
             
           </span>
         </div>
@@ -213,7 +213,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -232,7 +232,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../about/backstage/" class="md-tabs__link">
+      <a href="../../../about/backstage/" class="md-tabs__link">
         
   
   
@@ -253,7 +253,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../math/" class="md-tabs__link">
+        <a href="../../../math/" class="md-tabs__link">
           
   
   
@@ -273,7 +273,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../computation/" class="md-tabs__link">
+        <a href="../../" class="md-tabs__link">
           
   
   
@@ -293,31 +293,11 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../computation/stat-computing/" class="md-tabs__link">
+        <a href="../../stat-computing/" class="md-tabs__link">
           
   
   
   统计计算
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../computation/ltfp/" class="md-tabs__link">
-          
-  
-  
-  统计学习理论 (LTFP)
 
         </a>
       </li>
@@ -339,6 +319,26 @@
           
   
   
+  统计学习理论 (LTFP)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../algorithms/" class="md-tabs__link">
+          
+  
+  
   算法介绍
 
         </a>
@@ -355,7 +355,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../ai4math/" class="md-tabs__link">
+        <a href="../../../ai4math/" class="md-tabs__link">
           
   
   
@@ -389,7 +389,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="AI &amp; Math" class="md-nav__button md-logo" aria-label="AI & Math" data-md-component="logo">
+    <a href="../../.." title="AI &amp; Math" class="md-nav__button md-logo" aria-label="AI & Math" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -407,7 +407,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -434,7 +434,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about/backstage/" class="md-nav__link">
+      <a href="../../../about/backstage/" class="md-nav__link">
         
   
   
@@ -515,7 +515,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/" class="md-nav__link">
+      <a href="../../../math/" class="md-nav__link">
         
   
   
@@ -543,7 +543,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/analysis/" class="md-nav__link">
+      <a href="../../../math/analysis/" class="md-nav__link">
         
   
   
@@ -571,7 +571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/algebra/" class="md-nav__link">
+      <a href="../../../math/algebra/" class="md-nav__link">
         
   
   
@@ -599,7 +599,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/measure/" class="md-nav__link">
+      <a href="../../../math/measure/" class="md-nav__link">
         
   
   
@@ -627,7 +627,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/probability/" class="md-nav__link">
+      <a href="../../../math/probability/" class="md-nav__link">
         
   
   
@@ -655,7 +655,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/ode-pde/" class="md-nav__link">
+      <a href="../../../math/ode-pde/" class="md-nav__link">
         
   
   
@@ -683,7 +683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/functional/" class="md-nav__link">
+      <a href="../../../math/functional/" class="md-nav__link">
         
   
   
@@ -711,7 +711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/statistics/" class="md-nav__link">
+      <a href="../../../math/statistics/" class="md-nav__link">
         
   
   
@@ -739,7 +739,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/multivariate/" class="md-nav__link">
+      <a href="../../../math/multivariate/" class="md-nav__link">
         
   
   
@@ -767,7 +767,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/causality/" class="md-nav__link">
+      <a href="../../../math/causality/" class="md-nav__link">
         
   
   
@@ -856,7 +856,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/" class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         
   
   
@@ -884,7 +884,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/num-linalg/" class="md-nav__link">
+      <a href="../../num-linalg/" class="md-nav__link">
         
   
   
@@ -912,7 +912,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/numerical-linear-algebra-lab/" class="md-nav__link">
+      <a href="../../numerical-linear-algebra-lab/" class="md-nav__link">
         
   
   
@@ -940,7 +940,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/num-analysis/" class="md-nav__link">
+      <a href="../../num-analysis/" class="md-nav__link">
         
   
   
@@ -968,7 +968,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/num-pde/" class="md-nav__link">
+      <a href="../../num-pde/" class="md-nav__link">
         
   
   
@@ -996,7 +996,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/optimization/" class="md-nav__link">
+      <a href="../../optimization/" class="md-nav__link">
         
   
   
@@ -1024,7 +1024,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/unconstrained-optimization/" class="md-nav__link">
+      <a href="../../unconstrained-optimization/" class="md-nav__link">
         
   
   
@@ -1106,7 +1106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/industrial-computing/" class="md-nav__link">
+      <a href="../../industrial-computing/" class="md-nav__link">
         
   
   
@@ -1134,7 +1134,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/industrial-computing/cad-cae-pipeline/" class="md-nav__link">
+      <a href="../../industrial-computing/cad-cae-pipeline/" class="md-nav__link">
         
   
   
@@ -1162,7 +1162,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/industrial-computing/finite-element-method/" class="md-nav__link">
+      <a href="../../industrial-computing/finite-element-method/" class="md-nav__link">
         
   
   
@@ -1190,7 +1190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/industrial-computing/parallel-computing/" class="md-nav__link">
+      <a href="../../industrial-computing/parallel-computing/" class="md-nav__link">
         
   
   
@@ -1218,7 +1218,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/industrial-computing/inverse-high-dimensional/" class="md-nav__link">
+      <a href="../../industrial-computing/inverse-high-dimensional/" class="md-nav__link">
         
   
   
@@ -1315,7 +1315,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/stat-computing/" class="md-nav__link">
+      <a href="../../stat-computing/" class="md-nav__link">
         
   
   
@@ -1343,7 +1343,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/stat-computing-review/" class="md-nav__link">
+      <a href="../../stat-computing-review/" class="md-nav__link">
         
   
   
@@ -1371,7 +1371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computation/code/stat-computing/" class="md-nav__link">
+      <a href="../../code/stat-computing/" class="md-nav__link">
         
   
   
@@ -1379,1103 +1379,6 @@
     
   
     R 脚本索引
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    统计学习理论 (LTFP)
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    统计学习理论 (LTFP)
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    总览
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch1.2.2-1.2.3-concentration/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch1 再论集中不等式
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch1.1-1.2.0-optimization/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch1-Ch5 跨章基础与优化
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch1.2.1-bernstein-maximum/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch1 Bernstein不等式与极大值期望
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch2.1-2.5-supervised-learning/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch2 监督学习导论 (§2.1–2.5)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch2-supervised-learning/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch2 监督学习导论（原始导出）
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch3.1-3.4-linear-basics/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch3.1-3.4 线性算法基础
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch3.9-pca-regression/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch3 PCA与主成分回归 (§3.9)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch3-pca-regression/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch3 PCA与主成分回归（原始导出）
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch3.5-3.9-ridge-minimax/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch3.5-3.9 岭回归与极小极大下界
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch4.1-4.4.3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch4.1-4.4.3 风险凸化与误差分解
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch4.4.4-4.5.0/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch4.4.4-4.5 覆盖数与Rademacher导入
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch4.5.1-4.5.3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch4.5.1-4.5.3 Rademacher复杂度
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch5.1-5.2-optimization/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch5 优化简单介绍 (§5.1–5.2)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch5-optimization-intro/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch5 优化简单介绍（原始导出）
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch5.3-nonsmooth/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch5.3 非光滑优化
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch5.4.0-sgd/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch5.4 随机梯度下降 (§5.4)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch5-4-sgd/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch5.4 随机梯度下降（原始导出）
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch5.4.1-strong-convex-sgd/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch5.4.1 强凸SGD
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch6.1-6.3-local-averaging/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch6.1-6.3 局部平均与一致性
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch6.4-6.5-universal-consistency/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch6.4-6.5 普遍一致性与光滑性
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch7.2-representer-kernel-foundations/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch7.2-7.3 表示定理与核基础
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch7.3-7.4-kernels-algorithms/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch7.3-7.4 核表示与近似算法
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch7.5-generalization/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch7.5 泛化保证与逼近误差
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch7.6-ridge-theory/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch7.6 岭回归的理论分析
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch9.1-9.2-neural-networks/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch9.1-9.2 神经网络理论
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/ch9.2-9.3-variation-norm/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch9.2-9.3 复杂度与变差范数
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/note-import/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    学习笔记导入流程
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/handwritten-import-20260908/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    手写材料导入与未完成项
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/handwritten-import-20260910/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch7.2-7.3 新笔记导入记录
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/handwritten-import-20260911/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ch7 核与对偶补充导入记录
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/study-map/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    习题与 Proposition 映射
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/machine-learning/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    机器学习基础
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/sparse-feature-learning/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    稀疏学习与特征学习
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/learning-theory/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    学习理论概念地图
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/ltfp/data-science-intro/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    数据科学导论
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../computation/stat-computing-review/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    统计计算总复习
   
 
     
@@ -2521,17 +1424,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
             
   
   
   <span class="md-ellipsis">
     
   
-    算法介绍
+    统计学习理论 (LTFP)
   
 
     
@@ -2542,12 +1445,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_7">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
   
-    算法介绍
+    统计学习理论 (LTFP)
   
 
           </label>
@@ -2567,7 +1470,819 @@
   <span class="md-ellipsis">
     
   
-    机器学习
+    总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch1.2.2-1.2.3-concentration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch1 再论集中不等式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch1.1-1.2.0-optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch1-Ch5 跨章基础与优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch1.2.1-bernstein-maximum/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch1 Bernstein不等式与极大值期望
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch2.1-2.5-supervised-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch2 监督学习导论 (§2.1–2.5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch2-supervised-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch2 监督学习导论（原始导出）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch3.1-3.4-linear-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch3.1-3.4 线性算法基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch3.9-pca-regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch3 PCA与主成分回归 (§3.9)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch3-pca-regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch3 PCA与主成分回归（原始导出）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch3.5-3.9-ridge-minimax/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch3.5-3.9 岭回归与极小极大下界
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch4.1-4.4.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch4.1-4.4.3 风险凸化与误差分解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch4.4.4-4.5.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch4.4.4-4.5 覆盖数与Rademacher导入
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch4.5.1-4.5.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch4.5.1-4.5.3 Rademacher复杂度
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5.1-5.2-optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch5 优化简单介绍 (§5.1–5.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5-optimization-intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch5 优化简单介绍（原始导出）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5.3-nonsmooth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch5.3 非光滑优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5.4.0-sgd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch5.4 随机梯度下降 (§5.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5-4-sgd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch5.4 随机梯度下降（原始导出）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5.4.1-strong-convex-sgd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch5.4.1 强凸SGD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch6.1-6.3-local-averaging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch6.1-6.3 局部平均与一致性
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch6.4-6.5-universal-consistency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch6.4-6.5 普遍一致性与光滑性
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch7.2-representer-kernel-foundations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch7.2-7.3 表示定理与核基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch7.3-7.4-kernels-algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch7.3-7.4 核表示与近似算法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch7.5-generalization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch7.5 泛化保证与逼近误差
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch7.6-ridge-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch7.6 岭回归的理论分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch9.1-9.2-neural-networks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch9.1-9.2 神经网络理论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch9.2-9.3-variation-norm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch9.2-9.3 复杂度与变差范数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-import/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    学习笔记导入流程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../handwritten-import-20260908/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    手写材料导入与未完成项
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../handwritten-import-20260910/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch7.2-7.3 新笔记导入记录
   
 
     
@@ -2604,7 +2319,7 @@
   <span class="md-ellipsis">
     
   
-    神经网络
+    Ch7 核与对偶补充导入记录
   
 
     
@@ -2622,7 +2337,7 @@
   <span class="md-ellipsis">
     
   
-    神经网络
+    Ch7 核与对偶补充导入记录
   
 
     
@@ -2648,10 +2363,32 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        来源与范围
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        内容规划
+        逐页去向
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重要整理决策
       
     </span>
   </a>
@@ -2674,7 +2411,292 @@
   
   
     <li class="md-nav__item">
-      <a href="../decision-trees/" class="md-nav__link">
+      <a href="../study-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    习题与 Proposition 映射
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../machine-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    机器学习基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sparse-feature-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    稀疏学习与特征学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../learning-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    学习理论概念地图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-science-intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据科学导论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stat-computing-review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计计算总复习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法介绍
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    算法介绍
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    机器学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithms/neural-networks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    神经网络
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algorithms/decision-trees/" class="md-nav__link">
         
   
   
@@ -2702,7 +2724,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../bayesian/" class="md-nav__link">
+      <a href="../../../algorithms/bayesian/" class="md-nav__link">
         
   
   
@@ -2730,7 +2752,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deep-learning/" class="md-nav__link">
+      <a href="../../../algorithms/deep-learning/" class="md-nav__link">
         
   
   
@@ -2758,7 +2780,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../compressed-sensing/" class="md-nav__link">
+      <a href="../../../algorithms/compressed-sensing/" class="md-nav__link">
         
   
   
@@ -2847,7 +2869,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/" class="md-nav__link">
+      <a href="../../../ai4math/" class="md-nav__link">
         
   
   
@@ -2875,7 +2897,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/papers/" class="md-nav__link">
+      <a href="../../../ai4math/papers/" class="md-nav__link">
         
   
   
@@ -2903,7 +2925,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/examples/" class="md-nav__link">
+      <a href="../../../ai4math/examples/" class="md-nav__link">
         
   
   
@@ -2931,7 +2953,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/improvements/" class="md-nav__link">
+      <a href="../../../ai4math/improvements/" class="md-nav__link">
         
   
   
@@ -2959,7 +2981,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/pinn-overview/" class="md-nav__link">
+      <a href="../../../ai4math/pinn-overview/" class="md-nav__link">
         
   
   
@@ -2987,7 +3009,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/pinn-seminar/" class="md-nav__link">
+      <a href="../../../ai4math/pinn-seminar/" class="md-nav__link">
         
   
   
@@ -3015,7 +3037,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ai4math/pinn-critique/" class="md-nav__link">
+      <a href="../../../ai4math/pinn-critique/" class="md-nav__link">
         
   
   
@@ -3070,10 +3092,32 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        来源与范围
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        内容规划
+        逐页去向
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重要整理决策
       
     </span>
   </a>
@@ -3097,19 +3141,61 @@
 
 
 
-<h1 id="_1">神经网络</h1>
-<blockquote>
-<p>状态：待补充</p>
-</blockquote>
-<h2 id="_2">内容规划</h2>
+<h1 id="2026-09-11">2026-09-11 手写补充导入记录</h1>
+<h2 id="_1">来源与范围</h2>
 <ul>
-<li>从感知机到多层感知机（MLP）</li>
-<li>激活函数与反向传播算法</li>
-<li>神经网络逼近理论（Universal Approximation Theorem）</li>
-<li>训练动力学与损失景观</li>
-<li>初始化与归一化（BatchNorm、LayerNorm）</li>
-<li>正则化方法（Dropout、权重衰减）</li>
+<li>学习日期：2026-09-11（用户提出请求时称“今日”）；导入于 2026-09-11 开始，跨午夜于 2026-09-12 完成。</li>
+<li>原文件：<code>Ch4.3-4.4补充.pdf</code>，4 页，均无文字层；已逐页看图。</li>
+<li>SHA-256：<code>800d12568e94807a0d09ea2ac228e207ba95aadcd807144a8161c55220f4ccc6</code>。</li>
+<li>正文实际为 Ch7.3–7.4；原文件名不改，站点按正文归档。</li>
+<li><a href="../ch7.3-7.4-kernels-algorithms/">整理稿</a>默认 <code>note_unverified</code>；不更新掌握账本。</li>
+<li>锁定教材的本次实测 SHA-256 与 <code>study.toml</code> 一致：<code>ddeba8166e4dc2aedc0b863e67af9891178a5e13f3316fd672d49cd59e486dea</code>。</li>
+<li>核对范围：教材印刷页 192–193、196、198–200；仅核对相应公式、题意、常数与章节位置，不代表逐条证明审核。</li>
 </ul>
+<h2 id="_2">逐页去向</h2>
+<table>
+<thead>
+<tr>
+<th>PDF 页</th>
+<th>内容</th>
+<th>整理稿去向与状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Fourier 范数、指数/Gaussian/Matérn 核、Sobolev、尖峰反例与稠密性</td>
+<td>§7.3.3 的 Sobolev 段落；已有公式与反例思路，含维度及尺度修正，稠密性无证明</td>
+</tr>
+<tr>
+<td>2</td>
+<td>谱密度归一化、复随机特征、Ex7.10</td>
+<td>§7.4.3 的谱采样与 Ex7.10；抽样与期望已写，有限维向量归一化未写</td>
+</tr>
+<tr>
+<td>3</td>
+<td>引入预测变量与乘子、消去 θ、一般对偶目标</td>
+<td>§7.4.4；推导已写，强对偶条件未展开</td>
+</tr>
+<tr>
+<td>4</td>
+<td>平方损失对偶草算、Ex7.11 (a) 开头</td>
+<td>§7.4.4 的平方损失与 Ex7.11；混合归一化导致系数错误，条件数停在“由于 K”，(b) 未写</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">重要整理决策</h2>
+<ol>
+<li>文件名与第 2 页“Ch4.4.3”按正文识别为 §7.3.3、§7.4.3–7.4.4；没有导入 Ch4 页面。</li>
+<li>第 1 页的积分是平方范数，统一补上范数平方；多维一阶导数用梯度表示。一般指数核的谱公式统一成教材形式，保留与一阶 Sobolev 权重混淆的说明。</li>
+<li>Gaussian 范数式按谱密度倒数恢复常数负指数。Matérn 最后一例有划改和边缘续写，结合相邻完整结构及教材印刷页 193 整理，未计为原稿独立证明。</li>
+<li>尖峰例子保留原构造，指出恒定峰值与“sup 趋于无穷”的冲突，以及末行平方根系数不符。</li>
+<li>Ex7.10 按原稿两处期望计算统一 √S 因子，明确 S 为特征值之和；没有补写遗漏的有限维向量归一化证明。</li>
+<li>复值特征明确共轭；一般对偶式的 λ 下标按上下文校正。原稿并未证明强对偶条件。</li>
+<li>第 4 页的重要错误没有静默修正：记录不带 1/2 的损失、对应 u 与后续二次项系数冲突；记录最大化改最小化时目标符号和解式缺 n 的问题。</li>
+<li>新来源使 Ex7.10 从旧“仅题意”更新为“有推导”，Ex7.11 从旧 <code>source_only</code> 更新为“部分作答”。历史导入记录继续保留原日期结论。</li>
+</ol>
+<p>原 PDF、渲染图和本地逐页稿不随站点提交；本记录描述导入来源和内容状态；后续提交、发布不改变上述学习完成程度。</p>
 
 
 
@@ -3174,12 +3260,12 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="../../javascripts/mathjax.js"></script>
+        <script src="../../../javascripts/mathjax.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
