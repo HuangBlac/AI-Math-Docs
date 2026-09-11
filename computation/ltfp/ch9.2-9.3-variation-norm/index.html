@@ -3283,87 +3283,67 @@
 <h2 id="1">1. 极大值期望的补充计算</h2>
 <p>来源：原稿第 4 页。该段没有明确写习题编号；其 <span class="arithmatex">\(\ell_\infty\)</span> 输入界与教材 §9.2.3 的另一类参数约束有关，这里不替原稿补标为已作答的 Exercise 9.1。</p>
 <p>设 <span class="arithmatex">\(\|x_i\|_\infty\le R\)</span>，定义增广向量与坐标平均</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 z_i=(x_i^\top,R)^\top\in\mathbb R^{d+1},
 \qquad S_k=\frac1n\sum_{i=1}^n\varepsilon_i z_{ik},
 \quad k=1,\ldots,d+1,
-</script>
-</div>
+\]</div>
 <p>其中 <span class="arithmatex">\(\varepsilon_i\)</span> 为独立 Rademacher 符号。原稿先控制单个坐标：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathbb E_\varepsilon S_k^2
 =\frac1{n^2}\sum_i z_{ik}^2\le\frac{R^2}{n},
 \qquad
 \mathbb E_\varepsilon e^{\pm\lambda S_k}\le e^{\lambda^2R^2/(2n)}.
-</script>
-</div>
+\]</div>
 <p>独立性消去了交叉项。这里把原稿误写成等号的有界项整理成不等号。记 <span class="arithmatex">\(p=d+1\)</span>，则</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathbb E e^{\lambda\max_k|S_k|}
 \le\sum_{k=1}^p\bigl(\mathbb E e^{\lambda S_k}+\mathbb E e^{-\lambda S_k}\bigr)
 \le2p\,e^{\lambda^2R^2/(2n)}.
-</script>
-</div>
+\]</div>
 <p>取对数并用 Jensen 不等式：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathbb E\max_k|S_k|
 \le\frac{\log(2p)}\lambda+\frac{\lambda R^2}{2n}.
-</script>
-</div>
+\]</div>
 <p>原稿 λ 的取值被划改，没有确定下来；已写的最终量级为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathbb E\max_k|S_k|\le\frac{2R\sqrt{\log(2(d+1))}}{\sqrt n}.
-</script>
-</div>
+\]</div>
 <p>原稿另记录“统计误差 <span class="arithmatex">\(8GRD\sqrt{\log(2(d+1))}/\sqrt n\)</span>”。G、D 对应损失 Lipschitz 常数与输出系数范数，但该页未重新写清整个函数类及全部常数传递步骤。保留这一结果记录，不据此认定该题已完整证明。</p>
 <h2 id="ex-9-2">2. Exercise 9.2：深层网络的 Rademacher 复杂度</h2>
 <p>来源：原稿第 3 页及第 4 页下半部。原稿用 n 同时表示样本数和层数，这里分别用 n 和 ℓ。</p>
 <h3 id="21">2.1 函数类与基类</h3>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathcal F_0=\{x\mapsto\theta^\top x:\|\theta\|_2\le D_0\},
-</script>
-</div>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+\]</div>
+<div class="arithmatex">\[
 \mathcal F_{\ell+1}
 =\left\{x\mapsto\sum_{j=1}^{m_{\ell+1}}\theta_j\sigma(f_j(x)):
 \|\theta\|_1\le D_{\ell+1},\ f_j\in\mathcal F_\ell\right\}.
-</script>
-</div>
+\]</div>
 <p>原稿写明 <span class="arithmatex">\(\sigma\)</span> 为 1-Lipschitz，并在推导中使用 <span class="arithmatex">\(\sigma(0)=0\)</span>。对固定输入 <span class="arithmatex">\(\|x_i\|_2\le R\)</span>，采用带绝对值的经验 Rademacher 复杂度</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathcal R_n(\mathcal F)=\mathbb E_\varepsilon\sup_{f\in\mathcal F}
 \left|\frac1n\sum_i\varepsilon_i f(x_i)\right|.
-</script>
-</div>
+\]</div>
 <p>两页重复的基类计算整理为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \begin{aligned}
 \mathcal R_n(\mathcal F_0)
 &=D_0\mathbb E_\varepsilon\left\|\frac1n\sum_i\varepsilon_i x_i\right\|_2\\
 &\le D_0\sqrt{\mathbb E_\varepsilon\left\|\frac1n\sum_i\varepsilon_i x_i\right\|_2^2}
 \le\frac{D_0R}{\sqrt n}.
 \end{aligned}
-</script>
-</div>
+\]</div>
 <h3 id="22">2.2 原稿已经写到的收缩步骤</h3>
 <p>原稿利用 <span class="arithmatex">\(\sum_j|\theta_j|\le D_{\ell+1}\)</span>，将一层的线性组合控制到单个前层函数的激活值。其后已有的收缩不等式为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 D_{\ell+1}\mathbb E_\varepsilon\sup_{f\in\mathcal F_\ell}
 \left|\frac1n\sum_i\varepsilon_i[\sigma(f(x_i))-\sigma(0)]\right|
 \le2D_{\ell+1}\mathbb E_\varepsilon\sup_{f\in\mathcal F_\ell}
 \left|\frac1n\sum_i\varepsilon_i f(x_i)\right|.
-</script>
-</div>
+\]</div>
 <p>原稿在下一行只写了</p>
 <blockquote>
 <p><span class="arithmatex">\(R_n(F_{n+1})\)</span></p>
@@ -3373,46 +3353,36 @@ D_{\ell+1}\mathbb E_\varepsilon\sup_{f\in\mathcal F_\ell}
 <h2 id="3">3. 一维逼近与无限宽表示</h2>
 <p>来源：原稿第 3 页下半部。原稿的主线是：一维连续分段线性函数可以逼近连续函数；有限神经元对应离散权重，把宽度放开后可用测度描述。</p>
 <p>对于 ReLU <span class="arithmatex">\(\sigma(t)=t_+\)</span>，写作</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 f(x)=\int_K\sigma(w^\top x+b)\,d\nu(w,b).
-</script>
-</div>
+\]</div>
 <p>有限宽情形 <span class="arithmatex">\(\nu=\sum_j\eta_j\delta_{(w_j,b_j)}\)</span>，其总变差对应合并同位置原子后的输出系数绝对值之和。神经网络可以通过调整 <span class="arithmatex">\((w,b)\)</span> 自适应地寻找方向；原稿以此对比固定特征。</p>
 <p>原稿还记录“近似 Carathéodory 定理、Frank–Wolfe”，以及有限宽逼近的量级</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \|f_m-g\|_{L^2}\lesssim\frac{R\gamma_1(g)}{\sqrt m}.
-</script>
-</div>
+\]</div>
 <blockquote>
 <p>原稿没有指定这行 <span class="arithmatex">\(L^2\)</span> 的完整测度设置、原子归一化常数或构造算法。这里保留为工具与量级记录，不扩成新证明。</p>
 </blockquote>
 <h2 id="4-proposition-92">4. 变差范数与 Proposition 9.2</h2>
 <p>来源：原稿第 1 页；教材 §9.3.2，印刷页 258–259。原稿该页页眉写“9.3.4”，但范数与向量空间内容属于 §9.3.2，整理时按内容归位。</p>
 <p>为明确原稿中 <span class="arithmatex">\(\gamma_1\)</span> 的含义，采用教材记号：对紧参数集合 K 上的有限总变差符号测度，在所有表示 f 的测度中取</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \gamma_1(f)=\inf_{\nu:\ f(x)=\int_K\sigma(w^\top x+b)d\nu(w,b)}\|\nu\|_{\mathrm{TV}},
 \qquad \mathcal F_1=\{f:\gamma_1(f)<\infty\}.
-</script>
-</div>
+\]</div>
 <p>这是对原稿已用概念的定义澄清。Proposition 9.2 说明在相应紧性条件下 <span class="arithmatex">\(\mathcal F_1\)</span> 是向量空间、<span class="arithmatex">\(\gamma_1\)</span> 是其上的范数。</p>
 <p>原稿列出绝对齐次性、非负性及三角不等式：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \gamma_1(af)=|a|\gamma_1(f),\qquad\gamma_1(f)\ge0,
 \qquad\gamma_1(f_1+f_2)\le\gamma_1(f_1)+\gamma_1(f_2).
-</script>
-</div>
+\]</div>
 <p>最后一项难辨的“<span class="arithmatex">\(\gamma_2\)</span>”据整段统一为 <span class="arithmatex">\(\gamma_1\)</span>。原稿已有验证思路：若 <span class="arithmatex">\(\nu_1,\nu_2\)</span> 分别表示 <span class="arithmatex">\(f_1,f_2\)</span>，则</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 f_1+f_2=\int_K\sigma(w^\top x+b)\,d(\nu_1+\nu_2)(w,b),
 \qquad
 \|\nu_1+\nu_2\|_{\mathrm{TV}}\le\|\nu_1\|_{\mathrm{TV}}+\|\nu_2\|_{\mathrm{TV}}.
-</script>
-</div>
+\]</div>
 <p>原稿没有继续把对表示取下确界的步骤和范数正定性写全，保留为部分验证。</p>
 <h3 id="_1">完备性：原稿只提出要求</h3>
 <blockquote>
@@ -3422,29 +3392,23 @@ f_1+f_2=\int_K\sigma(w^\top x+b)\,d(\nu_1+\nu_2)(w,b),
 <h2 id="5-934-fourier">5. §9.3.4 用 Fourier 变换联系多维光滑性</h2>
 <p>来源：原稿第 2 页；教材印刷页 263–264。原稿标题“将多维变成一维”指把 <span class="arithmatex">\(e^{i\omega^\top x}\)</span> 看成沿方向 ω 的一维振荡，再由 Fourier 积分组合各方向。</p>
 <p>在适用 Fourier 反演且所需加权积分有限的条件下，原稿记下</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \gamma_1(f)\le\frac1{(2\pi)^d}\int_{\mathbb R^d}
 |\widehat f(\omega)|\gamma_1(x\mapsto e^{i\omega^\top x})\,d\omega.
-</script>
-</div>
+\]</div>
 <p>按教材式 (9.13)–(9.14) 的原子归一化，半径 R 的球上对应的后续界为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \gamma_1(f)\le\frac{2}{R(2\pi)^d}\int_{\mathbb R^d}
 |\widehat f(\omega)|(1+2R^2\|\omega\|_2^2)\,d\omega.
-</script>
-</div>
+\]</div>
 <blockquote>
 <p><strong>系数整理说明：</strong> 原稿的前因子漏记了 <span class="arithmatex">\(1/R\)</span>；此处已直接查看锁定教材印刷页 264 的式 (9.14)，据该范数约定恢复。没有把式 (9.13) 的一维构造证明补进原稿。</p>
 </blockquote>
 <p>原稿另写出 Sobolev 范数的 Fourier 形式与导数形式的对应关系（整数 s，常数依赖 d、s 和 Fourier 约定）：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \int|\widehat f(\omega)|^2(1+\|\omega\|_2^2)^s\,d\omega
 \asymp\sum_{|\alpha|\le s}\|\partial^\alpha f\|_{L^2}^2.
-</script>
-</div>
+\]</div>
 <p>页尾只写“f 是一个……”便停止。<strong>原始完成状态：未完成。</strong> 没有把这两个不同的 Fourier 加权积分连接成完整充分条件或逼近定理，本次不继续推导。</p>
 
 

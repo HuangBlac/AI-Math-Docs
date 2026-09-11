@@ -3267,8 +3267,7 @@
 <h2 id="1">1. 三个不等式放在一起</h2>
 <h3 id="hoeffding">Hoeffding</h3>
 <p>设 <span class="arithmatex">\(Z_i\in[a_i,b_i]\)</span> 相互独立，则
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathbb P\left(
 \left|
 \sum_{i=1}^n(Z_i-\mathbb EZ_i)
@@ -3278,8 +3277,7 @@
 2\exp\left(
 -\frac{2t^2}{\sum_{i=1}^n(b_i-a_i)^2}
 \right).
-</script>
-</div>
+\]</div>
 它只利用每个随机变量的取值范围。</p>
 <p>证明方式：</p>
 <p>首先使用Markov不等式，将问题转化为对于<span class="arithmatex">\(E(e^{s(Z-EZ_i)})\)</span>的控制，然后构造对数</p>
@@ -3288,20 +3286,15 @@
 <hr />
 <h3 id="mcdiarmid">McDiarmid</h3>
 <p>设
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 F=f(Z_1,\dots,Z_n),
-</script>
-</div>
+\]</div>
 且改变第 <span class="arithmatex">\(i\)</span> 个输入最多使函数值改变 <span class="arithmatex">\(c_i\)</span>：
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 |f(z)-f(z^{(i)})|\le c_i.
-</script>
-</div>
+\]</div>
 那么
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathbb P\left(
 |F-\mathbb EF|>t
 \right)
@@ -3309,27 +3302,21 @@ F=f(Z_1,\dots,Z_n),
 2\exp\left(
 -\frac{2t^2}{\sum_{i=1}^n c_i^2}
 \right).
-</script>
-</div>
+\]</div>
 它不要求 <span class="arithmatex">\(f\)</span> 是求和，只要求每一个样本对最终结果的影响有限。</p>
 <p>其中Amuza不等式是其中的一个特殊情况，其核心在于构造Doob-鞅，一系列的随机变量，然后证明每个部分的指数期望都可以被控制住，进而再次使用Markov不等式。</p>
 <hr />
 <h3 id="bernstein">Bernstein</h3>
 <p>设
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathbb EZ_i=0,\qquad |Z_i|\le c,
-</script>
-</div>
+\]</div>
 记
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 V=\sum_{i=1}^n\operatorname{Var}(Z_i).
-</script>
-</div>
+\]</div>
 则
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathbb P\left(
 \left|\sum_{i=1}^nZ_i\right|>t
 \right)
@@ -3337,44 +3324,34 @@ V=\sum_{i=1}^n\operatorname{Var}(Z_i).
 2\exp\left(
 -\frac{t^2}{2V+\frac{2ct}{3}}
 \right).
-</script>
-</div>
+\]</div>
 它同时使用：
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \text{真实方差 }V
 \qquad\text{和}\qquad
 \text{绝对上界 }c.
-</script>
-</div></p>
+\]</div></p>
 <hr />
 <h2 id="2-hoeffding-mcdiarmid">2. Hoeffding 是 McDiarmid 的特殊情况</h2>
 <p>取
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 f(Z_1,\dots,Z_n)=\sum_{i=1}^n Z_i.
-</script>
-</div>
+\]</div>
 如果 <span class="arithmatex">\(Z_i\in[a_i,b_i]\)</span>，只替换第 <span class="arithmatex">\(i\)</span> 个变量，则
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \left|
 f(z)-f(z^{(i)})
 \right|
 =
 |z_i-z_i'|
 \le b_i-a_i.
-</script>
-</div>
+\]</div>
 所以 McDiarmid 中
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 c_i=b_i-a_i.
-</script>
-</div>
+\]</div>
 代入后得到
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathbb P\left(
 \left|
 \sum_iZ_i-\mathbb E\sum_iZ_i
@@ -3384,71 +3361,56 @@ c_i=b_i-a_i.
 2\exp\left(
 -\frac{2t^2}{\sum_i(b_i-a_i)^2}
 \right),
-</script>
-</div>
+\]</div>
 正好就是 Hoeffding。</p>
 <p>因此：
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \boxed{
 \text{对线性求和而言，McDiarmid 基本就是 Hoeffding。}
 }
-</script>
-</div>
+\]</div>
 McDiarmid 的优势不是在这个情况下给出更小的界，而是允许研究非线性统计量。</p>
 <hr />
 <h2 id="3-mcdiarmid-hoeffding">3. McDiarmid 比 Hoeffding 一般在哪里</h2>
 <p>例如在学习理论中常研究
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 F(S)
 =
 \sup_{h\in\mathcal H}
 \left|
 \widehat R_S(h)-R(h)
 \right|.
-</script>
-</div>
+\]</div>
 这里
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \widehat R_S(h)
 =
 \frac1n\sum_{i=1}^n\ell(h,Z_i),
-</script>
-</div>
+\]</div>
 但外面还有一个关于 <span class="arithmatex">\(h\)</span> 的上确界。因此 <span class="arithmatex">\(F(S)\)</span> 本身不是简单的随机变量平均。</p>
 <p>假设损失满足
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 0\le \ell(h,z)\le 1.
-</script>
-</div>
+\]</div>
 把样本 <span class="arithmatex">\(Z_i\)</span> 换成 <span class="arithmatex">\(Z_i'\)</span>，对于任意 <span class="arithmatex">\(h\)</span>，
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \left|
 \widehat R_S(h)-\widehat R_{S'}(h)
 \right|
 \le\frac1n.
-</script>
-</div>
+\]</div>
 上确界的变化也不超过 <span class="arithmatex">\(1/n\)</span>，所以
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 c_i=\frac1n.
-</script>
-</div>
+\]</div>
 McDiarmid 给出
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathbb P\left(
 |F(S)-\mathbb EF(S)|>t
 \right)
 \le
 2e^{-2nt^2}.
-</script>
-</div>
+\]</div>
 Hoeffding 无法直接处理这个 <span class="arithmatex">\(F(S)\)</span>，因为它不是固定的独立随机变量之和。</p>
 <p>所以 McDiarmid 回答的是：</p>
 <blockquote>
@@ -3459,94 +3421,70 @@ Hoeffding 无法直接处理这个 <span class="arithmatex">\(F(S)\)</span>，�
 <h2 id="4-mcdiarmid-bernstein">4. McDiarmid 和 Bernstein 谁更精确</h2>
 <p>在随机变量求和的情况下，McDiarmid 通常和 Hoeffding 一样，只利用最坏情况变化，而 Bernstein 还利用方差。因此如果方差很小，Bernstein 通常更精确。</p>
 <p>假设
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 Z_i\in[-c,c],
 \qquad
 \sigma^2=\frac1n\sum_i\operatorname{Var}(Z_i).
-</script>
-</div>
+\]</div>
 对于平均值
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \overline Z=\frac1n\sum_iZ_i,
-</script>
-</div>
+\]</div>
 Hoeffding 或 McDiarmid 给出
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathbb P(|\overline Z-\mathbb E\overline Z|>t)
 \le
 2\exp\left(-\frac{nt^2}{2c^2}\right).
-</script>
-</div>
+\]</div>
 Bernstein 给出
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathbb P(|\overline Z-\mathbb E\overline Z|>t)
 \le
 2\exp\left(
 -\frac{nt^2}{2\sigma^2+\frac{2ct}{3}}
 \right).
-</script>
-</div>
+\]</div>
 当
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \sigma^2\ll c^2
-</script>
-</div>
+\]</div>
 且 <span class="arithmatex">\(t\)</span> 不大时，Bernstein 的分母近似为
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 2\sigma^2,
-</script>
-</div>
+\]</div>
 远小于 Hoeffding 或 McDiarmid 的
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 2c^2.
-</script>
-</div>
+\]</div>
 因此 Bernstein 明显更强。</p>
 <hr />
 <h2 id="5">5. 一个极端例子</h2>
 <p>设
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 X_i\sim\operatorname{Bernoulli}(p),
 \qquad
 Z_i=X_i-p.
-</script>
-</div>
+\]</div>
 虽然 <span class="arithmatex">\(X_i\in[0,1]\)</span>，但
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \operatorname{Var}(X_i)=p(1-p).
-</script>
-</div>
+\]</div>
 当 <span class="arithmatex">\(p=0.001\)</span> 时，
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 p(1-p)\approx0.001.
-</script>
-</div>
+\]</div>
 Hoeffding 和 McDiarmid 只知道区间长度是 <span class="arithmatex">\(1\)</span>，因此都给出
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 2e^{-2nt^2}.
-</script>
-</div>
+\]</div>
 Bernstein 对小 <span class="arithmatex">\(t\)</span> 近似给出
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 2\exp\left(
 -\frac{nt^2}{2p(1-p)}
 \right)
 \approx
 2e^{-500nt^2}.
-</script>
-</div>
+\]</div>
 差别巨大。</p>
 <p>原因是：</p>
 <ul>

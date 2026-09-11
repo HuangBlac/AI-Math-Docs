@@ -3616,115 +3616,88 @@
 </blockquote>
 <h2 id="1">1. 预测器与条件分布</h2>
 <p>设 <span class="arithmatex">\((x_i,y_i)_{i=1}^n\)</span> 独立同分布，输入边缘分布记为 <span class="arithmatex">\(P_X\)</span>。平方损失下的目标函数是</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 f_*(x)=\mathbb E[Y\mid X=x],
 \qquad
 R(f)-R(f_*)=\|f-f_*\|_{L^2(P_X)}^2.
-</script>
-</div>
+\]</div>
 <p>一般损失下，最优预测由条件分布决定：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 f_*(x)\in\arg\min_z\int\ell(y,z)\,dP(y\mid x).
-</script>
-</div>
+\]</div>
 <p>用样本构造条件分布的估计</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \widehat P(dy\mid x)=\sum_{i=1}^n\widehat w_i(x)\delta_{y_i}(dy),
 \qquad \widehat w_i(x)\ge0,
 \qquad \sum_{i=1}^n\widehat w_i(x)=1.
-</script>
-</div>
+\]</div>
 <p>这里 <span class="arithmatex">\(\delta_{y_i}\)</span> 是集中在标签 <span class="arithmatex">\(y_i\)</span> 上的点质量。平方损失给出</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \widehat f(x)=\sum_{i=1}^n\widehat w_i(x)y_i.
-</script>
-</div>
+\]</div>
 <p>“线性估计器”指它对标签向量 <span class="arithmatex">\(y\)</span> 线性；权重依赖输入，因此预测对 <span class="arithmatex">\(x\)</span> 通常非线性。以下权重只依赖训练输入和测试点，不依赖训练标签。</p>
 <h3 id="logistic">原稿中的分类与 logistic 损失回顾</h3>
 <p>0–1 损失下，预测条件概率最大的类别。样本加权版本为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \widehat c(x)\in\arg\max_{a\in\mathcal Y}
 \sum_{i=1}^n\widehat w_i(x)\mathbf1_{\{y_i=a\}}.
-</script>
-</div>
+\]</div>
 <p>对于 <span class="arithmatex">\(Y\in\{-1,1\}\)</span>，设 <span class="arithmatex">\(\eta=P(Y=1\mid X=x)\)</span>，<span class="arithmatex">\(0&lt;\eta&lt;1\)</span>。logistic 条件风险为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 L_x(z)=\eta\log(1+e^{-z})+(1-\eta)\log(1+e^z).
-</script>
-</div>
+\]</div>
 <p>原稿第 2–3 页求导的有效步骤整理为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 L_x'(z)=\frac{(1-\eta)e^z-\eta}{1+e^z}=0,
 \qquad e^z=\frac\eta{1-\eta},
 \qquad z=\log\frac\eta{1-\eta}.
-</script>
-</div>
+\]</div>
 <p>原稿把最小风险与最优函数都写成过 <span class="arithmatex">\(R^*\)</span>；这里分别使用风险值 <span class="arithmatex">\(R(f_*)\)</span> 和函数 <span class="arithmatex">\(f_*\)</span>，删除未成立的对数草算等号。</p>
 <h2 id="2">2. 三种权重</h2>
 <h3 id="21-622">2.1 分割估计器（§6.2.2）</h3>
 <p>将输入空间分成互不重叠的单元 <span class="arithmatex">\(\mathcal X=\bigcup_{j\in J}A_j\)</span>，令 <span class="arithmatex">\(A(x)\)</span> 为包含 <span class="arithmatex">\(x\)</span> 的单元，<span class="arithmatex">\(N_A=\sum_i\mathbf1_{\{x_i\in A\}}\)</span>。非空单元内</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \widehat w_i(x)=\frac{\mathbf1_{\{x_i\in A(x)\}}}{N_{A(x)}},
 \qquad
 \widehat f(x)=\frac1{N_{A(x)}}\sum_{x_i\in A(x)}y_i.
-</script>
-</div>
+\]</div>
 <p>空单元时取所有训练标签的平均，即 <span class="arithmatex">\(\widehat w_i(x)=1/n\)</span>。这一约定已出现在原稿第 10 页的方差计算中；第 4 页未完成的“加号尾项”不另造一项。</p>
 <p>非空单元的示性函数 <span class="arithmatex">\(\mathbf1_{\{x\in A_j\}}\)</span> 可作为特征，预测在各单元内为常数。按单元重排训练点后，拟合矩阵 <span class="arithmatex">\(H_{ij}=\widehat w_j(x_i)\)</span> 是块对角矩阵，每一块为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 H_j=\frac1{N_{A_j}}\mathbf1_{N_{A_j}}\mathbf1_{N_{A_j}}^\top.
-</script>
-</div>
+\]</div>
 <h3 id="22-k-623">2.2 k 近邻（§6.2.3）</h3>
 <p>按距离排序：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \Delta(x_{i_1(x)},x)\le\cdots\le\Delta(x_{i_n(x)},x),
 \qquad
 \widehat w_i(x)=\frac1k\mathbf1_{\{i\in\{i_1(x),\ldots,i_k(x)\}\}}.
-</script>
-</div>
+\]</div>
 <p>距离相同采用固定规则打破平局。训练输入互异、最近邻包含自身时，<span class="arithmatex">\(k=1\)</span> 给出 <span class="arithmatex">\(H=I\)</span>；<span class="arithmatex">\(k=n\)</span> 时 <span class="arithmatex">\(H=\mathbf1\mathbf1^\top/n\)</span>。</p>
 <h3 id="23-nadarayawatson-624">2.3 Nadaraya–Watson 核回归（§6.2.4）</h3>
 <p>令 <span class="arithmatex">\(q\ge0\)</span> 且 <span class="arithmatex">\(\int q=1\)</span>，定义带宽为 <span class="arithmatex">\(h\)</span> 的平滑核</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 q_h(u)=h^{-d}q(u/h),
 \qquad
 \widehat w_i(x)=\frac{q_h(x-x_i)}{\sum_{j=1}^nq_h(x-x_j)}.
-</script>
-</div>
+\]</div>
 <p>分母为零时同样采用全样本平均。常见形状为 <span class="arithmatex">\(q(u)\propto\mathbf1_{\{\|u\|\le1\}}\)</span> 或 <span class="arithmatex">\(q(u)\propto e^{-\|u\|_2^2/2}\)</span>。原稿第 1 页指数权重分子、分母的范数次幂不一致，这里统一使用同一个 <span class="arithmatex">\(q_h\)</span>。</p>
 <p>此处的核用于局部加权；<a href="../ch7.3-7.4-kernels-algorithms/">Ch7 的正定核</a>用于定义特征内积，两种要求不同。</p>
 <h2 id="3">3. 统一的偏差—方差分解</h2>
 <p>假设</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathbb E[(Y-f_*(X))^2\mid X]\le\sigma^2,
 \qquad
 |f_*(x)-f_*(x')|\le B\Delta(x,x').
-</script>
-</div>
+\]</div>
 <p>给定训练输入，误差可写为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \widehat f(x)-f_*(x)
 =\sum_i\widehat w_i(x)[y_i-f_*(x_i)]
 +\sum_i\widehat w_i(x)[f_*(x_i)-f_*(x)].
-</script>
-</div>
+\]</div>
 <p>第一项条件均值为零，第二项在给定输入后确定。因此</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \begin{aligned}
 \mathbb E[(\widehat f(x)-f_*(x))^2\mid x_1,\ldots,x_n]
 &=\left(\sum_i\widehat w_i(x)[f_*(x_i)-f_*(x)]\right)^2\\
@@ -3732,53 +3705,42 @@ q_h(u)=h^{-d}q(u/h),
 &\le B^2\sum_i\widehat w_i(x)\Delta(x_i,x)^2
 +\sigma^2\sum_i\widehat w_i(x)^2.
 \end{aligned}
-</script>
-</div>
+\]</div>
 <p>最后一步用权重非负、和为 1，以及 Jensen 不等式。这里的“偏差项”已经是平方偏差。</p>
 <p>记</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 D_n=\int\mathbb E\sum_i\widehat w_i(x)\Delta(x_i,x)^2\,dP_X(x),
 \qquad
 V_n=\int\mathbb E\sum_i\widehat w_i(x)^2\,dP_X(x).
-</script>
-</div>
+\]</div>
 <p>则总体均方误差 <span class="arithmatex">\(\mathcal E_n\le B^2D_n+\sigma^2V_n\)</span>。<span class="arithmatex">\(D_n\)</span> 衡量参与平均的样本距离有多远；<span class="arithmatex">\(V_n\)</span> 衡量权重集中程度。逐点恒等式</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \sum_i\widehat w_i(x)^2
 =\frac1n+\sum_i\left(\widehat w_i(x)-\frac1n\right)^2
-</script>
-</div>
+\]</div>
 <p>整理了原稿第 8 页对“偏离均匀权重”的说明。</p>
 <h3 id="ex-6-2">Exercise 6.2：原稿只有简写</h3>
 <p>原稿第 9 页写“<span class="arithmatex">\(f_*(x)=E[Y\mid X]\)</span>，考虑二分类问题”，然后将分类超额风险界为回归误差的 <span class="arithmatex">\(L^1\)</span> 范数，再界为 <span class="arithmatex">\(L^2\)</span> 范数，最后代入 <span class="arithmatex">\((B^2D_n+\sigma^2V_n)^{1/2}\)</span>。</p>
 <p>原稿没有明确分类决策函数、标签编码和损失条件，且 <span class="arithmatex">\(f^*,f_*\)</span> 混用。这里保留这条解题路线，不把缺失条件和分类校准步骤补成完整答案。</p>
 <h2 id="4-proposition-61">4. 固定分割：Proposition 6.1</h2>
 <p>来源：原稿第 9–10 页；教材印刷页 165–168（PDF 第 181–184 页）。在上述假设及空单元约定下，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathcal E_n\le
 \left(\frac{B^2}{2}\operatorname{diam}(\mathcal X)^2+8\sigma^2\right)\frac{|J|}{n}
 +B^2\max_{j\in J}\operatorname{diam}(A_j)^2.
-</script>
-</div>
+\]</div>
 <h3 id="_1">原稿已有的证明框架</h3>
 <p>单元内的平方权重和是</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \sum_i\widehat w_i(x)^2
 =\frac{\mathbf1_{\{N_A>0\}}}{N_A}+\frac1n\mathbf1_{\{N_A=0\}}.
-</script>
-</div>
+\]</div>
 <p>以 <span class="arithmatex">\(p_A=P_X(A)\)</span> 记单元概率。把非空事件按 <span class="arithmatex">\(N_A\le np_A/2\)</span> 和 <span class="arithmatex">\(N_A&gt;np_A/2\)</span> 拆开，加上空单元事件。原稿对三部分分别记下 <span class="arithmatex">\(5/(np_A)\)</span>、<span class="arithmatex">\(2/(np_A)\)</span>、<span class="arithmatex">\(1/(np_A)\)</span> 的粗界；乘 <span class="arithmatex">\(p_A\)</span> 并对单元求和，得到 <span class="arithmatex">\(V_n\le8|J|/n\)</span>。</p>
 <p>偏差方面，非空单元内距离至多为 <span class="arithmatex">\(\operatorname{diam}(A)\)</span>，空单元时至多为 <span class="arithmatex">\(\operatorname{diam}(\mathcal X)\)</span>。原稿最终得到</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 D_n\le\max_j\operatorname{diam}(A_j)^2
 +\frac{|J|}{2n}\operatorname{diam}(\mathcal X)^2.
-</script>
-</div>
+\]</div>
 <blockquote>
 <p>原稿未展开三部分概率界的完整常数推导，保留为证明框架。</p>
 </blockquote>
@@ -3787,41 +3749,31 @@ D_n\le\max_j\operatorname{diam}(A_j)^2
 <p>来源：原稿第 11–12 页；教材印刷页 168–170。</p>
 <h3 id="lemma-61">Lemma 6.1：最近邻距离</h3>
 <p>设输入分布的支撑 <span class="arithmatex">\(\mathcal X\subset\mathbb R^d\)</span> 紧，距离取 <span class="arithmatex">\(\ell_\infty\)</span>，<span class="arithmatex">\(D=\operatorname{diam}(\mathcal X)\)</span>。对于 <span class="arithmatex">\(n+1\)</span> 个独立样本，最后一点到其最近邻的平方距离满足</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathbb E\Delta(X_{n+1},X_{(n+1)})^2
 \le\begin{cases}4D^2n^{-2/d},&d\ge2,\\2D^2/n,&d=1.\end{cases}
-</script>
-</div>
+\]</div>
 <p>原稿的证明从交换性出发。记 <span class="arithmatex">\(R_i=\|x_i-x_{(i)}\|_\infty\)</span>，把单个测试点的期望换成 <span class="arithmatex">\(n+1\)</span> 点的平均。半径 <span class="arithmatex">\(R_i/2\)</span> 的开球两两不交，它们的总体积不超过 <span class="arithmatex">\((2D)^d\)</span>，故</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \sum_{i=1}^{n+1}R_i^d\le(2D)^d.
-</script>
-</div>
+\]</div>
 <p><span class="arithmatex">\(d\ge2\)</span> 时，Jensen 不等式给出</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \left(\frac1{n+1}\sum_iR_i^2\right)^{d/2}
 \le\frac1{n+1}\sum_iR_i^d
 \le\frac{(2D)^d}{n+1}.
-</script>
-</div>
+\]</div>
 <p><span class="arithmatex">\(d=1\)</span> 时，由 <span class="arithmatex">\(R_i\le D\)</span> 和 <span class="arithmatex">\(\sum_iR_i\le2D\)</span> 得平均平方距离不超过 <span class="arithmatex">\(2D^2/(n+1)\)</span>。原稿未讨论重合点及零半径的细节。</p>
 <h3 id="lemma-62-k">Lemma 6.2：第 k 近邻距离</h3>
 <p>原稿只记录结论，没有单独证明：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathbb E\Delta(X_{n+1},X_{i_k(X_{n+1})})^2
 \le\begin{cases}8D^2(2k/n)^{2/d},&d\ge2,\\8D^2k/n,&d=1.\end{cases}
-</script>
-</div>
+\]</div>
 <p>由于 <span class="arithmatex">\(\sum_i\widehat w_i^2=1/k\)</span>，在 <span class="arithmatex">\(d\ge2\)</span> 时得到</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathcal E_n\le\frac{\sigma^2}{k}+8B^2D^2(2k/n)^{2/d}.
-</script>
-</div>
+\]</div>
 <p>取 <span class="arithmatex">\(k\asymp n^{2/(d+2)}\)</span>，两项都为 <span class="arithmatex">\(O(n^{-2/(d+2)})\)</span>。该推导使用 <span class="arithmatex">\(\ell_\infty\)</span> 距离；换成其他范数时需相应保留范数等价常数。</p>
 <h3 id="ex-6-3">Exercise 6.3：原稿已有简短作答</h3>
 <p>原文题意：“证明 Bayes 风险为 0，1 近邻是一致。”</p>
@@ -3830,100 +3782,78 @@ D_n\le\max_j\operatorname{diam}(A_j)^2
 <h2 id="6">6. 核回归：从卷积直觉到联合控制</h2>
 <p>来源：原稿第 13–18 页；教材 §6.3.3，印刷页 170–173。</p>
 <p>令 <span class="arithmatex">\(\widehat P_n=n^{-1}\sum_i\delta_{x_i}\)</span>。核加权分子可写成</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \frac1n\sum_iq_h(x-x_i)g(x_i)
 =\int q_h(x-z)g(z)\,d\widehat P_n(z).
-</script>
-</div>
+\]</div>
 <p>若 <span class="arithmatex">\(P_X\)</span> 有密度 <span class="arithmatex">\(p\)</span>，固定 <span class="arithmatex">\(h\)</span> 时，该经验平均对应总体卷积 <span class="arithmatex">\([q_h*(pg)](x)\)</span>。分母对应 <span class="arithmatex">\(m_h(x)=(q_h*p)(x)\)</span>。</p>
 <h3 id="61">6.1 渐近直觉及其限制</h3>
 <p>对固定 <span class="arithmatex">\(x,h\)</span>，大数定律提示</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 n\sum_i\widehat w_i(x)^2
 \longrightarrow\frac{(q_h^2*p)(x)}{(q_h*p)(x)^2}.
-</script>
-</div>
+\]</div>
 <p>再令 <span class="arithmatex">\(h\)</span> 变小，在适当局部正则条件下，平方权重和的量级为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \sum_i\widehat w_i(x)^2\sim\frac1{nh^dp(x)}\int q(u)^2\,du.
-</script>
-</div>
+\]</div>
 <p>偏差分子通过 <span class="arithmatex">\(z=x-hu\)</span> 换元：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \int q_h(x-z)\|x-z\|_2^2p(z)\,dz
 =h^2\int q(u)\|u\|_2^2p(x-hu)\,du.
-</script>
-</div>
+\]</div>
 <p>这提示 <span class="arithmatex">\(\sigma^2/(nh^d)+B^2h^2\)</span> 的权衡，但原稿第 15 页指出三个缺口：<span class="arithmatex">\(h=h_n\)</span> 随样本数变化；随机分母可能过小；固定点渐近不能直接对总体分布积分。下面的非渐近计算保留这三个问题。</p>
 <h3 id="62-proposition-63">6.2 Proposition 6.3：按证明整理的误差界</h3>
 <p>设 <span class="arithmatex">\(q\)</span> 为有界非负概率密度，<span class="arithmatex">\(c_q=\int q(u)\|u\|_2^2du&lt;\infty\)</span>；输入密度 <span class="arithmatex">\(p\)</span> 有界、支撑 <span class="arithmatex">\(\mathcal X\)</span> 有界。定义</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 C_h=\int_{\mathcal X}\frac{p(x)}{m_h(x)}\,dx,
 \qquad m_h(x)=(q_h*p)(x).
-</script>
-</div>
+\]</div>
 <p>当分母定义良好且 <span class="arithmatex">\(C_h&lt;\infty\)</span> 时，由原稿和教材证明中的两项上界合并得到</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathcal E_n\le C_h\left[
 \frac{8\|q\|_\infty}{nh^d}
 \left(\sigma^2+\frac{B^2}{2}\operatorname{diam}(\mathcal X)^2\right)
 +2B^2h^2\|p\|_\infty c_q\right].
-</script>
-</div>
+\]</div>
 <blockquote>
 <p><strong>系数整理说明。</strong> 锁定教材印刷页 172 的式 (6.11) 把两处偏差系数印成 <span class="arithmatex">\(B\)</span>，但下一页证明明确在加权距离项外乘 <span class="arithmatex">\(B^2\)</span>；原稿也混写 <span class="arithmatex">\(B\)</span>、<span class="arithmatex">\(B^2\)</span>，并在合并时漏掉过直径平方和密度上界。上式依据已有偏差—方差推导统一为 <span class="arithmatex">\(B^2\)</span>，不是逐字照抄式 (6.11)。本次没有认定作者已经发布勘误。</p>
 </blockquote>
 <h3 id="63-bernstein">6.3 Bernstein 控制随机分母</h3>
 <p>固定 <span class="arithmatex">\(x\)</span>，写 <span class="arithmatex">\(M=\|q\|_\infty\)</span>、<span class="arithmatex">\(m=m_h(x)&gt;0\)</span>、<span class="arithmatex">\(Z_i=q_h(x-x_i)\)</span>。则</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 0\le Z_i\le Mh^{-d},\qquad \mathbb EZ_i=m,
 \qquad \mathbb EZ_i^2\le Mh^{-d}m.
-</script>
-</div>
+\]</div>
 <p>原稿使用的单侧 Bernstein 界为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 P\left(\frac1n\sum_iZ_i\le m-\varepsilon\right)
 \le\exp\left(-\frac{n\varepsilon^2}{2\mathbb EZ_i^2+(2/3)Mh^{-d}\varepsilon}\right).
-</script>
-</div>
+\]</div>
 <p>取 <span class="arithmatex">\(\varepsilon=m/2\)</span>，定义坏事件 <span class="arithmatex">\(A=\{n^{-1}\sum_iZ_i\le m/2\}\)</span>，得到</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 P(A)\le\exp\left(-\frac{3nh^dm}{28M}\right)
 \le\frac{28M}{3e\,nh^dm}
 \le\frac{4M}{nh^dm}.
-</script>
-</div>
+\]</div>
 <p>这里使用 <span class="arithmatex">\(e^{-t}\le1/(et)\)</span>。常数 <span class="arithmatex">\(28/3\)</span> 来自 <span class="arithmatex">\(\varepsilon=m/2\)</span> 的代入，保留了原稿第 16–17 页的计算。</p>
 <h3 id="64">6.4 方差与偏差分别在两个事件上估计</h3>
 <p>坏事件上 <span class="arithmatex">\(\sum_i\widehat w_i^2\le1\)</span>；好事件上 <span class="arithmatex">\(\sum_iZ_i\ge nm/2\)</span>，故</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathbb E\left[\mathbf1_{A^c}\sum_i\widehat w_i^2\right]
 \le\frac4{n^2m^2}\sum_i\mathbb EZ_i^2
 \le\frac{4M}{nh^dm}.
-</script>
-</div>
+\]</div>
 <p>加上坏事件得到 <span class="arithmatex">\(\mathbb E\sum_i\widehat w_i^2\le8M/(nh^dm)\)</span>，积分后乘 <span class="arithmatex">\(\sigma^2\)</span> 即方差界。</p>
 <p>令 <span class="arithmatex">\(D=\operatorname{diam}(\mathcal X)\)</span>。同样分事件控制加权距离：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \begin{aligned}
 \mathbb E\sum_i\widehat w_i(x)\|x-x_i\|_2^2
 &\le D^2P(A)+\frac2m\mathbb E[q_h(x-X)\|x-X\|_2^2]\\
 &\le\frac{4MD^2}{nh^dm}
 +\frac{2h^2\|p\|_\infty c_q}{m}.
 \end{aligned}
-</script>
-</div>
+\]</div>
 <p>对 <span class="arithmatex">\(P_X\)</span> 积分再乘 <span class="arithmatex">\(B^2\)</span>，与方差界相加得到上面的合并式。若 <span class="arithmatex">\(\sup_{h\downarrow0}C_h&lt;\infty\)</span>，取 <span class="arithmatex">\(h\asymp n^{-1/(d+2)}\)</span> 得到 <span class="arithmatex">\(O(n^{-2/(d+2)})\)</span>。<strong><span class="arithmatex">\(C_h\)</span> 的有界性是额外要求，不由这个带宽选择自动保证。</strong></p>
 <h3 id="ex-6-4">Exercise 6.4：原稿留白</h3>
 <p>原稿第 19 页仅写：</p>
@@ -3932,11 +3862,9 @@ P(A)\le\exp\left(-\frac{3nh^dm}{28M}\right)
 <p>Ex 6.4</p>
 </blockquote>
 <p>题号下没有题干和解答。第 18 页相邻的 <span class="arithmatex">\(C_h\)</span> 换元草算不能视为这道题已经完成。此处只把前文卷积记号统一为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 (q_h*p)(x)=\int_{\mathbb R^d}q(u)p(x-hu)\,du,
-</script>
-</div>
+\]</div>
 <p>不补充 <span class="arithmatex">\(C_h\)</span> 有界的证明、边界假设或反例。</p>
 <h2 id="7">7. 继续阅读</h2>
 <p>下一部分：<a href="../ch6.4-6.5-universal-consistency/">Ch6.4–6.5 普遍一致性与高阶光滑性</a>。所有习题状态见<a href="../study-map/">覆盖映射</a>。</p>

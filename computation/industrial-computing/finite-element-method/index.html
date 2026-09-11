@@ -3480,173 +3480,133 @@
 <p>这篇整理《有限元算法的零散笔记》7 页内容，并吸收《并行计算与工业软件》中“网格 <span class="arithmatex">\(\to V_h\to Ax=b\)</span>”的线索。原笔记跨越插值、正交多项式、Sobolev 空间、Galerkin 方法、误差估计、单元映射、装配与自适应计算，下面按有限元实际工作流重排。</p>
 <h2 id="1">1. 先从插值开始</h2>
 <p>设 <span class="arithmatex">\(f:[a,b]\to\mathbb R\)</span>，已知互异节点 <span class="arithmatex">\(x_0,\ldots,x_n\)</span> 上的值 <span class="arithmatex">\(f(x_i)\)</span>。插值问题要求构造次数不超过 <span class="arithmatex">\(n\)</span> 的多项式 <span class="arithmatex">\(p_n\)</span>，使</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 p_n(x_i)=f(x_i),\qquad i=0,\ldots,n.
-</script>
-</div>
+\]</div>
 <h3 id="11-lagrange">1.1 Lagrange 基函数</h3>
 <p>定义</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \ell_k(x)=\prod_{\substack{0\le j\le n\\j\ne k}}
 \frac{x-x_j}{x_k-x_j}.
-</script>
-</div>
+\]</div>
 <p>它满足 <span class="arithmatex">\(\ell_k(x_i)=\delta_{ik}\)</span>，因此</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 p_n(x)=\sum_{k=0}^{n}f(x_k)\ell_k(x).
-</script>
-</div>
+\]</div>
 <p>这里的核心思想后来会原样出现在有限元中：用一组在节点上具有 Kronecker 性质的局部基函数表示未知函数，系数就是节点自由度。</p>
 <h3 id="12-runge">1.2 插值余项与 Runge 现象</h3>
 <p>若 <span class="arithmatex">\(f\in C^{n+1}[a,b]\)</span>，则对每个 <span class="arithmatex">\(x\)</span>，存在 <span class="arithmatex">\(\xi_x\in(a,b)\)</span> 使</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 f(x)-p_n(x)=
 \frac{f^{(n+1)}(\xi_x)}{(n+1)!}
 \prod_{i=0}^{n}(x-x_i).
-</script>
-</div>
+\]</div>
 <p>增加全局多项式次数并不保证在等距节点上处处改善逼近；端点附近可能发生强烈振荡，这就是 Runge 现象。有限元常采用“网格变细 + 每个单元低阶多项式”，以局部化误差和形状变化。</p>
 <h3 id="13">1.3 最佳逼近与正规方程</h3>
 <p>插值要求逐点相等，而 <span class="arithmatex">\(L^2\)</span> 最佳逼近选择 <span class="arithmatex">\(p\in V_n=\operatorname{span}\{\phi_0,\ldots,\phi_n\}\)</span> 最小化</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \|f-p\|_{L^2(a,b)}^2.
-</script>
-</div>
+\]</div>
 <p>令 <span class="arithmatex">\(p=\sum_ja_j\phi_j\)</span>，一阶最优性条件给出</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \sum_j(\phi_j,\phi_i)a_j=(f,\phi_i),
 \qquad i=0,\ldots,n.
-</script>
-</div>
+\]</div>
 <p>这已经具有 <span class="arithmatex">\(Ax=b\)</span> 的形式。有限元只是把全局基函数换成由网格产生的局部基函数，并把内积推广为 PDE 对应的双线性形式。</p>
 <h2 id="2-gauss">2. 正交多项式与 Gauss 求积</h2>
 <p>原笔记记录了三项递推形式。对权函数 <span class="arithmatex">\(\rho(x)&gt;0\)</span>，可构造正交多项式</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \phi_{k+1}(x)=(x-\alpha_k)\phi_k(x)-\beta_k\phi_{k-1}(x),
-</script>
-</div>
+\]</div>
 <p>其中系数由加权内积 <span class="arithmatex">\(\langle f,g\rangle_\rho=\int_a^b f(x)g(x)\rho(x)\,dx\)</span> 决定。</p>
 <p>以 <span class="arithmatex">\(n\)</span> 个节点 <span class="arithmatex">\(x_i\)</span> 及权重 <span class="arithmatex">\(w_i\)</span> 构造 Gauss 求积：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \int_a^b\rho(x)f(x)\,dx
 \approx
 \sum_{i=1}^{n}w_if(x_i).
-</script>
-</div>
+\]</div>
 <p>当节点取为 <span class="arithmatex">\(n\)</span> 次正交多项式的零点时，该公式对次数不超过 <span class="arithmatex">\(2n-1\)</span> 的多项式精确。有限元装配需要反复计算单元积分；把积分映射到参考单元后，Gauss 求积可以用少量函数值高效完成积分。</p>
 <h2 id="3-sobolev">3. Sobolev 空间与弱导数</h2>
 <p>PDE 的经典解要求导数逐点存在，但含尖角的区域、分片材料系数或低正则右端项往往不满足这种光滑性。有限元因此工作在允许弱导数的 Sobolev 空间中。</p>
 <h3 id="31">3.1 测试函数与分布导数</h3>
 <p>记</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 C_c^\infty(\Omega)=
 \{\varphi\in C^\infty(\Omega):\operatorname{supp}\varphi\Subset\Omega\}.
-</script>
-</div>
+\]</div>
 <p>若 <span class="arithmatex">\(u\in L^1_{\mathrm{loc}}(\Omega)\)</span>，并存在 <span class="arithmatex">\(g\in L^1_{\mathrm{loc}}(\Omega)\)</span> 使</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \int_\Omega u\,\partial_i\varphi\,dx
 =-
 \int_\Omega g\varphi\,dx,
 \qquad \forall\varphi\in C_c^\infty(\Omega),
-</script>
-</div>
+\]</div>
 <p>则称 <span class="arithmatex">\(g\)</span> 是 <span class="arithmatex">\(u\)</span> 的第 <span class="arithmatex">\(i\)</span> 个弱导数。</p>
 <h3 id="32-sobolev">3.2 Sobolev 空间</h3>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 W^{m,p}(\Omega)=
 \{u\in L^p(\Omega):D^\alpha u\in L^p(\Omega),\ |\alpha|\le m\}.
-</script>
-</div>
+\]</div>
 <p>当 <span class="arithmatex">\(p=2\)</span> 时写作 <span class="arithmatex">\(H^m(\Omega)\)</span>。<span class="arithmatex">\(H_0^1(\Omega)\)</span> 是 <span class="arithmatex">\(C_c^\infty(\Omega)\)</span> 在 <span class="arithmatex">\(H^1\)</span> 范数下的闭包，可理解为具有零 Dirichlet 边界迹的函数空间。</p>
 <h2 id="4">4. 从强形式到弱形式</h2>
 <p>考虑 Poisson 问题</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \begin{cases}
 -\Delta u=f, & x\in\Omega,\\
 u=0, & x\in\partial\Omega.
 \end{cases}
-</script>
-</div>
+\]</div>
 <p>取 <span class="arithmatex">\(v\in H_0^1(\Omega)\)</span>，乘以 <span class="arithmatex">\(v\)</span> 并分部积分：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \int_\Omega\nabla u\cdot\nabla v\,dx
 =
 \int_\Omega fv\,dx.
-</script>
-</div>
+\]</div>
 <p>定义</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 a(u,v)=\int_\Omega\nabla u\cdot\nabla v\,dx,
 \qquad
 \ell(v)=\int_\Omega fv\,dx.
-</script>
-</div>
+\]</div>
 <p>弱问题为：求 <span class="arithmatex">\(u\in V=H_0^1(\Omega)\)</span>，使</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 a(u,v)=\ell(v),\qquad \forall v\in V.
-</script>
-</div>
+\]</div>
 <p>弱形式只要求一阶弱导数存在，比强形式所需的二阶导数要求低；同时边界条件自然地进入函数空间或边界积分。</p>
 <h2 id="5-galerkin">5. Galerkin 离散与矩阵系统</h2>
 <p>在网格 <span class="arithmatex">\(\mathcal T_h\)</span> 上选有限元空间 <span class="arithmatex">\(V_h\subset V\)</span>，Galerkin 方法求 <span class="arithmatex">\(u_h\in V_h\)</span>，使</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 a(u_h,v_h)=\ell(v_h),
 \qquad \forall v_h\in V_h.
-</script>
-</div>
+\]</div>
 <p>若 <span class="arithmatex">\(V_h=\operatorname{span}\{\phi_1,\ldots,\phi_N\}\)</span>，令 <span class="arithmatex">\(u_h=\sum_jU_j\phi_j\)</span>，便得到</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 AU=b,
 \qquad
 A_{ij}=\int_\Omega\nabla\phi_j\cdot\nabla\phi_i\,dx,
 \qquad
 b_i=\int_\Omega f\phi_i\,dx.
-</script>
-</div>
+\]</div>
 <p>线性 <span class="arithmatex">\(P_1\)</span> 三角形单元的基函数只在与对应节点相邻的少量单元上非零。因此，若节点 <span class="arithmatex">\(i\)</span> 与 <span class="arithmatex">\(j\)</span> 不共享单元，<span class="arithmatex">\(A_{ij}=0\)</span>。有限元矩阵天然是稀疏矩阵。</p>
 <h2 id="6-galerkin-cea">6. Galerkin 正交性与 Céa 引理</h2>
 <p>连续问题减去离散问题得到</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 a(u-u_h,v_h)=0,
 \qquad \forall v_h\in V_h.
-</script>
-</div>
+\]</div>
 <p>这称为 Galerkin 正交性。若双线性形式满足连续性与强制性：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 |a(w,v)|\le M\|w\|_V\|v\|_V,
 \qquad
 a(v,v)\ge \alpha\|v\|_V^2,
-</script>
-</div>
+\]</div>
 <p>则 Céa 引理给出</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \|u-u_h\|_V
 \le
 \frac{M}{\alpha}
 \inf_{v_h\in V_h}\|u-v_h\|_V.
-</script>
-</div>
+\]</div>
 <p>这说明有限元误差由两部分决定：</p>
 <ol>
 <li>离散空间 <span class="arithmatex">\(V_h\)</span> 能把真解逼近得多好；</li>
@@ -3655,66 +3615,50 @@ a(v,v)\ge \alpha\|v\|_V^2,
 <p>当 <span class="arithmatex">\(a\)</span> 对称且能量范数定义为 <span class="arithmatex">\(\|v\|_a=\sqrt{a(v,v)}\)</span> 时，<span class="arithmatex">\(u_h\)</span> 是 <span class="arithmatex">\(u\)</span> 在 <span class="arithmatex">\(V_h\)</span> 中的能量正交投影，因而具有最佳逼近性质。</p>
 <h2 id="7">7. 插值误差与有限元误差</h2>
 <p>令 <span class="arithmatex">\(I_hu\)</span> 为节点插值。对形状规则的网格和足够光滑的 <span class="arithmatex">\(u\)</span>，线性元通常满足</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \|u-I_hu\|_{L^2(\Omega)}\le Ch^2|u|_{H^2(\Omega)},
-</script>
-</div>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+\]</div>
+<div class="arithmatex">\[
 \|u-I_hu\|_{H^1(\Omega)}\le Ch|u|_{H^2(\Omega)}.
-</script>
-</div>
+\]</div>
 <p>将 <span class="arithmatex">\(v_h=I_hu\)</span> 代入 Céa 引理，便得到 Poisson 问题的典型能量误差估计</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \|u-u_h\|_{H^1(\Omega)}\le Ch|u|_{H^2(\Omega)}.
-</script>
-</div>
+\]</div>
 <p>若再使用对偶问题（Aubin-Nitsche 技巧），并满足椭圆正则性，可把 <span class="arithmatex">\(L^2\)</span> 误差提高到 <span class="arithmatex">\(O(h^2)\)</span>。</p>
 <h2 id="8">8. 参考单元与仿射映射</h2>
 <p>实际网格含许多三角形或四面体。程序通常只在一个参考单元 <span class="arithmatex">\(\widehat K\)</span> 上定义基函数，再通过映射搬到实际单元 <span class="arithmatex">\(K\)</span>。</p>
 <p>对仿射映射</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 x=F_K(\widehat x)=B_K\widehat x+b_K,
-</script>
-</div>
+\]</div>
 <p>若 <span class="arithmatex">\(\widehat u=u\circ F_K\)</span>，则梯度满足</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \nabla_xu=B_K^{-T}\nabla_{\widehat x}\widehat u,
-</script>
-</div>
+\]</div>
 <p>积分换元为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \int_K g(x)\,dx
 =
 \int_{\widehat K}g(F_K(\widehat x))|\det B_K|\,d\widehat x.
-</script>
-</div>
+\]</div>
 <p>这解释了原笔记中 <span class="arithmatex">\(B_K^{-1}\)</span>、<span class="arithmatex">\(\det(B_K)\)</span> 与 Sobolev 半范数缩放同时出现的原因。网格若含极扁、极尖单元，<span class="arithmatex">\(B_K\)</span> 的条件会变差，误差常数和代数系统条件数也会恶化。因此误差估计通常要求网格族具有形状规则性。</p>
 <h2 id="9">9. 局部装配</h2>
 <p>对每个单元 <span class="arithmatex">\(K\)</span>，先形成局部刚度矩阵和载荷向量：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 A_{ij}^{(K)}=
 \int_K\nabla\phi_j^{(K)}\cdot\nabla\phi_i^{(K)}\,dx,
 \qquad
 b_i^{(K)}=
 \int_Kf\phi_i^{(K)}\,dx.
-</script>
-</div>
+\]</div>
 <p>再通过局部自由度到全局自由度的映射，把它们累加到 <span class="arithmatex">\(A\)</span> 和 <span class="arithmatex">\(b\)</span> 中。这一步称为装配。</p>
 <p>不同单元的局部积分可以并行计算，但若两个单元向同一个全局矩阵位置写入，就会发生写冲突。工程实现常用图着色、线程私有缓冲、原子累加或分区装配来解决。</p>
 <h2 id="10">10. 求解器、预条件与自适应网格</h2>
 <p>装配后得到的大型稀疏系统往往不能直接用稠密消元。对对称正定问题，常用共轭梯度法；更一般问题可用 GMRES。预条件器 <span class="arithmatex">\(M^{-1}\)</span> 的目的不是改变解，而是让</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 M^{-1}AU=M^{-1}b
-</script>
-</div>
+\]</div>
 <p>更容易迭代求解。多重网格通过在不同尺度上传递误差，对椭圆问题尤其有效。</p>
 <p>自适应有限元循环通常写作</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>SOLVE -&gt; ESTIMATE -&gt; MARK -&gt; REFINE
@@ -3728,30 +3672,24 @@ M^{-1}AU=M^{-1}b
 <p>这比无差别地细化全域更节省自由度。原笔记还提到“打网格在高维中困难”：随着维数增加，规则网格自由度大致按每维节点数的幂增长，形成维数灾难。低秩张量、Monte Carlo、神经网络试探空间等路线另见<a href="../inverse-high-dimensional/">逆问题与高维计算札记</a>。</p>
 <h2 id="11-poisson">11. 一维小例子：两单元 Poisson 方程</h2>
 <p>在 <span class="arithmatex">\([0,1]\)</span> 上解</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 -u''=1,
 \qquad u(0)=u(1)=0.
-</script>
-</div>
+\]</div>
 <p>取节点 <span class="arithmatex">\(0,\frac12,1\)</span>，只有中间节点是未知自由度。对应帽函数</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \phi_1(x)=
 \begin{cases}
 2x, & 0\le x\le \frac12,\\
 2(1-x), & \frac12\le x\le1.
 \end{cases}
-</script>
-</div>
+\]</div>
 <p>于是</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 A_{11}=\int_0^1(\phi_1')^2\,dx=4,
 \qquad
 b_1=\int_0^1\phi_1\,dx=\frac12.
-</script>
-</div>
+\]</div>
 <p>线性系统只有一个方程 <span class="arithmatex">\(4U_1=\frac12\)</span>，故 <span class="arithmatex">\(U_1=\frac18\)</span>。精确解为 <span class="arithmatex">\(u(x)=\frac12x(1-x)\)</span>，在 <span class="arithmatex">\(x=\frac12\)</span> 处也等于 <span class="arithmatex">\(\frac18\)</span>。这个例子完整展示了“网格 - 基函数 - 积分 - 矩阵 - 系数 - 近似解”的链条。</p>
 <h2 id="12">12. 与其他页面的边界</h2>
 <ul>

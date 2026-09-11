@@ -3216,40 +3216,32 @@
 <p>所以我们折腾半天引出这样一个量是为了说明什么呢？</p>
 <p>接下来，我们可以证明</p>
 <p>Propostion4.2</p>
-<p><div class="arithmatex">
-<script type="math/tex; mode=display">
+<p><div class="arithmatex">\[
 E\{\sup_{h\in\mathcal H} \{|E(h(z))-\frac{1}{n}\sum_{i=1}^n h(z_i)|\}\}\le2R_n(\mathcal H)
-</script>
-</div>
+\]</div>
 这其实就是说明Estimation error统计误差可以被Rademacher复杂度给控制住。</p>
 <p>我们分别证明：</p>
 <p><span class="arithmatex">\(E\{\sup_{h\in\mathcal H} \{E(h(z))-\frac{1}{n}\sum_{i=1}^n h(z_i)\}\}\le2R_n(\mathcal H)\)</span>,<span class="arithmatex">\(E\{sup_{h\in\mathcal H} \{\frac{1}{n}\sum_{i=1}^n h(z_i)-E[h(z)]\}\}\le2R_n(\mathcal H)\)</span></p>
 <p>考虑一组同分布的数据<span class="arithmatex">\(\mathcal D'=\{z'_1,z_2'\cdots,z_n'\}\)</span></p>
 <p>因此，我们可以将期望转化为虚样本的条件期望
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 E\{\sup_{h\in\mathcal H} \{E(h(z))-\frac{1}{n}\sum_{i=1}^n h(z_i)\}\}=E\{\sup_{h\in\mathcal H} \{E[\frac{1}{n}\sum_{i=1}^n h(z'_i)|\mathcal D]-\frac{1}{n}\sum_{i=1}^n h(z_i)\}\}\\
 \le E[\sup_{h\in\mathcal H}E[\frac{1}{n}\sum_{i=1}^nh(z'_i)-h(z_i)|\mathcal D]]\\
 \le E[E[\sup_{h\in\mathcal H}\frac{1}{n}\sum_{i=1}^nh(z'_i)-h(z_i)|\mathcal D]]\\
 \le E[sup_{h\in \mathcal H}\sum_{i=1}^n\{h(z'_i)-h(z_i)\}]
-</script>
-</div>
+\]</div>
 而同理可得，
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 E[sup_{h\in\mathcal H} \{\frac{1}{n}\sum_{i=1}^n h(z_i)-E(h(z))\}]\le E[sup_{h\in \mathcal H}\sum_{i=1}^n\{h(z_i)-h(z'_i)\}]
-</script>
-</div>
+\]</div>
 接下来，我们又可以根据对称性知道：
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 E[sup_{h\in \mathcal H}\frac{1}{n}\sum_{i=1}^n\{h(z'_i)-h(z_i)\}]\\
 =E[sup_{h\in \mathcal H}\frac{1}{n}\sum_{i=1}^n\varepsilon_i\{h(z'_i)-h(z_i)\}]\\
 \le E[sup_{h\in \mathcal H}\frac{1}{n}\sum_{i=1}^n\varepsilon_i\{h(z'_i)-h(z_i)\}]\\
 \le E[sup_{h\in \mathcal H}\frac{1}{n}\sum_{i=1}^n\varepsilon_ih(z'_i)]+E[sup_{h\in \mathcal H}\frac{1}{n}\sum_{i=1}^n-\varepsilon_ih(z_i)] \\
 \le 2R_n(\mathcal{H})
-</script>
-</div>
+\]</div>
 不过，Radamacher复杂度是衡量函数类对于随机变量的逼近能力，那么能否使用别的随机变量呢？</p>
 <p>答案是可以的，下面我们介绍<span class="arithmatex">\(G_n(\mathcal H)\)</span>，这也便是Ex4.11</p>
 <p>Exercise4.11:</p>
@@ -3353,8 +3345,7 @@ E[sup_{h\in \mathcal H}\frac{1}{n}\sum_{i=1}^n\{h(z'_i)-h(z_i)\}]\\
 <p>命题 4.3 就是用来“去掉”这个非线性的。</p>
 <p>Proposition4.3:</p>
 <p>给定任意函数<span class="arithmatex">\(a_i:\Theta\to \mathbb R,\)</span>以及 1-Lipschitz 函数<span class="arithmatex">\(\varphi_i:\mathbb R\to \mathbb R,\)</span>则</p>
-<p><div class="arithmatex">
-<script type="math/tex; mode=display">
+<p><div class="arithmatex">\[
 \mathbb E_\varepsilon
 \left[
 \sup_{\theta\in\Theta}
@@ -3376,8 +3367,7 @@ b(\theta)
 a_i(\theta)
 \right\}
 \right].
-</script>
-</div>
+\]</div>
 它的意思是：</p>
 <blockquote>
 <p>对函数值先做一个 1-Lipschitz 变换，不会增加 Rademacher complexity。</p>
@@ -3415,8 +3405,7 @@ $$
 +
 \sum_{i=1}^n \varepsilon_i\varphi_i(a_i(\theta)).$</p>
 <p>考虑第 <span class="arithmatex">\(n+1\)</span> 个 Rademacher 符号。对 <span class="arithmatex">\(\varepsilon_{n+1}\)</span> 显式取期望：
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \begin{aligned}
 &\mathbb E_{\varepsilon_{n+1}}
 \left[
@@ -3437,11 +3426,9 @@ B(\theta)
 \sup_{\theta'}
 \{B(\theta')-\varphi_{n+1}(a_{n+1}(\theta'))\}.
 \end{aligned}
-</script>
-</div>
+\]</div>
 把两个 supremum 合并成对 <span class="arithmatex">\((\theta,\theta')\)</span> 的 supremum：
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 =
 \sup_{\theta,\theta'}
 \left\{
@@ -3453,21 +3440,17 @@ B(\theta)
 \varphi_{n+1}(a_{n+1}(\theta'))
 }{2}
 \right\}.
-</script>
-</div>
+\]</div>
 因为 <span class="arithmatex">\(\varphi_{n+1}\)</span> 是 1-Lipschitz，
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \left|
 \varphi_{n+1}(u)-\varphi_{n+1}(v)
 \right|
 \le
 |u-v|.
-</script>
-</div>
+\]</div>
 所以
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \frac{
 \varphi_{n+1}(a_{n+1}(\theta))
 -
@@ -3477,34 +3460,25 @@ B(\theta)
 \frac{
 |a_{n+1}(\theta)-a_{n+1}(\theta')|
 }{2}.
-</script>
-</div>
+\]</div>
 再利用 supremum 同时包含 <span class="arithmatex">\((\theta,\theta')\)</span> 和 <span class="arithmatex">\((\theta',\theta)\)</span>，可以把绝对值处理成相当于引入一个新的 Rademacher 符号：
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \frac{
 |a_{n+1}(\theta)-a_{n+1}(\theta')|
 }{2}
-</script>
-</div>
+\]</div>
 对应
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \varepsilon_{n+1}a_{n+1}(\theta).
-</script>
-</div>
+\]</div>
 于是就把
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \varepsilon_{n+1}\varphi_{n+1}(a_{n+1}(\theta))
-</script>
-</div>
+\]</div>
 替换成了
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \varepsilon_{n+1}a_{n+1}(\theta).
-</script>
-</div>
+\]</div>
 剩下前 <span class="arithmatex">\(n\)</span> 项用归纳假设处理。</p>
 <p>所以这么折腾半天时为了干什么呢？</p>
 <p>考虑监督学习问题。假设对于几乎所有数据，以及所有 <span class="arithmatex">\(i\in\{1,\ldots,n\}\)</span>，损失函数关于预测值的映射<span class="arithmatex">\(u_i\longmapsto \ell(y_i,u_i)\)</span>都是 <span class="arithmatex">\(G\)</span>-Lipschitz 连续的，即</p>
@@ -3594,8 +3568,7 @@ G\,R_n(\mathcal F).
 <p>因此，命题 4.3 表明：损失函数至多将预测函数类的 Rademacher complexity 放大 <span class="arithmatex">\(G\)</span> 倍。</p>
 <p>Proposition 4.4 </p>
 <p>若 <span class="arithmatex">\(\varphi_i\)</span> 是 1-Lipschitz 且<span class="arithmatex">\(\varphi_i(0)=0,\)</span>则</p>
-<p><div class="arithmatex">
-<script type="math/tex; mode=display">
+<p><div class="arithmatex">\[
 \mathbb E_\varepsilon
 \left[
 \sup_{\theta\in\Theta}
@@ -3616,19 +3589,16 @@ G\,R_n(\mathcal F).
 a_i(\theta)
 \right|
 \right].
-</script>
-</div>
+\]</div>
 这里多了 <span class="arithmatex">\(2\)</span>，主要是因为 supremum 里面有绝对值：
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \sup_\theta |S_\theta|
 =
 \max\left\{
 \sup_\theta S_\theta,
 \sup_\theta (-S_\theta)
 \right\}.
-</script>
-</div>
+\]</div>
 要同时控制正方向和负方向，会额外损失一个常数。这个版本常用于绝对值型或对称化后的表达。</p>
 <p>可以在函数值集合中加入零向量</p>
 <div class="arithmatex">\[ a_i(\theta_0)=0, \qquad i=1,\ldots,n. \]</div>
@@ -3652,8 +3622,7 @@ a_i(\theta)
 <p>我们接下来考虑线性函数类的特殊情况<span class="arithmatex">\(\mathcal F=\{f_θ(x)=θ^⊤φ(x),Ω(θ)≤D\}\)</span>,</p>
 <p>令设计矩阵<span class="arithmatex">\(\Phi\in\mathbb R^{n\times d},\)</span>第 <span class="arithmatex">\(i\)</span> 行是<span class="arithmatex">\(\varphi(x_i)^\top\)</span>.</p>
 <p>则
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \begin{aligned}
 R_n(\mathcal F)
 &=
@@ -3680,8 +3649,7 @@ R_n(\mathcal F)
 \theta^\top \Phi^\top\varepsilon
 \right].
 \end{aligned}
-</script>
-</div>
+\]</div>
 利用对偶范数定义：<span class="arithmatex">\(\Omega^*(u)
 =
 \sup_{\Omega(\theta)\le 1}
@@ -3729,36 +3697,29 @@ $$
 \frac{D}{n}\mathbb E[\|\Phi^T\varepsilon\|_{\infty}]=\max_j\{\sum_{i=1}^n\varphi_j(x_i)\varepsilon_i\}\)</span></p>
 <p>在固定数据 <span class="arithmatex">\(x_1,\dots,x_n\)</span> 后，这是一个 Rademacher 加权和。由于<span class="arithmatex">\(|\varphi_j(x_i)|\le R,\)</span></p>
 <p>所以每个坐标都是 sub-Gaussian，方差代理量满足
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \sum_{i=1}^n \varphi_j(x_i)^2
 \le
 nR^2.
-</script>
-</div>
+\]</div>
 于是最大值满足经典 bound：
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathbb E_\varepsilon
 \max_{1\le j\le d}
 |(\Phi^\top\varepsilon)_j|
 \le
 R\sqrt{2n\log(2d)}.
-</script>
-</div>
+\]</div>
 这是通过经典的log-exp-sum得到</p>
 <p>这里的 <span class="arithmatex">\(2d\)</span> 来自绝对值：</p>
-<p><div class="arithmatex">
-<script type="math/tex; mode=display">
+<p><div class="arithmatex">\[
 \max_j |S_j|
 =
 \max\{S_1,\dots,S_d,-S_1,\dots,-S_d\},
-</script>
-</div>
+\]</div>
 总共有 <span class="arithmatex">\(2d\)</span> 个 sub-Gaussian 变量取最大。</p>
 <p>代回：
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 R_n(\mathcal F)
 \le
 \frac{D}{n}
@@ -3768,14 +3729,11 @@ RD
 \sqrt{
 \frac{2\log(2d)}{n}
 }.
-</script>
-</div>
+\]</div>
 这就是 <span class="arithmatex">\(\ell_1\)</span> ball 的 Rademacher complexity。它的特点是只出现
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \log d
-</script>
-</div>
+\]</div>
 而不是 <span class="arithmatex">\(d\)</span>。这正是稀疏学习中 <span class="arithmatex">\(\ell_1\)</span> 约束的优势。</p>
 <p>Exercise 4.13设<span class="arithmatex">\(p\in(1,2],\)</span>并令 <span class="arithmatex">\(q\)</span> 为 <span class="arithmatex">\(p\)</span> 的 Hölder 共轭指数，即
 [

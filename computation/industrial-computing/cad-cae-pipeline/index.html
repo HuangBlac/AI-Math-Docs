@@ -3245,85 +3245,67 @@
 <p>布尔并、交、差并不只是集合运算。软件还需要计算曲面交线、切割原有面片、更新拓扑关系，并处理浮点误差造成的微小裂缝。因此，笔记中的“求交、求并”实际上是几何算法与鲁棒数值计算的结合。</p>
 <h2 id="2-bezier">2. Bézier 曲线</h2>
 <p><span class="arithmatex">\(n\)</span> 次 Bernstein 基函数为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 B_{i,n}(u)=\binom{n}{i}u^i(1-u)^{n-i},
 \qquad i=0,\ldots,n,quad u\in[0,1].
-</script>
-</div>
+\]</div>
 <p>控制点为 <span class="arithmatex">\(P_0,\ldots,P_n\)</span> 时，Bézier 曲线写成</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 C(u)=\sum_{i=0}^{n}P_iB_{i,n}(u).
-</script>
-</div>
+\]</div>
 <p>这些基函数满足非负性与单位分解：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 B_{i,n}(u)\ge 0,
 \qquad
 \sum_{i=0}^{n}B_{i,n}(u)=1.
-</script>
-</div>
+\]</div>
 <p>所以 <span class="arithmatex">\(C(u)\)</span> 是控制点的凸组合，曲线位于控制多边形的凸包内。端点还满足 <span class="arithmatex">\(C(0)=P_0\)</span>、<span class="arithmatex">\(C(1)=P_n\)</span>。这让设计者可以直观地移动控制点来修改形状。</p>
 <p>Bézier 曲线的局限是**全局影响**：移动一个控制点通常会影响整条曲线。高次数曲线还会带来数值稳定性和形状控制上的困难，这正是 B-spline 出现的背景。</p>
 <h2 id="3-b-spline">3. B-spline 与局部支撑</h2>
 <p>给定非降节点序列 <span class="arithmatex">\(u_0\le \cdots\le u_m\)</span>，零次 B-spline 基函数定义为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 N_{i,0}(u)=
 \begin{cases}
 1, & u_i\le u<u_{i+1},\\
 0, & \text{otherwise}.
 \end{cases}
-</script>
-</div>
+\]</div>
 <p>高次基函数由 Cox-de Boor 递推得到：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 N_{i,p}(u)=
 \frac{u-u_i}{u_{i+p}-u_i}N_{i,p-1}(u)
 +
 \frac{u_{i+p+1}-u}{u_{i+p+1}-u_{i+1}}N_{i+1,p-1}(u),
-</script>
-</div>
+\]</div>
 <p>其中分母为零的项按零处理。曲线为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 C(u)=\sum_i P_iN_{i,p}(u).
-</script>
-</div>
+\]</div>
 <p>与单段 Bézier 曲线相比，B-spline 的关键优势是**局部支撑**：<span class="arithmatex">\(N_{i,p}\)</span> 只在区间 <span class="arithmatex">\([u_i,u_{i+p+1})\)</span> 上非零。移动 <span class="arithmatex">\(P_i\)</span> 只影响这一小段参数区间，因此更适合复杂工业曲线的局部修改。</p>
 <h2 id="4-b-spline-nurbs">4. 有理 B-spline 与 NURBS</h2>
 <p>原笔记记录了带权的有理形式：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 C(u)=
 \frac{\sum_i w_iP_iN_{i,p}(u)}
 {\sum_i w_iN_{i,p}(u)}.
-</script>
-</div>
+\]</div>
 <p>把新的有理基函数记为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 R_{i,p}(u)=
 \frac{w_iN_{i,p}(u)}{\sum_jw_jN_{j,p}(u)},
-</script>
-</div>
+\]</div>
 <p>便有 <span class="arithmatex">\(C(u)=\sum_iP_iR_{i,p}(u)\)</span>。这就是 NURBS（Non-Uniform Rational B-Spline）的基本形式。</p>
 <p>权重 <span class="arithmatex">\(w_i\)</span> 控制曲线被控制点 <span class="arithmatex">\(P_i\)</span>“吸引”的程度。有理形式能精确表示圆锥曲线，因此圆、椭圆和自由曲面可以放在同一套表示框架内。“Non-Uniform”表示节点间距不必均匀，使局部参数化更加灵活。</p>
 <h2 id="5-cad-cae">5. 从 CAD 到 CAE</h2>
 <p>原笔记用“打网格、做计算、转化为 <span class="arithmatex">\(Ax=b\)</span>”概括 CAE。展开后可写成：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \widetilde\Omega
 \longrightarrow \mathcal M_h
 \longrightarrow V_h
 \longrightarrow (A,b)
 \longrightarrow x
 \longrightarrow u_h.
-</script>
-</div>
+\]</div>
 <p>各符号的含义是：</p>
 <ol>
 <li><span class="arithmatex">\(\widetilde\Omega\)</span>：CAD 提供的近似几何域；</li>
@@ -3334,46 +3316,36 @@ R_{i,p}(u)=
 <li><span class="arithmatex">\(u_h\)</span>：由系数重建的数值解。</li>
 </ol>
 <p>以抽象变分问题为例，连续问题是：求 <span class="arithmatex">\(u\in V\)</span>，使</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 a(u,v)=\ell(v),\qquad \forall v\in V.
-</script>
-</div>
+\]</div>
 <p>选取有限维子空间 <span class="arithmatex">\(V_h=\operatorname{span}\{\phi_1,\ldots,\phi_N\}\)</span>，令</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 u_h=\sum_{j=1}^{N}x_j\phi_j.
-</script>
-</div>
+\]</div>
 <p>分别取 <span class="arithmatex">\(v_h=\phi_i\)</span>，便得到</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \sum_{j=1}^{N}a(\phi_j,\phi_i)x_j=\ell(\phi_i),
-</script>
-</div>
+\]</div>
 <p>也就是</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 Ax=b,
 \qquad
 A_{ij}=a(\phi_j,\phi_i),
 \qquad
 b_i=\ell(\phi_i).
-</script>
-</div>
+\]</div>
 <p>这解释了为什么工业仿真最终会落到大型稀疏线性方程组上。矩阵 <span class="arithmatex">\(A\)</span> 的条件数 <span class="arithmatex">\(\kappa(A)\)</span> 会影响迭代收敛速度和舍入误差放大程度；网格越细，未知量越多，条件数通常也会恶化，因此需要预条件与并行求解。</p>
 <h2 id="6">6. 几何误差不能被忽略</h2>
 <p>CAD 到 CAE 之间存在一个容易漏掉的误差来源：计算域本身可能已经是对真实几何 <span class="arithmatex">\(\Omega\)</span> 的近似。总误差可以粗略理解为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \text{total error}
 \approx
 \text{geometry error}
 +\text{discretization error}
 +\text{algebraic solver error}
 +\text{roundoff error}.
-</script>
-</div>
+\]</div>
 <p>如果几何清理、网格质量或边界标记有问题，即使线性方程组被求得很精确，最终物理解仍可能不可靠。这也是工业软件中“前处理”往往占据大量工作的原因。</p>
 <h2 id="7">7. 与后续笔记的衔接</h2>
 <ul>

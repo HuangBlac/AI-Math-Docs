@@ -3303,53 +3303,41 @@
 </blockquote>
 <h2 id="1">1. 两种经验风险问题</h2>
 <p>设损失对预测值为 <span class="arithmatex">\(G\)</span>-Lipschitz，核满足 <span class="arithmatex">\(\sup_x k(x,x)\le R^2\)</span>，总体风险最小化函数 <span class="arithmatex">\(f_*\in L^2(P_X)\)</span>。讨论约束问题</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \widehat f_D^{(c)}\in\arg\min_{\|f\|_{\mathcal H}\le D}
 \frac1n\sum_i\ell(y_i,f(x_i))
-</script>
-</div>
+\]</div>
 <p>与正则化问题</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \widehat f_\lambda^{(r)}\in\arg\min_{f\in\mathcal H}
 \left\{\frac1n\sum_i\ell(y_i,f(x_i))+\frac\lambda2\|f\|_{\mathcal H}^2\right\}.
-</script>
-</div>
+\]</div>
 <p>Lipschitz 性和 Cauchy–Schwarz 给出</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 R(f)-R(f_*)\le G\mathbb E|f(X)-f_*(X)|
 \le G\|f-f_*\|_{L^2(P_X)}.
-</script>
-</div>
+\]</div>
 <p>因此可以用函数逼近误差控制超额风险。</p>
 <h2 id="2">2. 约束问题的风险分解</h2>
 <p>原稿记录的 Rademacher 界为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathbb E R(\widehat f_D^{(c)})-R(f_*)
 \le\frac{4GRD}{\sqrt n}
 +G\inf_{\|f\|_{\mathcal H}\le D}\|f-f_*\|_{L^2(P_X)}.
-</script>
-</div>
+\]</div>
 <p>第一项随允许范数 D 增大，第二项则随函数类扩大而减小。对 D 优化相当于</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \begin{aligned}
 \inf_{D\ge0}\left\{\frac{4GRD}{\sqrt n}+G\inf_{\|f\|_{\mathcal H}\le D}\|f-f_*\|_2\right\}
 &=G\inf_{f\in\mathcal H}\left\{\frac{4R\|f\|_{\mathcal H}}{\sqrt n}+\|f-f_*\|_2\right\}\\
 &\le G\sqrt{2\inf_{f\in\mathcal H}\left\{\|f-f_*\|_2^2+\frac{16R^2}{n}\|f\|_{\mathcal H}^2\right\}}.
 \end{aligned}
-</script>
-</div>
+\]</div>
 <p>其中 <span class="arithmatex">\(\|\cdot\|_2\)</span> 暂指 <span class="arithmatex">\(L^2(P_X)\)</span> 范数。定义</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 A(\mu,f_*)=\inf_{f\in\mathcal H}
 \left\{\|f-f_*\|_{L^2(P_X)}^2+\mu\|f\|_{\mathcal H}^2\right\}.
-</script>
-</div>
+\]</div>
 <p>这个量同时记录逼近精度与所需 RKHS 范数。</p>
 <h3 id="21">2.1 三种情况</h3>
 <ul>
@@ -3357,97 +3345,75 @@ A(\mu,f_*)=\inf_{f\in\mathcal H}
 <li>若 <span class="arithmatex">\(f_*\notin\mathcal H\)</span>，但属于它在 <span class="arithmatex">\(L^2(P_X)\)</span> 中的闭包，则 <span class="arithmatex">\(A(\mu,f_*)\to0\)</span>；没有额外条件时不指定速率。</li>
 <li>若 <span class="arithmatex">\(f_*\)</span> 不属于该闭包，记 <span class="arithmatex">\(\Pi f_*\)</span> 为正交投影，则</li>
 </ul>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 A(\mu,f_*)=A(\mu,\Pi f_*)+\|f_*-\Pi f_*\|_{L^2(P_X)}^2.
-</script>
-</div>
+\]</div>
 <p>第二项是函数类无法消除的误差。</p>
 <h2 id="3">3. 正则化问题</h2>
 <p>原稿记录</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathbb E R(\widehat f_\lambda^{(r)})-R(f_*)
 \le\frac{24G^2R^2}{\lambda n}
 +\inf_{f\in\mathcal H}\left\{G\|f-f_*\|_2+\frac\lambda2\|f\|_{\mathcal H}^2\right\}.
-</script>
-</div>
+\]</div>
 <p>对上界中的 λ 与 f 联合优化，原稿难辨的系数按同一计算整理为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 G\inf_{f\in\mathcal H}\left\{\|f-f_*\|_2+\frac{4\sqrt3R}{\sqrt n}\|f\|_{\mathcal H}\right\}
 \le G\sqrt{2\inf_{f\in\mathcal H}\left\{\|f-f_*\|_2^2+\frac{48R^2}{n}\|f\|_{\mathcal H}^2\right\}}.
-</script>
-</div>
+\]</div>
 <p>两种问题都归结为研究 <span class="arithmatex">\(A(\mu,f_*)\)</span>。这里是在优化理论上界，不是已经从数据确定了可直接使用的最优参数。</p>
 <h2 id="4">4. 平移不变核下的显式逼近量</h2>
 <p>假设 <span class="arithmatex">\(P_X\)</span> 有密度，并且</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \|f-f_*\|_{L^2(P_X)}^2\le\frac C{r^d}\|f-f_*\|_{L^2(\mathbb R^d)}^2,
 \qquad C=r^d\left\|\frac{dP_X}{dx}\right\|_\infty.
-</script>
-</div>
+\]</div>
 <p>引入带有尺度归一化的量</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \widetilde A(\mu,f_*)=
 \inf_{f\in\mathcal H}\left\{r^{-d}\|f-f_*\|_{L^2(\mathbb R^d)}^2+\mu\|f\|_{\mathcal H}^2\right\}.
-</script>
-</div>
+\]</div>
 <p>按这一定义，<span class="arithmatex">\(A(\mu,f_*)\le C\widetilde A(\mu/C,f_*)\)</span>；这一步只整理原稿的 C 与 μ 缩放。</p>
 <p>设 <span class="arithmatex">\(k(x,x')=g(x-x')\)</span>，采用<a href="../ch7.3-7.4-kernels-algorithms/">上一篇</a>的 Fourier 约定与范数表达式，有</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \widetilde A(\mu,f_*)=
 \inf_{\widehat f}\frac1{(2\pi)^d}\int
 \left\{r^{-d}|\widehat f(\omega)-\widehat f_*(\omega)|^2
 +\mu\frac{|\widehat f(\omega)|^2}{\widehat g(\omega)}\right\}d\omega.
-</script>
-</div>
+\]</div>
 <p>原稿已记录逐频率二次优化后的表达式：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \widetilde A(\mu,f_*)=
 \frac1{(2\pi r)^d}\int|\widehat f_*(\omega)|^2
 \frac{\mu r^d}{\widehat g(\omega)+\mu r^d}\,d\omega.
-</script>
-</div>
+\]</div>
 <p>这里的外因子是 <span class="arithmatex">\((2\pi r)^{-d}\)</span>，与前面的 <span class="arithmatex">\(r^{-d}\)</span> 一致。原稿后面的 Sobolev 式漏写过 r，本篇统一保留。</p>
 <h2 id="5-sobolev-matern">5. Sobolev 光滑性与 Matérn 核</h2>
 <p>记归一化 Sobolev 平方范数</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 S_{t,r}(f_*)^2=\frac1{(2\pi r)^d}\int
 (1+r^2\|\omega\|_2^2)^t|\widehat f_*(\omega)|^2\,d\omega<\infty.
-</script>
-</div>
+\]</div>
 <p>原稿将逼近量界为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \widetilde A(\mu,f_*)\le S_{t,r}(f_*)^2
 \sup_{\omega\in\mathbb R^d}
 \left\{\frac{\mu r^d}{\widehat g(\omega)+\mu r^d}
 \frac1{(1+r^2\|\omega\|_2^2)^t}\right\}.
-</script>
-</div>
+\]</div>
 <p>对谱密度 <span class="arithmatex">\(\widehat g(\omega)\asymp r^d(1+r^2\|\omega\|_2^2)^{-s}\)</span> 的 Matérn 核，取 <span class="arithmatex">\(s&gt;d/2\)</span>：</p>
 <ul>
 <li><span class="arithmatex">\(t\ge s\)</span> 时，<span class="arithmatex">\(f_*\in\mathcal H\)</span>，<span class="arithmatex">\(\widetilde A(\mu,f_*)\le\mu\|f_*\|_{\mathcal H}^2\)</span>。</li>
 <li><span class="arithmatex">\(0&lt;t&lt;s\)</span> 时，令 <span class="arithmatex">\(\theta=t/s\)</span>。使用原稿已有的不等式</li>
 </ul>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 a+b\ge\theta a+(1-\theta)b\ge a^\theta b^{1-\theta},
-</script>
-</div>
+\]</div>
 <p>从而</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \frac{\mu r^d}{\widehat g(\omega)+\mu r^d}
 \le\frac{\mu r^d}{\widehat g(\omega)^{t/s}(\mu r^d)^{1-t/s}}.
-</script>
-</div>
+\]</div>
 <p>与 Sobolev 权重相消后，得到 <span class="arithmatex">\(\widetilde A(\mu,f_*)=O(\mu^{t/s})\)</span>。这整理了原稿第 4 页已写的估计路线。</p>
 <h3 id="ex-7-21">Exercise 7.21：只记录题意</h3>
 <p>原稿第 5 页只有：</p>
@@ -3458,26 +3424,22 @@ a+b\ge\theta a+(1-\theta)b\ge a^\theta b^{1-\theta},
 <h2 id="6">6. 从逼近误差界换成所需范数</h2>
 <p>原稿第 6 页考虑：已知 <span class="arithmatex">\(A(\mu,f_*)\le c\mu^\alpha\)</span>，<span class="arithmatex">\(0&lt;\alpha&lt;1\)</span>，若希望逼近误差不超过 ε，需要多大的 RKHS 范数？</p>
 <p>按原稿的 Lagrange 对偶形式，在相应强对偶条件下，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \begin{aligned}
 \inf_{\|f-f_*\|_2\le\varepsilon}\|f\|_{\mathcal H}^2
 &=\sup_{\nu\ge0}\{\nu A(\nu^{-1},f_*)-\nu\varepsilon^2\}\\
 &\le\sup_{\nu\ge0}\{c\nu^{1-\alpha}-\nu\varepsilon^2\}.
 \end{aligned}
-</script>
-</div>
+\]</div>
 <p>把原稿与参数 μ 重名的乘子改为 ν。其驻点关系为 <span class="arithmatex">\((1-\alpha)c\nu^{-\alpha}=\varepsilon^2\)</span>，对应范数平方量级 <span class="arithmatex">\(\varepsilon^{-2(1-\alpha)/\alpha}\)</span>。取 <span class="arithmatex">\(\alpha=t/s\)</span>，范数量级为 <span class="arithmatex">\(\varepsilon^{1-s/t}\)</span>。</p>
 <p>原稿没有讨论对偶成立条件或范数下确界是否取到，本篇不扩写这些证明。</p>
 <h2 id="7-lipschitz-sobolev">7. Lipschitz 函数与 Sobolev 空间：延拓仍未写</h2>
 <p>原稿希望把定义在 <span class="arithmatex">\(B(0,r)\subset\mathbb R^d\)</span> 上的 D-Lipschitz 函数延拓到整个空间。还假设 <span class="arithmatex">\(|f(0)|\le rD\)</span>，目标是找到 g，使</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 S_{1,r}(g)^2
 =\frac1{r^d}\int_{\mathbb R^d}\bigl(|g(x)|^2+r^2\|\nabla g(x)\|_2^2\bigr)dx
 \le c_dr^2D^2.
-</script>
-</div>
+\]</div>
 <p>这是原稿第 6–7 页的目标范数，不是已经完成的构造。</p>
 <p>原稿第 7 页接着写：</p>
 <blockquote>

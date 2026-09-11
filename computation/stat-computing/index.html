@@ -3235,18 +3235,14 @@
 </table>
 <h2 id="_3">一条贯穿全课的主线</h2>
 <p>许多统计计算方法都可以写成“用可计算对象近似不可直接计算对象”。例如，若目标是</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \theta=\mathbb E_f[h(X)]
 =\int h(x)f(x)\,dx,
-</script>
-</div>
+\]</div>
 <p>直接积分困难时，可以从 <span class="arithmatex">\(f\)</span> 抽取样本并使用</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \widehat\theta_N=\frac1N\sum_{i=1}^{N}h(X_i).
-</script>
-</div>
+\]</div>
 <p>随后必须继续问：</p>
 <ol>
 <li>能否直接从 <span class="arithmatex">\(f\)</span> 抽样？若不能，需要逆变换、接受-拒绝或 MCMC；</li>

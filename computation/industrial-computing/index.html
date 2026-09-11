@@ -3169,12 +3169,10 @@
 <li><strong>代数数据</strong>：稀疏矩阵 <span class="arithmatex">\(A\)</span>、未知向量 <span class="arithmatex">\(x\)</span> 和右端项 <span class="arithmatex">\(b\)</span>。</li>
 </ul>
 <p>因此，工业仿真的核心常被概括为：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \text{geometry} \longrightarrow \text{mesh} \longrightarrow
 \text{discretization} \longrightarrow Ax=b \longrightarrow \text{solution}.
-</script>
-</div>
+\]</div>
 <p>这里最值得建立的认识不是记住软件名称，而是明白：几何表示、离散误差、矩阵条件数、数据布局和并行通信会共同决定最终结果是否可靠、是否算得动。</p>
 <h2 id="_3">整理说明</h2>
 <ul>

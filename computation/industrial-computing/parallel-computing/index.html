@@ -3336,27 +3336,23 @@
 <p>这部分整理《并行计算与工业软件》第 3 页。原笔记中的关键词包括 CPU、GPU、cache、NUMA、SIMD、MIMD、数据搬运和任务依赖；下面将它们放回一个简单矩阵计算中理解。</p>
 <h2 id="1">1. 并行计算的对象是什么</h2>
 <p>对矩阵乘法 <span class="arithmatex">\(C=AB\)</span>，每个元素满足</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 C_{ij}=\sum_{k=1}^{n}A_{ik}B_{kj}.
-</script>
-</div>
+\]</div>
 <p>这里有两层并行性：</p>
 <ul>
 <li>不同的 <span class="arithmatex">\(C_{ij}\)</span> 可以彼此独立地计算；</li>
 <li>同一个 <span class="arithmatex">\(C_{ij}\)</span> 内部的求和可以做并行归约。</li>
 </ul>
 <p>但并行并不等于把循环简单分给更多处理器。程序还必须读取 <span class="arithmatex">\(A\)</span>、<span class="arithmatex">\(B\)</span>，写回 <span class="arithmatex">\(C\)</span>，协调任务，并合并局部结果。真正耗时可以粗略分为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 T_{\mathrm{total}}
 =T_{\mathrm{compute}}
 +T_{\mathrm{memory}}
 +T_{\mathrm{communication}}
 +T_{\mathrm{synchronization}}
 +T_{\mathrm{overhead}}.
-</script>
-</div>
+\]</div>
 <p>这正是原笔记“高效的算法不等于高效的程序”所指的区别。</p>
 <h2 id="2">2. 从外存到计算单元</h2>
 <p>数据通常沿以下层次移动：</p>
@@ -3372,12 +3368,10 @@ T_{\mathrm{total}}
 <h2 id="3-cpugpu">3. CPU、GPU 与加速器</h2>
 <p>CPU 的少量强核心适合复杂控制流、分支和低延迟任务。GPU 拥有大量相对简单的执行单元，适合对许多数据执行相同运算，例如矩阵乘法、卷积和有限元单元积分。</p>
 <p>把计算移到 GPU 时还要考虑主机和设备之间的数据搬运：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 T_{\mathrm{GPU}}
 =T_{\mathrm{H2D}}+T_{\mathrm{kernel}}+T_{\mathrm{D2H}}.
-</script>
-</div>
+\]</div>
 <p>若矩阵很小，传输和启动 kernel 的开销可能大于计算收益。只有当数据复用充分、计算量足够大，或数据能长期留在 GPU 上时，加速才更可能出现。</p>
 <h2 id="4-simdmimd-flynn">4. SIMD、MIMD 与 Flynn 分类</h2>
 <p>Flynn 分类按照指令流和数据流区分体系结构：</p>
@@ -3422,11 +3416,9 @@ T_{\mathrm{GPU}}
 <p>集群中每个节点有自己的内存，节点间通过网络发送消息。MPI 是典型编程接口。此时算法不仅要考虑浮点运算次数，还要考虑消息数量和通信数据量。</p>
 <h2 id="6">6. 数据依赖决定能否并行</h2>
 <p>若任务 <span class="arithmatex">\(P_1\)</span> 读取或修改的数据区域为 <span class="arithmatex">\(\Omega_1\)</span>，任务 <span class="arithmatex">\(P_2\)</span> 对应 <span class="arithmatex">\(\Omega_2\)</span>，当</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \Omega_1\cap\Omega_2=\varnothing
-</script>
-</div>
+\]</div>
 <p>时，两者通常可以独立执行。若有交叠，就要进一步区分：</p>
 <ul>
 <li>只读-只读：一般可安全并行；</li>
@@ -3496,17 +3488,13 @@ T_{\mathrm{GPU}}
 <p>小矩阵上不要急于讨论“加速比”，因为解释器、计时器和函数调用开销会占主导。随着规模增大，缓存局部性和底层向量化的差距才会逐渐显现。</p>
 <h2 id="8">8. 如何判断程序受什么限制</h2>
 <p>算术强度定义为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 I=\frac{\text{floating-point operations}}{\text{bytes moved}}.
-</script>
-</div>
+\]</div>
 <p>算术强度低的程序更容易受内存带宽限制；算术强度高的程序更可能受计算峰值限制。Roofline 模型用</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 P\le \min(P_{\mathrm{peak}},\ B_{\mathrm{memory}}I)
-</script>
-</div>
+\]</div>
 <p>表达这一上界，其中 <span class="arithmatex">\(P\)</span> 是可达到的计算性能，<span class="arithmatex">\(P_{\mathrm{peak}}\)</span> 是峰值算力，<span class="arithmatex">\(B_{\mathrm{memory}}\)</span> 是内存带宽。</p>
 <p>矩阵乘法通过分块反复利用数据，能够提高算术强度；稀疏矩阵向量乘法则常因数据复用少、索引访问不规则而受带宽限制。这也解释了为什么有限元求解中“装配”和“求解”会呈现不同的性能瓶颈。</p>
 

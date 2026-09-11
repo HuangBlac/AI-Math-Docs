@@ -3480,18 +3480,15 @@
 </blockquote>
 <h2 id="1">1. 问题设置</h2>
 <p>设训练样本 <span class="arithmatex">\((x_i,y_i)_{i=1}^n\)</span> 独立同分布，回归模型满足</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 y_i=f^*(x_i)+\varepsilon_i,
 \qquad
 \mathbb E[\varepsilon_i\mid x_i]=0,
 \qquad
 \mathbb E[\varepsilon_i^2\mid x_i]\leq \sigma^2.
-</script>
-</div>
+\]</div>
 <p>这里 <span class="arithmatex">\(f^\star(x)=\mathbb E[Y\mid X=x]\)</span>，输入分布记为 <span class="arithmatex">\(p\)</span>。给定核 <span class="arithmatex">\(k\)</span>、对应的 RKHS <span class="arithmatex">\(\mathcal H\)</span> 和正则化参数 <span class="arithmatex">\(\lambda&gt;0\)</span>，核岭回归求解</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \widehat f_\lambda
 \in
 \arg\min_{f\in\mathcal H}
@@ -3499,72 +3496,57 @@ y_i=f^*(x_i)+\varepsilon_i,
 \frac1n\sum_{i=1}^n\bigl(y_i-f(x_i)\bigr)^2
 +\lambda\|f\|_{\mathcal H}^2
 \right\}.
-</script>
-</div>
+\]</div>
 <p>平方损失下，总体超额风险恰好等于 <span class="arithmatex">\(L^2(p)\)</span> 误差</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 R(f)-R(f^\star)=\|f-f^\star\|_{L^2(p)}^2.
-</script>
-</div>
+\]</div>
 <p>这一章同时出现两个 Hilbert 空间。<span class="arithmatex">\(\mathcal H\)</span> 控制函数的复杂度，<span class="arithmatex">\(L^2(p)\)</span> 衡量预测误差。两种范数不能混写。</p>
 <h2 id="761">与局部平均方法的联系（原稿 §7.6.1）</h2>
 <p>来源：《7.4.3 Random Feature.pdf》第 8 页。</p>
 <p>令 <span class="arithmatex">\(k_x=(k(x,x_1),\ldots,k(x,x_n))^\top\)</span>，核岭回归可写成</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \widehat f_\lambda(x)=k_x^\top(K+n\lambda I)^{-1}y
 =\sum_i\widehat w_i(x)y_i,
 \qquad
 \widehat w(x)=(K+n\lambda I)^{-1}k_x.
-</script>
-</div>
+\]</div>
 <p>训练点上的拟合矩阵为 <span class="arithmatex">\(H_\lambda=K(K+n\lambda I)^{-1}\)</span>。这里始终保留 <span class="arithmatex">\(n\lambda\)</span>，原稿在同页混用的 <span class="arithmatex">\(\lambda\)</span> 不再作为另一套未声明的尺度。</p>
 <p>核岭回归也对标签线性，但其权重可以为负，且不一定和为 1。这使它与 Ch6 的非负局部平均不同。</p>
 <p>原稿讨论无正则项可能带来的问题，最后停在“exp”，没有写出例子；这里保留为“例子未写”，不补一个反例。</p>
 <h2 id="761_1">7.6.1 核岭回归作为线性估计量</h2>
 <p>表示定理给出</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \widehat f_\lambda(x)
 =\sum_{i=1}^n\alpha_i k(x,x_i),
 \qquad
 \alpha=(K+n\lambda I)^{-1}y,
-</script>
-</div>
+\]</div>
 <p>其中 <span class="arithmatex">\(K_{ij}=k(x_i,x_j)\)</span>。令</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 q(x)=
 \begin{bmatrix}
 k(x,x_1)&\cdots&k(x,x_n)
 \end{bmatrix}^{\!\top},
-</script>
-</div>
+\]</div>
 <p>便有</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \widehat f_\lambda(x)
 =q(x)^\top(K+n\lambda I)^{-1}y
 =\sum_{i=1}^n\widehat w_i(x)y_i,
 \qquad
 \widehat w(x)=(K+n\lambda I)^{-1}q(x).
-</script>
-</div>
+\]</div>
 <p>给定输入样本以后，预测值是响应向量 <span class="arithmatex">\(y\)</span> 的线性函数。它对输入 <span class="arithmatex">\(x\)</span> 通常仍是非线性的。训练点上的拟合值满足</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \widehat y=H_\lambda y,
 \qquad
 H_\lambda=K(K+n\lambda I)^{-1}.
-</script>
-</div>
+\]</div>
 <p>若 <span class="arithmatex">\(K=U\operatorname{diag}(\rho_1,\ldots,\rho_n)U^\top\)</span>，平滑矩阵的特征值为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \frac{\rho_j}{\rho_j+n\lambda}.
-</script>
-</div>
+\]</div>
 <p>大的核特征值方向保留得更多，小特征值方向收缩得更强。局部平均法常要求权重非负且和为 <span class="arithmatex">\(1\)</span>，核岭回归允许负权重。这种更自由的线性组合能够利用函数的高阶光滑性。</p>
 <p>实际计算只需完成三步。</p>
 <ol>
@@ -3576,55 +3558,44 @@ H_\lambda=K(K+n\lambda I)^{-1}.
 <h2 id="762">7.6.2 偏差与方差分解</h2>
 <h3 id="31">3.1 两个协方差算子</h3>
 <p>令 <span class="arithmatex">\(\varphi(x)\in\mathcal H\)</span> 为特征映射，并约定</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 (a\otimes b)f=\langle b,f\rangle_{\mathcal H}a.
-</script>
-</div>
+\]</div>
 <p>经验协方差算子与总体协方差算子分别为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \widehat\Sigma
 =\frac1n\sum_{i=1}^n\varphi(x_i)\otimes\varphi(x_i),
 \qquad
 \Sigma
 =\mathbb E\bigl[\varphi(X)\otimes\varphi(X)\bigr].
-</script>
-</div>
+\]</div>
 <p>对任意 <span class="arithmatex">\(g\in\mathcal H\)</span>，再生性质给出</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \|g\|_{L^2(p)}^2
 =\langle g,\Sigma g\rangle_{\mathcal H}
 =\|\Sigma^{1/2}g\|_{\mathcal H}^2.
 \tag{7.18}
-</script>
-</div>
+\]</div>
 <p>这条恒等式把预测误差转成了 <span class="arithmatex">\(\mathcal H\)</span> 中的算子二次型，是后续推导的连接点。</p>
 <h3 id="32">3.2 估计量的算子形式</h3>
 <p>目标函数的一阶最优条件给出</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \widehat f_\lambda
 =(\widehat\Sigma+\lambda I)^{-1}
 \left(\frac1n\sum_{i=1}^ny_i\varphi(x_i)\right).
-</script>
-</div>
+\]</div>
 <p>当 <span class="arithmatex">\(f^\star\in\mathcal H\)</span> 时，<span class="arithmatex">\(f^\star(x_i)=\langle f^\star,\varphi(x_i)\rangle_{\mathcal H}\)</span>，因此</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \widehat f_\lambda-f^\star
 =
 -\lambda(\widehat\Sigma+\lambda I)^{-1}f^\star
 +(\widehat\Sigma+\lambda I)^{-1}
 \left(\frac1n\sum_{i=1}^n\varepsilon_i\varphi(x_i)\right).
-</script>
-</div>
+\]</div>
 <p>第一项由正则化收缩产生，第二项来自观测噪声。条件均值为零使两项的交叉项消失。</p>
 <h3 id="33">3.3 方差项</h3>
 <p>利用噪声的条件独立性、条件方差上界以及式 (7.18)，可以得到</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \operatorname{Var}_\lambda
 \leq
 \frac{\sigma^2}{n}
@@ -3635,31 +3606,25 @@ H_\lambda=K(K+n\lambda I)^{-1}.
 (\widehat\Sigma+\lambda I)^{-1}
 \widehat\Sigma
 \right].
-</script>
-</div>
+\]</div>
 <p>又因为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 (\widehat\Sigma+\lambda I)^{-1}\widehat\Sigma
 \preccurlyeq I,
-</script>
-</div>
+\]</div>
 <p>方差进一步满足</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \operatorname{Var}_\lambda
 \leq
 \frac{\sigma^2}{n}
 \mathbb E\operatorname{tr}
 \left[(\widehat\Sigma+\lambda I)^{-1}\Sigma\right].
 \tag{7.19}
-</script>
-</div>
+\]</div>
 <p><span class="arithmatex">\(\lambda\)</span> 增大时，逆算子受到更强抑制，方差随之下降。</p>
 <h3 id="34">3.4 偏差项</h3>
 <p>同样使用式 (7.18)，平方偏差可以写成</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \operatorname{Bias}_\lambda^2
 =
 \lambda^2
@@ -3671,26 +3636,20 @@ f^\star,
 (\widehat\Sigma+\lambda I)^{-1}f^\star
 \right\rangle_{\mathcal H}.
 \tag{7.22}
-</script>
-</div>
+\]</div>
 <p><span class="arithmatex">\(\lambda\)</span> 增大时，估计量向零函数收缩得更明显，偏差通常会上升。合并两项便得到 Proposition 7.5 的期望风险上界。</p>
 <h2 id="763">7.6.3 经验算子与总体算子的联系</h2>
 <p>风险表达式里混合出现了 <span class="arithmatex">\(\widehat\Sigma\)</span> 和 <span class="arithmatex">\(\Sigma\)</span>。假设特征有界</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \|\varphi(x)\|_{\mathcal H}\leq R
 \qquad \text{几乎处处成立},
-</script>
-</div>
+\]</div>
 <p>并记</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \kappa_\lambda=\frac{R^2}{\lambda n}.
-</script>
-</div>
+\]</div>
 <p>Lemma 7.1 给出两条关键比较式。第一条控制方差</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathbb E\operatorname{tr}
 \left[(\widehat\Sigma+\lambda I)^{-1}\Sigma\right]
 \leq
@@ -3698,11 +3657,9 @@ f^\star,
 \operatorname{tr}
 \left[(\Sigma+\lambda I)^{-1}\Sigma\right].
 \tag{7.24}
-</script>
-</div>
+\]</div>
 <p>第二条控制偏差。对每个 <span class="arithmatex">\(g\in\mathcal H\)</span> 都有</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathbb E
 \left\langle
 g,
@@ -3717,14 +3674,12 @@ g,
 (\Sigma+\lambda I)^{-1}\Sigma g
 \right\rangle_{\mathcal H}.
 \tag{7.25}
-</script>
-</div>
+\]</div>
 <p>证明引入一个独立样本 <span class="arithmatex">\(x_{n+1}\)</span>，把 <span class="arithmatex">\(n+1\)</span> 个样本组成的算子记为 <span class="arithmatex">\(C\)</span>。Sherman-Morrison 公式把删去一个样本后的逆算子与 <span class="arithmatex">\((C+n\lambda I)^{-1}\)</span> 联系起来。样本的可交换性负责平均每个位置，最后用 Jensen 不等式把随机算子替换为它的期望。</p>
 <p><span class="arithmatex">\(\kappa_\lambda\)</span> 衡量经验算子逼近总体算子时付出的代价。为了让额外常数保持稳定，通常需要 <span class="arithmatex">\(\lambda n\)</span> 至少与 <span class="arithmatex">\(R^2\)</span> 同阶。</p>
 <h2 id="764">7.6.4 适定情形</h2>
 <p>当 <span class="arithmatex">\(f^\star\in\mathcal H\)</span> 时，代入式 (7.24) 和式 (7.25) 可得 Proposition 7.6</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \begin{aligned}
 \mathbb E\|\widehat f_\lambda-f^\star\|_{L^2(p)}^2
 \leq{}&
@@ -3737,65 +3692,51 @@ f^\star,
 \right\rangle_{\mathcal H}.
 \end{aligned}
 \tag{7.27}
-</script>
-</div>
+\]</div>
 <p>定义有效维数</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathcal N(\lambda)
 =\operatorname{tr}\left[\Sigma(\Sigma+\lambda I)^{-1}\right].
-</script>
-</div>
+\]</div>
 <p>若 <span class="arithmatex">\(\Sigma e_j=\mu_j e_j\)</span>，则</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathcal N(\lambda)
 =\sum_j\frac{\mu_j}{\mu_j+\lambda}.
-</script>
-</div>
+\]</div>
 <p>每个谱方向贡献一个介于 <span class="arithmatex">\(0\)</span> 和 <span class="arithmatex">\(1\)</span> 之间的量。<span class="arithmatex">\(\mu_j\gg\lambda\)</span> 的方向近似贡献一个完整自由度，<span class="arithmatex">\(\mu_j\ll\lambda\)</span> 的方向几乎被忽略。无限维 RKHS 因而拥有一个随 <span class="arithmatex">\(\lambda\)</span> 变化的有限统计维数。</p>
 <p>利用 <span class="arithmatex">\(\operatorname{tr}(\Sigma)\leq R^2\)</span> 和 <span class="arithmatex">\(\Sigma(\Sigma+\lambda I)^{-1}\preccurlyeq I\)</span>，式 (7.27) 可放宽为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathbb E\|\widehat f_\lambda-f^\star\|_{L^2(p)}^2
 \leq
 \frac{\sigma^2R^2}{\lambda n}(1+\kappa_\lambda)
 +\lambda(1+\kappa_\lambda)^2\|f^\star\|_{\mathcal H}^2.
-</script>
-</div>
+\]</div>
 <p>取 <span class="arithmatex">\(\lambda\asymp R^2/\sqrt n\)</span> 会给出 <span class="arithmatex">\(n^{-1/2}\)</span> 量级的无维数上界。在有限 <span class="arithmatex">\(d\)</span> 维特征空间中还有 <span class="arithmatex">\(\mathcal N(\lambda)\leq d\)</span>，取 <span class="arithmatex">\(\lambda\asymp R^2/n\)</span> 后可得到</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathbb E\|\widehat f_\lambda-f^\star\|_{L^2(p)}^2
 \lesssim
 \frac{\sigma^2d}{n}
 +\frac{R^2\|f^\star\|_{\mathcal H}^2}{n}.
-</script>
-</div>
+\]</div>
 <p>平方损失还能通过直接的算子集中论证得到高概率界。若进一步假设 <span class="arithmatex">\(\varepsilon_i^2\leq\sigma^2\)</span> 几乎处处成立，并且</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 n\geq
 \left(\frac43+\frac{8R^2}{\lambda}\right)
 \log\frac{14R^2}{\lambda\delta},
-</script>
-</div>
+\]</div>
 <p>原书 Proposition 7.7 说明，以至少 <span class="arithmatex">\(1-\delta\)</span> 的概率有</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \|\widehat f_\lambda-f^\star\|_{L^2(p)}^2
 \leq
 \frac{8\sigma^2R^2}{\lambda n}
 +4\lambda\|f^\star\|_{\mathcal H}^2
 +\frac{16\sigma^2R^2}{\lambda n}\log\frac{2}{\delta}.
 \tag{7.28}
-</script>
-</div>
+\]</div>
 <h2 id="765">7.6.5 超出适定情形</h2>
 <p>实际目标函数可能不属于 <span class="arithmatex">\(\mathcal H\)</span>。只要 <span class="arithmatex">\(f^\star\)</span> 位于 <span class="arithmatex">\(\mathcal H\)</span> 在 <span class="arithmatex">\(L^2(p)\)</span> 中的闭包，核岭回归仍可通过越来越复杂的 RKHS 函数逼近它。</p>
 <p>定义正则化逼近误差</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathcal A(\lambda)
 =
 \inf_{f\in\mathcal H}
@@ -3803,11 +3744,9 @@ n\geq
 \|f-f^\star\|_{L^2(p)}^2
 +\lambda\|f\|_{\mathcal H}^2
 \right\}.
-</script>
-</div>
+\]</div>
 <p>当 <span class="arithmatex">\(f^\star\in\mathcal H\)</span> 时，Lemma 7.2 给出</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathcal A(\lambda)
 =
 \lambda
@@ -3816,84 +3755,65 @@ f^\star,
 (\Sigma+\lambda I)^{-1}\Sigma f^\star
 \right\rangle_{\mathcal H}.
 \tag{7.29}
-</script>
-</div>
+\]</div>
 <p>等式右边原来只能在 <span class="arithmatex">\(\mathcal H\)</span> 中书写，左边的变分形式可以通过极限延伸到 <span class="arithmatex">\(L^2(p)\)</span> 闭包。Proposition 7.8 随后给出</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathbb E\|\widehat f_\lambda-f^\star\|_{L^2(p)}^2
 \leq
 \frac{\sigma^2}{n}(1+\kappa_\lambda)\mathcal N(\lambda)
 +(1+\kappa_\lambda)^2\mathcal A(\lambda).
 \tag{7.31}
-</script>
-</div>
+\]</div>
 <p>这个式子把两种困难分开了。<span class="arithmatex">\(\mathcal N(\lambda)\)</span> 描述核和输入分布允许噪声进入多少个谱方向，<span class="arithmatex">\(\mathcal A(\lambda)\)</span> 描述目标函数能以多小的 RKHS 范数得到逼近。</p>
 <h2 id="766">7.6.6 平衡偏差与方差</h2>
 <h3 id="71">7.1 有效维数的谱上界</h3>
 <p>有界特征使 <span class="arithmatex">\(\Sigma\)</span> 成为迹类算子。设其非增特征值满足</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mu_m\leq C(m+1)^{-\alpha},
 \qquad \alpha>1.
-</script>
-</div>
+\]</div>
 <p>那么</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathcal N(\lambda)
 =\sum_{m\geq0}\frac{\mu_m}{\mu_m+\lambda}
 \leq
 \sum_{m\geq0}\frac{1}{1+\lambda C^{-1}(m+1)^\alpha}
 =O(\lambda^{-1/\alpha}).
-</script>
-</div>
+\]</div>
 <p>对 <span class="arithmatex">\(d\)</span> 维区域上的 <span class="arithmatex">\(s\)</span> 阶 Sobolev RKHS，在输入密度有界等条件下，<span class="arithmatex">\(\alpha=2s/d\)</span>，因此</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathcal N(\lambda)=O\!\left(\lambda^{-d/(2s)}\right).
-</script>
-</div>
+\]</div>
 <h3 id="72-sobolev">7.2 Sobolev 光滑度下的学习率</h3>
 <p>设目标函数具有 <span class="arithmatex">\(t\)</span> 阶 Sobolev 光滑度，RKHS 的阶数为 <span class="arithmatex">\(s\)</span>，并满足 <span class="arithmatex">\(0&lt;t\leq s\)</span>。正则化逼近误差的量级为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathcal A(\lambda)=O\!\left(\lambda^{t/s}\right).
-</script>
-</div>
+\]</div>
 <p>当 <span class="arithmatex">\(\kappa_\lambda=O(1)\)</span> 时，风险上界的主要部分化为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \underbrace{\frac1n\lambda^{-d/(2s)}}_{\text{方差}}
 +
 \underbrace{\lambda^{t/s}}_{\text{偏差}}.
-</script>
-</div>
+\]</div>
 <p>令两项同阶</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \lambda^{t/s}
 \asymp
 \frac1n\lambda^{-d/(2s)},
-</script>
-</div>
+\]</div>
 <p>可得</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \lambda_\star\asymp n^{-2s/(2t+d)},
 \qquad
 \mathbb E\|\widehat f_{\lambda_\star}-f^\star\|_{L^2(p)}^2
 =O\!\left(n^{-2t/(2t+d)}\right).
-</script>
-</div>
+\]</div>
 <p>由于前面的经验算子比较要求 <span class="arithmatex">\(\lambda n\)</span> 不宜小于 <span class="arithmatex">\(R^2\)</span>，这套证明还要求</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \frac d2<s,
 \qquad
 t\leq s\leq t+\frac d2.
-</script>
-</div>
+\]</div>
 <p>几个特例能帮助辨认这个速率。</p>
 <ul>
 <li>当 <span class="arithmatex">\(t=1\)</span> 时，得到经典的非参数回归速率 <span class="arithmatex">\(n^{-2/(2+d)}\)</span>。</li>

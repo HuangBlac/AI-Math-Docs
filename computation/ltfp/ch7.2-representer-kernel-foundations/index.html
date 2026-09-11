@@ -3349,147 +3349,113 @@
 <h2 id="1">1. 从局部平均到核模型</h2>
 <p>来源：原稿第 1 页。</p>
 <p>Nadaraya–Watson 估计是标签的非负加权平均：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \widehat f(x)=\sum_i\widehat w_i(x)y_i,
 \qquad
 \widehat w_i(x)=\frac{q_h(x-x_i)}{\sum_jq_h(x-x_j)}.
-</script>
-</div>
+\]</div>
 <p>其分母为零时的约定和一致性条件见<a href="../ch6.1-6.3-local-averaging/">Ch6 笔记</a>。原稿回顾的 <span class="arithmatex">\(O(n^{-2/(d+2)})\)</span> 是相应假设下的风险量级，不能脱离带宽、噪声和正则性条件单独使用。</p>
 <p>核模型则先构造 Gram 矩阵 <span class="arithmatex">\(K_{ij}=k(x_i,x_j)\)</span>，再确定展开系数。原稿先以可逆 K 的无正则插值为例：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 k_x=(k(x,x_1),\ldots,k(x,x_n))^\top,
 \qquad\widehat f(x)=k_x^\top K^{-1}y.
-</script>
-</div>
+\]</div>
 <p>这里并不是说所有核学习都使用 <span class="arithmatex">\(K^{-1}y\)</span>。其一般形式是 <span class="arithmatex">\(\widehat f(x)=\sum_i\alpha_i k(x,x_i)\)</span>，系数由损失、正则化或插值条件确定。</p>
 <h2 id="2">2. 无限维特征与经验目标</h2>
 <p>来源：原稿第 1–2 页。</p>
 <p>有限维线性模型 <span class="arithmatex">\(f_\theta(x)=\theta^\top\phi(x)\)</span> 可以推广到 Hilbert 空间：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \phi:\mathcal X\to\mathcal H,
 \qquad f_\theta(x)=\langle\theta,\phi(x)\rangle_{\mathcal H}.
-</script>
-</div>
+\]</div>
 <p>例如参数可在 <span class="arithmatex">\(\ell^2\)</span> 中：<span class="arithmatex">\(\theta=(\theta_1,\theta_2,\ldots)\)</span> 且 <span class="arithmatex">\(\sum_i|\theta_i|^2&lt;\infty\)</span>。真正需要的是 Hilbert 空间结构，而非把所有无限维对象都等同于同一种序列空间。</p>
 <p>本文统一采用目标</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 J_\lambda(\theta)=\frac1n\sum_{i=1}^n
 \ell(y_i,\langle\theta,\phi(x_i)\rangle)
 +\frac\lambda2\|\theta\|_{\mathcal H}^2,\qquad\lambda>0.
-</script>
-</div>
+\]</div>
 <p>原稿曾交替写 λ 和 λ/2，现统一尺度。该目标只通过 n 个训练预测和参数范数访问 θ，这正是表示定理利用的结构。</p>
 <h2 id="prop-7-1">3. Proposition 7.1：表示定理</h2>
 <p>来源：原稿第 2–3 页；教材印刷页 181–182（PDF 第 197–198 页）。</p>
 <p>考虑</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 J(\theta)=\Psi\bigl(\langle\theta,\phi(x_1)\rangle,\ldots,
 \langle\theta,\phi(x_n)\rangle,\|\theta\|_{\mathcal H}^2\bigr),
-</script>
-</div>
+\]</div>
 <p>其中 Ψ 关于最后一个变量严格递增。令</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 D=\operatorname{span}\{\phi(x_1),\ldots,\phi(x_n)\}.
-</script>
-</div>
+\]</div>
 <p>原稿已有的证明整理如下。D 是有限维闭子空间，可以正交分解</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \theta=\theta_D+\theta_\perp,\qquad\theta_D\in D,\quad\theta_\perp\in D^\perp.
-</script>
-</div>
+\]</div>
 <p>对所有训练输入，</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \langle\theta,\phi(x_i)\rangle=\langle\theta_D,\phi(x_i)\rangle,
 \qquad\|\theta\|^2=\|\theta_D\|^2+\|\theta_\perp\|^2.
-</script>
-</div>
+\]</div>
 <p>于是 <span class="arithmatex">\(J(\theta_D)\le J(\theta)\)</span>，当 <span class="arithmatex">\(\theta_\perp\ne0\)</span> 时严格变小。去掉正交分量不改变训练预测，却降低范数代价。因此</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \inf_{\theta\in\mathcal H}J(\theta)=\inf_{\theta\in D}J(\theta).
-</script>
-</div>
+\]</div>
 <p>若极小值存在，最优 θ 必在 D 中，可写为 <span class="arithmatex">\(\theta=\sum_i\alpha_i\phi(x_i)\)</span>。</p>
 <blockquote>
 <p><strong>表述校对。</strong> 原稿“在线性组合中取得极小值”整理为下确界相同；极小值的存在性不是表示定理自动保证的。“只有正交分量为零才最优”对应严格递增条件。</p>
 </blockquote>
 <h3 id="_1">有限维目标与核技巧</h3>
 <p>原稿接着代入展开式：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 f_\theta(x)=\sum_i\alpha_i\langle\phi(x_i),\phi(x)\rangle
 =\sum_i\alpha_i k(x,x_i),
 \qquad\|\theta\|_{\mathcal H}^2=\alpha^\top K\alpha.
-</script>
-</div>
+\]</div>
 <p>所以学习问题变为</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \inf_{\alpha\in\mathbb R^n}\frac1n\sum_i\ell(y_i,(K\alpha)_i)
 +\frac\lambda2\alpha^\top K\alpha.
-</script>
-</div>
+\]</div>
 <p>算法可以只使用核值，不需要显式列出所有特征。进一步的求解与近似方法见<a href="../ch7.3-7.4-kernels-algorithms/">§7.4 笔记</a>。</p>
 <h2 id="prop-7-2">4. Proposition 7.2：最小范数插值</h2>
 <p>来源：原稿第 3 页；教材印刷页 183。</p>
 <p>假设至少存在一个 θ 满足 <span class="arithmatex">\(y_i=\langle\theta,\phi(x_i)\rangle\)</span>。同样分解为 <span class="arithmatex">\(\theta_D+\theta_\perp\)</span>：插值条件只依赖 <span class="arithmatex">\(\theta_D\)</span>，而范数平方是两部分范数平方之和。因此最小范数插值者可以取在 D 中，其系数满足</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 K\alpha=y.
-</script>
-</div>
+\]</div>
 <p>原稿讨论了表示系数可能不唯一。这里不把“存在插值解”偷换成“K 必须可逆”：可逆时可写 <span class="arithmatex">\(\alpha=K^{-1}y\)</span>，一般情形只保留线性方程。若 <span class="arithmatex">\(K\alpha=y\)</span> 无解，则不存在满足这些标签的插值参数。</p>
 <h2 id="prop-7-3">5. 正定核与 Proposition 7.3</h2>
 <p>来源：原稿第 4–5 页；教材印刷页 183–185。</p>
 <p>实值对称核 k 称为正定核，是指对任意有限点集，其 Gram 矩阵均半正定：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \forall\alpha\in\mathbb R^n,\qquad
 \sum_{i,j}\alpha_i\alpha_j k(x_i,x_j)\ge0.
-</script>
-</div>
+\]</div>
 <p>这里“正定核”采用教材术语，不要求每一个 Gram 矩阵都严格正定。</p>
 <p>Proposition 7.3 将它与特征表示联系起来：存在 Hilbert 空间 H 和映射 φ，使 <span class="arithmatex">\(k(x,x')=\langle\phi(x),\phi(x')\rangle\)</span>。</p>
 <h3 id="_2">原稿已展开的一个方向</h3>
 <p>若已有特征表示，则</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \alpha^\top K\alpha
 =\left\langle\sum_i\alpha_i\phi(x_i),\sum_j\alpha_j\phi(x_j)\right\rangle
 =\left\|\sum_i\alpha_i\phi(x_i)\right\|^2\ge0.
-</script>
-</div>
+\]</div>
 <h3 id="_3">反向构造写到哪里</h3>
 <p>原稿先取核截面的有限线性组合</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \mathcal H'=\left\{\sum_{i=1}^n\alpha_i k(\cdot,x_i):n<\infty\right\},
-</script>
-</div>
+\]</div>
 <p>并定义候选内积</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \left\langle\sum_i\alpha_i k(\cdot,x_i),
 \sum_j\beta_j k(\cdot,x_j')\right\rangle
 =\sum_{i,j}\alpha_i\beta_j k(x_i,x_j').
-</script>
-</div>
+\]</div>
 <p>随后记下再生关系</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \langle k(\cdot,x),k(\cdot,x')\rangle=k(x,x'),
 \qquad\langle k(\cdot,x),f\rangle=f(x).
-</script>
-</div>
+\]</div>
 <p>原稿第 5 页页首问：</p>
 <blockquote>
 <p>但这样定义的一个内积会对应一个完备的 RKHS 吗？</p>
@@ -3498,30 +3464,24 @@ K\alpha=y.
 <h2 id="ex-7-1">6. Exercise 7.1：有界求值与 Riesz 表示</h2>
 <p>来源：原稿第 5 页。题目假设 H 是 X 上实值函数的 Hilbert 空间，且每个求值泛函 <span class="arithmatex">\(L_x(f)=f(x)\)</span> 有界。</p>
 <p>原稿通过表示向量 <span class="arithmatex">\(g_x\)</span> 写出</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 f(x)=L_x(f)=\langle f,g_x\rangle_{\mathcal H}.
-</script>
-</div>
+\]</div>
 <p>这里调用的是 Riesz 表示定理。原稿令 <span class="arithmatex">\(k(\cdot,x)=g_x\)</span>，并记录</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \langle k(\cdot,x),k(\cdot,x')\rangle=k(x',x),
-</script>
-</div>
+\]</div>
 <p>最后得出“这是一个 RKHS”。</p>
 <p><strong>原始状态：已有简短作答。</strong> 表示向量和再生关系已写；整理时说明所用定理，不另扩充成一篇证明。</p>
 <h2 id="ex-7-2">7. Exercise 7.2：保留有问题的推导</h2>
 <p>来源：原稿第 5 页。目标是证明逐点指数 <span class="arithmatex">\(k_{\exp}(x,x')=e^{k(x,x')}\)</span> 仍为正定核；这不是矩阵指数 <span class="arithmatex">\(e^K\)</span>。</p>
 <p>原稿尝试利用 <span class="arithmatex">\(e^t\ge1+t\)</span>：</p>
-<div class="arithmatex">
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 \sum_{i,j}\alpha_i\alpha_j e^{k(x_i,x_j)}
 \mathrel{\overset{?}{\ge}}
 \sum_{i,j}\alpha_i\alpha_j(1+k(x_i,x_j))
 =\left(\sum_i\alpha_i\right)^2+\alpha^\top K\alpha\ge0.
-</script>
-</div>
+\]</div>
 <p><strong>原始状态：已有作答尝试，关键一步不成立。</strong> 问号处是整理时标出的断点：<span class="arithmatex">\(\alpha_i\alpha_j\)</span> 可能为负，不能由逐点不等式直接得到加权总和的不等式。保留已有尝试，不补写正确证明。</p>
 <h2 id="_4">仍保留的空白</h2>
 <table>
