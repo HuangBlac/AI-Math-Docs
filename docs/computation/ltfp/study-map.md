@@ -30,6 +30,25 @@
 | Ch7 | 核方法（Kernel Methods） | §7.2、§7.3 核基础/7.3.1/7.3.2（部分）/7.3.3、§7.4.1–7.4.4、§7.5 与 §7.6.1 已整理；原有 §7.6 理论笔记保留待签认 | 7.1 有简写、7.2 有错误尝试、7.6 有推导；7.8 有草算；7.10 有随机特征推导、7.11 有未完成草稿、7.21 仅题意；7.3 有未编号对应草稿，其余 `source_only` | P7.1–P7.4 明确记录（P7.3 反向未完成）；P7.5–P7.8 已记录但未核验 |
 | Ch8 | 稀疏方法（Sparse Methods） | 无逐章笔记；背景稀疏学习笔记未绑定 Ch8 | 17道题均为 `source_only` | P8.1–P8.6 为 `source_only` |
 | Ch9 | 神经网络（Neural Networks） | 原有 Ch9.1–9.2，加 [§9.2–9.3 部分笔记](ch9.2-9.3-variation-norm.md)，均未签认 | 9.2 有部分推导，未收尾；其余为 `source_only`（另有未编号的相关草算） | P9.2 明确记录、验证未完成；P9.1/P9.3 仍无正式编号记录 |
+| Ch10 | 集成学习（Ensemble Learning） | 无逐章笔记 | `source_only` | `source_only` |
+| Ch11 | 从在线学习到多臂赌博机（From Online Learning to Bandits） | [§11.1–11.3 概览](ch11-online-bandits-overview.md)：平均遗憾、零阶随机方向草式和 bandit 定义 | 无明确习题作答 | 无明确 Proposition 记录 |
+| Ch12 | 过参数化模型（Overparameterized Models） | [§12.1–12.3 概览](ch12-overparameterized-overview.md)：隐式偏好、双下降、均值场与线性网络起步；§12.4 仅提名 | 无明确习题作答 | P12.1/P12.2 有结论记录；P12.2 证明未完成 |
+| Ch13–Ch15 | 结构化预测、概率方法、下界 | 无逐章笔记 | `source_only` | `source_only` |
+
+## 2026-09-20 至 09-21 新增 Ch11–Ch12 概览原稿
+
+本次新增来源为 2 页 [Ch11 概览](ch11-online-bandits-overview.md)与 6 页 [Ch12 概览](ch12-overparameterized-overview.md)，详细页码与整理边界见[导入记录](handwritten-import-20260920-ch11-ch12.md)。两份材料均为 `note_unverified`，没有写入学习状态账本。
+
+| 对象 | 新来源位置 | 当前内容状态 |
+|---|---|---|
+| §11.1 | Ch11 PDF 第 1 页 | 有在线决策、平均遗憾和凸/强凸/镜像下降概览；无定理证明 |
+| §11.2 | Ch11 PDF 第 1 页 | 有随机方向差分草式；方向分布、维度尺度和无偏性条件未写 |
+| §11.3 | Ch11 PDF 第 2 页 | 只有多臂赌博机定义；原稿误标 Ch12.3.3；无 UCB 或遗憾界 |
+| §12.1 | Ch12 PDF 第 1 页 | 有隐式偏好与 Bregman 选择的概念式；无完整模型推导 |
+| §12.2 | Ch12 PDF 第 1 页 | 有双下降现象说明；无风险公式与证明 |
+| §12.3.1 | Ch12 PDF 第 2–5 页 | 有经验测度、粒子流、Wasserstein PDE 和 P12.1/P12.2；P12.2 证明未闭合 |
+| §12.3.2 | Ch12 PDF 第 6 页 | 有线性网络到 PSD 块矩阵及梯度式；在全局收敛分析前停止 |
+| §12.4 | Ch12 PDF 第 2 页 | 只出现 NTK 名称，不计为正文覆盖 |
 
 ## Ch4 细分映射
 
