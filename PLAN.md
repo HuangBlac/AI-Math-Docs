@@ -8,7 +8,7 @@
 - 协作边界与文档路由：`AGENTS.md`、`CLAUDE.md`。
 - 教材路径、锁定哈希和模型配置：`study.toml`。
 - LTFP 笔记覆盖：`docs/computation/ltfp/index.md` 与 `study-map.md`。
-- 笔记导入规则：`docs/computation/ltfp/note-import.md`。
+- 笔记导入规则：根目录 `NOTE-IMPORT.md`。
 - 工具实际能力：`src/ai_math_study/`、`tests/` 与当前 CLI 帮助。
 
 上述当前证据优先于本文件。旧版计划、评审轮次、截止日期和阶段估时可从 Git 历史恢复，但不再保留为活跃项目说明。
@@ -53,6 +53,7 @@
 ### 6. 私有材料与公开站点分离
 
 - `.study/` 保存 corpus、状态、模型结果和学习记录；`output/`、`_ingest/` 保存本地转录和审计材料。
+- 公开站点只接收包含学习知识本身的正文笔记；独立导入记录、逐页去向和整理决策不进入 `docs/` 或导航。
 - 教材原件、逐页渲染、答案、模型输出和个人绝对路径不自动进入 Git 或 MkDocs。
 - 提交、推送、构建和部署是四个独立动作，各自需要与用户授权和实际结果一致。
 

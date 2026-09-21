@@ -49,7 +49,7 @@ python -m mkdocs serve
 
 ## 导入学习笔记
 
-提供 PDF 后可使用个人技能 `$ltfp-note-import` 完成逐页转录、保留未完成项、导入和本地提交。未配置该技能时，也可按[笔记导入流程](docs/computation/ltfp/note-import.md)操作。源码与来源记录进入相应章节，本地扫描转录与审计材料保存在被 Git 忽略的 `output/`。
+提供 PDF 后可使用个人技能 `$ltfp-note-import` 完成逐页转录、保留未完成项、导入和本地提交。未配置该技能时，也可按[笔记导入流程](NOTE-IMPORT.md)操作。网页只收录包含学习知识本身的正文笔记；哈希、逐页去向和整理决策等导入审计保存在被 Git 忽略的 `output/`，不进入站点导航。
 
 ## 本地学习工具
 

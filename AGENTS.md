@@ -3,7 +3,8 @@
 本项目包含 MkDocs 知识库和 `src/ai_math_study/` 学习工具。按实际文件与配置判断工作范围，不根据旧分支说明猜测组件是否存在。
 
 - 先读 `README.md`；LTFP 从 `docs/computation/ltfp/index.md` 与 `study-map.md` 进入。详细技术约定见 `CLAUDE.md`，学习工具仍有效的历史设计约束见 `PLAN.md`。
-- 笔记导入流程见 `docs/computation/ltfp/note-import.md`。个人环境可调用 `$ltfp-note-import`；未安装该技能时按文档执行。
+- 笔记导入流程见根目录 `NOTE-IMPORT.md`。个人环境可调用 `$ltfp-note-import`；未安装该技能时按文档执行。
+- 网页只收录包含学习知识本身的正文笔记。SHA-256、逐页去向、转录清单和整理决策等导入审计保存到 `output/pdf/` 或 `output/import-records/`，不得进入 `docs/`、`mkdocs.yml`、章节索引或公开站点；正文页首可保留简短来源与 `note_unverified` 状态。
 - 数学正文保留来源、假设与未完成项。教材路径和哈希取自 `study.toml`；译稿、AI 整理与手写材料不代替锁定原文。`note_unverified` 不等于已掌握。
 - 新 PDF 是新证据。更新当前覆盖表，不用旧“未找到”结论覆盖新作答；也不把旧 AI 补充算成用户本次完成的证明。
 - 行内数学用 `$...$`，行间优先 `math` fenced block。文档变更检查链接、数学格式与严格构建，不运行无关 CLI 全套测试来代替文档检查。
