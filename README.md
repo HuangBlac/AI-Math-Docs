@@ -12,6 +12,7 @@
   - 微分方程、泛函分析、数理统计、多元统计与因果推断
 - [计算数学](docs/computation/index.md)
   - 数值线性代数、数值分析与数值微分方程
+  - 一维输运方程迎风格式、抛物方程差分与方向分裂实验
   - 凸优化与无约束优化实验
   - [工业计算：CAD、有限元、并行计算与高维问题](docs/computation/industrial-computing/index.md)
 - [统计计算](docs/computation/stat-computing.md)

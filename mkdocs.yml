@@ -94,6 +94,8 @@ nav:
     - 数值线代上机实验: computation/numerical-linear-algebra-lab.md
     - 数值分析: computation/num-analysis.md
     - 数值微分方程: computation/num-pde.md
+    - 一维输运方程迎风格式实验: computation/num-pde-upwind-lab.md
+    - 抛物型方程差分格式实验: computation/num-pde-parabolic-lab.md
     - 凸优化: computation/optimization.md
     - 无约束优化算法对比: computation/unconstrained-optimization.md
     - 工业计算:

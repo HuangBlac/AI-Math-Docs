@@ -316,4 +316,5 @@ b_1=\int_0^1\phi_1\,dx=\frac12.
 
 - CAD 曲线、曲面与 CAE 前处理见[CAD、CAE 与工业软件计算链](cad-cae-pipeline.md)。
 - 装配和稀疏求解在硬件上的执行见[并行计算基础](parallel-computing.md)。
-- 有限差分、CFL 条件和其他 PDE 数值方法仍保留在[数值微分方程](../num-pde.md)中。
+- 插值、Gauss 求积、条件数和完整误差链见[数值分析](../num-analysis.md)。
+- 有限差分、CFL 条件和数值实验见[数值微分方程](../num-pde.md)、[迎风格式实验](../num-pde-upwind-lab.md)与[抛物方程实验](../num-pde-parabolic-lab.md)。

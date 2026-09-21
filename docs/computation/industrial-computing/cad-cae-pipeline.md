@@ -162,3 +162,4 @@ CAD 到 CAE 之间存在一个容易漏掉的误差来源：计算域本身可�
 
 - 网格、弱形式、装配和误差估计见[有限元方法：从插值到装配](finite-element-method.md)。
 - $Ax=b$ 的数据访问、矩阵乘法和多核/GPU 执行见[并行计算基础](parallel-computing.md)。
+- 几何误差、离散误差、条件数与求解误差的统一视角见[数值分析](../num-analysis.md)。

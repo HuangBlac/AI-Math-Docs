@@ -91,7 +91,7 @@
   -> PINN 与神经 PDE 求解器
 ```
 
-[数值线性代数](computation/num-linalg.md) → [数值微分方程](computation/num-pde.md) → [有限元方法](computation/industrial-computing/finite-element-method.md) → [PINN 概览](ai4math/pinn-overview.md)
+[数值线性代数](computation/num-linalg.md) → [数值微分方程](computation/num-pde.md)与[差分实验](computation/num-pde-upwind-lab.md) → [有限元方法](computation/industrial-computing/finite-element-method.md) → [PINN 概览](ai4math/pinn-overview.md)
 
 这条路线关注：一个连续方程怎样变成可计算对象，以及神经方法与经典离散方法究竟在什么地方不同。
 
