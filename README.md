@@ -18,10 +18,12 @@
   - Monte Carlo、Bootstrap、MCMC 与统计模拟
 - [统计学习理论（LTFP）](docs/computation/ltfp/index.md)
   - Ch1-Ch5：数学基础、监督学习、线性方法、ERM 与优化
+  - [阅读映射与覆盖筛查](docs/computation/ltfp/study-map.md)：按正文区分已有记录、未完成推导与待核验内容
   - Ch6：局部平均方法、一致性与高阶光滑性（手写稿整理）
   - Ch7.2–7.5：表示定理、核构造、随机特征与泛化保证（手写稿整理）
   - Ch7.6：核岭回归的算法形式、偏差—方差分解与学习率（待人工签认）
   - Ch9：神经网络的优化、统计误差、宽度极限与变差范数（含未完成习题）
+  - Ch11–Ch12：在线学习、多臂赌博机与过参数化模型概览（手写稿整理）
 - [算法介绍](docs/algorithms/index.md)
   - 神经网络、决策树、贝叶斯学习、深度学习与压缩感知
 - [AI4Math 前沿](docs/ai4math/index.md)
@@ -47,7 +49,13 @@ python -m mkdocs serve
 
 ## 导入学习笔记
 
-提供 PDF 后可使用个人技能 `$ltfp-note-import` 完成逐页转录、保留未完成项、导入和本地提交。未配置该技能时，也可按[笔记导入流程](docs/computation/ltfp/note-import.md)操作。源码与来源记录进入相应章节，本地扫描转录及学习计划保存在被 Git 忽略的 `output/`。
+提供 PDF 后可使用个人技能 `$ltfp-note-import` 完成逐页转录、保留未完成项、导入和本地提交。未配置该技能时，也可按[笔记导入流程](docs/computation/ltfp/note-import.md)操作。源码与来源记录进入相应章节，本地扫描转录与审计材料保存在被 Git 忽略的 `output/`。
+
+## 本地学习工具
+
+仓库还包含 `src/ai_math_study/` 与 `tests/`。使用 Python 3.12 或更高版本，执行 `uv sync --frozen` 后可用 `uv run aimath-study --help` 查看命令；工具当前支持 Ch1–Ch9，不能据此推断后续章节的阅读情况。
+
+首次构建语料库前，核对 `study.toml` 中的本地教材路径与锁定 SHA-256。教材、生成内容与学习状态保存在本地；学习工具仍有效的历史设计约束见 `PLAN.md`，使用与开发约定见 `CLAUDE.md`（本地文件，可能不随仓库分发）。笔记存在或站点构建通过均不代表已掌握。
 
 ## 参与建设
 

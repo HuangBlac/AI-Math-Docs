@@ -1,7 +1,9 @@
-# 统计学习理论 (LFTP) 笔记
+# 统计学习理论 (LTFP) 笔记
 
-以 Francis Bach *Learning Theory from First Principles* (LFTP) 为主线的精读笔记。
+以 Francis Bach *Learning Theory from First Principles* (LTFP) 为主线的精读笔记。
 从第一性原理出发，统一 PAC 学习、Rademacher 复杂度、核方法等经典框架。
+
+表中状态仅描述笔记材料是否存在及其缺口；✅ 表示已有笔记，不表示逐条核验或个人掌握。历史整理稿可能包含 AI 补充，不能据此认定原稿已完成证明。
 
 ---
 
@@ -13,6 +15,7 @@
 | Ch1 数学基础 | [Bernstein 不等式与极大值期望](ch1.2.1-bernstein-maximum.md) | ✅ |
 | Ch1–Ch5 跨章基础 | [风险分解、优化与数学预备](ch1.1-1.2.0-optimization.md) | ⚠️ 跨章 |
 | Ch2 监督学习导论 | [监督学习导论（Ch2.1–2.5）](ch2.1-2.5-supervised-learning.md) | ✅ |
+| Ch3 线性最小二乘回归 | [线性方法基础](ch3.1-3.4-linear-basics.md)、[岭回归与极小极大下界](ch3.5-3.9-ridge-minimax.md) | 已有笔记；文件范围重叠，待核验 |
 | Ch3 线性最小二乘回归 | [PCA 与主成分回归（§3.9）](ch3.9-pca-regression.md) | ✅ |
 
 ## Part II — 核心理论 (Ch4–Ch9)
@@ -22,10 +25,12 @@
 | Ch4.1–4.4.3 经验风险最小化 | [风险凸化与误差分解](ch4.1-4.4.3.md) | ⚠️ 4.1.4 缺失 |
 | Ch4.4.4–4.5 经验风险最小化 | [覆盖数与 Rademacher 导入](ch4.4.4-4.5.0.md) | ⚠️ 习题稀缺 |
 | Ch4.5.1–4.5.3 经验风险最小化 | [Rademacher 复杂度](ch4.5.1-4.5.3.md) | ⚠️ 标题待补 |
-| Ch5 机器学习优化 | [优化简介（§5.1–5.2）](ch5.1-5.2-optimization.md) | ✅ |
+| Ch4.5.4–4.5.6 经验风险最小化 | [风险界与正则化估计](ch4.5.4-4.5.6.md) | 已有笔记；P4.6 证明未完成、P4.7 仅概述 |
+| Ch4.6–4.7 经验风险最小化 | [模型选择与补充推导](<ch4.6-4.7 model selection.md>) | §4.6 仅提纲；§4.7 有 Gaussian/Rademacher 比较草稿 |
+| Ch5 机器学习优化 | [优化简介（跨 §5.1–5.4）](ch5.1-5.2-optimization.md) | ✅ |
 | Ch5.3 机器学习优化 | [非光滑梯度方法](ch5.3-nonsmooth.md) | ✅ |
 | Ch5.4 机器学习优化 | [随机梯度下降（§5.4）](ch5.4.0-sgd.md) | ✅ |
-| Ch5.4.1 机器学习优化 | [强凸 SGD](ch5.4.1-strong-convex-sgd.md) | ✅ |
+| Ch5.4.1 机器学习优化 | [强凸 SGD](ch5.4.1-strong-convex-sgd.md) | 已有笔记；Ex5.34 原稿未完成，整理稿含补充 |
 | Ch6.1–6.3 局部平均方法 | [估计器与一致性分析](ch6.1-6.3-local-averaging.md) | 🔶 手写稿整理；习题保留原状 |
 | Ch6.4–6.5 局部平均方法 | [普遍一致性与高阶光滑性](ch6.4-6.5-universal-consistency.md) | 🔶 手写稿整理；构造未补完 |
 | Ch7.2–7.3 核方法 | [表示定理、核构造与 Mercer 特征](ch7.2-representer-kernel-foundations.md) | 🔶 新手写稿；P7.3 反向未完、Ex 7.2 有误 |
@@ -40,7 +45,7 @@
 
 章节、习题和 Proposition 的覆盖状态见 [LTFP 阅读映射与覆盖筛查](study-map.md)。该页区分教材原题、笔记中的明确编号、隐含结论和已验证掌握，不能把文件存在直接当作学习完成。
 
-本次手写材料的页码来源、符号校对与未完成题目见 [2026-09-08 导入记录](handwritten-import-20260908.md)。 新增 Ch7.2–7.3 笔记见 [2026-09-10 导入记录](handwritten-import-20260910.md)。
+2026-09-08 手写材料的页码来源、符号校对与未完成题目见 [导入记录](handwritten-import-20260908.md)。Ch7.2–7.3 笔记见 [2026-09-10 导入记录](handwritten-import-20260910.md)。
 
 2026-09-11 的 4 页补充实际属于 Ch7，原文件名含 Ch4。见[导入记录](handwritten-import-20260911.md)；新稿状态为 `note_unverified`。
 
