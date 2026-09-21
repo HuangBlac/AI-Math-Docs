@@ -331,3 +331,41 @@ $$\frac{1}{\alpha} \cdot \frac{T_{k_n}}{k_{n+1}} \leq \frac{T_n}{n} \leq \frac{T
 - 截断后 $S_n^M/n \to EX_i^M$（强大数定律对截断变量成立）；
 - 但 $\liminf_{n \to \infty} \frac{S_n}{n} \geq EX_i^M$，且当 $M \to \infty$ 时，$E(X_i^M)^+ \to EX_i^+ = \infty$；
 - 故 $\liminf_{n \to \infty} \frac{S_n}{n} = \infty$（正部主导导致和无界增长）。
+
+---
+
+## 3. KL 散度：比较概率分布的信息代价
+
+设概率分布 $P,Q$ 分别有密度 $p,q$。KL 散度定义为
+
+```math
+D_{\mathrm{KL}}(P\|Q)
+=\int p(x)\log\frac{p(x)}{q(x)}\,dx.
+```
+
+它不是范数或对称距离，而是“用 $Q$ 描述来自 $P$ 的数据时增加了多少对数损失”。因此
+
+```math
+D_{\mathrm{KL}}(P\|Q)\ge0,
+\qquad
+D_{\mathrm{KL}}(P\|Q)=0
+\Longleftrightarrow P=Q\quad\text{几乎处处},
+```
+
+但通常
+
+```math
+D_{\mathrm{KL}}(P\|Q)\ne D_{\mathrm{KL}}(Q\|P).
+```
+
+如果 $p(x)>0$ 而 $q(x)=0$，则 $D_{\mathrm{KL}}(P\|Q)=+\infty$。这反映了模型把真实可能事件判为不可能会付出无限的信息代价。
+
+KL 与最大似然的关系来自
+
+```math
+D_{\mathrm{KL}}(P_{\mathrm{data}}\|Q_\theta)
+=\mathbb E_{P_{\mathrm{data}}}[\log p_{\mathrm{data}}]
+-\mathbb E_{P_{\mathrm{data}}}[\log q_\theta].
+```
+
+第一项与参数 $\theta$ 无关，所以最小化 KL 等价于最大化期望对数似然。若关心几何距离、弱收敛或样本可区分性，则可能更适合使用 total variation、Wasserstein、Hellinger 或 MMD；不同量回答的问题不同。

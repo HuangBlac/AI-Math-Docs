@@ -346,6 +346,29 @@ $\frac 1 \lambda \log(\mathbb E \sum_{j=1}^m e^{\lambda X_j})\le \frac 1 \lambda
 
 通过选取$\lambda$让基本不等式成立，得到上界$R\sqrt{\frac{\log m}{n}}$
 
+## 补充：为什么 Bernstein 条件可能带来快速率
+
+覆盖数或有限函数类的 union bound 通常先给出 $n^{-1/2}$ 量级的一致偏差。如果超额损失 $g_f$ 还满足类似
+
+```math
+\operatorname{Var}(g_f(Z))
+\le C\,\mathbb E[g_f(Z)]
+```
+
+的 Bernstein 条件，方差会随着超额风险一起变小。把这个关系代入 Bernstein 不等式后，尾概率指数中的二次阈值可以约成线性阈值，复杂度项便可能从
+
+```math
+\sqrt{\frac{\log\mathcal N}{n}}
+```
+
+改善为
+
+```math
+\frac{\log\mathcal N}{n}.
+```
+
+这里的快速率不是只靠更强的集中不等式自动得到的；关键是方差与超额风险之间的局部关系。常数、覆盖尺度以及条件是否成立仍需针对具体损失和函数类核对。
+
 
 
 

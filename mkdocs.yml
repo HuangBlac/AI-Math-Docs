@@ -134,15 +134,13 @@ nav:
       - Ch7.3-7.4 核表示与近似算法: computation/ltfp/ch7.3-7.4-kernels-algorithms.md
       - Ch7.5 泛化保证与逼近误差: computation/ltfp/ch7.5-generalization.md
       - Ch7.6 岭回归的理论分析: computation/ltfp/ch7.6-ridge-theory.md
+      - Ch8 稀疏回归与 Lasso 概览: computation/ltfp/ch8-sparse-regression-overview.md
       - Ch9.1-9.2 神经网络理论: computation/ltfp/ch9.1-9.2-neural-networks.md
       - Ch9.2-9.3 复杂度与变差范数: computation/ltfp/ch9.2-9.3-variation-norm.md
       - Ch11 在线学习到多臂赌博机概览: computation/ltfp/ch11-online-bandits-overview.md
       - Ch12 过参数化模型概览: computation/ltfp/ch12-overparameterized-overview.md
       - 习题与 Proposition 映射: computation/ltfp/study-map.md
-      - 机器学习基础: computation/ltfp/machine-learning.md
       - 稀疏学习与特征学习: computation/ltfp/sparse-feature-learning.md
-      - 学习理论概念地图: computation/ltfp/learning-theory.md
-      - 数据科学导论: computation/ltfp/data-science-intro.md
       - 统计计算总复习: computation/stat-computing-review.md
   - 算法介绍:
     - algorithms/index.md

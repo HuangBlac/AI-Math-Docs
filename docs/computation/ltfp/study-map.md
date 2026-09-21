@@ -28,7 +28,7 @@
 | Ch5 | 机器学习优化（Optimization for Machine Learning） | 5.1–5.4.1，含 SGD/SVRG 重叠 | 明确出现5.18–5.21、5.26–5.29、5.31–5.34 | 明确出现 P5.6、P5.7、P5.8 |
 | Ch6 | 局部平均方法（Local Averaging Methods） | [§6.1–6.3](ch6.1-6.3-local-averaging.md)、[§6.4–6.5](ch6.4-6.5-universal-consistency.md) 已整理，均为 `note_unverified` | 6.2/6.3/6.5 有简写；6.4 仅题号；6.6 构造未写；6.1 为 `source_only` | P6.1、P6.3 明确记录；P6.2 有 k 近邻界但原稿未标编号 |
 | Ch7 | 核方法（Kernel Methods） | §7.2、§7.3 核基础/7.3.1/7.3.2（部分）/7.3.3、§7.4.1–7.4.4、§7.5 与 §7.6.1 已整理；原有 §7.6 理论笔记保留待签认 | 7.1 有简写、7.2 有错误尝试、7.6 有推导；7.8 有草算；7.10 有随机特征推导、7.11 有未完成草稿、7.21 仅题意；7.3 有未编号对应草稿，其余 `source_only` | P7.1–P7.4 明确记录（P7.3 反向未完成）；P7.5–P7.8 已记录但未核验 |
-| Ch8 | 稀疏方法（Sparse Methods） | 无逐章笔记；背景稀疏学习笔记未绑定 Ch8 | 17道题均为 `source_only` | P8.1–P8.6 为 `source_only` |
+| Ch8 | 稀疏方法（Sparse Methods） | [稀疏回归与 Lasso 概览](ch8-sparse-regression-overview.md)：§8.1 问题设置、§8.3.1 软阈值与最优性、慢/快速率主线 | 无明确习题作答；Ex 8.5–8.9 只涉及正文背景，仍为 `source_only` | P8.3/P8.4 的速率结论有概览，未形成正式 Proposition 证明；其余 `source_only` |
 | Ch9 | 神经网络（Neural Networks） | 原有 Ch9.1–9.2，加 [§9.2–9.3 部分笔记](ch9.2-9.3-variation-norm.md)，均未签认 | 9.2 有部分推导，未收尾；其余为 `source_only`（另有未编号的相关草算） | P9.2 明确记录、验证未完成；P9.1/P9.3 仍无正式编号记录 |
 | Ch10 | 集成学习（Ensemble Learning） | 无逐章笔记 | `source_only` | `source_only` |
 | Ch11 | 从在线学习到多臂赌博机（From Online Learning to Bandits） | [§11.1–11.3 概览](ch11-online-bandits-overview.md)：平均遗憾、零阶随机方向草式和 bandit 定义 | 无明确习题作答 | 无明确 Proposition 记录 |

@@ -7,9 +7,9 @@
 | 方向 | 状态 | 说明 |
 |------|------|------|
 | 数值线性代数 | 已有笔记 | [数值线性代数](num-linalg.md) + [上机实验](numerical-linear-algebra-lab.md) |
-| 数值分析 | 待补充 | — |
+| 数值分析 | 部分笔记 | [数值分析与 FFT](num-analysis.md) |
 | 数值微分方程 | 进行中 | [数值微分方程](num-pde.md) |
 | 凸优化 | 已有笔记 | [凸优化与对偶理论](optimization.md) + [无约束优化算法对比](unconstrained-optimization.md) |
 | 工业计算 | 已有专题 | [CAD、有限元与并行计算](industrial-computing/index.md) |
 | 统计计算 | 已独立 | 见 [统计计算](stat-computing.md) 专题 |
-| 统计学习理论 | 已独立 | 见 [统计学习理论 (LFTP)](ltfp/index.md) 专题 |
+| 统计学习理论 | 已独立 | 见 [统计学习理论 (LTFP)](ltfp/index.md) 专题 |

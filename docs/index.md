@@ -77,7 +77,7 @@
   -> 神经网络与 AI4Math
 ```
 
-[概率论](math/probability.md) → [机器学习基础](computation/ltfp/machine-learning.md) → [凸优化](computation/optimization.md) → [LTFP 总览](computation/ltfp/index.md)
+[概率论](math/probability.md) → [监督学习导论](computation/ltfp/ch2.1-2.5-supervised-learning.md) → [凸优化](computation/optimization.md) → [LTFP 总览](computation/ltfp/index.md)
 
 这条路线回答的是：损失函数、泛化、正则化和优化为什么能够组成一套学习系统。
 
@@ -113,7 +113,7 @@
 | [工业计算：从几何建模到并行求解](computation/industrial-computing/index.md) | 把 CAD、有限元、稀疏矩阵和并行硬件串成一条完整计算链 |
 | [Ch7.2–7.3 表示定理与核基础](computation/ltfp/ch7.2-representer-kernel-foundations.md) | 从正交分解理解有限维表示，保留核构造与习题的实际完成程度 |
 | [Ch9.1-9.2 神经网络理论](computation/ltfp/ch9.1-9.2-neural-networks.md) | 从优化误差、统计误差与逼近误差理解宽度极限和 Rademacher 界 |
-| [学习理论概念地图](computation/ltfp/learning-theory.md) | 在逐章推导之外，理解概率工具、复杂度与泛化界之间的关系 |
+| [Ch8 稀疏回归与 Lasso](computation/ltfp/ch8-sparse-regression-overview.md) | 从稀疏先验、软阈值和基本不等式理解高维预测的慢速率与快速率 |
 | [PINN 概览与拷打](ai4math/pinn-overview.md) | 同时看到 PINN 的基本方法、适用场景和常见失败原因 |
 
 ## 为什么还要维护知识库
