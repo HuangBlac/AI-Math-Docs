@@ -1,6 +1,6 @@
 # Ch11 从在线学习到多臂赌博机（概览）
 
-> 状态：`note_unverified`。本页整合两份无文字层手写稿：`《Ch11概览.pdf》`（2 页，导入于 2026-09-20 至 2026-09-21）与 `《Ch11.1.1-Ch11.1.3.pdf》`（4 页，导入于 2026-09-22）。两份材料均未说明学习日期。新增材料展开了 §11.1.1–11.1.3 的投影 SGD、强凸速率和镜像下降草稿；这些内容仍未逐条核验，也不等于已掌握。
+> 状态：`note_unverified`。本页整合三份无文字层手写稿：`《Ch11概览.pdf》`（2 页，导入于 2026-09-20 至 2026-09-21）、`《Ch11.1.1-Ch11.1.3.pdf》`（4 页，导入于 2026-09-22）与 `《Ch11.2 零阶凸优化.pdf》`（7 页，导入于 2026-09-22）。材料均未说明学习日期。现有正文覆盖 §11.1.1–11.1.3 的投影 SGD、强凸速率与镜像下降草稿，以及 §11.2.1–11.2.2 的高斯平滑和收敛界；这些内容仍未逐条核验，也不等于已掌握。
 
 ## 1. 从随机优化转向在线决策
 
@@ -148,17 +148,110 @@ D_\Phi(\theta,\theta_t)-D_\Phi(\theta,\theta_{t-1})
 
 第 4 页停在这一步，没有完成条件期望、望远镜求和与最终界之间的完整连接。因而这里只记录“镜像映射—Bregman 更新—单步界”的部分推导，不把最终速率当作原稿已经证明的结论。
 
-## 2. 零阶凸优化中的随机方向
+## 2. 零阶凸优化
 
-原稿在 “Ch11.2 固定凸函数 $F$，随机选一个方向” 下写出差分估计
+零阶方法只查询函数值，不直接获得梯度。若允许沿每个坐标方向各查询一次，一个自然的有限差分估计是
 
 ```math
-g=\frac{F(\theta+\delta z)-F(\theta)}{\delta}\,z,
-\qquad
-F_\delta(\theta)=\mathbb E_z F(\theta+\delta z).
+\widehat{F}'(\theta)
+=\sum_{i=1}^d
+\frac{F(\theta+\delta e_i)-F(\theta)}{\delta}e_i.
 ```
 
-这记录了用函数值替代梯度的核心想法，但原稿没有说明 $z$ 的分布、维度归一化以及 $g$ 对哪个平滑目标无偏。因而这里只保留为估计器草式；不能从该页直接断言 $\mathbb E[g]=\nabla F(\theta)$ 或 $\nabla F_\delta(\theta)$。
+当 $F$ 的梯度是 $L$-Lipschitz 时，各坐标的差分误差至多为 $L\delta/2$，因此
+
+```math
+\|\widehat{F}'(\theta)-F'(\theta)\|_2^2
+\le \frac{dL^2\delta^2}{4}.
+```
+
+这一方案每步需要 $d+1$ 次函数查询。为了把查询次数降到与维数无关，原稿改为随机选取方向 $z_t$，并考虑带噪声的函数值差：
+
+```math
+\theta_t=\theta_{t-1}
+-\gamma\frac{F(\theta_{t-1}+\delta z_t)-F(\theta_{t-1})+\varepsilon_t}{\delta}z_t,
+\qquad
+\mathbb E[\varepsilon_t^2]=2\sigma^2.
+```
+
+若使用带符号的坐标方向，需要取 $z_t\in\{\pm\sqrt d\,e_i\}$ 才有 $\mathbb E[z_tz_t^\top]=I$；后续推导则使用 $z_t\sim\mathcal N(0,I)$。原稿在这两种方向之间切换时省略了部分尺度说明，这里按推导所需条件补齐记号。
+
+### 2.1 高斯平滑与无偏估计
+
+定义高斯平滑后的目标
+
+```math
+F_\delta(\theta)
+=\mathbb E_{z\sim\mathcal N(0,I)}F(\theta+\delta z).
+```
+
+原稿在 Lemma 11.2 中利用高斯分部积分，写出
+
+```math
+\mathbb E_z\left[
+\frac{F(\theta+\delta z)-F(\theta)}{\delta}z
+\right]
+=\nabla F_\delta(\theta).
+```
+
+因此随机差分不是原目标梯度 $\nabla F(\theta)$ 的精确无偏估计，而是平滑目标梯度 $\nabla F_\delta(\theta)$ 的无偏估计。$\delta$ 越小，平滑偏差越小；但噪声项的二阶矩含有 $2\sigma^2d/\delta^2$，会随 $\delta\to0$ 爆炸。这是后续参数选择必须平衡的两部分。
+
+### 2.2 光滑情形：偏差、二阶矩与 Proposition 11.4
+
+若 $F$ 凸且 $L$-smooth，高斯平滑满足
+
+```math
+0\le F_\delta(\theta)-F(\theta)
+\le \frac{L\delta^2d}{2}.
+```
+
+对无噪声随机差分
+
+```math
+g(\theta,z)=\frac{F(\theta+\delta z)-F(\theta)}{\delta}z,
+```
+
+原稿利用高斯矩界得到
+
+```math
+\mathbb E\|g(\theta,z)\|_2^2
+\le \frac{15}{2}L^2\delta^2d^3
++6d\|\nabla F(\theta)\|_2^2.
+```
+
+这里用到的是 $\mathbb E\|z\|_2^6=d(d+2)(d+4)\le15d^3$ 等上界；不能把中间的矩阵不等式改写成对所有维数都成立的等式。
+
+令 $\bar\theta_t=t^{-1}\sum_{s=0}^{t-1}\theta_s$。原稿页 4–5 记录了 Proposition 11.4 的递推与望远镜求和：若 $\gamma\le1/(24dL)$，则
+
+```math
+\mathbb E[F(\bar\theta_t)]-F(\theta^*)
+\le \frac{\|\theta_0-\theta^*\|_2^2}{\gamma t}
++2L\delta^2d^2
++\frac{4d\gamma\sigma^2}{\delta^2}.
+```
+
+无噪声时可取 $\gamma=1/(24dL)$ 并让 $\delta$ 尽量小，得到 $O(d/t)$ 的界。存在函数值噪声时，固定步长会留下由偏差和噪声共同决定的误差底；若针对时域取 $\gamma\asymp t^{-2/3}/(dL)$ 并同步平衡 $\delta$，原稿记录的量级为 $O(dt^{-1/3})$。这些是草稿中的推导路线，尚未逐行签认。
+
+### 2.3 非光滑情形：Lemma 11.3 与未完成的 Proposition 11.5
+
+当 $F$ 只是 $B$-Lipschitz 时，仍以 $F_\delta$ 代替 $F$。原稿明确记录 Lemma 11.3：$F_\delta$ 仍是 $B$-Lipschitz，并且是 $(B\sqrt d/\delta)$-smooth；同时
+
+```math
+|F_\delta(\theta)-F(\theta)|
+\le B\delta\sqrt d.
+```
+
+将同一个随机差分估计代入标准随机梯度递推，原稿最终停在
+
+```math
+\mathbb E[F(\bar\theta_t)]-F(\theta^*)
+\le \frac{\|\theta_0-\theta^*\|_2^2}{2\gamma t}
++4\gamma B^2d^2
++\frac{\gamma\sigma^2d}{\delta^2}
++2B\delta\sqrt d.
+```
+
+这对应 Proposition 11.5 的核心上界，但原稿没有明确写出命题标题，也没有继续完成无噪声/有噪声时的参数优化。因此本页只保留到该不等式，不用教材后续内容替原稿补完速率。
 
 ## 3. 多臂赌博机：只有问题定义
 
@@ -172,6 +265,7 @@ F_\delta(\theta)=\mathbb E_z F(\theta+\delta z).
 - §11.1.1：投影 SGD 的递推、Abel 求和和 $O(B\operatorname{diam}(C)/\sqrt t)$ 界已有记录；命题 11.1 在原稿中属于隐含对应。
 - §11.1.2：命题 11.2 的标题、步长、强凸递推和 $B^2(1+\log t)/(2\mu t)$ 界已有记录；未逐条核验。
 - §11.1.3：镜像映射、Bregman 更新和单步不等式已有记录；最终望远镜求和未完成。
-- §11.2：有单个随机方向差分式；关键分布与尺度条件未写。
+- §11.2.1：高斯平滑、Lemma 11.2、光滑情形的偏差和二阶矩界，以及 Proposition 11.4 的收敛界与速率主线已有记录；尺度记号经过整理，结论仍未逐条核验。
+- §11.2.2：Lemma 11.3 和 Proposition 11.5 的核心上界已有记录；原稿停在上界，没有完成参数优化与最终速率。
 - §11.3：只有 bandit 的一句定义；算法和分析均未写。
-- 原稿没有 Exercise 的作答记录；除页 3 的命题 11.2 外，没有明确写出 Proposition 编号。
+- 原稿没有 Exercise 的作答记录；明确写出的编号包括 Proposition 11.2、Proposition 11.4、Lemma 11.2 与 Lemma 11.3，其余按正文对应关系记录。

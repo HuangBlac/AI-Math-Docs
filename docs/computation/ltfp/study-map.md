@@ -31,7 +31,7 @@
 | Ch8 | 稀疏方法（Sparse Methods） | [稀疏回归与 Lasso 概览](ch8-sparse-regression-overview.md)：§8.1 问题设置、§8.3.1 软阈值与最优性、慢/快速率主线 | 无明确习题作答；Ex 8.5–8.9 只涉及正文背景，仍为 `source_only` | P8.3/P8.4 的速率结论有概览，未形成正式 Proposition 证明；其余 `source_only` |
 | Ch9 | 神经网络（Neural Networks） | 原有 Ch9.1–9.2，加 [§9.2–9.3 部分笔记](ch9.2-9.3-variation-norm.md)，均未签认 | 9.2 有部分推导，未收尾；其余为 `source_only`（另有未编号的相关草算） | P9.2 明确记录、验证未完成；P9.1/P9.3 仍无正式编号记录 |
 | Ch10 | 集成学习（Ensemble Learning） | 无逐章笔记 | `source_only` | `source_only` |
-| Ch11 | 从在线学习到多臂赌博机（From Online Learning to Bandits） | [§11.1–11.3 概览](ch11-online-bandits-overview.md)：§11.1.1–11.1.3 有投影 SGD、强凸速率和镜像下降推导草稿；§11.2 有零阶随机方向草式；§11.3 仅 bandit 定义 | 无明确习题作答 | P11.2 明确写出；P11.1/P11.3 为隐含对应，均未核验 |
+| Ch11 | 从在线学习到多臂赌博机（From Online Learning to Bandits） | [§11.1–11.3 概览](ch11-online-bandits-overview.md)：§11.1.1–11.1.3 有投影 SGD、强凸速率和镜像下降推导草稿；§11.2.1–11.2.2 有高斯平滑、光滑/非光滑零阶优化界；§11.3 仅 bandit 定义 | 无明确习题作答 | P11.2/P11.4 明确写出；P11.1/P11.3/P11.5 为隐含对应，均未核验 |
 | Ch12 | 过参数化模型（Overparameterized Models） | [§12.1–12.3 概览](ch12-overparameterized-overview.md)：隐式偏好、双下降、均值场与线性网络起步；§12.4 仅提名 | 无明确习题作答 | P12.1/P12.2 有结论记录；P12.2 证明未完成 |
 | Ch13–Ch15 | 结构化预测、概率方法、下界 | 无逐章笔记 | `source_only` | `source_only` |
 
@@ -77,7 +77,7 @@
 
 ## Ch11 细分映射
 
-新增 `Ch11.1.1-Ch11.1.3.pdf` 共 4 页，均为 `note_unverified`；它补充了同一正文页中的细分覆盖，但不改变 §11.2 与 §11.3 的既有缺口。
+当前手写材料补充了 §11.1.1–11.1.3 的在线优化推导，以及 §11.2.1–11.2.2 的零阶凸优化推导，均为 `note_unverified`。§11.2.2 停在 Proposition 11.5 的核心上界，尚未完成参数优化；§11.3 仍只有问题定义。
 
 | 对象 | 教材小节 | 当前状态 |
 |---|---|---|
@@ -85,6 +85,11 @@
 | Proposition 11.2 | 11.1.2 Strongly Convex Case | `proposition_explicit`；步长 $\gamma_s=1/(\mu s)$、强凸望远镜项与对数速率有记录，未逐条核验 |
 | Proposition 11.3 | 11.1.3 Online Mirror Descent | `proposition_implicit`；镜像更新和单步 Bregman 界有记录，最终望远镜求和未完成 |
 | Exercise 11.1–11.2 | 11.1.1–11.1.3 | `source_only`；原稿没有习题作答 |
+| Lemma 11.2 | 11.2.1 Smooth Stochastic Gradient Descent | 明确记录；用高斯分部积分说明随机差分对 $\nabla F_\delta$ 无偏，未逐条核验 |
+| Proposition 11.4 | 11.2.1 Smooth Stochastic Gradient Descent | `proposition_explicit`；平滑偏差、估计量二阶矩、收敛上界与 $O(dt^{-1/3})$ 量级主线有记录，未逐条核验 |
+| Lemma 11.3 | 11.2.2 Nonsmooth Stochastic Gradient Descent | 明确记录；$F_\delta$ 的 Lipschitz、光滑性和近似误差界有记录，未逐条核验 |
+| Proposition 11.5 | 11.2.2 Nonsmooth Stochastic Gradient Descent | `proposition_implicit`；原稿写到核心上界，未继续完成无噪声/有噪声参数优化 |
+| Exercise 11.3–11.6 | 11.2–11.3 | `source_only`；原稿没有习题作答 |
 
 ## 文件范围的特别说明
 
