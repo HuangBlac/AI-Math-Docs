@@ -9,5 +9,6 @@ _ingest/
 .study/
 CLAUDE.md
 
-# 本地转录、学习计划与技能分发包
+# 本地转录、学习计划、技能分发包与临时 PDF 材料
 output/
+tmp/
