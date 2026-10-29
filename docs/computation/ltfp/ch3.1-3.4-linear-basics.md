@@ -41,9 +41,11 @@ $\hat{\mathcal{R}}(f) =\frac{1}{n} \sum_{i=1}^n\ell(f(x_i),y_i)$
 首先，非常幸运的是，这个最小二乘问题$argmin_{\theta\in R^d}||\Phi \theta-y||_2^2$在$\Phi$是列满秩的时候才行，观测的样本量一定要比特征数目要更少
 
 实际上有解析解，可以写成：
+
 $$
 \hat \theta = (\Phi^T\Phi)^{-1}\Phi y
 $$
+
 至于如何验证这一点，则是可以将其看成一个优化的问题，将原本的问题转化为一个二次型极小化：
 
 $\varphi(\theta) = ||\Phi \theta-y||_2^2$
@@ -119,19 +121,25 @@ chapter 5, with running-time complexities going down to linear in d, e.g., O(nd)
 Fixed design：输入点固定，只有输出有噪声
 
 固定设计中，把
+
 $$
 x_1,\ldots,x_n
 $$
+
 看成提前给定的确定性点。
 
 例如，在一维区间上人为选定均匀网格：
+
 $$
 x_i=\frac{i}{n}.
 $$
+
 然后输出按照某个随机机制生成，例如
+
 $$
 y_i=f^*(x_i)+\varepsilon_i,
 $$
+
 其中噪声 $\varepsilon_i$ 是随机的。
 
 因此：
@@ -141,6 +149,7 @@ $$
 - 估计量 $\hat\theta$ 因为依赖于 $y_i$，所以仍然是随机的。
 
 我们只评价模型在原来的这些输入点上的预测效果。例如定义
+
 $$
 R_{\mathrm{fix}}(\theta)
 =
@@ -149,46 +158,59 @@ R_{\mathrm{fix}}(\theta)
 \bigl(y_i^{\mathrm{new}}-\phi(x_i)^\top\theta\bigr)^2
 \right],
 $$
+
 其中 $y_i^{\mathrm{new}}$ 表示在同一个输入 $x_i$ 上重新产生的一个独立输出。
 
 关键在于：测试时输入仍然是
+
 $$
 x_1,\ldots,x_n,
 $$
+
 只是输出噪声重新抽样。
 
 因此固定设计研究的是 **within-sample prediction**，而不是对新输入点的推广。
 
 固定输入点可以对应一个离散概率分布：
+
 $$
 \widehat p_X
 =
 \frac1n\sum_{i=1}^n\delta_{x_i},
 $$
+
 其中 $\delta_{x_i}$ 是集中在 $x_i$ 上的点质量。
 
 从这个分布中抽取输入，相当于：
+
 $$
 P(x=x_i)=\frac1n.
 $$
+
 于是，对任意函数 $g$，
+
 $$
 \mathbb E_{x\sim\widehat p_X}[g(x)]
 =
 \frac1n\sum_{i=1}^n g(x_i).
 $$
+
 所以固定设计下的平均预测误差
+
 $$
 \frac1n\sum_{i=1}^n
 \bigl(f(x_i)-f^*(x_i)\bigr)^2
 $$
+
 也可以写成
+
 $$
 \mathbb E_{x\sim\widehat p_X}
 \left[
 \bigl(f(x)-f^*(x)\bigr)^2
 \right].
 $$
+
 Proposition 3.3 (风险的分解对于固定最小二乘法的设计) Under the linear
 model and fixed design assumptions made in this section, for any θ ∈ Rd, we have R∗ = σ2
 and
@@ -197,6 +219,7 @@ $\mathcal R(θ) − \mathcal R^∗ = \|θ − θ^∗\|_{\hat \Sigma}^2$其中$\h
 nΦ^⊤Φ$数据矩阵的归一化的协方差$\|θ\|^2_{\hat \Sigma}= θ^⊤\hatΣθ$. 如果$\hat \theta$是一个随机变量 
 
 整理后的公式是
+
 $$
 \mathbb E\!\left[R(\widehat{\theta})\right]-R^*
 =
@@ -210,16 +233,19 @@ $$
 \right]
 }_{\text{Variance：方差}}.
 $$
+
 它是参数估计误差的 **偏差—方差分解**。
 
 3.6 正则化的线性最小二乘法
 
 对于正则化参数 $\lambda>0$，我们将岭最小二乘估计量 $\hat{\theta}_\lambda$ 定义为以下优化问题的极小化解：
+
 $$
 \hat{\theta}_\lambda \in argmin_{\theta\in\mathbb{R}^d}\{ \frac{1}{n}\|y-\Phi\theta\|_2^2
  +
  \lambda\|\theta\|_2^2 \}.
 $$
+
 岭回归估计量可以通过闭式公式求出。需要注意的是，此时我们不再要求矩阵 $\Phi^\top\Phi$ 可逆。
 
 Proposition 3.6我们回忆$\hat Σ = \frac{1}{n}Φ^⊤Φ ∈ R^{d×d}.$我们可有$\hatθ_λ =\frac{1}{n}(\hat Σ + λI)^{−1}Φ^⊤y.$
@@ -238,19 +264,25 @@ Exercise 3.5 使用矩阵可逆引理，说明论述3.6给出的Ridge Regression
 已知：
 
 关键是下面这种矩阵恒等式：
+
 $$
 \left(\Phi^\top\Phi+aI_d\right)^{-1}\Phi^\top
 =
 \Phi^\top\left(\Phi\Phi^\top+aI_n\right)^{-1},
 $$
+
 其中 $a>0$。本题只需要令
+
 $$
 (\Phi^{\top}\Phi+aI_d)\Phi^{\top}(\Phi\Phi^{\top}+aI_n)^{-1}=\Phi^\top(\Phi\Phi^\top+aI_n)(\Phi\Phi^{\top}+aI_n)^{-1}=\Phi^\top
 $$
+
 因此：
+
 $$
 \Phi^{\top}(\Phi\Phi^{\top}+aI_n)^{-1}=(\Phi^{\top}\Phi+aI_d)^{-1}\Phi^\top
 $$
+
 当然，也可以用矩阵求逆公式：
 
 $(A+UCV)^{-1} = A^{-1}-A^{-1}U(C^{-1}+VA^{-1}U)^{-1}VA^{-1}$
@@ -273,13 +305,16 @@ $(aI+\Phi^{T}\Phi)^{-1}\Phi^\top = \frac{1}{a}I- \frac{1}{a}\Phi^\top(aI+\Phi\Ph
 
 Proposition 3.7:对于如下的线性模型假设（和固定模型假设）岭回归最小二乘法估计 $\hatθ_λ = \frac1
 n(\hat Σ + λI)^{−1}Φ^⊤y$有如下的经验估计
+
 $$
 E \mathcal R(\hat θ_λ) − \mathcal R^∗ = λ^2θ_*^{T} (\hat Σ + λI)^{−2}\hatΣθ_∗ +
 \frac {σ^2}n tr[\hatΣ^2(\hatΣ + λI)^{−2}].
 $$
+
 证明过程：
 
 实际上就是进行一个误差分解，分解为bias偏差，记作B；方差var，记作V，参考Proposition3.3
+
 $$
 B = \left\|\mathbb E[\widehat{\theta}]-\theta^*\right\|_{\hat \Sigma}^2 = \|\mathbb E[\frac1
 n(\hat Σ + λI)^{−1}Φ^⊤(\Phi \theta^*+\varepsilon)]-\theta^*\|_{\hat \Sigma}^2 = \|\mathbb E[\frac1
@@ -302,20 +337,30 @@ B+V = \frac1 n(\hatΣ+λI)^{−1}Φ^⊤Φθ^∗ \le λ^2θ_*^{T} (\hat Σ + λI)
 $$
 
 
-Proposition 3.8 (Choice of regularization parameter) 设经验协方差矩阵为$\widehat{\Sigma}=\frac1n\Phi^\top\Phi.$取正则化参数$\lambda^*
+Proposition 3.8 (Choice of regularization parameter) 设经验协方差矩阵为$\widehat{\Sigma}=\frac1n\Phi^\top\Phi.$取正则化参数
+
+```math
+\lambda^*
 =
 \frac{
 \sigma\sqrt{\operatorname{tr}(\widehat{\Sigma})}
 }{
 \|\theta^*\|_2\sqrt n
-}$则有$\mathbb E\left[R(\widehat{\theta}_{\lambda^*})\right]-R^*
+}
+```
+
+则有
+
+```math
+\mathbb E\left[R(\widehat{\theta}_{\lambda^*})\right]-R^*
 \leq
 \frac{
 \sigma\sqrt{\operatorname{tr}(\widehat{\Sigma})}\,
 \|\theta^*\|_2
 }{
 \sqrt n
-}.$
+}.
+```
 
 我们已经利用如下事实得到了前面的结论：矩阵$(\widehat{\Sigma}+\lambda I)^{-2}\lambda\widehat{\Sigma}$的所有特征值都不超过 $\frac12$。
 
@@ -332,17 +377,18 @@ B
 &=
 \lambda^2 {\theta^*}^{\top}
 (\widehat{\Sigma}+\lambda I)^{-2}
-\widehat{\Sigma}\theta^* \
+\widehat{\Sigma}\theta^* \\
 &=
 \lambda {\theta^*}^{\top}
 (\widehat{\Sigma}+\lambda I)^{-2}
-\lambda\widehat{\Sigma}\theta^* \
+\lambda\widehat{\Sigma}\theta^* \\
 &\leq
 \frac{\lambda}{2}|\theta^*|_2^2.
 \end{aligned}
 $$
 
 类似地，对于方差项，有
+
 $$
 \begin{aligned}
 V
@@ -352,7 +398,7 @@ V
 \left[
 \widehat{\Sigma}^2
 (\widehat{\Sigma}+\lambda I)^{-2}
-\right] \
+\right] \\
 &=
 \frac{\sigma^2}{\lambda n}
 \operatorname{tr}
@@ -360,13 +406,15 @@ V
 \widehat{\Sigma}
 \lambda\widehat{\Sigma}
 (\widehat{\Sigma}+\lambda I)^{-2}
-\right] \
+\right] \\
 &\leq
 \frac{\sigma^2\operatorname{tr}(\widehat{\Sigma})}
 {2\lambda n}.
 \end{aligned}
 $$
+
 因此，
+
 $$
 \mathbb E\left[R(\widehat{\theta}_{\lambda})\right]-R^*
 \leq
@@ -377,6 +425,7 @@ $$
 \le
 \sigma\|\theta^*\|_2\sqrt{\frac{tr(\hat \Sigma)}{n}}
 $$
+
 Exercise 3.6 计算经验风险，若使用$θ^⊤Λθ$替换原本的正则项$λ\|θ\|_2^2$其中$Λ\in R^{d×d}$是一个正定矩阵
 
 Exercise 3.7 () Consider the “leave-one-out” estimator θ−i
@@ -404,11 +453,13 @@ matrix identities from section 1.1.3.
 在固定设计、线性模型正确设定、噪声为高斯噪声时，不论使用什么估计方法，最坏情况下的期望超额风险都不可能小于$\frac{d\sigma^2}{n}$
 
 固定设计模型为
+
 $$
 y=\Phi\theta^*+\varepsilon,
 \qquad
 \varepsilon\sim\mathcal N(0,\sigma^2I_n),
 $$
+
 其中：
 
 - $\Phi\in\mathbb R^{n\times d}$ 是给定的设计矩阵；
@@ -416,22 +467,29 @@ $$
 - $y\in\mathbb R^n$ 是观测数据。
 
 定义经验协方差矩阵
+
 $$
 \widehat\Sigma=\frac1n\Phi^\top\Phi.
 $$
+
 在模型正确设定时，任意参数估计值 $\theta$ 的超额风险是
+
 $$
 R_{\theta^*}(\theta)-R^*
 =
 \|\theta-\theta^*\|_{\widehat\Sigma}^2.
 $$
+
 现在不再只考虑 OLS 或 Ridge，而是考虑**任何估计器**
+
 $$
 A:\mathbb R^n\to\mathbb R^d,
 \qquad
 \widehat\theta=A(y).
 $$
+
 它可以是线性的、非线性的、有偏的，都没有关系。教材研究的是
+
 $$
 \inf_A\sup_{\theta^*\in\mathbb R^d}
 \mathbb E_\varepsilon
@@ -439,6 +497,7 @@ $$
 R_{\theta^*}\bigl(A(\Phi\theta^*+\varepsilon)\bigr)-R^*
 \right].
 $$
+
 这里：
 
 - $\sup_{\theta^*}$：对估计器来说最不利的真实参数；
@@ -449,6 +508,7 @@ $$
 接下来我们逐步梳理证明：
 
 首先，我们将选择$\theta^*\sim \mathcal N\left(0,\frac{\sigma^2}{\lambda n}I_d\right),\lambda>0$的一个先验分布来选取，选取参数使得最大化风险大小的会大于等于在这个先验正态分布下的风险大小
+
 $$
 \sup_{\theta^*\in\mathbb R^d}
 \mathbb E_\varepsilon
@@ -463,21 +523,27 @@ R_{\theta^*}\bigl(A(\Phi\theta^*+\varepsilon)\bigr)
 R_{\theta^*}\bigl(A(\Phi\theta^*+\varepsilon)\bigr)
 \right].
 $$
+
 记
+
 $$
 \widehat\Sigma=\frac1n\Phi^\top\Phi,
 \qquad
 \|u\|_{\widehat\Sigma}^2=u^\top\widehat\Sigma u,
 $$
+
 并取先验
+
 $$
 \theta^*\sim\mathcal N\left(0,\frac{\sigma^2}{\lambda n}I_d\right),
 \qquad
 \varepsilon\sim\mathcal N(0,\sigma^2I_n),
 $$
+
 二者相互独立。教材先证明平方损失下最优的 Bayes 估计器是后验均值；由于后验为高斯分布，后验均值等于后验众数，而后验众数恰好给出 Ridge 估计器；然后证明这个估计器对应的误差就是$\frac{d\sigma^2}{n}$
 
 记minimax 超额风险
+
 $$
 \mathcal M
 :=
@@ -489,7 +555,9 @@ R_{\theta^*}\bigl(A(\Phi\theta^*+\varepsilon)\bigr)
 \right]
 -R^*.
 $$
+
 因此有不等式
+
 $$
 \mathcal M
 \ge
@@ -501,6 +569,7 @@ $$
 R_{\theta^*}\bigl(A(\Phi\theta^*+\varepsilon)\bigr)
 \right]-R^*.
 $$
+
 然后我们可以得到经验风险的衡量，这是一个与$R_{\theta^*}(\theta)= \mathbb E\|\Phi(\theta^*-\theta)+\widetilde\varepsilon\|_2^2=\mathbb E\|\Phi(\theta^*-\theta)\|_2^2+\mathbb E\|\widetilde\varepsilon\|_2^2$
 
 这样拆分是因为交叉项均值为零，所以我们真实打包进入风险的$\hat\theta=A(y)=A(\Phi\theta^*+\varepsilon)$
@@ -510,6 +579,7 @@ $$
 $\hat \theta_{A} = \mathbb E(\theta^*|y)$条件期望就是在平方意义下的最佳逼近
 
 所以就转化为了:
+
 $$
 \inf_A
 \mathbb E_{\theta^*\sim
@@ -524,7 +594,9 @@ R_{\theta^*}\bigl(A(\Phi\theta^*+\varepsilon)\bigr)
 R_{\theta^*}\bigl(A^*(\Phi\theta^*+\varepsilon)\bigr)
 \right] 
 $$
+
 进而就进一步得到了:
+
 $$
 \mathbb E_{\theta^*\sim
 \mathcal N(0,\frac{\sigma^2}{\lambda n}I)}
@@ -540,6 +612,7 @@ R_{\theta^*}\bigl(A^*(\Phi\theta^*+\varepsilon)\bigr)
 A^*(\Phi\theta^*+\varepsilon)-\theta^*
 \right\|_{\widehat\Sigma}^2.
 $$
+
 其中这一步实际上还需要再仔细推理一下：
 
 首先$R^*= E\|\widetilde\varepsilon\|_2^2$就可以直接打包进前面的风险，消掉一个常数

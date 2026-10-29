@@ -9,13 +9,13 @@
 1. 先看“课程地图”，知道整门课在做什么。
 2. 复习时优先按“模板”而不是按章节推进。
 3. 每个模板至少做到三件事：
-   - 知道什么时候用
-   - 能说出核心公式
-   - 能闭卷写出最小 R 代码骨架
+    - 知道什么时候用
+    - 能说出核心公式
+    - 能闭卷写出最小 R 代码骨架
 
 ---
 
-# 0. 课程地图
+## 0. 课程地图
 
 | 模块 | 核心问题 | 典型章节 |
 |---|---|---|
@@ -35,9 +35,9 @@
 
 ---
 
-# 1. R 基础速查
+## 1. R 基础速查
 
-## 1.1 文件读写
+### 1.1 文件读写
 
 ```r
 x = 1:100
@@ -55,7 +55,7 @@ dat = read.csv("2015city.csv", header = TRUE)
 write.csv(dat, "out.csv", row.names = FALSE)
 ```
 
-## 1.2 常见构造命令
+### 1.2 常见构造命令
 
 ```r
 rep(1:5, each = 5)
@@ -64,7 +64,7 @@ seq(1, 10, by = 2)
 sample(1:10, size = 5, replace = TRUE)
 ```
 
-## 1.3 常见图形与统计命令
+### 1.3 常见图形与统计命令
 
 ```r
 hist(x, prob = TRUE)
@@ -76,15 +76,15 @@ summary(fit)
 
 ---
 
-# 2. 模板 A：逆变换法
+## 2. 模板 A：逆变换法
 
-## 适用场景
+### 适用场景
 
 - 已知分布函数 \(F(x)\)
 - 能显式求出 \(F^{-1}(u)\)
 - 常用于连续型分布，也可处理简单离散分布
 
-## 核心思想
+### 核心思想
 
 若 \(U \sim U(0,1)\)，则
 
@@ -94,7 +94,7 @@ X = F^{-1}(U)
 
 服从目标分布 \(F\)。
 
-## 最小代码模板
+### 最小代码模板
 
 ```r
 r.target = function(n) {
@@ -104,7 +104,7 @@ r.target = function(n) {
 }
 ```
 
-## 典型例子：指数分布
+### 典型例子：指数分布
 
 若 \(X \sim \mathrm{Exp}(\lambda)\)，则
 
@@ -120,14 +120,14 @@ myrexp = function(n, lambda) {
 }
 ```
 
-## 常见变式
+### 常见变式
 
 - Pareto 分布
 - Geometric 分布
 - Logarithmic 分布
 - 离散分布的累积分布逆变换
 
-## 易错点
+### 易错点
 
 - 先确认 \(U\) 的定义域是 \((0,1)\)
 - 求逆时不要把参数放错
@@ -135,15 +135,15 @@ myrexp = function(n, lambda) {
 
 ---
 
-# 3. 模板 B：接受-拒绝法
+## 3. 模板 B：接受-拒绝法
 
-## 适用场景
+### 适用场景
 
 - 目标密度 \(f(x)\) 不方便直接抽样
 - 能找到容易抽样的 proposal density \(g(x)\)
 - 存在常数 \(M\)，使 \(f(x) \le M g(x)\)
 
-## 核心思想
+### 核心思想
 
 1. 先从 \(g\) 中生成候选样本 \(Y\)
 2. 再生成 \(U \sim U(0,1)\)
@@ -155,7 +155,7 @@ U \le \frac{f(Y)}{M g(Y)},
 
 则接受 \(Y\)
 
-## 最小代码模板
+### 最小代码模板
 
 ```r
 r.ar = function(n) {
@@ -173,12 +173,12 @@ r.ar = function(n) {
 }
 ```
 
-## 典型题型
+### 典型题型
 
 - 用接受-拒绝法生成 Beta 分布样本
 - 已知某个多项式型密度，在区间上用均匀分布作 proposal
 
-## 易错点
+### 易错点
 
 - 没有真正检查 \(M\) 是否足够大
 - 接受概率里少写了 \(g(y)\)
@@ -186,16 +186,16 @@ r.ar = function(n) {
 
 ---
 
-# 4. 模板 C：变换法、混合分布与多元正态
+## 4. 模板 C：变换法、混合分布与多元正态
 
-## 4.1 变换法
+### 4.1 变换法
 
-## 适用场景
+### 适用场景
 
 - 已知一个容易抽样的变量 \(Y\)
 - 目标变量可写成 \(X = h(Y)\)
 
-## 最小代码模板
+### 最小代码模板
 
 ```r
 r.target = function(n) {
@@ -205,14 +205,14 @@ r.target = function(n) {
 }
 ```
 
-## 典型例子
+### 典型例子
 
 ```r
 # 对数正态：若 Y ~ N(mu, sigma^2)，则 X = exp(Y)
 x = exp(rnorm(n, mean = mu, sd = sigma))
 ```
 
-## 4.2 混合分布
+### 4.2 混合分布
 
 若
 
@@ -229,7 +229,7 @@ x[k == 1] = rnorm(sum(k == 1), mean = 0, sd = 1)
 x[k == 0] = rnorm(sum(k == 0), mean = 3, sd = 1)
 ```
 
-## 4.3 多元正态
+### 4.3 多元正态
 
 若 \(Z \sim N(0, I)\)，且 \(R R^T = \Sigma\)，则
 
@@ -239,7 +239,7 @@ X = \mu + ZR
 
 服从 \(N(\mu, \Sigma)\)。
 
-### Cholesky 版本
+#### Cholesky 版本
 
 ```r
 rmvn.chol = function(n, mu, Sigma) {
@@ -251,7 +251,7 @@ rmvn.chol = function(n, mu, Sigma) {
 }
 ```
 
-## 易错点
+### 易错点
 
 - Cholesky 里注意 R 的矩阵方向
 - 混合分布必须“先抽类别，再抽条件分布”
@@ -259,14 +259,14 @@ rmvn.chol = function(n, mu, Sigma) {
 
 ---
 
-# 5. 模板 D：Monte Carlo 积分
+## 5. 模板 D：Monte Carlo 积分
 
-## 适用场景
+### 适用场景
 
 - 积分难以解析计算
 - 能把积分写成某个随机变量函数的期望
 
-## 核心思想
+### 核心思想
 
 若 \(X \sim p(x)\)，则
 
@@ -286,7 +286,7 @@ rmvn.chol = function(n, mu, Sigma) {
 \widehat{\mathrm{Var}}(\hat\theta)=\frac{s_g^2}{m}.
 \]
 
-## 最小代码模板
+### 最小代码模板
 
 ```r
 m = 10000
@@ -297,7 +297,7 @@ var.hat = var(g) / m
 se.hat = sd(g) / sqrt(m)
 ```
 
-## 区间积分常见改写
+### 区间积分常见改写
 
 \[
 \int_a^b h(x) dx = (b-a) E[h(U)], \quad U \sim U(a,b).
@@ -308,7 +308,7 @@ u = runif(m, min = a, max = b)
 theta.hat = (b - a) * mean(h(u))
 ```
 
-## 易错点
+### 易错点
 
 - 忘记乘区间长度 \((b-a)\)
 - 估计量和估计量方差混淆
@@ -316,16 +316,16 @@ theta.hat = (b - a) * mean(h(u))
 
 ---
 
-# 6. 模板 E：方差缩减
+## 6. 模板 E：方差缩减
 
-## 6.1 对偶变量法
+### 6.1 对偶变量法
 
-## 适用场景
+### 适用场景
 
 - 积分函数具有一定单调性
 - 可以让两个样本负相关
 
-## 核心思想
+### 核心思想
 
 用 \(U\) 与 \(1-U\) 配对，构造
 
@@ -340,7 +340,7 @@ gv = c(g(u), g(v))
 theta.hat = mean(gv)
 ```
 
-## 6.2 控制变量法
+### 6.2 控制变量法
 
 若已知 \(E[B]\)，用
 
@@ -363,7 +363,7 @@ T = A + c.star * (B - EB)
 theta.hat = mean(T)
 ```
 
-## 6.3 重要抽样
+### 6.3 重要抽样
 
 若
 
@@ -379,7 +379,7 @@ w = g(x) / f(x)
 theta.hat = mean(w)
 ```
 
-## 6.4 分层抽样
+### 6.4 分层抽样
 
 把区域分层后，各层分别抽样，再加权平均。
 
@@ -393,7 +393,7 @@ for (j in 1:k) {
 theta.hat = mean(T)
 ```
 
-## 易错点
+### 易错点
 
 - 对偶变量法不是“变量变两个”，而是要形成负相关
 - 控制变量法里控制变量的期望必须已知
@@ -401,9 +401,9 @@ theta.hat = mean(T)
 
 ---
 
-# 7. 模板 F：Monte Carlo 统计模拟
+## 7. 模板 F：Monte Carlo 统计模拟
 
-## 7.1 估计量的 MSE
+### 7.1 估计量的 MSE
 
 ```r
 m = 1000
@@ -415,7 +415,7 @@ for (j in 1:m) {
 mse.hat = mean((est - theta)^2)
 ```
 
-## 7.2 置信区间覆盖率
+### 7.2 置信区间覆盖率
 
 ```r
 m = 1000
@@ -428,7 +428,7 @@ for (j in 1:m) {
 coverage = mean(cover)
 ```
 
-## 7.3 第一类错误率
+### 7.3 第一类错误率
 
 ```r
 m = 1000
@@ -440,7 +440,7 @@ for (j in 1:m) {
 type1.error = mean(reject)
 ```
 
-## 7.4 功效
+### 7.4 功效
 
 ```r
 m = 1000
@@ -452,7 +452,7 @@ for (j in 1:m) {
 power = mean(reject)
 ```
 
-## 易错点
+### 易错点
 
 - 覆盖率必须在真实参数固定的前提下重复抽样
 - 第一类错误率要在 \(H_0\) 下模拟
@@ -461,16 +461,16 @@ power = mean(reject)
 
 ---
 
-# 8. 模板 G：Bootstrap 与 Jackknife
+## 8. 模板 G：Bootstrap 与 Jackknife
 
-## 8.1 Bootstrap 点估计、偏差、标准误
+### 8.1 Bootstrap 点估计、偏差、标准误
 
-## 适用场景
+### 适用场景
 
 - 已有样本 \(x_1,\dots,x_n\)
 - 统计量 \(\hat\theta = t(x)\) 的解析分布不好求
 
-## 核心思想
+### 核心思想
 
 对原样本有放回重抽样，得到
 
@@ -486,7 +486,7 @@ power = mean(reject)
 \widehat{se}_B = sd(\hat\theta_1^*,\dots,\hat\theta_B^*).
 \]
 
-## 最小代码模板
+### 最小代码模板
 
 ```r
 theta = function(x) {
@@ -508,7 +508,7 @@ bias.hat = mean(theta.b) - theta.hat
 se.hat = sd(theta.b)
 ```
 
-## 8.2 三种常见 Bootstrap 区间
+### 8.2 三种常见 Bootstrap 区间
 
 ```r
 alpha = 0.05
@@ -527,9 +527,9 @@ q = quantile(theta.b, c(alpha / 2, 1 - alpha / 2))
 ci.basic = c(2 * theta.hat - q[2], 2 * theta.hat - q[1])
 ```
 
-## 8.3 Bootstrap-t 区间
+### 8.3 Bootstrap-t 区间
 
-### 核心算法
+#### 核心算法
 
 1. 原样本上算 \(\hat\theta\)
 2. 外层 Bootstrap 第 \(b\) 次，得到样本 \(x_b^*\) 与统计量 \(\hat\theta_b^*\)
@@ -575,7 +575,7 @@ boot.t.ci = function(x, B = 500, R = 100, level = 0.95, statistic) {
 }
 ```
 
-## 8.4 Jackknife
+### 8.4 Jackknife
 
 ```r
 n = length(x)
@@ -588,7 +588,7 @@ bias.jack = (n - 1) * (mean(theta.jack) - theta.hat)
 se.jack = ((n - 1) / sqrt(n)) * sd(theta.jack)
 ```
 
-## 易错点
+### 易错点
 
 - Bootstrap 是“对样本再抽样”，不是对分布重新抽样
 - Jackknife 是“每次删一个”
@@ -597,9 +597,9 @@ se.jack = ((n - 1) / sqrt(n)) * sd(theta.jack)
 
 ---
 
-# 9. 模板 H：数值方法与 MLE
+## 9. 模板 H：数值方法与 MLE
 
-## 9.1 二分法
+### 9.1 二分法
 
 ```r
 bisection = function(f, a, b, eps = 1e-8, maxit = 1000) {
@@ -617,13 +617,13 @@ bisection = function(f, a, b, eps = 1e-8, maxit = 1000) {
 }
 ```
 
-## 9.2 Brent 法
+### 9.2 Brent 法
 
 ```r
 uniroot(f, lower = a, upper = b)$root
 ```
 
-## 9.3 Newton 法
+### 9.3 Newton 法
 
 ```r
 newton = function(f, df, x0, eps = 1e-8, maxit = 1000) {
@@ -637,13 +637,13 @@ newton = function(f, df, x0, eps = 1e-8, maxit = 1000) {
 }
 ```
 
-## 9.4 一维优化
+### 9.4 一维优化
 
 ```r
 optimize(f, lower = a, upper = b, maximum = TRUE)
 ```
 
-## 9.5 MLE
+### 9.5 MLE
 
 ```r
 mlogL = function(theta) {
@@ -655,7 +655,7 @@ fit = mle(mlogL, start = list(theta = theta0))
 summary(fit)
 ```
 
-## 易错点
+### 易错点
 
 - `mle` 默认做的是极小化负对数似然
 - Newton 法依赖导数，初值不好时可能发散
@@ -663,9 +663,9 @@ summary(fit)
 
 ---
 
-# 10. 模板 I：马尔科夫链蒙特卡罗（MCMC）
+## 10. 模板 I：马尔科夫链蒙特卡罗（MCMC）
 
-## 10.1 为什么使用 MCMC
+### 10.1 为什么使用 MCMC
 
 当目标分布 \(\pi(x)\) 很难直接抽样时，可以构造一条马尔科夫链
 
@@ -683,15 +683,15 @@ X_1, X_2, \dots, X_m,
 
 MCMC 样本通常有相关性，不是独立同分布样本。因此需要关注 burn-in、混合速度、自相关和有效样本量。
 
-## 10.2 一般 Metropolis-Hastings 方法
+### 10.2 一般 Metropolis-Hastings 方法
 
-### 适用场景
+#### 适用场景
 
 - 目标密度 \(\pi(x)\) 只知道到一个比例常数
 - 能从提议分布 \(q(y\mid x)\) 中抽样
 - 提议分布可以不对称
 
-### 核心算法
+#### 核心算法
 
 已知当前状态 \(X_t=x\)：
 
@@ -711,7 +711,7 @@ MCMC 样本通常有相关性，不是独立同分布样本。因此需要关注
 
 目标密度中的未知归一化常数会在比值中约掉。
 
-### 最小代码模板
+#### 最小代码模板
 
 ```r
 mh = function(m, x0, target, proposal, dproposal) {
@@ -740,7 +740,7 @@ mh = function(m, x0, target, proposal, dproposal) {
 
 用对数接受比 `log.r` 比直接计算密度乘积更稳定，可以减少上溢和下溢。
 
-## 10.3 Metropolis 方法：对称随机游走
+### 10.3 Metropolis 方法：对称随机游走
 
 若提议分布满足
 
@@ -760,7 +760,7 @@ q(y\mid x)=q(x\mid y),
 Y\mid X_t=x\sim N(x,b^2).
 \]
 
-### 标准 Cauchy 分布示例
+#### 标准 Cauchy 分布示例
 
 目标密度为
 
@@ -793,13 +793,13 @@ accept.rate = accepted / (m - 1)
 sample.after.burnin = x[(0.2 * m + 1):m]
 ```
 
-### 步长 \(b\) 的影响
+#### 步长 \(b\) 的影响
 
 - \(b\) 太小：接受率高，但链移动慢，相邻样本高度相关
 - \(b\) 太大：候选值经常落入低密度区，拒绝率高，链长时间不动
 - 比较生成器时不能只看接受率，还要看轨迹、自相关和有效样本量
 
-## 10.4 Independence Metropolis-Hastings
+### 10.4 Independence Metropolis-Hastings
 
 若提议分布与当前状态无关，即
 
@@ -817,7 +817,7 @@ q(y\mid x)=g(y),
 \right\}.
 \]
 
-### 最小代码模板
+#### 最小代码模板
 
 ```r
 independence_mh = function(m, x0, target, proposal, dproposal) {
@@ -848,7 +848,7 @@ independence_mh = function(m, x0, target, proposal, dproposal) {
 
 独立提议 \(g\) 应尽量接近目标分布 \(\pi\)，并覆盖目标分布的重要区域和尾部。否则链可能混合很慢。
 
-## 10.5 Rayleigh 分布的 MH 题型
+### 10.5 Rayleigh 分布的 MH 题型
 
 Rayleigh 分布密度为
 
@@ -899,9 +899,9 @@ alpha = min(
 `shape = current / 2, rate = 1 / 2`。以当前状态作为 Gamma 的形状参数时，
 初始值也必须严格大于 0。
 
-## 10.6 Burn-in 与生成器表现诊断
+### 10.6 Burn-in 与生成器表现诊断
 
-### 常用诊断代码
+#### 常用诊断代码
 
 ```r
 burn = floor(0.2 * m)
@@ -922,7 +922,7 @@ qqplot(qcauchy(ppoints(length(y))), sort(y))
 abline(0, 1)
 ```
 
-### 比较两个 MCMC 生成器
+#### 比较两个 MCMC 生成器
 
 至少比较以下指标：
 
@@ -933,7 +933,7 @@ abline(0, 1)
 5. 直方图、QQ 图与目标分布的吻合程度
 6. Monte Carlo 估计是否稳定
 
-## 10.7 第七章习题分类
+### 10.7 第七章习题分类
 
 | 题型 | 应使用的模板 | 比较重点 |
 |---|---|---|
@@ -943,7 +943,7 @@ abline(0, 1)
 | 标准 Cauchy，独立提议 | Independence MH | 提议分布与目标分布的匹配程度 |
 | 混合正态中混合比例 \(p\) 的估计 | Independence MH / 贝叶斯后验抽样 | 后验均值、轨迹与直方图 |
 
-## 易错点
+### 易错点
 
 - 一般 MH 中漏写反向提议密度 \(q(x\mid y)\)
 - 只有提议分布对称时，才能把接受概率简化为 \(\pi(y)/\pi(x)\)
@@ -958,9 +958,9 @@ abline(0, 1)
 
 ---
 
-# 11. 复习优先级与下一步
+## 11. 复习优先级与下一步
 
-## 最先闭卷复写的模板
+### 最先闭卷复写的模板
 
 1. 逆变换法
 2. 接受-拒绝法
@@ -970,14 +970,14 @@ abline(0, 1)
 6. Bootstrap 点估计、区间、Bootstrap-t
 7. MH / Metropolis / Independence MH
 
-## 建议的复习动作
+### 建议的复习动作
 
 - 第 1 轮：看懂模板
 - 第 2 轮：对照 PDF 习题，把每道题归类到模板
 - 第 3 轮：不看答案，闭卷写模板
 - 第 4 轮：做一页“常错点清单”
 
-## 这份文档后续可以继续补的内容
+### 这份文档后续可以继续补的内容
 
 - 每个模板再追加 1 个代表题
 - 给 Ch2–Ch7 各做一页“章节摘要”

@@ -18,6 +18,7 @@
 1例子:线性规划
 
 例子1，带约束的线性规划问题:                                                                  
+
 $$
 min c^\top x,s.t.Ax=b,x≥0
 $$
@@ -29,9 +30,7 @@ $$
 
 $$
 \min x_1\\
-
 x_1=-1\\
-
 x_1\ge0
 $$
 
@@ -54,11 +53,13 @@ $$
 而此向量为零时，能用最小值$−b^\top v$ 
 
 因此,就得到了一个线性规划问题的对偶问题:
+
 $$
 \min_v -b^\top v,\\
 s.t. A^\top v+c =s\\
 s\ge0
 $$
+
 原问题变成了一个让对偶函数在(A^Tv-s+c=0)情况下取到极大值g(u,v) = -b^Tv ，考虑一个变量替换y=-v
 
 那就是：
@@ -68,6 +69,7 @@ $\max_{y}b^\top y,A^\top y=c−s，s≥0$ ，而再次基础上，又可以进�
 $$
 \max_yb^\top y,A^\top y−c≤0
 $$
+
 这么一通操作到底是为了干什么呢？
 
 首先，对偶问题往往具有更好的形式，这是一个定性的描述，很难说一个问题怎么就“变好”了。
@@ -77,6 +79,7 @@ $$
 而对于线性规划的对偶问题实际上也有明确的含义:
 
 给定线性规划的标准形式： 
+
 $$
 \max\{ c^\top x \mid Ax \le b, x \ge 0 \}
 $$
@@ -94,11 +97,14 @@ $y_i$表示第 i 种资源的单位价格；
 $$
 L(x,λ,μ)=f(x)+\sum_{i∈I}λ_ic_i(x)+\sum_{i∈E}μ_ic_i(x)≤f(x),\forall x 
 $$
+
 而对于两边同时对于变量x取下确界，就得到了弱对偶性对应的不等式：
+
 $$
 g(u,v)≤p^∗\\
 p^∗=\inf_{x\in D}f(x)
 $$
+
 p∗ 表示条件集下的最优解。
 
 但这样的条件较弱,需要进一步加强,也就是考虑强对偶性:也就是考虑对偶间隙为零的条件.
@@ -115,15 +121,21 @@ $c^\top x^*=b^\top y^*$
 
 任取 $\varepsilon>0$，令 $\alpha=v^\star-\varepsilon$。由于$\alpha<v^\star$，(i) 不可能成立（不可能存在原可行x使得$c^\top x\le\alpha$）。 于是按对当定理，(ii) 必成立：存在 $y_\varepsilon$ 使
 
-Ayε≤c,b⊤yε>v⋆−ε.Ay_\varepsilon\le c,\qquad b^\top y_\varepsilon>\,v^\star-\varepsilon.Ayε≤c,b⊤yε>v⋆−ε.
+```math
+Ay_\varepsilon\le c,\qquad b^\top y_\varepsilon>\,v^\star-\varepsilon.
+```
 
 这说明对偶可行域非空，且
 
-sup⁡(D)≥b⊤yε>v⋆−ε(∀ε>0).\sup(D)\ge b^\top y_\varepsilon>v^\star-\varepsilon\quad(\forall\,\varepsilon>0).sup(D)≥b⊤yε>v⋆−ε(∀ε>0).
+```math
+\sup(D)\ge b^\top y_\varepsilon>v^\star-\varepsilon\quad(\forall\,\varepsilon>0).
+```
 
-令 ε↓0\varepsilon\downarrow0ε↓0 得 sup⁡(D)≥v⋆\sup(D)\ge v^\starsup(D)≥v⋆。再结合弱对偶 sup⁡(D)≤v⋆\sup(D)\le v^\starsup(D)≤v⋆，从而
+令 $\varepsilon\downarrow0$ 得 $\sup(D)\ge v^\star$。再结合弱对偶 $\sup(D)\le v^\star$，从而
 
-sup⁡(D)=v⋆=inf⁡(P).\sup(D)=v^\star=\inf(P).sup(D)=v⋆=inf(P).
+```math
+\sup(D)=v^\star=\inf(P).
+```
 
 故**无对偶间隙**成立。
 
@@ -133,32 +145,33 @@ sup⁡(D)=v⋆=inf⁡(P).\sup(D)=v^\star=\inf(P).sup(D)=v⋆=inf(P).
 
 设对偶可行域是多面体
 
-Y:={y∈Rm∣Ay≤c}.\mathcal{Y}:=\{y\in\mathbb{R}^m\mid Ay\le c\}.Y:={y∈Rm∣Ay≤c}.
+```math
+\mathcal{Y}:=\{y\in\mathbb{R}^m\mid Ay\le c\}.
+```
 
-Minkowski–Weyl 告诉我们存在有限顶点集 VVV 与有限极向量（射线）集 RRR 使
+Minkowski–Weyl 告诉我们存在有限顶点集 $V$ 与有限极向量（射线）集 $R$ 使
 
-Y=conv⁡(V)+cone⁡(R).\mathcal{Y}=\operatorname{conv}(V)+\operatorname{cone}(R).Y=conv(V)+cone(R).
+```math
+\mathcal{Y}=\operatorname{conv}(V)+\operatorname{cone}(R).
+```
 
-对线性函数 b⊤yb^\top yb⊤y 在 Y\mathcal{Y}\,Y 上的上确界若有限（我们已知 sup⁡(D)=v⋆<∞\sup(D)=v^\star<\inftysup(D)=v⋆<∞），必有
+对线性函数 $b^\top y$ 在 $\mathcal{Y}$ 上的上确界若有限（我们已知 $\sup(D)=v^\star<\infty$），必有
 
-b⊤d≤0,∀d∈R,b^\top d\le 0,\quad\forall\, d\in R,b⊤d≤0,∀d∈R,
+```math
+b^\top d\le 0,\quad\forall\, d\in R,
+```
 
-否则可沿某条射线 d 使 $b^\top(y+td)\to +\infty$与有限性矛盾。于是
+否则可沿某条射线 $d$ 使 $b^\top(y+td)\to +\infty$与有限性矛盾。于是
 
-sup⁡y∈Yb⊤y=sup⁡v∈conv⁡(V),d∈cone⁡(R)b⊤(v+d)=sup⁡v∈conv⁡(V)b⊤v,
-$$
+```math
+\sup_{y\in\mathcal{Y}} b^\top y = \sup_{v\in\operatorname{conv}(V),\ d\in\operatorname{cone}(R)} b^\top(v+d) = \sup_{v\in\operatorname{conv}(V)} b^\top v,
+```
 
-\sup_{y\in\mathcal{Y}} b^\top y = \sup_{v\in\operatorname{conv}(V),\ d\in\operatorname{cone}(R)} b^\top(v+d) = \sup_{v\in\operatorname{conv}(V)} 
-$$
-b^\top v,y∈Ysupb⊤y=v∈conv(V),d∈cone(R)supb⊤(v+d)=v∈conv(V)supb⊤v,
+其中最后一步用到了对所有射线 $d$ 都有 $b^\top d\le0$。而在线性函数对紧集 $\operatorname{conv}(V)$（一个有限点集的凸包）上必然取得最大值；于是存在 $v^\star\in\operatorname{conv}(V)\subset\mathcal{Y}$ 使
 
-其中最后一步用到了对所有射线 ddd 都有 b⊤d≤0b^\top d\le0b⊤d≤0。而在线性函数对紧集 $$\operatorname{conv}(V)$$（一个有限点集的凸包）上必然取得最大值；于是存在$v^\star\in\operatorname{conv}(V)\subset\mathcal{Y}\$ 使
-
-b⊤v⋆=sup⁡(D)=v⋆.
-
-$$
+```math
 b^\top v^\star=\sup(D)=v^\star.
-$$.
+```
 
 取 $y^\star:=v^\star$即得对偶最优解。**可达性证毕**。
 
@@ -166,9 +179,11 @@ $$.
 
 第三步：互补松弛与最优性（可选但常用）
 
-由弱对偶等式化证明可推出互补松弛：若 x⋆∈Xx^\star\in\mathcal{X}\,x⋆∈X 与 y⋆∈Yy^\star\in\mathcal{Y}\,y⋆∈Y 最优，则
+由弱对偶等式化证明可推出互补松弛：若 $x^\star\in\mathcal{X}$ 与 $y^\star\in\mathcal{Y}$ 最优，则
 
-x⋆⊙(c−Ay⋆)=0,y⋆⊙(b−A⊤x⋆)=0,x^\star\odot(c-Ay^\star)=0,\qquad y^\star\odot(b-A^\top x^\star)=0,x⋆⊙(c−Ay⋆)=0,y⋆⊙(b−A⊤x⋆)=0,
+```math
+x^\star\odot(c-Ay^\star)=0,\qquad y^\star\odot(b-A^\top x^\star)=0,
+```
 
 反之亦然（在可行前提下，互补松弛 $\Leftrightarrow$ 最优）。这给出判别最优解的结构条件，但并非强对偶成立所必需的额外假设——它是结论的等价刻画。
 
@@ -187,7 +202,7 @@ minf(x)ci(x)=0,i∈Ecj(x)≤0,i∈I
 
 而上述两种说法实际上也有几何意义：对于可行方向，d_k实际上就是在这一点的切向量，构成的几何实际上被称之为“切锥”
 
-\figure{约束与切锥，来自于文再文}
+`\figure{约束与切锥，来自于文再文}`
 
 因此，我们可以在此基础上得到一个最优性条件，几何最优性条件：
 
@@ -243,7 +258,7 @@ KKT条件：对于拉格朗日函数 L(x,λ)=f(x)+∑i∈Eλici(x)+∑i∈Iλici
 
 对偶性条件实际上是希望保持对偶性，拉格朗日函数的最小值必然小于等于原问题的最小值
 
-而在互补松弛条件下，可以保证小于部分的不等式被对应的\lambda给控制
+而在互补松弛条件下，可以保证小于部分的不等式被对应的 $\lambda$ 给控制
 
 证明过程：
 
@@ -403,7 +418,7 @@ pi′=pi−γ(xi−pi) ,原型样本离他更远
 
 算法的操作过程实际上就是以下这几步：
 
-1首先给定一个最小包含点数N_{min}和截断距离\epsilon
+1首先给定一个最小包含点数 $N_{min}$ 和截断距离 $\epsilon$
 
 2遍历每个点，检测截断距离构成的小球心内数据点的数目，如果数目大于等于最小包含点数，将其记作核心点，这个点和距离小于等于最小包含点数的点集合“临时聚类族”
 
@@ -451,7 +466,7 @@ c=1标记为豪猫，c=-1标记为坏猫，并且有前100只基米数据集。�
 
 我们根据已有数据计算P(x_i|c),例如P(x_1=1|c=1)计算好猫中家养猫的概率，P(x_1=1|c=-1)计算耄耋中家养猫的概率。同理，计算其它各个分量。
 
-小基米听不懂过于复杂的理论，它的想法就是假设每一个特征都是相互独立的，对于一只新来的小猫，根据它的特征x^0,分别计算P(x^0|c)=\Pi P(x^0_i|c)，分别带入c=1,c=-1,并分别计算P(x^0|c)P(c)
+小基米听不懂过于复杂的理论，它的想法就是假设每一个特征都是相互独立的，对于一只新来的小猫，根据它的特征x^0,分别计算 $P(x^0|c)=\Pi P(x^0_i|c)$，分别带入c=1,c=-1,并分别计算P(x^0|c)P(c)
 
 如果前者更大，就说明认为这是一只好猫能够更好的解释这只猫的现状，那就将其标记为好猫。
 
@@ -465,13 +480,17 @@ c=1标记为豪猫，c=-1标记为坏猫，并且有前100只基米数据集。�
 
 这，就是ODE（不是常微分方程的那个ODE,是One-Dependent Estimator）
 
+```math
 P(c|x) \propto P(x|c)P(c)=P(c)\Pi_{i=1}P(x_i|c，pa_i)
+```
 
 SPODE：假设不同的特征之间只依赖于一个超父
 
 例如pa_i = x_1，
 
+```math
 P(c|x) \propto P(x|c)P(c)=P(c)\Pi_{i=1}|P(x_1|c)P(x_2|c,x_1)
+```
 
 同样的，分别代入c的取值，给出概率极大的c值
 

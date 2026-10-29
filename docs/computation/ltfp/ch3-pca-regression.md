@@ -9,7 +9,7 @@
 ## Prompt:
 2026/7/14 18:45:18
 
-PCA and least-squares regression (). While regularization is a common way to
+PCA and least-squares regression (〔原始导出缺字〕). While regularization is a common way to
 avoid overfitting for least-squares regression (as shown in section 3.6), performing PCA
 and then unregularized OLS provides an alternative with similar behavior. That is, we
 now consider the feature vector ΦV ∈ Rn×k, and minimize ky − ΦV ηk22
@@ -21,9 +21,9 @@ excess risk of the estimator based on PCA as follows (using E[ε] = 0 and E[εε
 1
 n
 Eε
-
+〔原始导出缺字〕
 kΦV η − Φθ∗k22
-
+〔原始导出缺字〕
 =
 σ2k
 n
@@ -55,9 +55,9 @@ that bΣV = V D and V ⊤bΣV = D, for a diagonal matrix D ∈ Rk×k, leading to
 1
 n
 Eε
-
+〔原始导出缺字〕
 kΦV η − Φθ∗k22
-
+〔原始导出缺字〕
 =
 σ2k
 n
@@ -111,7 +111,7 @@ than for ridge regression, with the identification k ∼ 1
 
 ---
 
-## 1. PCA 后到底在回归什么
+### 1. PCA 后到底在回归什么
 
 原始设计矩阵为
 
@@ -176,7 +176,7 @@ V^\top\phi(x)\in\mathbb R^k.
 
 ---
 
-## 2. 把预测写成一个投影
+### 2. 把预测写成一个投影
 
 定义
 
@@ -211,7 +211,7 @@ P_k^\top=P_k,\qquad P_k^2=P_k,\qquad \operatorname{rank}(P_k)=k.
 
 ---
 
-## 3. 代入线性模型
+### 3. 代入线性模型
 
 假设固定设计模型
 
@@ -287,7 +287,7 @@ P_k(\mu+\varepsilon)-\mu
 
 ---
 
-## 4. 为什么方差等于 $\sigma^2k/n$
+### 4. 为什么方差等于 $\sigma^2k/n$
 
 利用迹公式，
 
@@ -333,7 +333,7 @@ P_k\mathbb E[\varepsilon\varepsilon^\top]
 
 ---
 
-## 5. 偏差项如何变成矩阵形式
+### 5. 偏差项如何变成矩阵形式
 
 偏差项为
 
@@ -405,7 +405,7 @@ V^\top\widehat\Sigma\theta_*.
 
 ---
 
-## 6. 为什么利用特征向量后会简化
+### 6. 为什么利用特征向量后会简化
 
 因为 $V$ 的列是 $\widehat\Sigma$ 的前 $k$ 个特征向量，所以
 
@@ -475,7 +475,7 @@ VDV^\top.
 
 ---
 
-## 7. 在特征坐标下看最清楚
+### 7. 在特征坐标下看最清楚
 
 把真实参数展开为
 
@@ -520,7 +520,7 @@ PCR 保留 $u_1,\ldots,u_k$，丢弃 $u_{k+1},\ldots,u_d$。因此
 
 ---
 
-## 8. 为什么偏差不超过 $\lambda_{k+1}\|\theta_*\|^2$
+### 8. 为什么偏差不超过 $\lambda_{k+1}\|\theta_*\|^2$
 
 由于对所有 $j>k$，
 
@@ -560,7 +560,7 @@ PCR 保留 $u_1,\ldots,u_k$，丢弃 $u_{k+1},\ldots,u_d$。因此
 
 ---
 
-## 9. 为什么 $\lambda_{k+1}\le \operatorname{tr}(\widehat\Sigma)/(k+1)$
+### 9. 为什么 $\lambda_{k+1}\le \operatorname{tr}(\widehat\Sigma)/(k+1)$
 
 由于特征值按降序排列，
 
@@ -610,7 +610,7 @@ PCR 保留 $u_1,\ldots,u_k$，丢弃 $u_{k+1},\ldots,u_d$。因此
 
 ---
 
-## 10. 最优的 $k$ 怎么算
+### 10. 最优的 $k$ 怎么算
 
 记
 
@@ -671,7 +671,7 @@ k_*
 
 ---
 
-## 11. 与 ridge regression 的对应关系
+### 11. 与 ridge regression 的对应关系
 
 ridge 的粗略风险界通常具有形式
 
@@ -741,7 +741,7 @@ g_j=\frac{\lambda_j}{\lambda_j+\lambda},
 
 ---
 
-## 12. 这一结果的实质
+### 12. 这一结果的实质
 
 PCR 的思想可以压缩成一句话：
 
@@ -805,7 +805,7 @@ Z=\Phi V\in\mathbb R^{n\times k}.
 
 ---
 
-## 1. PCA 希望保留什么
+### 1. PCA 希望保留什么
 
 PCA 的标准目标不是保留所有意义上的“信息”，而是：
 
@@ -838,7 +838,7 @@ X=\Phi-\mathbf 1\bar\phi^\top,
 
 ---
 
-## 2. 先找一个方向
+### 2. 先找一个方向
 
 假设先只想降到一维，即 $k=1$。
 
@@ -907,7 +907,7 @@ v_1=\text{协方差矩阵最大特征值对应的特征向量}.
 
 ---
 
-## 3. 找 $k$ 个方向
+### 3. 找 $k$ 个方向
 
 现在需要一个 $d\times k$ 矩阵
 
@@ -987,7 +987,7 @@ V
 
 ---
 
-## 4. 为什么是协方差矩阵的特征向量
+### 4. 为什么是协方差矩阵的特征向量
 
 设完整特征值分解为
 
@@ -1036,7 +1036,7 @@ V^\top\widehat\Sigma V
 
 ---
 
-## 5. “保留最大方差”等价于“重构误差最小”
+### 5. “保留最大方差”等价于“重构误差最小”
 
 PCA 还可以从另一个角度理解。
 
@@ -1091,7 +1091,7 @@ n\sum_{j=k+1}^d\lambda_j.
 
 ---
 
-## 6. 在回归问题中的完整流程
+### 6. 在回归问题中的完整流程
 
 原模型是
 
@@ -1139,7 +1139,7 @@ PCA 首先把设计矩阵降维：
 
 ---
 
-## 7. 一个重要修正：最大方差不一定等于对预测最有用
+### 7. 一个重要修正：最大方差不一定等于对预测最有用
 
 PCA 选择 $V$ 时只使用 $\Phi$，完全不看 $y$。因此它保留的是：
 
@@ -1200,9 +1200,9 @@ y=20x_2+\varepsilon,
 
 Thus, minimizing kΦ−ΦV V ⊤k2
 F is equivalent to maximizing tr
-
+〔原始导出缺字〕
 V ⊤Φ⊤ΦV
-
+〔原始导出缺字〕
 with respect
 to a matrix V ∈ Rd×k with orthonormal columns. Given an eigenvalue decomposition of
 the noncentered empirical covariance matrix bΣ = 1
@@ -1229,7 +1229,7 @@ V^\top V=I_k.
 
 ---
 
-## 1. $\Phi VV^\top$ 是什么
+### 1. $\Phi VV^\top$ 是什么
 
 因为 $V^\top V=I_k$，矩阵
 
@@ -1278,7 +1278,7 @@ PCA 希望选择一个 $k$ 维子空间，使这个误差最小。
 
 ---
 
-## 2. 为什么最小化重构误差等价于最大化迹
+### 2. 为什么最小化重构误差等价于最大化迹
 
 令
 
@@ -1392,7 +1392,7 @@ P^\top=P,\qquad P^2=P,
 
 ---
 
-## 3. 这个迹表示什么
+### 3. 这个迹表示什么
 
 设
 
@@ -1434,7 +1434,7 @@ v_j^\top\widehat\Sigma v_j,
 
 ---
 
-## 4. 为什么选择前 $k$ 个特征向量
+### 4. 为什么选择前 $k$ 个特征向量
 
 对经验协方差矩阵作特征值分解：
 
@@ -1572,7 +1572,7 @@ V=[u_1,\ldots,u_k].
 
 ---
 
-## 5. 最小重构误差是多少
+### 5. 最小重构误差是多少
 
 总能量是
 
@@ -1615,7 +1615,7 @@ n\sum_{j=k+1}^d\lambda_j.
 
 ---
 
-## 6. $V$ 是否唯一
+### 6. $V$ 是否唯一
 
 严格来说，最优的是一个子空间，而不一定是唯一的基。
 
@@ -1659,7 +1659,7 @@ U_kU_k^\top.
 
 ---
 
-## 7. 非中心化协方差的含义
+### 7. 非中心化协方差的含义
 
 教材这里使用
 
@@ -1747,7 +1747,7 @@ D\in\mathbb R^{k\times d},
 
 ---
 
-# 1. 为什么全局最优解就是 PCA
+### 1. 为什么全局最优解就是 PCA
 
 令
 
@@ -1851,9 +1851,9 @@ W\Sigma^\top\Sigma W^\top
 
 - PCA 的降维坐标是 $\Phi W_k\in\mathbb R^{n\times k}$；
 - $AD\in\mathbb R^{n\times d}$ 对应的是重构矩阵
-  ```math
-  (\Phi W_k)W_k^\top.
-  ```
+    ```math
+    (\Phi W_k)W_k^\top.
+    ```
 
 一种全局最优分解是
 
@@ -1871,7 +1871,7 @@ A_*D_*=(A_*R)(R^{-1}D_*).
 
 ---
 
-# 2. 固定 $D$，更新 $A$
+### 2. 固定 $D$，更新 $A$
 
 定义
 
@@ -1946,7 +1946,7 @@ D^\top(DD^\top)^{-1}D
 
 ---
 
-# 3. 固定 $A$，更新 $D$
+### 3. 固定 $A$，更新 $D$
 
 固定 $A$，对 $D$ 求导：
 
@@ -1991,7 +1991,7 @@ P_{\operatorname{col}(A^{(t+1)})}\Phi,
 
 ---
 
-# 4. 把两个更新合起来
+### 4. 把两个更新合起来
 
 令
 
@@ -2106,7 +2106,7 @@ M=\Phi^\top\Phi
 
 ---
 
-# 5. 利用 SVD 证明它收敛到前 $k$ 个主成分
+### 5. 利用 SVD 证明它收敛到前 $k$ 个主成分
 
 由 SVD，
 
@@ -2256,7 +2256,7 @@ I_k\;\;
 
 ---
 
-# 6. 为什么是“almost all initializations”
+### 6. 为什么是“almost all initializations”
 
 上面的条件是
 
@@ -2294,7 +2294,7 @@ d^{(t)}\Phi^\top\Phi.
 
 ---
 
-# 7. 乘积 $AD$ 收敛到 PCA 重构
+### 7. 乘积 $AD$ 收敛到 PCA 重构
 
 在 $A$-更新后，
 
@@ -2382,7 +2382,7 @@ U_k\Sigma_kW_k^\top
 
 ---
 
-## 最终算法
+### 最终算法
 
 从几乎任意满行秩 $D^{(0)}$ 开始，重复：
 
@@ -2434,7 +2434,7 @@ D^{(t+1)}
 
 ---
 
-## 一、给定了什么，要求解什么
+### 一、给定了什么，要求解什么
 
 给定数据矩阵
 
@@ -2496,7 +2496,7 @@ AD\in\mathbb R^{n\times d}
 
 ---
 
-## 二、本题第一部分要求证明什么
+### 二、本题第一部分要求证明什么
 
 题目先要求证明：
 
@@ -2535,14 +2535,14 @@ AD=\Phi_k=U_k\Sigma_kV_k^\top.
 这正是 PCA：
 
 1. 降维：
-   ```math
-   A=\Phi V_k=U_k\Sigma_k\in\mathbb R^{n\times k};
-   ```
+    ```math
+    A=\Phi V_k=U_k\Sigma_k\in\mathbb R^{n\times k};
+    ```
 
 2. 重构：
-   ```math
-   AD=(\Phi V_k)V_k^\top.
-   ```
+    ```math
+    AD=(\Phi V_k)V_k^\top.
+    ```
 
 所以可以取
 
@@ -2564,7 +2564,7 @@ A_*D_*=(A_*R)(R^{-1}D_*).
 
 ---
 
-## 三、第二部分要求求出交替最小化更新
+### 三、第二部分要求求出交替最小化更新
 
 题目接着规定一种算法：
 
@@ -2574,7 +2574,7 @@ A_*D_*=(A_*R)(R^{-1}D_*).
 
 你需要计算这两个子问题的闭式解。
 
-### 固定 $D$，求 $A$
+#### 固定 $D$，求 $A$
 
 ```math
 A_{t+1}
@@ -2598,7 +2598,7 @@ A_{t+1}
 }
 ```
 
-### 固定 $A_{t+1}$，求 $D$
+#### 固定 $A_{t+1}$，求 $D$
 
 ```math
 D_{t+1}
@@ -2629,7 +2629,7 @@ A_{t+1}^\top\Phi.
 
 ---
 
-## 四、第三部分要求证明算法为什么收敛到 PCA
+### 四、第三部分要求证明算法为什么收敛到 PCA
 
 这是本题真正有难度的部分。
 
@@ -2690,7 +2690,7 @@ U_k\Sigma_kV_k^\top.
 
 ---
 
-## 五、“almost all initializations”是什么意思
+### 五、“almost all initializations”是什么意思
 
 它不是说任何初始化都可以。
 
@@ -2706,9 +2706,9 @@ U_k\Sigma_kV_k^\top.
 
 ---
 
-## 六、本题可以压缩为三个任务
+### 六、本题可以压缩为三个任务
 
-### 任务 1：识别优化问题
+#### 任务 1：识别优化问题
 
 证明
 
@@ -2720,7 +2720,7 @@ U_k\Sigma_kV_k^\top.
 
 所以这是最佳秩 $k$ 逼近问题。
 
-### 任务 2：求全局最优解
+#### 任务 2：求全局最优解
 
 利用 SVD/Eckart-Young 定理证明
 
@@ -2734,7 +2734,7 @@ A_*D_*=U_k\Sigma_kV_k^\top
 
 即 PCA 重构。
 
-### 任务 3：分析算法
+#### 任务 3：分析算法
 
 计算交替更新
 
@@ -2850,7 +2850,7 @@ W_k=[w_1,\ldots,w_k].
 
 ---
 
-# 1. 任取一个 $\operatorname{rank}(B)\le k$ 的矩阵
+### 1. 任取一个 $\operatorname{rank}(B)\le k$ 的矩阵
 
 令
 
@@ -2943,7 +2943,7 @@ B_{\mathcal S}=\Phi P_{\mathcal S}.
 
 ---
 
-# 2. 把子空间写成 $V$ 的列空间
+### 2. 把子空间写成 $V$ 的列空间
 
 若 $\dim\mathcal S=k$，取 $\mathcal S$ 的一组标准正交基：
 
@@ -2976,7 +2976,7 @@ B_*=\Phi VV^\top.
 
 ---
 
-# 3. 最小重构误差等价于最大保留能量
+### 3. 最小重构误差等价于最大保留能量
 
 由于 $P=VV^\top$ 满足
 
@@ -3026,7 +3026,7 @@ P^\top=P,\qquad P^2=P,
 
 ---
 
-# 4. 为什么最优子空间是前 $k$ 个右奇异向量
+### 4. 为什么最优子空间是前 $k$ 个右奇异向量
 
 由 SVD，
 
@@ -3145,7 +3145,7 @@ V=W_k=[w_1,\ldots,w_k].
 
 ---
 
-# 5. 因此最佳 $B$ 是什么
+### 5. 因此最佳 $B$ 是什么
 
 代回
 
@@ -3199,7 +3199,7 @@ U_k\Sigma_kW_k^\top
 
 ---
 
-# 6. 你的已有认识差在哪一步
+### 6. 你的已有认识差在哪一步
 
 你已经知道：
 
@@ -3214,10 +3214,10 @@ U_k\Sigma_kW_k^\top
 上面的证明通过两步排除了它：
 
 1. 对任意 $B$，只保留它的行空间 $\mathcal S$，并用
-   ```math
-   \Phi P_{\mathcal S}
-   ```
-   代替 $B$，误差只会更小；
+    ```math
+    \Phi P_{\mathcal S}
+    ```
+    代替 $B$，误差只会更小；
 
 2. 在所有 $k$ 维子空间中，前 $k$ 个右奇异向量张成的子空间保留的能量最大。
 

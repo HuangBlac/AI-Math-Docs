@@ -3,23 +3,27 @@
 ## 一、问题前置：明确薄膜四阶抛物方程及自相似性核心
 ### 1. 目标方程（无量纲化）
 薄膜在范德华力与表面张力作用下的演化方程为四阶非线性抛物方程（轴对称/二维通用形式）：
+
 - 轴对称：
-  $$
-  \frac{\partial h}{\partial t}+\frac{1}{r} \frac{\partial}{\partial r}\left[r h^{3} \frac{\partial}{\partial r}\left(\frac{1}{r} \frac{\partial}{\partial r}\left(r \frac{\partial h}{\partial r}\right)\right)+\frac{r}{h} \frac{\partial h}{\partial r}\right]=0
-  $$
+
+    ```math
+    \frac{\partial h}{\partial t}+\frac{1}{r} \frac{\partial}{\partial r}\left[r h^{3} \frac{\partial}{\partial r}\left(\frac{1}{r} \frac{\partial}{\partial r}\left(r \frac{\partial h}{\partial r}\right)\right)+\frac{r}{h} \frac{\partial h}{\partial r}\right]=0
+    ```
 
 - 二维：
-  $$
-  \frac{\partial h}{\partial t}+\frac{\partial}{\partial x}\left[\left(h^{3} \frac{\partial^{3} h}{\partial x^{3}}+\frac{1}{h} \frac{\partial h}{\partial x}\right)\right]=0
-  $$
+
+    ```math
+    \frac{\partial h}{\partial t}+\frac{\partial}{\partial x}\left[\left(h^{3} \frac{\partial^{3} h}{\partial x^{3}}+\frac{1}{h} \frac{\partial h}{\partial x}\right)\right]=0
+    ```
 
 - 核心目标：找到满足$h(r,t)=(t_R-t)^\lambda H(\eta)$（$\eta=\frac{r}{(t_R-t)^\beta}$）的自相似解，确定标度参数 $\lambda$、$\beta$ 及自相似剖面 $H(\eta)$。
 ### 2. 自相似性先验认知
 根据文献已知薄膜破裂的自相似标度 $\lambda$、$\beta$，可以用于后期验证实验结果，本流程将通过PINN自主识别求解。
 
 根据物理约束条件，H需要额外满足两个条件
-1 原点正则性（$H'(0)=H'''(0)=0$）
-2 远场渐近性（$H(\eta)\sim A\eta^{1/2}$，$A$ 为常数，也是需要求解的）。
+
+1. 原点正则性（$H'(0)=H'''(0)=0$）
+2. 远场渐近性（$H(\eta)\sim A\eta^{1/2}$，$A$ 为常数，也是需要求解的）。
 
 接着，就是根据ode来确定约束。
 
@@ -45,13 +49,16 @@ A作为远场渐进性的参数，将被整合进函数的要求作为PINN求解
 ### 1. 坐标紧致化（处理无限域） 
 自相似坐标 $\eta\in[0,+\infty)$ 为无限域，构造非线性变换映射至有限域 $q\in(0,1]$： 
 由正则性约束，还需要满足关于$\eta$为偶函数的条件
+
 $$
 q=\frac{\eta^2}{\sqrt{1+\eta^4}} \quad \text{或} \quad q=1-e^{-\eta^2/5}
 $$
+
 （适配远场 $H(\eta)\sim\eta^{1/2}$ 的渐近衰减，避免边界数值失真） 
 
 ### 2. 结构化解拟设（硬编码约束） 
 将原点正则性、符号约束等数学结构嵌入拟设，避免无效搜索： 
+
 $$
 H(\eta)=\exp\left(NN(q)\right) \cdot \sqrt{1+\eta^2} \cdot \frac{1}{(1+\eta^2)^{1/4}}
 $$
@@ -100,9 +107,11 @@ $$
 ### 1. 解析推断（初步定位）
 利用原点正则性条件（$H'(0)=H'''(0)=0$），将 $\eta\to0$ 代入自相似ODE： 
 - 泰勒展开 $H(\eta)=H(0)+\frac{1}{2}H''(0)\eta^2+o(\eta^2)$，代入ODE后得到关于 $\lambda,\beta$ 的代数方程： 
+
 $$
 \lambda H(0) = \beta H(0) + \text{低阶项}
 $$
+
 - 结合量纲分析，初步推断 $\lambda\approx1/5$、$\beta\approx2/5$，作为数值搜索初始值。 
 ### 2. 迭代漏斗搜索（精准优化） 
 以残差最小化为目标，采用割线搜索优化 $\lambda,\beta$： 

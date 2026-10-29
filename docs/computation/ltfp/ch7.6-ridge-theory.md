@@ -445,7 +445,7 @@ f^\star,
 由于前面的经验算子比较要求 $\lambda n$ 不宜小于 $R^2$，这套证明还要求
 
 ```math
-\frac d2<s,
+\frac d2< s,
 \qquad
 t\leq s\leq t+\frac d2.
 ```

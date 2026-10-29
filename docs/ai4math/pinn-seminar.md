@@ -125,23 +125,23 @@ $$\int_{\mathbb{R}^d} |\omega|^{s} |\hat{u}(\omega)| \, d\omega < \infty$$
 在谱 Barron 空间中，两层神经网络可以达到 与维度无关 的最优逼近速率。
 设：
 
-- 目标函数 $$f \in \mathcal{F}^{1/2}(\mathbb{R}^d)$$（即 $$s=1/2$$）
+- 目标函数 $f \in \mathcal{F}^{1/2}(\mathbb{R}^d)$（即 $s=1/2$）
 
-- 网络宽度 $$N$$（神经元个数）
+- 网络宽度 $N$（神经元个数）
 
 - 激活函数为常用的 ReLU / 平滑激活
 
-则 $$L^2$$ / $$L^p$$ 逼近误差 满足：
+则 $L^2$ / $L^p$ 逼近误差 满足：
 
 $$\inf_{\text{两层网络} \, f_N} \|f-f_N\|_{L^p}
 \;\lesssim\; \frac{\|f\|_{\mathcal{F}^{1/2}}}{\sqrt{N}}
 \;=\; \boldsymbol{O(N^{-1/2})}$$
 
-就在最近，深度神经网络和一般的s的情况也被证明了，收敛速度为$$O(N^{-sL})$$，其中 $s$ 是函数的光滑度，$L$ 是神经网络隐藏层深度，N为单隐藏层深度。
+就在最近，深度神经网络和一般的s的情况也被证明了，收敛速度为$O(N^{-sL})$，其中 $s$ 是函数的光滑度，$L$ 是神经网络隐藏层深度，N为单隐藏层深度。
 
 Barron Space与Sobolev Space的嵌入关系：
-s< k-d/2时，$$\mathcal{B}^s_d \subset H^k(\Omega)$$
-s> 2k时，$$H^k(\Omega) \subset \mathcal{B}^s_d$$
+s< k-d/2时，$\mathcal{B}^s_d \subset H^k(\Omega)$
+s> 2k时，$H^k(\Omega) \subset \mathcal{B}^s_d$
 对于一个2d椭圆方程，可以选取s=1/2,弱解处于Barron空间，则其在Sobolev空间。可以使用
 
 #### 文案
@@ -215,12 +215,15 @@ $$\frac{du_\theta}{dx} = \sigma'(W_1 x) \cdot W_2^T \cdot W_1$$
 **3.4 ADAM 更新公式**
 
 梯度的一阶矩估计：
+
 $$m_t = \beta_1 m_{t-1} + (1-\beta_1)g_t$$
 
 梯度的二阶矩估计：
+
 $$v_t = \beta_2 v_{t-1} + (1-\beta_2)g_t^2$$
 
 参数更新：
+
 $$\theta_{t+1} = \theta_t - \eta \frac{m_t}{\sqrt{v_t} + \epsilon}$$
 
 **4.2 在 PINN 中的特点**
@@ -377,6 +380,7 @@ $$L = L_0 + L_b + L_f$$
 #### PPT 正文
 
 **RK方法格式：**
+
 $$
 u^{n+c_i} = u^n - \Delta t \sum_{j=1}^q a_{ij} \mathcal{N}[u^{n+c_j}] \quad (i=1,2,...,q) \\
 u^{n+1} = u^n - \Delta t \sum_{j=1}^q b_j \mathcal{N}[u^{n+c_j}]\\
@@ -414,15 +418,15 @@ $$u^{n+1}(x) = u^n(x) + \Delta t \cdot \mathcal{N}[u^n](x)$$
 ### 2.5 离散求解的算例——Allen-Chan方程
 
 #### PPT正文
-PDE形式：$$u_t - 0.0001u_{xx} + 5u^3 -5u = 0$$（非线性反应扩散方程）
+PDE形式：$u_t - 0.0001u_{xx} + 5u^3 -5u = 0$（非线性反应扩散方程）
 
-- 输入：空间坐标$$x$$（1维）；
+- 输入：空间坐标$x$（1维）；
 - 隐藏层：4层，200个神经元/层，tanh激活函数；
 
-- 输出：101个量（100个中间阶段$$u^{0.1+c_j}(x)$$ + 1个最终预测$$u^{0.9}(x)$$）。
+- 输出：101个量（100个中间阶段$u^{0.1+c_j}(x)$ + 1个最终预测$u^{0.9}(x)$）。
 
-- 构造100个中间约束：$$u_i^{0.1} = u^{0.1}$$（i=1,...,100），其中$$u_i^{0.1} = u^{0.1+c_i} + 0.8\sum_{j=1}^{100} a_{ij}\mathcal{N}[u^{0.1+c_j}]$$；
-- 损失函数：$$SE = \sum_{j=1}^{100} \sum_{i=1}^{200} |u_j^{0.1}(x^{0.1,i}) - u^{0.1,i}|^2$$；
+- 构造100个中间约束：$u_i^{0.1} = u^{0.1}$（i=1,...,100），其中$u_i^{0.1} = u^{0.1+c_i} + 0.8\sum_{j=1}^{100} a_{ij}\mathcal{N}[u^{0.1+c_j}]$；
+- 损失函数：$SE = \sum_{j=1}^{100} \sum_{i=1}^{200} |u_j^{0.1}(x^{0.1,i}) - u^{0.1,i}|^2$；
 
 - 优化器：L-BFGS，迭代40,000次。
 
@@ -470,20 +474,22 @@ PINN 的一大优势在于能够同时求解正问题和反问题。
 
 #### PPT正文 
 方程形式：
-$$
+
+```math
 u_t +\lambda_1(u u_x + v u_y)  = -\frac{1}{\rho} p_x + \lambda_2 (u_{xx} + u_{yy}), \\ 
 v_t + \lambda_1(u v_x + v v_y)  = -\frac{1}{\rho} p_y + \lambda_2 (v_{xx} + v_{yy}),\\
 u_x+v_y=0(流体的不可压缩性约束)
-$$
+```
 
-- 输入：时空坐标$$(t,x,y)$$（需同时考虑时间演化和空间分布）；
-- 输出：物理量——决定扩散和黏性的两个系数$\lambda_1,\lambda_2$流函数$$\psi$$、压力$$p$$；  
+- 输入：时空坐标$(t,x,y)$（需同时考虑时间演化和空间分布）；
+- 输出：物理量——决定扩散和黏性的两个系数$\lambda_1,\lambda_2$流函数$\psi$、压力$p$；
 
-- 速度分量的计算：通过“自动微分”从流函数$$\psi$$推导得到（$$u = \psi_y$$、$$v = -\psi_x$$），无需直接逼近速度； 
+- 速度分量的计算：通过“自动微分”从流函数$\psi$推导得到（$u = \psi_y$、$v = -\psi_x$），无需直接逼近速度；
 
-- 残差的计算：通过自动微分计算速度、压力的各阶导数（如$$u_t$$、$$u_x$$、$$p_x$$等），代入$$f$$和$$g$$的表达式，得到物理约束残差。
+- 残差的计算：通过自动微分计算速度、压力的各阶导数（如$u_t$、$u_x$、$p_x$等），代入$f$和$g$的表达式，得到物理约束残差。
 
 损失函数：
+
 $$
 MSE := \frac{1}{N}\sum_{i=1}^N \left( |u(t^i,x^i,y^i) - u^i|^2 + |v(t^i,x^i,y^i) - v^i|^2 \right) + \frac{1}{N}\sum_{i=1}^N \left( |f(t^i,x^i,y^i)|^2 + |g(t^i,x^i,y^i)|^2 \right)\\
 f := u_t + \lambda_1(uu_x + vu_y) + p_x - \lambda_2(u_{xx} + u_{yy}), \\ 
@@ -493,9 +499,11 @@ $$
 训练数据：9 层 ×20 神经元	N=5,000（1% 总数据）
 
 求解目标：
+
 $$
 \lambda_1,\lambda_2,p(t,x,y)
 $$
+
 文案：
 首先明确目标，对于这个反问题，我们是已知一系列的已知点的速度信息，所要求解的是扩散系数和黏度系数这两个分量和未知的压强函数，这将作为训练数据。
 
@@ -512,11 +520,13 @@ PPT内容：
 无限宽极限（宽度 → ∞）下：
 
 初始化时：神经网络 ≈ 高斯过程（GP）
+
 $$
 f(x, \theta) \sim \mathcal{N}\,(0, \Sigma(x, x'))
 $$
 
 训练时：神经网络 ≈ 核回归
+
 $$
 f_{NTK}(x) = K_{x, training} \cdot K_{training, training}^{-1} \cdot y
 $$
@@ -544,11 +554,13 @@ NTK 理论为解答 PINN 训练的三大核心问题提供了严谨的理论分�
 ### 3.3 谱偏差：为什么PINN学得慢？
 PPT内容：
 NTK的特征值分布：
+
 $$
 K = Q^T \Lambda Q, \quad \Lambda = \text{diag}(\lambda_1, \lambda_2, \ldots, \lambda_N)
 $$
 
 训练误差衰减：
+
 $$
 \| \text{error}(t) \| \approx \| e^{-Kt} \|
 $$
@@ -574,6 +586,7 @@ NTK的特征值分解揭示了PINN训练困难的根本原因——谱偏差。�
 ### 3.4 损失函数失衡：为什么收敛速度很慢
 PPT内容：
 PINN的损失函数包含多个项：
+
 $$
 \mathcal{L} = \lambda_b \mathcal{L}_b + \lambda_r \mathcal{L}_r
 $$
@@ -601,23 +614,21 @@ PPT图示：
 
 ### 3.5 具体操作：计算PINNs的NTK
 
-PPT内容： 考虑一般PDE问题： $$ \mathcal{L}\,u(x) = f(x), \quad x \in \Omega $$ $$ u(x) = g(x), \quad x \in \partial\Omega $$
+PPT内容： 考虑一般PDE问题： $\mathcal{L}\,u(x) = f(x), \quad x \in \Omega$ $u(x) = g(x), \quad x \in \partial\Omega$
 
-定义PINN的损失函数： $$ \mathcal{L}\,(\theta) = \mathcal{L}_b(\theta) + \mathcal{L}_r(\theta) $$
+定义PINN的损失函数： $\mathcal{L}\,(\theta) = \mathcal{L}_b(\theta) + \mathcal{L}_r(\theta)$
 
 其中边界损失： 
 
 $$ 
-
 \mathcal{L}_b(\theta) = \frac{1}{2N_b}\sum_{i=1}^{N_b}|u(x_i^b, \theta) - g(x_i^b)|^2 
-
 $$ 
 
-PDE残差损失： $$ \mathcal{L}_r(\theta) = \frac{1}{2N_r}\sum_{i=1}^{N_r}|\mathcal{L}\,u(x_i^r, \theta) - f(x_i^r)|^2 $$
+PDE残差损失： $\mathcal{L}_r(\theta) = \frac{1}{2N_r}\sum_{i=1}^{N_r}|\mathcal{L}\,u(x_i^r, \theta) - f(x_i^r)|^2$
 
-NTK矩阵定义： $$ K(t) = \begin{pmatrix} K_{uu}(t) & K_{ur}(t) \ K_{ru}(t) & K_{rr}(t) \end{pmatrix} $$
+NTK矩阵定义： $K(t) = \begin{pmatrix} K_{uu}(t) & K_{ur}(t) \ K_{ru}(t) & K_{rr}(t) \end{pmatrix}$
 
-其中： $$ (K_{uu}){ij} = \frac{\partial u(x_i^b, \theta)}{\partial \theta} \cdot \frac{\partial u(x_j^b, \theta)}{\partial \theta} $$ $$ (K{rr})_{ij} = \frac{\partial \mathcal{L}\,u(x_i^r, \theta)}{\partial \theta} \cdot \frac{\partial \mathcal{L}\,u(x_j^r, \theta)}{\partial \theta} $$
+其中： $(K_{uu}){ij} = \frac{\partial u(x_i^b, \theta)}{\partial \theta} \cdot \frac{\partial u(x_j^b, \theta)}{\partial \theta}$ $(K{rr})_{ij} = \frac{\partial \mathcal{L}\,u(x_i^r, \theta)}{\partial \theta} \cdot \frac{\partial \mathcal{L}\,u(x_j^r, \theta)}{\partial \theta}$
 
 文案： 我们将NTK的概念推广到PINN。关键的区别在于，PINN的输出不仅包括网络本身的值，还包括PDE残差。因此，PINN的NTK是一个分块矩阵，分别描述边界损失和PDE残差的梯度相关性。
 
@@ -626,17 +637,21 @@ PPT内容：
 **算法：动态权重调整**
 
 每 $k$ 步更新权重：
+
 $$
 \lambda_b^{(k+1)} = \lambda_b^{(k)} \cdot \frac{\text{tr}(K_{rr})}{\text{tr}(K_{uu})}
 $$
+
 $$
 \lambda_r^{(k+1)} = \lambda_r^{(k)} \cdot \frac{\text{tr}(K_{uu})}{\text{tr}(K_{rr})}
 $$
 
 或者使用梯度归一化：
+
 $$
 \tilde{g}_b = \frac{g_b}{\|g_b\|}, \quad \tilde{g}_r = \frac{g_r}{\|g_r\|}
 $$
+
 $$
 \mathcal{L}_{new} = \mathcal{L}_b + \mathcal{L}_r
 $$
@@ -647,9 +662,11 @@ $$
 ### 3.8 数值实验
 PPT内容：
 **实验1：一维Poisson方程**
+
 $$
 u_{xx} = f(x), \quad x \in [-1, 1]
 $$
+
 $$
 u(-1) = u(1) = 0
 $$

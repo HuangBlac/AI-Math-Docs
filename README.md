@@ -26,6 +26,7 @@
   - Ch8：稀疏回归、Lasso、慢速率与快速率的简单概览
   - Ch9：神经网络的优化、统计误差、宽度极限与变差范数（含未完成习题）
   - Ch11–Ch12：在线学习、多臂赌博机与过参数化模型概览（手写稿整理）
+  - [Ch15.1.5 回归下界](docs/computation/ltfp/ch15.1.5-regression-lower-bounds.md)：Fano、参数打包、Ex15.1 参考推导与 Hilbert 空间有限维候选（讲解整理，待核验）
 - [算法介绍](docs/algorithms/index.md)
   - 神经网络、决策树、贝叶斯学习、深度学习与压缩感知
 - [AI4Math 前沿](docs/ai4math/index.md)

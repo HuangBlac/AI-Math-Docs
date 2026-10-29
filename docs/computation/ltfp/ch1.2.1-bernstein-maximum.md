@@ -235,7 +235,7 @@ a=\tau\sqrt{2\log(2n)}.
 \mathbb E[M]
 \le
 \tau\left(
-\sqrt{2\log(2n)}+rac1{\sqrt{2\log(2n)}}
+\sqrt{2\log(2n)}+\frac1{\sqrt{2\log(2n)}}
 \right)
 \le
 2\tau\sqrt{2\log(2n)}.

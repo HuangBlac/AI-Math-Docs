@@ -35,7 +35,7 @@ u_j^k-\nu(u_{j+1}^k-u_j^k), & a<0,
 
 ```math
 u_t-2u_x=0,
-\quad 0<x<1,
+\quad 0< x<1,
 \qquad
 u(x,0)=1+\sin(2\pi x),
 \qquad

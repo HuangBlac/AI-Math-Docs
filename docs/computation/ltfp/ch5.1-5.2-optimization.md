@@ -81,11 +81,11 @@ f(x_{k+1})\le f(x_k).
 
 ```math
 \begin{aligned}
-\sum_{k<t}
+\sum_{k< t}
 \alpha_k\left(1-\frac{L\alpha_k}{2}\right)
 \|\nabla f(x_k)\|_2^2
 &\le
-\sum_{k<t}\bigl(f(x_k)-f(x_{k+1})\bigr)\\
+\sum_{k< t}\bigl(f(x_k)-f(x_{k+1})\bigr)\\
 &=f(x_0)-f(x_t).
 \end{aligned}
 ```
@@ -100,9 +100,9 @@ f(x_{k+1})\le f(x_k).
 
 ```math
 \begin{aligned}
-\min_{k<t}\|\nabla f(x_k)\|_2^2
+\min_{k< t}\|\nabla f(x_k)\|_2^2
 &\le
-\frac1t\sum_{k<t}\|\nabla f(x_k)\|_2^2\\
+\frac1t\sum_{k< t}\|\nabla f(x_k)\|_2^2\\
 &\le
 \frac{2}{t\alpha(2-\alpha L)}
 \bigl(f(x_0)-f(x_t)\bigr)\\
@@ -116,7 +116,7 @@ f(x_{k+1})\le f(x_k).
 
 ```math
 \boxed{
-\min_{k<t}\|\nabla f(x_k)\|_2^2
+\min_{k< t}\|\nabla f(x_k)\|_2^2
 \le
 \frac{2L}{t}\bigl(f(x_0)-f(x^*)\bigr)
 }.
@@ -479,7 +479,7 @@ G=
 定义平均迭代点
 
 ```math
-\bar x_t=\frac1t\sum_{k<t}x_k.
+\bar x_t=\frac1t\sum_{k< t}x_k.
 ```
 
 将基本不等式对 $k<t$ 求和，再利用凸性，得到
@@ -488,12 +488,12 @@ G=
 \begin{aligned}
 f(\bar x_t)
 &\le
-\frac1t\sum_{k<t}f(x_k)\\
+\frac1t\sum_{k< t}f(x_k)\\
 &\le
 f(z)
 +\frac{\|x_0-z\|_2^2}{2c\sqrt t}
 +\frac{cG^2}{2\sqrt t}
-+\frac1t\sum_{k<t}\varepsilon_k.
++\frac1t\sum_{k< t}\varepsilon_k.
 \end{aligned}
 ```
 
@@ -571,7 +571,7 @@ D=\max_k\|x_k-z\|_2,
 
 ```math
 \mathbb E\exp\left(
-\lambda\sum_{k<t}\varepsilon_k
+\lambda\sum_{k< t}\varepsilon_k
 \right)
 \le
 \exp\left(\frac{\lambda^2tB^2}{2}\right).
@@ -582,7 +582,7 @@ D=\max_k\|x_k-z\|_2,
 ```math
 \begin{aligned}
 \mathbb P\left(
-\sum_{k<t}\varepsilon_k\ge s
+\sum_{k< t}\varepsilon_k\ge s
 \right)
 &\le
 \exp\left(-\lambda s+
@@ -601,7 +601,7 @@ D=\max_k\|x_k-z\|_2,
 令右端等于 $\delta$，则以至少 $1-\delta$ 的概率，
 
 ```math
-\sum_{k<t}\varepsilon_k
+\sum_{k< t}\varepsilon_k
 \le
 B\sqrt{2t\log\frac1\delta}.
 ```
@@ -730,11 +730,11 @@ g_k
 2. $\nabla f$ 是 $L$-Lipschitz 连续的；
 3. 随机梯度满足
 
-```math
-\mathbb E\|g(x)\|_2^2
-\le
-G^2+M_f\|\nabla f(x)\|_2^2.
-```
+    ```math
+    \mathbb E\|g(x)\|_2^2
+    \le
+    G^2+M_f\|\nabla f(x)\|_2^2.
+    ```
 
 取常数步长 $\alpha_k=\alpha$。有
 
@@ -915,53 +915,53 @@ f(x)=\sum_{i=1}^n f_i(x).
 
 1. 从上一 epoch 的内层点中选取快照
 
-   ```math
-   \tilde x_{s-1}=x_{s-1,j},
-   \qquad
-   j\sim\operatorname{Unif}\{0,\ldots,T-1\}.
-   ```
+    ```math
+    \tilde x_{s-1}=x_{s-1,j},
+    \qquad
+    j\sim\operatorname{Unif}\{0,\ldots,T-1\}.
+    ```
 
 2. 计算全梯度
 
-   ```math
-   \tilde g_s=\nabla f(\tilde x_{s-1}).
-   ```
+    ```math
+    \tilde g_s=\nabla f(\tilde x_{s-1}).
+    ```
 
 3. 令
 
-   ```math
-   x_{s,0}=\tilde x_{s-1}.
-   ```
+    ```math
+    x_{s,0}=\tilde x_{s-1}.
+    ```
 
 4. 对 $k=0,\ldots,T-1$：
 
-   - 以概率 $\mathbb P(i_k=j)=p_j$ 抽取 $i_k$；
-   - 计算
+    - 以概率 $\mathbb P(i_k=j)=p_j$ 抽取 $i_k$；
+    - 计算
 
-     ```math
-     g_{s,k}
-     =
-     \frac{\nabla f_{i_k}(x_{s,k})}{p_{i_k}},
-     \qquad
-     \tilde g_{s,k}
-     =
-     \frac{\nabla f_{i_k}(\tilde x_{s-1})}{p_{i_k}};
-     ```
+        ```math
+        g_{s,k}
+        =
+        \frac{\nabla f_{i_k}(x_{s,k})}{p_{i_k}},
+        \qquad
+        \tilde g_{s,k}
+        =
+        \frac{\nabla f_{i_k}(\tilde x_{s-1})}{p_{i_k}};
+        ```
 
-   - 更新
+    - 更新
 
-     ```math
-     \boxed{
-     x_{s,k+1}
-     =
-     \operatorname{Prox}_{\alpha h}
-     \left(
-     x_{s,k}
-     -\alpha
-     \bigl(g_{s,k}-\tilde g_{s,k}+\tilde g_s\bigr)
-     \right)
-     }.
-     ```
+        ```math
+        \boxed{
+        x_{s,k+1}
+        =
+        \operatorname{Prox}_{\alpha h}
+        \left(
+        x_{s,k}
+        -\alpha
+        \bigl(g_{s,k}-\tilde g_{s,k}+\tilde g_s\bigr)
+        \right)
+        }.
+        ```
 
 每个 epoch 大约需要 $n+2T$ 次分量梯度计算。
 

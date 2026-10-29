@@ -54,15 +54,15 @@ u′=1−2tu,u(0)=0
 
 - **解析解**：通过**积分因子法**求解，方程变形为 u′+2tu=1，积分因子为 e∫2tdt=et2，两边乘积分因子得：
 
-  (uet2)′=et2⟹uet2=∫0tes2ds⟹u(t)=e−t2∫0tes2ds.
+    (uet2)′=et2⟹uet2=∫0tes2ds⟹u(t)=e−t2∫0tes2ds.
 
   
 
 - **数值解（中心差分）**：对 u′(ti)，用**中心差分格式**近似（步长 h）：
 
-  u′(ti)≈2hui+1−ui−1+O(h2)
+    u′(ti)≈2hui+1−ui−1+O(h2)
 
-  （O(h2) 为截断误差，中心差分具有二阶精度）；更高阶导数（如 u′′(ti)）可通过类似差分格式近似。
+    （O(h2) 为截断误差，中心差分具有二阶精度）；更高阶导数（如 u′′(ti)）可通过类似差分格式近似。
 
 考虑椭圆型偏微分方程（以一维为例）：
 
@@ -81,6 +81,7 @@ h2ui+1−2ui+ui−1+giui=fi
 ##### 定理1（逼近解的存在性）
 
 对每个 \( \varepsilon \in (0,1) \)，存在**唯一的解 \( u^\varepsilon \)**，且满足：
+
 \[
 u^\varepsilon \in L^\infty(0,T; H^1(\mathbb{R}^n; \mathbb{R}^m)), \quad u^{\varepsilon\prime} \in L^2(0,T; L^2(\mathbb{R}^n; \mathbb{R}^m))
 \]
@@ -89,39 +90,43 @@ u^\varepsilon \in L^\infty(0,T; H^1(\mathbb{R}^n; \mathbb{R}^m)), \quad u^{\vare
 
 1. **定义解映射与线性方程**
 
-   设空间 \( X = L^\infty(0,T; H^1(\mathbb{R}^n; \mathbb{R}^m)) \)。对任意 \( v \in X \)，考虑**线性抛物型方程组**：
-   \[
-   \begin{cases}
-   u_t - \varepsilon \Delta u = f - \sum_{j=1}^n B_j v_{x_j}, & \text{在 } \mathbb{R}^n \times (0,T] \text{ 中}, \\
-   u = g^\varepsilon, & \text{在 } \mathbb{R}^n \times \{t=0\} \text{ 上}.
-   \end{cases}
-   \]
+    设空间 \( X = L^\infty(0,T; H^1(\mathbb{R}^n; \mathbb{R}^m)) \)。对任意 \( v \in X \)，考虑**线性抛物型方程组**：
 
-   由**热传导方程的基本解**（§2.3.1），该方程存在唯一解 \( u \)，且 \( u \in L^\infty(0,T; H^1) \)、\( u^\prime \in L^2(0,T; L^2) \)，故可定义映射 \( \mathcal{F}: X \to X \)，即 \( \mathcal{F}\,(v) = u \)。
+    \[
+    \begin{cases}
+    u_t - \varepsilon \Delta u = f - \sum_{j=1}^n B_j v_{x_j}, & \text{在 } \mathbb{R}^n \times (0,T] \text{ 中}, \\
+    u = g^\varepsilon, & \text{在 } \mathbb{R}^n \times \{t=0\} \text{ 上}.
+    \end{cases}
+    \]
+
+    由**热传导方程的基本解**（§2.3.1），该方程存在唯一解 \( u \)，且 \( u \in L^\infty(0,T; H^1) \)、\( u^\prime \in L^2(0,T; L^2) \)，故可定义映射 \( \mathcal{F}: X \to X \)，即 \( \mathcal{F}\,(v) = u \)。
 
 2. **作差与估计式推导**
 
-   取 \( \tilde{v} \in X \)，设 \( \tilde{u} = \mathcal{F}\,(\tilde{v}) \)，令 \( \tilde{u} = u - \tilde{u} \)，则 \( \tilde{u} \) 满足：
-   \[
-   \begin{cases}
-   \tilde{u}_t - \varepsilon \Delta \tilde{u} = - \sum_{j=1}^n B_j \tilde{v}_{x_j}, & \text{在 } \mathbb{R}^n \times (0,T] \text{ 中}, \\
-   \tilde{u} = 0, & \text{在 } \mathbb{R}^n \times \{t=0\} \text{ 上}.
-   \end{cases}
-   \]
+    取 \( \tilde{v} \in X \)，设 \( \tilde{u} = \mathcal{F}\,(\tilde{v}) \)，令 \( \tilde{u} = u - \tilde{u} \)，则 \( \tilde{u} \) 满足：
 
-   结合热传导基本解与Sobolev空间估计，得**范数估计**：
-   \[
-   \text{ess sup}_{0 \leq t \leq T} \|\tilde{u}(t)\|_{H^1(\mathbb{R}^n)} \leq C(\varepsilon) T^{1/2} \|\tilde{v}\|_{L^\infty(0,T; H^1)}
-   \]
+    \[
+    \begin{cases}
+    \tilde{u}_t - \varepsilon \Delta \tilde{u} = - \sum_{j=1}^n B_j \tilde{v}_{x_j}, & \text{在 } \mathbb{R}^n \times (0,T] \text{ 中}, \\
+    \tilde{u} = 0, & \text{在 } \mathbb{R}^n \times \{t=0\} \text{ 上}.
+    \end{cases}
+    \]
+
+    结合热传导基本解与Sobolev空间估计，得**范数估计**：
+
+    \[
+    \text{ess sup}_{0 \leq t \leq T} \|\tilde{u}(t)\|_{H^1(\mathbb{R}^n)} \leq C(\varepsilon) T^{1/2} \|\tilde{v}\|_{L^\infty(0,T; H^1)}
+    \]
 
 3. **Banach不动点定理的应用**
 
-   取 \( T > 0 \) 足够小，使 \( C(\varepsilon) T^{1/2} \leq 1/2 \)，则映射 \( \mathcal{F}: X \to X \) 满足**压缩性**：
-   \[
-   \|\mathcal{F}\,(v) - \mathcal{F}\,(\tilde{v})\|_X \leq \frac{1}{2} \|v - \tilde{v}\|_X
-   \]
+    取 \( T > 0 \) 足够小，使 \( C(\varepsilon) T^{1/2} \leq 1/2 \)，则映射 \( \mathcal{F}: X \to X \) 满足**压缩性**：
 
-   由**Banach不动点定理**，\( \mathcal{F} \) 存在唯一不动点 \( u^\varepsilon \in X \)，即 \( u^\varepsilon = \mathcal{F}\,(u^\varepsilon) \)，故 \( u^\varepsilon \) 是原方程的解。
+    \[
+    \|\mathcal{F}\,(v) - \mathcal{F}\,(\tilde{v})\|_X \leq \frac{1}{2} \|v - \tilde{v}\|_X
+    \]
+
+    由**Banach不动点定理**，\( \mathcal{F} \) 存在唯一不动点 \( u^\varepsilon \in X \)，即 \( u^\varepsilon = \mathcal{F}\,(u^\varepsilon) \)，故 \( u^\varepsilon \) 是原方程的解。
 
 ###### 关键要点
 
@@ -137,10 +142,13 @@ u^\varepsilon \in L^\infty(0,T; H^1(\mathbb{R}^n; \mathbb{R}^m)), \quad u^{\vare
 ##### 微分方程与差分格式
 
 考虑**二阶常微分方程**：
+
 \[
 -\frac{d^2 u}{dx^2} + g u = f
 \]
+
 用**中心差分**近似二阶导数，构造差分格式：
+
 \[
 u_{i+1} - 2u_i + u_{i-1} \quad (\text{对应 } -\frac{d^2 u}{dx^2} \text{ 的差分近似，步长隐含为 } h)
 \]
@@ -156,9 +164,11 @@ Lax等价定理关联"适定性、收敛性、稳定性"：
 
 对差分格式，**截断误差收敛**需满足：
 当初值**充分光滑**时，存在常数 \( K \)，使
+
 \[
 T \sum_{\ell=0}^{m-1} \| T^\ell \| \to 0 \quad (\text{其中 } T(h) \to 0 \text{ 当步长 } h \to 0, \forall m \leq t_{\text{max}})
 \]
+
 （\( T \) 为差分算子，\( T^\ell \) 表示算子的 \( \ell \) 次复合，和式刻画累积误差的衰减）。
 
 若初值**非光滑**，需通过"函数替换"将问题转化为光滑情形分析。
@@ -170,28 +180,35 @@ T \sum_{\ell=0}^{m-1} \| T^\ell \| \to 0 \quad (\text{其中 } T(h) \to 0 \text{
 ##### 差分格式的稳定性设定
 
 考虑**有限维向量**下的差分格式，形式为：
+
 \[
 B_1 V^{m+1} = B_0 V^m + F^m
 \]
+
 （\( B_0, B_1 \) 为系数矩阵，\( V^m \) 为第 \( m \) 步数值解，\( F^m \) 为右端项）。
 
 **稳定性定义**：若存在常数 \( K \)，对任意初值 \( V^0, W^0 \)，有
+
 \[
 \| V^m - W^m \| \leq K \| V^0 - W^0 \|
 \]
+
 （初值小扰动下，数值解的扰动被控制）。
 
 ##### 矩阵逆与递推范数估计
 
 由差分格式解出 \( V^{m+1} = B_1^{-1} B_0 V^m + B_1^{-1} F^m \)，作差得：
+
 \[
 V^{m+1} - W^{m+1} = B_1^{-1} B_0 (V^m - W^m)
 \]
+
 递推得 \( \| V^m - W^m \| \leq \| (B_1^{-1} B_0)^m \| \| V^0 - W^0 \| \)，故需估计 \( \| (B_1^{-1} B_0)^m \| \) 的增长性。
 
 ##### 矩阵范数的指数估计
 
 引入**误差项 \( E(t) \)**（如截断误差对应的矩阵），考虑含扰动的矩阵 \( B_1^{-1} B_0 + T E(t) \)，利用**二项式展开**估计其 \( m \) 次幂的范数：
+
 \[
 \begin{align*}
 \| (B_1^{-1} B_0 + T E(t))^m \| &\leq \sum_{j=0}^m \binom{m}{j} \| (B_1^{-1} B_0)^j \| \| (T E(t))^{m-j} \| \\
@@ -199,7 +216,9 @@ V^{m+1} - W^{m+1} = B_1^{-1} B_0 (V^m - W^m)
 &= K_1 (1 + T K_1 K_2)^m
 \end{align*}
 \]
+
 再由**指数函数的单调性**（\( 1 + x \leq e^x \) 对 \( x \geq 0 \)），得：
+
 \[
 K_1 (1 + T K_1 K_2)^m \leq K_1 e^{T m K_1 K_2}
 \]
@@ -207,13 +226,17 @@ K_1 (1 + T K_1 K_2)^m \leq K_1 e^{T m K_1 K_2}
 ##### 与偏微分方程的关联
 
 上述差分格式对应**抛物型偏微分方程**的半离散化形式：
+
 \[
 \frac{\partial u}{\partial t} = L(u(x,t)) + f
 \]
+
 （\( L \) 为微分算子，差分格式通过时间离散、空间差分近似 \( L \)）。数值解 \( U^m \) 与真解 \( u^m \) 的误差满足：
+
 \[
 \| U^m - u^m \| \leq K K_1 T \sum_{\ell=0}^{m-1} \| (B_1^{-1} B_0)^\ell \| \| T^\ell \|
 \]
+
 （\( T^\ell \) 为截断误差项，和式刻画累积误差的传播）。
 
 ---
@@ -224,17 +247,21 @@ K_1 (1 + T K_1 K_2)^m \leq K_1 e^{T m K_1 K_2}
 
 对**二阶线性双曲方程**，通过变量替换转化为**一阶双曲方程组**：
 令 \( v_0 = u_t \)，\( v_1 = u_x \)，则原方程可化为形式：
+
 \[
 v_t + \sum_{i} A_i v_{x_i} + B v = \psi
 \]
+
 （\( A_i, B \) 为系数矩阵/函数，\( \psi \) 为非齐次项，实现"二阶→一阶"的降阶）。
 
 ##### 特征线与CFL条件的核心思想
 
 考虑**一阶线性双曲方程** \( \frac{\partial u}{\partial t} + a \frac{\partial u}{\partial x} = 0 \)，其**特征线**满足常微分方程：
+
 \[
 \frac{dx}{dt} = a(x,t)
 \]
+
 沿特征线，解满足 \( \frac{du}{dt} = \frac{\partial u}{\partial t} + a \frac{\partial u}{\partial x} = 0 \)（即 \( u \) 沿特征线为常数）。
 
 **CFL条件**（Courant-Friedrichs-Lewy条件）：数值解的依赖区域需包含真解的依赖区域（保证数值格式能"捕捉"真解的传播特性）。
@@ -242,15 +269,19 @@ v_t + \sum_{i} A_i v_{x_i} + B v = \psi
 ##### 迎风格式与CFL条件的验证
 
 以**迎风格式**为例，格式形式为：
+
 \[
 u_j^{m+1} - u_j^m = \frac{a \tau}{h} (u_j^m - u_{j-1}^m)
 \]
+
 （\( \tau \) 为时间步长，\( h \) 为空间步长，\( u_j^m \) 为第 \( m \) 步 \( x_j \) 处的数值解）。
 
 分析**依赖区域**：\( u_j^{m+1} \) 依赖 \( u_j^m, u_{j-1}^m \)（当 \( a > 0 \) 时，特征线向右传播，迎风取左侧节点）。为满足CFL条件，需保证"真解依赖的区域被数值依赖区域包含"，即：
+
 \[
 \left| \frac{a \tau}{h} \right| \leq 1
 \]
+
 （控制时间步长与空间步长的比例，使数值格式稳定）。
 
 ---
@@ -260,9 +291,11 @@ u_j^{m+1} - u_j^m = \frac{a \tau}{h} (u_j^m - u_{j-1}^m)
 ##### 特征线与数值格式的关联
 
 考虑双曲型方程的**特征线**满足：
+
 \[
 \frac{dx}{dt} = a(u), \quad \frac{du}{dt} = u
 \]
+
 （\( a(u) \) 为特征速度，反映解的传播方向）。
 
 经典数值格式如 **Lax-Wendroff格式**、**Beam-Warming格式**，需结合**CFL条件**（\( \left| a \frac{\tau}{h} \right| \leq 1 \)，\( \tau \) 为时间步长，\( h \) 为空间步长）保证稳定性。
@@ -270,29 +303,37 @@ u_j^{m+1} - u_j^m = \frac{a \tau}{h} (u_j^m - u_{j-1}^m)
 ##### 格式的离散与插值展开
 
 以某差分格式为例，形式为：
+
 \[
 u_j^{m+1} = -\frac{u_j^{m+1} - 2u_j^m}{2h} + \text{高阶修正项}
 \]
+
 （含一阶差分项，刻画时间/空间的变化率）。
 
 通过**二次函数插值**细化展开，利用节点 \( x_{j-1}, x_j, x_{j+1} \) 构造插值多项式：
+
 \[
 u_j^m + \frac{1}{2}(u_j^{m+1} - u_j^m) \cdot \frac{(x - x_{j-1})(x - x_j)}{(x_{j+1} - x_j)(x_{j+1} - x_{j-1})} + \dots
 \]
+
 （通过插值近似解的光滑性，推导格式的截断误差）。
 
 ##### 截断误差的系数展开
 
 引入参数 \( \nu = \frac{a\tau}{h} \)（CFL数），展开截断误差的系数项：
+
 \[
 \frac{(h - a\tau)a\tau}{h \cdot 2h}, \quad \frac{a\tau (h + a\tau)}{2h^2}
 \]
+
 （分别对应不同传播方向或高阶导数的贡献）。
 
 格式的离散项可进一步表示为：
+
 \[
 \frac{(1 - \nu)\nu}{2} u_j^{m+1} + \frac{\nu(1 + \nu)}{2}(u_j^{m+1} - u_j^m)
 \]
+
 （通过 \( \nu \) 统一刻画时间-空间步长的比例，简化误差分析）。
 
 ---
@@ -302,9 +343,11 @@ u_j^m + \frac{1}{2}(u_j^{m+1} - u_j^m) \cdot \frac{(x - x_{j-1})(x - x_j)}{(x_{j
 ##### 微分不等式与初值估计
 
 考虑**微分不等式**：
+
 \[
 \frac{d}{dt} \left( u e^{-ct} \right) \leq F(t) e^{-ct}
 \]
+
 两边积分并结合初值 \( u(0) \)，可得 \( u(t) \) 的上界估计（用于分析解的增长性或稳定性）。
 
 ##### 有限差分法的"三性"
@@ -315,9 +358,11 @@ u_j^m + \frac{1}{2}(u_j^{m+1} - u_j^m) \cdot \frac{(x - x_{j-1})(x - x_j)}{(x_{j
 - **收敛性**：数值解逼近真解。
 
 典型差分格式形式：
+
 \[
 B_0 u^{m+1} = B_1 u^m + F^m
 \]
+
 （\( u^m \) 为第 \( m \) 步数值解，\( F^m \) 为右端项）。
 
 ##### Fourier方法分析对流扩散方程
@@ -325,15 +370,18 @@ B_0 u^{m+1} = B_1 u^m + F^m
 以**对流扩散方程** \( \frac{\partial u}{\partial t} + a \frac{\partial u}{\partial x} = 0 \)（初值 \( u(x,0) = g(x) \)）为例，用Fourier方法分析数值格式：
 
 - **数值格式近似**：构造差分格式近似时间与空间导数，如
-  \[
-  u(x, t_{m+1}) \approx u(x, t_m) - a\lambda \left[ u(x, t_m) - u(x - h, t_m) \right]
-  \]
-  （\( \lambda = \frac{\tau}{h} \)，\( \tau \) 为时间步长，\( h \) 为空间步长）。
+
+    \[
+    u(x, t_{m+1}) \approx u(x, t_m) - a\lambda \left[ u(x, t_m) - u(x - h, t_m) \right]
+    \]
+
+    （\( \lambda = \frac{\tau}{h} \)，\( \tau \) 为时间步长，\( h \) 为空间步长）。
 
 - **局部近似与Fourier变换**：将数值解 \( u_j^{m+1} \) 局部近似为 \( u(x, t_{m+1}) \) 在区间 \( [x_j - \frac{h}{2}, x_j + \frac{h}{2}] \) 上的代表值，再通过**Fourier变换**分析格式的频率特性（如增长因子、稳定性条件），Fourier变换形式为：
-  \[
-  \frac{1}{\sqrt{m}} \int \hat{u}(x, t_m) e^{itx} dx
-  \]
+
+    \[
+    \frac{1}{\sqrt{m}} \int \hat{u}(x, t_m) e^{itx} dx
+    \]
 
 ---
 
@@ -344,17 +392,21 @@ B_0 u^{m+1} = B_1 u^m + F^m
 考虑**算子 \( T \)**：\( W^{k,p}(U) \to L^q(\Omega) \)（\( U \) 为定义域，\( \Omega \) 为目标区域），若 \( u \in W^{k,p}(U) \cap C(\bar{U}) \)，则 \( Tu = u|_\Omega \)（将 \( u \) 限制到 \( \Omega \) 上）。
 
 **嵌入性质**：存在**有界线性算子 \( T \)**，满足范数估计：
+
 \[
 \| Tu \|_{L^q(\Omega)} \leq C \| u \|_{W^{k,p}(U)}
 \]
+
 （即Sobolev空间 \( W^{k,p}(U) \) 可"嵌入"到 \( L^q(\Omega) \) 空间，由Sobolev不等式保证）。
 
 ##### 一阶双曲型方程组
 
 考虑**一阶线性双曲型方程组**：
+
 \[
 u_t + \sum_{j=1}^n B_j(x, t) u_{x_j} = f(x, t), \quad u|_{t=0} = g(x)
 \]
+
 其中 \( u: \mathbb{R}^n \times (0, +\infty) \to \mathbb{R}^m \)（\( m \) 维向量值函数），\( B_j(x, t) \) 为 \( m \times m \) 矩阵。
 
 ##### 双曲性与变分形式
@@ -362,20 +414,25 @@ u_t + \sum_{j=1}^n B_j(x, t) u_{x_j} = f(x, t), \quad u|_{t=0} = g(x)
 - **双曲性条件**：定义方向矩阵 \( B(t, x; t, y) = \sum_{j=1}^n y_j B_j(x, t) \)（\( y \in \mathbb{R}^n \)）。若对任意 \( x, t, y \)，\( B(t, x; t, y) \) 有 \( m \) 个**实特征值** \( r_1(x, t; y), \dots, r_m(x, t; y) \)，则方程组是双曲型的。
 
 - **变分形式**：取测试函数 \( v \in H^1(\mathbb{R}^n) \)，通过分部积分得弱形式：
-  \[
-  \langle u', v \rangle + B[u, v; t] = \langle f, v \rangle, \quad \forall v \in H^1
-  \]
-  其中双线性形式 \( B[u, v; t] \) 为：
-  \[
-  B[u, v; t] = \int_{\mathbb{R}^n} \sum_{j,i=1}^n B_{ji}(x, t) u_{x_j} v_i \, dx
-  \]
+
+    \[
+    \langle u', v \rangle + B[u, v; t] = \langle f, v \rangle, \quad \forall v \in H^1
+    \]
+
+    其中双线性形式 \( B[u, v; t] \) 为：
+
+    \[
+    B[u, v; t] = \int_{\mathbb{R}^n} \sum_{j,i=1}^n B_{ji}(x, t) u_{x_j} v_i \, dx
+    \]
 
 ##### 正则化方法（消去法）
 
 为处理原方程的奇性，引入小参数 \( \varepsilon > 0 \)，构造**正则化方程组**：
+
 \[
 u_t^\varepsilon - \varepsilon \Delta u^\varepsilon + \sum_{j=1}^n B_j(x, t) u_{x_j}^\varepsilon = f(x, t), \quad u^\varepsilon|_{t=0} = g^\varepsilon(x)
 \]
+
 （添加Laplace项 \( -\varepsilon \Delta u^\varepsilon \) 使方程"正则化"，便于分析解的存在性与收敛性）。
 
 ---
@@ -385,9 +442,11 @@ u_t^\varepsilon - \varepsilon \Delta u^\varepsilon + \sum_{j=1}^n B_j(x, t) u_{x
 ##### 守恒律方程的积分形式
 
 考虑**守恒律方程** \( u_t + (f(u))_x = 0 \)，对时间区间 \( [t_a, t_b] \) 积分得：
+
 \[
 \int_{\mathbb{R}} u(t_b, x) dx - \int_{\mathbb{R}} u(t_a, x) dx = \int_{t_a}^{t_b} \int_{\mathbb{R}} \frac{\partial}{\partial x} f(u(t, x)) dx dt
 \]
+
 （体现"积分守恒"：区间内总量的变化等于边界通量的累积）。
 
 ##### Céa引理与弱解误差
@@ -401,6 +460,7 @@ u_t^\varepsilon - \varepsilon \Delta u^\varepsilon + \sum_{j=1}^n B_j(x, t) u_{x
 ### 1. 波动方程（双曲型）- 弦振动方程
 
 **方程形式**：
+
 $$\frac{\partial^2 u}{\partial t^2} = a^2 \frac{\partial^2 u}{\partial x^2}$$
 
 **定解条件**：
@@ -414,6 +474,7 @@ $$\frac{\partial^2 u}{\partial t^2} = a^2 \frac{\partial^2 u}{\partial x^2}$$
 ### 2. 热传导方程（抛物型）
 
 **方程形式**：
+
 $$\frac{\partial u}{\partial t} = a^2 \frac{\partial^2 u}{\partial x^2}$$
 
 **定解条件**：
@@ -427,6 +488,7 @@ $$\frac{\partial u}{\partial t} = a^2 \frac{\partial^2 u}{\partial x^2}$$
 ### 3. Laplace方程（椭圆型）
 
 **方程形式**：
+
 $$\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0$$
 
 或记作：$\Delta u = 0$
@@ -440,6 +502,7 @@ $$\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0$$
 ### 4. Poisson方程
 
 **方程形式**：
+
 $$\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = f(x,y)$$
 
 或记作：$\Delta u = f$
@@ -453,9 +516,11 @@ $$\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = f(x,y)
 ### 1. 三角级数的恒等变形
 
 考虑三角级数 $\displaystyle \sum_{n=1}^{\infty} \frac{2^n \sin nx}{}$，引入辅助级数 I(x) 并利用和角公式：
+
 $$\sin(n+2)x + \sin nx = 2\sin(n+1)x\cos x$$
 
 因此，级数可变形为：
+
 $$I(x) = \sum_{n=1}^{\infty} \frac{2^n [\sin(n+2)x + \sin nx]}{} = 2\cos x \sum_{n=1}^{\infty} \frac{2^n \sin(n+1)x}{}$$
 
 （通过和角公式将两项正弦和转化为乘积形式，便于级数求和）。
@@ -520,13 +585,13 @@ $$u_{-1,0} = u_{1,0} - 2hg_{x,0,0}, \quad u_{0,-1} = u_{0,1} - 2hg_{y,0,0}$$
 
 - 对 Ω_i 积分泊松方程，得
 
-  $$\iint_{\Omega_i} \Delta u \, dx = \iint_{\Omega_i} f \, dx$$
+    $$\iint_{\Omega_i} \Delta u \, dx = \iint_{\Omega_i} f \, dx$$
 
 - 由散度定理（高斯公式），左边体积分转化为**边界通量积分**：
 
-  $$\iint_{\Omega_i} \Delta u \, dx = \int_{\partial\Omega_i} \frac{\partial u}{\partial n} \, dx$$
+    $$\iint_{\Omega_i} \Delta u \, dx = \int_{\partial\Omega_i} \frac{\partial u}{\partial n} \, dx$$
 
-  （∂u/∂n 是 u 沿边界外法向的方向导数，即 "通量密度"）。
+    （∂u/∂n 是 u 沿边界外法向的方向导数，即 "通量密度"）。
 
 ### 2. 对偶单元与边界通量离散
 
@@ -534,9 +599,9 @@ $$u_{-1,0} = u_{1,0} - 2hg_{x,0,0}, \quad u_{0,-1} = u_{0,1} - 2hg_{y,0,0}$$
 
 - **通量的离散近似**：对边界边 Q_iQ_{i+1}，法向通量积分近似为
 
-  $$\int_{Q_iQ_{i+1}} \frac{\partial u}{\partial n} \, dS(x) \approx \sum \frac{|P_0P_{i+1}|}{q_iq_{i+1}} \cdot P_0P_{i+1} [u(P_m) - u(P_0)] + \text{高阶小项}$$
+    $$\int_{Q_iQ_{i+1}} \frac{\partial u}{\partial n} \, dS(x) \approx \sum \frac{|P_0P_{i+1}|}{q_iq_{i+1}} \cdot P_0P_{i+1} [u(P_m) - u(P_0)] + \text{高阶小项}$$
 
-  （通过 "节点值的差" 近似通量，q_iq_{i+1} 与 P_0P_{i+1} 的几何关系决定权重）。
+    （通过 "节点值的差" 近似通量，q_iq_{i+1} 与 P_0P_{i+1} 的几何关系决定权重）。
 
 ### 3. 边界条件的处理（Neumann 边界）
 
@@ -583,13 +648,13 @@ $$e_{n+1} \leq \|L_h\| e_n + R_n$$
 
 - 若 ‖L_h‖ < 1，则递推误差满足：
 
-  $$e_{n+1} \leq \frac{1 - \|L_h\|^n}{1 - \|L_h\|} R_h$$
+    $$e_{n+1} \leq \frac{1 - \|L_h\|^n}{1 - \|L_h\|} R_h$$
 
-  （其中 R_h 是局部截断误差的上界）；
+    （其中 R_h 是局部截断误差的上界）；
 
 - 更一般地，误差可表示为局部截断误差的 "累积和"：
 
-  $$e_n \leq \sum_{k=0}^{n-1} \|L_h\|^{n-1-k} R_k$$
+    $$e_n \leq \sum_{k=0}^{n-1} \|L_h\|^{n-1-k} R_k$$
 
 ---
 *添加时间: 2026-04-07*
@@ -612,9 +677,9 @@ $$e_{n+1} \leq \|L_h\| e_n + R_n$$
 
 - 二阶条件：∂x2∂2f>0，∂y2∂2f>0，且 **Hessian 矩阵正定**：
 
-  (∂x2∂2f)(∂y2∂2f)−(∂x∂y∂2f)2>0
+    (∂x2∂2f)(∂y2∂2f)−(∂x∂y∂2f)2>0
 
-  （保证是 "严格极小值"，而非鞍点或极大值）。
+    （保证是 "严格极小值"，而非鞍点或极大值）。
 
 ### 3. 差分格式的稳定性
 
@@ -642,9 +707,9 @@ C∥Lhuh−Lhvh∥≥δ∥uh−vh∥
 
 - 对五点差分格式（二维 Laplace 算子），若 ei 在内部点 (i,j) 取最大值，则需满足：
 
-  Δh ei,j = (ei+1,j + ei-1,j + ei,j+1 + ei,j-1 - 4ei,j)/h² ≤ 0
+    Δh ei,j = (ei+1,j + ei-1,j + ei,j+1 + ei,j-1 - 4ei,j)/h² ≤ 0
 
-  （离散 Laplace 算子非正）；
+    （离散 Laplace 算子非正）；
 
 - 但若 ei,j 是严格最大值，则四个邻点的误差均小于 ei,j，导致 Δh ei,j > 0，矛盾；
 
@@ -762,9 +827,11 @@ $$\|e\|_\infty \leq C\|Δe\|_\infty$$
 稳定性的概念
 
 要证明"若 \( B \) 稳定，\( B + C(t) \) 不稳定"，需分析矩阵范数：
+
 $$
 \| B + \Delta t C(\Delta t) \| \leq \| B \| \cdot \| I - \Delta t C(\Delta t) \|
 $$
+
 通过**矩阵范数的三角不等式**与**摄动理论**，结合 \( C(t) \) 的时变特性，说明 \( B + C(t) \) 因摄动项 \( C(t) \) 失去稳定性（核心：稳定矩阵受时变摄动后可能不稳定）。
 
 证明过程：
@@ -794,9 +861,11 @@ $$\begin{cases} \frac{dV}{dt} = V - \frac{1}{3}V^3 - W + I \\ \frac{dW}{dt} = \f
 **通用分析逻辑**：分析最终解是否趋于稳定，即 $V, W$ 趋于常数，对应 $\frac{dV}{dt}=\frac{dW}{dt}=0$。
 
 平衡点方程：
+
 $$V - \frac{1}{3}V^3 - W + I = 0, \quad W = \frac{V+a}{b}$$
 
 代入第一式，得 $V_0$ 满足：
+
 $$-\frac{1}{3}V_0^3 + V_0 - \frac{V_0+a}{b} + I = 0$$
 
 **$I=0$ 时平衡点的定量计算**：
@@ -810,6 +879,7 @@ $$V - \frac{1}{3}V^3 - \frac{V+a}{b} = 0$$
 $$0.8V - 0.8 \cdot \frac{1}{3}V^3 - V - 0.7 = 0 \implies -\frac{0.8}{3}V^3 - 0.2V - 0.7 = 0$$
 
 即：
+
 $$V^3 + 0.75V + 2.625 = 0$$
 
 因 $f'(V) = 3V^2 + 0.75 > 0$，函数单调递增，方程有唯一实根。试值得 $V^* \approx -1.199$，对应 $W^* \approx -0.624$。
@@ -853,6 +923,7 @@ $$I_0 \geq 1 - (-1.199) = 2.199$$
 ### 基本方程
 
 抛物型方程：
+
 $$
 \frac{\partial u}{\partial t} = a \frac{\partial^2 u}{\partial x^2} + f(x)
 $$
@@ -864,6 +935,7 @@ $$
 设 $x$ 方向 $N$ 等分，$t$ 方向 $M$ 等分，$u(x_j, t_k)$ 的数值解记为 $u_j^k$。
 
 **显式差分格式**：
+
 $$
 \frac{u_j^{k+1} - u_j^k}{\tau} = \lambda \frac{u_{j+1} - 2u_j + u_{j-1}}{h^2}
 $$
@@ -877,6 +949,7 @@ $$
 ### 误差分析
 
 **截断误差展开**：
+
 $$
 \frac{1}{2} \tau^2 \partial_{ttt} u + a \frac{1}{12} h^4 \partial_{xxxx} u
 $$
@@ -886,6 +959,7 @@ $$
 $$
 
 **系数计算**：
+
 $$
 \mu = -\left( \frac{1}{2} - \frac{1}{12 r} \right), \quad r = \frac{a \tau}{h^2}
 $$
@@ -893,6 +967,7 @@ $$
 ### 稳定性分析
 
 **舍入误差影响**：
+
 $$
 \max |u_{i,j} - \tilde{u}_{i,j}| \leq C_h \left( \max |f_{i,j} - \tilde{f}_{i,j}| + \max |g_{i,j} - \tilde{g}_{i,j}| \right)
 $$
@@ -905,12 +980,14 @@ $$
 ### 极值原理
 
 **离散极值原理**：
+
 $$
 \max_\Omega u_{i,j} \leq \max_{\partial\Omega} u_{i,j}
 $$
 
 **误差界推导**：
 设误差 $e = u - u_h$，利用辅助函数与极值原理：
+
 $$
 \|e\|_\infty \leq C\|\Delta e\|_\infty
 $$
@@ -928,6 +1005,7 @@ $$
 $$
 
 **差分格式**：
+
 $$
 \frac{u_j^{k+1} - 2u_j^k + u_j^{k-1}}{\tau^2} = c^2 \frac{u_{j+1}^k - 2u_j^k + u_{j-1}^k}{h^2}
 $$
@@ -935,6 +1013,7 @@ $$
 ### CFL 条件
 
 双曲方程的稳定性条件：
+
 $$
 c \frac{\tau}{h} \leq 1
 $$
@@ -946,6 +1025,7 @@ $$
 ### 一般形式
 
 PDE 的有限差分离散化为：
+
 $$
 L_h u = f
 $$
@@ -957,6 +1037,7 @@ $$
 **定义**：矩阵 $B$ 稳定如果 $\|B^n\| \leq M$ 对所有 $n$
 
 **摄动分析**：若 $B$ 稳定，$B + C(t)$ 不稳定，因为：
+
 $$
 \|B + \Delta t C(\Delta t)\| \leq \|B\| \cdot \|I - \Delta t C(\Delta t)\|
 $$

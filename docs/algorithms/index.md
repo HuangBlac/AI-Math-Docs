@@ -12,24 +12,31 @@
 
 - **损失函数**：衡量预测值与真实值的差异，记为 \( \ell: y \times y \to \mathbb{R} \)（如分类任务中，\( \ell(\hat{y}, y) = 0 \) 当且仅当 \( \hat{y} = y \)，否则为正）；
 - **期望损失**：函数 \( f \) 的整体性能，定义为
-  \[
-  L(f) = \mathbb{E}_{(X,Y) \sim p} \left[ \ell(f(X), Y) \right]
-  \]
-  （对所有样本的损失取期望，反映泛化性能）。
+
+    \[
+    L(f) = \mathbb{E}_{(X,Y) \sim p} \left[ \ell(f(X), Y) \right]
+    \]
+
+    （对所有样本的损失取期望，反映泛化性能）。
 
 ### 最优函数的存在性与最优性
 
 定义**条件期望下的最优函数**：
+
 \[
 f^*(x) = \arg\min_{a \in \mathbb{R}^k} \mathbb{E}\left[ \ell(a, Y) \,\big|\, X = x \right]
 \]
+
 （对每个输入 \( x \)，选择使"给定 \( X=x \) 时 \( Y \) 的条件损失期望最小"的 \( a \) 作为 \( f^*(x) \)）。
 
 **最优性证明**：对任意函数 \( f \)，有
+
 \[
 L(f) \geq L(f^*)
 \]
+
 推导：利用期望的塔式性质（重期望公式），
+
 \[
 \begin{align*}
 L(f) &= \mathbb{E}_X \left[ \mathbb{E}_Y \left[ \ell(f(X), Y) \,\big|\, X \right] \right] \\
@@ -37,6 +44,7 @@ L(f) &= \mathbb{E}_X \left[ \mathbb{E}_Y \left[ \ell(f(X), Y) \,\big|\, X \right
 &= \mathbb{E}_X \left[ \mathbb{E}_Y \left[ \ell(f^*(X), Y) \,\big|\, X \right] \right] = L(f^*)
 \end{align*}
 \]
+
 （对每个 \( X=x \)，内层期望在 \( a=f^*(x) \) 时取到最小值，故整体期望满足不等式）。
 
 ---
@@ -47,41 +55,48 @@ L(f) &= \mathbb{E}_X \left[ \mathbb{E}_Y \left[ \ell(f(X), Y) \,\big|\, X \right
 
 - **分布建模**：将输入 \( X \) 与输出 \( Y \) 的关系建模为 \( \mathcal{X} \times \mathcal{Y} \) 上的**联合分布 \( \mathbb{P} \)**，即 \( (X,Y) \sim \mathbb{P} \)。
 - **模型假设**：
-  - 参数模型：假设 \( \mathbb{P} \in \{\mathbb{P}_\theta: \theta \in \Theta\} \)（\( \Theta \subset \mathbb{R}^d \) 为参数空间）；
-  - 非参数模型：不预设分布的参数形式，更具一般性。
+    - 参数模型：假设 \( \mathbb{P} \in \{\mathbb{P}_\theta: \theta \in \Theta\} \)（\( \Theta \subset \mathbb{R}^d \) 为参数空间）；
+    - 非参数模型：不预设分布的参数形式，更具一般性。
 
 ### 风险最小化与目标函数
 
 - **损失函数**：选择 \( \ell: \mathcal{Y} \times \mathcal{Y} \to \mathbb{R} \)，衡量预测值与真实值的差异（如回归用平方损失 \( \ell(a,y) = \frac{1}{2}(a - y)^2 \)，分类用指示损失 \( \ell(a,y) = \mathbb{1}_{a \neq y} \)）。
 - **总体风险**：目标是最小化**期望损失**（泛化风险）：
-  \[
-  f^* = \arg\min_{\text{可测 } f} \mathcal{L}\,(f) = \mathbb{E}_{(X,Y) \sim \mathbb{P}} \left[ \ell(f(X), Y) \right]
-  \]
+
+    \[
+    f^* = \arg\min_{\text{可测 } f} \mathcal{L}\,(f) = \mathbb{E}_{(X,Y) \sim \mathbb{P}} \left[ \ell(f(X), Y) \right]
+    \]
+
 - **任务特例**：
-  - 回归：\( \mathcal{Y} = \mathbb{R} \)，\( f^*(x) = \mathbb{E}[Y \mid X = x] \)（条件期望为最优预测）；
-  - 分类：\( \mathcal{Y} = [K] = \{1,\dots,K\} \)，\( f^*(x) = \arg\max_{k \in [K]} \mathbb{P}\,(Y = k \mid X = x) \)（后验概率最大类为最优类别）。
+    - 回归：\( \mathcal{Y} = \mathbb{R} \)，\( f^*(x) = \mathbb{E}[Y \mid X = x] \)（条件期望为最优预测）；
+    - 分类：\( \mathcal{Y} = [K] = \{1,\dots,K\} \)，\( f^*(x) = \arg\max_{k \in [K]} \mathbb{P}\,(Y = k \mid X = x) \)（后验概率最大类为最优类别）。
 
 ### 经验风险最小化（ERM）
 
 给定训练数据 \( (X_1,Y_1),\dots,(X_n,Y_n) \stackrel{\text{iid}}{\sim} \mathbb{P} \)，定义**经验风险**：
+
 \[
 \hat{\mathcal{L}}(f) = \frac{1}{n} \sum_{i=1}^n \ell(f(X_i), Y_i)
 \]
+
 ERM 是找函数 \( \hat{f} \in \mathcal{F} \)（假设空间）最小化经验风险：
+
 \[
 \hat{f} = \arg\min_{f \in \mathcal{F}} \hat{\mathcal{L}}(f)
 \]
+
 （例：平方损失+线性假设空间时，ERM 等价于最小二乘法）。
 
 ### 非参数估计的误差分解
 
 - **问题设定**：从数据 \( Z_1,\dots,Z_n \stackrel{\text{iid}}{\sim} \mu_Z \) 估计 \( f^* \)，通过 ERM 选 \( \hat{f} \in \mathcal{F} \)，再用求解器 \( \mathcal{A}\,(\tau) \) 输出近似解 \( f_{\mathcal{A}\,(\tau)} \)（满足 \( \hat{\mathcal{L}}(f_{\mathcal{A}\,(\tau)}) \leq \hat{\mathcal{L}}(\hat{f}) + \tau \)）。
 - **Excess Risk 分解**：目标是约束 \( \mathcal{E}\,(f_{\mathcal{A}\,(\tau)}) = \mathcal{L}\,(f_{\mathcal{A}\,(\tau)}) - \mathcal{L}\,(f^*) \)，分解为三部分：
-  - \( \varepsilon_{\text{sta}} \)：**统计误差**（经验风险与总体风险的偏差）；
-  - \( \varepsilon_{\text{app}} \)：**逼近误差**（假设空间 \( \mathcal{F} \) 对 \( f^* \) 的近似能力）；
-  - \( \varepsilon_{\text{opt}} \)：**优化误差**（求解器与 ERM 最优解的偏差）。
+    - \( \varepsilon_{\text{sta}} \)：**统计误差**（经验风险与总体风险的偏差）；
+    - \( \varepsilon_{\text{app}} \)：**逼近误差**（假设空间 \( \mathcal{F} \) 对 \( f^* \) 的近似能力）；
+    - \( \varepsilon_{\text{opt}} \)：**优化误差**（求解器与 ERM 最优解的偏差）。
 
 具体分解式：
+
 \[
 \mathcal{L}\,(f_{\mathcal{A}\,(\tau)}) - \mathcal{L}\,(f^*) = \underbrace{[\mathcal{L}\,(f_{\mathcal{A}\,(\tau)}) - \hat{\mathcal{L}}(f_{\mathcal{A}\,(\tau)})]}_{\text{统计误差}} + \underbrace{[\hat{\mathcal{L}}(f_{\mathcal{A}\,(\tau)}) - \hat{\mathcal{L}}(\hat{f})]}_{\text{优化误差}} + \underbrace{[\hat{\mathcal{L}}(\hat{f}) - \mathcal{L}\,(\hat{f})]}_{\text{统计误差}} + \underbrace{[\mathcal{L}\,(\hat{f}) - \mathcal{L}\,(f^*)]}_{\text{逼近误差}}
 \]
@@ -93,19 +108,25 @@ ERM 是找函数 \( \hat{f} \in \mathcal{F} \)（假设空间）最小化经验�
 ### 压缩感知的优化模型
 
 考虑**压缩感知**问题：在观测 \( y = \Psi x + \varepsilon \)（\( \Psi \) 为感知矩阵，\( \varepsilon \) 为噪声）下，最小化稀疏性度量 \( \|x\|_1 \)，即
+
 \[
 \min \|x\|_1 \quad \text{约束} \quad y = \Psi x + \varepsilon
 \]
+
 引入**正则化项**（平衡稀疏性与拟合度），转化为无约束优化：
+
 \[
 \min \|x\|_1 + \lambda \|y - \Psi x\|_2^2
 \]
+
 （\( \lambda > 0 \) 为正则化参数）。
 
 **求解思路**：构造拉格朗日函数
+
 \[
 \mathcal{L}\,(x, \lambda) = \|x\|_1 + \lambda^T (y - \Psi x)
 \]
+
 并通过**对偶问题**或梯度类方法（如ISTA/FISTA）求解。
 
 
@@ -142,13 +163,13 @@ $$u^T X \sim \text{sub-G}(\sigma^2 \|u\|_2^2)$$
 
 - 二阶导数：ψ''(s) = Var_α(X)（倾斜测度下的方差），且由 X 有界 [a, b]，得方差上界：
 
-  $$\text{Var}_\alpha(X) \leq \frac{(b-a)^2}{4}$$
+    $$\text{Var}_\alpha(X) \leq \frac{(b-a)^2}{4}$$
 
 - 因此，ψ(s) 作为凸函数，满足**上界估计**：
 
-  $$\psi(s) \leq \frac{(b-a)^2 s^2}{4}$$
+    $$\psi(s) \leq \frac{(b-a)^2 s^2}{4}$$
 
-  即 E(e^{sX}) ≤ exp((b-a)²s²/4)，故有界随机变量是次高斯分布（参数 σ² = (b-a)²/4）。
+    即 E(e^{sX}) ≤ exp((b-a)²s²/4)，故有界随机变量是次高斯分布（参数 σ² = (b-a)²/4）。
 
 ---
 *添加时间: 2026-04-07*
@@ -218,9 +239,9 @@ $$\mathbb{E}\left[\max_{\theta \in B_2} \theta^T X\right] \leq \sigma\sqrt{2\log
 
 - **二次型上界**：利用柯西不等式或凸性，有
 
-  $$\|X(\hat{\theta}_{t+s} - \theta^*)\|_2^2 \leq 2\varepsilon^T X(\hat{\theta}_{t+s} - \theta^*)$$
+    $$\|X(\hat{\theta}_{t+s} - \theta^*)\|_2^2 \leq 2\varepsilon^T X(\hat{\theta}_{t+s} - \theta^*)$$
 
-  （将范数平方转化为线性型，便于结合期望或概率分析）；
+    （将范数平方转化为线性型，便于结合期望或概率分析）；
 
 - **残差平方和**：观测值与拟合值的残差平方和为 ‖Y - Xθ‖_2²，是衡量拟合优度的核心指标。
 
@@ -306,7 +327,8 @@ $$\|\hat{\theta} - \theta^*\|_2 \lesssim \frac{\sigma\sqrt{|A^*| \cdot 2\ln(2d/\
 ### 1. VC 维与打散数的定义
 
 - **打散数 $\Pi_{\mathcal{H}}(m)$**：假设类 $\mathcal{H}$ 对 $m$ 个样本能实现的"不同标签划分的数量"。
-  $$\Pi_{\mathcal{H}}(m) = |\{(h(x_1), h(x_2), \cdots, h(x_m)) \mid x_i \in \mathcal{X}, h \in \mathcal{H}\}|$$
+
+    $$\Pi_{\mathcal{H}}(m) = |\{(h(x_1), h(x_2), \cdots, h(x_m)) \mid x_i \in \mathcal{X}, h \in \mathcal{H}\}|$$
 
 - **VC 维 $\text{VC}(\mathcal{H})$**：最大的 $m$ 使得 $\Pi_{\mathcal{H}}(m) = 2^m$（即能"完全打散" $m$ 个样本的所有 $2^m$ 种标签组合）。
 
@@ -332,6 +354,7 @@ $$\|\hat{\theta} - \theta^*\|_2 \lesssim \frac{\sigma\sqrt{|A^*| \cdot 2\ln(2d/\
 ### L1 问题的优化
 
 考虑优化问题：
+
 $$
 x^* = \arg\min_{x \in \mathbb{R}^n} \left( \frac{1}{2n} \| A x - b \|^2 + \lambda \| x \|_1 \right)
 $$
@@ -339,6 +362,7 @@ $$
 ### Proximal 算子
 
 **L1 正则化的 Proximal 算子**（软阈值算子）：
+
 $$
 S_\lambda(t) = \begin{cases} 
 0, & |t| \leq \lambda \
@@ -348,11 +372,13 @@ t + \lambda, & t \leq -\lambda
 $$
 
 **不动点算法**：
+
 $$
 x^* = S_\lambda \left( x^* + \frac{1}{n} A^\top (b - A x^*) \right)
 $$
 
 **迭代形式**：
+
 $$
 x^{(k+1)} = S_\lambda \left( x^{(k)} + A^\top (b - A x^{(k)}) \right)
 $$
@@ -360,9 +386,11 @@ $$
 ### 次微分理论
 
 **凸函数的次微分**（不要求连续）：
+
 $$
 f(y) \geq f(x) + z^\top (y - x), \forall y
 $$
+
 其中 $z$ 称为次微分。
 
 **绝对值函数的次微分**：
@@ -373,6 +401,7 @@ $$
 ### 凸优化的一阶条件
 
 **优化条件**：
+
 $$
 \arg\min_{x \in \mathbb{R}^n} f(x) \iff 0 \in \partial f(x^*)
 $$
@@ -398,6 +427,7 @@ $$
 其中 $z$ 是 $\| \cdot \|_1$ 在 $x$ 处的次微分。
 
 逐项分析：
+
 $$
 \sum_i (|y_i| - |x_i|) \geq \sum_i z_i (y_i - x_i)
 $$
@@ -413,6 +443,7 @@ $$
 ### 优化的一阶条件
 
 **次梯度为 0**：
+
 $$
 \frac{1}{n} A^\top (A x^* - b) + \lambda \partial \| x^* \|_1 = 0
 $$
@@ -420,9 +451,11 @@ $$
 ### 凸集上的优化
 
 **凸集上的凸函数优化**：
+
 $$
 g(x) = f(x) + \mathbb{1}_C(x)
 $$
+
 其中 $\mathbb{1}_C$ 是凸集 $C$ 的示性函数。
 
 若 $x \notin C$，则 $\partial g = \emptyset$。
@@ -434,6 +467,7 @@ $$
 ### 法锥定义
 
 **法锥**：
+
 $$
 N_C(x) = \{ z \mid \langle z, y - x \rangle \leq 0, \forall y \in C \}
 $$
@@ -441,14 +475,17 @@ $$
 ### 最优性条件
 
 **凸集约束优化**：
+
 $$
 -\nabla f(x^*) \in N_C(x^*)
 $$
+
 （若 $0 \in C$，$C$ 为凸锥）
 
 ### 对偶范数
 
 **对偶范数定义**：
+
 $$
 \| x \|_* = \sup_{\|y\| \leq 1} \langle x, y \rangle
 $$
@@ -458,11 +495,13 @@ $$
 ### L2 正则化的优化
 
 **优化问题**：
+
 $$
 \frac{1}{2n} \| A x - b \|_2^2 + \lambda \| x \|_2
 $$
 
 **一阶条件**：
+
 $$
 \frac{1}{n} A^\top (A x^* - b) + \lambda \partial \| x^* \|_2 = 0
 $$
@@ -470,11 +509,13 @@ $$
 ### 辅助函数方法
 
 **辅助函数**：
+
 $$
 H(x) = \frac{1}{2} \| x - d^* \|^2 + \lambda \| x \|_2
 $$
 
 最优性条件：
+
 $$
 0 \in \partial H(x) \iff \exists (x - d^*) + \lambda \partial \| x \|_2 = 0
 $$
@@ -498,6 +539,7 @@ $$
 ### Proximal 梯度法
 
 针对非光滑正则项（如 L1）：
+
 $$
 x^{(k+1)} = \text{prox}_{\lambda r} \left( x^{(k)} - \eta \nabla f(x^{(k)}) \right)
 $$

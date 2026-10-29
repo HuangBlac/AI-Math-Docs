@@ -52,6 +52,8 @@ We ignore measurability issues on purpose.
 
 ```math
     R(f) = \mathbb{E}ℓ(y, f(x))=\int_{X×Y}ℓ(y, f(x))dp(x, y)
+```
+
 Be careful with the randomness, or lack thereof, of f: when performing learning
 from data, f will depend on the random training data, not on the testing
 data, and thus R(f) is typically random because of the dependence on the
@@ -114,7 +116,7 @@ f∗(x′)∈argmin_{z∈R}E[∣y−z∣∣x=x′] = \int |y-z| dP(y|x) = \int 1
 \frac{d}{dz}|Y-z|
 =
 \begin{cases}
-1, & Y<z,\\
+1, & Y< z,\\
 -1, & Y>z.
 \end{cases}
 ```
@@ -122,11 +124,11 @@ f∗(x′)∈argmin_{z∈R}E[∣y−z∣∣x=x′] = \int |y-z| dP(y|x) = \int 1
 ```math
 \phi'(z)
 =
-\mathbb P(Y<z\mid X=x)-\mathbb P(Y>z\mid X=x).
+\mathbb P(Y< z\mid X=x)-\mathbb P(Y>z\mid X=x).
 ```
 因为连续分布下
 ```math
-\mathbb P(Y<z\mid X=x)=F_x(z),
+\mathbb P(Y< z\mid X=x)=F_x(z),
 ```
 令$F_x(m)=1/2$，此时$\phi'(m) = 0,z = m$
 
@@ -150,7 +152,7 @@ f∗ : X → R. Provide an interpretation in terms of quantiles.
 ```math
 \frac{d}{dz}(z-Y)^+
 =
-\mathbf 1_{\{Y<z\}}.
+\mathbf 1_{\{Y< z\}}.
 ```
 所以
 ```math
@@ -158,11 +160,11 @@ f∗ : X → R. Provide an interpretation in terms of quantiles.
 =
 -\alpha \mathbb P(Y>z\mid X=x)
 +
-(1-\alpha)\mathbb P(Y<z\mid X=x).
+(1-\alpha)\mathbb P(Y< z\mid X=x).
 ```
 连续分布下，
 ```math
-\mathbb P(Y<z\mid X=x)=F_x(z),
+\mathbb P(Y< z\mid X=x)=F_x(z),
 ```
 因此
 ```math
@@ -202,7 +204,7 @@ Exercise 2.4 Characterize Bayes predictors for regression with the “ε-insensi
 loss defined as $ℓ(y, z) = max\{0, |y − z|-\varepsilon \}$. If for each x, y is supported in an interval
 of length less than 2ε, what are the Bayes predictors?
 ```math
-\phi(z) = E(\ell(y,z)|X=x) = \int_{R} 1_{|y-z|>\varepsilon}(|y-z|-\varepsilon)dP_x(y) = \int_{R} 1_{y-\varepsilon>z}(y-z-\varepsilon)dP_x(y)+ \int_{R} 1_{y+\varepsilon<z}(z-y-\varepsilon)dP_x(y)
+\phi(z) = E(\ell(y,z)|X=x) = \int_{R} 1_{|y-z|>\varepsilon}(|y-z|-\varepsilon)dP_x(y) = \int_{R} 1_{y-\varepsilon>z}(y-z-\varepsilon)dP_x(y)+ \int_{R} 1_{y+\varepsilon< z}(z-y-\varepsilon)dP_x(y)
 ```
 $P(z>y-\varepsilon|X=x)+P(z>y+\varepsilon|X=x)=1,f^*(x)=z$
 

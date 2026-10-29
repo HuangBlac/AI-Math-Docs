@@ -33,7 +33,8 @@
 | Ch10 | 集成学习（Ensemble Learning） | 无逐章笔记 | `source_only` | `source_only` |
 | Ch11 | 从在线学习到多臂赌博机（From Online Learning to Bandits） | [§11.1–11.3 概览](ch11-online-bandits-overview.md)：§11.1.1–11.1.3 有投影 SGD、强凸速率和镜像下降推导草稿；§11.2.1–11.2.2 有高斯平滑、光滑/非光滑零阶优化界；§11.3 仅 bandit 定义 | 无明确习题作答 | P11.2/P11.4 明确写出；P11.1/P11.3/P11.5 为隐含对应，均未核验 |
 | Ch12 | 过参数化模型（Overparameterized Models） | [§12.1–12.3 概览](ch12-overparameterized-overview.md)：隐式偏好、双下降、均值场与线性网络起步；§12.4 仅提名 | 无明确习题作答 | P12.1/P12.2 有结论记录；P12.2 证明未完成 |
-| Ch13–Ch15 | 结构化预测、概率方法、下界 | 无逐章笔记 | `source_only` | `source_only` |
+| Ch13–Ch14 | 结构化预测、概率方法 | 无逐章笔记 | `source_only` | `source_only` |
+| Ch15 | 下界 | [§15.1.5 回归下界](ch15.1.5-regression-lower-bounds.md)：固定设计、Fano 与打包、Hilbert 空间有限维候选；`note_unverified` | Ex15.1 有助手参考推导，无独立作答认证 | P15.1–P15.2 的 Fano 用途有讲解，完整证明待补；推论15.1、Lemma15.1–15.2 有明确引用 |
 
 ## Ch4 细分映射
 
@@ -90,6 +91,20 @@
 | Lemma 11.3 | 11.2.2 Nonsmooth Stochastic Gradient Descent | 明确记录；$F_\delta$ 的 Lipschitz、光滑性和近似误差界有记录，未逐条核验 |
 | Proposition 11.5 | 11.2.2 Nonsmooth Stochastic Gradient Descent | `proposition_implicit`；原稿写到核心上界，未继续完成无噪声/有噪声参数优化 |
 | Exercise 11.3–11.6 | 11.2–11.3 | `source_only`；原稿没有习题作答 |
+
+## Ch15 细分映射
+
+2026-10-16新增的[回归下界笔记](ch15.1.5-regression-lower-bounds.md)来自学习问答与助手整理，不是手写证明转录；材料存在不升级为独立掌握。
+
+| 对象 | 教材小节 | 当前状态 |
+|---|---|---|
+| 式（15.1）、（15.3） | 15.1.1–15.1.2 | 已整理极小极大风险对象、最近候选化约与 $4a$ 的来源；`note_unverified` |
+| Proposition 15.1–15.2、推论15.1 | 15.1.3–15.1.4 | 已解释 Fano 的用途、互信息与平均KL上界、$1/2$ 和 $1/4$ 充分条件；完整证明未收录 |
+| Lemma 15.1–15.2 | 15.1.4 | 已引用打包数量与距离结论，并区分体积法和二进制编码法；完整证明未收录 |
+| 式（15.10） | 15.1.5 固定设计线性回归 | 已整理模型、各向同性、候选构造、尺度选择与风险下界；保留 $M\ge16$ 条件；`note_unverified` |
+| Exercise 15.1 | 15.1.5 | 有助手提供的体积打包参考推导和小维数常数处理；未登记为用户独立完成 |
+| Hilbert 空间非参数估计 | 15.1.5 | 已整理函数估计、椭球、前 $K$ 个方向的候选与风险下界；Sobolev 特征值与最终速率推导待展开 |
+| 15.1.6–15.3 | 贝叶斯分析与优化下界 | 本次无新增正文，保持 `source_only` |
 
 ## 文件范围的特别说明
 

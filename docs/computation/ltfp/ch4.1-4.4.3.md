@@ -53,7 +53,7 @@ as real-valued outputs, with so-called convex surrogates of loss functions.
 
 关于如何使用优化算法来高效获得这些近似极小化的主要集中在chapeter 5。在此之间看看必要的概率工具，我们将会展示当目标不是一个向量空间，例如二分类对应的 Y = {-1, 1}时将会出现哪些问题，以及它们实际上可以被重塑为一个实数输出的问题，通过使用所谓的凸化损失函数。
 
-# Ch 4.1 Convexification of the Risk凸化风险
+## Ch 4.1 Convexification of the Risk凸化风险
 
 在这个部分，我们将会考虑基于经验风险最小的方法，使用统计分析的方法，例如从未知数据之中进行泛化
 
@@ -110,6 +110,7 @@ $\Phi(u)=(u-1)^2$。因为 $y^2=1$,所以 $\Phi(yg(x))=(y-g(x))^2$,这就退回�
 在分准的基础上，如果实际上就是要让$\frac{y_i(wx_i+b)}{\|w\|_2}$都尽可能大，也就是所有的点都离它尽可能远，那就说明分好了
 
 更具体来说，实际上就是要考虑距离超平面最近的训练样本，它将决定整个分类器的几何间隔：
+
 $$
 \gamma(w,b)
 =
@@ -117,39 +118,51 @@ $$
 \frac{y_i(w^\top x_i+b)}{\|w\|_2}
 .
 $$
+
 SVM 希望最大化它：
+
 $$
 \max_{w,b}
 \min_i
 \frac{y_i(w^\top x_i+b)}{\|w\|_2}.
 $$
+
 然后我们很自然的就可以将其转化为固定分子大于等于1而极小化分母的情况，也就是:
+
 $$
 \min_w\frac{1}{2}\|w\|^2_2,s.t,\forall i\in\{1,2,\cdots,n\} y_i(w^\top x_i+b)\ge1
 $$
+
 对于这类不等式约束的问题，依然想办法约束条件打包进待优化的目标函数，也就是
+
 $$
 \min_w\frac{1}{2}\|w\|^2_2+C\sum_{i=1}^n\xi_i,s.t,\forall i\in\{1,2,\cdots,n\} y_i(w^\top x_i+b)\ge1-\xi_i,\xi\ge0
 $$
+
 对于达到边界的样本增加$\xi_i$来约束
 
 然后，我们就可以倒反天罡，将$\xi_i$视作待优化的目标，而那个$\frac{1}{2}\|w\|_2^2$视作正则化参数
+
 $$
 \min_w\frac{\lambda}{2}\|w\|^2_2+\frac{1}{n}\sum_{i=1}^n(1-y_i(w^{\top}x_i+b))_{+}
 $$
+
 呃呃，然后我们怎么去求解这个问题呢？
 
 拉格朗日对偶：对于要想求解(5)对应的问题，实际上可以构造拉格朗日对偶函数，也就是选取：
 
 实际上就是通过引入$\alpha$对偶项来让不等式变成等式
+
 $$
 \min_w\frac{1}{2}\|w\|^2_2+C\sum_{i=1}^n\xi_i-\sum_{i=1}^n\alpha_i(y_i(w^\top x_i+b)-1+\xi_i)-\sum_{i=1}^n \beta_i\xi_i
 $$
+
 然后我们将目标转化为优化$w,b,\xi_i$关于这些变量求偏导要为0得到极小值
 
 $C=\alpha_i+\beta_i,w=\sum_{i=1}^n \alpha_iy_ix_i,\sum_{i=1}^n\alpha_iy_i=0$
 
 重新带入原始式子，得到：
+
 $$
 \max_{\alpha_i}\sum_{i=1}^n\alpha_i-\sum_{i=1}^n\sum_{j=1}^n\alpha_i\alpha_jy_iy_jx_i^\top x_j\\
 \sum_{i=1}^n\alpha_iy_i=0
@@ -207,19 +220,19 @@ $$
 
 我们固定一个x，对于不同的分类器，就可以得到一个分数g(x)，记作u
 
-### 如果 \(u>0\)
+#### 如果 \(u>0\)
 
 我们预测 \(+1\)。只有 \(Y=-1\) 时出错，所以条件错误率为
 
 \[ 1-\eta(x). \]
 
-### 如果 \(u<0\)
+#### 如果 \(u<0\)
 
 我们预测 \(-1\)。只有 \(Y=+1\) 时出错，所以条件错误率为
 
 \[ \eta(x). \]
 
-### 如果 \(u=0\)
+#### 如果 \(u=0\)
 
 随机选择正负标签，错误率为
 
@@ -230,11 +243,11 @@ $$
 \[ C_{\eta(x)}(u)= \begin{cases} 1-\eta(x),&u>0,\\[1mm] \frac12,&u=0,\\[1mm] \eta(x),&u<0. \end{cases} \]
 
 正如2.2.3部分计算的贝叶斯风险（最佳风险)等于
+
 $$
 \mathcal R^∗ = E[min(η(x), 1 − η(x))] = E[\frac1
 2 − \frac1
 2 |E[y|x]|]
-
 ,
 $$
 
@@ -246,9 +259,9 @@ $$
 
 在实际算法之中，往往使用$\Phi(u)$代替$\Phi_{0-1}(u)$
 
-其中\[ u=Yg(X) \]是分类间隔。
+其中\(u=Yg(X)\)是分类间隔。
 
-理想情况下，我们真正想最小化的是 \(0\text{-}1\) 风险：\[ \mathcal R(g) = \mathbb E\big[\Phi_{0-1}(Yg(X))\big]. \]
+理想情况下，我们真正想最小化的是 \(0\text{-}1\) 风险：\(\mathcal R(g) = \mathbb E\big[\Phi_{0-1}(Yg(X))\big].\)
 
 但是这是一个间断函数，非光滑而且非凸，几乎处处导数为零。使得我们想要梯度下降优化g会使得g的变化速度被$\Phi_{0-1}(u)$的导数被直接吃掉，于是我们就只能做一些替代。
 
@@ -259,9 +272,11 @@ $$
 在讨论一般的函数 $\Phi$ 之前，我们先考察平方损失，因为在这种情况下，论证较为简单。
 
 事实上，正如第 2 章中所看到的，此时使期望 $\Phi$-风险最小的函数为
+
 $$
 g(x)=\mathbb E[Y\mid X=x]=2\eta(x)-1.
 $$
+
 对 $g(x)$ 取符号，就能得到最优的分类预测。
 
 因此，在二分类问题中使用平方损失，可以在总体分布层面得到最优预测。
@@ -273,10 +288,12 @@ $$
 与 $0\text{-}1$ 损失的情形相同，使 $\Phi$-风险最小的函数 $g$，可以通过对每个 $x$ 分别进行最小化来确定。
 
 此时，只要知道条件概率
+
 $$
 \eta(x)=\mathbb P(Y=1\mid X=x),
 $$
-就足以刻画该点 $x$​ 处的最优预测，以及由此产生的超额风险。固定 \(X=x\) 后，标签只有两种可能，因此使用替代损失 \(\Phi(Yu)\) 的条件期望是
+
+就足以刻画该点 $x$ 处的最优预测，以及由此产生的超额风险。固定 \(X=x\) 后，标签只有两种可能，因此使用替代损失 \(\Phi(Yu)\) 的条件期望是
 
 
 
@@ -330,7 +347,7 @@ $\Phi'(0_+)=\lim_{h\to0_+}\frac{\Phi(h)-\Phi(0)}{h},\Phi'(0_-)=\lim_{h\to0_-}=\f
 
 现在假设 \(\Phi\) 已经分类校准。
 
-当\[ \xi>\frac12 \]
+当\(\xi>\frac12\)
 
 时，Bayes 最优预测为 \(+1\)。分类校准要求
 
@@ -386,9 +403,9 @@ $\Phi'(0_+)=\lim_{h\to0_+}\frac{\Phi(h)-\Phi(0)}{h},\Phi'(0_-)=\lim_{h\to0_-}=\f
 
 \[ \Phi\text{ 分类校准} \Longrightarrow \Phi\text{ 在 }0\text{ 处可微且 }\Phi'(0)<0. \]
 
-充分性现在反过来假设：\[ \Phi\text{ 在 }0\text{ 处可微},\Phi'(0)<0. \]
+充分性现在反过来假设：\(\Phi\text{ 在 }0\text{ 处可微},\Phi'(0)<0.\)
 
-那么\[ (C_\xi^\Phi)'(0) = (2\xi-1)\Phi'(0). \]
+那么\((C_\xi^\Phi)'(0) = (2\xi-1)\Phi'(0).\)
 
 当 \(\xi>1/2\) 时：
 
@@ -435,23 +452,26 @@ $\Phi'(0_+)=\lim_{h\to0_+}\frac{\Phi(h)-\Phi(0)}{h},\Phi'(0_-)=\lim_{h\to0_-}=\f
 它回答的是“两个优化问题距离终点的关系”。
 
 当然，已知$\mathcal R^{\Phi}$实际上就是关于$C_{\xi}^{\Phi}$求期望，只需证明：
+
 $$
 \forall u\in \mathbb R,G[C_\xi(u)-\inf_{u'}C_\xi(u')]\le C_\xi^\Phi(u)-\inf_{u'}C_\xi^\Phi(u')
 $$
+
 其中G是一个凸函数
 
 如果我们已经有（15），那么就可以
+
 $$
 G[\mathcal R(g)-\mathcal R_*]\le G\mathbb E[C_\xi(u)-\inf_{u'}C_\xi(u')]\le \mathbb E G[C_\xi(u)-\inf_{u'}C_\xi(u')]\le\mathbb EG[C_\xi^\Phi(u)-\inf_{u'}C_\xi^\Phi(u')]\le\mathbb EG[C_\xi^\Phi(u)-\inf_{u'}C_\xi^\Phi(u')] =\mathcal R^\Phi(g)-\mathcal R^{\Phi}_*
 $$
 
-要想计算最终目标，可以先计算\[ \Delta_{01}(\xi,u) = C_\xi(u)-\inf_{u'\in\mathbb R}C_\xi(u'), \]
+要想计算最终目标，可以先计算\(\Delta_{01}(\xi,u) = C_\xi(u)-\inf_{u'\in\mathbb R}C_\xi(u'),\)
 
 即固定正类概率 \(\xi\) 后，当前分数 \(u\) 比最优分类多付出了多少 \(0\text{-}1\) 风险。
 
-## 1. 先写出 \(C_\xi(u)\)
+#### 1. 先写出 \(C_\xi(u)\)
 
-条件 \(0\text{-}1\) 风险为\[ C_\xi(u) = \xi\Phi_{0-1}(u) + (1-\xi)\Phi_{0-1}(-u). \]
+条件 \(0\text{-}1\) 风险为\(C_\xi(u) = \xi\Phi_{0-1}(u) + (1-\xi)\Phi_{0-1}(-u).\)
 
 由于
 
@@ -461,7 +481,7 @@ $$
 
 \[ \boxed{ C_\xi(u)= \begin{cases} \xi,&u<0,\\[1mm] \frac12,&u=0,\\[1mm] 1-\xi,&u>0. \end{cases} } \]
 
-## 2. 当 \(\xi=1/2\)
+#### 2. 当 \(\xi=1/2\)
 
 此时
 
@@ -477,7 +497,7 @@ $$
 
 这是因为正负标签概率相同，任何预测都一样好。
 
-## 3. 当 \(\xi>1/2\)
+#### 3. 当 \(\xi>1/2\)
 
 此时正类更可能出现，所以应当选择 \(u>0\)，预测 \(+1\)。
 
@@ -493,19 +513,19 @@ $$
 
 分别计算超额风险。
 
-### 当 \(u>0\)
+##### 当 \(u>0\)
 
 预测方向正确：
 
 \[ \Delta_{01}(\xi,u) = (1-\xi)-(1-\xi)=0. \]
 
-### 当 \(u<0\)
+##### 当 \(u<0\)
 
 预测方向错误：
 
 \[ \Delta_{01}(\xi,u) = \xi-(1-\xi) = 2\xi-1. \]
 
-### 当 \(u=0\)
+##### 当 \(u=0\)
 
 随机预测：
 
@@ -531,7 +551,7 @@ $$
 
 在 \(u=0\) 时，左边只有 \((2\xi-1)/2\)，右边是 \(2\xi-1\)，所以是上界而非等式。
 
-## 4. 当 \(\xi<1/2\)
+#### 4. 当 \(\xi<1/2\)
 
 此时负类更可能出现，正确方向是 \(u<0\)。
 
@@ -551,7 +571,7 @@ $$
 
 \[ \Delta_{01}(\xi,u) \le (1-2\xi)\mathbf1_{\{-u\le0\}} = (1-2\xi)\mathbf1_{\{u\ge0\}}. \]
 
-## 5. 把两种情况统一起来
+#### 5. 把两种情况统一起来
 
 令
 
@@ -580,13 +600,17 @@ $$
 首先我们来看简单的平方损失的情况：
 
 $C^{\Phi}_{\xi}(u)=\xi(1-u)^2+(1-\xi)(1+u)^2=u^2-2(2\xi-1)u+1$
+
 $$
 C^{\Phi}_{\xi}(u)-\inf_{u'}C_\xi^\Phi(u')=(u-2\xi+1)^2\ge(|2\xi-1|\,  \mathbf1_{\{(2\xi-1)u\le0\}})^2
 $$
+
 因此，有如下的控制
+
 $$
 \mathcal R(g)-\mathcal R^*\le(\mathcal R_\Phi(g)-\mathcal R_\Phi^*)^{1/2}
 $$
+
 而对于一般的光滑替代函数 Smooth Surrogates，$\Phi(u)=a(u)-u$
 
 其中$a$要是一个偶函数，凸函数，而且满足$a''(u)\le\beta$
@@ -707,7 +731,7 @@ a^*\bigl(\mathcal R(g)-\mathcal R^*\bigr)
 
 1. \(G\) 是凸函数；
 2. \(G(0)=0\)；
-3. 对任意函数 \(g:\mathcal X\to\mathbb R\)，都有\[ \boxed{ G\!\left(\mathcal R(g)-\mathcal R^*\right) \le \mathcal R_\Phi(g)-\mathcal R_\Phi^*. } \]
+3. 对任意函数 \(g:\mathcal X\to\mathbb R\)，都有\(\boxed{ G\!\left(\mathcal R(g)-\mathcal R^*\right) \le \mathcal R_\Phi(g)-\mathcal R_\Phi^*. }\)
 
 其中：
 
@@ -724,7 +748,7 @@ a^*\bigl(\mathcal R(g)-\mathcal R^*\bigr)
 
 
 
-一、为什么这样定义 \(G\)？
+#### 一、为什么这样定义 \(G\)？
 
 令
 
@@ -754,7 +778,7 @@ a^*\bigl(\mathcal R(g)-\mathcal R^*\bigr)
 
 ------
 
-## 二、证明 \(G\) 是凸函数
+#### 二、证明 \(G\) 是凸函数
 
 记
 
@@ -788,7 +812,7 @@ a^*\bigl(\mathcal R(g)-\mathcal R^*\bigr)
 
 ------
 
-## 三、证明 \(G(0)=0\)
+#### 三、证明 \(G(0)=0\)
 
 当 \(z=0\) 时，
 
@@ -810,7 +834,7 @@ a^*\bigl(\mathcal R(g)-\mathcal R^*\bigr)
 
 ------
 
-## 四、证明逐点的校准不等式
+#### 四、证明逐点的校准不等式
 
 要证明
 
@@ -824,7 +848,7 @@ a^*\bigl(\mathcal R(g)-\mathcal R^*\bigr)
 
 \[ z=2\xi-1. \]
 
-### 情况一：分类方向正确
+##### 情况一：分类方向正确
 
 如果
 
@@ -838,7 +862,7 @@ a^*\bigl(\mathcal R(g)-\mathcal R^*\bigr)
 
 \[ G(\Delta_{01})=G(0)=0 \le \Delta_\Phi. \]
 
-### 情况二：分类方向错误
+##### 情况二：分类方向错误
 
 如果
 
@@ -882,7 +906,7 @@ a^*\bigl(\mathcal R(g)-\mathcal R^*\bigr)
 
 ------
 
-## 五、提升到总体风险
+#### 五、提升到总体风险
 
 我们有
 
@@ -1004,27 +1028,29 @@ a^*(t)\ge\frac{a^*(\varepsilon)}{\varepsilon}t,
 
 - 对于 hinge 损失，函数
 
-  \[ \operatorname{sign}(2\eta(x)-1) \]
+    \[ \operatorname{sign}(2\eta(x)-1) \]
 
-  必须属于我们选取的函数类；
+    必须属于我们选取的函数类；
 
 - 对于平方损失，函数
 
-  \[ 2\eta(x)-1 \]
+    \[ 2\eta(x)-1 \]
 
-  必须属于该函数类；
+    必须属于该函数类；
 
 - 对于 logistic 损失，函数
 
-  \[ 2\operatorname{atanh}(2\eta(x)-1) \]
+    \[ 2\operatorname{atanh}(2\eta(x)-1) \]
 
-  必须属于该函数类。
+    必须属于该函数类。
 
-如果这些函数不属于所选的模型类，那么模型类至少需要能够很好地逼近它们。对于 hinge 损失而言，这种逼近可能更加困难，因为\[ \operatorname{sign}(2\eta(x)-1) \]的正则性可能比较弱，或者说，它可能没有下面两个函数那么平滑：
+如果这些函数不属于所选的模型类，那么模型类至少需要能够很好地逼近它们。对于 hinge 损失而言，这种逼近可能更加困难，因为\(\operatorname{sign}(2\eta(x)-1)\)的正则性可能比较弱，或者说，它可能没有下面两个函数那么平滑：
 
-\[ 2\eta(x)-1 \]或\[ 2\operatorname{atanh}(2\eta(x)-1). \]
+\(2\eta(x)-1\)或\(2\operatorname{atanh}(2\eta(x)-1).\)
 
-Ex 4.4 对于 logistic 损失，假设数据由以下类别条件分布生成：
+### Ex 4.4
+
+对于 logistic 损失，假设数据由以下类别条件分布生成：
 
 \[ X\mid Y=1 \quad\text{和}\quad X\mid Y=-1, \]
 
@@ -1038,7 +1064,7 @@ Ex 4.4 对于 logistic 损失，假设数据由以下类别条件分布生成：
 
 进一步，将该结论推广到多类别情形。
 
-## 1. Logistic 损失的最优分数
+#### 1. Logistic 损失的最优分数
 
 固定 \(X=x\)，记
 
@@ -1082,7 +1108,7 @@ Ex 4.4 对于 logistic 损失，假设数据由以下类别条件分布生成：
 
 \[ 2\operatorname{atanh}(2\eta-1) = \log\frac{\eta}{1-\eta}. \]
 
-## 2. 使用 Bayes 公式
+#### 2. 使用 Bayes 公式
 
 设类别先验概率为
 
@@ -1102,11 +1128,11 @@ Ex 4.4 对于 logistic 损失，假设数据由以下类别条件分布生成：
 
 所以问题转化为计算两个高斯密度的对数比。
 
-## 3. 代入共同协方差的高斯分布
+#### 3. 代入共同协方差的高斯分布
 
 假设
 
-\[ X\mid Y=1\sim\mathcal N(\mu_+,\Sigma), \]\[ X\mid Y=-1\sim\mathcal N(\mu_-,\Sigma). \]
+\(X\mid Y=1\sim\mathcal N(\mu_+,\Sigma),\)\(X\mid Y=-1\sim\mathcal N(\mu_-,\Sigma).\)
 
 它们拥有相同的协方差矩阵 \(\Sigma\)。
 
@@ -1146,9 +1172,9 @@ Ex 4.4 对于 logistic 损失，假设数据由以下类别条件分布生成：
 
 所以总体最优 logistic 分数是 \(x\) 的仿射函数。
 
-拓展到多分类的情景：
+#### 拓展到多分类的情景：
 
-## 1. 从一个分数变成 \(K\) 个分数
+##### 1. 从一个分数变成 \(K\) 个分数
 
 二分类时只需要一个实数：
 
@@ -1170,7 +1196,7 @@ Ex 4.4 对于 logistic 损失，假设数据由以下类别条件分布生成：
 
 \[ \boxed{ f_g(x)=\arg\max_{k\in\{1,\ldots,K\}}g_k(x). } \]
 
-## 2. 多分类 logistic 损失
+##### 2. 多分类 logistic 损失
 
 定义 softmax 概率：
 
@@ -1186,7 +1212,7 @@ Ex 4.4 对于 logistic 损失，假设数据由以下类别条件分布生成：
 
 这就是通常所说的 softmax cross-entropy。
 
-## 3. 条件风险的最优分数
+##### 3. 条件风险的最优分数
 
 固定 \(X=x\)，记真实后验概率为
 
@@ -1222,7 +1248,7 @@ Ex 4.4 对于 logistic 损失，假设数据由以下类别条件分布生成：
 
 \[ \arg\max_k[g_k(x)+c(x)] = \arg\max_k g_k(x). \]
 
-## 4. 代入共同协方差高斯模型
+##### 4. 代入共同协方差高斯模型
 
 假设
 
@@ -1284,7 +1310,7 @@ Ex 4.4 对于 logistic 损失，假设数据由以下类别条件分布生成：
 
 后者则是由于$\mathcal{F}$这个函数类不够大导致的，也被称之为逼近误差
 
-Ch4.3 Approximation
+## Ch4.3 Approximation
 
 我们先来分析一下逼近误差这个成分：
 
@@ -1342,7 +1368,7 @@ R(\hat f) - \inf_{f\in\mathcal{F}} R(f) = R(\hat f) - R(g_{\mathcal F}) = \under
 
 对于第二项，由于$\hat R(\hat f) \le \hat R(g_{\mathcal F})$,$\hat{f}$是$\hat{R}$的极小化结果
 
-4.4 Estimation Error
+## 4.4 Estimation Error
 
 记 $H(z_1,\dots,z_n) = \sup_{f\in\mathcal{F}}\big(R(f) - \hat R(f)\big)$。损失有界在 $[0,\ell_\infty]$ 时,**改动单个样本 $z_i$,$H$ 至多变化 $\ell_\infty/n$**(有界差分性质)。于是 McDiarmid 不等式给出集中:以概率 $\geq 1-\delta$,
 ```math
@@ -1606,17 +1632,17 @@ C=\sum_{i=1}^n c_i^2.
 
 **4.4.3 有限模型类(暖身二):** $\mathcal{F}$ 有限时,用并集界把 sup 拆开,对每个 $f$ 套 Hoeffding,得到
 
-**第一步,并集界把 sup 拆成逐个。** "存在某个 $f $ 偏差 $\geq t $"这件事,无非是"各个 $f $ 偏差 $\geq t $"这些事件的并,于是概率可加:
+**第一步,并集界把 sup 拆成逐个。** "存在某个 $f$ 偏差 $\geq t$"这件事,无非是"各个 $f$ 偏差 $\geq t$"这些事件的并,于是概率可加:
 ```math
 \mathbb{P}\Big(\sup_{f\in\mathcal{F}}\big(\hat R(f)-R(f)\big)\geq t\Big) \;\leq\; \sum_{f\in\mathcal{F}}\mathbb{P}\big(\hat R(f)-R(f)\geq t\big)
 ```
-这一步的好处是右边每一项都是**固定的** $f $,sup 的纠缠没了。
+这一步的好处是右边每一项都是**固定的** $f$,sup 的纠缠没了。
 
 **第二步,对每个固定 $f$ 套 Hoeffding。** $\hat R(f)$ 是 $n$ 个有界独立量的平均,期望为 $R(f)$,所以 $\mathbb{P}\big(\hat R(f)-R(f)\geq t\big)\leq \exp(-2nt^2/\ell_\infty^2)$。代回去,$|\mathcal{F}|$ 项一加(连同两侧的因子 2):
 ```math
 \mathbb{P}\Big(\sup_{f\in\mathcal{F}}\big(\hat R(f)-R(f)\big)\geq t\Big) \;\leq\; 2|\mathcal{F}|\exp\!\Big(\frac{-2nt^2}{\ell_\infty^2}\Big)
 ```
-**第三步,令右边 $=\delta $ 反解 $t $。** 得到:以概率 $\geq 1-\delta $,
+**第三步,令右边 $=\delta$ 反解 $t$。** 得到:以概率 $\geq 1-\delta$,
 ```math
 \sup_{f\in\mathcal{F}}\big(\hat R(f)-R(f)\big) \;\leq\; \frac{\ell_\infty}{\sqrt{2n}}\sqrt{\log\frac{2|\mathcal{F}|}{\delta}} \;\leq\; \ell_\infty\sqrt{\frac{\log(2|\mathcal{F}|)}{2n}} \;+\; \frac{\ell_\infty}{\sqrt{2n}}\sqrt{\log\frac{1}{\delta}}
 ```

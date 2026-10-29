@@ -1,4 +1,4 @@
-LTFP: Ch 4.5.1Rademacher复杂度
+# LTFP: Ch 4.5.1Rademacher复杂度
 
 所以我们折腾半天引出这样一个量是为了说明什么呢？
 
@@ -182,7 +182,7 @@ Exercise4.11:
 
 经验Radamacher复杂度
 
-我们之前得到的是$\mathbb E_{\mathcal D}\sup_{h\in\mathcal H}\abs{\mathbb E(h(z))-\frac 1 n \sum_{i=1}^n h(z_i)}$在期望的意义下被Radamacher复杂度给控制住，那么，对于任意选取的样本量能否稳定控制呢？
+我们之前得到的是$\mathbb E_{\mathcal D}\sup_{h\in\mathcal H}\left|\mathbb E(h(z))-\frac 1 n \sum_{i=1}^n h(z_i)\right|$在期望的意义下被Radamacher复杂度给控制住，那么，对于任意选取的样本量能否稳定控制呢？
 
 $\mathbb E(h(z))\le \frac 1 n\sum_{i=1}^n h(z_i)+2R_n(\mathcal H)+\frac {\ell_∞}{\sqrt{2n}} \sqrt{\log(\frac 1 \delta)}$
 
@@ -194,7 +194,7 @@ $\mathbb E(h(z))\le \frac 1 n\sum_{i=1}^n h(z_i)+2R_n(\mathcal H)+\frac {\ell_�
 
 这是McDiarmid不等式可知，因为现在只替换第 \(j\) 个样本：
 
-\[ D=(z_1,\ldots,z_j,\ldots,z_n), \]\[ D^{(j)}=(z_1,\ldots,z_j',\ldots,z_n). \]
+\(D=(z_1,\ldots,z_j,\ldots,z_n),\)\(D^{(j)}=(z_1,\ldots,z_j',\ldots,z_n).\)
 
 对任意固定的 \(h\)，两个经验平均之差满足
 
@@ -284,6 +284,7 @@ a_i(\theta)
 可以采用归纳法来进行证明，首先对于n=0时就没有1-Lipschitz变换的事。
 
 我们已知：$\forall k\le n$
+
 $$
 \mathbb E_\varepsilon
 \left[
@@ -307,13 +308,18 @@ a_i(\theta)
 \right\}
 \right].
 $$
+
 下证k=n+1的情况：
 
-首先记$B(\theta)
+首先记
+
+```math
+B(\theta)
 =
 b(\theta)
 +
-\sum_{i=1}^n \varepsilon_i\varphi_i(a_i(\theta)).$
+\sum_{i=1}^n \varepsilon_i\varphi_i(a_i(\theta)).
+```
 
 考虑第 $n+1$ 个 Rademacher 符号。对 $\varepsilon_{n+1}$ 显式取期望：
 ```math
@@ -571,7 +577,7 @@ a_i(\theta)
 
 \[ (-\varepsilon_1,\ldots,-\varepsilon_n) \overset d= (\varepsilon_1,\ldots,\varepsilon_n), \]
 
-上面两项相等，因此\[ \mathbb E_\varepsilon \sup_\theta|S_\varphi(\theta)| \leq 2\, \mathbb E_\varepsilon \sup_\theta \sum_{i=1}^n \varepsilon_i\varphi_i(a_i(\theta)). \tag{1} \]
+上面两项相等，因此\(\mathbb E_\varepsilon \sup_\theta|S_\varphi(\theta)| \leq 2\, \mathbb E_\varepsilon \sup_\theta \sum_{i=1}^n \varepsilon_i\varphi_i(a_i(\theta)). \tag{1}\)
 
 然后就可以使用Proposition 4.3
 
@@ -618,17 +624,22 @@ u^\top \theta.$所以$\sup_{\Omega(\theta)\le D}
 =
 D\Omega^*(u).$
 
-于是就有$R_n(\mathcal F)
+于是就有
+
+```math
+R_n(\mathcal F)
 =
 \frac{D}{n}
 \mathbb E
 \left[
 \Omega^*(\Phi^\top\varepsilon)
-\right].$
+\right].
+```
 
 不同范数给出不同复杂度：
 
 当$\Omega =\|\cdot\|_2,\Omega^*=\|\cdot\|_2$因此原式变成：
+
 $$
 R_n(\mathcal F)
 =
@@ -640,8 +651,9 @@ R_n(\mathcal F)
 \mathbb E
 \left[
 \|\Phi^\top\varepsilon)
-\|_2^2\right]}=\frac D n\sqrt{ \mathbb E\tr(\Phi\Phi^\top\varepsilon\varepsilon^\top)}=
+\|_2^2\right]}=\frac D n\sqrt{ \mathbb E\operatorname{tr}(\Phi\Phi^\top\varepsilon\varepsilon^\top)}=
 $$
+
 由于 \(\Phi\) 的第 \(i\) 行是 \(\varphi(x_i)^\top\)，
 
 \[ \operatorname{tr}(\Phi^\top\Phi) = \|\Phi\|_{\mathrm F}^2 = \sum_{i=1}^n \|\varphi(x_i)\|_2^2. \]
@@ -722,16 +734,21 @@ RD
 而不是 $d$。这正是稀疏学习中 $\ell_1$ 约束的优势。
 
 Exercise 4.13设$p\in(1,2],$并令 \(q\) 为 \(p\) 的 Hölder 共轭指数，即
+
 \[
 \frac1p+\frac1q=1.
 \]
 
-假设几乎处处有$\|\varphi(x)\|_q\leq R.$考虑线性预测函数类$\mathcal F
+假设几乎处处有$\|\varphi(x)\|_q\leq R.$考虑线性预测函数类
+
+```math
+\mathcal F
 =
 \left\{
 f_\theta(x)=\theta^\top\varphi(x):
 \Omega(\theta)\leq D
-\right\},$
+\right\},
+```
 
 其中$\Omega(\theta)=\|\theta\|_p.$
 
@@ -758,13 +775,13 @@ p
 
 恢复 Exercise 4.12 中的结果。
 
-解：取\[ Z_i=\varepsilon_i\varphi(x_i). \]
+解：取\(Z_i=\varepsilon_i\varphi(x_i).\)
 
-固定数据 \(x_1,\ldots,x_n\) 后，因为\[ \mathbb E_\varepsilon[\varepsilon_i]=0, \]
+固定数据 \(x_1,\ldots,x_n\) 后，因为\(\mathbb E_\varepsilon[\varepsilon_i]=0,\)
 
-所以\[ \mathbb E_\varepsilon[Z_i]=0. \]
+所以\(\mathbb E_\varepsilon[Z_i]=0.\)
 
-同时\[ \|Z_i\|_q = |\varepsilon_i|\|\varphi(x_i)\|_q = \|\varphi(x_i)\|_q \leq R. \]
+同时\(\|Z_i\|_q = |\varepsilon_i|\|\varphi(x_i)\|_q = \|\varphi(x_i)\|_q \leq R.\)
 
 \[ S_n=Z_1+\cdots+Z_n. \]
 

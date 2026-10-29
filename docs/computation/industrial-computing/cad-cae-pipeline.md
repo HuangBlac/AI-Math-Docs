@@ -48,7 +48,7 @@ Bézier 曲线的局限是**全局影响**：移动一个控制点通常会影�
 ```math
 N_{i,0}(u)=
 \begin{cases}
-1, & u_i\le u<u_{i+1},\\
+1, & u_i\le u< u_{i+1},\\
 0, & \text{otherwise}.
 \end{cases}
 ```

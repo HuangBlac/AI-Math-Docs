@@ -103,17 +103,17 @@ g_t(\theta)=\nabla_\theta\ell(y_t,f_\theta(x_t)).
 
 - **(H-1) 无偏性**
 
-  ```math
-  \mathbb E[g_t(\theta_{t-1})\mid\mathcal F_{t-1}]
-  =F'(\theta_{t-1}).
-  ```
+    ```math
+    \mathbb E[g_t(\theta_{t-1})\mid\mathcal F_{t-1}]
+    =F'(\theta_{t-1}).
+    ```
 
 - **(H-2) 随机梯度有界**
 
-  ```math
-  \|g_t(\theta_{t-1})\|_2^2\le B^2
-  \qquad\text{a.s.}
-  ```
+    ```math
+    \|g_t(\theta_{t-1})\|_2^2\le B^2
+    \qquad\text{a.s.}
+    ```
 
 SGD 一般不是逐步下降算法：$F(\theta_t)$ 可以上升，但适当平均后可获得期望收敛保证。
 
@@ -281,7 +281,7 @@ F(\bar\theta_t)
 ```math
 \mathbb E[F(\bar\theta_T)-F(\theta_*)]
 \le
-\frac{D^2}{2\gamma T}+rac{\gamma B^2}{2}
+\frac{D^2}{2\gamma T}+\frac{\gamma B^2}{2}
 =
 \frac{DB}{\sqrt T}.
 ```
@@ -853,7 +853,7 @@ q_i
 并对抽到的次梯度乘以重要性权重
 
 ```math
-\frac{p_i}{q_i}=rac{1/n}{q_i}.
+\frac{p_i}{q_i}=\frac{1/n}{q_i}.
 ```
 
 均匀抽样的最坏界常数为

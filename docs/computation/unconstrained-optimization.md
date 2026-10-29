@@ -29,21 +29,30 @@ $$f(x_1,x_2,x_3,x_4)=\sum_{i=1}^{3}\Big[(1-x_i^2)^2+100(x_{i+1}-x_i^2)^2\Big]$$
 **最速下降法** 线搜索算法之一，基于一阶展开 $f(x+d)\approx f(x)+g^\top d$，取负梯度方向 $d_k=-g_k$。一阶近似收敛速度为线性，$x_{k+1}=x_k+\alpha_k d_k$。
 
 **牛顿法** 基于二阶 Taylor 展开
+
 $$f(x_k+d_k)\approx f_k+g_k^\top d_k+\tfrac12 d_k^\top G_k d_k,$$
+
 得 $d_k=-G_k^{-1}g_k$，固定步长 $\alpha=1$，$x_{k+1}=x_k-G_k^{-1}g_k$。
 
 **BFGS 拟牛顿法** 不直接计算二阶矩阵，用 $B_k\approx G_k^{-1}$ 近似 Hesse 逆，$d_k=-B_k g_k$，$x_{k+1}=x_k+\alpha_k d_k$。修正满足割线条件 $B_{k+1}y_k=s_k$，秩-2 更新 $B_{k+1}=B_k+\beta_k u_k u_k^\top+\gamma_k v_k v_k^\top$，其中 $u_k=y_k,\ v_k=B_k s_k$：
+
 $$B_{k+1}=B_k+\frac{y_k y_k^\top}{y_k^\top s_k}-\frac{B_k s_k s_k^\top B_k}{s_k^\top B_k s_k}$$
 
 **共轭梯度法** 要求方向满足共轭性 $d_k^\top G d_j=0,\ g_k^\top d_j=0\ (j<k)$，$d_{k+1}=-g_k+\beta_k d_k$，起始 $d_0=-g_0$。修正系数：
+
 $$\beta_k^{\mathrm{FR}}=\frac{g_k^\top g_k}{g_{k-1}^\top g_{k-1}},\qquad
 \beta_k^{\mathrm{PRP}}=\frac{g_k^\top (g_k-g_{k-1})}{g_{k-1}^\top g_{k-1}}$$
+
 线性情形两式一致；非线性时因 Hesse 变化而有别，分别记为 FR 与 PRP。
 
 **信赖域法** 不化为一维问题，而在 $x_k$ 处用二次模型近似
+
 $$q_k(d)=f(x_k)+\nabla f_k^\top d+\tfrac12 d^\top \nabla^2 f_k\, d,$$
+
 在半径 $\Delta_k$ 的区域内搜索。用 dogleg 方法：计算牛顿方向 $p^B$ 与负梯度的最优截断 $p^U$；若 $\|p^B\|\le\Delta_k$ 取牛顿方向，若 $\|p^U\|\ge\Delta_k$ 缩放最速下降（Cauchy）方向，否则取二者连线与信赖域边界的交点。半径由模型下降与实际下降之比
+
 $$\rho_k=\frac{f(x_k)-f(x_{k+1})}{q_k(0)-q_k(d)}$$
+
 更新：$\rho_k<\eta_1$ 时 $\Delta_{k+1}=0.25\,\Delta_k$；$\rho_k>\eta_2$ 时 $\Delta_{k+1}=\min(2\Delta_k,\Delta_{\max})$；否则不变。迭代至不再改变为止。
 
 ### 2.3 参数设置

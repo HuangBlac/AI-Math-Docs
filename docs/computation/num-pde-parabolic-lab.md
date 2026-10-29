@@ -8,7 +8,7 @@
 
 ```math
 u_t=u_{xx}+\sin t,
-\quad 0<x<1,
+\quad 0< x<1,
 \qquad
 u_x(t,0)=u_x(t,1)=0,
 ```

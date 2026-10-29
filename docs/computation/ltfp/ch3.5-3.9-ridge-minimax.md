@@ -30,9 +30,9 @@ $$
 
 ---
 
-# 3.5 Fixed Design Setting
+## 3.5 Fixed Design Setting
 
-## 3.5.1 模型与风险分解
+### 3.5.1 模型与风险分解
 
 在固定设计情形中，$\Phi$ 被视为确定矩阵，随机性仅来自噪声。假设
 
@@ -80,7 +80,7 @@ $$
 \mathbb E\|\widehat\theta-\mathbb E[\widehat\theta]\|_{\widehat\Sigma}^2.
 $$
 
-## 3.5.2 OLS 的统计性质
+### 3.5.2 OLS 的统计性质
 
 当 $\widehat\Sigma$ 可逆时，OLS 估计量为
 
@@ -123,9 +123,9 @@ $$
 
 ---
 
-# 3.6 Ridge Least-Squares Regression
+## 3.6 Ridge Least-Squares Regression
 
-## 3.6.1 定义与闭式解
+### 3.6.1 定义与闭式解
 
 给定 $\lambda>0$，岭回归估计量定义为
 
@@ -161,7 +161,7 @@ $$
 
 当 $d\gg n$ 时，后一形式只需求逆 $n\times n$ 矩阵，计算上更合适。
 
-## 3.6.2 Proposition 3.7：岭回归的偏差--方差分解
+### 3.6.2 Proposition 3.7：岭回归的偏差--方差分解
 
 由
 
@@ -179,7 +179,7 @@ $$
 =\theta^*-\lambda(\widehat\Sigma+\lambda I)^{-1}\theta^*.
 $$
 
-### 偏差项
+#### 偏差项
 
 $$
 \begin{aligned}
@@ -200,7 +200,7 @@ B=\lambda^2\theta^{*\top}
 \widehat\Sigma\theta^*.
 $$
 
-### 方差项
+#### 方差项
 
 随机部分为
 
@@ -242,7 +242,7 @@ $$
 }.
 $$
 
-## 3.6.3 Proposition 3.8：正则化参数的理论选择
+### 3.6.3 Proposition 3.8：正则化参数的理论选择
 
 对任意标量特征值 $u\ge 0$，有
 
@@ -309,7 +309,7 @@ $$
 
 该 $\lambda^*$ 优化的是风险上界，不一定是真实期望风险的精确最优值。
 
-## 3.6.4 Exercise 3.6：一般二次正则项
+### 3.6.4 Exercise 3.6：一般二次正则项
 
 考虑
 
@@ -365,7 +365,7 @@ $$
 
 > **修正说明：** 当 $\Lambda$ 与 $\widehat\Sigma$ 不可交换时，不能把上式随意合并为 $(\widehat\Sigma+\Lambda)^{-2}\widehat\Sigma^2$。只有两者可交换时才可这样简化。
 
-## 3.6.5 Exercise 3.7：留一法公式
+### 3.6.5 Exercise 3.7：留一法公式
 
 对每个 $i$，定义
 
@@ -461,9 +461,9 @@ $$
 
 ---
 
-# 3.7 Lower Bound
+## 3.7 Lower Bound
 
-## 3.7.1 极小极大问题
+### 3.7.1 极小极大问题
 
 为证明固定设计下 OLS 的 $\sigma^2d/n$ 风险是不可改进的，进一步假设
 
@@ -496,7 +496,7 @@ R_{\theta^*}(A(\Phi\theta^*+\varepsilon))-R^*
 \right].
 $$
 
-## 3.7.2 用先验平均下界化最坏情形
+### 3.7.2 用先验平均下界化最坏情形
 
 选择高斯先验
 
@@ -530,7 +530,7 @@ $$
 A^*(y)=\mathbb E[\theta^*\mid y].
 $$
 
-## 3.7.3 后验均值等于岭回归
+### 3.7.3 后验均值等于岭回归
 
 似然与先验分别满足
 
@@ -567,7 +567,7 @@ A^*(y)
 }.
 $$
 
-## 3.7.4 贝叶斯风险计算
+### 3.7.4 贝叶斯风险计算
 
 将
 
@@ -619,9 +619,9 @@ $$
 
 ---
 
-# 3.8 Random Design Analysis
+## 3.8 Random Design Analysis
 
-## 3.8.1 随机设计模型
+### 3.8.1 随机设计模型
 
 现在 $(x_i,y_i)$ 为 i.i.d. 样本，并假设
 
@@ -643,7 +643,7 @@ $$
 \Sigma=\mathbb E[\varphi(x)\varphi(x)^\top].
 $$
 
-## 3.8.2 Proposition 3.9：随机设计风险
+### 3.8.2 Proposition 3.9：随机设计风险
 
 对独立测试样本 $(x_0,y_0)$，
 
@@ -668,7 +668,7 @@ $$
 
 固定设计与随机设计的关键差别是：风险中的矩阵由 $\widehat\Sigma$ 换成了 $\Sigma$。
 
-## 3.8.3 Proposition 3.10：随机设计下 OLS 风险
+### 3.8.3 Proposition 3.10：随机设计下 OLS 风险
 
 条件于训练输入 $x_1,\ldots,x_n$，有
 
@@ -701,7 +701,7 @@ $$
 
 这里的期望同时包含训练输入与噪声的随机性。
 
-## 3.8.4 Exercise 3.8：随机设计下岭回归
+### 3.8.4 Exercise 3.8：随机设计下岭回归
 
 条件于 $\Phi$，
 
@@ -734,7 +734,7 @@ $$
 
 > 第二项的写法利用了迹的循环不变性，以及 $\widehat\Sigma$ 与 $(\widehat\Sigma+\lambda I)^{-1}$ 可交换；$\Sigma$ 一般不与它们交换。
 
-## 3.8.5 Gaussian Designs 与 Wishart 分布
+### 3.8.5 Gaussian Designs 与 Wishart 分布
 
 假设
 
@@ -818,7 +818,7 @@ $$
 
 当 $n\to\infty$ 且 $d$ 固定时，它渐近等价于 $\sigma^2d/n$；当 $d/n$ 接近 $1$ 时，风险会显著放大。
 
-## 3.8.6 Proposition 3.11：矩阵 Bernstein 不等式
+### 3.8.6 Proposition 3.11：矩阵 Bernstein 不等式
 
 设 $M_1,\ldots,M_n\in\mathbb R^{d\times d}$ 为独立对称随机矩阵，满足
 
@@ -852,7 +852,7 @@ $$
 }.
 $$
 
-### 推导骨架
+#### 推导骨架
 
 矩阵情形不能直接把 $\exp(s\sum_iM_i)$ 分解成乘积。关键工具是 Tropp 型矩阵 Laplace 变换界：
 
@@ -906,7 +906,7 @@ $$
 
 即得到上述 Bernstein 形式。
 
-## 3.8.7 Proposition 3.12：经验协方差的下谱界
+### 3.8.7 Proposition 3.12：经验协方差的下谱界
 
 设
 
@@ -1016,9 +1016,9 @@ $$
 
 ---
 
-# 3.9 Principal Component Analysis
+## 3.9 Principal Component Analysis
 
-## 3.9.1 PCA 的优化问题
+### 3.9.1 PCA 的优化问题
 
 给定 $\Phi\in\mathbb R^{n\times d}$，希望找到一个 $k$ 维线性子空间，使所有特征向量到该子空间的投影误差最小。
 
@@ -1094,7 +1094,7 @@ $$
 =U_k\operatorname{Diag}(s_1,\ldots,s_k)V_k^\top.
 $$
 
-## 3.9.2 Exercise 3.9：低秩分解与交替最小化
+### 3.9.2 Exercise 3.9：低秩分解与交替最小化
 
 考虑
 
@@ -1118,7 +1118,7 @@ $$
 A^*D^*=(A^*T)(T^{-1}D^*).
 $$
 
-### 交替最小化更新
+#### 交替最小化更新
 
 固定 $D_t$，最小化 $\|\Phi-AD_t\|_F^2$：
 
@@ -1140,7 +1140,7 @@ $$
 
 假设 $A_t$ 满列秩。
 
-### 行空间的演化
+#### 行空间的演化
 
 令
 
@@ -1235,7 +1235,7 @@ $$
 
 若 $s_k=s_{k+1}$，最优主子空间不唯一；算法仍可收敛到某个最优的主不变子空间，但不能要求收敛到唯一指定的 $\operatorname{span}(v_1,\ldots,v_k)$。
 
-## 3.9.3 Exercise 3.10：K-means 的交替更新
+### 3.9.3 Exercise 3.10：K-means 的交替更新
 
 考虑
 
@@ -1262,7 +1262,7 @@ $$
 A_{ij}\|\varphi(x_i)-d_j\|_2^2.
 $$
 
-### 固定 $D$ 更新 $A$
+#### 固定 $D$ 更新 $A$
 
 每个样本分配给最近的中心：
 
@@ -1275,7 +1275,7 @@ j\in\arg\min_{\ell\in\{1,\ldots,k\}}
 }.
 $$
 
-### 固定 $A$ 更新 $D$
+#### 固定 $A$ 更新 $D$
 
 对每个非空簇，中心取簇内均值：
 
@@ -1290,7 +1290,7 @@ $$
 
 若某个簇为空，则分母为零，需要重新初始化该中心或采用其他空簇处理规则。
 
-## 3.9.4 PCA 后的最小二乘回归
+### 3.9.4 PCA 后的最小二乘回归
 
 取 PCA 的前 $k$ 个特征向量组成 $V\in\mathbb R^{d\times k}$，使用降维特征矩阵 $\Phi V$。考虑
 

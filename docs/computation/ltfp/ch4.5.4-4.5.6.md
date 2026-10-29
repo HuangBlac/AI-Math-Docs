@@ -1,14 +1,17 @@
-4.5.4 Putting Things Together
+# 4.5.4 Putting Things Together
 
 在这一部分之中，我们使用线性模型函数空间的Rademacher复杂度来对误差进行估计：
 
 Proposition 4.5：
 
 损失函数$\ell$是一个G-Lipschitz连续的函数，函数类$\mathcal F =\{f_\theta(x)=\theta^\top \varphi (x)，\|\theta\|_2\le D\}$，$\mathbb E \|\varphi(x)\|_2^2\le R^2$若$\hat f$是经验损失的最小值，那么满足：
+
 $$
 \mathbb E[\mathcal R(\hat f)]\le\inf_{f\in\mathcal F}\mathcal R(f)+\frac{4GRD}{\sqrt n}
 $$
+
 首先,根据Radamacher复杂度的控制，以及Lipshictz函数的性质
+
 $$
 \mathbb E[\mathcal R(\hat f)]-\inf_{f\in\mathcal F}\mathcal R(f)\le 2[ \sup_{f\in\mathcal F}\mathcal R(f)-\mathcal {\hat R}(f)]
 $$
@@ -115,14 +118,16 @@ f_\theta(x)=\theta^\top\varphi(x),
 }.
 }
 \]
+
 $R(\mathcal H)\le GRD\sqrt{\frac{2\log(2d)}{n}}$
 
 $\mathbb E[\mathcal R(\hat f)]\le\inf_{f\in\mathcal F}\mathcal R(f)+4R_n(\mathcal H)$,$\inf_f\mathcal R(f)-\mathcal R^*\le GR\inf_{\|\theta\|_1\le D}\|\theta-\theta^*\|_1$
+
 $$
  \begin{aligned} \mathbb E \left[ \mathcal R(f_{\hat\theta}) \right] - \mathcal R(f_{\theta^*}) &\leq GR \inf_{\|\theta\|_1\leq D} \|\theta-\theta^*\|_1 + 4GRD\sqrt{\frac{2\log(2d)}{n}}\\ &= GR \bigl(\|\theta^*\|_2-D\bigr)_+ + 4GRD\sqrt{\frac{2\log(2d)}{n}}, \end{aligned}
 $$
 
-### 4.5.5 从约束估计到正则化估计
+## 4.5.5 从约束估计到正则化估计
 
 在实际应用中，与其直接对参数施加范数约束，通常更适合使用范数 \(\Omega(\theta)\) 作为惩罚项。
 
@@ -218,17 +223,17 @@ Propostion 4.6就是对于超额风险进行改进
 
 1. 损失函数关于预测值是 \(G\)-Lipschitz 连续的：
 
-   \[ |\ell(y,u)-\ell(y,v)| \leq G|u-v|. \]
+    \[ |\ell(y,u)-\ell(y,v)| \leq G|u-v|. \]
 
 2. 损失函数关于预测值是凸函数。
 
 3. 特征向量几乎处处有界：
 
-   \[ \|\varphi(x)\|_2\leq R. \]
+    \[ \|\varphi(x)\|_2\leq R. \]
 
 4. \(\hat\theta_\lambda\) 是正则化经验风险最小化问题的解：
 
-   \[ \boxed{ \hat\theta_\lambda \in \arg\min_{\theta\in\mathbb R^d} \left\{ \widehat{\mathcal R}(\theta) + \frac{\lambda}{2}\|\theta\|_2^2 \right\}. } \]
+    \[ \boxed{ \hat\theta_\lambda \in \arg\min_{\theta\in\mathbb R^d} \left\{ \widehat{\mathcal R}(\theta) + \frac{\lambda}{2}\|\theta\|_2^2 \right\}. } \]
 
 那么
 
@@ -248,7 +253,7 @@ Propositon 4.7就是在这个基础上，将正则性条件转化为了更一般
 
 
 
-### ch4.5.6 延申与拓展
+## ch4.5.6 延申与拓展
 
 **比 \(1/\sqrt n\) 更慢的速率：**
 

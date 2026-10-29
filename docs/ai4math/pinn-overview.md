@@ -26,7 +26,9 @@ PINN可以求解偏微分方程（这是一句废话），然而，连草履虫�
 
 这便是将机器学习方法与包括PDE在内的一系列方法结合的初衷。相比于之前的方法，直接从微分算子层面构造损失函数：
 
+```math
 f = u_t- \mathcal{N}\,u
+```
 
 MSE=MSE_u+MSE_f
 
@@ -64,7 +66,9 @@ f := ut + N [u; λ]
 
 我们考虑一个流体力学的问题
 
+```math
 u_t+\lambda_1(f(u)_x+vu_y)
+```
 
 ut + λ1(uux + vuy) = −px + λ2(uxx + uyy), vt + λ1(uvx + v v y) = −py + λ2(vxx + v yy),
 
