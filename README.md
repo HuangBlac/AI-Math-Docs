@@ -42,13 +42,23 @@
 ## 本地预览
 
 ```bash
-python -m pip install mkdocs-material pymdown-extensions
+python -m pip install -e ".[docs]"
 python -m mkdocs serve
 ```
 
 浏览器访问 <http://127.0.0.1:8000/>。在同一解释器中运行 `python -m mkdocs build --strict` 做构建检查。
 
-`pyproject.toml` 和 `uv.lock` 当前管理的是学习工具依赖，未包含 MkDocs；仅运行 `uv sync --frozen` 不会安装站点依赖。已安装上述包时无需重复安装。
+站点依赖位于 `pyproject.toml` 的 `docs` 可选依赖组，并由 `uv.lock` 锁定。也可执行 `uv sync --frozen --extra docs`，随后使用 `uv run --frozen --extra docs python -m mkdocs serve`。仅运行 `uv sync --frozen` 不会启用 `docs` 组。
+
+## 自动构建与发布
+
+`.github/workflows/deploy-docs.yml` 在发往 `main` 的 PR 中执行严格构建，并确认 Ch11、Ch12、Ch15.1.5 的页面已生成。PR 不上传发布产物，也没有部署权限。
+
+推送到 `main` 或在 `main` 上手动运行工作流后，构建成功的 `site/` 产物通过官方 Pages actions 发布。发布任务仅获 `pages: write`、`id-token: write` 权限，不写入或覆盖 `gh-pages`，无需个人 token。
+
+首次配置：仓库 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**。在 **Settings → Actions → General** 确认允许工作流使用官方 `actions/*`；无需将仓库所有工作流默认设为读写。检查 `github-pages` environment 的部署分支规则允许 `main`；若设置了人工审批，部署需在 Actions 页面批准。
+
+在 **Actions → Build and Deploy Docs** 查看 `Build docs (strict)` 和 `Deploy to GitHub Pages` 的结果。需要重试时在 `main` 上使用 **Run workflow**。构建成功不代表已上线；部署成功后还需访问在线页面核验。
 
 ## 导入学习笔记
 
