@@ -45,7 +45,7 @@ Ch10、Ch13–Ch14 已列入锁定教材的章节顺序，但目前还没有对�
 
 | 章节 | 正文入口 | 当前范围与缺口 |
 |---|---|---|
-| Ch4 经验风险最小化 | [风险凸化与误差分解](ch4.1-4.4.3.md)、[覆盖数与 Rademacher 导入](ch4.4.4-4.5.0.md)、[Rademacher 复杂度](ch4.5.1-4.5.3.md)、[风险界与正则化估计](ch4.5.4-4.5.6.md)、[模型选择与补充推导](<ch4.6-4.7 model selection.md>) | ⚠️ 4.1.4 缺失；§4.6 仅提纲；P4.6 证明未完成，P4.7 仅概述 |
+| Ch4 经验风险最小化 | [风险凸化与误差分解](ch4.1-4.4.3.md)、[覆盖数与 Rademacher 导入](ch4.4.4-4.5.0.md)、[Rademacher 复杂度](ch4.5.1-4.5.3.md)、[风险界与正则化估计](ch4.5.4-4.5.6.md)、[模型选择与补充推导](ch4.6-4.7-model-selection.md) | ⚠️ 4.1.4 缺失；§4.6 仅提纲；P4.6 证明未完成，P4.7 仅概述 |
 | Ch5 机器学习优化 | [优化简介（跨 §5.1–5.4）](ch5.1-5.2-optimization.md)、[非光滑梯度方法](ch5.3-nonsmooth.md)、[随机梯度下降（§5.4）](ch5.4.0-sgd.md)、[强凸 SGD](ch5.4.1-strong-convex-sgd.md) | ✅/⚠️；已覆盖到 §5.4.1，但 Ex5.34 原稿未完成，整理稿含补充 |
 | Ch6 局部平均方法 | [估计器与一致性分析](ch6.1-6.3-local-averaging.md)、[普遍一致性与高阶光滑性](ch6.4-6.5-universal-consistency.md) | 🔶 手写稿整理；Exercise 6.4 留白，Exercise 6.6 构造未写 |
 | Ch7 核方法 | [表示定理、核构造与 Mercer 特征](ch7.2-representer-kernel-foundations.md)、[核表示、列采样与随机特征](ch7.3-7.4-kernels-algorithms.md)、[泛化保证与逼近误差](ch7.5-generalization.md)、[岭回归的理论分析](ch7.6-ridge-theory.md) | 🔶 §7.2–7.6.1 有整理稿；P7.3 反向未完，Ex7.2 有误，Ch7.6 待人工签认 |
